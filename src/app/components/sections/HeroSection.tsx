@@ -1,0 +1,112 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowRight } from "lucide-react";
+import { HERO_SLIDES } from "../../data/hero";
+
+export function HeroSection() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((a) => (a + 1) % HERO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const goTo = (idx: number) => {
+    setActive(idx);
+  };
+
+  const slide = HERO_SLIDES[active];
+
+  return (
+    <section id="home" className="relative h-[92vh] min-h-[600px] overflow-hidden">
+      {/* Background image */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute inset-0 bg-[#0F2C59]"
+        >
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F2C59]/90 via-[#0F2C59]/60 to-[#0F2C59]/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1A35]/70 via-transparent to-transparent" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex items-center">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="max-w-2xl"
+            >
+              <div className="inline-flex items-center gap-2 bg-[#EAD196]/20 backdrop-blur-sm border border-[#EAD196]/30 rounded-full px-4 py-1.5 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#EAD196] animate-pulse" />
+                <span className="text-[#EAD196] text-xs font-semibold tracking-widest uppercase">{slide.label}</span>
+              </div>
+
+              <h1 className="font-['Outfit'] font-black text-5xl lg:text-7xl text-white leading-none tracking-tight mb-3">
+                {slide.title}
+              </h1>
+              <p className="font-['Outfit'] font-light text-xl lg:text-2xl text-[#EAD196] mb-5 tracking-wide italic">
+                &ldquo;{slide.subtitle}&rdquo;
+              </p>
+              <p className="text-white/75 text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
+                {slide.desc}
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#about"
+                  className="inline-flex items-center gap-2 bg-[#EAD196] text-[#0F2C59] font-bold px-7 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                >
+                  {slide.cta}
+                  <ArrowRight size={16} />
+                </a>
+                <a
+                  href="#departments"
+                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/20 transition-all duration-300 text-sm"
+                >
+                  {slide.ctaSecondary}
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`transition-all duration-500 rounded-full ${
+              i === active ? "w-8 h-2 bg-[#EAD196]" : "w-2 h-2 bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 right-8 z-10 flex flex-col items-center gap-2 hidden lg:flex">
+        <span className="text-white/40 text-[10px] tracking-widest uppercase rotate-90 origin-center translate-y-6">Scroll</span>
+        <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/40" />
+      </div>
+    </section>
+  );
+}
