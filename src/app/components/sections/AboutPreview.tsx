@@ -18,20 +18,20 @@ export function AboutPreview() {
               <div className="h-px w-10 bg-[#EAD196]" />
               <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Story</span>
             </div>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#0F2C59] leading-tight mb-6">
+            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6">
               Six Decades of<br />Faith &amp; Service
             </h2>
             <p className="text-[#4A4A4A] leading-relaxed mb-5 text-base">
-              Founded in <strong className="text-[#0F2C59]">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 19 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.
+              Founded in <strong className="text-[#4E6132]">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 19 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.
             </p>
             <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">
-              Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — <em className="text-[#0F2C59] font-semibold">&ldquo;Bose Babe Umwe&rdquo; (That All of Them May Be One)</em> — guides every initiative.
+              Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — <em className="text-[#4E6132] font-semibold">&ldquo;Bose Babe Umwe&rdquo; (That All of Them May Be One)</em> — guides every initiative.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#about" className="inline-flex items-center gap-2 bg-[#0F2C59] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#1a3f7a] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+              <a href="#about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#1a3f7a] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 Our Full History <ArrowRight size={15} />
               </a>
-              <a href="#vision" className="inline-flex items-center gap-2 text-[#0F2C59] font-semibold px-6 py-3 rounded-xl border-2 border-[#0F2C59]/20 hover:border-[#0F2C59] transition-all duration-300 text-sm">
+              <a href="#vision" className="inline-flex items-center gap-2 text-[#4E6132] font-semibold px-6 py-3 rounded-xl border-2 border-[#4E6132]/20 hover:border-[#4E6132] transition-all duration-300 text-sm">
                 Vision &amp; Mission
               </a>
             </div>
@@ -80,8 +80,8 @@ export function AboutPreview() {
             </div>
             {/* Floating badge */}
             <div className="absolute -bottom-5 -left-5 bg-[#EAD196] rounded-2xl px-5 py-4 shadow-xl">
-              <div className="font-['Outfit'] font-black text-[#0F2C59] text-3xl">19</div>
-              <div className="text-[#0F2C59]/70 text-xs font-semibold">Member<br />Churches</div>
+              <div className="font-['Outfit'] font-black text-[#4E6132] text-3xl">19</div>
+              <div className="text-[#4E6132]/70 text-xs font-semibold">Member<br />Churches</div>
             </div>
           </motion.div>
         </div>
