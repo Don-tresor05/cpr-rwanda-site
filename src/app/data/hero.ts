@@ -12,7 +12,7 @@ export interface HeroSlide {
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop&auto=format",
+    image: "/assets/1.jpeg",
     label: "Serving Rwanda Since 1963",
     title: "Bose Babe Umwe",
     subtitle: "That All of Them May Be One",
@@ -22,7 +22,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&h=1080&fit=crop&auto=format",
+    image: "/assets/Primary.jpg",
     label: "Education Department (BNEP)",
     title: "Shaping Rwanda's Future",
     subtitle: "595 Protestant Primary Schools",
@@ -32,11 +32,11 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop&auto=format",
+    image: "/assets/Inkoramutima-Logo.jpg",
     label: "Radio Inkoramutima",
-    title: "Voice of the Heart",
-    subtitle: "107.1 FM — Broadcasting Hope",
-    desc: "Radio Inkoramutima — 'Voice of the Heart' — reaches communities across Rwanda with messages of faith, unity, and holistic development.",
+    title: "107.1 FM — Broadcasting Hope",
+    subtitle: "Voice of the Protestant Council in Rwanda",
+    desc: "Radio Inkoramutima, the official voice of the Protestant Council of Rwanda, reaches communities across the country with messages of faith, unity, and holistic development.",
     cta: "Listen Live",
     ctaSecondary: "Program Guide",
   },
