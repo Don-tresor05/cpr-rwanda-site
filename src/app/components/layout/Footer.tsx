@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-[#0F2C59] border border-[#EAD196]/30 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#4E6132] border border-[#EAD196]/30 flex items-center justify-center">
                 <span className="text-[#EAD196] font-['Outfit'] font-black text-lg">C</span>
               </div>
               <div>
@@ -33,7 +33,7 @@ export function Footer() {
   <a
     key={`social-${index}`}
     href={href}
-                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#EAD196] hover:text-[#0F2C59] text-white/60 transition-all duration-300 flex items-center justify-center"
+                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#EAD196] hover:text-[#4E6132] text-white/60 transition-all duration-300 flex items-center justify-center"
                 >
                   <Icon size={15} />
                 </a>
@@ -96,7 +96,7 @@ export function Footer() {
             {/* Contact form trigger */}
             <a
               href="#contact"
-              className="mt-6 inline-flex items-center gap-2 bg-[#EAD196] text-[#0F2C59] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
+              className="mt-6 inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
             >
               Send a Message <ArrowRight size={14} />
             </a>
