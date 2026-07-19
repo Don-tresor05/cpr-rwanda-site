@@ -22,7 +22,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-xs font-semibold text-[#0F2C59]/50 uppercase tracking-widest mb-3 pb-2 border-b border-[#0F2C59]/10">
+            <div className="text-xs font-semibold text-[#BC8A5F]/50 uppercase tracking-widest mb-3 pb-2 border-b border-[#BC8A5F]/10">
               {col.heading}
             </div>
           )}
@@ -32,9 +32,9 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                 <a
                   href={link.href}
                   onClick={onClose}
-                  className="group flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-[#0F2C59]/5 transition-colors"
+                  className="group flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-[#BC8A5F]/5 transition-colors"
                 >
-                  <span className="text-sm font-semibold text-[#0F2C59] group-hover:text-[#EAD196] transition-colors flex items-center gap-1.5">
+                  <span className="text-sm font-semibold text-[#BC8A5F] group-hover:text-[#4E6132] transition-colors flex items-center gap-1.5">
                     {link.label}
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </span>
@@ -66,14 +66,14 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden lg:flex bg-[#0F2C59] text-white/80 text-xs py-2 px-6 items-center justify-between">
+      <div className="hidden lg:flex bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1.5"><Phone size={11} /><span>+250 788 314 718</span></span>
           <span className="flex items-center gap-1.5"><Mail size={11} /><span>cprgs@cpr-rwanda.rw</span></span>
           <span className="flex items-center gap-1.5"><MapPin size={11} /><span>KG 2 Av 4, B.P 79, Kigali-Rwanda</span></span>
         </div>
         <div className="flex items-center gap-3">
-          <a href="#donate" className="bg-[#EAD196] text-[#0F2C59] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
+          <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
             Donate Now
           </a>
         </div>
@@ -83,22 +83,18 @@ export function Header() {
       <header
         className={`sticky top-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-white/80 backdrop-blur-2xl shadow-lg border-b border-[#0F2C59]/10"
-            : "bg-white shadow-sm"
+            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#BC8A5F]/10"
+            : "bg-[#F5F5DC] shadow-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-[#0F2C59] flex items-center justify-center shadow-md">
-              <span className="text-[#EAD196] font-['Outfit'] font-black text-lg">C</span>
-            </div>
-            <div>
-              <div className="font-['Outfit'] font-black text-[#0F2C59] text-base lg:text-lg leading-tight">CPR Rwanda</div>
-              <div className="text-[10px] lg:text-xs text-[#4A4A4A]/70 font-medium leading-tight hidden sm:block">
-                Conseil Protestant du Rwanda
-              </div>
-            </div>
+          <a href="#home" className="flex items-center flex-shrink-0">
+            <img
+              src="/assets/logo.jpg"
+              alt="CPR Rwanda - Conseil Protestant du Rwanda"
+              className="h-10 lg:h-12 w-auto"
+            />
           </a>
 
           {/* Desktop nav */}
@@ -114,8 +110,8 @@ export function Header() {
                   href={item.href}
                   className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                     activeMenu === item.label
-                      ? "bg-[#0F2C59]/8 text-[#0F2C59]"
-                      : "text-[#1A1A1A]/80 hover:text-[#0F2C59] hover:bg-[#0F2C59]/5"
+                      ? "bg-[#BC8A5F]/8 text-[#BC8A5F]"
+                      : "text-[#BC8A5F]/80 hover:text-[#BC8A5F] hover:bg-[#BC8A5F]/5"
                   }`}
                 >
                   {item.label}
@@ -139,14 +135,14 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="#radio"
-              className="flex items-center gap-2 text-sm font-semibold text-[#0F2C59] hover:text-[#EAD196] transition-colors"
+              className="flex items-center gap-2 text-sm font-semibold text-[#BC8A5F] hover:text-[#4E6132] transition-colors"
             >
-              <Radio size={15} className="text-[#EAD196]" />
+              <Radio size={15} className="text-[#BC8A5F]" />
               <span>107.1 FM</span>
             </a>
             <a
               href="#contact"
-              className="bg-[#0F2C59] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#1a3f7a] transition-all duration-200 hover:scale-105 hover:shadow-md"
+              className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
               Contact Us
             </a>
@@ -154,10 +150,10 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-[#0F2C59]/8 transition-colors"
+            className="lg:hidden p-2 rounded-xl hover:bg-[#BC8A5F]/8 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? <X size={22} className="text-[#0F2C59]" /> : <Menu size={22} className="text-[#0F2C59]" />}
+            {mobileOpen ? <X size={22} className="text-[#BC8A5F]" /> : <Menu size={22} className="text-[#BC8A5F]" />}
           </button>
         </div>
 
@@ -169,13 +165,13 @@ export function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="lg:hidden overflow-hidden border-t border-[#0F2C59]/10 bg-white"
+              className="lg:hidden overflow-hidden border-t border-[#BC8A5F]/10 bg-[#F5F5DC]"
             >
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {NAV_ITEMS.map((item) => (
                   <div key={item.label}>
                     <button
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#0F2C59] hover:bg-[#0F2C59]/5 transition-colors"
+                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#BC8A5F] hover:bg-[#BC8A5F]/5 transition-colors"
                       onClick={() => {
                         if (item.children) {
                           setMobileExpanded(mobileExpanded === item.label ? null : item.label);
@@ -206,7 +202,7 @@ export function Header() {
                                 key={link.label}
                                 href={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#0F2C59] hover:bg-[#0F2C59]/5 rounded-lg transition-colors"
+                                className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#BC8A5F] hover:bg-[#BC8A5F]/5 rounded-lg transition-colors"
                               >
                                 {link.label}
                               </a>
@@ -218,8 +214,8 @@ export function Header() {
                   </div>
                 ))}
                 <div className="pt-3 pb-1 flex flex-col gap-2">
-                  <a href="#donate" className="bg-[#EAD196] text-[#0F2C59] text-sm font-bold px-5 py-3 rounded-xl text-center">Donate Now</a>
-                  <a href="#contact" className="bg-[#0F2C59] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">Contact Us</a>
+                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">Donate Now</a>
+                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">Contact Us</a>
                 </div>
               </div>
             </motion.div>
