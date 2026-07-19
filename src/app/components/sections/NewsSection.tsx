@@ -18,9 +18,9 @@ export function NewsSection() {
               <div className="h-px w-10 bg-[#EAD196]" />
               <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Latest Updates</span>
             </div>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#0F2C59]">News &amp; Events</h2>
+            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">News &amp; Events</h2>
           </motion.div>
-          <a href="#news" className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F2C59] border-2 border-[#0F2C59]/15 px-5 py-2.5 rounded-xl hover:border-[#0F2C59] transition-all whitespace-nowrap">
+          <a href="#news" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E6132] border-2 border-[#4E6132]/15 px-5 py-2.5 rounded-xl hover:border-[#4E6132] transition-all whitespace-nowrap">
             All News <ExternalLink size={13} />
           </a>
         </div>
@@ -32,7 +32,7 @@ export function NewsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-[#0F2C59]/8 hover:shadow-xl transition-all duration-400 cursor-pointer"
+              className="group bg-white rounded-2xl overflow-hidden border border-[#4E6132]/8 hover:shadow-xl transition-all duration-400 cursor-pointer"
             >
               <div className="overflow-hidden h-52 bg-[#EDF1F7]">
                 <img
@@ -48,11 +48,11 @@ export function NewsSection() {
                   </span>
                   <span className="text-xs text-[#4A4A4A]/60">{article.date}</span>
                 </div>
-                <h3 className="font-['Outfit'] font-bold text-[#0F2C59] text-base leading-snug mb-2 group-hover:text-[#1a3f7a] transition-colors">
+                <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-base leading-snug mb-2 group-hover:text-[#1a3f7a] transition-colors">
                   {article.title}
                 </h3>
                 <p className="text-[#4A4A4A] text-sm leading-relaxed mb-4">{article.excerpt}</p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F2C59] hover:text-[#EAD196] transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors">
                   Read More <ArrowRight size={12} />
                 </span>
               </div>
