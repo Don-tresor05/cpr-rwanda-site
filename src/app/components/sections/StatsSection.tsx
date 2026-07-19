@@ -9,7 +9,7 @@ function StatCard({ stat, active }: { stat: typeof STATS[0]; active: boolean }) 
   return (
     <div className="flex flex-col items-center gap-3 p-6">
       <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#EAD196]/20">
-        <Icon size={22} className="text-[#BC8A5F]" />
+        <Icon width={22} height={22} className="text-[#BC8A5F]" />
       </div>
       <div className="text-4xl font-bold text-white font-['Outfit'] tracking-tight">
         {count}{stat.suffix}
