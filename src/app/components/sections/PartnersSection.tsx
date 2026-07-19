@@ -5,7 +5,7 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 export function PartnersSection() {
   const { ref, visible } = useScrollReveal();
   return (
-    <section ref={ref} className="py-16 bg-white border-t border-[#0F2C59]/5">
+    <section ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -22,7 +22,7 @@ export function PartnersSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={visible ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: i * 0.05, duration: 0.3 }}
-              className="px-5 py-3 rounded-xl border border-[#0F2C59]/10 text-sm font-semibold text-[#0F2C59]/60 hover:text-[#0F2C59] hover:border-[#0F2C59]/30 hover:bg-[#0F2C59]/3 transition-all duration-300 cursor-pointer"
+              className="px-5 py-3 rounded-xl border border-[#4E6132]/10 text-sm font-semibold text-[#4E6132]/60 hover:text-[#4E6132] hover:border-[#4E6132]/30 hover:bg-[#4E6132]/3 transition-all duration-300 cursor-pointer"
             >
               {partner}
             </motion.div>
