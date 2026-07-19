@@ -22,7 +22,7 @@ function StatCard({ stat, active }: { stat: typeof STATS[0]; active: boolean }) 
 export function StatsSection() {
   const { ref, visible } = useScrollReveal();
   return (
-    <section ref={ref} className="bg-[#0F2C59] py-16">
+    <section ref={ref} className="bg-[#4E6132] py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/10">
           {STATS.map((stat, i) => (
