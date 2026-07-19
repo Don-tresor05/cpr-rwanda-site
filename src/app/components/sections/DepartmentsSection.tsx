@@ -19,7 +19,7 @@ export function DepartmentsSection() {
             <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Work</span>
             <div className="h-px w-10 bg-[#EAD196]" />
           </div>
-          <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#0F2C59] leading-tight">
+          <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
             Departments &amp; Projects
           </h2>
           <p className="text-[#4A4A4A] mt-4 max-w-xl mx-auto text-base">
@@ -44,11 +44,11 @@ export function DepartmentsSection() {
                 >
                   <Icon size={22} style={{ color: dept.accent }} />
                 </div>
-                <h3 className="font-['Outfit'] font-bold text-[#0F2C59] text-lg mb-2 leading-tight">{dept.title}</h3>
+                <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-2 leading-tight">{dept.title}</h3>
                 <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5">{dept.desc}</p>
                 <a
                   href={dept.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0F2C59] hover:text-[#EAD196] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors"
                 >
                   Learn More <ArrowRight size={13} />
                 </a>
