@@ -5,14 +5,14 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 export function RadioSection() {
   const { ref, visible } = useScrollReveal();
   return (
-    <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#0B1A35]">
+    <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1920&h=800&fit=crop&auto=format"
           alt="Radio studio"
           className="w-full h-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1A35] via-[#0B1A35]/85 to-[#0F2C59]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C2A10] via-[#1C2A10]/85 to-[#4E6132]/50" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -53,7 +53,7 @@ export function RadioSection() {
             </div>
 
             <div className="flex gap-4">
-              <a href="#radio" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#0F2C59] font-bold px-6 py-3 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 text-sm">
+              <a href="#radio" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-6 py-3 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 text-sm">
                 <PlayCircle size={16} /> Listen Live
               </a>
               <a href="#programs" className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm">
