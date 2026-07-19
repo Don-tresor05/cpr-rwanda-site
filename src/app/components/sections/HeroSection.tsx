@@ -54,7 +54,7 @@ export function HeroSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 bg-[#BC8A5F]/15 backdrop-blur-sm border border-[#BC8A5F]/25 rounded-full px-5 py-2 mb-6">
+              <div className="inline-flex items-center gap-2">
                 <span className="font-['Alex_Brush'] text-2xl lg:text-3xl text-[#BC8A5F]">{slide.label}</span>
               </div>
 
