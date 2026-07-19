@@ -21,9 +21,9 @@ export function GalleryPreview() {
               <div className="h-px w-10 bg-[#EAD196]" />
               <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Moments</span>
             </div>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#0F2C59]">Gallery</h2>
+            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">Gallery</h2>
           </motion.div>
-          <a href="#gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F2C59] border-2 border-[#0F2C59]/15 px-5 py-2.5 rounded-xl hover:border-[#0F2C59] transition-all whitespace-nowrap">
+          <a href="#gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E6132] border-2 border-[#4E6132]/15 px-5 py-2.5 rounded-xl hover:border-[#4E6132] transition-all whitespace-nowrap">
             View All <ExternalLink size={13} />
           </a>
         </div>
@@ -38,7 +38,7 @@ export function GalleryPreview() {
               className={`${img.span ?? ""} rounded-2xl overflow-hidden bg-[#EDF1F7] group relative cursor-pointer`}
             >
               <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-[#0F2C59]/0 group-hover:bg-[#0F2C59]/30 transition-all duration-300 flex items-end p-4">
+              <div className="absolute inset-0 bg-[#4E6132]/0 group-hover:bg-[#4E6132]/30 transition-all duration-300 flex items-end p-4">
                 <span className="text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">{img.alt}</span>
               </div>
             </motion.div>
