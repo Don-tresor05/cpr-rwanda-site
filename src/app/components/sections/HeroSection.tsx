@@ -25,11 +25,11 @@ export function HeroSection() {
       <AnimatePresence mode="wait">
         <motion.div
           key={slide.id}
-          initial={{ opacity: 0, scale: 1.04 }}
+          initial={{ opacity: 0, scale: 1.01 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 bg-[#0F2C59]"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute inset-0 bg-[#4E6132] bg-cover bg-center bg-no-repeat"
         >
           <img
             src={slide.image}
@@ -37,7 +37,7 @@ export function HeroSection() {
             className="w-full h-full object-cover"
           />
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F2C59]/90 via-[#0F2C59]/60 to-[#0F2C59]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#4E6132]/90 via-[#4E6132]/60 to-[#4E6132]/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1A35]/70 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
@@ -54,15 +54,14 @@ export function HeroSection() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 bg-[#EAD196]/20 backdrop-blur-sm border border-[#EAD196]/30 rounded-full px-4 py-1.5 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#EAD196] animate-pulse" />
-                <span className="text-[#EAD196] text-xs font-semibold tracking-widest uppercase">{slide.label}</span>
+              <div className="inline-flex items-center gap-2 bg-[#BC8A5F]/15 backdrop-blur-sm border border-[#BC8A5F]/25 rounded-full px-5 py-2 mb-6">
+                <span className="font-['Alex_Brush'] text-2xl lg:text-3xl text-[#BC8A5F]">{slide.label}</span>
               </div>
 
               <h1 className="font-['Outfit'] font-black text-5xl lg:text-7xl text-white leading-none tracking-tight mb-3">
                 {slide.title}
               </h1>
-              <p className="font-['Outfit'] font-light text-xl lg:text-2xl text-[#EAD196] mb-5 tracking-wide italic">
+              <p className="font-['Alex_Brush'] text-2xl lg:text-3xl text-[#BC8A5F] mb-5">
                 &ldquo;{slide.subtitle}&rdquo;
               </p>
               <p className="text-white/75 text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
@@ -72,7 +71,7 @@ export function HeroSection() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#about"
-                  className="inline-flex items-center gap-2 bg-[#EAD196] text-[#0F2C59] font-bold px-7 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                  className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />
