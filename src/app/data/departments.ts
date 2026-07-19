@@ -14,8 +14,8 @@ export const DEPARTMENTS: Department[] = [
     icon: GraduationCap,
     title: "Education (BNEP)",
     desc: "The Protestant Education Bureau manages 595 primary schools, implementing modern pedagogy to transform learning outcomes for thousands of Rwandan children.",
-    color: "bg-blue-50",
-    accent: "#0F2C59",
+    color: "bg-[#4E6132]/10",
+    accent: "#4E6132",
     link: "#departments",
   },
   {
