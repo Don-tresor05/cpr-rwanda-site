@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { NAV_ITEMS } from "../../data/navigation";
 import type { NavItem } from "../../types";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   if (!item.children) return null;
@@ -73,6 +74,8 @@ export function Header() {
           <span className="flex items-center gap-1.5"><MapPin size={11} /><span>KG 2 Av 4, B.P 79, Kigali-Rwanda</span></span>
         </div>
         <div className="flex items-center gap-3">
+          <LanguageSwitcher variant="full" />
+          <div className="h-4 w-px bg-white/20" />
           <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
             Donate Now
           </a>
@@ -210,6 +213,9 @@ export function Header() {
                   </div>
                 ))}
                 <div className="pt-3 pb-1 flex flex-col gap-2">
+                  <div className="flex items-center justify-center gap-2 px-4 py-2">
+                    <LanguageSwitcher />
+                  </div>
                   <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">Donate Now</a>
                   <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">Contact Us</a>
                 </div>

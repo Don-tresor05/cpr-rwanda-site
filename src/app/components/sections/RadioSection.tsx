@@ -28,12 +28,11 @@ export function RadioSection() {
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </div>
 
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-6xl text-white leading-tight mb-2">
-              Radio
-            </h2>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-6xl text-[#EAD196] leading-tight mb-6">
-              Inkoramutima
-            </h2>
+            <img 
+              src="/assets/Inkoramutima-Logo.jpg" 
+              alt="Radio Inkoramutima" 
+              className="h-16 lg:h-20 w-auto mb-6"
+            />
             <p className="text-white/60 text-lg italic mb-2">&ldquo;Voice of the Heart&rdquo;</p>
             <p className="text-white/75 text-base leading-relaxed mb-8">
               Broadcasting at <strong className="text-[#EAD196]">107.1 FM</strong> across Rwanda, Radio Inkoramutima carries messages of evangelization, national unity, and holistic community development — healing hearts and building bridges since its founding.
