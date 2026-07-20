@@ -24,9 +24,9 @@ export function TestimonialsSection() {
           className="mb-12"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Impact Stories</span>
-            <div className="h-px w-10 bg-[#EAD196]" />
+            <div className="h-px w-10 bg-[#BC8A5F]" />
+            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Impact Stories</span>
+            <div className="h-px w-10 bg-[#BC8A5F]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
             Lives Transformed

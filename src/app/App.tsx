@@ -23,9 +23,9 @@ export default function App() {
         <NewsSection />
         <RadioSection />
         <TestimonialsSection />
-        <PartnersSection />
+        {/* <PartnersSection /> */}
         <GalleryPreview />
-        <CTABanner />
+        {/* <CTABanner /> */}
       </main>
       <Footer />
     </div>

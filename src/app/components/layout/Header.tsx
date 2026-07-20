@@ -87,14 +87,17 @@ export function Header() {
             : "bg-[#F5F5DC] shadow-sm"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <a href="#home" className="flex items-center flex-shrink-0">
+          <a href="#home" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
             <img
               src="/assets/logo.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
-              className="h-10 lg:h-12 w-auto"
+              className="h-14 lg:h-18 w-auto object-contain"
             />
+            <span className="text-sm lg:text-base font-bold text-[#BC8A5F] mt-1 leading-none tracking-wide">
+              Conseil Protestant du Rwanda (CPR)
+            </span>
           </a>
 
           {/* Desktop nav */}
@@ -133,13 +136,6 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#radio"
-              className="flex items-center gap-2 text-sm font-semibold text-[#BC8A5F] hover:text-[#4E6132] transition-colors"
-            >
-              <Radio size={15} className="text-[#BC8A5F]" />
-              <span>107.1 FM</span>
-            </a>
             <a
               href="#contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"

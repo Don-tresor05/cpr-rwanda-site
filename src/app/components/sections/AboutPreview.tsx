@@ -15,8 +15,8 @@ export function AboutPreview() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="inline-flex items-center gap-2 mb-6">
-              <div className="h-px w-10 bg-[#EAD196]" />
-              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Story</span>
+              <div className="h-px w-10 bg-[#BC8A5F]" />
+              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Our Story</span>
             </div>
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6">
               Six Decades of<br />Faith &amp; Service

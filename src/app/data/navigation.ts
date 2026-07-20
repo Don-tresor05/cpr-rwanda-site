@@ -55,26 +55,15 @@ export const NAV_ITEMS: NavItem[] = [
     href: "#departments",
     children: [
       {
-        heading: "Education (BNEP)",
+        heading: "Our Departments",
         links: [
-          { label: "Protestant Education Bureau", href: "#bnep", desc: "Managing 595 primary schools across Rwanda" },
-          { label: "Active Pedagogy (PAP)", href: "#pap", desc: "Modern participatory teaching methods" },
-          { label: "Education Partners", href: "#edu-partners", desc: "Partners supporting education programs" },
-        ],
-      },
-      {
-        heading: "Gender & Health",
-        links: [
-          { label: "Fight Against GBV", href: "#gbv", desc: "Gender-based violence prevention and response" },
-          { label: "Trauma Counseling", href: "#trauma", desc: "Post-genocide healing and reconciliation" },
-          { label: "HIV/AIDS Awareness", href: "#hiv", desc: "Community health education programs" },
-        ],
-      },
-      {
-        heading: "Evangelism",
-        links: [
-          { label: "Youth Projects", href: "#youth", desc: "Empowering Rwanda's next generation" },
-          { label: "Evangelism Centers", href: "#centers", desc: "Outreach and church planting" },
+          { label: "General Secretary", href: "#gs", desc: "Office of the Secretary General and governance" },
+          { label: "Education/BNEP", href: "#bnep", desc: "Managing Protestant primary and secondary schools" },
+          { label: "Diakonia/Development", href: "#diakonia", desc: "Social services, development and relief work" },
+          { label: "Finance/Mobilization", href: "#finance", desc: "Resource mobilization and financial administration" },
+          { label: "Youth Program", href: "#youth", desc: "Empowering youth in faith, peace and reconciliation" },
+          { label: "Gender Promotion", href: "#gender", desc: "Promoting gender equality and GBV prevention" },
+          { label: "Radio Inkoramutima", href: "#radio", desc: "Broadcasting messages of unity and development" },
         ],
       },
     ],
@@ -94,5 +83,5 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "News", href: "#news" },
 ];
