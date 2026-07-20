@@ -15,9 +15,9 @@ export function DepartmentsSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Work</span>
-            <div className="h-px w-10 bg-[#EAD196]" />
+            <div className="h-px w-10 bg-[#BC8A5F]" />
+            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Our Work</span>
+            <div className="h-px w-10 bg-[#BC8A5F]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
             Departments &amp; Projects
@@ -36,19 +36,16 @@ export function DepartmentsSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={visible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
-                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 border border-transparent hover:border-[#EAD196]/30 cursor-pointer"
+                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 border border-transparent hover:border-[#EAD196]/30 cursor-pointer flex flex-col h-full"
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                  style={{ backgroundColor: `${dept.accent}15` }}
-                >
-                  <Icon size={22} style={{ color: dept.accent }} />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#4E6132]/10 text-[#4E6132] transition-transform duration-300 group-hover:scale-110">
+                  <Icon size={22} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-2 leading-tight">{dept.title}</h3>
-                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5">{dept.desc}</p>
+                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5 line-clamp-3">{dept.desc}</p>
                 <a
                   href={dept.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#BC8A5F] hover:text-[#784B24] transition-colors mt-auto"
                 >
                   Learn More <ArrowRight size={13} />
                 </a>

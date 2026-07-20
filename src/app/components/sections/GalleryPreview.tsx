@@ -18,8 +18,8 @@ export function GalleryPreview() {
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
             <div className="inline-flex items-center gap-2 mb-3">
-              <div className="h-px w-10 bg-[#EAD196]" />
-              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Moments</span>
+              <div className="h-px w-10 bg-[#BC8A5F]" />
+              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Our Moments</span>
             </div>
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">Gallery</h2>
           </motion.div>

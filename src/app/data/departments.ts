@@ -1,45 +1,62 @@
-import { GraduationCap, Heart, Megaphone, Globe, type LucideIcon } from "lucide-react";
+import {
+  Crown,
+  GraduationCap,
+  Handshake,
+  Coins,
+  Cog,
+  Scale,
+  Radio,
+  type LucideIcon
+} from "lucide-react";
 
 export interface Department {
   icon: LucideIcon;
   title: string;
   desc: string;
-  color: string;
-  accent: string;
   link: string;
 }
 
 export const DEPARTMENTS: Department[] = [
   {
+    icon: Crown,
+    title: "General Secretary",
+    desc: "Oversees the strategic direction, coordination, and overall governance of the Conseil Protestant du Rwanda.",
+    link: "#departments",
+  },
+  {
     icon: GraduationCap,
-    title: "Education (BNEP)",
-    desc: "The Protestant Education Bureau manages 595 primary schools, implementing modern pedagogy to transform learning outcomes for thousands of Rwandan children.",
-    color: "bg-[#4E6132]/10",
-    accent: "#4E6132",
+    title: "Education/BNEP",
+    desc: "Manages Protestant primary and secondary schools, implementing modern pedagogical methodologies across the country.",
     link: "#departments",
   },
   {
-    icon: Heart,
-    title: "Gender & Health",
-    desc: "Combating gender-based violence, providing trauma counseling for genocide survivors, empowering women, and raising HIV/AIDS awareness across communities.",
-    color: "bg-amber-50",
-    accent: "#B8860B",
+    icon: Handshake,
+    title: "Diakonia/Development",
+    desc: "Coordinates social services, humanitarian relief operations, and sustainable community development programs.",
     link: "#departments",
   },
   {
-    icon: Megaphone,
-    title: "Evangelism & Communication",
-    desc: "Youth empowerment projects, Christian education programs, and strategic evangelism centers spreading the Gospel across Rwanda's hills and valleys.",
-    color: "bg-emerald-50",
-    accent: "#065F46",
+    icon: Coins,
+    title: "Finance/Mobilization",
+    desc: "Ensures institutional financial sustainability, transparent administration, and strategic resource mobilization.",
     link: "#departments",
   },
   {
-    icon: Globe,
-    title: "Advocacy & Sustainability",
-    desc: "Engaging policymakers, championing human rights, and building institutional resilience to ensure CPR's impact endures for future generations.",
-    color: "bg-purple-50",
-    accent: "#4C1D95",
+    icon: Cog,
+    title: "Youth Program",
+    desc: "Empowers the next generation through peacebuilding, reconciliation projects, and active leadership training.",
+    link: "#departments",
+  },
+  {
+    icon: Scale,
+    title: "Gender Promotion",
+    desc: "Promotes gender equality, fights gender-based violence (GBV), and empowers women in economic and social spheres.",
+    link: "#departments",
+  },
+  {
+    icon: Radio,
+    title: "Radio Inkoramutima",
+    desc: "Spreads messages of evangelization, national unity, healing, and community development across Rwanda on 107.1 FM.",
     link: "#departments",
   },
 ];
