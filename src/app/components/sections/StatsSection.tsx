@@ -7,9 +7,9 @@ function StatCard({ stat, active }: { stat: typeof STATS[0]; active: boolean }) 
   const count = useCountUp(stat.value, 1800, active);
   const Icon = stat.icon;
   return (
-    <div className="flex flex-col items-center gap-3 p-6">
-      <div className="w-12 h-12 rounded-full flex items-center justify-center bg-[#EAD196]/20">
-        <Icon width={22} height={22} className="text-[#BC8A5F]" />
+    <div className="flex flex-col items-center gap-3 p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 group h-full justify-center">
+      <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#EAD196]/15 text-[#EAD196] transition-transform duration-300 group-hover:scale-110">
+        <Icon size={22} />
       </div>
       <div className="text-4xl font-extrabold text-white font-['Outfit'] tracking-tight mt-2">
         {count}{stat.suffix}
