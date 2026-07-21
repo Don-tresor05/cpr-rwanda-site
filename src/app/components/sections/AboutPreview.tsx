@@ -28,7 +28,7 @@ export function AboutPreview() {
               Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — <em className="text-[#4E6132] font-semibold">&ldquo;Bose Babe Umwe&rdquo; (That All of Them May Be One)</em> — guides every initiative.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#1a3f7a] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+              <a href="#about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 Our Full History <ArrowRight size={15} />
               </a>
               <a href="#vision" className="inline-flex items-center gap-2 text-[#4E6132] font-semibold px-6 py-3 rounded-xl border-2 border-[#4E6132]/20 hover:border-[#4E6132] transition-all duration-300 text-sm">
