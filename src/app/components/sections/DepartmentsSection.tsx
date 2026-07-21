@@ -15,9 +15,9 @@ export function DepartmentsSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Our Work</span>
-            <div className="h-px w-10 bg-[#BC8A5F]" />
+            <div className="h-px w-10 bg-[#8B6543]" />
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Our Work</span>
+            <div className="h-px w-10 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
             Departments &amp; Projects
@@ -45,7 +45,7 @@ export function DepartmentsSection() {
                 <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5 line-clamp-3">{dept.desc}</p>
                 <a
                   href={dept.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#BC8A5F] hover:text-[#784B24] transition-colors mt-auto"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8B6543] hover:text-[#784B24] transition-colors mt-auto"
                 >
                   Learn More <ArrowRight size={13} />
                 </a>

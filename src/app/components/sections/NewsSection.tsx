@@ -104,7 +104,7 @@ export function NewsSection() {
                     </span>
                     <span className="text-xs text-[#4A4A4A] font-medium">{article.date}</span>
                   </div>
-                  <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-base leading-snug mb-2 group-hover:text-[#BC8A5F] transition-colors line-clamp-2 min-h-[44px]">
+                  <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-base leading-snug mb-2 group-hover:text-[#8B6543] transition-colors line-clamp-2 min-h-[44px]">
                     {article.title}
                   </h3>
                   <p className="text-[#4A4A4A] text-sm leading-relaxed mb-4 line-clamp-3">{article.excerpt}</p>
@@ -112,7 +112,7 @@ export function NewsSection() {
                     href="https://cpr-rwanda.rw"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#BC8A5F] hover:text-[#784B24] group-hover:text-[#784B24] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B6543] hover:text-[#784B24] group-hover:text-[#784B24] transition-colors"
                   >
                     Read More <ArrowRight size={12} />
                   </a>
