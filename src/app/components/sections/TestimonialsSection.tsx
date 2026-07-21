@@ -61,9 +61,9 @@ export function TestimonialsSection() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-[0.2em]">Impact Stories</span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#EAD196]" />
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#BC8A5F]" />
+            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-[0.2em]">Impact Stories</span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#BC8A5F]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
             Lives Transformed
