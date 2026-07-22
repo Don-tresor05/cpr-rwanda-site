@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Menu, X, ChevronDown, ChevronRight, Phone, Mail,
-  MapPin, Radio
+  MapPin
 } from "lucide-react";
-import { NAV_ITEMS } from "../../data/navigation";
+import { getNavItems } from "../../data/navigation";
 import type { NavItem } from "../../types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   if (!item.children) return null;
@@ -53,6 +54,8 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
 }
 
 export function Header() {
+  const { t } = useTranslation("common");
+  const navItems = getNavItems(t);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -77,18 +80,17 @@ export function Header() {
           <LanguageSwitcher variant="full" />
           <div className="h-4 w-px bg-white/20" />
           <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
-            Donate Now
+            {t("nav.donate")}
           </a>
         </div>
       </div>
 
       {/* Main nav */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          scrolled
+        className={`sticky top-0 z-40 transition-all duration-300 ${scrolled
             ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#8B6543]/10"
             : "bg-[#F5F5DC] shadow-sm"
-        }`}
+          }`}
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
@@ -105,20 +107,19 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setActiveMenu(item.label)}
+                onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 <a
                   href={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    activeMenu === item.label
-                      ? "bg-[#8B6543]/10 text-[#8B6543]"
-                      : "text-[#8B6543] hover:text-[#6A4D33] hover:bg-[#8B6543]/10"
-                  }`}
+                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${activeMenu === item.label
+                      ? "bg-[#8B6543]/20 text-[#8B6543]"
+                      : "text-[#8B6543] hover:bg-[#8B6543]/20 hover:text-[#8B6543]"
+                    }`}
                 >
                   {item.label}
                   {item.children && (
@@ -143,7 +144,7 @@ export function Header() {
               href="#contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
-              Contact Us
+              {t("nav.contact")}
             </a>
           </div>
 
@@ -167,7 +168,7 @@ export function Header() {
               className="lg:hidden overflow-hidden border-t border-[#8B6543]/10 bg-[#F5F5DC]"
             >
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
-                {NAV_ITEMS.map((item) => (
+                {navItems.map((item) => (
                   <div key={item.label}>
                     <button
                       className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/5 transition-colors"
@@ -216,8 +217,8 @@ export function Header() {
                   <div className="flex items-center justify-center gap-2 px-4 py-2">
                     <LanguageSwitcher />
                   </div>
-                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">Donate Now</a>
-                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">Contact Us</a>
+                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.donate")}</a>
+                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</a>
                 </div>
               </div>
             </motion.div>

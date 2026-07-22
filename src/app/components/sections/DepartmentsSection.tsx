@@ -1,10 +1,13 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { DEPARTMENTS } from "../../data/departments";
+import { getDepartments } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function DepartmentsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const departments = getDepartments(t);
   return (
     <section id="departments" ref={ref} className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -16,19 +19,19 @@ export function DepartmentsSection() {
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-10 bg-[#8B6543]" />
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Our Work</span>
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("departments.ourWork")}</span>
             <div className="h-px w-10 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
-            Departments &amp; Projects
+            {t("departments.title")}
           </h2>
           <p className="text-[#4A4A4A] mt-4 max-w-xl mx-auto text-base">
-            CPR's work spans four strategic departments, each addressing a critical dimension of Rwanda's transformation.
+            {t("departments.desc")}
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DEPARTMENTS.map((dept, i) => {
+          {departments.map((dept, i) => {
             const Icon = dept.icon;
             return (
               <motion.div
@@ -47,7 +50,7 @@ export function DepartmentsSection() {
                   href={dept.link}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8B6543] hover:text-[#784B24] transition-colors mt-auto"
                 >
-                  Learn More <ArrowRight size={13} />
+                  {t("departments.learnMore")} <ArrowRight size={13} />
                 </a>
               </motion.div>
             );

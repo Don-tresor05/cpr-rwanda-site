@@ -1,0 +1,155 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "label": "Au service du Rwanda depuis 1963",
+        "title": "Bose Babe Umwe",
+        "subtitle": "Pour que tous soient un",
+        "desc": "Unissant 19 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
+        "cta": "Explorez Notre Mission",
+        "ctaSecondary": "Rencontrez Notre Équipe"
+      },
+      {
+        "label": "Département de l'Éducation (BNEP)",
+        "title": "Façonner l'avenir du Rwanda",
+        "subtitle": "595 Écoles Primaires Protestantes",
+        "desc": "Le Bureau National de l'Éducation Protestante supervise la qualité de l'éducation à travers le Rwanda, formant plus de 300 000 apprenants chaque année.",
+        "cta": "En savoir plus sur le BNEP",
+        "ctaSecondary": "Voir les Statistiques"
+      },
+      {
+        "label": "Radio Inkoramutima",
+        "title": "107.1 FM — Diffuser l'Espoir",
+        "subtitle": "La Voix du Conseil Protestant du Rwanda",
+        "desc": "Radio Inkoramutima, la voix officielle du Conseil Protestant du Rwanda, atteint les communautés de tout le pays avec des messages de foi, d'unité et de développement holistique.",
+        "cta": "Écoutez en Direct",
+        "ctaSecondary": "Guide des Programmes"
+      }
+    ]
+  },
+  "about": {
+    "ourStory": "Notre Histoire",
+    "title": "Six Décennies de\nFoi et de Service",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 19 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
+    "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
+    "p2End": " — guide chaque initiative.",
+    "historyBtn": "Notre Histoire Complète",
+    "visionBtn": "Vision et Mission"
+  },
+  "departments": {
+    "ourWork": "Notre Travail",
+    "title": "Départements et Projets",
+    "desc": "Le travail du CPR s'étend sur quatre départements stratégiques, chacun abordant une dimension critique de la transformation du Rwanda.",
+    "learnMore": "En Savoir Plus",
+    "items": [
+      {
+        "title": "Secrétariat Général",
+        "desc": "Supervise la direction stratégique, la coordination et la gouvernance globale du Conseil Protestant du Rwanda."
+      },
+      {
+        "title": "Éducation/BNEP",
+        "desc": "Gère les écoles primaires et secondaires protestantes, mettant en œuvre des méthodologies pédagogiques modernes à travers le pays."
+      },
+      {
+        "title": "Diaconie/Développement",
+        "desc": "Coordonne les services sociaux, les opérations de secours humanitaire et les programmes de développement communautaire durable."
+      },
+      {
+        "title": "Finance/Mobilisation",
+        "desc": "Assure la viabilité financière institutionnelle, l'administration transparente et la mobilisation stratégique des ressources."
+      },
+      {
+        "title": "Programme Jeunesse",
+        "desc": "Autonomise la prochaine génération par la consolidation de la paix, des projets de réconciliation et une formation active au leadership."
+      },
+      {
+        "title": "Promotion du Genre",
+        "desc": "Promeut l'égalité des genres, lutte contre les violences basées sur le genre (VBG) et autonomise les femmes dans les sphères économiques et sociales."
+      },
+      {
+        "title": "Radio Inkoramutima",
+        "desc": "Diffuse des messages d'évangélisation, d'unité nationale, de guérison et de développement communautaire au Rwanda sur 107.1 FM."
+      }
+    ]
+  },
+  "news": {
+    "ourStories": "Nos Histoires",
+    "title": "Dernières Nouvelles",
+    "desc": "Restez informé des dernières activités, rapports et événements de nos églises membres et départements.",
+    "readArticle": "Lire l'Article",
+    "viewAllBtn": "Toutes les Nouvelles",
+    "items": [
+      {
+        "category": "Événement",
+        "title": "Kwibuka 31: Commémoration au Diocèse de Gahini",
+        "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi."
+      },
+      {
+        "category": "Éducation",
+        "title": "Le BNEP Lance une Formation en Pédagogie Active",
+        "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active."
+      },
+      {
+        "category": "Santé",
+        "title": "Certification de Conseillers en Traumatisme",
+        "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme."
+      },
+      {
+        "category": "Développement",
+        "title": "Le CPR s'Associe aux Coopératives Locales",
+        "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales a été lancée dans la province de l'Est."
+      },
+      {
+        "category": "Jeunesse",
+        "title": "Sommet Annuel de la Jeunesse Annoncé",
+        "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la paix."
+      }
+    ]
+  },
+  "testimonials": {
+    "impact": "Notre Impact",
+    "title": "Voix de la Communauté",
+    "desc": "Écoutez les individus et les communautés dont les vies ont été touchées par le travail du CPR.",
+    "items": [
+      {
+        "quote": "Le programme de bourses d'études du CPR a transformé ma vie. Aujourd'hui, je suis médecin et je sers ma communauté.",
+        "role": "Bénéficiaire de bourse du CPR, Promotion 2018"
+      },
+      {
+        "quote": "La Radio Inkoramutima atteint notre village chaque matin. Les programmes nous ont aidés à trouver la paix.",
+        "role": "Pasteur d'une église membre, Province de l'Est"
+      },
+      {
+        "quote": "Grâce à la formation du BNEP, nos enseignants créent des classes joyeuses où chaque enfant participe.",
+        "role": "Directrice, École primaire EPRK, Kigali"
+      }
+    ]
+  },
+  "radio": {
+    "listenLive": "Écouter en Direct",
+    "title": "Radio Inkoramutima 107.1 FM",
+    "desc": "Diffuser des messages de foi, d'unité et de développement à travers le Rwanda depuis 2005.",
+    "nowPlaying": "En Cours :",
+    "nowPlayingDesc": "Dévotion Matinale & Nouvelles",
+    "listenBtn": "Écouter en Direct",
+    "scheduleBtn": "Programme"
+  },
+  "gallery": {
+    "galleryLabel": "Galerie",
+    "title": "Moments et Souvenirs",
+    "desc": "Un voyage visuel à travers nos événements communautaires et programmes scolaires.",
+    "viewAllBtn": "Voir la Galerie Complète"
+  },
+  "partners": {
+    "trustedBy": "Approuvé Par",
+    "title": "Nos Partenaires",
+    "desc": "Nous collaborons avec des organisations locales et internationales pour maximiser notre impact."
+  },
+  "cta": {
+    "title": "Prêt à Faire une Différence ?",
+    "desc": "Rejoignez-nous dans notre mission pour unir, servir et développer les communautés au Rwanda.",
+    "donateBtn": "Faire un Don",
+    "contactBtn": "Contactez-Nous"
+  }
+}
