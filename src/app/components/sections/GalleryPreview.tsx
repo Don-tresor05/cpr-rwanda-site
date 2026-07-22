@@ -4,11 +4,11 @@ import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 
 const GALLERY_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=600&fit=crop&auto=format", alt: "Kwibuka commemoration ceremony", span: "col-span-2 row-span-2" },
-  { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&auto=format", alt: "Students in classroom", span: "" },
-  { src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop&auto=format", alt: "Health outreach program", span: "" },
-  { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop&auto=format", alt: "Community gathering", span: "" },
-  { src: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop&auto=format", alt: "Worship service", span: "" },
+  { src: "/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
+  { src: "/assets/2.jpeg", alt: "CPR Community Work", span: "" },
+  { src: "/assets/3.jpeg", alt: "Kwibuka Commemoration", span: "" },
+  { src: "/assets/preacher-site-logo-dcd17-1.webp", alt: "Preacher Ministry", span: "" },
+  { src: "/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
 ];
 
 export function GalleryPreview() {

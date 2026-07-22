@@ -52,15 +52,15 @@ export function AboutPreview() {
               <div className="space-y-4">
                 <div className="rounded-2xl overflow-hidden h-48 bg-[#EDF1F7] group">
                   <img
-                    src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop&auto=format"
-                    alt="Community worship service"
+                    src="/assets/CPR 3 - Copy.webp"
+                    alt="CPR History and Leadership"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="rounded-2xl overflow-hidden h-32 bg-[#EDF1F7] group">
                   <img
-                    src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop&auto=format"
-                    alt="Community health outreach"
+                    src="/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+                    alt="Ensemble Biryogo Event"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -68,15 +68,15 @@ export function AboutPreview() {
               <div className="space-y-4 pt-8">
                 <div className="rounded-2xl overflow-hidden h-32 bg-[#EDF1F7] group">
                   <img
-                    src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop&auto=format"
-                    alt="Children in school"
+                    src="/assets/Gahini 2.webp"
+                    alt="Gahini Community Gathering"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
                 <div className="rounded-2xl overflow-hidden h-48 bg-[#EDF1F7] group">
                   <img
-                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop&auto=format"
-                    alt="Church community gathering"
+                    src="/assets/Gahini 3.webp"
+                    alt="Gahini Fellowship and Outreach"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
