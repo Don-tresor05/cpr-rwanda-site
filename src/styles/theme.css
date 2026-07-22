@@ -179,3 +179,14 @@
     line-height: 1.5;
   }
 }
+
+.category-badge {
+  background-color: #B08968;
+  color: #FFFFFF;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

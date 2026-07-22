@@ -1,41 +1,61 @@
 import {
   ChevronRight, ArrowRight, Phone, Mail,
-  MapPin, Radio, Facebook, Twitter, Instagram, Youtube, Linkedin
+  MapPin, Radio, Facebook, Instagram, Youtube
 } from "lucide-react";
+import { getNavItems } from "../../data/navigation";
+import { useTranslation } from "react-i18next";
+
+function XIcon({ size = 15, className = "" }: { size?: number; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  );
+}
 
 export function Footer() {
+  const { t } = useTranslation("common");
+  const navItems = getNavItems(t);
+  
   return (
     <footer id="contact" className="bg-[#1C2A10] text-white">
       {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      <div className="w-full px-4 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-[#4E6132] border border-[#EAD196]/30 flex items-center justify-center">
-                <span className="text-[#EAD196] font-['Outfit'] font-black text-lg">C</span>
-              </div>
-              <div>
-                <div className="font-['Outfit'] font-black text-white text-base leading-tight">CPR Rwanda</div>
-                <div className="text-white/50 text-xs">Conseil Protestant du Rwanda</div>
-              </div>
+            <div className="flex flex-col items-center text-center mb-5">
+              <img
+                src="/assets/logo-1.jpg"
+                alt="CPR Rwanda - Conseil Protestant du Rwanda"
+                className="h-20 w-auto object-contain"
+              />
+              <span className="text-base font-bold text-[#BC8A5F] mt-3 leading-tight tracking-wide">
+                Conseil Protestant du Rwanda (CPR)
+              </span>
             </div>
             <p className="text-white/55 text-sm leading-relaxed mb-6">
-              Uniting Rwanda's Protestant churches since 1963 through faith, education, health, and sustainable community development.
+              {t("footer.desc")}
             </p>
-            <div className="flex gap-3">{([
-  { icon: Facebook, href: "https://www.facebook.com/cprrwanda" },
-  { icon: Twitter, href: "https://x.com/cprrwanda" },
-  { icon: Instagram, href: "https://www.instagram.com/cprrwanda" },
-  { icon: Youtube, href: "https://youtube.com/@cprrwanda" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/cpr-rwanda/" },
-] as const).map(({ icon: Icon, href }, index) => (
-  <a
-    key={`social-${index}`}
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#EAD196] hover:text-[#4E6132] text-white/60 transition-all duration-300 flex items-center justify-center"
+            <div className="flex gap-3">
+              {[
+                { icon: Facebook, href: "https://www.facebook.com/cprrwanda" },
+                { icon: XIcon, href: "https://x.com/cprrwanda" },
+                { icon: Instagram, href: "https://www.instagram.com/cprrwanda" },
+                { icon: Youtube, href: "https://youtube.com/@cprrwanda" },
+              ].map(({ icon: Icon, href }, index) => (
+                <a
+                  key={`social-${index}`}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#BC8A5F] hover:text-[#060F1F] text-white/60 transition-all duration-300 flex items-center justify-center"
                 >
                   <Icon size={15} />
                 </a>
@@ -45,13 +65,13 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">Quick Links</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2.5">
-              {["About CPR", "Vision & Mission", "Executive Committee", "SG Publications", "Our Partners", "Photo Gallery"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {l}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -60,11 +80,19 @@ export function Footer() {
 
           {/* Departments */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">Departments</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("nav.departments")}</h4>
             <ul className="space-y-2.5">
-              {["Education (BNEP)", "Gender & Health", "Evangelism", "Radio Inkoramutima", "Advocacy", "Sustainability"].map((l) => (
+              {[
+                t("nav.generalSecretary"),
+                t("nav.education"),
+                t("nav.diakonia"),
+                t("nav.finance"),
+                t("nav.youthProgram"),
+                t("nav.genderPromotion"),
+                t("nav.radioStation")
+              ].map((l) => (
                 <li key={l}>
-                  <a href="#" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
+                  <a href="#departments" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     {l}
                   </a>
@@ -75,7 +103,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">Contact Us</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("footer.contactUs")}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-[#BC8A5F] mt-0.5 flex-shrink-0" />
@@ -98,7 +126,7 @@ export function Footer() {
             {/* Contact form trigger */}
             <a
               href="#contact"
-              className="mt-6 inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
+              className="mt-6 inline-flex items-center gap-2 bg-[#BC8A5F] text-[#060F1F] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
             >
               Send a Message <ArrowRight size={14} />
             </a>
@@ -107,9 +135,9 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/8 py-5 px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
-          <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. All rights reserved.</span>
+      <div className="border-t border-white/8 py-5 px-4 lg:px-8">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
+          <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. {t("footer.rights")}</span>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white/70 transition-colors">Terms of Service</a>

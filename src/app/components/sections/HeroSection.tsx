@@ -1,28 +1,49 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { HERO_SLIDES } from "../../data/hero";
+import { useTranslation } from "react-i18next";
 
 export function HeroSection() {
   const [active, setActive] = useState(0);
+  const { t } = useTranslation("home");
+  
+  // Cast the translated array (it won't have the image/id properties initially, so we merge them or just rely on the static ones)
+  const translatedSlides: any[] = t("hero.slides", { returnObjects: true }) as any[] || [];
+  
+  // We can merge the translated strings with the images from the static slides if we want,
+  // but we can also just define the images inline here since we only have 3 slides.
+  const slides = [
+    { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0] },
+    { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1] },
+    { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2] },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActive((a) => (a + 1) % HERO_SLIDES.length);
+      setActive((a) => (a + 1) % slides.length);
     }, 6000);
     return () => clearInterval(interval);
+  }, [slides.length]);
+
+  useEffect(() => {
+    slides.forEach((s) => {
+      if (s.image) {
+        const img = new Image();
+        img.src = s.image;
+      }
+    });
   }, []);
 
   const goTo = (idx: number) => {
     setActive(idx);
   };
 
-  const slide = HERO_SLIDES[active];
+  const slide = slides[active];
 
   return (
     <section id="home" className="relative h-[92vh] min-h-[600px] overflow-hidden">
       {/* Background image */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={slide.id}
           initial={{ opacity: 0, scale: 1.01 }}
@@ -95,7 +116,7 @@ export function HeroSection() {
 
       {/* Slide indicators */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
-        {HERO_SLIDES.map((_, i) => (
+        {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}

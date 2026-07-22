@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Check, ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Language {
   code: string;
@@ -29,13 +30,7 @@ const FranceFlag = () => (
 );
 
 const RwandaFlag = () => (
-  <svg viewBox="0 0 640 480" className="w-5 h-3.5 rounded-sm shadow-sm flex-shrink-0">
-    <path fill="#20603D" d="M0 0h640v480H0z"/>
-    <path fill="#FAD201" d="M0 300h640v180H0z"/>
-    <path fill="#00A1DE" d="M0 420h640v60H0z"/>
-    <path fill="#E5BE01" d="M380 152.4a172.4 172.4 0 1 1-344.8 0 172.4 172.4 0 0 1 344.8 0z"/>
-    <path fill="#E5BE01" d="m414.8 107.4-51.4 43.9-63.6-27.5 27.8 63.3-43.3 51.8 64.2-26.6 63.1 28.6-27.3-63.8 42.4-52.4z"/>
-  </svg>
+  <img src="/assets/rw-flag.png" alt="Rwanda flag" className="w-5 h-3.5 rounded-sm shadow-sm flex-shrink-0 object-cover" />
 );
 
 const LANGUAGES: Language[] = [
@@ -50,17 +45,29 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ variant = "compact", className = "" }: LanguageSwitcherProps) {
+  const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Language>(LANGUAGES[0]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const selected = LANGUAGES.find(l => l.code === i18n.language) || LANGUAGES[0];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleSelect = (lang: Language) => {
-    setSelected(lang);
+    i18n.changeLanguage(lang.code);
     setOpen(false);
-    // Future: trigger language change here
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={dropdownRef} className={`relative ${className}`}>
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs font-medium"

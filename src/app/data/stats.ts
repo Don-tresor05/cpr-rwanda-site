@@ -9,9 +9,9 @@ export interface Stat {
   icon: ComponentType<any> | ForwardRefExoticComponent<any>;
 }
 
-export const STATS: Stat[] = [
-  { value: 28, label: "Member Churches", suffix: "", icon: ChurchIcon },
-  { value: 595, label: "Primary Schools", suffix: "+", icon: SchoolIcon },
-  { value: 107.1, label: "FM Frequency", suffix: " FM", icon: Radio },
-  { value: 60, label: "Years of Service", suffix: "+", icon: ServiceRibbonIcon },
+export const getStats = (t: any): Stat[] => [
+  { value: 28, label: t("stats.churches"), suffix: "", icon: ChurchIcon },
+  { value: 595, label: t("stats.schools"), suffix: "+", icon: SchoolIcon },
+  { value: 107.1, label: t("stats.fm"), suffix: " FM", icon: Radio },
+  { value: 60, label: t("stats.years"), suffix: "+", icon: ServiceRibbonIcon },
 ];
