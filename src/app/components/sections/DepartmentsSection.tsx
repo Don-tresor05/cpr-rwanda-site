@@ -39,18 +39,26 @@ export function DepartmentsSection() {
                 className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 border border-transparent hover:border-[#EAD196]/30 cursor-pointer"
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
                   style={{ backgroundColor: `${dept.accent}15` }}
                 >
                   <Icon size={22} style={{ color: dept.accent }} />
                 </div>
                 <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-2 leading-tight">{dept.title}</h3>
-                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5">{dept.desc}</p>
+                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-4">{dept.desc}</p>
+                <ul className="space-y-1.5 mb-5">
+                  {dept.details.map((d, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-[#4A4A4A]/70">
+                      <span className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: dept.accent }} />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
                 <a
                   href={dept.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors group/link"
                 >
-                  Learn More <ArrowRight size={13} />
+                  Learn More <ArrowRight size={13} className="group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </motion.div>
             );
