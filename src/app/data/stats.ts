@@ -10,7 +10,7 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: 19, label: "Member Churches", suffix: "", icon: ChurchIcon },
+  { value: 28, label: "Member Churches", suffix: "", icon: ChurchIcon },
   { value: 595, label: "Primary Schools", suffix: "+", icon: SchoolIcon },
   { value: 107.1, label: "FM Frequency", suffix: " FM", icon: Radio },
   { value: 60, label: "Years of Service", suffix: "+", icon: ServiceRibbonIcon },
