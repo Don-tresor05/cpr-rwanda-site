@@ -1,9 +1,11 @@
 import { motion } from "motion/react";
 import { Radio, BookOpen, Shield, Globe, PlayCircle } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function RadioSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
   return (
     <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
       <div className="absolute inset-0">
@@ -24,19 +26,20 @@ export function RadioSection() {
           >
             <div className="inline-flex items-center gap-3 bg-[#EAD196]/15 border border-[#EAD196]/30 rounded-full px-4 py-2 mb-6">
               <Radio size={14} className="text-[#EAD196]" />
-              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">On Air 24/7</span>
+              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("radio.nowPlaying")}</span>
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </div>
 
             <img 
               src="/assets/Inkoramutima-Logo.jpg" 
-              alt="Radio Inkoramutima" 
+              alt={t("radio.title")} 
               className="h-16 lg:h-20 w-auto mb-6"
             />
             <p className="text-white/60 text-lg italic mb-2">&ldquo;Voice of the Heart&rdquo;</p>
-            <p className="text-white/75 text-base leading-relaxed mb-8">
-              Broadcasting at <strong className="text-[#EAD196]">107.1 FM</strong> across Rwanda, Radio Inkoramutima carries messages of evangelization, national unity, and holistic community development — healing hearts and building bridges since its founding.
-            </p>
+            <p 
+              className="text-white/75 text-base leading-relaxed mb-8"
+              dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
+            />
 
             <div className="grid grid-cols-3 gap-4 mb-8">
               {([
@@ -53,10 +56,10 @@ export function RadioSection() {
 
             <div className="flex gap-4">
               <a href="#radio" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-6 py-3 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 text-sm">
-                <PlayCircle size={16} /> Listen Live
+                <PlayCircle size={16} /> {t("radio.listenBtn")}
               </a>
               <a href="#programs" className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm">
-                Program Guide
+                {t("radio.scheduleBtn")}
               </a>
             </div>
           </motion.div>

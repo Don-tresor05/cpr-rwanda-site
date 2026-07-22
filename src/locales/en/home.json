@@ -1,0 +1,155 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "label": "Serving Rwanda Since 1963",
+        "title": "Bose Babe Umwe",
+        "subtitle": "That All of Them May Be One",
+        "desc": "Uniting 19 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
+        "cta": "Explore Our Mission",
+        "ctaSecondary": "Meet Our Team"
+      },
+      {
+        "label": "Education Department (BNEP)",
+        "title": "Shaping Rwanda's Future",
+        "subtitle": "595 Protestant Primary Schools",
+        "desc": "The Bureau National de l'Éducation Protestante oversees quality education across Rwanda, empowering 300,000+ learners every year.",
+        "cta": "Learn About BNEP",
+        "ctaSecondary": "View Statistics"
+      },
+      {
+        "label": "Radio Inkoramutima",
+        "title": "107.1 FM — Broadcasting Hope",
+        "subtitle": "Voice of the Protestant Council in Rwanda",
+        "desc": "Radio Inkoramutima, the official voice of the Protestant Council of Rwanda, reaches communities across the country with messages of faith, unity, and holistic development.",
+        "cta": "Listen Live",
+        "ctaSecondary": "Program Guide"
+      }
+    ]
+  },
+  "about": {
+    "ourStory": "Our Story",
+    "title": "Six Decades of\nFaith & Service",
+    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 19 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+    "p2Start": "Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — ",
+    "motto": "“Bose Babe Umwe” (That All of Them May Be One)",
+    "p2End": " — guides every initiative.",
+    "historyBtn": "Our Full History",
+    "visionBtn": "Vision & Mission"
+  },
+  "departments": {
+    "ourWork": "Our Work",
+    "title": "Departments & Projects",
+    "desc": "CPR's work spans four strategic departments, each addressing a critical dimension of Rwanda's transformation.",
+    "learnMore": "Learn More",
+    "items": [
+      {
+        "title": "General Secretary",
+        "desc": "Oversees the strategic direction, coordination, and overall governance of the Conseil Protestant du Rwanda."
+      },
+      {
+        "title": "Education/BNEP",
+        "desc": "Manages Protestant primary and secondary schools, implementing modern pedagogical methodologies across the country."
+      },
+      {
+        "title": "Diakonia/Development",
+        "desc": "Coordinates social services, humanitarian relief operations, and sustainable community development programs."
+      },
+      {
+        "title": "Finance/Mobilization",
+        "desc": "Ensures institutional financial sustainability, transparent administration, and strategic resource mobilization."
+      },
+      {
+        "title": "Youth Program",
+        "desc": "Empowers the next generation through peacebuilding, reconciliation projects, and active leadership training."
+      },
+      {
+        "title": "Gender Promotion",
+        "desc": "Promotes gender equality, fights gender-based violence (GBV), and empowers women in economic and social spheres."
+      },
+      {
+        "title": "Radio Inkoramutima",
+        "desc": "Spreads messages of evangelization, national unity, healing, and community development across Rwanda on 107.1 FM."
+      }
+    ]
+  },
+  "news": {
+    "ourStories": "Our Stories",
+    "title": "Latest News & Events",
+    "desc": "Stay updated with the latest activities, reports, and events from our member churches and departments.",
+    "readArticle": "Read Article",
+    "viewAllBtn": "View All News",
+    "items": [
+      {
+        "category": "Event",
+        "title": "Kwibuka 31 Memorial Commemoration at Gahini Diocese",
+        "excerpt": "CPR member churches joined thousands across Rwanda to remember the 1994 Genocide against the Tutsi, reaffirming their commitment to never again."
+      },
+      {
+        "category": "Education",
+        "title": "BNEP Launches Active Pedagogy Training for 1,200 Teachers",
+        "excerpt": "The Bureau National de l'Éducation Protestante rolled out its flagship Participatory Active Pedagogy program in partnership with international donors."
+      },
+      {
+        "category": "Health",
+        "title": "Gender & Health Department Completes Trauma Counselor Certification",
+        "excerpt": "Forty-two community health workers across five provinces were certified as trauma counselors, strengthening CPR's mental health outreach capacity."
+      },
+      {
+        "category": "Development",
+        "title": "CPR Partners with Local Cooperatives for Agricultural Sustainability",
+        "excerpt": "A new initiative aiming to support rural communities with climate-smart farming techniques was launched in Eastern Province, impacting over 500 families."
+      },
+      {
+        "category": "Youth",
+        "title": "Annual Youth Peace and Reconciliation Summit Announced",
+        "excerpt": "Youth leaders from various Protestant parishes across the country will gather in Kigali to discuss peacemaking, leadership, and digital evangelism."
+      }
+    ]
+  },
+  "testimonials": {
+    "impact": "Our Impact",
+    "title": "Voices from the Community",
+    "desc": "Hear from the individuals and communities whose lives have been touched by the work of the Conseil Protestant du Rwanda.",
+    "items": [
+      {
+        "quote": "The CPR scholarship program transformed my life. As a child of genocide survivors, I had no hope of attending university. Today I am a medical doctor serving my community.",
+        "role": "CPR Scholarship Beneficiary, Class of 2018"
+      },
+      {
+        "quote": "Radio Inkoramutima reaches our village every morning. The trauma counseling programs on air have helped our whole congregation find peace and reconciliation.",
+        "role": "Member Church Pastor, Eastern Province"
+      },
+      {
+        "quote": "Through the BNEP Active Pedagogy training, our teachers now create joyful classrooms where every child participates. Student performance has increased by 40% in two years.",
+        "role": "Head Teacher, EPRK Primary School, Kigali"
+      }
+    ]
+  },
+  "radio": {
+    "listenLive": "Listen Live",
+    "title": "Radio Inkoramutima 107.1 FM",
+    "desc": "Broadcasting messages of faith, unity, and development to communities across Rwanda since 2005. The official voice of the Protestant Council of Rwanda.",
+    "nowPlaying": "Now Playing:",
+    "nowPlayingDesc": "Morning Devotion & Community News",
+    "listenBtn": "Listen Live",
+    "scheduleBtn": "Program Schedule"
+  },
+  "gallery": {
+    "galleryLabel": "Gallery",
+    "title": "Moments & Memories",
+    "desc": "A visual journey through our community events, school programs, and church services across the country.",
+    "viewAllBtn": "View Full Gallery"
+  },
+  "partners": {
+    "trustedBy": "Trusted By",
+    "title": "Our Partners & Affiliates",
+    "desc": "We collaborate with local and international organizations to maximize our impact and reach."
+  },
+  "cta": {
+    "title": "Ready to Make an Impact?",
+    "desc": "Join us in our mission to unite, serve, and develop communities across Rwanda through faith and action.",
+    "donateBtn": "Make a Donation",
+    "contactBtn": "Contact Us Today"
+  }
+}

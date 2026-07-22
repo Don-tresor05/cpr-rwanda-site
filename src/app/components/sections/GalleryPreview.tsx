@@ -1,17 +1,19 @@
 import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 const GALLERY_IMAGES = [
-  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=600&fit=crop&auto=format", alt: "Kwibuka commemoration ceremony", span: "col-span-2 row-span-2" },
-  { src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&auto=format", alt: "Students in classroom", span: "" },
-  { src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop&auto=format", alt: "Health outreach program", span: "" },
-  { src: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop&auto=format", alt: "Community gathering", span: "" },
-  { src: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop&auto=format", alt: "Worship service", span: "" },
+  { src: "/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
+  { src: "/assets/2.jpeg", alt: "CPR Community Work", span: "" },
+  { src: "/assets/3.jpeg", alt: "Kwibuka Commemoration", span: "" },
+  { src: "/assets/preacher-site-logo-dcd17-1.webp", alt: "Preacher Ministry", span: "" },
+  { src: "/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
 ];
 
 export function GalleryPreview() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
   return (
     <section id="gallery" ref={ref} className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -19,12 +21,12 @@ export function GalleryPreview() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
             <div className="inline-flex items-center gap-2 mb-3">
               <div className="h-px w-10 bg-[#BC8A5F]" />
-              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">Our Moments</span>
+              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">{t("gallery.galleryLabel")}</span>
             </div>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">Gallery</h2>
+            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">{t("gallery.title")}</h2>
           </motion.div>
           <a href="#gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E6132] border-2 border-[#4E6132]/15 px-5 py-2.5 rounded-xl hover:border-[#4E6132] transition-all whitespace-nowrap">
-            View All <ExternalLink size={13} />
+            {t("gallery.viewAllBtn")} <ExternalLink size={13} />
           </a>
         </div>
 

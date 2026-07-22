@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Menu, X, ChevronDown, ChevronRight, Phone, Mail,
-  MapPin, Radio
+  MapPin
 } from "lucide-react";
-import { NAV_ITEMS } from "../../data/navigation";
+import { getNavItems } from "../../data/navigation";
 import type { NavItem } from "../../types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   if (!item.children) return null;
@@ -53,6 +54,8 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
 }
 
 export function Header() {
+  const { t } = useTranslation("common");
+  const navItems = getNavItems(t);
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -77,7 +80,7 @@ export function Header() {
           <LanguageSwitcher variant="full" />
           <div className="h-4 w-px bg-white/20" />
           <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
-            Donate Now
+            {t("nav.donate")}
           </a>
         </div>
       </div>
@@ -94,7 +97,7 @@ export function Header() {
           {/* Logo */}
           <a href="#home" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
             <img
-              src="/assets/logo.jpg"
+              src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-18 w-auto object-contain"
             />
@@ -105,19 +108,19 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setActiveMenu(item.label)}
+                onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 <a
                   href={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     activeMenu === item.label
-                      ? "bg-[#BC8A5F]/8 text-[#BC8A5F]"
-                      : "text-[#BC8A5F]/80 hover:text-[#BC8A5F] hover:bg-[#BC8A5F]/5"
+                      ? "bg-[#BC8A5F]/20 text-[#BC8A5F]"
+                      : "text-[#BC8A5F] hover:bg-[#BC8A5F]/20 hover:text-[#BC8A5F]"
                   }`}
                 >
                   {item.label}
@@ -143,7 +146,7 @@ export function Header() {
               href="#contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
-              Contact Us
+              {t("nav.contact")}
             </a>
           </div>
 
@@ -167,7 +170,7 @@ export function Header() {
               className="lg:hidden overflow-hidden border-t border-[#BC8A5F]/10 bg-[#F5F5DC]"
             >
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
-                {NAV_ITEMS.map((item) => (
+                {navItems.map((item) => (
                   <div key={item.label}>
                     <button
                       className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#BC8A5F] hover:bg-[#BC8A5F]/5 transition-colors"
@@ -216,8 +219,8 @@ export function Header() {
                   <div className="flex items-center justify-center gap-2 px-4 py-2">
                     <LanguageSwitcher />
                   </div>
-                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">Donate Now</a>
-                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">Contact Us</a>
+                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.donate")}</a>
+                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</a>
                 </div>
               </div>
             </motion.div>
