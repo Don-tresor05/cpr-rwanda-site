@@ -24,15 +24,17 @@ export function Footer() {
               Uniting Rwanda's Protestant churches since 1963 through faith, education, health, and sustainable community development.
             </p>
             <div className="flex gap-3">{([
-  { icon: Facebook, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Instagram, href: "#" },
-  { icon: Youtube, href: "#" },
-  { icon: Linkedin, href: "#" },
+  { icon: Facebook, href: "https://www.facebook.com/cprrwanda" },
+  { icon: Twitter, href: "https://x.com/cprrwanda" },
+  { icon: Instagram, href: "https://www.instagram.com/cprrwanda" },
+  { icon: Youtube, href: "https://youtube.com/@cprrwanda" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/cpr-rwanda/" },
 ] as const).map(({ icon: Icon, href }, index) => (
   <a
     key={`social-${index}`}
     href={href}
+    target="_blank"
+    rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#EAD196] hover:text-[#4E6132] text-white/60 transition-all duration-300 flex items-center justify-center"
                 >
                   <Icon size={15} />
