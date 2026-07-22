@@ -112,15 +112,15 @@ export function Header() {
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setActiveMenu(item.label)}
+                onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 <a
                   href={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     activeMenu === item.label
-                      ? "bg-[#BC8A5F]/8 text-[#BC8A5F]"
-                      : "text-[#BC8A5F]/80 hover:text-[#BC8A5F] hover:bg-[#BC8A5F]/5"
+                      ? "bg-[#BC8A5F]/20 text-[#BC8A5F]"
+                      : "text-[#BC8A5F] hover:bg-[#BC8A5F]/20 hover:text-[#BC8A5F]"
                   }`}
                 >
                   {item.label}

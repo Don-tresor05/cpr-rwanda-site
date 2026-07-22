@@ -25,6 +25,15 @@ export function HeroSection() {
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  useEffect(() => {
+    slides.forEach((s) => {
+      if (s.image) {
+        const img = new Image();
+        img.src = s.image;
+      }
+    });
+  }, []);
+
   const goTo = (idx: number) => {
     setActive(idx);
   };
@@ -34,7 +43,7 @@ export function HeroSection() {
   return (
     <section id="home" className="relative h-[92vh] min-h-[600px] overflow-hidden">
       {/* Background image */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={slide.id}
           initial={{ opacity: 0, scale: 1.01 }}
