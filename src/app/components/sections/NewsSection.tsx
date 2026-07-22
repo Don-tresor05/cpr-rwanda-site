@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { NEWS } from "../../data/news";
+import { getNews } from "../../data/news";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function NewsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const news = getNews(t);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
 
@@ -29,11 +32,11 @@ export function NewsSection() {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, Math.max(0, NEWS.length - visibleCount)));
+    setCurrentIndex((prev) => Math.min(prev + 1, Math.max(0, news.length - visibleCount)));
   };
 
   useEffect(() => {
-    const maxIdx = Math.max(0, NEWS.length - visibleCount);
+    const maxIdx = Math.max(0, news.length - visibleCount);
     if (currentIndex > maxIdx) {
       setCurrentIndex(maxIdx);
     }
@@ -48,7 +51,7 @@ export function NewsSection() {
             animate={visible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="font-['Outfit'] font-black text-xl lg:text-2xl text-[#4E6132]">Latest News</h2>
+            <h2 className="font-['Outfit'] font-black text-xl lg:text-2xl text-[#4E6132]">{t("news.title")}</h2>
           </motion.div>
           
           {/* Slider controls */}
@@ -64,9 +67,9 @@ export function NewsSection() {
             </button>
             <button
               onClick={handleNext}
-              disabled={currentIndex >= NEWS.length - visibleCount}
+              disabled={currentIndex >= news.length - visibleCount}
               className={`p-2 rounded-xl text-[#4E6132] hover:bg-[#4E6132]/5 transition-all ${
-                currentIndex >= NEWS.length - visibleCount ? "opacity-30 cursor-not-allowed" : "cursor-pointer active:scale-95"
+                currentIndex >= news.length - visibleCount ? "opacity-30 cursor-not-allowed" : "cursor-pointer active:scale-95"
               }`}
             >
               <ChevronRight size={28} />
@@ -82,7 +85,7 @@ export function NewsSection() {
               transform: currentIndex === 0 ? "none" : `translateX(calc(-${currentIndex} * (100% + 28px) / ${visibleCount}))`,
             }}
           >
-            {NEWS.map((article, i) => (
+            {news.map((article, i) => (
               <motion.article
                 key={article.title}
                 initial={{ opacity: 0, y: 30 }}
@@ -114,7 +117,7 @@ export function NewsSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#BC8A5F] hover:text-[#784B24] group-hover:text-[#784B24] transition-colors"
                   >
-                    Read More <ArrowRight size={12} />
+                    {t("news.readArticle")} <ArrowRight size={12} />
                   </a>
                 </div>
               </motion.article>
@@ -129,7 +132,7 @@ export function NewsSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#4E6132] text-white text-base font-bold px-8 py-3.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
           >
-            More News <ArrowRight size={17} />
+            {t("news.viewAllBtn")} <ArrowRight size={17} />
           </a>
         </div>
       </div>

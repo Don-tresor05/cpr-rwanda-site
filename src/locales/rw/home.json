@@ -1,0 +1,155 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "label": "Gukorera u Rwanda kuva mu 1963",
+        "title": "Bose Babe Umwe",
+        "subtitle": "Kugira ngo bose babe umwe",
+        "desc": "Guhuza amatorero 19 y'abaporotesitanti kugira ngo bakorere imiryango y'u Rwanda binyuze mu kwizera, uburezi, ubuzima, n'iterambere rirambye.",
+        "cta": "Menya Inshingano Zacu",
+        "ctaSecondary": "Hura N'ikipe Yacu"
+      },
+      {
+        "label": "Urwego rw'Uburezi (BNEP)",
+        "title": "Kubaka Ejo Hazaza h'u Rwanda",
+        "subtitle": "Amashuri Abanza y'Abaporotesitanti 595",
+        "desc": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti bigenzura ireme ry'uburezi mu Rwanda, biha ubushobozi abanyeshuri barenga 300,000 buri mwaka.",
+        "cta": "Menya byinshi kuri BNEP",
+        "ctaSecondary": "Reba Imibare"
+      },
+      {
+        "label": "Radio Inkoramutima",
+        "title": "107.1 FM — Gutangaza Ibyiringiro",
+        "subtitle": "Ijwi ry'Inama y'Abaporotesitanti mu Rwanda",
+        "desc": "Radio Inkoramutima, ijwi ryemewe ry'Inama y'Abaporotesitanti mu Rwanda, igera mu miryango hirya no hino mu gihugu n'ubutumwa bw'ukwizera, ubumwe, n'iterambere rusange.",
+        "cta": "Umva Imbonankubone",
+        "ctaSecondary": "Gahunda y'Ibiganiro"
+      }
+    ]
+  },
+  "about": {
+    "ourStory": "Amateka Yacu",
+    "title": "Imyaka Mirongo Itandatu\ny'Ukwizera n'Imirimo",
+    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 19 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
+    "p2Start": "Uyu munsi, binyuze mu mashami yayo y'uburezi, ubuzima, ivugabutumwa, n'itumanaho, CPR igera mu ntara zose z'u Rwanda. Intego yacu — ",
+    "motto": "“Bose Babe Umwe”",
+    "p2End": " — iyobora buri gikorwa cyose.",
+    "historyBtn": "Amateka Yacu Arambuye",
+    "visionBtn": "Icyerekezo n'Inshingano"
+  },
+  "departments": {
+    "ourWork": "Ibikorwa Byacu",
+    "title": "Amashami n'Imishinga",
+    "desc": "Ibikorwa bya CPR bikorwa binyuze mu mashami ane akomeye, buri shami rifite uruhare mu mpinduka z'u Rwanda.",
+    "learnMore": "Menya Byinshi",
+    "items": [
+      {
+        "title": "Ubunyamabanga Bukuru",
+        "desc": "Bukurikirana icyerekezo, imikoranire, n'imiyoborere rusange y'Inama y'Abaporotesitanti mu Rwanda."
+      },
+      {
+        "title": "Uburezi/BNEP",
+        "desc": "Igenzura amashuri abanza n'ayisumbuye, ishyira mu bikorwa uburyo bugezweho bwo kwigisha mu gihugu hose."
+      },
+      {
+        "title": "Diyakoniya/Iterambere",
+        "desc": "Ihuza ibikorwa by'imibereho myiza, ubutabazi, n'iterambere rirambye ry'abaturage."
+      },
+      {
+        "title": "Imari/Gushaka Ubushobozi",
+        "desc": "Yita ku gushaka ubushobozi bw'ikigo, imicungire inoze y'imari, no gushaka umutungo."
+      },
+      {
+        "title": "Gahunda y'Urubyiruko",
+        "desc": "Ifasha urubyiruko binyuze mu kubaka amahoro, ubwiyunge, no kubaha amahugurwa y'ubuyobozi."
+      },
+      {
+        "title": "Kwimakaza Uburinganire",
+        "desc": "Iteza imbere uburinganire, irwanya ihohoterwa rishingiye ku gitsina, n'iterambere ry'abagore."
+      },
+      {
+        "title": "Radio Inkoramutima",
+        "desc": "Itangaza ubutumwa bw'ivugabutumwa, ubumwe, gukira, n'iterambere kuri 107.1 FM."
+      }
+    ]
+  },
+  "news": {
+    "ourStories": "Inkuru Zacu",
+    "title": "Amakuru Mashya",
+    "desc": "Menya amakuru mashya n'ibikorwa by'amatorero n'amashami yacu.",
+    "readArticle": "Soma Inkuru",
+    "viewAllBtn": "Reba Amakuru Yose",
+    "items": [
+      {
+        "category": "Igikorwa",
+        "title": "Kwibuka 31 muri Diyosezi ya Gahini",
+        "excerpt": "Amatorero agize CPR yifatanyije n'abandi banyarwanda kwibuka Jenoside yakorewe Abatutsi mu 1994."
+      },
+      {
+        "category": "Uburezi",
+        "title": "BNEP yatangije Amahugurwa ku Barezi 1,200",
+        "excerpt": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti byatangije gahunda y'imyigishirize igezweho."
+      },
+      {
+        "category": "Ubuzima",
+        "title": "Amahugurwa y'Abajyanama b'Ihungabana",
+        "excerpt": "Abajyanama b'ubuzima 42 mu ntara zitanu bahawe impabumenyi mu gufasha abafite ihungabana."
+      },
+      {
+        "category": "Iterambere",
+        "title": "CPR mu Bufatanye na Koperative z'Abahinzi",
+        "excerpt": "Gahunda nshya yo gufasha abahinzi guhangana n'imihindagurikire y'ikirere yatangirijwe mu Burasirazuba."
+      },
+      {
+        "category": "Urubyiruko",
+        "title": "Inama y'Urubyiruko ku Mahoro n'Ubwiyunge",
+        "excerpt": "Abayobozi b'urubyiruko bazahurira i Kigali kuganira ku mahoro n'ubuyobozi."
+      }
+    ]
+  },
+  "testimonials": {
+    "impact": "Umusaruro Wacu",
+    "title": "Ijwi ry'Abaturage",
+    "desc": "Umva ibyo abantu bafashijwe na CPR bavuga.",
+    "items": [
+      {
+        "quote": "Buruse ya CPR yahinduye ubuzima bwanjye. Ubu ndi muganga ufasha abaturage.",
+        "role": "Uwafashijwe na CPR kwiga, 2018"
+      },
+      {
+        "quote": "Radio Inkoramutima igera mu mudugudu wacu buri gitondo. Ibiganiro byayo byadufashije kubona amahoro.",
+        "role": "Umushumba, Intara y'Iburasirazuba"
+      },
+      {
+        "quote": "Binyuze mu mahugurwa ya BNEP, abarimu bacu ubu barigisha neza. Imitsindire yazamutseho 40%.",
+        "role": "Umuyobozi w'Ikigo, Kigali"
+      }
+    ]
+  },
+  "radio": {
+    "listenLive": "Umva Nonaha",
+    "title": "Radio Inkoramutima 107.1 FM",
+    "desc": "Itangaza ubutumwa bw'ukwizera, ubumwe, n'iterambere mu Rwanda kuva 2005.",
+    "nowPlaying": "Ikiganiro Kiriho:",
+    "nowPlayingDesc": "Isengesho rya Mu Gitondo & Amakuru",
+    "listenBtn": "Umva Nonaha",
+    "scheduleBtn": "Gahunda y'Ibiganiro"
+  },
+  "gallery": {
+    "galleryLabel": "Amafoto",
+    "title": "Ibihe by'Ingenzi",
+    "desc": "Urugendo mu mafoto y'ibikorwa byacu hirya no hino.",
+    "viewAllBtn": "Reba Amafoto Yose"
+  },
+  "partners": {
+    "trustedBy": "Abo Dukorana",
+    "title": "Abafatanyabikorwa",
+    "desc": "Dukorana n'imiryango y'imbere mu gihugu n'iy'amahanga kugira ngo tugere ku ntego zacu."
+  },
+  "cta": {
+    "title": "Witeguye Gutanga Umusanzu?",
+    "desc": "Fasha umuryango wacu kunga, gukorera no guteza imbere abaturage b'u Rwanda.",
+    "donateBtn": "Tanga Inkunga",
+    "contactBtn": "Twandikire Uyu Munsi"
+  }
+}

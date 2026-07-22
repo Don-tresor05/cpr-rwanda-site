@@ -1,15 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Quote, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { TESTIMONIALS } from "../../data/testimonials";
+import { getTestimonials } from "../../data/testimonials";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function TestimonialsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const testimonials = getTestimonials(t);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const total = TESTIMONIALS.length;
+  const total = testimonials.length;
 
   const goTo = useCallback((idx: number, dir: number) => {
     setDirection(dir);
@@ -62,14 +65,14 @@ export function TestimonialsSection() {
         >
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-[0.2em]">Impact Stories</span>
+            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-[0.2em]">{t("testimonials.impact")}</span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#BC8A5F]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
-            Lives Transformed
+            {t("testimonials.title")}
           </h2>
           <p className="text-[#4A4A4A]/60 text-base mt-3 max-w-lg mx-auto">
-            Real stories from the communities we serve across Rwanda
+            {t("testimonials.desc")}
           </p>
         </motion.div>
 
@@ -113,14 +116,14 @@ export function TestimonialsSection() {
 
                     <Quote size={40} className="text-[#EAD196]/25 mb-4 relative" />
                     <p className="text-[#1A1A1A] text-lg lg:text-xl leading-relaxed mb-8 relative italic">
-                      &ldquo;{TESTIMONIALS[active].quote}&rdquo;
+                      &ldquo;{testimonials[active].quote}&rdquo;
                     </p>
                     <div className="flex items-center gap-4 relative">
                       <div className="relative">
                         <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#EAD196]/40 ring-offset-2">
                           <img
-                            src={TESTIMONIALS[active].avatar}
-                            alt={TESTIMONIALS[active].author}
+                            src={testimonials[active].avatar}
+                            alt={testimonials[active].author}
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -129,8 +132,8 @@ export function TestimonialsSection() {
                         </div>
                       </div>
                       <div>
-                        <div className="font-['Outfit'] font-bold text-[#4E6132]">{TESTIMONIALS[active].author}</div>
-                        <div className="text-[#4A4A4A]/60 text-sm">{TESTIMONIALS[active].role}</div>
+                        <div className="font-['Outfit'] font-bold text-[#4E6132]">{testimonials[active].author}</div>
+                        <div className="text-[#4A4A4A]/60 text-sm">{testimonials[active].role}</div>
                       </div>
                     </div>
                   </div>
@@ -149,20 +152,20 @@ export function TestimonialsSection() {
                         <div className="absolute -top-8 -right-8 w-20 h-20 rounded-full bg-gradient-to-br from-[#EAD196]/8 to-transparent" />
                         <div className="flex items-start gap-3 relative">
                           <img
-                            src={TESTIMONIALS[idx].avatar}
-                            alt={TESTIMONIALS[idx].author}
+                            src={testimonials[idx].avatar}
+                            alt={testimonials[idx].author}
                             className="w-10 h-10 rounded-full object-cover ring-1 ring-[#EAD196]/30 flex-shrink-0"
                           />
                           <div className="min-w-0">
                             <p className="text-[#1A1A1A] text-sm leading-relaxed line-clamp-3 mb-3 italic">
-                              &ldquo;{TESTIMONIALS[idx].quote}&rdquo;
+                              &ldquo;{testimonials[idx].quote}&rdquo;
                             </p>
                             <div>
                               <div className="font-['Outfit'] font-semibold text-[#4E6132] text-xs">
-                                {TESTIMONIALS[idx].author}
+                                {testimonials[idx].author}
                               </div>
                               <div className="text-[#4A4A4A]/50 text-[10px] truncate">
-                                {TESTIMONIALS[idx].role}
+                                {testimonials[idx].role}
                               </div>
                             </div>
                           </div>
@@ -187,7 +190,7 @@ export function TestimonialsSection() {
           <div className="relative flex items-center gap-4 mb-6">
             <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#4E6132]/15" />
             <div className="flex items-center gap-3">
-              {TESTIMONIALS.map((_, i) => (
+              {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i, i > active ? 1 : -1)}
@@ -219,7 +222,7 @@ export function TestimonialsSection() {
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-8 py-3.5 rounded-full hover:bg-[#3a4f26] transition-all duration-300 shadow-lg hover:shadow-xl text-sm group"
           >
-            See All Stories
+            {t("news.viewAllBtn")}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </motion.a>
         </motion.div>
