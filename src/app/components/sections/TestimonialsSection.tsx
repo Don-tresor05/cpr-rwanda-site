@@ -114,7 +114,7 @@ export function TestimonialsSection() {
                     <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br from-[#4E6132]/5 to-transparent" />
                     <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-gradient-to-tr from-[#EAD196]/8 to-transparent" />
 
-                    <Quote size={40} className="text-[#EAD196]/25 mb-4 relative" />
+                    <Quote size={40} className="text-[#8B6543]/25 mb-4 relative" />
                     <p className="text-[#1A1A1A] text-lg lg:text-xl leading-relaxed mb-8 relative italic">
                       &ldquo;{testimonials[active].quote}&rdquo;
                     </p>
