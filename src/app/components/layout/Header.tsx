@@ -24,7 +24,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-xs font-semibold text-[#BC8A5F]/50 uppercase tracking-widest mb-3 pb-2 border-b border-[#BC8A5F]/10">
+            <div className="text-xs font-semibold text-[#8B6543]/70 uppercase tracking-widest mb-3 pb-2 border-b border-[#8B6543]/10">
               {col.heading}
             </div>
           )}
@@ -34,9 +34,9 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                 <a
                   href={link.href}
                   onClick={onClose}
-                  className="group flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-[#BC8A5F]/5 transition-colors"
+                  className="group flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-[#8B6543]/5 transition-colors"
                 >
-                  <span className="text-sm font-semibold text-[#BC8A5F] group-hover:text-[#4E6132] transition-colors flex items-center gap-1.5">
+                  <span className="text-sm font-semibold text-[#8B6543] group-hover:text-[#4E6132] transition-colors flex items-center gap-1.5">
                     {link.label}
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </span>
@@ -87,11 +87,10 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#BC8A5F]/10"
+        className={`sticky top-0 z-40 transition-all duration-300 ${scrolled
+            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#8B6543]/10"
             : "bg-[#F5F5DC] shadow-sm"
-        }`}
+          }`}
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
@@ -101,7 +100,7 @@ export function Header() {
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-18 w-auto object-contain"
             />
-            <span className="text-sm lg:text-base font-bold text-[#BC8A5F] mt-1 leading-none tracking-wide">
+            <span className="text-sm lg:text-base font-bold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </a>
@@ -117,11 +116,10 @@ export function Header() {
               >
                 <a
                   href={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                    activeMenu === item.label
-                      ? "bg-[#BC8A5F]/20 text-[#BC8A5F]"
-                      : "text-[#BC8A5F] hover:bg-[#BC8A5F]/20 hover:text-[#BC8A5F]"
-                  }`}
+                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${activeMenu === item.label
+                      ? "bg-[#8B6543]/20 text-[#8B6543]"
+                      : "text-[#8B6543] hover:bg-[#8B6543]/20 hover:text-[#8B6543]"
+                    }`}
                 >
                   {item.label}
                   {item.children && (
@@ -152,10 +150,10 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-[#BC8A5F]/8 transition-colors"
+            className="lg:hidden p-2 rounded-xl hover:bg-[#8B6543]/8 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? <X size={22} className="text-[#BC8A5F]" /> : <Menu size={22} className="text-[#BC8A5F]" />}
+            {mobileOpen ? <X size={22} className="text-[#8B6543]" /> : <Menu size={22} className="text-[#8B6543]" />}
           </button>
         </div>
 
@@ -167,13 +165,13 @@ export function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="lg:hidden overflow-hidden border-t border-[#BC8A5F]/10 bg-[#F5F5DC]"
+              className="lg:hidden overflow-hidden border-t border-[#8B6543]/10 bg-[#F5F5DC]"
             >
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {navItems.map((item) => (
                   <div key={item.label}>
                     <button
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#BC8A5F] hover:bg-[#BC8A5F]/5 transition-colors"
+                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/5 transition-colors"
                       onClick={() => {
                         if (item.children) {
                           setMobileExpanded(mobileExpanded === item.label ? null : item.label);
@@ -204,7 +202,7 @@ export function Header() {
                                 key={link.label}
                                 href={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#BC8A5F] hover:bg-[#BC8A5F]/5 rounded-lg transition-colors"
+                                className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#8B6543] hover:bg-[#8B6543]/5 rounded-lg transition-colors"
                               >
                                 {link.label}
                               </a>

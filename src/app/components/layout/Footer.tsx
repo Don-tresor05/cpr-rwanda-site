@@ -36,7 +36,7 @@ export function Footer() {
                 alt="CPR Rwanda - Conseil Protestant du Rwanda"
                 className="h-20 w-auto object-contain"
               />
-              <span className="text-base font-bold text-[#BC8A5F] mt-3 leading-tight tracking-wide">
+              <span className="text-base font-bold text-[#8B6543] mt-3 leading-tight tracking-wide">
                 Conseil Protestant du Rwanda (CPR)
               </span>
             </div>
@@ -53,9 +53,7 @@ export function Footer() {
                 <a
                   key={`social-${index}`}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#BC8A5F] hover:text-[#060F1F] text-white/60 transition-all duration-300 flex items-center justify-center"
+                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#8B6543] hover:text-[#060F1F] text-white/60 transition-all duration-300 flex items-center justify-center"
                 >
                   <Icon size={15} />
                 </a>
@@ -65,11 +63,11 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("footer.quickLinks")}</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#8B6543] mb-5">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2.5">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
+                  <a href={item.href} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.label}
                   </a>
@@ -80,7 +78,7 @@ export function Footer() {
 
           {/* Departments */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("nav.departments")}</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#8B6543] mb-5">{t("nav.departments")}</h4>
             <ul className="space-y-2.5">
               {[
                 t("nav.generalSecretary"),
@@ -92,7 +90,7 @@ export function Footer() {
                 t("nav.radioStation")
               ].map((l) => (
                 <li key={l}>
-                  <a href="#departments" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm flex items-center gap-2 group">
+                  <a href="#departments" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     {l}
                   </a>
@@ -103,22 +101,22 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#BC8A5F] mb-5">{t("footer.contactUs")}</h4>
+            <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#8B6543] mb-5">{t("footer.contactUs")}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin size={14} className="text-[#BC8A5F] mt-0.5 flex-shrink-0" />
+                <MapPin size={14} className="text-[#8B6543] mt-0.5 flex-shrink-0" />
                 <span className="text-white/55 text-sm leading-relaxed">KG 2 Av 4, B.P 79<br />Kigali, Rwanda</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={14} className="text-[#BC8A5F] flex-shrink-0" />
-                <a href="tel:+250788314718" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm">+250 788 314 718</a>
+                <Phone size={14} className="text-[#8B6543] flex-shrink-0" />
+                <a href="tel:+250788314718" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">+250 788 314 718</a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={14} className="text-[#BC8A5F] flex-shrink-0" />
-                <a href="mailto:cprgs@cpr-rwanda.rw" className="text-white/55 hover:text-[#BC8A5F] transition-colors text-sm">cprgs@cpr-rwanda.rw</a>
+                <Mail size={14} className="text-[#8B6543] flex-shrink-0" />
+                <a href="mailto:cprgs@cpr-rwanda.rw" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">cprgs@cpr-rwanda.rw</a>
               </li>
               <li className="flex items-center gap-3">
-                <Radio size={14} className="text-[#BC8A5F] flex-shrink-0" />
+                <Radio size={14} className="text-[#8B6543] flex-shrink-0" />
                 <span className="text-white/55 text-sm">Radio Inkoramutima 107.1 FM</span>
               </li>
             </ul>
@@ -126,7 +124,7 @@ export function Footer() {
             {/* Contact form trigger */}
             <a
               href="#contact"
-              className="mt-6 inline-flex items-center gap-2 bg-[#BC8A5F] text-[#060F1F] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
+              className="mt-6 inline-flex items-center gap-2 bg-[#8B6543] text-[#060F1F] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
             >
               Send a Message <ArrowRight size={14} />
             </a>

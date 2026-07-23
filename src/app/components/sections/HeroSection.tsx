@@ -97,7 +97,7 @@ export function HeroSection() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href="#about"
-                  className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                  className="inline-flex items-center gap-2 bg-[#8B6543] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />
