@@ -24,9 +24,9 @@ export function Footer() {
   const navItems = getNavItems(t);
   
   return (
-    <footer id="contact" className="bg-[#060F1F] text-white">
+    <footer id="contact" className="bg-[#1C2A10] text-white">
       {/* Main footer */}
-      <div className="w-full px-4 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -45,10 +45,10 @@ export function Footer() {
             </p>
             <div className="flex gap-3">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: XIcon, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Youtube, href: "#" },
+                { icon: Facebook, href: "https://www.facebook.com/cprrwanda" },
+                { icon: XIcon, href: "https://x.com/cprrwanda" },
+                { icon: Instagram, href: "https://www.instagram.com/cprrwanda" },
+                { icon: Youtube, href: "https://youtube.com/@cprrwanda" },
               ].map(({ icon: Icon, href }, index) => (
                 <a
                   key={`social-${index}`}
@@ -133,8 +133,8 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/8 py-5 px-4 lg:px-8">
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
+      <div className="border-t border-white/8">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
           <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. {t("footer.rights")}</span>
           <div className="flex gap-5">
             <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
