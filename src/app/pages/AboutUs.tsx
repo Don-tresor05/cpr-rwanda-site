@@ -1,27 +1,74 @@
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
 
 export function AboutUs() {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(sec => observer.observe(sec));
+
+    return () => sections.forEach(sec => observer.unobserve(sec));
+  }, []);
+
   return (
     <main className="bg-white">
       {/* Hero */}
       <div 
-        className="relative h-[340px] flex items-center justify-center text-center text-white bg-[#4E6132]"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: "linear-gradient(rgba(78,97,50,0.85), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
+          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
-        <h1 className="font-['Outfit'] text-4xl lg:text-5xl font-black relative z-10 text-white">Who We Are</h1>
+        <div className="relative z-10 max-w-7xl w-full mx-auto">
+          <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">Who We Are</h1>
+        </div>
       </div>
 
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 text-sm text-[#4A4A4A]/70">
-        <Link to="/" className="text-[#8B6543] hover:underline font-semibold">Home</Link> <span className="mx-2">/</span> Who We Are
+
+
+      {/* Sub-Navigation */}
+      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <nav className="flex items-center justify-start lg:justify-center gap-6 lg:gap-10 overflow-x-auto py-4 scrollbar-hide">
+            {[
+              { label: "About CPR", href: "#about-cpr" },
+              { label: "Mission, Vision, Model & Values", href: "#vision-mission" },
+              { label: "Our Team", href: "#our-team" },
+              { label: "Our Partners", href: "#our-partners" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`text-sm font-bold whitespace-nowrap transition-colors border-b-2 pb-1 ${
+                  activeSection === link.href.substring(1) 
+                    ? "border-[#4E6132] text-[#4E6132]" 
+                    : "border-transparent text-[#4E6132]/70 hover:text-[#4E6132]"
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
 
       {/* About */}
-      <section className="py-16">
+      <section id="about-cpr" className="py-16 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-10 bg-[#8B6543]" />
@@ -36,7 +83,7 @@ export function AboutUs() {
       </section>
 
       {/* Vision / Mission */}
-      <section className="py-16 bg-[#F8F9FA]">
+      <section id="vision-mission" className="py-16 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-12">
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
@@ -95,7 +142,7 @@ export function AboutUs() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-[#F8F9FA]">
+      <section id="our-team" className="py-20 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 mb-4">
@@ -126,7 +173,7 @@ export function AboutUs() {
       </section>
 
       {/* Partners */}
-      <section className="py-16">
+      <section id="our-partners" className="py-16 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
            <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-10 bg-[#8B6543]" />
