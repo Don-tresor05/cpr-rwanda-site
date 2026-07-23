@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Link } from "react-router";
 import {
   Menu, X, ChevronDown, ChevronRight, Phone, Mail,
   MapPin
@@ -31,19 +32,19 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
           <ul className="space-y-1">
             {col.links.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   onClick={onClose}
-                  className="group flex flex-col gap-0.5 px-3 py-2.5 rounded-xl hover:bg-[#8B6543]/5 transition-colors"
+                  className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/20 transition-all duration-200"
                 >
-                  <span className="text-sm font-semibold text-[#8B6543] group-hover:text-[#4E6132] transition-colors flex items-center gap-1.5">
-                    {link.label}
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="text-sm font-semibold text-[#8B6543] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
+                    <span>{link.label}</span>
+                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
                   </span>
                   {link.desc && (
-                    <span className="text-xs text-[#4A4A4A]/70 leading-tight">{link.desc}</span>
+                    <span className="text-xs text-[#8B6543]/75 group-hover:text-[#8B6543]/95 leading-tight transition-colors">{link.desc}</span>
                   )}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -94,7 +95,7 @@ export function Header() {
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <a href="#home" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
+          <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
             <img
               src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
@@ -103,7 +104,7 @@ export function Header() {
             <span className="text-sm lg:text-base font-bold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
@@ -114,8 +115,8 @@ export function Header() {
                 onMouseEnter={() => setActiveMenu(item.label)}
                 onMouseLeave={() => setActiveMenu(null)}
               >
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${activeMenu === item.label
                       ? "bg-[#8B6543]/20 text-[#8B6543]"
                       : "text-[#8B6543] hover:bg-[#8B6543]/20 hover:text-[#8B6543]"
@@ -128,7 +129,7 @@ export function Header() {
                       className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
                     />
                   )}
-                </a>
+                </Link>
                 <AnimatePresence>
                   {activeMenu === item.label && item.children && (
                     <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
@@ -140,12 +141,12 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="#contact"
+            <Link
+              to="/#contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
               {t("nav.contact")}
-            </a>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -170,24 +171,26 @@ export function Header() {
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {navItems.map((item) => (
                   <div key={item.label}>
-                    <button
-                      className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/5 transition-colors"
-                      onClick={() => {
-                        if (item.children) {
-                          setMobileExpanded(mobileExpanded === item.label ? null : item.label);
-                        } else {
-                          setMobileOpen(false);
-                        }
-                      }}
-                    >
-                      {item.label}
-                      {item.children && (
+                    {item.children ? (
+                      <button
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 transition-colors"
+                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                      >
+                        {item.label}
                         <ChevronDown
                           size={14}
                           className={`transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`}
                         />
-                      )}
-                    </button>
+                      </button>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                     <AnimatePresence>
                       {mobileExpanded === item.label && item.children && (
                         <motion.div
@@ -198,14 +201,14 @@ export function Header() {
                         >
                           <div className="pl-4 pb-2 space-y-0.5">
                             {item.children.flatMap((col) => col.links).map((link) => (
-                              <a
+                              <Link
                                 key={link.label}
-                                href={link.href}
+                                to={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#8B6543] hover:bg-[#8B6543]/5 rounded-lg transition-colors"
+                                className="block px-4 py-2.5 text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 rounded-xl transition-colors"
                               >
                                 {link.label}
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </motion.div>
