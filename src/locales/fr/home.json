@@ -5,7 +5,7 @@
         "label": "Au service du Rwanda depuis 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "Pour que tous soient un",
-        "desc": "Unissant 19 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
+        "desc": "Unissant 28 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
         "cta": "Explorez Notre Mission",
         "ctaSecondary": "Rencontrez Notre Équipe"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Notre Histoire",
     "title": "Six Décennies de\nFoi et de Service",
-    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 19 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 28 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
     "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
     "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
     "p2End": " — guide chaque initiative.",
@@ -216,7 +216,7 @@
       "title": "Notre Modèle",
       "desc": "Une structure de partenariat collaboratif reliant les églises membres à l'impact communautaire.",
       "step1Tag": "Étape 1",
-      "step1Title": "19 Églises Membres",
+      "step1Title": "28 Églises Membres",
       "step1Desc": "Les dénominations protestantes à travers le Rwanda s'unissent sous un cadre partagé.",
       "step2Tag": "Étape 2",
       "step2Title": "Coordination du CPR",
