@@ -151,5 +151,119 @@
     "desc": "Rejoignez-nous dans notre mission pour unir, servir et développer les communautés au Rwanda.",
     "donateBtn": "Faire un Don",
     "contactBtn": "Contactez-Nous"
+  },
+  "memberChurches": {
+    "tag": "Notre Communauté",
+    "title": "Églises Membres & Organisations",
+    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 25</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
+    "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> églises et organisations unies en Christ"
+  },
+  "projects": {
+    "tag": "Nos Initiatives",
+    "title": "Projets & Programmes",
+    "desc": "Des initiatives axées sur l'impact qui transforment les communautés par le renforcement des capacités, la guérison des traumatismes et le développement durable.",
+    "viewDetails": "Voir les détails complets",
+    "items": [
+      {
+        "title": "Renforcement des Capacités dans les Églises",
+        "period": "2019 — 2022",
+        "desc": "Renforcement des capacités professionnelles du personnel de 20 églises membres du CPR et 5 associations.",
+        "highlights": [
+          "Programmes de formation en TIC et entrepreneuriat",
+          "Renforcement des capacités en leadership et administration",
+          "Théologie environnementale et éducation à la santé publique",
+          "Réseau d'anciens boursiers pour une collaboration continue"
+        ]
+      },
+      {
+        "title": "Psychotraumatologie & Guérison des Traumatismes",
+        "period": "En cours",
+        "desc": "Soutien psychosocial complet dans les contextes post-conflit — certification de conseillers et animation de clubs anti-traumatisme.",
+        "highlights": [
+          "Certification des professionnels de santé mentale en psychotraumatologie",
+          "Clubs anti-traumatisme dans les écoles à l'échelle nationale",
+          "Intégration du conseil basé sur la foi dans les communautés",
+          "Organisation des Experts Rwandais en Psychotraumatologie (ROPRE)"
+        ]
+      }
+    ]
+  },
+  "aboutPage": {
+    "heroTitle": "Qui Sommes-Nous",
+    "nav": {
+      "whoWeAre": "À Propos du Conseil Protestant du Rwanda",
+      "visionMission": "Vision & Mission",
+      "coreValues": "Valeurs Fondamentales",
+      "execCommittee": "Comité Exécutif",
+      "organigram": "Organigramme",
+      "ourPartners": "Nos Partenaires"
+    },
+    "whoWeAre": {
+      "title": "À Propos du Conseil Protestant du Rwanda",
+      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963 pour promouvoir et partager des initiatives de développement innovantes et fournir des services essentiels à nos églises membres et à la communauté élargie.",
+      "p2": "Nous nous engageons à développer des partenariats solides et impactants et à fournir des services de qualité supérieure à ceux avec qui nous travaillons, en favorisant la foi, l'unité et le développement durable à travers le Rwanda."
+    },
+    "visionMission": {
+      "title": "Vision & Mission",
+      "visionTag": "Notre Vision",
+      "visionSub": "Où nous allons",
+      "visionDesc": "Une société rwandaise unie, fidèle et prospère où chaque individu vit dans la dignité et la paix.",
+      "missionTag": "Notre Mission",
+      "missionSub": "Ce que nous faisons chaque jour",
+      "missionDesc": "Rassembler les églises protestantes du Rwanda pour un impact coordonné dans l'évangélisation, l'éducation, la santé et le développement socio-économique holistique."
+    },
+    "model": {
+      "title": "Notre Modèle",
+      "desc": "Une structure de partenariat collaboratif reliant les églises membres à l'impact communautaire.",
+      "step1Tag": "Étape 1",
+      "step1Title": "19 Églises Membres",
+      "step1Desc": "Les dénominations protestantes à travers le Rwanda s'unissent sous un cadre partagé.",
+      "step2Tag": "Étape 2",
+      "step2Title": "Coordination du CPR",
+      "step2Desc": "Les ressources sont mobilisées grâce aux contributions locales et aux partenariats internationaux.",
+      "step3Tag": "Étape 3",
+      "step3Title": "Programmes Communautaires",
+      "step3Desc": "Des initiatives durables et axées sur la communauté sont déployées sur le terrain."
+    },
+    "coreValues": {
+      "title": "Valeurs Fondamentales",
+      "items": [
+        {
+          "title": "Foi",
+          "desc": "Enracinée dans nos croyances chrétiennes, la foi guide toutes nos actions et décisions."
+        },
+        {
+          "title": "Unité",
+          "desc": "Rassembler diverses dénominations pour parler et agir d'une seule voix."
+        },
+        {
+          "title": "Intégrité",
+          "desc": "Maintenir la transparence et la responsabilité dans toutes nos opérations."
+        },
+        {
+          "title": "Service",
+          "desc": "Dévoué à servir les communautés les plus vulnérables avec compassion."
+        },
+        {
+          "title": "Excellence",
+          "desc": "Viser la plus haute qualité dans nos programmes d'éducation, de santé et de développement."
+        }
+      ]
+    },
+    "execCommittee": {
+      "title": "Comité Exécutif",
+      "desc": "Notre équipe dévouée de professionnels et de dirigeants d'églises apporte son expertise de divers secteurs pour faire avancer la mission du CPR.",
+      "boardMembers": "Membres du Conseil",
+      "staff": "Personnel",
+      "defaultName": "Nom du Membre",
+      "defaultRole": "Titre / Rôle"
+    },
+    "organigram": {
+      "title": "Organigramme",
+      "comingSoon": "[Schéma de l'organigramme à venir]"
+    },
+    "partners": {
+      "title": "Nos Partenaires"
+    }
   }
 }

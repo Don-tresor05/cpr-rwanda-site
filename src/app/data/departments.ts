@@ -70,6 +70,24 @@ export interface Project {
   icon: LucideIcon;
 }
 
+export const getProjects = (t: any): Project[] => {
+  const items = t("projects.items", { returnObjects: true }) as {
+    title: string;
+    period: string;
+    desc: string;
+    highlights: string[];
+  }[];
+  if (!Array.isArray(items) || items.length < 2) return PROJECTS;
+  const icons = [Briefcase, Heart];
+  return items.map((item, index) => ({
+    title: item.title,
+    period: item.period,
+    desc: item.desc,
+    highlights: item.highlights || [],
+    icon: icons[index % icons.length],
+  }));
+};
+
 export const PROJECTS: Project[] = [
   {
     title: "Capacity Building in Churches",
@@ -96,3 +114,4 @@ export const PROJECTS: Project[] = [
     icon: Heart,
   },
 ];
+

@@ -2,9 +2,12 @@ import { motion } from "motion/react";
 import { Church } from "lucide-react";
 import { MEMBER_CHURCHES } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function MemberChurchesSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+
   return (
     <section ref={ref} className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -16,16 +19,16 @@ export function MemberChurchesSection() {
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Community</span>
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("memberChurches.tag")}</span>
             <div className="h-px w-10 bg-[#EAD196]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
-            Member Churches &amp; Organizations
+            {t("memberChurches.title")}
           </h2>
-          <p className="text-[#4A4A4A] mt-4 max-w-2xl mx-auto text-base">
-            The Conseil Protestant du Rwanda unites <strong className="text-[#4E6132]">25+</strong> Protestant churches and
-            Christian organizations across Rwanda, working together in faith, service, and national transformation.
-          </p>
+          <p 
+            className="text-[#4A4A4A] mt-4 max-w-2xl mx-auto text-base"
+            dangerouslySetInnerHTML={{ __html: t("memberChurches.desc") }}
+          />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -68,12 +71,14 @@ export function MemberChurchesSection() {
                 <span className="text-[9px] font-bold text-[#4E6132]">+{MEMBER_CHURCHES.length - 4}</span>
               </div>
             </div>
-            <span className="text-sm text-[#4A4A4A]/70">
-              <strong className="text-[#4E6132]">{MEMBER_CHURCHES.length}</strong> churches and organizations united in Christ
-            </span>
+            <span 
+              className="text-sm text-[#4A4A4A]/70"
+              dangerouslySetInnerHTML={{ __html: t("memberChurches.unitedNote", { count: MEMBER_CHURCHES.length }) }}
+            />
           </div>
         </motion.div>
       </div>
     </section>
   );
 }
+
