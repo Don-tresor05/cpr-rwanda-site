@@ -1,10 +1,14 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { PROJECTS } from "../../data/departments";
+import { getProjects } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const projects = getProjects(t);
+
   return (
     <section id="projects" ref={ref} className="py-24 bg-[#F8F9FA] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -16,19 +20,19 @@ export function ProjectsSection() {
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Initiatives</span>
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("projects.tag")}</span>
             <div className="h-px w-10 bg-[#EAD196]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
-            Projects &amp; Programs
+            {t("projects.title")}
           </h2>
           <p className="text-[#4A4A4A] mt-4 max-w-xl mx-auto text-base">
-            Impact-driven initiatives transforming communities through capacity building, trauma healing, and sustainable development.
+            {t("projects.desc")}
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {PROJECTS.map((project, i) => {
+          {projects.map((project, i) => {
             const Icon = project.icon;
             return (
               <motion.div
@@ -73,7 +77,7 @@ export function ProjectsSection() {
                     href="#projects"
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors group/link"
                   >
-                    View Full Details <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                    {t("projects.viewDetails")} <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
               </motion.div>
@@ -84,3 +88,4 @@ export function ProjectsSection() {
     </section>
   );
 }
+

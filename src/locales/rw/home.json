@@ -5,7 +5,7 @@
         "label": "Gukorera u Rwanda kuva mu 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "Kugira ngo bose babe umwe",
-        "desc": "Guhuza amatorero 19 y'abaporotesitanti kugira ngo bakorere imiryango y'u Rwanda binyuze mu kwizera, uburezi, ubuzima, n'iterambere rirambye.",
+        "desc": "Guhuza amatorero 28 y'abaporotesitanti kugira ngo bakorere imiryango y'u Rwanda binyuze mu kwizera, uburezi, ubuzima, n'iterambere rirambye.",
         "cta": "Menya Inshingano Zacu",
         "ctaSecondary": "Hura N'ikipe Yacu"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Amateka Yacu",
     "title": "Imyaka Mirongo Itandatu\ny'Ukwizera n'Imirimo",
-    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 19 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
+    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 28 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
     "p2Start": "Uyu munsi, binyuze mu mashami yayo y'uburezi, ubuzima, ivugabutumwa, n'itumanaho, CPR igera mu ntara zose z'u Rwanda. Intego yacu — ",
     "motto": "“Bose Babe Umwe”",
     "p2End": " — iyobora buri gikorwa cyose.",
@@ -151,5 +151,119 @@
     "desc": "Fasha umuryango wacu kunga, gukorera no guteza imbere abaturage b'u Rwanda.",
     "donateBtn": "Tanga Inkunga",
     "contactBtn": "Twandikire Uyu Munsi"
+  },
+  "memberChurches": {
+    "tag": "Umuryango Wacu",
+    "title": "Amatorero n'Imiryango Biyegereye CPR",
+    "desc": "Inama y'Abaporotesitanti mu Rwanda ihuza amatorero y'abaporotesitanti n'imiryango ya gikristu irenga <strong className=\"text-[#4E6132]\">25</strong> mu Rwanda hose, bakorera hamwe mu kwizera, serivisi, n'impinduka mu gihugu.",
+    "unitedNote": "Amatorero n'imiryango <strong className=\"text-[#4E6132]\">{{count}}</strong> bunze ubumwe muri Kristo"
+  },
+  "projects": {
+    "tag": "Gahunda Zacu",
+    "title": "Imishinga n'Imiryango",
+    "desc": "Ibikorwa bifite intego yo guhindura imiryango binyuze mu kubaka ubushobozi, komora ibikomere, n'iterambere rirambye.",
+    "viewDetails": "Reba Ibirambuye Yose",
+    "items": [
+      {
+        "title": "Kubaka Ubushobozi mu Matorero",
+        "period": "2019 — 2022",
+        "desc": "Kuzamura ubushobozi bw'abakozi mu matorero 20 agize CPR n'amashyirahamwe 5.",
+        "highlights": [
+          "Amahugurwa mu ikoranabuhanga n'ihangamurimo",
+          "Kubaka ubushobozi mu buyobozi n'icungamutungo",
+          "Inyigisho ku bidukikije n'ubuzima rusange",
+          "Guhuza abize bafashijwe na CPR kugira ngo bakomeze ubufatanye"
+        ]
+      },
+      {
+        "title": "Kuvura Ihungabana n'Isanamitima",
+        "period": "Bikomeje",
+        "desc": "Gushyigikira abantu mu buryo bw'imberabyombi n'ubuzima bwo mu mutwe — guhugura abajyanama n'amatsinda arwanya ihungabana.",
+        "highlights": [
+          "Guhabwa impamyabushobozi mu kuvura ihungabana",
+          "Amatsinda arwanya ihungabana mu mashuri mu gihugu hose",
+          "Inyigisho z'ubushinjacyaha n'isanamitima mu miryango",
+          "Urwego rw'Inzobere mu Kuvura Ihungabana mu Rwanda (ROPRE)"
+        ]
+      }
+    ]
+  },
+  "aboutPage": {
+    "heroTitle": "Turi Ba Nde",
+    "nav": {
+      "whoWeAre": "Kuri Inama y'Abaporotesitanti mu Rwanda",
+      "visionMission": "Icyerekezo n'Inshingano",
+      "coreValues": "Indangagaciro Z'ishingiro",
+      "execCommittee": "Komite Nyobozi",
+      "organigram": "Inyubako y'Ubuyobozi",
+      "ourPartners": "Abafatanyabikorwa Bacu"
+    },
+    "whoWeAre": {
+      "title": "Kuri Inama y'Abaporotesitanti mu Rwanda",
+      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu 1963 ngo iteze imbere kandi isangize abantu ibikorwa bishya z'iterambere n'oserivisi z'ingenzi mu matorero yacu n'abaturage bose.",
+      "p2": "Twiyemeje kubaka ubufatanye bukomeye no gutanga serivisi zo ku rwego rwo hejuru mu gushyigikira ukwizera, ubumwe, n'iterambere rirambye mu Rwanda hose."
+    },
+    "visionMission": {
+      "title": "Icyerekezo n'Inshingano",
+      "visionTag": "Icyerekezo Cyacu",
+      "visionSub": "Aho twerekeza",
+      "visionDesc": "Umuryango w'abanyarwanda wunze ubumwe, wizerwa, kandi uteye imbere aho buri muntu aba mu cyubahiro n'amahoro.",
+      "missionTag": "Inshingano Zacu",
+      "missionSub": "Ibyo dukora buri munsi",
+      "missionDesc": "Guhuza amatorero y'abaporotesitanti mu Rwanda ngo tugire uruhare rugaragara mu ivugabutumwa, uburezi, ubuzima, n'iterambere rusange w'imibereho n'ubukungu."
+    },
+    "model": {
+      "title": "Uburyo Twukora",
+      "desc": "Uburyo bwo guhuza ubufatanye bhuza amatorero n'amatsinda ku ntego zo gufasha abaturage.",
+      "step1Tag": "Intambwe ya 1",
+      "step1Title": "Amatorero 28 Gikristu",
+      "step1Desc": "Amatorero y'abaporotesitanti mu Rwanda yunze ubumwe mu murongo umwe.",
+      "step2Tag": "Intambwe ya 2",
+      "step2Title": "Ubuyobozi bwa CPR",
+      "step2Desc": "Umutungo n'ubushobozi bokusanyirizwa mu misanzu y'imbere mu gihugu n'ubufatanye mpuzamahanga.",
+      "step3Tag": "Intambwe ya 3",
+      "step3Title": "Gahunda z'Abaturage",
+      "step3Desc": "Imishinga irambye yibanda ku baturage ishyirwa mu bikorwa mu nzego zose."
+    },
+    "coreValues": {
+      "title": "Indangagaciro Z'ishingiro",
+      "items": [
+        {
+          "title": "Ukwizera",
+          "desc": "Shingiye ku nyigisho zacu za gikristu, ukwizera kuyobora ibikorwa n'ibyemezo byacu byose."
+        },
+        {
+          "title": "Ubumwe",
+          "desc": "Guhuza amatorero atandukanye ngo avuge kandi akore mu ijwi rimwe."
+        },
+        {
+          "title": "Inyangamugayo",
+          "desc": "Gushyigikira mucungire yera n'ubwiyunge mu ibikorwa byacu byose."
+        },
+        {
+          "title": "Ubwisungane / Serivisi",
+          "desc": "Wiyemeje gukorera abafite intege nke mu mbabazi n'urukundo."
+        },
+        {
+          "title": "Ubunyangamugayo / Ireme",
+          "desc": "Guharanira ireme ryo ku rwego rwo hejuru mu uburezi, ubuzima, n'imishinga y'iterambere."
+        }
+      ]
+    },
+    "execCommittee": {
+      "title": "Komite Nyobozi",
+      "desc": "Ikipe yacu y'abanyamwuga n'abayobozi b'amatorero izana ubushobozi butandukanye gushyigikira inshingano z a CPR.",
+      "boardMembers": "Abagize Inama y'Ubuyobozi",
+      "staff": "Abakozi",
+      "defaultName": "Izina ry'Umukozi",
+      "defaultRole": "Inshingano"
+    },
+    "organigram": {
+      "title": "Inyubako y'Ubuyobozi",
+      "comingSoon": "[Igishushanyo cy'inyubako y'ubuyobozi kizajya hano]"
+    },
+    "partners": {
+      "title": "Abafatanyabikorwa Bacu"
+    }
   }
 }

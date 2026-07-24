@@ -16,7 +16,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     label: "Serving Rwanda Since 1963",
     title: "Bose Babe Umwe",
     subtitle: "That All of Them May Be One",
-    desc: "Uniting 19 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
+    desc: "Uniting 28 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
     cta: "Explore Our Mission",
     ctaSecondary: "Meet Our Team",
   },

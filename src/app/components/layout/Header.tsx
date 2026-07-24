@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import {
   Menu, X, ChevronDown, ChevronRight, Phone, Mail,
   MapPin
@@ -25,7 +25,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-xs font-semibold text-[#8B6543]/70 uppercase tracking-widest mb-3 pb-2 border-b border-[#8B6543]/10">
+            <div className="text-xs font-semibold text-[#4E6132]/70 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/10">
               {col.heading}
             </div>
           )}
@@ -35,14 +35,14 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                 <Link
                   to={link.href}
                   onClick={onClose}
-                  className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/20 transition-all duration-200"
+                  className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
                 >
-                  <span className="text-sm font-semibold text-[#8B6543] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
+                  <span className="text-sm font-semibold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                     <span>{link.label}</span>
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
                   </span>
                   {link.desc && (
-                    <span className="text-xs text-[#8B6543]/75 group-hover:text-[#8B6543]/95 leading-tight transition-colors">{link.desc}</span>
+                    <span className="text-xs text-[#4E6132]/75 group-hover:text-[#8B6543]/90 leading-tight transition-colors">{link.desc}</span>
                   )}
                 </Link>
               </li>
@@ -57,6 +57,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
 export function Header() {
   const { t } = useTranslation("common");
   const navItems = getNavItems(t);
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -91,7 +92,7 @@ export function Header() {
       <header
         className={`relative z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#8B6543]/10"
+            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
             : "bg-[#F5F5DC] shadow-sm"
         }`}
       >
@@ -109,43 +110,47 @@ export function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => setActiveMenu(item.label)}
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <Link
-                  to={item.href}
-                  className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${activeMenu === item.label
-                      ? "bg-[#8B6543]/20 text-[#8B6543]"
-                      : "text-[#8B6543] hover:bg-[#8B6543]/20 hover:text-[#8B6543]"
-                    }`}
+          <nav className="hidden lg:flex items-center gap-1.5">
+            {navItems.map((item) => {
+              const isActive = activeMenu === item.label || (item.href === "/" ? location.pathname === "/" : location.pathname.startsWith(item.href));
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => setActiveMenu(item.label)}
+                  onMouseLeave={() => setActiveMenu(null)}
                 >
-                  {item.label}
-                  {item.children && (
-                    <ChevronDown
-                      size={13}
-                      className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
-                    />
-                  )}
-                </Link>
-                <AnimatePresence>
-                  {activeMenu === item.label && item.children && (
-                    <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                  <Link
+                    to={item.href}
+                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                      isActive
+                        ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                        : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                    }`}
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronDown
+                        size={13}
+                        className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
+                      />
+                    )}
+                  </Link>
+                  <AnimatePresence>
+                    {activeMenu === item.label && item.children && (
+                      <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
               to="/#contact"
-              className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
+              className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
               {t("nav.contact")}
             </Link>
@@ -153,10 +158,10 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-[#8B6543]/8 transition-colors"
+            className="lg:hidden p-2 rounded-xl hover:bg-[#4E6132]/10 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? <X size={22} className="text-[#8B6543]" /> : <Menu size={22} className="text-[#8B6543]" />}
+            {mobileOpen ? <X size={22} className="text-[#4E6132]" /> : <Menu size={22} className="text-[#4E6132]" />}
           </button>
         </div>
 
@@ -168,14 +173,14 @@ export function Header() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="lg:hidden overflow-hidden border-t border-[#8B6543]/10 bg-[#F5F5DC]"
+              className="lg:hidden overflow-hidden border-t border-[#4E6132]/10 bg-[#F5F5DC]"
             >
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {navItems.map((item) => (
                   <div key={item.label}>
                     {item.children ? (
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                       >
                         {item.label}
@@ -187,7 +192,7 @@ export function Header() {
                     ) : (
                       <Link
                         to={item.href}
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.label}
@@ -207,7 +212,7 @@ export function Header() {
                                 key={link.label}
                                 to={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="block px-4 py-2.5 text-sm font-semibold text-[#8B6543] hover:bg-[#8B6543]/20 rounded-xl transition-colors"
+                                className="block px-4 py-2.5 text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 rounded-xl transition-colors"
                               >
                                 {link.label}
                               </Link>

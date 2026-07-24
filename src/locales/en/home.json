@@ -5,7 +5,7 @@
         "label": "Serving Rwanda Since 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "That All of Them May Be One",
-        "desc": "Uniting 19 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
+        "desc": "Uniting 28 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
         "cta": "Explore Our Mission",
         "ctaSecondary": "Meet Our Team"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Our Story",
     "title": "Six Decades of\nFaith & Service",
-    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 19 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 28 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
     "p2Start": "Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — ",
     "motto": "“Bose Babe Umwe” (That All of Them May Be One)",
     "p2End": " — guides every initiative.",
@@ -151,5 +151,119 @@
     "desc": "Join us in our mission to unite, serve, and develop communities across Rwanda through faith and action.",
     "donateBtn": "Make a Donation",
     "contactBtn": "Contact Us Today"
+  },
+  "memberChurches": {
+    "tag": "Our Community",
+    "title": "Member Churches & Organizations",
+    "desc": "The Conseil Protestant du Rwanda unites <strong className=\"text-[#4E6132]\">25+</strong> Protestant churches and Christian organizations across Rwanda, working together in faith, service, and national transformation.",
+    "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> churches and organizations united in Christ"
+  },
+  "projects": {
+    "tag": "Our Initiatives",
+    "title": "Projects & Programs",
+    "desc": "Impact-driven initiatives transforming communities through capacity building, trauma healing, and sustainable development.",
+    "viewDetails": "View Full Details",
+    "items": [
+      {
+        "title": "Capacity Building in Churches",
+        "period": "2019 — 2022",
+        "desc": "Strengthening professional capacities of staff across 20 CPR-member churches and 5 associations.",
+        "highlights": [
+          "ICT & Entrepreneurship training programs",
+          "Leadership and administration capacity building",
+          "Environmental theology and public health education",
+          "Scholarship alumni network for ongoing collaboration"
+        ]
+      },
+      {
+        "title": "Psychotraumatology & Trauma Healing",
+        "period": "Ongoing",
+        "desc": "Comprehensive psychosocial support in post-conflict contexts — certifying counselors and running anti-trauma clubs.",
+        "highlights": [
+          "Certifying mental health providers in psychotraumatology",
+          "Anti-trauma clubs in schools nationwide",
+          "Faith-based counseling integration in communities",
+          "Rwanda Organization of Psychotraumatology Experts (ROPRE)"
+        ]
+      }
+    ]
+  },
+  "aboutPage": {
+    "heroTitle": "Who We Are",
+    "nav": {
+      "whoWeAre": "About Conseil Protestant du Rwanda",
+      "visionMission": "Vision & Mission",
+      "coreValues": "Core Values",
+      "execCommittee": "Executive Committee",
+      "organigram": "Organigram",
+      "ourPartners": "Our Partners"
+    },
+    "whoWeAre": {
+      "title": "About Conseil Protestant du Rwanda",
+      "p1": "The Protestant Council of Rwanda (CPR) was established in 1963 to promote and share innovative development initiatives and deliver essential services to our member churches and the wider community.",
+      "p2": "We are committed to developing strong, impactful partnerships and providing world-class services to those we work with, fostering faith, unity, and sustainable development across Rwanda."
+    },
+    "visionMission": {
+      "title": "Vision & Mission",
+      "visionTag": "Our Vision",
+      "visionSub": "Where we're headed",
+      "visionDesc": "A united, faithful, and prosperous Rwandan society where every individual lives in dignity and peace.",
+      "missionTag": "Our Mission",
+      "missionSub": "What we do every day",
+      "missionDesc": "To bring together Protestant churches in Rwanda for a coordinated impact in evangelization, education, health, and holistic socio-economic development."
+    },
+    "model": {
+      "title": "Our Model",
+      "desc": "A collaborative partnership structure connecting member churches to community impact.",
+      "step1Tag": "Step 1",
+      "step1Title": "28 Member Churches",
+      "step1Desc": "Protestant denominations across Rwanda unite under a shared framework.",
+      "step2Tag": "Step 2",
+      "step2Title": "CPR Coordination",
+      "step2Desc": "Resources are mobilized through local contributions and international partnerships.",
+      "step3Tag": "Step 3",
+      "step3Title": "Community Programs",
+      "step3Desc": "Sustainable, community-focused initiatives are deployed on the ground."
+    },
+    "coreValues": {
+      "title": "Core Values",
+      "items": [
+        {
+          "title": "Faith",
+          "desc": "Rooted in our Christian beliefs, faith guides all our actions and decisions."
+        },
+        {
+          "title": "Unity",
+          "desc": "Bringing together diverse denominations to speak and act with one voice."
+        },
+        {
+          "title": "Integrity",
+          "desc": "Upholding transparency and accountability in all our operations."
+        },
+        {
+          "title": "Service",
+          "desc": "Dedicated to serving the most vulnerable communities with compassion."
+        },
+        {
+          "title": "Excellence",
+          "desc": "Striving for the highest quality in our education, health, and development programs."
+        }
+      ]
+    },
+    "execCommittee": {
+      "title": "Executive Committee",
+      "desc": "Our dedicated team of professionals and church leaders brings expertise from across various sectors to drive CPR's mission forward.",
+      "boardMembers": "Board Members",
+      "staff": "Staff",
+      "defaultName": "Member Name",
+      "defaultRole": "Title / Role"
+    },
+    "organigram": {
+      "title": "Organigram",
+      "comingSoon": "[Organigram Diagram Coming Soon]"
+    },
+    "partners": {
+      "title": "Our Partners"
+    }
   }
 }
