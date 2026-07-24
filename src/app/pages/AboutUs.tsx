@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import { useState, useEffect } from "react";
 
 export function AboutUs() {
