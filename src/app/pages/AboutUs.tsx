@@ -1,8 +1,24 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useState, useEffect } from "react";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
+  const location = useLocation();
+
+  // Scroll to hash on mount or when hash changes
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 50); // slight delay to allow rendering
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -19,15 +35,16 @@ export function AboutUs() {
     return () => sections.forEach(sec => observer.unobserve(sec));
   }, []);
 
+
   return (
     <main className="bg-white">
       {/* Hero */}
-      <div 
+      <div
         className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center"
+          backgroundPosition: "center 15%"
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
@@ -36,25 +53,25 @@ export function AboutUs() {
       </div>
 
 
-
       {/* Sub-Navigation */}
       <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-6 lg:gap-10 overflow-x-auto py-4 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-6 lg:gap-10 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
             {[
-              { label: "About CPR", href: "#about-cpr" },
-              { label: "Mission, Vision, Model & Values", href: "#vision-mission" },
-              { label: "Our Team", href: "#our-team" },
+              { label: "About CPR", href: "#who-we-are" },
+              { label: "Vision & Mission", href: "#vision-mission" },
+              { label: "Core Values", href: "#core-values" },
+              { label: "Executive Committee", href: "#executive-committee" },
+              { label: "Organigram", href: "#organigram" },
               { label: "Our Partners", href: "#our-partners" },
             ].map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-bold whitespace-nowrap transition-colors border-b-2 pb-1 ${
-                  activeSection === link.href.substring(1) 
-                    ? "border-[#4E6132] text-[#4E6132]" 
+                className={`text-sm font-bold whitespace-nowrap transition-colors border-b-2 pb-1 ${activeSection === link.href.substring(1)
+                    ? "border-[#4E6132] text-[#4E6132]"
                     : "border-transparent text-[#4E6132]/70 hover:text-[#4E6132]"
-                }`}
+                  }`}
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
@@ -68,38 +85,44 @@ export function AboutUs() {
       </div>
 
       {/* About */}
-      <section id="about-cpr" className="py-16 scroll-mt-32">
+      <section id="who-we-are" className="py-16 lg:py-24 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#8B6543]" />
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">About CPR</span>
-          </div>
-          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-6">About Conseil Protestant du Rwanda</h2>
-          <div className="max-w-3xl text-[#4A4A4A] text-lg leading-relaxed space-y-4">
-            <p>The Protestant Council of Rwanda (CPR) was established in 1963 to promote and share innovative development initiatives and deliver essential services to our member churches and the wider community.</p>
-            <p>We are committed to developing strong, impactful partnerships and providing world-class services to those we work with, fostering faith, unity, and sustainable development across Rwanda.</p>
+          <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left side: Full Logo */}
+            <div className="flex justify-center md:justify-start md:col-span-5 lg:col-span-4">
+              <img src="/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
+            </div>
+
+            {/* Right side: Text Content */}
+            <div className="md:col-span-7 lg:col-span-8">
+
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-6">About CPR</h2>
+              <div className="text-[#4A4A4A] text-lg leading-relaxed space-y-4">
+                <p>The Protestant Council of Rwanda (CPR) was established in 1963 to promote and share innovative development initiatives and deliver essential services to our member churches and the wider community.</p>
+                <p>We are committed to developing strong, impactful partnerships and providing world-class services to those we work with, fostering faith, unity, and sustainable development across Rwanda.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Vision / Mission */}
       <section id="vision-mission" className="py-16 bg-[#F8F9FA] scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-12">
-          <div>
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="h-px w-10 bg-[#8B6543]" />
-              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Our Vision</span>
-            </div>
-            <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-4">Our Vision</h2>
-            <p className="text-[#4A4A4A] leading-relaxed">A united, faithful, and prosperous Rwandan society where every individual lives in dignity and peace.</p>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">Vision & Mission</h2>
           </div>
-          <div>
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="h-px w-10 bg-[#8B6543]" />
-              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Our Mission</span>
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+
+              <h3 className="font-['Outfit'] font-black text-2xl text-[#4E6132] mb-4">Our Vision</h3>
+              <p className="text-[#4A4A4A] leading-relaxed">A united, faithful, and prosperous Rwandan society where every individual lives in dignity and peace.</p>
             </div>
-            <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-4">Our Mission</h2>
-            <p className="text-[#4A4A4A] leading-relaxed">To bring together Protestant churches in Rwanda for a coordinated impact in evangelization, education, health, and holistic socio-economic development.</p>
+            <div>
+
+              <h3 className="font-['Outfit'] font-black text-2xl text-[#4E6132] mb-4">Our Mission</h3>
+              <p className="text-[#4A4A4A] leading-relaxed">To bring together Protestant churches in Rwanda for a coordinated impact in evangelization, education, health, and holistic socio-economic development.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -107,23 +130,17 @@ export function AboutUs() {
       {/* Model */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#8B6543]" />
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Our Model</span>
-          </div>
+
           <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-4">Our Model</h2>
           <p className="text-[#4A4A4A] max-w-3xl leading-relaxed">We operate through a collaborative partnership structure, engaging our 19 member churches to deploy community-focused programs. Our funding model leverages both local contributions and international partnerships to ensure the sustainability of our initiatives.</p>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-[#4E6132]">
+      <section id="core-values" className="py-20 bg-[#4E6132] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Values</span>
-          </div>
-          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-10">Our Core Values</h2>
+
+          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-10">Core Values</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: "Faith", desc: "Rooted in our Christian beliefs, faith guides all our actions and decisions." },
@@ -142,32 +159,85 @@ export function AboutUs() {
       </section>
 
       {/* Team */}
-      <section id="our-team" className="py-20 bg-[#F8F9FA] scroll-mt-32">
+      <section id="executive-committee" className="py-20 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="h-px w-10 bg-[#8B6543]" />
-              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Leadership</span>
-              <div className="h-px w-10 bg-[#8B6543]" />
-            </div>
-            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-4">Our Team</h2>
+
+            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-4">Executive Committee</h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto">Our dedicated team of professionals and church leaders brings expertise from across various sectors to drive CPR's mission forward.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { name: "Rev. Dr. Samuel", role: "President", img: "/assets/CPR 3 - Copy.webp" },
-              { name: "Pastor Michel", role: "General Secretary", img: "/assets/Gahini 3.webp" },
-              { name: "Dr. Marie", role: "Head of Health", img: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp" },
-              { name: "Mr. Jean", role: "Head of Education", img: "/assets/Gahini 2.webp" },
-            ].map((member, i) => (
-              <div key={i} className="text-center group">
-                <div className="relative w-full aspect-[3/4] mb-4 rounded-2xl overflow-hidden bg-[#EDF1F7] border border-[#4E6132]/10">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          {/* Board Members */}
+          <div className="mb-8">
+            <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">Board Members</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { name: "Samuel Mutabazi", role: "", img: "/assets/Mutabazi_Samuel.webp" },
+                { name: "Jael", role: "", img: "/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: "", img: "/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: "", img: "/assets/IRAGENA Joselyne.webp" },
+              ].map((member, i) => (
+                <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+                  <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
+                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                    {member.img ? (
+                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    ) : (
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6 text-left bg-white grow flex flex-col justify-center">
+                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">{member.name || "Member Name"}</h3>
+                    <span className="text-[#8B6543] text-xs font-semibold">{member.role || "Title / Role"}</span>
+                  </div>
                 </div>
-                <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg">{member.name}</h3>
-                <span className="text-[#8B6543] text-sm font-semibold">{member.role}</span>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Staff */}
+          <div>
+            <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">Staff</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                { name: "Eric Mugwaneza", role: "", img: "/assets/MUGWANEZA Eric.webp" },
+                { name: "Name", role: "", img: "/assets/Passport ed.png" },
+                { name: "Felicien", role: "", img: "/assets/Sec Photo.webp" },
+                { name: "", role: "", img: "" },
+              ].map((member, i) => (
+                <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+                  <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
+                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                    {member.img ? (
+                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    ) : (
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6 text-left bg-white grow flex flex-col justify-center">
+                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">{member.name || "Member Name"}</h3>
+                    <span className="text-[#8B6543] text-xs font-semibold">{member.role || "Title / Role"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Organigram */}
+      <section id="organigram" className="py-20 bg-white scroll-mt-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-12">Organigram</h2>
+          <div className="w-full max-w-4xl mx-auto aspect-[16/9] bg-[#F8F9FA] border border-[#8B6543]/20 rounded-2xl flex items-center justify-center text-[#8B6543] font-bold shadow-inner">
+            [Organigram Diagram Coming Soon]
           </div>
         </div>
       </section>
@@ -175,11 +245,7 @@ export function AboutUs() {
       {/* Partners */}
       <section id="our-partners" className="py-16 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#8B6543]" />
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">Collaborations</span>
-            <div className="h-px w-10 bg-[#8B6543]" />
-          </div>
+
           <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-10">Our Partners</h2>
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
