@@ -9,22 +9,22 @@ export const getNavItems = (t: any): NavItem[] => [
       {
         heading: t("nav.organization"),
         links: [
-          { label: t("nav.whoWeAre"), href: "/about", desc: t("nav.whoWeAreDesc") },
-          { label: t("nav.visionMission"), href: "/about", desc: t("nav.visionMissionDesc") },
-          { label: t("nav.coreValues"), href: "/about", desc: t("nav.coreValuesDesc") },
+          { label: t("nav.whoWeAre"), href: "/about#who-we-are", desc: t("nav.whoWeAreDesc") },
+          { label: t("nav.visionMission"), href: "/about#vision-mission", desc: t("nav.visionMissionDesc") },
+          { label: t("nav.coreValues"), href: "/about#core-values", desc: t("nav.coreValuesDesc") },
         ],
       },
       {
         heading: t("nav.leadership"),
         links: [
-          { label: t("nav.execCommittee"), href: "/#exec", desc: t("nav.execCommitteeDesc") },
-          { label: t("nav.organigram"), href: "/#org", desc: t("nav.organigramDesc") },
+          { label: t("nav.execCommittee"), href: "/about#executive-committee", desc: t("nav.execCommitteeDesc") },
+          { label: t("nav.organigram"), href: "/about#organigram", desc: t("nav.organigramDesc") },
         ],
       },
       {
         heading: t("nav.partnerships"),
         links: [
-          { label: t("nav.ourPartners"), href: "/#partners", desc: t("nav.ourPartnersDesc") },
+          { label: t("nav.ourPartners"), href: "/about#our-partners", desc: t("nav.ourPartnersDesc") },
         ],
       },
     ],

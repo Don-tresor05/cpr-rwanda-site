@@ -18,7 +18,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.18, ease: "easeOut" }}
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[720px] max-w-[95vw] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-6 z-50 grid gap-6"
+      className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[720px] max-w-[95vw] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-6 z-[60] grid gap-6"
       style={{ gridTemplateColumns: `repeat(${item.children.length}, 1fr)` }}
       onMouseLeave={onClose}
     >
@@ -68,6 +68,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+
   return (
     <>
       {/* Top bar */}
@@ -88,20 +89,21 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${scrolled
+        className={`relative z-40 transition-all duration-300 ${
+          scrolled
             ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#8B6543]/10"
             : "bg-[#F5F5DC] shadow-sm"
-          }`}
+        }`}
       >
-        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
+        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
             <img
               src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
-              className="h-14 lg:h-18 w-auto object-contain"
+              className="h-10 lg:h-12 w-auto object-contain"
             />
-            <span className="text-sm lg:text-base font-bold text-[#8B6543] mt-1 leading-none tracking-wide">
+            <span className="text-[10px] lg:text-xs font-bold text-[#8B6543] mt-0.5 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
