@@ -10,7 +10,7 @@ export interface Stat {
 }
 
 export const getStats = (t: any): Stat[] => [
-  { value: 28, label: t("stats.churches"), suffix: "", icon: ChurchIcon },
+  { value: 25, label: t("stats.churches"), suffix: "", icon: ChurchIcon },
   { value: 595, label: t("stats.schools"), suffix: "+", icon: SchoolIcon },
   { value: 107.1, label: t("stats.fm"), suffix: " FM", icon: Radio },
   { value: 60, label: t("stats.years"), suffix: "+", icon: ServiceRibbonIcon },

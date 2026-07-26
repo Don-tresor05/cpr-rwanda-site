@@ -290,12 +290,13 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {[
                 { name: "Samuel Mutabazi", role: "", img: "/assets/Mutabazi_Samuel.webp" },
                 { name: "Jael", role: "", img: "/assets/Jael.webp" },
                 { name: "Peter Mukunzi", role: "", img: "/assets/Mukunzi Peter.jpg" },
                 { name: "Joselyne Iragena", role: "", img: "/assets/IRAGENA Joselyne.webp" },
+                { name: "BNEP Representative", role: "BNEP Representative", img: "/assets/BNEP Representative.webp" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -331,9 +332,9 @@ export function AboutUs() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { name: "Eric Mugwaneza", role: "", img: "/assets/MUGWANEZA Eric.webp" },
-                { name: "Name", role: "", img: "/assets/Passport ed.png" },
+                { name: "Anne Marie", role: "", img: "/assets/Anne Marie PP.webp" },
                 { name: "Felicien", role: "", img: "/assets/Sec Photo.webp" },
-                { name: "", role: "", img: "" },
+                { name: "Staff Member", role: "", img: "/assets/Passport ed.png" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />

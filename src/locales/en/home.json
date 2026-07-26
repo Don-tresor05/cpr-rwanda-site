@@ -5,7 +5,7 @@
         "label": "Serving Rwanda Since 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "That All of Them May Be One",
-        "desc": "Uniting 28 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
+        "desc": "Uniting 25 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
         "cta": "Explore Our Mission",
         "ctaSecondary": "Meet Our Team"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Our Story",
     "title": "Six Decades of\nFaith & Service",
-    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 28 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 25 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
     "p2Start": "Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — ",
     "motto": "“Bose Babe Umwe” (That All of Them May Be One)",
     "p2End": " — guides every initiative.",
@@ -216,7 +216,7 @@
       "title": "Our Model",
       "desc": "A collaborative partnership structure connecting member churches to community impact.",
       "step1Tag": "Step 1",
-      "step1Title": "28 Member Churches",
+      "step1Title": "25 Member Churches",
       "step1Desc": "Protestant denominations across Rwanda unite under a shared framework.",
       "step2Tag": "Step 2",
       "step2Title": "CPR Coordination",
@@ -265,5 +265,17 @@
     "partners": {
       "title": "Our Partners"
     }
+  },
+  "newsroom": {
+    "title": "Newsroom",
+    "subtitle": "Latest news, event reports, and updates from Conseil Protestant du Rwanda.",
+    "breadcrumbHome": "Home",
+    "breadcrumbNews": "Newsroom",
+    "filterLabel": "Filter by Category:",
+    "allCategories": "All Categories",
+    "readMore": "Read more",
+    "prev": "Prev",
+    "next": "Next",
+    "noNewsFound": "No articles found in this category."
   }
 }

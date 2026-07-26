@@ -56,10 +56,7 @@ export const MEMBER_CHURCHES = [
   "EAR — Diocese of Karongi",
   "Eglise Adventiste du Septième Jour (EASJ)",
   "African Evangelistic Enterprises (AEE)",
-  "African Leadership & Reconciliation Ministries (ALARM)",
   "BARAKABAHO Foundation",
-  "Rwanda Youth for Christ (RYC)",
-  "Ligue pour la Lecture de la Bible (LLBR)",
 ];
 
 export interface Project {
