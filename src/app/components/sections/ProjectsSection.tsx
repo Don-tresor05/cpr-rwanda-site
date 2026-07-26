@@ -19,9 +19,9 @@ export function ProjectsSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("projects.tag")}</span>
-            <div className="h-px w-10 bg-[#EAD196]" />
+            <div className="h-px w-10 bg-[#8B6543]" />
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("projects.tag")}</span>
+            <div className="h-px w-10 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
             {t("projects.title")}
@@ -44,7 +44,7 @@ export function ProjectsSection() {
               >
                 {/* Decorative bg */}
                 <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-[#4E6132]/5 group-hover:bg-[#4E6132]/10 transition-all duration-700" />
-                <div className="absolute -bottom-20 -left-20 w-36 h-36 rounded-full bg-[#EAD196]/8 group-hover:bg-[#EAD196]/12 transition-all duration-700" />
+                <div className="absolute -bottom-20 -left-20 w-36 h-36 rounded-full bg-[#8B6543]/8 group-hover:bg-[#8B6543]/12 transition-all duration-700" />
 
                 <div className="relative">
                   <div className="flex items-start gap-5 mb-6">
@@ -53,8 +53,8 @@ export function ProjectsSection() {
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-xl mb-1">{project.title}</h3>
-                      <div className="inline-flex items-center gap-1.5 bg-[#EAD196]/15 text-[#EAD196] text-xs font-bold px-3 py-1 rounded-full">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#EAD196]" />
+                      <div className="inline-flex items-center gap-1.5 bg-[#8B6543]/15 text-[#8B6543] text-xs font-bold px-3 py-1 rounded-full">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#8B6543]" />
                         {project.period}
                       </div>
                     </div>
@@ -75,7 +75,7 @@ export function ProjectsSection() {
 
                   <a
                     href="#projects"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors group/link"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors group/link"
                   >
                     {t("projects.viewDetails")} <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
                   </a>

@@ -18,9 +18,9 @@ export function MemberChurchesSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("memberChurches.tag")}</span>
-            <div className="h-px w-10 bg-[#EAD196]" />
+            <div className="h-px w-10 bg-[#8B6543]" />
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("memberChurches.tag")}</span>
+            <div className="h-px w-10 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
             {t("memberChurches.title")}

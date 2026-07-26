@@ -5,7 +5,7 @@
         "label": "Gukorera u Rwanda kuva mu 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "Kugira ngo bose babe umwe",
-        "desc": "Guhuza amatorero 28 y'abaporotesitanti kugira ngo bakorere imiryango y'u Rwanda binyuze mu kwizera, uburezi, ubuzima, n'iterambere rirambye.",
+        "desc": "Guhuza amatorero 25 y'abaporotesitanti kugira ngo bakorere imiryango y'u Rwanda binyuze mu kwizera, uburezi, ubuzima, n'iterambere rirambye.",
         "cta": "Menya Inshingano Zacu",
         "ctaSecondary": "Hura N'ikipe Yacu"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Amateka Yacu",
     "title": "Imyaka Mirongo Itandatu\ny'Ukwizera n'Imirimo",
-    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 28 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
+    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 25 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
     "p2Start": "Uyu munsi, binyuze mu mashami yayo y'uburezi, ubuzima, ivugabutumwa, n'itumanaho, CPR igera mu ntara zose z'u Rwanda. Intego yacu — ",
     "motto": "“Bose Babe Umwe”",
     "p2End": " — iyobora buri gikorwa cyose.",
@@ -216,7 +216,7 @@
       "title": "Uburyo Twukora",
       "desc": "Uburyo bwo guhuza ubufatanye bhuza amatorero n'amatsinda ku ntego zo gufasha abaturage.",
       "step1Tag": "Intambwe ya 1",
-      "step1Title": "Amatorero 28 Gikristu",
+      "step1Title": "Amatorero 25 Gikristu",
       "step1Desc": "Amatorero y'abaporotesitanti mu Rwanda yunze ubumwe mu murongo umwe.",
       "step2Tag": "Intambwe ya 2",
       "step2Title": "Ubuyobozi bwa CPR",
@@ -265,5 +265,17 @@
     "partners": {
       "title": "Abafatanyabikorwa Bacu"
     }
+  },
+  "newsroom": {
+    "title": "Ibiro by'Amakuru",
+    "subtitle": "Amakuru mashya, raporo z'ibikorwa, n'amakuru avuguruye ku Inama y'Abaporotesitanti mu Rwanda.",
+    "breadcrumbHome": "Ahabanza",
+    "breadcrumbNews": "Amakuru",
+    "filterLabel": "Gushungura ku Icyiciro:",
+    "allCategories": "Ibyiciro Byose",
+    "readMore": "Soma ibirambuye",
+    "prev": "Ibubanza",
+    "next": "Ibikirikira",
+    "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro."
   }
 }

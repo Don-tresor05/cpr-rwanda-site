@@ -83,5 +83,5 @@ export const getNavItems = (t: any): NavItem[] => [
     ],
   },
   { label: t("nav.gallery"), href: "/#gallery" },
-  { label: t("nav.news"), href: "/#news" },
+  { label: t("nav.news"), href: "/newsroom" },
 ];
