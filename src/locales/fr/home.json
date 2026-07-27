@@ -277,5 +277,110 @@
     "prev": "Précédent",
     "next": "Suivant",
     "noNewsFound": "Aucun article trouvé dans cette catégorie."
+  },
+  "secretariatPage": {
+    "heroTag": "Secrétariat Général",
+    "heroTitle": "Secrétariat",
+    "heroDesc": "Le centre névralgique du CPR — coordonnant la gouvernance, les événements, le plaidoyer, la durabilité et les communications institutionnelles.",
+    "introTag": "Notre Rôle",
+    "introTitle": "Coordonner le Conseil Protestant du Rwanda",
+    "introDesc": "Le Secrétariat Général est le bras exécutif du CPR, chargé de mettre en œuvre les décisions de l'Assemblée Générale et du Comité Exécutif, de gérer les relations inter-ecclésiales et de représenter le CPR aux niveaux national et international.",
+    "nav": {
+      "sg": "Bureau du SG",
+      "events": "Événements CPR",
+      "meetings": "Réunions CPR",
+      "advocacy": "Plaidoyer",
+      "sustainability": "Durabilité",
+      "publications": "Publications"
+    },
+    "sgProfile": {
+      "role": "Secrétaire Général",
+      "name": "Rév. Samuel Mutabazi",
+      "title": "Secrétaire Général, Conseil Protestant du Rwanda",
+      "quote": "Les églises protestantes du Rwanda sont appelées à être une — à servir ensemble, témoigner ensemble et construire cette nation ensemble. Le CPR existe pour rendre cette unité visible et efficace dans chaque coin du Rwanda."
+    },
+    "meetings": {
+      "tag": "Réunions CPR",
+      "title": "Gouvernance & Réunions Internes",
+      "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
+      "body": [
+        "Réunions du Comité Exécutif — tenues trimestriellement pour examiner les performances institutionnelles et approuver les décisions clés",
+        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 25 églises membres",
+        "Réunions du Bureau — coordination mensuelle entre le Secrétaire Général et les chefs de département",
+        "Réunions du Comité des Finances et d'Audit — supervision des budgets, dépenses et rapports aux donateurs",
+        "Réunions de coordination inter-ecclésiale — dialogue bilatéral et multilatéral entre les dénominations membres",
+        "Retraites de planification stratégique — sessions annuelles pour réviser et mettre à jour le plan stratégique quinquennal du CPR"
+      ]
+    },
+    "sg": {
+      "tag": "Secrétariat Général",
+      "title": "Bureau du Secrétaire Général",
+      "desc": "Le Secrétaire Général dirige les opérations quotidiennes du CPR, servant de directeur général du Conseil et de liaison principale entre les églises membres, le gouvernement et les partenaires internationaux.",
+      "body": [
+        "Met en œuvre les résolutions de l'Assemblée Générale et du Comité Exécutif",
+        "Représente le CPR dans les forums nationaux et internationaux",
+        "Coordonne tous les départements et assure la cohérence institutionnelle",
+        "Gère les ressources humaines, les affaires juridiques et les opérations administratives",
+        "Maintient la correspondance officielle et la mémoire institutionnelle",
+        "Supervise la planification stratégique et les rapports annuels de performance"
+      ]
+    },
+    "events": {
+      "tag": "Événements CPR",
+      "title": "Conférences, Synodes & Assemblées",
+      "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
+      "body": [
+        "Assemblée Générale annuelle des 25 églises membres",
+        "Synodes biennaux pour la réflexion théologique et la révision des politiques",
+        "Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
+        "Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
+        "Retraites de leadership et ateliers de renforcement des capacités",
+        "Assemblées des jeunes et des femmes pour une participation inclusive"
+      ]
+    },
+    "advocacy": {
+      "tag": "Plaidoyer",
+      "title": "Engagement Politique & Leadership Civique",
+      "desc": "Le CPR s'engage activement dans le paysage des politiques publiques du Rwanda, portant la voix de la communauté protestante sur les questions de justice, de dignité humaine et de développement national.",
+      "body": [
+        "Engagement avec le Gouvernement du Rwanda sur l'éducation, la santé et la politique sociale",
+        "Participation au Dialogue National (Umushyikirano) et aux consultations parlementaires",
+        "Plaidoyer pour les survivants du génocide et les communautés vulnérables",
+        "Promotion de la réconciliation, de l'unité et de la consolidation de la paix",
+        "Collaboration avec le CNLG sur la commémoration du génocide",
+        "Représentation aux plateformes œcuméniques de l'Union Africaine et de l'ONU"
+      ]
+    },
+    "sustainability": {
+      "tag": "Durabilité",
+      "title": "Durabilité Environnementale & Institutionnelle",
+      "desc": "Le CPR s'engage à gérer l'environnement naturel du Rwanda et à construire des institutions durables, en intégrant le soin de la création dans la théologie.",
+      "body": [
+        "Programmes de théologie environnementale intégrés dans les programmes d'église",
+        "Initiatives de plantation d'arbres et de restauration des terres",
+        "Normes de construction verte promues dans les écoles et centres de santé affiliés",
+        "Durabilité institutionnelle grâce à des stratégies de financement diversifiées",
+        "Partenariats avec la REMA et des organisations environnementales internationales",
+        "Rapports annuels de durabilité alignés sur les objectifs nationaux de croissance verte"
+      ]
+    },
+    "publications": {
+      "tag": "Publications du SG",
+      "title": "Rapports, Bulletins & Communiqués",
+      "desc": "Le Secrétariat produit une gamme de publications officielles documentant le travail du CPR et tenant informées les églises membres et le public.",
+      "body": [
+        "Rapport Annuel — revue complète des activités et finances du CPR",
+        "Bulletin Trimestriel — mises à jour de tous les départements et églises membres",
+        "Communiqués Officiels — déclarations sur les affaires nationales et œcuméniques",
+        "Bulletins Théologiques — réflexions du Secrétaire Général et des dirigeants d'église",
+        "Notes de Politique — documents de position sur l'éducation, la santé et les questions sociales",
+        "Publications Commémoratives Kwibuka — livrets et témoignages commémoratifs"
+      ]
+    },
+    "cta": {
+      "title": "Contacter le Secrétariat",
+      "desc": "Pour la correspondance officielle, les demandes de partenariat ou les demandes des médias, contactez le Bureau du Secrétaire Général.",
+      "btn": "Nous Contacter"
+    }
   }
 }

@@ -277,5 +277,110 @@
     "prev": "Ibubanza",
     "next": "Ibikirikira",
     "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro."
+  },
+  "secretariatPage": {
+    "heroTag": "Ubunyamabanga Bukuru",
+    "heroTitle": "Ubunyamabanga",
+    "heroDesc": "Ikigo cy'ingenzi cya CPR — gihuriza imiyoborere, ibikorwa, ubwigenge, no gutumanahana hagati y'amatorero.",
+    "introTag": "Inshingano Zacu",
+    "introTitle": "Guhuza Inama y'Abaprotestanti mu Rwanda",
+    "introDesc": "Ubunyamabanga Bukuru ni ingingo y'ubuyobozi bwa CPR, ishinzwe gushyira mu bikorwa ibyemezo by'Inteko Rusange n'Komite Nyobozi, gucunga imishyikirano hagati y'amatorera, no guhagararira CPR ku rwego rw'igihugu no mpuzamahanga.",
+    "nav": {
+      "sg": "Ibiro bya SG",
+      "events": "Ibikorwa bya CPR",
+      "meetings": "Inama za CPR",
+      "advocacy": "Ubwigenge",
+      "sustainability": "Uburambe",
+      "publications": "Ibitangazo"
+    },
+    "sgProfile": {
+      "role": "Umunyamabanga Mukuru",
+      "name": "Pas. Samuel Mutabazi",
+      "title": "Umunyamabanga Mukuru, Inama y'Amatorera y'Abaprotestanti mu Rwanda",
+      "quote": "Amatorera y'Abaprotestanti mu Rwanda arahamagarirwa kuba umwe — gukorera hamwe, guhamya hamwe, no kubaka iki gihugu hamwe. CPR ihari kugira ngo ubumwe bwo bugaragare kandi bukorere mu nzego zose z'u Rwanda."
+    },
+    "meetings": {
+      "tag": "Inama za CPR",
+      "title": "Imiyoborere & Inama z'Imbere",
+      "desc": "Usibye ibikorwa bya rubanda, CPR iterana inama z'imiyoborere buri gihe kugira ngo hagire inshingano, guhuriza hamwe ingamba, no guhuza neza amatorera agize umuryango n'amashami yose.",
+      "body": [
+        "Inama za Komite Nyobozi — ziteranwa buri gihembwe kugira ngo basuzume imikorere y'inzego no kwemeza ibyemezo by'ingenzi",
+        "Inteko Rusange — inzego z'ubuyobozi bw'ikirenga, ziteranwa buri mwaka hamwe n'amatorera 25 agize umuryango",
+        "Inama za Biro — guhuza buri kwezi hagati y'Umunyamabanga Mukuru n'abayobozi b'amashami",
+        "Inama za Komite y'Imari n'Igenzura — kugenzura ingengo y'imari, ibisohotse, n'inyandikomvugo z'inkunga",
+        "Inama zo guhuza amatorera — ikiganiro hagati y'amatorera agize umuryango",
+        "Inama zo gushyiraho ingamba — ziteranwa buri mwaka kugira ngo basuzume no gusubiramo gahunda y'imyaka itanu ya CPR"
+      ]
+    },
+    "sg": {
+      "tag": "Ubunyamabanga Bukuru",
+      "title": "Ibiro by'Umunyamabanga Mukuru",
+      "desc": "Umunyamabanga Mukuru ayobora ibikorwa bya buri munsi bya CPR, akaba umuyobozi mukuru w'Inama kandi akaba inzira nyamukuru hagati y'amatorera, leta, n'inshuti z'amahanga.",
+      "body": [
+        "Gushyira mu bikorwa ibyemezo by'Inteko Rusange n'Komite Nyobozi",
+        "Guhagararira CPR mu mahuriro y'igihugu no mpuzamahanga",
+        "Guhuza amashami yose no gukurikirana imishyikirano y'inzego",
+        "Gucunga abakozi, ibibazo by'amategeko, n'imirimo y'ubutegetsi",
+        "Kubika inyandiko z'ibikorwa n'inkuru z'inzego",
+        "Gukurikirana gahunda z'ibikorwa no gutanga raporo z'imyaka"
+      ]
+    },
+    "events": {
+      "tag": "Ibikorwa bya CPR",
+      "title": "Inama, Sinode & Inteko",
+      "desc": "CPR iterana buri gihe inama zihuza abayobozi b'amatorera, abayobozi ba leta, umuryango w'abaturage, n'inshuti z'amahanga kugira ngo bafatanye ibyemezo.",
+      "body": [
+        "Inteko Rusange ya buri mwaka y'amatorera 25 agize umuryango",
+        "Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
+        "Iminsi y'isengesho ry'igihugu n'ibikorwa byo kwibuka (nk'Iyicibwa ry'Abatutsi)",
+        "Inama z'ubukristo hamwe na FECCLAHA n'Inama y'Amatorera y'Isi Yose",
+        "Inama z'ubuyobozi n'amahugurwa yo gukomeza ubushobozi",
+        "Inteko z'urubyiruko n'abagore kugira ngo bose bagire uruhare"
+      ]
+    },
+    "advocacy": {
+      "tag": "Ubwigenge",
+      "title": "Kugira Uruhare mu Politiki & Ubuyobozi bw'Abaturage",
+      "desc": "CPR ikora mu buryo bw'umwihariko mu nzego z'amategeko y'igihugu, itwara ijwi ry'umuryango w'Abaprotestanti ku bibazo by'ubutabera, agaciro k'ikiremwamuntu, ubwiyunge, no guteza imbere igihugu.",
+      "body": [
+        "Gufatanya na Leta y'u Rwanda ku bibazo by'uburezi, ubuzima, n'imibereho myiza",
+        "Kugira uruhare mu Nama y'Igihugu (Umushyikirano) no mu nama z'Inteko Ishinga Amategeko",
+        "Gushyigikira abarokotse Iyicibwa ry'Abatutsi n'abaturage bafite ubukene",
+        "Guteza imbere ubwiyunge, ubumwe, n'amahoro hagati y'amatorera",
+        "Gukorana na CNLG ku bikorwa byo kwibuka Iyicibwa ry'Abatutsi",
+        "Guhagararira CPR ku mahuriro ya AU na ONU"
+      ]
+    },
+    "sustainability": {
+      "tag": "Uburambe",
+      "title": "Uburambe bw'Ibidukikije & bw'Inzego",
+      "desc": "CPR ihamagarira kubungabunga ibidukikije by'u Rwanda no kubaka inzego zirambye, ishyira mu bikorwa teolojiya y'ubungabunga bw'isi.",
+      "body": [
+        "Gahunda za teolojiya y'ibidukikije zishyizwe mu bikorwa by'amatorera",
+        "Gutera imitobe no gusubiza ubutaka ubwiza mu matorera agize umuryango",
+        "Amahame y'ubwubatsi burambye ashyirwa mu bikorwa mu mashuri n'ivuriro",
+        "Uburambe bw'inzego binyuze mu nzira z'inkunga zitandukanye",
+        "Gufatanya na REMA n'imiryango mpuzamahanga y'ibidukikije",
+        "Raporo z'uburambe za buri mwaka zihuje n'intego z'igihugu"
+      ]
+    },
+    "publications": {
+      "tag": "Ibitangazo bya SG",
+      "title": "Raporo, Amakuru & Intumwa",
+      "desc": "Ubunyamabanga butanga ibitangazo by'ibikorwa bya CPR, bigaragaza imirimo y'inzego kandi bikamenyesha amatorera agize umuryango n'abaturage.",
+      "body": [
+        "Raporo y'Umwaka — isuzuma ryuzuye ry'ibikorwa n'imari ya CPR",
+        "Ikinyamakuru cya buri gihembwe — amakuru avuye mu mashami yose n'amatorera",
+        "Intumwa Zidasanzwe — imenyesha ku bibazo by'igihugu n'ubukristo",
+        "Amakuru ya Teolojiya — ibiganiro by'Umunyamabanga Mukuru n'abayobozi b'amatorera",
+        "Inyandiko z'Ingamba — imyanzuro ku bibazo by'uburezi, ubuzima, n'imibereho",
+        "Ibitangazo byo Kwibuka — ibitabo n'ubushingantahe byo kwibuka"
+      ]
+    },
+    "cta": {
+      "title": "Twandikire Ubunyamabanga",
+      "desc": "Ku nyandiko zidasanzwe, gusaba ubufatanye, cyangwa ibibazo by'itangazamakuru, twandikire Ibiro by'Umunyamabanga Mukuru.",
+      "btn": "Twandikire"
+    }
   }
 }

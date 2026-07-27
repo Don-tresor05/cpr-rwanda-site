@@ -31,21 +31,22 @@ export const getNavItems = (t: any): NavItem[] => [
   },
   {
     label: t("nav.secretariat"),
-    href: "/#secretariat",
+    href: "/secretariat",
     children: [
       {
         heading: t("nav.generalSecretariat"),
         links: [
-          { label: t("nav.sgOffice"), href: "/#sg", desc: t("nav.sgOfficeDesc") },
-          { label: t("nav.cprEvents"), href: "/#events", desc: t("nav.cprEventsDesc") },
-          { label: t("nav.advocacy"), href: "/#advocacy", desc: t("nav.advocacyDesc") },
-          { label: t("nav.sustainability"), href: "/#sustain", desc: t("nav.sustainabilityDesc") },
+          { label: t("nav.sgOffice"), href: "/secretariat#sg", desc: t("nav.sgOfficeDesc") },
+          { label: t("nav.cprEvents"), href: "/secretariat#events", desc: t("nav.cprEventsDesc") },
+          { label: t("nav.cprMeetings"), href: "/secretariat#meetings", desc: t("nav.cprMeetingsDesc") },
+          { label: t("nav.advocacy"), href: "/secretariat#advocacy", desc: t("nav.advocacyDesc") },
+          { label: t("nav.sustainability"), href: "/secretariat#sustainability", desc: t("nav.sustainabilityDesc") },
         ],
       },
       {
         heading: t("nav.publications"),
         links: [
-          { label: t("nav.sgPublications"), href: "/#publications", desc: t("nav.sgPublicationsDesc") },
+          { label: t("nav.sgPublications"), href: "/secretariat#publications", desc: t("nav.sgPublicationsDesc") },
         ],
       },
     ],
