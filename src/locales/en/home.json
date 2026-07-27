@@ -277,5 +277,110 @@
     "prev": "Prev",
     "next": "Next",
     "noNewsFound": "No articles found in this category."
+  },
+  "secretariatPage": {
+    "heroTag": "General Secretariat",
+    "heroTitle": "Secretariat",
+    "heroDesc": "The nerve centre of CPR — coordinating governance, events, advocacy, sustainability, and institutional communications across all member churches.",
+    "introTag": "Our Role",
+    "introTitle": "Coordinating the Protestant Council of Rwanda",
+    "introDesc": "The General Secretariat is the executive arm of CPR, responsible for implementing decisions of the General Assembly and the Executive Committee, managing inter-church relations, and representing CPR at national and international levels.",
+    "nav": {
+      "sg": "SG Office",
+      "events": "CPR Events",
+      "meetings": "CPR Meetings",
+      "advocacy": "Advocacy",
+      "sustainability": "Sustainability",
+      "publications": "Publications"
+    },
+    "sgProfile": {
+      "role": "Secretary General",
+      "name": "Rev. Samuel Mutabazi",
+      "title": "Secretary General, Conseil Protestant du Rwanda",
+      "quote": "The Protestant churches of Rwanda are called to be one — to serve together, witness together, and build this nation together. CPR exists to make that unity visible and effective in every corner of Rwanda."
+    },
+    "meetings": {
+      "tag": "CPR Meetings",
+      "title": "Governance & Internal Meetings",
+      "desc": "Beyond public events, CPR holds regular internal governance meetings that ensure accountability, strategic alignment, and effective coordination across all member churches and departments.",
+      "body": [
+        "Executive Committee meetings — held quarterly to review institutional performance and approve key decisions",
+        "General Assembly sessions — the supreme governing body, convened annually with all 25 member churches",
+        "Bureau meetings — monthly coordination between the Secretary General and department heads",
+        "Finance and Audit Committee meetings — oversight of budgets, expenditures, and donor reporting",
+        "Inter-church coordination meetings — bilateral and multilateral dialogue between member denominations",
+        "Strategic planning retreats — annual sessions to review and update CPR's five-year strategic plan"
+      ]
+    },
+    "sg": {
+      "tag": "General Secretariat",
+      "title": "Office of the Secretary General",
+      "desc": "The Secretary General leads the day-to-day operations of CPR, serving as the chief executive officer of the Council and the primary liaison between member churches, government, and international partners.",
+      "body": [
+        "Implements resolutions of the General Assembly and Executive Committee",
+        "Represents CPR in national and international forums and ecumenical bodies",
+        "Coordinates all departments and ensures institutional coherence",
+        "Manages human resources, legal affairs, and administrative operations",
+        "Maintains official correspondence and institutional memory",
+        "Oversees strategic planning and annual performance reporting"
+      ]
+    },
+    "events": {
+      "tag": "CPR Events",
+      "title": "Conferences, Synods & Assemblies",
+      "desc": "CPR convenes regular gatherings that bring together church leaders, government officials, civil society, and international partners to deliberate on matters of faith, governance, and national development.",
+      "body": [
+        "Annual General Assembly of all 25 member churches",
+        "Biennial Synods for theological reflection and policy review",
+        "National prayer days and commemorative services (e.g. Kwibuka)",
+        "Ecumenical conferences with FECCLAHA and World Council of Churches",
+        "Leadership retreats and capacity-building workshops",
+        "Youth and women's assemblies for inclusive participation"
+      ]
+    },
+    "advocacy": {
+      "tag": "Advocacy",
+      "title": "Policy Engagement & Civic Leadership",
+      "desc": "CPR actively engages Rwanda's public policy landscape, bringing the voice of the Protestant community to bear on issues of justice, human dignity, reconciliation, and national development.",
+      "body": [
+        "Engagement with the Government of Rwanda on education, health, and social policy",
+        "Participation in the National Dialogue (Umushyikirano) and parliamentary consultations",
+        "Advocacy for genocide survivors, vulnerable communities, and marginalized groups",
+        "Promotion of reconciliation, unity, and peacebuilding across denominations",
+        "Collaboration with CNLG on genocide commemoration and memory preservation",
+        "Representation at the African Union and UN-level ecumenical platforms"
+      ]
+    },
+    "sustainability": {
+      "tag": "Sustainability",
+      "title": "Environmental & Institutional Sustainability",
+      "desc": "CPR is committed to stewarding Rwanda's natural environment and building institutions that endure — integrating creation care into theology and ensuring long-term financial and organizational resilience.",
+      "body": [
+        "Environmental theology programs integrated into church curricula",
+        "Tree-planting and land restoration initiatives across member churches",
+        "Green building standards promoted in CPR-affiliated schools and health centres",
+        "Institutional sustainability through diversified funding and endowment strategies",
+        "Partnerships with REMA and international environmental organizations",
+        "Annual sustainability reporting aligned with national green growth targets"
+      ]
+    },
+    "publications": {
+      "tag": "SG Publications",
+      "title": "Reports, Newsletters & Communiqués",
+      "desc": "The Secretariat produces a range of official publications that document CPR's work, communicate institutional positions, and keep member churches and the public informed.",
+      "body": [
+        "Annual Report — comprehensive review of CPR activities and financials",
+        "Quarterly Newsletter — updates from all departments and member churches",
+        "Official Communiqués — statements on national and ecumenical affairs",
+        "Theological Bulletins — reflections from the Secretary General and church leaders",
+        "Policy Briefs — position papers on education, health, and social issues",
+        "Kwibuka Memorial Publications — commemorative booklets and testimonies"
+      ]
+    },
+    "cta": {
+      "title": "Get in Touch with the Secretariat",
+      "desc": "For official correspondence, partnership inquiries, or media requests, contact the Office of the Secretary General.",
+      "btn": "Contact Us"
+    }
   }
 }
