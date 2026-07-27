@@ -90,7 +90,7 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`relative z-40 transition-all duration-300 ${
+        className={`sticky top-0 z-40 transition-all duration-300 ${
           scrolled
             ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
             : "bg-[#F5F5DC] shadow-sm"
