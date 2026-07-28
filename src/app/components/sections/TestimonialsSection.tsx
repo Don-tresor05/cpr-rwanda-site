@@ -42,7 +42,7 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section ref={ref} className="relative py-28 overflow-hidden bg-gradient-to-b from-[#F8F9FA] to-white">
+    <section ref={ref} className="py-16 bg-white/85 border-t border-[#4E6132]/5">
       {/* Decorative circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full border border-[#4E6132]/8" />

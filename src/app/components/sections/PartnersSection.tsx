@@ -7,7 +7,7 @@ export function PartnersSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   return (
-    <section ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
+    <section ref={ref} className="py-16 bg-white/85 border-t border-[#4E6132]/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}

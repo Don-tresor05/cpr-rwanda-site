@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
+import { ScrollProgress } from "./components/ui/ScrollProgress";
+import { BackToTop } from "./components/ui/BackToTop";
 import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
@@ -23,6 +25,8 @@ function ScrollToTop() {
 export default function App() {
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
+      <BackToTop />
       <ScrollToTop />
       <Header />
       <Routes>
