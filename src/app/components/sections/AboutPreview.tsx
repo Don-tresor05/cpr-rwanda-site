@@ -2,12 +2,14 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
+import { WatermarkSection } from "../ui/WatermarkBackground";
 
 export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   return (
-    <section id="about" ref={ref} className="py-24 bg-white/85 overflow-hidden">
+    <WatermarkSection id="about" ref={ref} className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
@@ -93,6 +95,6 @@ export function AboutPreview() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </WatermarkSection>
   );
 }
