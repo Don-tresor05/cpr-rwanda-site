@@ -9,7 +9,7 @@ export function MemberChurchesSection() {
   const { t } = useTranslation("home");
 
   return (
-    <section ref={ref} className="py-24 bg-white overflow-hidden">
+    <section ref={ref} className="py-24 bg-white/85 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
