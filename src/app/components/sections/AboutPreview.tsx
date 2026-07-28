@@ -7,7 +7,7 @@ export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   return (
-    <section id="about" ref={ref} className="py-24 bg-white overflow-hidden">
+    <section id="about" ref={ref} className="py-24 bg-white/85 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
