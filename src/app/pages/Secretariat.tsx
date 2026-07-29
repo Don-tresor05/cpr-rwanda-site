@@ -163,9 +163,10 @@ export function Secretariat() {
           >
             {t("secretariatPage.heroDesc")}
           </motion.p>
-          {/* Scroll indicator */}
-          <ScrollIndicator />
         </motion.div>
+
+        {/* Scroll indicator */}
+        <ScrollIndicator />
       </div>
 
       {/* Sticky Sub-Nav */}
