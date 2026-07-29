@@ -42,7 +42,7 @@ export function HeroSection() {
   const slide = slides[active];
 
   return (
-    <section id="home" className="relative h-[75vh] lg:h-[85vh] min-h-[500px] overflow-hidden">
+    <section id="home" className="relative h-[75vh] lg:h-[89vh] min-h-[500px] overflow-hidden">
       {/* Background image */}
       <AnimatePresence mode="sync">
         <motion.div

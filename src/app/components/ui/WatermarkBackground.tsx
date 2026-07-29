@@ -8,7 +8,7 @@ export const WatermarkSection = forwardRef<HTMLElement, {
   return (
     <section ref={ref} id={id} className={`relative overflow-hidden ${className}`}>
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        className="absolute inset-0 pointer-events-none opacity-[0.12]"
         style={{
           backgroundImage: "url('/assets/logo.png'), url('/assets/logo.png')",
           backgroundRepeat: "repeat, repeat",

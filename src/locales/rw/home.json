@@ -278,6 +278,119 @@
     "next": "Ibikirikira",
     "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro."
   },
+  "departmentsPage": {
+    "heroTag": "Amashami Yacu",
+    "heroTitle": "Amashami",
+    "heroDesc": "Amashami arindwi akomeye ajyana inshingano za CPR mu burezi, iterambere, imari, urubyiruko, uburinganire, itumanaho, n'imiyoborere.",
+    "introTag": "Imiterere Yacu",
+    "introTitle": "Amashami y'Inama y'Abaporotesitanti mu Rwanda",
+    "introDesc": "Ibikorwa bya CPR bikorwa binyuze mu mashami arindwi yihariye, buri shami riyobowe n'impuguke zifite uburambe. Hamwe, bashyira mu bikorwa gahunda zigera mu ntara zose z'u Rwanda, uhereye ku burezi n'ubuzima kugeza ku gufasha urubyiruko n'iterambere ry'abaturage.",
+    "nav": {
+      "gs": "Ubunyamabanga Bukuru",
+      "bnep": "Uburezi / BNEP",
+      "diakonia": "Diyakoniya / Iterambere",
+      "finance": "Imari & Gushaka Ubushobozi",
+      "youth": "Gahunda y'Urubyiruko",
+      "gender": "Uburinganire n'Iterambere ry'Abagore",
+      "radio": "Radio Inkoramutima"
+    },
+    "cta": {
+      "title": "Korana n'Amashami Yacu",
+      "desc": "Mu burezi, iterambere, ubuzima, cyangwa gufasha urubyiruko — umuryango wawe ushobora gutanga umusanzu hamwe n'amashami y'CPR.",
+      "btn": "Twandikire"
+    },
+    "gs": {
+      "tag": "Ubuyobozi Bukuru",
+      "title": "Ibiro by'Ubunyamabanga Bukuru",
+      "desc": "Umunyamabanga Mukuru atanga ubuyobozi bw'ingamba, ahuza ibikorwa by'amashami yose, kandi ahagararira CPR ku rwego rw'igihugu no mpuzamahanga.",
+      "body": [
+        "Gushyiraho ingamba n'imiyoborere mu matorero yose agize CPR",
+        "Guhuza Inteko Rusange, Komite Nyobozi, n'inama za Biro",
+        "Guhagararira mu mahuriro ya leta, mpuzamahanga, n'ubukristo",
+        "Ibibazo by'amategeko, abakozi, n'itumanaho ry'inzego",
+        "Gushaka abafatanyabikorwa mu nzego z'imbere n'iz'amahanga",
+        "Gukurikirana raporo z'umwaka, igenzura, n'imikorere y'inzego"
+      ]
+    },
+    "bnep": {
+      "tag": "Ibiro by'Uburezi",
+      "title": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti (BNEP)",
+      "desc": "BNEP ni ishami ry'uburezi rya CPR, rikuriikirana amashuri abanza n'ayisumbuye y'abaporotesitanti mu Rwanda hose. Rifite amashuri abanza 595+ n'ayisumbuye menshi, BNEP ibaka ejo hazaza h'abana b'u Rwanda binyuze mu burezi bushingiye ku kwizera.",
+      "body": [
+        "Gukurikirana amashuri abanza 595+ n'ayisumbuye mu gihugu hose",
+        "Amahugurwa mu myigishirize igezweho (PAP) ku barimu",
+        "Guteza imbere gahunda y'imyigishirize y'idini rya gikristu",
+        "Igenzura ry'ikigo, kwemeza ireme, no gushyira mu bikorwa amahame y'uburezi",
+        "Gahunda z'uburezi bw'abana bato n'ibigo by'indahemuka by'abarezi",
+        "Gufatanya na REB, UNICEF, n'abaterankunga mpuzamahanga"
+      ]
+    },
+    "diakonia": {
+      "tag": "Serivisi z'Imibereho",
+      "title": "Diyakoniya / Iterambere",
+      "desc": "Ishami rya Diyakoniya rihuza serivisi z'imibereho myiza, ubutabazi, n'iterambere rirambye rya CPR. Rikorera abaturage bafite intege nke binyuze mu gahunda zuzuye.",
+      "body": [
+        "Guhuza ubutabazi bw'ikibazo n'ibikorwa byo gufasha mu bihe by'akaga",
+        "Gahunda z'iterambere ry'abaturage zibanda ku mikoranire irambye",
+        "Kuvura ihungabana n'isanamitima — guhugura abajyanama mu gihugu hose",
+        "Gahunda z'amazi, isuku, n'ubuzima (WASH) mu miryango y'icyaro",
+        "Kubaka ubushobozi bw'abayobozi b'amatorero mu gucunga imishinga",
+        "Gufatanya na Bread for the World, FECCLAHA, n'ibigo by'ubufatanye"
+      ]
+    },
+    "finance": {
+      "tag": "Gucunga Umutungo",
+      "title": "Imari & Gushaka Ubushobozi",
+      "desc": "Ishami ry'Imari riteza imbere uburambe bw'ikigo binyuze mu micungire yera y'imari, gushaka ubushobozi mu buryo bw'ingamba, no kugenzura neza.",
+      "body": [
+        "Gutegura ingengo y'imari, gukurikirana, no gutanga raporo ku bafatanyabikorwa",
+        "Gucunga inkunga z'abaterankunga no kubahiriza amasezerano y'inkunga",
+        "Igenzura ry'imbere, gucunga ibyago, na sisitemu zo kugenzura imari",
+        "Gahunda zo gushaka ubushobozi zikubiyemo umusanzu w'amatorero n'ubufatanye",
+        "Igiciro, kugura ibikoresho, no gucunga umutungo mu mashami yose",
+        "Raporo z'imari za buri gihembwe n'umwaka za Komite Nyobozi"
+      ]
+    },
+    "youth": {
+      "tag": "Urubyiruko",
+      "title": "Gahunda y'Urubyiruko",
+      "desc": "Gahunda y'Urubyiruko ifasha urubyiruko rw'u Rwanda binyuze mu mahugurwa y'ubuyobozi ashingiye ku kwizera, gahunda zo kubaka amahoro, n'imishinga y'ubwiyunge.",
+      "body": [
+        "Inama y'Urubyiruko ya buri mwaka ku Mahoro n'Ubwiyunge",
+        "Amakambi yo guteza imbere ubuyobozi n'ahugurwa ry'umwuga",
+        "Ivagabutumwa rya digitale n'amahugurwa mu itumanaho ku rubyiruko",
+        "Amatsinda arwanya ihungabana mu mashuri ateza imbere ubuzima bwo mu mutwe",
+        "Gahunda za siporo n'urugendo rw'umuco hagati y'amatorero",
+        "Gahunda z'ama bursa n'ubujyanama ku rubyiruko rukomeye"
+      ]
+    },
+    "gender": {
+      "tag": "Uburinganire n'Iterambere ry'Abagore",
+      "title": "Ishami ryo Kwimakaza Uburinganire",
+      "desc": "Ishami ryo Kwimakaza Uburinganire riteza imbere uburinganire, ubushobozi bw'abagore, no kurwanya ihohoterwa rishingiye ku gitsina mu matorero n'imiryango ikorana na CPR.",
+      "body": [
+        "Gushyira uburinganire mu mashami yose ya CPR no mu gahunda z'amatorero",
+        "Amahugurwa yo gufasha abayobozi b'amatorero mu kurwanya ihohoterwa rishingiye ku gitsina",
+        "Gahunda z'ubushobozi bw'abagore — amatsinda y'ubwigunguri, kooperatibe, n'ubucuruzi",
+        "Guteza imbere ubuyobozi bw'abagore mu nzego z'ubuyobozi bw'amatorero",
+        "Ubwigenge ku burenganzira bw'abagore no kurinda abana",
+        "Gufatanya na leta n'imiryango mpuzamahanga y'abagore"
+      ]
+    },
+    "radio": {
+      "tag": "Itangazamakuru & Itumanaho",
+      "title": "Radio Inkoramutima 107.1 FM",
+      "desc": "Radio Inkoramutima ('Ijwi ry'Umutima') ni radiyo yemewe y'Inama y'Abaporotesitanti mu Rwanda. Itangaza kuva 2005 kuri 107.1 FM, igera mu miryango hirya no hino mu Rwanda.",
+      "body": [
+        "Ibiganiro bya buri munsi by'amasengesho, ubwiriza, n'inyigisho zishingiye ku kwizera",
+        "Amakuru y'abaturage, itangazo rusange, n'ubutumwa bw'iterambere",
+        "Ibiganiro byo gufasha abafite ihungabana n'ubuzima bwo mu mutwe",
+        "Ibiganiro by'urubyiruko n'abagore biteza imbere ubumwe n'amahoro",
+        "Gutangaza ibikorwa bya CPR, sinode, n'ibikorwa byo kwibuka",
+        "Gufatanya n'izindi radiyo za rubanda n'imiryango iteza imbere itangazamakuru"
+      ]
+    }
+  },
   "secretariatPage": {
     "heroTag": "Ubunyamabanga Bukuru",
     "heroTitle": "Ubunyamabanga",
@@ -330,12 +443,12 @@
       "title": "Inama, Sinode & Inteko",
       "desc": "CPR iterana buri gihe inama zihuza abayobozi b'amatorera, abayobozi ba leta, umuryango w'abaturage, n'inshuti z'amahanga kugira ngo bafatanye ibyemezo.",
       "body": [
-        "Inteko Rusange ya buri mwaka y'amatorera 25 agize umuryango",
-        "Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
-        "Iminsi y'isengesho ry'igihugu n'ibikorwa byo kwibuka (nk'Iyicibwa ry'Abatutsi)",
-        "Inama z'ubukristo hamwe na FECCLAHA n'Inama y'Amatorera y'Isi Yose",
-        "Inama z'ubuyobozi n'amahugurwa yo gukomeza ubushobozi",
-        "Inteko z'urubyiruko n'abagore kugira ngo bose bagire uruhare"
+        "1. Inteko Rusange ya buri mwaka y'amatorera 25 agize umuryango",
+        "2. Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
+        "3. Iminsi y'isengesho ry'igihugu n'ibikorwa byo kwibuka (nk'Iyicibwa ry'Abatutsi)",
+        "4. Inama z'ubukristo hamwe na FECCLAHA n'Inama y'Amatorera y'Isi Yose",
+        "5. Inama z'ubuyobozi n'amahugurwa yo gukomeza ubushobozi",
+        "6. Inteko z'urubyiruko n'abagore kugira ngo bose bagire uruhare"
       ]
     },
     "advocacy": {

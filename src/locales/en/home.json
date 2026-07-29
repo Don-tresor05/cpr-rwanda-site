@@ -278,6 +278,119 @@
     "next": "Next",
     "noNewsFound": "No articles found in this category."
   },
+  "departmentsPage": {
+    "heroTag": "Our Departments",
+    "heroTitle": "Departments",
+    "heroDesc": "Seven strategic departments driving CPR's mission across education, development, finance, youth, gender, communications, and governance.",
+    "introTag": "Our Structure",
+    "introTitle": "Departments of the Conseil Protestant du Rwanda",
+    "introDesc": "CPR's work is organized through seven specialized departments, each led by experienced professionals and supported by dedicated staff. Together, they implement programs that touch every province of Rwanda, from education and health to youth empowerment and community development.",
+    "nav": {
+      "gs": "General Secretary",
+      "bnep": "Education / BNEP",
+      "diakonia": "Diakonia / Development",
+      "finance": "Finance & Mobilization",
+      "youth": "Youth Program",
+      "gender": "Gender Promotion",
+      "radio": "Radio Inkoramutima"
+    },
+    "cta": {
+      "title": "Partner with Our Departments",
+      "desc": "Whether in education, development, health, or youth empowerment — your organization can make a difference alongside CPR's dedicated departmental teams.",
+      "btn": "Contact Us to Partner"
+    },
+    "gs": {
+      "tag": "Executive Leadership",
+      "title": "General Secretary's Office",
+      "desc": "The General Secretary provides strategic leadership, coordinates all departmental activities, and represents CPR at national and international levels. This office ensures institutional coherence and alignment with CPR's mission and vision.",
+      "body": [
+        "Strategic planning and institutional governance across all member churches",
+        "Coordination of the General Assembly, Executive Committee, and Bureau meetings",
+        "Official representation at government, ecumenical, and international forums",
+        "Legal affairs, human resources, and institutional communication",
+        "Partnership development with local and international organizations",
+        "Oversight of annual reporting, audits, and organizational performance"
+      ]
+    },
+    "bnep": {
+      "tag": "Education Bureau",
+      "title": "Bureau National de l'Éducation Protestante (BNEP)",
+      "desc": "BNEP is the education arm of CPR, overseeing Protestant primary and secondary schools across Rwanda. With 595+ primary schools and hundreds of secondary institutions, BNEP shapes the future of Rwanda's children through quality faith-based education.",
+      "body": [
+        "Supervision of 595+ Protestant primary schools and associated secondary schools nationwide",
+        "Participatory Active Pedagogy (PAP) training for teachers in modern classroom methods",
+        "Development of Protestant religious education curriculum for primary and secondary levels",
+        "School inspection, quality assurance, and educational standards enforcement",
+        "Early childhood education programs and teacher training colleges",
+        "Partnerships with REB, UNICEF, and international education donors"
+      ]
+    },
+    "diakonia": {
+      "tag": "Social Services",
+      "title": "Diakonia / Development",
+      "desc": "The Diakonia department coordinates CPR's social services, humanitarian relief, and sustainable development initiatives. It serves the most vulnerable communities through holistic programs that combine faith, practical support, and long-term empowerment.",
+      "body": [
+        "Emergency humanitarian relief and disaster response coordination",
+        "Community development programs focusing on sustainable livelihoods",
+        "Psychotraumatology and trauma healing — certifying counselors nationwide",
+        "Water, sanitation, and health (WASH) initiatives in rural communities",
+        "Capacity building for church leaders in project management and administration",
+        "Partnerships with Bread for the World, FECCLAHA, and local NGOs"
+      ]
+    },
+    "finance": {
+      "tag": "Resource Management",
+      "title": "Finance & Resource Mobilization",
+      "desc": "The Finance department ensures CPR's institutional sustainability through transparent financial administration, strategic resource mobilization, and rigorous oversight. It manages budgets, donor funds, and internal controls across all departments.",
+      "body": [
+        "Budget preparation, monitoring, and financial reporting to stakeholders",
+        "Donor fund management and grant compliance for international partners",
+        "Internal audit, risk management, and financial control systems",
+        "Resource mobilization strategies including church contributions and external fundraising",
+        "Payroll, procurement, and asset management across all departments",
+        "Quarterly and annual financial statements for the Executive Committee and General Assembly"
+      ]
+    },
+    "youth": {
+      "tag": "Next Generation",
+      "title": "Youth Program",
+      "desc": "The Youth Program empowers young Rwandans through faith-based leadership training, peacebuilding initiatives, and reconciliation projects. It creates platforms for youth to become active contributors to their churches, communities, and the nation.",
+      "body": [
+        "Annual Youth Peace and Reconciliation Summits gathering youth from all member churches",
+        "Leadership development camps and vocational skills training programs",
+        "Digital evangelism and media training for young communicators",
+        "Anti-trauma clubs in schools promoting mental health awareness",
+        "Inter-church sports and cultural exchange programs",
+        "Scholarship and mentorship programs for outstanding young leaders"
+      ]
+    },
+    "gender": {
+      "tag": "Gender & Women's Development",
+      "title": "Gender Promotion Department",
+      "desc": "The Gender Promotion department champions gender equality, women's empowerment, and the fight against gender-based violence (GBV) across CPR member churches and communities. It integrates gender perspectives into all CPR programs and policies.",
+      "body": [
+        "Gender mainstreaming across all CPR departments and member church programs",
+        "GBV prevention and response training for church leaders and community workers",
+        "Economic empowerment programs for women — savings groups, cooperatives, and entrepreneurship",
+        "Women's leadership development and representation in church governance structures",
+        "Advocacy campaigns on women's rights and child protection",
+        "Partnerships with government gender machinery and international women's organizations"
+      ]
+    },
+    "radio": {
+      "tag": "Media & Communications",
+      "title": "Radio Inkoramutima 107.1 FM",
+      "desc": "Radio Inkoramutima ('Voice of the Heart') is the official radio station of the Protestant Council of Rwanda. Broadcasting since 2005 on 107.1 FM, it reaches communities across Rwanda with messages of faith, unity, healing, and development.",
+      "body": [
+        "Daily broadcasts of devotional programs, sermons, and faith-based content",
+        "Community news, public announcements, and development messaging",
+        "Trauma counseling and mental health talk shows reaching rural listeners",
+        "Youth and women's programs promoting social cohesion and national unity",
+        "Live coverage of CPR events, synods, and national commemorations",
+        "Partnerships with other community radio stations and media development organizations"
+      ]
+    }
+  },
   "secretariatPage": {
     "heroTag": "General Secretariat",
     "heroTitle": "Secretariat",
@@ -330,12 +443,12 @@
       "title": "Conferences, Synods & Assemblies",
       "desc": "CPR convenes regular gatherings that bring together church leaders, government officials, civil society, and international partners to deliberate on matters of faith, governance, and national development.",
       "body": [
-        "Annual General Assembly of all 25 member churches",
-        "Biennial Synods for theological reflection and policy review",
-        "National prayer days and commemorative services (e.g. Kwibuka)",
-        "Ecumenical conferences with FECCLAHA and World Council of Churches",
-        "Leadership retreats and capacity-building workshops",
-        "Youth and women's assemblies for inclusive participation"
+        "1. Annual General Assembly of all 25 member churches",
+        "2. Biennial Synods for theological reflection and policy review",
+        "3. National prayer days and commemorative services (e.g. Kwibuka)",
+        "4. Ecumenical conferences with FECCLAHA and World Council of Churches",
+        "5. Leadership retreats and capacity-building workshops",
+        "6. Youth and women's assemblies for inclusive participation"
       ]
     },
     "advocacy": {
