@@ -7,6 +7,7 @@ import { BackToTop } from "./components/ui/BackToTop";
 import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
+import { Departments } from "./pages/Departments";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/secretariat" element={<Secretariat />} />
+        <Route path="/departments" element={<Departments />} />
         <Route path="/newsroom" element={<Newsroom />} />
         <Route path="/newsroom/:slug" element={<NewsDetail />} />
         <Route path="/news" element={<Newsroom />} />
