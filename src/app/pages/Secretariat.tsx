@@ -127,7 +127,7 @@ export function Secretariat() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[89vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -163,9 +163,9 @@ export function Secretariat() {
           >
             {t("secretariatPage.heroDesc")}
           </motion.p>
-          {/* Scroll indicator */}
-          <ScrollIndicator />
         </motion.div>
+        {/* Scroll indicator */}
+        <ScrollIndicator />
       </div>
 
       {/* Sticky Sub-Nav */}
