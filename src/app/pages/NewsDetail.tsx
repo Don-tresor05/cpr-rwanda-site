@@ -10,6 +10,7 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react";
+import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { getNewsBySlug, getNews, NewsArticle } from "../data/news";
 
@@ -42,7 +43,7 @@ export function NewsDetail() {
   };
 
   return (
-    <main className="bg-white min-h-screen">
+    <WatermarkSection className="bg-white min-h-screen">
       {/* Main Single-Column Article Content (Balanced width layout) */}
       <article className="py-6 lg:py-10">
         <div className="max-w-4xl mx-auto px-6">
@@ -265,6 +266,6 @@ export function NewsDetail() {
           </div>
         </div>
       </section>
-    </main>
+    </WatermarkSection>
   );
 }

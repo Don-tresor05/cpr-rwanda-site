@@ -4,6 +4,7 @@ import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { getTestimonials } from "../../data/testimonials";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { WatermarkSection } from "../ui/WatermarkBackground";
 
 export function TestimonialsSection() {
   const { ref, visible } = useScrollReveal();
@@ -42,7 +43,7 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section ref={ref} className="py-16 bg-white/85 border-t border-[#4E6132]/5">
+    <WatermarkSection ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
       {/* Decorative circles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full border border-[#4E6132]/8" />
@@ -216,6 +217,6 @@ export function TestimonialsSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </WatermarkSection>
   );
 }

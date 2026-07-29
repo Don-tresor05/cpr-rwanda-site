@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { getNews } from "../../data/news";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { WatermarkSection } from "../ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 
 export function NewsSection() {
@@ -41,7 +42,7 @@ export function NewsSection() {
   };
 
   return (
-    <section id="news" ref={ref} className="py-24 bg-white/85 overflow-hidden">
+    <WatermarkSection id="news" ref={ref} className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <motion.div
@@ -135,6 +136,6 @@ export function NewsSection() {
           </Link>
         </div>
       </div>
-    </section>
+    </WatermarkSection>
   );
 }

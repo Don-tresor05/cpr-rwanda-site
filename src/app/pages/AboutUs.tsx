@@ -2,7 +2,9 @@ import { useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
+import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
@@ -67,6 +69,7 @@ export function AboutUs() {
             {t("aboutPage.heroTitle")}
           </h1>
         </div>
+        <ScrollIndicator />
       </div>
 
       {/* Sub-Navigation */}
@@ -118,7 +121,7 @@ export function AboutUs() {
       </section>
 
       {/* Vision / Mission */}
-      <section id="vision-mission" className="pt-2 pb-20 lg:pb-24 bg-white scroll-mt-32">
+      <WatermarkSection id="vision-mission" className="pt-2 pb-20 lg:pb-24 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
@@ -177,10 +180,10 @@ export function AboutUs() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </WatermarkSection>
 
       {/* Model */}
-      <section className="pt-16 pb-20 bg-white">
+      <WatermarkSection className="pt-16 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
@@ -255,7 +258,7 @@ export function AboutUs() {
             </div>
           </div>
         </div>
-      </section>
+      </WatermarkSection>
 
       {/* Values */}
       <section id="core-values" className="py-20 bg-[#4E6132] scroll-mt-32">
@@ -365,7 +368,7 @@ export function AboutUs() {
       </section>
 
       {/* Organigram */}
-      <section id="organigram" className="py-20 bg-white scroll-mt-32">
+      <WatermarkSection id="organigram" className="py-20 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-12">
             {t("aboutPage.organigram.title")}
@@ -374,7 +377,7 @@ export function AboutUs() {
             {t("aboutPage.organigram.comingSoon")}
           </div>
         </div>
-      </section>
+      </WatermarkSection>
 
       {/* Partners */}
       <section id="our-partners" className="py-16 scroll-mt-32">

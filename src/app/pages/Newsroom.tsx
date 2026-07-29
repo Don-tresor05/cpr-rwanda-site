@@ -3,7 +3,9 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { Calendar, ArrowRight, Filter, ChevronDown, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { WatermarkSection } from "../components/ui/WatermarkBackground";
 
 export interface NewsItem {
   slug: string;
@@ -207,39 +209,29 @@ export function Newsroom() {
     <main className="bg-white min-h-screen">
       {/* Hero */}
       <div
-        className="relative min-h-[40vh] lg:min-h-[45vh] flex items-end justify-start pb-12 px-6 lg:px-12 text-white bg-[#4E6132]"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(78,97,50,0.55), rgba(78,97,50,0.9)), url('/assets/CPR 3 - Copy.webp')",
+            "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/youth.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center 25%",
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
-          <h1 className="font-['Outfit'] text-3xl sm:text-4xl lg:text-5xl font-black text-white drop-shadow-md">
+          <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
             {t("newsroom.title", "Newsroom")}
           </h1>
-          <p className="text-white/80 mt-2 max-w-2xl text-sm sm:text-base leading-relaxed">
+          <p className="text-white/80 mt-4 max-w-2xl text-lg leading-relaxed">
             {t("newsroom.subtitle", "Latest news, event reports, and updates from Conseil Protestant du Rwanda.")}
           </p>
         </div>
+        <ScrollIndicator />
       </div>
 
-      {/* Breadcrumb */}
-      <div className="bg-[#F8F9FA] border-b border-[#4E6132]/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-3 text-xs sm:text-sm text-[#4A4A4A] flex items-center gap-2">
-          <Link to="/" className="text-[#4E6132] font-semibold hover:text-[#8B6543] transition-colors">
-            {t("newsroom.breadcrumbHome", "Home")}
-          </Link>
-          <span className="text-[#8B6543]/40">/</span>
-          <span className="font-semibold text-[#8B6543]">
-            {t("newsroom.breadcrumbNews", "Newsroom")}
-          </span>
-        </div>
-      </div>
+
 
       {/* Content Section */}
-      <section ref={ref} className="py-10 lg:py-16 bg-white">
+      <WatermarkSection ref={ref} className="py-10 lg:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           {/* Category Filter Dropdown */}
           <div className="flex items-center justify-between flex-wrap gap-4 mb-8 pb-5 border-b border-[#4E6132]/10">
@@ -349,7 +341,7 @@ export function Newsroom() {
             </div>
           )}
         </div>
-      </section>
+      </WatermarkSection>
     </main>
   );
 }

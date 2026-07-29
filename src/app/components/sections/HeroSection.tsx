@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ScrollIndicator } from "../ui/ScrollIndicator";
 
 export function HeroSection() {
   const [active, setActive] = useState(0);
@@ -41,7 +42,7 @@ export function HeroSection() {
   const slide = slides[active];
 
   return (
-    <section id="home" className="relative h-[89vh] min-h-[500px] overflow-hidden">
+    <section id="home" className="relative h-[75vh] lg:h-[85vh] min-h-[500px] overflow-hidden">
       {/* Background image */}
       <AnimatePresence mode="sync">
         <motion.div
@@ -55,7 +56,7 @@ export function HeroSection() {
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center_25%]"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#4E6132]/90 via-[#4E6132]/60 to-[#4E6132]/25" />
@@ -115,7 +116,7 @@ export function HeroSection() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -128,10 +129,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 right-8 z-10 flex flex-col items-center gap-2 hidden lg:flex">
-        <span className="text-white/40 text-[10px] tracking-widest uppercase rotate-90 origin-center translate-y-6">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/40" />
-      </div>
+      <ScrollIndicator />
     </section>
   );
 }

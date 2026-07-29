@@ -3,10 +3,12 @@ import { useLocation } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import {
   Landmark, CalendarDays, Megaphone, Leaf, BookOpen, Users,
   Phone, Mail, MapPin, ArrowRight, Quote, type LucideIcon
 } from "lucide-react";
+import { WatermarkSection } from "../components/ui/WatermarkBackground";
 
 interface SubSection {
   id: string;
@@ -144,14 +146,7 @@ export function Secretariat() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block text-[#EAD196] text-sm font-semibold uppercase tracking-widest mb-4"
-          >
-            {t("secretariatPage.heroTag")}
-          </motion.span>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,15 +164,7 @@ export function Secretariat() {
             {t("secretariatPage.heroDesc")}
           </motion.p>
           {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="mt-10 flex items-center gap-2 text-white/40 text-xs"
-          >
-            <span className="w-6 h-px bg-white/30" />
-            Scroll to explore
-          </motion.div>
+          <ScrollIndicator />
         </motion.div>
       </div>
 
@@ -207,17 +194,21 @@ export function Secretariat() {
       </div>
 
       {/* Intro */}
-      <div ref={introRef} className="py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <WatermarkSection className="py-16 lg:py-20 bg-white">
+        <div ref={introRef} className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={introVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-              {t("secretariatPage.introTag")}
-            </span>
+            <div className="inline-flex items-center gap-2">
+              <div className="h-px w-8 bg-[#8B6543]" />
+              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
+                {t("secretariatPage.introTag")}
+              </span>
+              <div className="h-px w-8 bg-[#8B6543]" />
+            </div>
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5">
               {t("secretariatPage.introTitle")}
             </h2>
@@ -226,11 +217,11 @@ export function Secretariat() {
             </p>
           </motion.div>
         </div>
-      </div>
+      </WatermarkSection>
 
       {/* Secretary General Profile */}
-      <div ref={sgRef} className="pb-16 lg:pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <WatermarkSection className="pb-16 lg:pb-20 bg-white">
+        <div ref={sgRef} className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={sgVisible ? { opacity: 1, y: 0 } : {}}
@@ -255,14 +246,18 @@ export function Secretariat() {
               </motion.div>
               {/* Info */}
               <div className="flex-1 text-center md:text-left">
-                <motion.span
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={sgVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.2 }}
-                  className="text-[#8B6543] text-xs font-bold uppercase tracking-widest"
+                  className="inline-flex items-center gap-2 md:justify-start justify-center w-full md:w-auto"
                 >
-                  {t("secretariatPage.sgProfile.role")}
-                </motion.span>
+                  <div className="h-px w-8 bg-[#8B6543]" />
+                  <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
+                    {t("secretariatPage.sgProfile.role")}
+                  </span>
+                  <div className="h-px w-8 bg-[#8B6543]" />
+                </motion.div>
                 <motion.h3
                   initial={{ opacity: 0, y: 10 }}
                   animate={sgVisible ? { opacity: 1, y: 0 } : {}}
@@ -314,7 +309,7 @@ export function Secretariat() {
             </div>
           </motion.div>
         </div>
-      </div>
+      </WatermarkSection>
 
       {/* Sections */}
       {sections.map((sec, i) => {
@@ -384,16 +379,10 @@ function SectionBlock({ sec, Icon, isEven, index }: { sec: SubSection; Icon: Luc
   const { ref, visible } = useScrollReveal();
 
   return (
-    <section
+    <WatermarkSection
       id={sec.id}
-      className={`py-20 lg:py-28 scroll-mt-32 relative ${isEven ? "bg-white" : "bg-[#F8F9F4]"}`}
+      className={`py-20 lg:py-28 scroll-mt-32 ${isEven ? "bg-white" : "bg-[#F8F9F4]"}`}
     >
-      {/* Section number watermark */}
-      <div className="absolute top-8 right-8 lg:top-12 lg:right-12 text-[120px] lg:text-[180px] font-['Outfit'] font-black leading-none pointer-events-none select-none"
-        style={{ color: isEven ? "rgba(78,97,50,0.03)" : "rgba(139,101,67,0.04)" }}
-      >
-        {String(index + 1).padStart(2, "0")}
-      </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div
@@ -407,7 +396,11 @@ function SectionBlock({ sec, Icon, isEven, index }: { sec: SubSection; Icon: Luc
             animate={visible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{sec.tag}</span>
+            <div className="inline-flex items-center gap-2">
+              <div className="h-px w-8 bg-[#8B6543]" />
+              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{sec.tag}</span>
+              <div className="h-px w-8 bg-[#8B6543]" />
+            </div>
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-4">{sec.title}</h2>
             <p className="text-[#4A4A4A] text-lg leading-relaxed mb-6">{sec.desc}</p>
             <ul className="space-y-3">
@@ -459,6 +452,6 @@ function SectionBlock({ sec, Icon, isEven, index }: { sec: SubSection; Icon: Luc
           </motion.div>
         </div>
       </div>
-    </section>
+    </WatermarkSection>
   );
 }

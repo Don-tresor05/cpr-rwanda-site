@@ -3,13 +3,14 @@ import { Church } from "lucide-react";
 import { MEMBER_CHURCHES } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { WatermarkSection } from "../ui/WatermarkBackground";
 
 export function MemberChurchesSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
 
   return (
-    <section ref={ref} className="py-24 bg-white/85 overflow-hidden">
+    <WatermarkSection ref={ref} className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -78,7 +79,7 @@ export function MemberChurchesSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </WatermarkSection>
   );
 }
 
