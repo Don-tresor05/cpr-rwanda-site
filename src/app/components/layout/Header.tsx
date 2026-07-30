@@ -8,9 +8,13 @@ import {
 import { getNavItems } from "../../data/navigation";
 import type { NavItem } from "../../types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
+const COMING_SOON = new Set(["/#radio-about", "/#editorial", "/#programs", "/#radio", "/#gallery"]);
+
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
+  const { showComingSoon } = useComingSoon();
   if (!item.children) return null;
   return (
     <motion.div
@@ -32,19 +36,37 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
           <ul className="space-y-1">
             {col.links.map((link) => (
               <li key={link.label}>
-                <Link
-                  to={link.href}
-                  onClick={onClose}
-                  className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
-                >
-                  <span className="text-sm font-semibold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
-                    <span>{link.label}</span>
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
-                  </span>
-                  {link.desc && (
-                    <span className="text-xs text-[#4E6132]/75 group-hover:text-[#8B6543]/90 leading-tight transition-colors">{link.desc}</span>
-                  )}
-                </Link>
+                {COMING_SOON.has(link.href) ? (
+                  <button
+                    onClick={() => {
+                      onClose();
+                      showComingSoon(link.label);
+                    }}
+                    className="w-full text-left group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
+                  >
+                    <span className="text-sm font-semibold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
+                      <span>{link.label}</span>
+                      <span className="text-[10px] font-medium text-[#BC8A5F]/50 group-hover:text-[#BC8A5F] transition-colors">Coming Soon</span>
+                    </span>
+                    {link.desc && (
+                      <span className="text-xs text-[#4E6132]/75 group-hover:text-[#8B6543]/90 leading-tight transition-colors">{link.desc}</span>
+                    )}
+                  </button>
+                ) : (
+                  <Link
+                    to={link.href}
+                    onClick={onClose}
+                    className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
+                  >
+                    <span className="text-sm font-semibold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
+                      <span>{link.label}</span>
+                      <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
+                    </span>
+                    {link.desc && (
+                      <span className="text-xs text-[#4E6132]/75 group-hover:text-[#8B6543]/90 leading-tight transition-colors">{link.desc}</span>
+                    )}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -56,6 +78,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
 
 export function Header() {
   const { t } = useTranslation("common");
+  const { showComingSoon } = useComingSoon();
   const navItems = getNavItems(t);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
@@ -82,9 +105,12 @@ export function Header() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="full" />
           <div className="h-4 w-px bg-white/20" />
-          <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors">
+          <button
+            onClick={() => showComingSoon(t("nav.donate"))}
+            className="bg-[#EAD196] text-[#4E6132] text-xs font-bold px-4 py-1 rounded-full hover:bg-[#d4b87a] transition-colors"
+          >
             {t("nav.donate")}
-          </a>
+          </button>
         </div>
       </div>
 
@@ -120,22 +146,44 @@ export function Header() {
                   onMouseEnter={() => setActiveMenu(item.label)}
                   onMouseLeave={() => setActiveMenu(null)}
                 >
-                  <Link
-                    to={item.href}
-                    className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
-                      isActive
-                        ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
-                        : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
-                    }`}
-                  >
-                    {item.label}
-                    {item.children && (
-                      <ChevronDown
-                        size={13}
-                        className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
-                      />
-                    )}
-                  </Link>
+                  {COMING_SOON.has(item.href) ? (
+                    <button
+                      onClick={() => {
+                        setActiveMenu(null);
+                        showComingSoon(item.label);
+                      }}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                          : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                      }`}
+                    >
+                      {item.label}
+                      {item.children && (
+                        <ChevronDown
+                          size={13}
+                          className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
+                        />
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                          : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                      }`}
+                    >
+                      {item.label}
+                      {item.children && (
+                        <ChevronDown
+                          size={13}
+                          className={`transition-transform duration-200 ${activeMenu === item.label ? "rotate-180" : ""}`}
+                        />
+                      )}
+                    </Link>
+                  )}
                   <AnimatePresence>
                     {activeMenu === item.label && item.children && (
                       <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
@@ -178,7 +226,23 @@ export function Header() {
               <div className="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {navItems.map((item) => (
                   <div key={item.label}>
-                    {item.children ? (
+                    {COMING_SOON.has(item.href) ? (
+                      <button
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
+                        onClick={() => {
+                          setMobileOpen(false);
+                          showComingSoon(item.label);
+                        }}
+                      >
+                        {item.label}
+                        {item.children && (
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`}
+                          />
+                        )}
+                      </button>
+                    ) : item.children ? (
                       <button
                         className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
@@ -207,16 +271,30 @@ export function Header() {
                           className="overflow-hidden"
                         >
                           <div className="pl-4 pb-2 space-y-0.5">
-                            {item.children.flatMap((col) => col.links).map((link) => (
-                              <Link
-                                key={link.label}
-                                to={link.href}
-                                onClick={() => setMobileOpen(false)}
-                                className="block px-4 py-2.5 text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 rounded-xl transition-colors"
-                              >
-                                {link.label}
-                              </Link>
-                            ))}
+                    {item.children.flatMap((col) => col.links).map((link) => (
+                      COMING_SOON.has(link.href) ? (
+                        <button
+                          key={link.label}
+                          onClick={() => {
+                            setMobileOpen(false);
+                            showComingSoon(link.label);
+                          }}
+                          className="w-full text-left px-4 py-2.5 text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 rounded-xl transition-colors flex items-center justify-between"
+                        >
+                          <span>{link.label}</span>
+                          <span className="text-[10px] font-medium text-[#BC8A5F]/50">Coming Soon</span>
+                        </button>
+                      ) : (
+                        <Link
+                          key={link.label}
+                          to={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-4 py-2.5 text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 rounded-xl transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      )
+                    ))}
                           </div>
                         </motion.div>
                       )}
@@ -227,7 +305,12 @@ export function Header() {
                   <div className="flex items-center justify-center gap-2 px-4 py-2">
                     <LanguageSwitcher />
                   </div>
-                  <a href="#donate" className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.donate")}</a>
+                  <button
+                    onClick={() => showComingSoon(t("nav.donate"))}
+                    className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center"
+                  >
+                    {t("nav.donate")}
+                  </button>
                   <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</a>
                 </div>
               </div>
