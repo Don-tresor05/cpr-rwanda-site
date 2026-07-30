@@ -176,7 +176,7 @@ export function Secretariat() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[89vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -213,7 +213,6 @@ export function Secretariat() {
             {t("secretariatPage.heroDesc")}
           </motion.p>
         </motion.div>
-
         {/* Scroll indicator */}
         <ScrollIndicator />
       </div>
@@ -286,7 +285,7 @@ export function Secretariat() {
                 transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                 className="flex-shrink-0"
               >
-                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-2xl overflow-hidden border-4 border-[#4E6132]/20 shadow-xl">
+                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl">
                   <img
                     src="/assets/Mutabazi_Samuel.webp"
                     alt="Rev. Samuel Mutabazi"
@@ -488,7 +487,10 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
               >
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
-              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] leading-tight pt-1">
+              <h2 
+                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                style={{ color: sec.accent }}
+              >
                 {sec.title}
               </h2>
             </div>
@@ -562,7 +564,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
             className="relative"
           >
             {/* Image with overlay */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
+            <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
               <motion.div
                 className="absolute inset-0"
                 style={{

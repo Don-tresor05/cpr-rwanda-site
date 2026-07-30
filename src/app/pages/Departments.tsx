@@ -148,11 +148,11 @@ export function Departments() {
   const cta = (dp?.cta as Record<string, string>) ?? {};
 
   return (
-    <main className="bg-[#F5F5DC]">
+    <main className="bg-white">
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[89vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -171,18 +171,7 @@ export function Departments() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 mb-4"
-          >
-            <div className="h-px w-10 bg-[#EAD196]/60" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-[0.2em]">
-              {(dp?.heroTag as string) ?? "Our Departments"}
-            </span>
-            <div className="h-px w-10 bg-[#EAD196]/60" />
-          </motion.div>
+
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -208,17 +197,17 @@ export function Departments() {
       </div>
 
       {/* Sticky Sub-Nav */}
-      <div className="bg-[#F5F5DC]/95 backdrop-blur-xl border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-1 overflow-x-auto h-14 lg:h-16 scrollbar-hide">
+      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3.5 py-1.5 rounded-lg text-xs whitespace-nowrap transition-all duration-200 font-semibold ${
+                className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-200 ${
                   activeSection === link.href.substring(1)
-                    ? "bg-[#4E6132] text-white shadow-md"
-                    : "text-[#4E6132]/70 hover:text-[#4E6132] hover:bg-[#4E6132]/10"
+                    ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                    : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -233,7 +222,7 @@ export function Departments() {
       </div>
 
       {/* Intro Section */}
-      <WatermarkSection className="py-20 lg:py-28 bg-white/85">
+      <WatermarkSection className="py-16 lg:py-20 bg-white">
         <div ref={introRef} className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
             <motion.div
@@ -242,14 +231,14 @@ export function Departments() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-3"
             >
-              <div className="inline-flex items-center gap-2 mb-4">
-                <div className="h-px w-10 bg-[#8B6543]" />
+              <div className="inline-flex items-center gap-2">
+                <div className="h-px w-8 bg-[#8B6543]" />
                 <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
                   {(dp?.introTag as string) ?? ""}
                 </span>
-                <div className="h-px w-10 bg-[#8B6543]" />
+                <div className="h-px w-8 bg-[#8B6543]" />
               </div>
-              <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] mt-2 mb-6 leading-tight">
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5">
                 {(dp?.introTitle as string) ?? ""}
               </h2>
               <p className="text-[#4A4A4A] text-lg leading-relaxed">
@@ -362,33 +351,24 @@ export function Departments() {
         );
       })}
 
-      {/* Contact CTA - Enhanced */}
+      {/* Contact CTA */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="py-24 bg-[#4E6132] relative overflow-hidden"
+        className="py-20 bg-[#4E6132] relative overflow-hidden"
       >
         {/* Decorative circles */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-white/[0.03] -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-white/[0.03] translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
 
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-4xl lg:text-5xl text-white mb-5 leading-tight"
+            className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
           >
             {(cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
@@ -397,7 +377,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white/70 text-lg mb-10 max-w-2xl mx-auto"
+            className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
           >
             {(cta?.desc as string) ?? ""}
           </motion.p>
@@ -406,17 +386,11 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-6 text-white/70 text-sm mb-10"
+            className="flex flex-wrap justify-center gap-6 text-white/80 text-sm mb-8"
           >
-            <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
-              <Phone size={14} className="text-[#EAD196]" /> +250 788 314 718
-            </span>
-            <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
-              <Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw
-            </span>
-            <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
-              <MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali
-            </span>
+            <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> +250 788 314 718</span>
+            <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
+            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -427,15 +401,9 @@ export function Departments() {
           >
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 shadow-xl"
+              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
             >
               {(cta?.btn as string) ?? "Contact Us"} <ArrowRight size={16} />
-            </Link>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300"
-            >
-              Back to Home
             </Link>
           </motion.div>
         </div>
@@ -471,7 +439,7 @@ function DepartmentDetailBlock({
       id={sec.id}
       ref={blockRef}
       className={`relative scroll-mt-20 overflow-hidden ${
-        isEven ? "bg-white/85" : "bg-[#F8F9F4]"
+        isEven ? "bg-white" : "bg-[#F8F9F4]"
       }`}
     >
       {/* Decorative side accent bar */}
@@ -519,7 +487,10 @@ function DepartmentDetailBlock({
               >
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
-              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] leading-tight pt-1">
+              <h2 
+                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                style={{ color: sec.accent }}
+              >
                 {sec.title}
               </h2>
             </div>
@@ -593,7 +564,7 @@ function DepartmentDetailBlock({
             className="relative"
           >
             {/* Image with overlay */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
+            <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
               <motion.div
                 className="absolute inset-0"
                 style={{
