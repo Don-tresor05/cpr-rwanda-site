@@ -1,0 +1,499 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "label": "Au service du Rwanda depuis 1963",
+        "title": "Bose Babe Umwe",
+        "subtitle": "Pour que tous soient un",
+        "desc": "Unissant 25 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
+        "cta": "Explorez Notre Mission",
+        "ctaSecondary": "Rencontrez Notre Équipe"
+      },
+      {
+        "label": "Département de l'Éducation (BNEP)",
+        "title": "Façonner l'avenir du Rwanda",
+        "subtitle": "595 Écoles Primaires Protestantes",
+        "desc": "Le Bureau National de l'Éducation Protestante supervise la qualité de l'éducation à travers le Rwanda, formant plus de 300 000 apprenants chaque année.",
+        "cta": "En savoir plus sur le BNEP",
+        "ctaSecondary": "Voir les Statistiques"
+      },
+      {
+        "label": "Radio Inkoramutima",
+        "title": "107.1 FM — Diffuser l'Espoir",
+        "subtitle": "La Voix du Conseil Protestant du Rwanda",
+        "desc": "Radio Inkoramutima, la voix officielle du Conseil Protestant du Rwanda, atteint les communautés de tout le pays avec des messages de foi, d'unité et de développement holistique.",
+        "cta": "Écoutez en Direct",
+        "ctaSecondary": "Guide des Programmes"
+      }
+    ]
+  },
+  "about": {
+    "ourStory": "Notre Histoire",
+    "title": "Six Décennies de\nFoi et de Service",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 25 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
+    "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
+    "p2End": " — guide chaque initiative.",
+    "historyBtn": "Notre Histoire Complète",
+    "visionBtn": "Vision et Mission"
+  },
+  "departments": {
+    "ourWork": "Notre Travail",
+    "title": "Départements et Projets",
+    "desc": "Le travail du CPR s'étend sur quatre départements stratégiques, chacun abordant une dimension critique de la transformation du Rwanda.",
+    "learnMore": "En Savoir Plus",
+    "items": [
+      {
+        "title": "Secrétariat Général",
+        "desc": "Supervise la direction stratégique, la coordination et la gouvernance globale du Conseil Protestant du Rwanda."
+      },
+      {
+        "title": "Éducation/BNEP",
+        "desc": "Gère les écoles primaires et secondaires protestantes, mettant en œuvre des méthodologies pédagogiques modernes à travers le pays."
+      },
+      {
+        "title": "Diaconie/Développement",
+        "desc": "Coordonne les services sociaux, les opérations de secours humanitaire et les programmes de développement communautaire durable."
+      },
+      {
+        "title": "Finance/Mobilisation",
+        "desc": "Assure la viabilité financière institutionnelle, l'administration transparente et la mobilisation stratégique des ressources."
+      },
+      {
+        "title": "Programme Jeunesse",
+        "desc": "Autonomise la prochaine génération par la consolidation de la paix, des projets de réconciliation et une formation active au leadership."
+      },
+      {
+        "title": "Promotion du Genre",
+        "desc": "Promeut l'égalité des genres, lutte contre les violences basées sur le genre (VBG) et autonomise les femmes dans les sphères économiques et sociales."
+      },
+      {
+        "title": "Radio Inkoramutima",
+        "desc": "Diffuse des messages d'évangélisation, d'unité nationale, de guérison et de développement communautaire au Rwanda sur 107.1 FM."
+      }
+    ]
+  },
+  "news": {
+    "ourStories": "Nos Histoires",
+    "title": "Dernières Nouvelles",
+    "desc": "Restez informé des dernières activités, rapports et événements de nos églises membres et départements.",
+    "readArticle": "Lire l'Article",
+    "viewAllBtn": "Toutes les Nouvelles",
+    "items": [
+      {
+        "category": "Événement",
+        "title": "Kwibuka 31: Commémoration au Diocèse de Gahini",
+        "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi."
+      },
+      {
+        "category": "Éducation",
+        "title": "Le BNEP Lance une Formation en Pédagogie Active",
+        "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active."
+      },
+      {
+        "category": "Santé",
+        "title": "Certification de Conseillers en Traumatisme",
+        "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme."
+      },
+      {
+        "category": "Développement",
+        "title": "Le CPR s'Associe aux Coopératives Locales",
+        "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales a été lancée dans la province de l'Est."
+      },
+      {
+        "category": "Jeunesse",
+        "title": "Sommet Annuel de la Jeunesse Annoncé",
+        "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la paix."
+      }
+    ]
+  },
+  "testimonials": {
+    "impact": "Notre Impact",
+    "title": "Voix de la Communauté",
+    "desc": "Écoutez les individus et les communautés dont les vies ont été touchées par le travail du CPR.",
+    "items": [
+      {
+        "quote": "Le programme de bourses d'études du CPR a transformé ma vie. Aujourd'hui, je suis médecin et je sers ma communauté.",
+        "role": "Bénéficiaire de bourse du CPR, Promotion 2018"
+      },
+      {
+        "quote": "La Radio Inkoramutima atteint notre village chaque matin. Les programmes nous ont aidés à trouver la paix.",
+        "role": "Pasteur d'une église membre, Province de l'Est"
+      },
+      {
+        "quote": "Grâce à la formation du BNEP, nos enseignants créent des classes joyeuses où chaque enfant participe.",
+        "role": "Directrice, École primaire EPRK, Kigali"
+      }
+    ]
+  },
+  "radio": {
+    "listenLive": "Écouter en Direct",
+    "title": "Radio Inkoramutima 107.1 FM",
+    "desc": "Diffuser des messages de foi, d'unité et de développement à travers le Rwanda depuis 2005.",
+    "nowPlaying": "En Cours :",
+    "nowPlayingDesc": "Dévotion Matinale & Nouvelles",
+    "listenBtn": "Écouter en Direct",
+    "scheduleBtn": "Programme"
+  },
+  "gallery": {
+    "galleryLabel": "Galerie",
+    "title": "Moments et Souvenirs",
+    "desc": "Un voyage visuel à travers nos événements communautaires et programmes scolaires.",
+    "viewAllBtn": "Voir la Galerie Complète"
+  },
+  "partners": {
+    "trustedBy": "Approuvé Par",
+    "title": "Nos Partenaires",
+    "desc": "Nous collaborons avec des organisations locales et internationales pour maximiser notre impact."
+  },
+  "cta": {
+    "title": "Prêt à Faire une Différence ?",
+    "desc": "Rejoignez-nous dans notre mission pour unir, servir et développer les communautés au Rwanda.",
+    "donateBtn": "Faire un Don",
+    "contactBtn": "Contactez-Nous"
+  },
+  "memberChurches": {
+    "tag": "Notre Communauté",
+    "title": "Églises Membres & Organisations",
+    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 25</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
+    "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> églises et organisations unies en Christ"
+  },
+  "projects": {
+    "tag": "Nos Initiatives",
+    "title": "Projets & Programmes",
+    "desc": "Des initiatives axées sur l'impact qui transforment les communautés par le renforcement des capacités, la guérison des traumatismes et le développement durable.",
+    "viewDetails": "Voir les détails complets",
+    "items": [
+      {
+        "title": "Renforcement des Capacités dans les Églises",
+        "period": "2019 — 2022",
+        "desc": "Renforcement des capacités professionnelles du personnel de 20 églises membres du CPR et 5 associations.",
+        "highlights": [
+          "Programmes de formation en TIC et entrepreneuriat",
+          "Renforcement des capacités en leadership et administration",
+          "Théologie environnementale et éducation à la santé publique",
+          "Réseau d'anciens boursiers pour une collaboration continue"
+        ]
+      },
+      {
+        "title": "Psychotraumatologie & Guérison des Traumatismes",
+        "period": "En cours",
+        "desc": "Soutien psychosocial complet dans les contextes post-conflit — certification de conseillers et animation de clubs anti-traumatisme.",
+        "highlights": [
+          "Certification des professionnels de santé mentale en psychotraumatologie",
+          "Clubs anti-traumatisme dans les écoles à l'échelle nationale",
+          "Intégration du conseil basé sur la foi dans les communautés",
+          "Organisation des Experts Rwandais en Psychotraumatologie (ROPRE)"
+        ]
+      }
+    ]
+  },
+  "aboutPage": {
+    "heroTitle": "Qui Sommes-Nous",
+    "nav": {
+      "whoWeAre": "À Propos du Conseil Protestant du Rwanda",
+      "visionMission": "Vision & Mission",
+      "coreValues": "Valeurs Fondamentales",
+      "execCommittee": "Comité Exécutif",
+      "organigram": "Organigramme",
+      "ourPartners": "Nos Partenaires"
+    },
+    "whoWeAre": {
+      "title": "À Propos du Conseil Protestant du Rwanda",
+      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963 pour promouvoir et partager des initiatives de développement innovantes et fournir des services essentiels à nos églises membres et à la communauté élargie.",
+      "p2": "Nous nous engageons à développer des partenariats solides et impactants et à fournir des services de qualité supérieure à ceux avec qui nous travaillons, en favorisant la foi, l'unité et le développement durable à travers le Rwanda."
+    },
+    "visionMission": {
+      "title": "Vision & Mission",
+      "visionTag": "Notre Vision",
+      "visionSub": "Où nous allons",
+      "visionDesc": "Une société rwandaise unie, fidèle et prospère où chaque individu vit dans la dignité et la paix.",
+      "missionTag": "Notre Mission",
+      "missionSub": "Ce que nous faisons chaque jour",
+      "missionDesc": "Rassembler les églises protestantes du Rwanda pour un impact coordonné dans l'évangélisation, l'éducation, la santé et le développement socio-économique holistique."
+    },
+    "model": {
+      "title": "Notre Modèle",
+      "desc": "Une structure de partenariat collaboratif reliant les églises membres à l'impact communautaire.",
+      "step1Tag": "Étape 1",
+      "step1Title": "25 Églises Membres",
+      "step1Desc": "Les dénominations protestantes à travers le Rwanda s'unissent sous un cadre partagé.",
+      "step2Tag": "Étape 2",
+      "step2Title": "Coordination du CPR",
+      "step2Desc": "Les ressources sont mobilisées grâce aux contributions locales et aux partenariats internationaux.",
+      "step3Tag": "Étape 3",
+      "step3Title": "Programmes Communautaires",
+      "step3Desc": "Des initiatives durables et axées sur la communauté sont déployées sur le terrain."
+    },
+    "coreValues": {
+      "title": "Valeurs Fondamentales",
+      "items": [
+        {
+          "title": "Foi",
+          "desc": "Enracinée dans nos croyances chrétiennes, la foi guide toutes nos actions et décisions."
+        },
+        {
+          "title": "Unité",
+          "desc": "Rassembler diverses dénominations pour parler et agir d'une seule voix."
+        },
+        {
+          "title": "Intégrité",
+          "desc": "Maintenir la transparence et la responsabilité dans toutes nos opérations."
+        },
+        {
+          "title": "Service",
+          "desc": "Dévoué à servir les communautés les plus vulnérables avec compassion."
+        },
+        {
+          "title": "Excellence",
+          "desc": "Viser la plus haute qualité dans nos programmes d'éducation, de santé et de développement."
+        }
+      ]
+    },
+    "execCommittee": {
+      "title": "Comité Exécutif",
+      "desc": "Notre équipe dévouée de professionnels et de dirigeants d'églises apporte son expertise de divers secteurs pour faire avancer la mission du CPR.",
+      "boardMembers": "Membres du Conseil",
+      "staff": "Personnel",
+      "defaultName": "Nom du Membre",
+      "defaultRole": "Titre / Rôle"
+    },
+    "organigram": {
+      "title": "Organigramme",
+      "comingSoon": "[Schéma de l'organigramme à venir]"
+    },
+    "partners": {
+      "title": "Nos Partenaires"
+    }
+  },
+  "newsroom": {
+    "title": "Salle de Presse",
+    "subtitle": "Dernières nouvelles, rapports d'événements et mises à jour du Conseil Protestant du Rwanda.",
+    "breadcrumbHome": "Accueil",
+    "breadcrumbNews": "Salle de Presse",
+    "filterLabel": "Filtrer par Catégorie :",
+    "allCategories": "Toutes les Catégories",
+    "readMore": "En savoir plus",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "noNewsFound": "Aucun article trouvé dans cette catégorie."
+  },
+  "departmentsPage": {
+    "heroTag": "Nos Départements",
+    "heroTitle": "Départements",
+    "heroDesc": "Sept départements stratégiques qui animent la mission du CPR dans les domaines de l'éducation, du développement, des finances, de la jeunesse, du genre, des communications et de la gouvernance.",
+    "introTag": "Notre Structure",
+    "introTitle": "Départements du Conseil Protestant du Rwanda",
+    "introDesc": "Le travail du CPR est organisé à travers sept départements spécialisés, chacun dirigé par des professionnels expérimentés et soutenu par une équipe dévouée. Ensemble, ils mettent en œuvre des programmes qui touchent chaque province du Rwanda, de l'éducation et la santé à l'autonomisation des jeunes et au développement communautaire.",
+    "nav": {
+      "gs": "Secrétariat Général",
+      "bnep": "Éducation / BNEP",
+      "diakonia": "Diaconie / Développement",
+      "finance": "Finances & Mobilisation",
+      "youth": "Programme Jeunesse",
+      "gender": "Promotion du Genre",
+      "radio": "Radio Inkoramutima"
+    },
+    "cta": {
+      "title": "Partenaires avec nos Départements",
+      "desc": "Que ce soit dans l'éducation, le développement, la santé ou l'autonomisation des jeunes — votre organisation peut faire la différence aux côtés des équipes départementales dévouées du CPR.",
+      "btn": "Contactez-Nous"
+    },
+    "gs": {
+      "tag": "Direction Exécutive",
+      "title": "Bureau du Secrétariat Général",
+      "desc": "Le Secrétaire Général assure le leadership stratégique, coordonne toutes les activités départementales et représente le CPR aux niveaux national et international. Ce bureau garantit la cohérence institutionnelle et l'alignement avec la mission et la vision du CPR.",
+      "body": [
+        "Planification stratégique et gouvernance institutionnelle dans toutes les églises membres",
+        "Coordination de l'Assemblée Générale, du Comité Exécutif et des réunions du Bureau",
+        "Représentation officielle aux forums gouvernementaux, œcuméniques et internationaux",
+        "Affaires juridiques, ressources humaines et communication institutionnelle",
+        "Développement de partenariats avec des organisations locales et internationales",
+        "Supervision des rapports annuels, des audits et de la performance organisationnelle"
+      ]
+    },
+    "bnep": {
+      "tag": "Bureau d'Éducation",
+      "title": "Bureau National de l'Éducation Protestante (BNEP)",
+      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 595 écoles primaires et des centaines d'établissements secondaires, le BNEP façonne l'avenir des enfants du Rwanda.",
+      "body": [
+        "Supervision de 595+ écoles primaires protestantes et écoles secondaires associées",
+        "Formation à la Pédagogie Active Participative (PAP) pour les enseignants",
+        "Développement des programmes d'éducation religieuse protestante",
+        "Inspection scolaire, assurance qualité et application des normes éducatives",
+        "Programmes d'éducation de la petite enfance et collèges de formation des enseignants",
+        "Partenariats avec le REB, l'UNICEF et les donateurs internationaux en éducation"
+      ]
+    },
+    "diakonia": {
+      "tag": "Services Sociaux",
+      "title": "Diaconie / Développement",
+      "desc": "Le département de la Diaconie coordonne les services sociaux, les secours humanitaires et les initiatives de développement durable du CPR. Il sert les communautés les plus vulnérables à travers des programmes holistiques.",
+      "body": [
+        "Coordination des secours humanitaires d'urgence et réponse aux catastrophes",
+        "Programmes de développement communautaire axés sur les moyens de subsistance durables",
+        "Psychotraumatologie et guérison des traumatismes — certification de conseillers",
+        "Initiatives d'eau, d'assainissement et de santé (WASH) dans les communautés rurales",
+        "Renforcement des capacités des dirigeants d'église en gestion de projets",
+        "Partenariats avec Bread for the World, FECCLAHA et les ONG locales"
+      ]
+    },
+    "finance": {
+      "tag": "Gestion des Ressources",
+      "title": "Finances & Mobilisation des Ressources",
+      "desc": "Le département des Finances assure la durabilité institutionnelle du CPR grâce à une administration financière transparente, une mobilisation stratégique des ressources et une supervision rigoureuse.",
+      "body": [
+        "Préparation du budget, suivi et rapports financiers aux parties prenantes",
+        "Gestion des fonds des donateurs et conformité des subventions",
+        "Audit interne, gestion des risques et systèmes de contrôle financier",
+        "Stratégies de mobilisation des ressources incluant contributions des églises",
+        "Paie, approvisionnement et gestion des actifs dans tous les départements",
+        "États financiers trimestriels et annuels pour le Comité Exécutif"
+      ]
+    },
+    "youth": {
+      "tag": "Prochaine Génération",
+      "title": "Programme Jeunesse",
+      "desc": "Le Programme Jeunesse autonomise les jeunes Rwandais grâce à une formation au leadership basée sur la foi, des initiatives de consolidation de la paix et des projets de réconciliation.",
+      "body": [
+        "Sommets annuels de la Jeunesse sur la Paix et la Réconciliation",
+        "Camps de développement du leadership et programmes de formation professionnelle",
+        "Évangélisation numérique et formation aux médias pour jeunes communicateurs",
+        "Clubs anti-traumatisme dans les écoles pour la sensibilisation à la santé mentale",
+        "Programmes sportifs et d'échanges culturels inter-ecclésiaux",
+        "Programmes de bourses et de mentorat pour les jeunes leaders prometteurs"
+      ]
+    },
+    "gender": {
+      "tag": "Genre & Développement des Femmes",
+      "title": "Département de la Promotion du Genre",
+      "desc": "Le département de la Promotion du Genre défend l'égalité des sexes, l'autonomisation des femmes et la lutte contre les violences basées sur le genre (VBG) dans les églises membres et les communautés.",
+      "body": [
+        "Intégration du genre dans tous les départements du CPR et programmes des églises membres",
+        "Formation à la prévention et réponse aux VBG pour les dirigeants d'église",
+        "Programmes d'autonomisation économique des femmes — groupes d'épargne et entrepreneuriat",
+        "Développement du leadership des femmes dans les structures de gouvernance ecclésiale",
+        "Campagnes de plaidoyer pour les droits des femmes et la protection de l'enfance",
+        "Partenariats avec les mécanismes gouvernementaux de genre et organisations internationales"
+      ]
+    },
+    "radio": {
+      "tag": "Médias & Communications",
+      "title": "Radio Inkoramutima 107.1 FM",
+      "desc": "Radio Inkoramutima ('Voix du Cœur') est la station de radio officielle du Conseil Protestant du Rwanda. Diffusant depuis 2005 sur 107.1 FM, elle atteint les communautés de tout le Rwanda.",
+      "body": [
+        "Émissions quotidiennes de dévotion, sermons et contenu basé sur la foi",
+        "Actualités communautaires, annonces publiques et messages de développement",
+        "Émissions de conseil en traumatisme et santé mentale pour les auditeurs ruraux",
+        "Programmes pour les jeunes et les femmes favorisant la cohésion sociale",
+        "Couverture en direct des événements du CPR, des synodes et des commémorations nationales",
+        "Partenariats avec d'autres radios communautaires et organisations médiatiques"
+      ]
+    }
+  },
+  "secretariatPage": {
+    "heroTag": "Secrétariat Général",
+    "heroTitle": "Secrétariat",
+    "heroDesc": "Le centre névralgique du CPR — coordonnant la gouvernance, les événements, le plaidoyer, la durabilité et les communications institutionnelles.",
+    "introTag": "Notre Rôle",
+    "introTitle": "Coordonner le Conseil Protestant du Rwanda",
+    "introDesc": "Le Secrétariat Général est le bras exécutif du CPR, chargé de mettre en œuvre les décisions de l'Assemblée Générale et du Comité Exécutif, de gérer les relations inter-ecclésiales et de représenter le CPR aux niveaux national et international.",
+    "nav": {
+      "sg": "Bureau du SG",
+      "events": "Événements CPR",
+      "meetings": "Réunions CPR",
+      "advocacy": "Plaidoyer",
+      "sustainability": "Durabilité",
+      "publications": "Publications"
+    },
+    "sgProfile": {
+      "role": "Secrétaire Général",
+      "name": "Rév. Samuel Mutabazi",
+      "title": "Secrétaire Général, Conseil Protestant du Rwanda",
+      "quote": "Les églises protestantes du Rwanda sont appelées à être une — à servir ensemble, témoigner ensemble et construire cette nation ensemble. Le CPR existe pour rendre cette unité visible et efficace dans chaque coin du Rwanda."
+    },
+    "meetings": {
+      "tag": "Réunions CPR",
+      "title": "Gouvernance & Réunions Internes",
+      "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
+      "body": [
+        "Réunions du Comité Exécutif — tenues trimestriellement pour examiner les performances institutionnelles et approuver les décisions clés",
+        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 25 églises membres",
+        "Réunions du Bureau — coordination mensuelle entre le Secrétaire Général et les chefs de département",
+        "Réunions du Comité des Finances et d'Audit — supervision des budgets, dépenses et rapports aux donateurs",
+        "Réunions de coordination inter-ecclésiale — dialogue bilatéral et multilatéral entre les dénominations membres",
+        "Retraites de planification stratégique — sessions annuelles pour réviser et mettre à jour le plan stratégique quinquennal du CPR"
+      ]
+    },
+    "sg": {
+      "tag": "Secrétariat Général",
+      "title": "Bureau du Secrétaire Général",
+      "desc": "Le Secrétaire Général dirige les opérations quotidiennes du CPR, servant de directeur général du Conseil et de liaison principale entre les églises membres, le gouvernement et les partenaires internationaux.",
+      "body": [
+        "Met en œuvre les résolutions de l'Assemblée Générale et du Comité Exécutif",
+        "Représente le CPR dans les forums nationaux et internationaux",
+        "Coordonne tous les départements et assure la cohérence institutionnelle",
+        "Gère les ressources humaines, les affaires juridiques et les opérations administratives",
+        "Maintient la correspondance officielle et la mémoire institutionnelle",
+        "Supervise la planification stratégique et les rapports annuels de performance"
+      ]
+    },
+    "events": {
+      "tag": "Événements CPR",
+      "title": "Conférences, Synodes & Assemblées",
+      "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
+      "body": [
+        "1. Assemblée Générale annuelle des 25 églises membres",
+        "2. Synodes biennaux pour la réflexion théologique et la révision des politiques",
+        "3. Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
+        "4. Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
+        "5. Retraites de leadership et ateliers de renforcement des capacités",
+        "6. Assemblées des jeunes et des femmes pour une participation inclusive"
+      ]
+    },
+    "advocacy": {
+      "tag": "Plaidoyer",
+      "title": "Engagement Politique & Leadership Civique",
+      "desc": "Le CPR s'engage activement dans le paysage des politiques publiques du Rwanda, portant la voix de la communauté protestante sur les questions de justice, de dignité humaine et de développement national.",
+      "body": [
+        "Engagement avec le Gouvernement du Rwanda sur l'éducation, la santé et la politique sociale",
+        "Participation au Dialogue National (Umushyikirano) et aux consultations parlementaires",
+        "Plaidoyer pour les survivants du génocide et les communautés vulnérables",
+        "Promotion de la réconciliation, de l'unité et de la consolidation de la paix",
+        "Collaboration avec le CNLG sur la commémoration du génocide",
+        "Représentation aux plateformes œcuméniques de l'Union Africaine et de l'ONU"
+      ]
+    },
+    "sustainability": {
+      "tag": "Durabilité",
+      "title": "Durabilité Environnementale & Institutionnelle",
+      "desc": "Le CPR s'engage à gérer l'environnement naturel du Rwanda et à construire des institutions durables, en intégrant le soin de la création dans la théologie.",
+      "body": [
+        "Programmes de théologie environnementale intégrés dans les programmes d'église",
+        "Initiatives de plantation d'arbres et de restauration des terres",
+        "Normes de construction verte promues dans les écoles et centres de santé affiliés",
+        "Durabilité institutionnelle grâce à des stratégies de financement diversifiées",
+        "Partenariats avec la REMA et des organisations environnementales internationales",
+        "Rapports annuels de durabilité alignés sur les objectifs nationaux de croissance verte"
+      ]
+    },
+    "publications": {
+      "tag": "Publications du SG",
+      "title": "Rapports, Bulletins & Communiqués",
+      "desc": "Le Secrétariat produit une gamme de publications officielles documentant le travail du CPR et tenant informées les églises membres et le public.",
+      "body": [
+        "Rapport Annuel — revue complète des activités et finances du CPR",
+        "Bulletin Trimestriel — mises à jour de tous les départements et églises membres",
+        "Communiqués Officiels — déclarations sur les affaires nationales et œcuméniques",
+        "Bulletins Théologiques — réflexions du Secrétaire Général et des dirigeants d'église",
+        "Notes de Politique — documents de position sur l'éducation, la santé et les questions sociales",
+        "Publications Commémoratives Kwibuka — livrets et témoignages commémoratifs"
+      ]
+    },
+    "cta": {
+      "title": "Contacter le Secrétariat",
+      "desc": "Pour la correspondance officielle, les demandes de partenariat ou les demandes des médias, contactez le Bureau du Secrétaire Général.",
+      "btn": "Nous Contacter"
+    }
+  }
+}

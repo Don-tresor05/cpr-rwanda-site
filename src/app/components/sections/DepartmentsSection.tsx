@@ -1,10 +1,13 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { DEPARTMENTS } from "../../data/departments";
+import { getDepartments } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function DepartmentsSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const departments = getDepartments(t);
   return (
     <section id="departments" ref={ref} className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -15,20 +18,20 @@ export function DepartmentsSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="h-px w-10 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">Our Work</span>
-            <div className="h-px w-10 bg-[#EAD196]" />
+            <div className="h-px w-10 bg-[#8B6543]" />
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("departments.ourWork")}</span>
+            <div className="h-px w-10 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
-            Departments &amp; Projects
+            {t("departments.title")}
           </h2>
           <p className="text-[#4A4A4A] mt-4 max-w-xl mx-auto text-base">
-            CPR's work spans four strategic departments, each addressing a critical dimension of Rwanda's transformation.
+            {t("departments.desc")}
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DEPARTMENTS.map((dept, i) => {
+          {departments.map((dept, i) => {
             const Icon = dept.icon;
             return (
               <motion.div
@@ -36,21 +39,18 @@ export function DepartmentsSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={visible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
-                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 border border-transparent hover:border-[#EAD196]/30 cursor-pointer"
+                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-400 border border-transparent hover:border-[#EAD196]/30 cursor-pointer flex flex-col h-full"
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                  style={{ backgroundColor: `${dept.accent}15` }}
-                >
-                  <Icon size={22} style={{ color: dept.accent }} />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#4E6132]/10 text-[#4E6132] transition-transform duration-300 group-hover:scale-110">
+                  <Icon size={22} strokeWidth={1.75} />
                 </div>
                 <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-2 leading-tight">{dept.title}</h3>
-                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5">{dept.desc}</p>
+                <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5 line-clamp-3">{dept.desc}</p>
                 <a
                   href={dept.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#EAD196] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8B6543] hover:text-[#784B24] transition-colors mt-auto"
                 >
-                  Learn More <ArrowRight size={13} />
+                  {t("departments.learnMore")} <ArrowRight size={13} />
                 </a>
               </motion.div>
             );

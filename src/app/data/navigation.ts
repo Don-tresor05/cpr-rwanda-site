@@ -1,98 +1,88 @@
 import type { NavItem } from "../types";
 
-export const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "#home" },
+export const getNavItems = (t: any): NavItem[] => [
+  { label: t("nav.home"), href: "/" },
   {
-    label: "About Us",
-    href: "#about",
+    label: t("nav.about"),
+    href: "/about",
     children: [
       {
-        heading: "Organization",
+        heading: t("nav.organization"),
         links: [
-          { label: "Who We Are", href: "#who", desc: "Founded in 1963, uniting Rwanda's Protestant churches" },
-          { label: "Vision & Mission", href: "#vision", desc: "Our guiding principles and long-term goals" },
-          { label: "Core Values", href: "#values", desc: "Faith, unity, service, and transformation" },
+          { label: t("nav.whoWeAre"), href: "/about#who-we-are", desc: t("nav.whoWeAreDesc") },
+          { label: t("nav.visionMission"), href: "/about#vision-mission", desc: t("nav.visionMissionDesc") },
+          { label: t("nav.coreValues"), href: "/about#core-values", desc: t("nav.coreValuesDesc") },
         ],
       },
       {
-        heading: "Leadership",
+        heading: t("nav.leadership"),
         links: [
-          { label: "Executive Committee", href: "#exec", desc: "Board of directors and governance structure" },
-          { label: "Organigram", href: "#org", desc: "Organizational structure and departments" },
+          { label: t("nav.execCommittee"), href: "/about#executive-committee", desc: t("nav.execCommitteeDesc") },
+          { label: t("nav.organigram"), href: "/about#organigram", desc: t("nav.organigramDesc") },
         ],
       },
       {
-        heading: "Partnerships",
+        heading: t("nav.partnerships"),
         links: [
-          { label: "Our Partners", href: "#partners", desc: "National and international partner organizations" },
+          { label: t("nav.ourPartners"), href: "/about#our-partners", desc: t("nav.ourPartnersDesc") },
         ],
       },
     ],
   },
   {
-    label: "Secretariat",
-    href: "#secretariat",
+    label: t("nav.secretariat"),
+    href: "/secretariat",
     children: [
       {
-        heading: "General Secretariat",
+        heading: t("nav.generalSecretariat"),
         links: [
-          { label: "SG Office", href: "#sg", desc: "Office of the Secretary General" },
-          { label: "CPR Events", href: "#events", desc: "Conferences, synods, and assemblies" },
-          { label: "Advocacy", href: "#advocacy", desc: "Policy engagement and civic leadership" },
-          { label: "Sustainability", href: "#sustain", desc: "Environmental and institutional sustainability" },
+          { label: t("nav.sgOffice"), href: "/secretariat#sg", desc: t("nav.sgOfficeDesc") },
+          { label: t("nav.cprEvents"), href: "/secretariat#events", desc: t("nav.cprEventsDesc") },
+          { label: t("nav.cprMeetings"), href: "/secretariat#meetings", desc: t("nav.cprMeetingsDesc") },
+          { label: t("nav.advocacy"), href: "/secretariat#advocacy", desc: t("nav.advocacyDesc") },
+          { label: t("nav.sustainability"), href: "/secretariat#sustainability", desc: t("nav.sustainabilityDesc") },
         ],
       },
       {
-        heading: "Publications",
+        heading: t("nav.publications"),
         links: [
-          { label: "SG Publications", href: "#publications", desc: "Reports, newsletters, and communiqués" },
+          { label: t("nav.sgPublications"), href: "/secretariat#publications", desc: t("nav.sgPublicationsDesc") },
         ],
       },
     ],
   },
   {
-    label: "Departments",
-    href: "#departments",
+    label: t("nav.departments"),
+    href: "/departments",
     children: [
       {
-        heading: "Education (BNEP)",
+        heading: t("nav.ourDepartments"),
         links: [
-          { label: "Protestant Education Bureau", href: "#bnep", desc: "Managing 595 primary schools across Rwanda" },
-          { label: "Active Pedagogy (PAP)", href: "#pap", desc: "Modern participatory teaching methods" },
-          { label: "Education Partners", href: "#edu-partners", desc: "Partners supporting education programs" },
-        ],
-      },
-      {
-        heading: "Gender & Health",
-        links: [
-          { label: "Fight Against GBV", href: "#gbv", desc: "Gender-based violence prevention and response" },
-          { label: "Trauma Counseling", href: "#trauma", desc: "Post-genocide healing and reconciliation" },
-          { label: "HIV/AIDS Awareness", href: "#hiv", desc: "Community health education programs" },
-        ],
-      },
-      {
-        heading: "Evangelism",
-        links: [
-          { label: "Youth Projects", href: "#youth", desc: "Empowering Rwanda's next generation" },
-          { label: "Evangelism Centers", href: "#centers", desc: "Outreach and church planting" },
+          { label: t("nav.generalSecretary"), href: "/departments#gs", desc: t("nav.generalSecretaryDesc") },
+          { label: t("nav.education"), href: "/departments#bnep", desc: t("nav.educationDesc") },
+          { label: t("nav.diakonia"), href: "/departments#diakonia", desc: t("nav.diakoniaDesc") },
+          { label: t("nav.finance"), href: "/departments#finance", desc: t("nav.financeDesc") },
+          { label: t("nav.youthProgram"), href: "/departments#youth", desc: t("nav.youthProgramDesc") },
+          { label: t("nav.genderPromotion"), href: "/departments#gender", desc: t("nav.genderPromotionDesc") },
+          { label: t("nav.radioStation"), href: "/departments#radio", desc: t("nav.aboutRadioDesc") },
         ],
       },
     ],
   },
   {
-    label: "Radio Inkoramutima",
-    href: "#radio",
+    label: t("nav.radio"),
+    href: "/#radio",
     children: [
       {
-        heading: "Radio Station",
+        heading: t("nav.radioStation"),
         links: [
-          { label: "About the Radio", href: "#radio-about", desc: "107.1 FM — Voice of the Heart" },
-          { label: "Editorial Line", href: "#editorial", desc: "Evangelization, unity & development" },
-          { label: "Programs & Activities", href: "#programs", desc: "Schedule, shows, and podcasts" },
+          { label: t("nav.aboutRadio"), href: "/#radio-about", desc: t("nav.aboutRadioDesc") },
+          { label: t("nav.editorialLine"), href: "/#editorial", desc: t("nav.editorialLineDesc") },
+          { label: t("nav.programs"), href: "/#programs", desc: t("nav.programsDesc") },
         ],
       },
     ],
   },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: t("nav.gallery"), href: "/#gallery" },
+  { label: t("nav.news"), href: "/newsroom" },
 ];

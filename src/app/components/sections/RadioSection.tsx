@@ -1,9 +1,11 @@
 import { motion } from "motion/react";
 import { Radio, BookOpen, Shield, Globe, PlayCircle } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function RadioSection() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
   return (
     <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
       <div className="absolute inset-0">
@@ -22,22 +24,22 @@ export function RadioSection() {
             animate={visible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-3 bg-[#EAD196]/15 border border-[#EAD196]/30 rounded-full px-4 py-2 mb-6">
-              <Radio size={14} className="text-[#EAD196]" />
-              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">On Air 24/7</span>
+            <div className="inline-flex items-center gap-3 bg-[#BC8A5F]/15 border border-[#BC8A5F]/30 rounded-full px-4 py-2 mb-6">
+              <Radio size={14} className="text-[#BC8A5F]" />
+              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">{t("radio.nowPlaying")}</span>
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </div>
 
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-6xl text-white leading-tight mb-2">
-              Radio
-            </h2>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-6xl text-[#EAD196] leading-tight mb-6">
-              Inkoramutima
-            </h2>
+            <img 
+              src="/assets/Inkoramutima-Logo.jpg" 
+              alt={t("radio.title")} 
+              className="h-16 lg:h-20 w-auto mb-6"
+            />
             <p className="text-white/60 text-lg italic mb-2">&ldquo;Voice of the Heart&rdquo;</p>
-            <p className="text-white/75 text-base leading-relaxed mb-8">
-              Broadcasting at <strong className="text-[#EAD196]">107.1 FM</strong> across Rwanda, Radio Inkoramutima carries messages of evangelization, national unity, and holistic community development — healing hearts and building bridges since its founding.
-            </p>
+            <p 
+              className="text-white/75 text-base leading-relaxed mb-8"
+              dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
+            />
 
             <div className="grid grid-cols-3 gap-4 mb-8">
               {([
@@ -46,18 +48,18 @@ export function RadioSection() {
                 { icon: Globe, label: "Development" },
               ] as const).map(({ icon: Icon, label }) => (
                 <div key={label} className="bg-white/8 border border-white/10 rounded-xl p-4 text-center">
-                  <Icon size={20} className="text-[#EAD196] mx-auto mb-2" />
+                  <Icon size={20} className="text-[#BC8A5F] mx-auto mb-2" />
                   <div className="text-white text-xs font-semibold">{label}</div>
                 </div>
               ))}
             </div>
 
             <div className="flex gap-4">
-              <a href="#radio" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-6 py-3 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 text-sm">
-                <PlayCircle size={16} /> Listen Live
+              <a href="#radio" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
+                <PlayCircle size={16} /> {t("radio.listenBtn")}
               </a>
               <a href="#programs" className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm">
-                Program Guide
+                {t("radio.scheduleBtn")}
               </a>
             </div>
           </motion.div>
@@ -69,19 +71,19 @@ export function RadioSection() {
             className="hidden lg:flex justify-center"
           >
             <div className="relative">
-              <div className="w-72 h-72 rounded-full bg-[#EAD196]/10 border border-[#EAD196]/20 flex items-center justify-center">
-                <div className="w-52 h-52 rounded-full bg-[#EAD196]/15 border border-[#EAD196]/30 flex items-center justify-center">
-                  <div className="w-36 h-36 rounded-full bg-[#EAD196]/20 border border-[#EAD196]/40 flex items-center justify-center">
+              <div className="w-72 h-72 rounded-full bg-[#BC8A5F]/10 border border-[#BC8A5F]/20 flex items-center justify-center">
+                <div className="w-52 h-52 rounded-full bg-[#BC8A5F]/15 border border-[#BC8A5F]/30 flex items-center justify-center">
+                  <div className="w-36 h-36 rounded-full bg-[#BC8A5F]/20 border border-[#BC8A5F]/40 flex items-center justify-center">
                     <div className="text-center">
-                      <Radio size={40} className="text-[#EAD196] mx-auto mb-2" />
+                      <Radio size={40} className="text-[#BC8A5F] mx-auto mb-2" />
                       <div className="font-['Outfit'] font-black text-white text-3xl">107.1</div>
-                      <div className="text-[#EAD196] text-sm font-semibold">FM</div>
+                      <div className="text-[#BC8A5F] text-sm font-semibold">FM</div>
                     </div>
                   </div>
                 </div>
               </div>
               {/* Animated rings */}
-              <div className="absolute inset-0 rounded-full border border-[#EAD196]/20 animate-ping" style={{ animationDuration: "3s" }} />
+              <div className="absolute inset-0 rounded-full border border-[#BC8A5F]/20 animate-ping" style={{ animationDuration: "3s" }} />
             </div>
           </motion.div>
         </div>

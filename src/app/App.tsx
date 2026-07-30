@@ -1,33 +1,47 @@
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router";
 import { Header } from "./components/layout/Header";
-import { HeroSection } from "./components/sections/HeroSection";
-import { StatsSection } from "./components/sections/StatsSection";
-import { AboutPreview } from "./components/sections/AboutPreview";
-import { DepartmentsSection } from "./components/sections/DepartmentsSection";
-import { NewsSection } from "./components/sections/NewsSection";
-import { RadioSection } from "./components/sections/RadioSection";
-import { TestimonialsSection } from "./components/sections/TestimonialsSection";
-import { PartnersSection } from "./components/sections/PartnersSection";
-import { GalleryPreview } from "./components/sections/GalleryPreview";
-import { CTABanner } from "./components/sections/CTABanner";
 import { Footer } from "./components/layout/Footer";
+import { ScrollProgress } from "./components/ui/ScrollProgress";
+import { BackToTop } from "./components/ui/BackToTop";
+import { Home } from "./pages/Home";
+import { AboutUs } from "./pages/AboutUs";
+import { Secretariat } from "./pages/Secretariat";
+import { Departments } from "./pages/Departments";
+import { Newsroom } from "./pages/Newsroom";
+import { NewsDetail } from "./pages/NewsDetail";
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 export default function App() {
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
+      <BackToTop />
+      <ScrollToTop />
       <Header />
-      <main>
-        <HeroSection />
-        <StatsSection />
-        <AboutPreview />
-        <DepartmentsSection />
-        <NewsSection />
-        <RadioSection />
-        <TestimonialsSection />
-        <PartnersSection />
-        <GalleryPreview />
-        <CTABanner />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/secretariat" element={<Secretariat />} />
+        <Route path="/departments" element={<Departments />} />
+        <Route path="/newsroom" element={<Newsroom />} />
+        <Route path="/newsroom/:slug" element={<NewsDetail />} />
+        <Route path="/news" element={<Newsroom />} />
+        <Route path="/news/:slug" element={<NewsDetail />} />
+      </Routes>
       <Footer />
     </div>
   );
 }
+

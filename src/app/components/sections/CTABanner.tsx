@@ -1,9 +1,11 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useTranslation } from "react-i18next";
 
 export function CTABanner() {
   const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
   return (
     <section ref={ref} className="py-20 bg-[#4E6132] relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -17,18 +19,17 @@ export function CTABanner() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-white mb-5 leading-tight">
-            Partner With Us in<br />
-            <span className="text-[#EAD196]">Transforming Rwanda</span>
+            {t("cta.title")}
           </h2>
           <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-            Your support empowers churches, educates children, heals trauma survivors, and broadcasts hope across Rwanda's thousand hills.
+            {t("cta.desc")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a href="#donate" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              Donate Now <ArrowRight size={16} />
+              {t("cta.donateBtn")} <ArrowRight size={16} />
             </a>
             <a href="#contact" className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300">
-              Get In Touch
+              {t("cta.contactBtn")}
             </a>
           </div>
         </motion.div>
