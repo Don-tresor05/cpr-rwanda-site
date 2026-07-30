@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
 export function CTABanner() {
   const { ref, visible } = useScrollReveal();
+  const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   return (
     <section ref={ref} className="py-20 bg-[#4E6132] relative overflow-hidden">
@@ -25,9 +27,12 @@ export function CTABanner() {
             {t("cta.desc")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a href="#donate" className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <button
+              onClick={() => showComingSoon(t("cta.donateBtn"))}
+              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+            >
               {t("cta.donateBtn")} <ArrowRight size={16} />
-            </a>
+            </button>
             <a href="#contact" className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300">
               {t("cta.contactBtn")}
             </a>

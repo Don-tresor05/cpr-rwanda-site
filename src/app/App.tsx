@@ -4,6 +4,7 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
 import { BackToTop } from "./components/ui/BackToTop";
+import { ComingSoonProvider } from "./components/ui/ComingSoonModal";
 import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
@@ -29,6 +30,7 @@ export default function App() {
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
+      <ComingSoonProvider>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -41,6 +43,7 @@ export default function App() {
         <Route path="/news/:slug" element={<NewsDetail />} />
       </Routes>
       <Footer />
+      </ComingSoonProvider>
     </div>
   );
 }

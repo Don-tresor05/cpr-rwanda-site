@@ -1,12 +1,14 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 
 export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
+  const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   return (
     <WatermarkSection id="about" ref={ref} className="py-24 bg-white overflow-hidden">
@@ -37,9 +39,12 @@ export function AboutPreview() {
               <a href="#about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 {t("about.historyBtn")} <ArrowRight size={15} />
               </a>
-              <a href="#vision" className="inline-flex items-center gap-2 text-[#4E6132] font-semibold px-6 py-3 rounded-xl border-2 border-[#4E6132]/20 hover:border-[#4E6132] transition-all duration-300 text-sm">
+              <button
+                onClick={() => showComingSoon(t("about.visionBtn"))}
+                className="inline-flex items-center gap-2 text-[#4E6132] font-semibold px-6 py-3 rounded-xl border-2 border-[#4E6132]/20 hover:border-[#4E6132] transition-all duration-300 text-sm cursor-pointer"
+              >
                 {t("about.visionBtn")}
-              </a>
+              </button>
             </div>
           </motion.div>
 
