@@ -26,7 +26,7 @@ const deptImages: Record<string, string> = {
   bnep: "/assets/education.webp",
   diakonia: "/assets/handover.webp",
   finance: "/assets/autorites.webp",
-  youth: "/assets/gahini-1.webp",
+  youth: "/assets/Youth2.webp",
   gender: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
   radio: "/assets/radio-studio.webp",
 };
