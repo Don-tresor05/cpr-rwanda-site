@@ -278,6 +278,119 @@
     "next": "Suivant",
     "noNewsFound": "Aucun article trouvé dans cette catégorie."
   },
+  "departmentsPage": {
+    "heroTag": "Nos Départements",
+    "heroTitle": "Départements",
+    "heroDesc": "Sept départements stratégiques qui animent la mission du CPR dans les domaines de l'éducation, du développement, des finances, de la jeunesse, du genre, des communications et de la gouvernance.",
+    "introTag": "Notre Structure",
+    "introTitle": "Départements du Conseil Protestant du Rwanda",
+    "introDesc": "Le travail du CPR est organisé à travers sept départements spécialisés, chacun dirigé par des professionnels expérimentés et soutenu par une équipe dévouée. Ensemble, ils mettent en œuvre des programmes qui touchent chaque province du Rwanda, de l'éducation et la santé à l'autonomisation des jeunes et au développement communautaire.",
+    "nav": {
+      "gs": "Secrétariat Général",
+      "bnep": "Éducation / BNEP",
+      "diakonia": "Diaconie / Développement",
+      "finance": "Finances & Mobilisation",
+      "youth": "Programme Jeunesse",
+      "gender": "Promotion du Genre",
+      "radio": "Radio Inkoramutima"
+    },
+    "cta": {
+      "title": "Partenaires avec nos Départements",
+      "desc": "Que ce soit dans l'éducation, le développement, la santé ou l'autonomisation des jeunes — votre organisation peut faire la différence aux côtés des équipes départementales dévouées du CPR.",
+      "btn": "Contactez-Nous"
+    },
+    "gs": {
+      "tag": "Direction Exécutive",
+      "title": "Bureau du Secrétariat Général",
+      "desc": "Le Secrétaire Général assure le leadership stratégique, coordonne toutes les activités départementales et représente le CPR aux niveaux national et international. Ce bureau garantit la cohérence institutionnelle et l'alignement avec la mission et la vision du CPR.",
+      "body": [
+        "Planification stratégique et gouvernance institutionnelle dans toutes les églises membres",
+        "Coordination de l'Assemblée Générale, du Comité Exécutif et des réunions du Bureau",
+        "Représentation officielle aux forums gouvernementaux, œcuméniques et internationaux",
+        "Affaires juridiques, ressources humaines et communication institutionnelle",
+        "Développement de partenariats avec des organisations locales et internationales",
+        "Supervision des rapports annuels, des audits et de la performance organisationnelle"
+      ]
+    },
+    "bnep": {
+      "tag": "Bureau d'Éducation",
+      "title": "Bureau National de l'Éducation Protestante (BNEP)",
+      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 595 écoles primaires et des centaines d'établissements secondaires, le BNEP façonne l'avenir des enfants du Rwanda.",
+      "body": [
+        "Supervision de 595+ écoles primaires protestantes et écoles secondaires associées",
+        "Formation à la Pédagogie Active Participative (PAP) pour les enseignants",
+        "Développement des programmes d'éducation religieuse protestante",
+        "Inspection scolaire, assurance qualité et application des normes éducatives",
+        "Programmes d'éducation de la petite enfance et collèges de formation des enseignants",
+        "Partenariats avec le REB, l'UNICEF et les donateurs internationaux en éducation"
+      ]
+    },
+    "diakonia": {
+      "tag": "Services Sociaux",
+      "title": "Diaconie / Développement",
+      "desc": "Le département de la Diaconie coordonne les services sociaux, les secours humanitaires et les initiatives de développement durable du CPR. Il sert les communautés les plus vulnérables à travers des programmes holistiques.",
+      "body": [
+        "Coordination des secours humanitaires d'urgence et réponse aux catastrophes",
+        "Programmes de développement communautaire axés sur les moyens de subsistance durables",
+        "Psychotraumatologie et guérison des traumatismes — certification de conseillers",
+        "Initiatives d'eau, d'assainissement et de santé (WASH) dans les communautés rurales",
+        "Renforcement des capacités des dirigeants d'église en gestion de projets",
+        "Partenariats avec Bread for the World, FECCLAHA et les ONG locales"
+      ]
+    },
+    "finance": {
+      "tag": "Gestion des Ressources",
+      "title": "Finances & Mobilisation des Ressources",
+      "desc": "Le département des Finances assure la durabilité institutionnelle du CPR grâce à une administration financière transparente, une mobilisation stratégique des ressources et une supervision rigoureuse.",
+      "body": [
+        "Préparation du budget, suivi et rapports financiers aux parties prenantes",
+        "Gestion des fonds des donateurs et conformité des subventions",
+        "Audit interne, gestion des risques et systèmes de contrôle financier",
+        "Stratégies de mobilisation des ressources incluant contributions des églises",
+        "Paie, approvisionnement et gestion des actifs dans tous les départements",
+        "États financiers trimestriels et annuels pour le Comité Exécutif"
+      ]
+    },
+    "youth": {
+      "tag": "Prochaine Génération",
+      "title": "Programme Jeunesse",
+      "desc": "Le Programme Jeunesse autonomise les jeunes Rwandais grâce à une formation au leadership basée sur la foi, des initiatives de consolidation de la paix et des projets de réconciliation.",
+      "body": [
+        "Sommets annuels de la Jeunesse sur la Paix et la Réconciliation",
+        "Camps de développement du leadership et programmes de formation professionnelle",
+        "Évangélisation numérique et formation aux médias pour jeunes communicateurs",
+        "Clubs anti-traumatisme dans les écoles pour la sensibilisation à la santé mentale",
+        "Programmes sportifs et d'échanges culturels inter-ecclésiaux",
+        "Programmes de bourses et de mentorat pour les jeunes leaders prometteurs"
+      ]
+    },
+    "gender": {
+      "tag": "Genre & Développement des Femmes",
+      "title": "Département de la Promotion du Genre",
+      "desc": "Le département de la Promotion du Genre défend l'égalité des sexes, l'autonomisation des femmes et la lutte contre les violences basées sur le genre (VBG) dans les églises membres et les communautés.",
+      "body": [
+        "Intégration du genre dans tous les départements du CPR et programmes des églises membres",
+        "Formation à la prévention et réponse aux VBG pour les dirigeants d'église",
+        "Programmes d'autonomisation économique des femmes — groupes d'épargne et entrepreneuriat",
+        "Développement du leadership des femmes dans les structures de gouvernance ecclésiale",
+        "Campagnes de plaidoyer pour les droits des femmes et la protection de l'enfance",
+        "Partenariats avec les mécanismes gouvernementaux de genre et organisations internationales"
+      ]
+    },
+    "radio": {
+      "tag": "Médias & Communications",
+      "title": "Radio Inkoramutima 107.1 FM",
+      "desc": "Radio Inkoramutima ('Voix du Cœur') est la station de radio officielle du Conseil Protestant du Rwanda. Diffusant depuis 2005 sur 107.1 FM, elle atteint les communautés de tout le Rwanda.",
+      "body": [
+        "Émissions quotidiennes de dévotion, sermons et contenu basé sur la foi",
+        "Actualités communautaires, annonces publiques et messages de développement",
+        "Émissions de conseil en traumatisme et santé mentale pour les auditeurs ruraux",
+        "Programmes pour les jeunes et les femmes favorisant la cohésion sociale",
+        "Couverture en direct des événements du CPR, des synodes et des commémorations nationales",
+        "Partenariats avec d'autres radios communautaires et organisations médiatiques"
+      ]
+    }
+  },
   "secretariatPage": {
     "heroTag": "Secrétariat Général",
     "heroTitle": "Secrétariat",
@@ -330,12 +443,12 @@
       "title": "Conférences, Synodes & Assemblées",
       "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
       "body": [
-        "Assemblée Générale annuelle des 25 églises membres",
-        "Synodes biennaux pour la réflexion théologique et la révision des politiques",
-        "Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
-        "Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
-        "Retraites de leadership et ateliers de renforcement des capacités",
-        "Assemblées des jeunes et des femmes pour une participation inclusive"
+        "1. Assemblée Générale annuelle des 25 églises membres",
+        "2. Synodes biennaux pour la réflexion théologique et la révision des politiques",
+        "3. Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
+        "4. Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
+        "5. Retraites de leadership et ateliers de renforcement des capacités",
+        "6. Assemblées des jeunes et des femmes pour une participation inclusive"
       ]
     },
     "advocacy": {

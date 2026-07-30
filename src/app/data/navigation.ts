@@ -53,18 +53,18 @@ export const getNavItems = (t: any): NavItem[] => [
   },
   {
     label: t("nav.departments"),
-    href: "/#departments",
+    href: "/departments",
     children: [
       {
         heading: t("nav.ourDepartments"),
         links: [
-          { label: t("nav.generalSecretary"), href: "/#gs", desc: t("nav.generalSecretaryDesc") },
-          { label: t("nav.education"), href: "/#bnep", desc: t("nav.educationDesc") },
-          { label: t("nav.diakonia"), href: "/#diakonia", desc: t("nav.diakoniaDesc") },
-          { label: t("nav.finance"), href: "/#finance", desc: t("nav.financeDesc") },
-          { label: t("nav.youthProgram"), href: "/#youth", desc: t("nav.youthProgramDesc") },
-          { label: t("nav.genderPromotion"), href: "/#gender", desc: t("nav.genderPromotionDesc") },
-          { label: t("nav.radioStation"), href: "/#radio", desc: t("nav.aboutRadioDesc") },
+          { label: t("nav.generalSecretary"), href: "/departments#gs", desc: t("nav.generalSecretaryDesc") },
+          { label: t("nav.education"), href: "/departments#bnep", desc: t("nav.educationDesc") },
+          { label: t("nav.diakonia"), href: "/departments#diakonia", desc: t("nav.diakoniaDesc") },
+          { label: t("nav.finance"), href: "/departments#finance", desc: t("nav.financeDesc") },
+          { label: t("nav.youthProgram"), href: "/departments#youth", desc: t("nav.youthProgramDesc") },
+          { label: t("nav.genderPromotion"), href: "/departments#gender", desc: t("nav.genderPromotionDesc") },
+          { label: t("nav.radioStation"), href: "/departments#radio", desc: t("nav.aboutRadioDesc") },
         ],
       },
     ],

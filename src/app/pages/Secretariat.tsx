@@ -18,7 +18,50 @@ interface SubSection {
   desc: string;
   body: string[];
   accent: string;
+  image: string;
 }
+
+const secImages: Record<string, string> = {
+  sg: "/assets/secretariat-sg.webp",
+  events: "/assets/secretariat-events.webp",
+  meetings: "/assets/secretariat-meetings.webp",
+  advocacy: "/assets/secretariat-advocacy.webp",
+  sustainability: "/assets/secretariat-sustainability.webp",
+  publications: "/assets/secretariat-publications.webp",
+};
+
+const secStats: Record<string, { label: string; value: string }[]> = {
+  sg: [
+    { label: "Member Churches", value: "25+" },
+    { label: "Staff Members", value: "50+" },
+    { label: "Years Active", value: "60+" },
+  ],
+  events: [
+    { label: "Annual Assemblies", value: "1" },
+    { label: "Biennial Synods", value: "1" },
+    { label: "Youth Summits", value: "5+" },
+  ],
+  meetings: [
+    { label: "Comm. Sessions", value: "4/yr" },
+    { label: "Board Meetings", value: "6/yr" },
+    { label: "Retreats", value: "1/yr" },
+  ],
+  advocacy: [
+    { label: "Policy Areas", value: "5+" },
+    { label: "Nat. Forums", value: "10+" },
+    { label: "Intl. Platforms", value: "3+" },
+  ],
+  sustainability: [
+    { label: "Tree Initiatives", value: "15+" },
+    { label: "Green Schools", value: "50+" },
+    { label: "Partners", value: "8+" },
+  ],
+  publications: [
+    { label: "Annual Reports", value: "60+" },
+    { label: "Newsletters", value: "200+" },
+    { label: "Communiqués", value: "100+" },
+  ],
+};
 
 export function Secretariat() {
   const [activeSection, setActiveSection] = useState("");
@@ -74,6 +117,7 @@ export function Secretariat() {
       desc: t("secretariatPage.sg.desc"),
       body: t("secretariatPage.sg.body", { returnObjects: true }) as string[],
       accent: "#4E6132",
+      image: secImages.sg,
     },
     {
       id: "events",
@@ -83,6 +127,7 @@ export function Secretariat() {
       desc: t("secretariatPage.events.desc"),
       body: t("secretariatPage.events.body", { returnObjects: true }) as string[],
       accent: "#8B6543",
+      image: secImages.events,
     },
     {
       id: "meetings",
@@ -92,6 +137,7 @@ export function Secretariat() {
       desc: t("secretariatPage.meetings.desc"),
       body: t("secretariatPage.meetings.body", { returnObjects: true }) as string[],
       accent: "#4E6132",
+      image: secImages.meetings,
     },
     {
       id: "advocacy",
@@ -101,6 +147,7 @@ export function Secretariat() {
       desc: t("secretariatPage.advocacy.desc"),
       body: t("secretariatPage.advocacy.body", { returnObjects: true }) as string[],
       accent: "#8B6543",
+      image: secImages.advocacy,
     },
     {
       id: "sustainability",
@@ -110,6 +157,7 @@ export function Secretariat() {
       desc: t("secretariatPage.sustainability.desc"),
       body: t("secretariatPage.sustainability.body", { returnObjects: true }) as string[],
       accent: "#4E6132",
+      image: secImages.sustainability,
     },
     {
       id: "publications",
@@ -119,6 +167,7 @@ export function Secretariat() {
       desc: t("secretariatPage.publications.desc"),
       body: t("secretariatPage.publications.body", { returnObjects: true }) as string[],
       accent: "#8B6543",
+      image: secImages.publications,
     },
   ];
 
@@ -236,7 +285,7 @@ export function Secretariat() {
                 transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                 className="flex-shrink-0"
               >
-                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-2xl overflow-hidden border-4 border-[#4E6132]/20 shadow-xl">
+                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl">
                   <img
                     src="/assets/Mutabazi_Samuel.webp"
                     alt="Rev. Samuel Mutabazi"
@@ -313,9 +362,8 @@ export function Secretariat() {
 
       {/* Sections */}
       {sections.map((sec, i) => {
-        const Icon = sec.icon;
         const isEven = i % 2 === 0;
-        return <SectionBlock key={sec.id} sec={sec} Icon={Icon} isEven={isEven} index={i} />;
+        return <SectionBlock key={sec.id} sec={sec} stats={secStats[sec.id] ?? []} isEven={isEven} index={i} />;
       })}
 
       {/* Contact CTA */}
@@ -375,47 +423,130 @@ export function Secretariat() {
   );
 }
 
-function SectionBlock({ sec, Icon, isEven, index }: { sec: SubSection; Icon: LucideIcon; isEven: boolean; index: number }) {
+function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: { label: string; value: string }[]; isEven: boolean; index: number }) {
   const { ref, visible } = useScrollReveal();
+  const blockRef = useRef<HTMLDivElement>(null);
+  const Icon = sec.icon;
+
+  const { scrollYProgress } = useScroll({
+    target: blockRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <WatermarkSection
+    <section
       id={sec.id}
-      className={`py-20 lg:py-28 scroll-mt-32 ${isEven ? "bg-white" : "bg-[#F8F9F4]"}`}
+      ref={blockRef}
+      className={`relative scroll-mt-20 overflow-hidden ${
+        isEven ? "bg-white" : "bg-[#F8F9F4]"
+      }`}
     >
+      {/* Decorative side accent bar */}
+      <div
+        className="absolute top-0 left-0 w-1.5 h-full"
+        style={{ backgroundColor: sec.accent }}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
         <div
-          className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
+          className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
             !isEven ? "lg:[&>*:first-child]:order-2" : ""
           }`}
         >
+          {/* Content side */}
           <motion.div
             ref={ref}
             initial={{ opacity: 0, x: isEven ? -40 : 40 }}
             animate={visible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2">
-              <div className="h-px w-8 bg-[#8B6543]" />
-              <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{sec.tag}</span>
-              <div className="h-px w-8 bg-[#8B6543]" />
+            {/* Tag */}
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div
+                className="h-px w-8"
+                style={{ backgroundColor: sec.accent }}
+              />
+              <span
+                className="text-xs font-bold uppercase tracking-widest"
+                style={{ color: sec.accent }}
+              >
+                {sec.tag}
+              </span>
+              <div
+                className="h-px w-8"
+                style={{ backgroundColor: sec.accent }}
+              />
             </div>
-            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-4">{sec.title}</h2>
-            <p className="text-[#4A4A4A] text-lg leading-relaxed mb-6">{sec.desc}</p>
-            <ul className="space-y-3">
+
+            {/* Title with icon */}
+            <div className="flex items-start gap-4 mb-5">
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg"
+                style={{ backgroundColor: sec.accent }}
+              >
+                <Icon size={28} color="white" strokeWidth={1.5} />
+              </div>
+              <h2 
+                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                style={{ color: sec.accent }}
+              >
+                {sec.title}
+              </h2>
+            </div>
+
+            <p className="text-[#4A4A4A] text-base lg:text-lg leading-relaxed mb-8">
+              {sec.desc}
+            </p>
+
+            {/* Stats mini-cards */}
+            {stats.length > 0 && (
+              <div className="grid grid-cols-3 gap-3 mb-8">
+                {stats.map((stat, idx) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={visible ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.1 }}
+                    className="bg-white rounded-xl p-3.5 text-center shadow-sm border border-[#4E6132]/5"
+                  >
+                    <div
+                      className="text-lg font-black"
+                      style={{ color: sec.accent }}
+                    >
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] text-[#4A4A4A]/60 uppercase tracking-wider mt-0.5">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {/* Bullet list */}
+            <ul className="space-y-2.5">
               {sec.body.map((item, idx) => (
                 <motion.li
                   key={idx}
                   initial={{ opacity: 0, x: -15 }}
                   animate={visible ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.15 + idx * 0.08, ease: "easeOut" }}
-                  className="flex items-start gap-3 text-[#4A4A4A]"
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.3 + idx * 0.07,
+                    ease: "easeOut",
+                  }}
+                  className="flex items-start gap-3 text-[#4A4A4A] text-sm lg:text-base"
                 >
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={visible ? { scale: 1 } : {}}
-                    transition={{ duration: 0.3, delay: 0.15 + idx * 0.08, type: "spring", stiffness: 300 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.3 + idx * 0.07,
+                      type: "spring",
+                      stiffness: 300,
+                    }}
                     className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                     style={{ backgroundColor: sec.accent }}
                   />
@@ -425,33 +556,63 @@ function SectionBlock({ sec, Icon, isEven, index }: { sec: SubSection; Icon: Luc
             </ul>
           </motion.div>
 
+          {/* Image side */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, rotateY: isEven ? 10 : -10 }}
-            animate={visible ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={visible ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-            className="flex justify-center"
-            style={{ perspective: "1000px" }}
+            className="relative"
           >
-            <motion.div
-              whileHover={{ scale: 1.03, rotateY: 3 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-full max-w-sm aspect-square rounded-3xl flex flex-col items-center justify-center gap-6 shadow-xl cursor-default"
-              style={{ backgroundColor: sec.accent }}
-            >
+            {/* Image with overlay */}
+            <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
               <motion.div
-                initial={{ scale: 0 }}
-                animate={visible ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.35, type: "spring", stiffness: 200 }}
-              >
-                <Icon size={72} color="white" strokeWidth={1.2} />
-              </motion.div>
-              <span className="font-['Outfit'] font-black text-2xl text-white text-center px-8 leading-tight">
-                {sec.title}
-              </span>
-            </motion.div>
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${sec.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  y: imageY,
+                }}
+              />
+              {/* Gradient overlay */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(135deg, ${sec.accent}40 0%, transparent 50%, ${sec.accent}20 100%)`,
+                }}
+              />
+              {/* Badge */}
+              <div className="absolute bottom-4 left-4">
+                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+                  <Icon size={14} style={{ color: sec.accent }} />
+                  <span
+                    className="text-xs font-bold"
+                    style={{ color: sec.accent }}
+                  >
+                    {sec.tag}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative element */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={visible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl -z-10"
+              style={{ backgroundColor: `${sec.accent}15` }}
+            />
           </motion.div>
         </div>
       </div>
-    </WatermarkSection>
+
+      {/* Section divider */}
+      {index < 5 && (
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="h-px bg-gradient-to-r from-transparent via-[#4E6132]/10 to-transparent" />
+        </div>
+      )}
+    </section>
   );
 }
