@@ -1,12 +1,11 @@
 import { motion } from "motion/react";
 import { Radio, BookOpen, Shield, Globe, PlayCircle } from "lucide-react";
+import { Link } from "react-router";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
-import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
 export function RadioSection() {
   const { ref, visible } = useScrollReveal();
-  const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   return (
     <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
@@ -56,16 +55,16 @@ export function RadioSection() {
               ))}
             </div>
 
-            <div className="flex gap-4">
-              <a href="#radio" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
+            <div className="flex gap-4 flex-wrap">
+              <Link to="/radio" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
                 <PlayCircle size={16} /> {t("radio.listenBtn")}
-              </a>
-              <button
-                onClick={() => showComingSoon(t("radio.scheduleBtn"))}
-                className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm cursor-pointer"
+              </Link>
+              <Link
+                to="/radio#programs"
+                className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm"
               >
                 {t("radio.scheduleBtn")}
-              </button>
+              </Link>
             </div>
           </motion.div>
 
