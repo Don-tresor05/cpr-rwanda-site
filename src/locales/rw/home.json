@@ -495,5 +495,160 @@
       "desc": "Ku nyandiko zidasanzwe, gusaba ubufatanye, cyangwa ibibazo by'itangazamakuru, twandikire Ibiro by'Umunyamabanga Mukuru.",
       "btn": "Twandikire"
     }
+  },
+  "radioPage": {
+    "heroTag": "Radiyo Inkoramutima",
+    "heroTitle": "107.1 FM — Gutangaza Ibyiringiro",
+    "heroDesc": "Ijwi ryemewe ry'Inama y'Abaporotesitanti mu Rwanda, rigera mu miryango ya buri kantu k'igihugu n'ubutumwa bw'ukwizera, ubumwe n'iterambere rusange.",
+    "heroCta": "Umva ku Mubonano",
+    "heroCtaSecondary": "Ibyerekeye Radiyo",
+    "introTag": "Amateka Yacu",
+    "introTitle": "Ijwi ry'Umutima",
+    "introDesc": "Radiyo Inkoramutima (\"Ijwi ry'Umutima\") ni radiyo yemewe y'Inama y'Abaporotesitanti mu Rwanda. Yavutse ku ya 27 Ukuboza 2012, itangaza kuri 107.1 FM — ihuriza hamwe amatorero y'ubumwe bwa CPR, ikwirakwiza Ubutumwa Bwiza, ikanateza imbere iterambere rusange n'imibereho myiza y'abaturage b'u Rwanda.",
+    "nav": {
+      "about": "Ibyerekeye Radiyo",
+      "vision": "Icyerekezo n'Ubutumwa",
+      "editorial": "Urukurikirane rw'Ibiganiro",
+      "programs": "Ibiganiro",
+      "coverage": "Aho Igera",
+      "beneficiaries": "Abayungukiwa"
+    },
+    "about": {
+      "tag": "Amateka",
+      "title": "Kuva mu Nzozi Igaragiraho Ukuri",
+      "desc": "Imbaba na mbere ya Jenoside yakorewe Abatutsi mu 1994, igitekerezo cya radiyo ya CPR cyakomeje kugaragara mu nama z'inzego z'ubuyobozi bwa CPR — ariko nticyashyirwa mu bikorwa. Minisiteri y'Ubwiza (Evangelisation) yasangaga ko itumanaho rya radiyo ari ngombwa kugira ngo Ubutumwa Bwiza bugere ku bantu benshi mu gihugu, mu karere no ku isi hose.",
+      "body": [
+        "Mu ntangiriro, CPR yahirega umwanya ku Radiyo Rwanda y'igihugu itangira gutangaza ubutumwa bw'ubwiza mu minota 30.",
+        "CPR yubatse sitidiyo nto ku biro byayo by'ibanze i Kicukiro, yakoreshwaga n'Ishami ry'Itumanaho n'Ubwiza mu gutegura no guhindura ibiganiro by'ubwiza mbere yo kubitangaza kuri Radiyo Rwanda.",
+        "Aya mafaranga y'abaporotesitanti yo ku cyumweru yatangazwaga ku mubonano na Radiyo Rwanda akoresheje sitidiyo ebyiri — imwe kuri katedrali ya Saint Etienne y'I turiri rya Angilika (Dioseze ya Kigali) n'iyindi ku mugaragaro wa Kiyovu w'Itorero rya Presbyteriya.",
+        "Mu 2012, Umwanditsi Mukuru wa CPR, hamwe n'itsinda ry'abatekiniki b'Ishami rya Mission na Mobilisation y'Amatorero hamwe n'abatekiniki ba radiyo, bakoranye ubushakashatsi bwo gushinga Radiyo Inkoramutima.",
+        "Ku ya 27 Ukuboza 2012, inzozi z'imyaka myinshi zibaye impamo: Radiyo Inkoramutima yavutse.",
+        "Uyu munsi sitidiyo ikora amasaha 17 buri munsi — kuva saa kumi n'imwe z'ijoro (5:00) kugeza saa kumi na zine z'ijoro (22:00) — ku biro byayo byo mu Murenge wa Kimihurura, Akarere ka Gasabo, Kigali."
+      ]
+    },
+    "vision": {
+      "tag": "Icyerekezo n'Ubutumwa",
+      "visionTag": "Icyerekezo Cyacu",
+      "visionSub": "Aho tugana",
+      "visionDesc": "Guhuza abanyamuryango ba CPR mu kwikwiragiza Ubutumwa Bwiza, kurwanya inyigisho z'ibinyoma no guteza imbere iterambere rusange n'imibereho myiza y'abaturage b'u Rwanda by'umwihariko n'isi muri rusange.",
+      "missionTag": "Ubutumwa Bwacu",
+      "missionSub": "Ibyo dukora buri munsi",
+      "missionDesc": "Kumenyesha, kurera no guhagurukira abaturage mu nzego zitandukanye z'imibereho y'igihugu."
+    },
+    "editorial": {
+      "tag": "Urukurikirane rw'Ibiganiro",
+      "title": "Ubwiza, Ubumwe n'Iterambere Rusange",
+      "desc": "Kuva mu ntangiriro, urukurikirane rw'ibiganiro bya Radiyo Inkoramutima rwubakiye ku nkingi eshatu zishyira mu bikorwa buri kiganiro dutangaza.",
+      "items": [
+        {
+          "title": "Ubwiza (Evangelisation)",
+          "desc": "Kubwira Ubutumwa Bwiza bwa Yesu Kristo binyuze mu masengesho, inyigisho n'ibiganiro by'ukwizera bigera mu miryango ibihumbi buri munsi."
+        },
+        {
+          "title": "Ubumwe",
+          "desc": "Guteza imbere ubumwe bw'abizera mu itandukaniro ryabo, gukomeza ubwiyunge bw'igihugu n'umurongo uri hagati y'amatorero y'ubumwe bwa CPR."
+        },
+        {
+          "title": "Iterambere Rusange",
+          "desc": "Gushyigikira uburezi, ubuzima, ubuhinzi, ibidukikije n'imibereho myiza binyuze mu biganiro by'ubumenyi n'ubutumwa bw'abaturage."
+        }
+      ]
+    },
+    "programs": {
+      "tag": "Ibiganiro",
+      "title": "Umunsi Wuzuye w'Ibyiringiro kuri 107.1 FM",
+      "desc": "Radiyo Inkoramutima itangaza amasaha 17 buri munsi, kuva saa kumi n'imwe z'ijoro (5:00) kugeza saa kumi na zine z'ijoro (22:00), mu biganiro bimenyesha, birera kandi bihagurukira.",
+      "items": [
+        {
+          "time": "5:00 — 7:00",
+          "title": "Isengesho ryo mu Gitondo n'Umuziki wa Gospel",
+          "desc": "Tangira umunsi n'isengesho, kuramya no kumviriza umuziki wa gospel ushimishije."
+        },
+        {
+          "time": "7:00 — 9:00",
+          "title": "Amakuru y'Umuryango n'Amamenyekanisha",
+          "desc": "Amakuru y'aho tubana, amamenyekanisha rusange n'ubutumwa bw'iterambere."
+        },
+        {
+          "time": "9:00 — 12:00",
+          "title": "Ubwiza n'Inyigisho",
+          "desc": "Ibyigisho by'amatorero y'ubumwe bwa CPR n'inyigisho z'ukwizera."
+        },
+        {
+          "time": "12:00 — 14:00",
+          "title": "Ubuyobozi mu Byo mu Mutwe n'Ibiganiro",
+          "desc": "Ibiganiro by'ubuzima bwo mu mutwe n'ubwiyunge bigera ku bantu bo mu cyaro."
+        },
+        {
+          "time": "14:00 — 17:00",
+          "title": "Ibiganiro by'Urubyiruko n'Abagore",
+          "desc": "Ibiganiro bishyigikira ubumwe bw'abaturage, ubushobozi bw'abagore n'ubuyobozi bw'urubyiruko."
+        },
+        {
+          "time": "17:00 — 20:00",
+          "title": "Uburezi n'Iterambere",
+          "desc": "Ibiganiro by'ubuzima, ubuhinzi, ibidukikije n'uburezi."
+        },
+        {
+          "time": "20:00 — 22:00",
+          "title": "Isengesho ryo ku Mugoroba n'Amaradiyo ku Mubonano",
+          "desc": "Sanga umunsi mu kuramya, isengesho ryo ku mugoroba n'amaradiyo y'ibyicaro ku mubonano."
+        }
+      ]
+    },
+    "coverage": {
+      "tag": "Aho Igera",
+      "title": "Ijwi Rirenze Imipaka",
+      "desc": "Itangaza kuri 107.1 FM igera ku 65% by'igihugu, Radiyo Inkoramutima imvirwa n'abantu kuva mu burengerazuba kugera mu burasirazuba no kuva mu majyaruguru kugera mu majyepfo y'u Rwanda — no mu bice bimwe by'ibihugu bituberanye.",
+      "stats": [
+        {
+          "value": "107.1",
+          "label": "Frequence FM"
+        },
+        {
+          "value": "65%",
+          "label": "Igihugu Cyose"
+        },
+        {
+          "value": "17h",
+          "label": "Itangazwa Buri Munsi"
+        },
+        {
+          "value": "5",
+          "label": "Ibihugu Bigerwaho"
+        }
+      ],
+      "regions": [
+        "Uburundi",
+        "Uganda",
+        "Tanzaniya",
+        "DRC y'Iburasirazuba"
+      ]
+    },
+    "beneficiaries": {
+      "tag": "Abayungukiwa",
+      "title": "Gukorera Itorero n'Igihugu",
+      "desc": "Radiyo Inkoramutima ikorera amatorero 23 y'Abaporotesitanti bayoboka CPR, imiryango 5 y'Abakristu bayobokamo, ndetse n'abaturage bose b'u Rwanda.",
+      "stats": [
+        {
+          "value": "23",
+          "label": "Amatorero Yayoboka"
+        },
+        {
+          "value": "5",
+          "label": "Imiryango y'Abakristu"
+        },
+        {
+          "value": "13M",
+          "label": "Abaturage b'u Rwanda"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Umvirize Radiyo Inkoramutima",
+      "desc": "Kurikira ibiganiro byacu bya buri munsi kuva saa kumi n'imwe z'ijoro (5:00) kugeza saa kumi na zine z'ijoro (22:00) kuri 107.1 FM — Ijwi ry'Umutima w'Inama y'Abaporotesitanti mu Rwanda.",
+      "btn": "Umva ku Mubonano",
+      "btnSecondary": "Twandikire"
+    }
   }
 }
