@@ -2,6 +2,7 @@ import {
   ChevronRight, ArrowRight, Phone, Mail,
   MapPin, Radio, Facebook, Instagram, Youtube
 } from "lucide-react";
+import { useComingSoon } from "../ui/ComingSoonModal";
 import { getNavItems } from "../../data/navigation";
 import { useTranslation } from "react-i18next";
 
@@ -21,6 +22,7 @@ function XIcon({ size = 15, className = "" }: { size?: number; className?: strin
 
 export function Footer() {
   const { t } = useTranslation("common");
+  const { showComingSoon } = useComingSoon();
   const navItems = getNavItems(t);
   
   return (
@@ -137,8 +139,18 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
           <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. {t("footer.rights")}</span>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white/70 transition-colors">Terms of Service</a>
+            <button
+              onClick={() => showComingSoon("Privacy Policy")}
+              className="hover:text-white/70 transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => showComingSoon("Terms of Service")}
+              className="hover:text-white/70 transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </button>
           </div>
         </div>
       </div>

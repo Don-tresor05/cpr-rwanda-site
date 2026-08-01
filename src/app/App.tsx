@@ -4,10 +4,12 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
 import { BackToTop } from "./components/ui/BackToTop";
+import { ComingSoonProvider } from "./components/ui/ComingSoonModal";
 import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
 import { Departments } from "./pages/Departments";
+import { RadioPage } from "./pages/RadioPage";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
@@ -32,20 +34,23 @@ export default function App() {
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
-      <div className="relative z-10">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/secretariat" element={<Secretariat />} />
-          <Route path="/departments" element={<Departments />} />
-          <Route path="/newsroom" element={<Newsroom />} />
-          <Route path="/newsroom/:slug" element={<NewsDetail />} />
-          <Route path="/news" element={<Newsroom />} />
-          <Route path="/news/:slug" element={<NewsDetail />} />
-        </Routes>
-        <Footer />
-      </div>
+      <ComingSoonProvider>
+        <div className="relative z-10">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/secretariat" element={<Secretariat />} />
+            <Route path="/departments" element={<Departments />} />
+            <Route path="/radio" element={<RadioPage />} />
+            <Route path="/newsroom" element={<Newsroom />} />
+            <Route path="/newsroom/:slug" element={<NewsDetail />} />
+            <Route path="/news" element={<Newsroom />} />
+            <Route path="/news/:slug" element={<NewsDetail />} />
+          </Routes>
+          <Footer />
+        </div>
+      </ComingSoonProvider>
     </div>
   );
 }
