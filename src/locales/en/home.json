@@ -495,5 +495,160 @@
       "desc": "For official correspondence, partnership inquiries, or media requests, contact the Office of the Secretary General.",
       "btn": "Contact Us"
     }
+  },
+  "radioPage": {
+    "heroTag": "Radio Inkoramutima",
+    "heroTitle": "107.1 FM — Broadcasting Hope",
+    "heroDesc": "The official voice of the Protestant Council of Rwanda, reaching communities in every corner of the country with messages of faith, unity, and holistic development.",
+    "heroCta": "Listen Live",
+    "heroCtaSecondary": "About the Radio",
+    "introTag": "Our Story",
+    "introTitle": "The Voice of the Heart",
+    "introDesc": "Radio Inkoramutima (\"Voice of the Heart\") is the official radio station of the Protestant Council of Rwanda. Born on 27 December 2012, the station broadcasts on 107.1 FM — uniting CPR member churches, spreading the Gospel, and promoting the holistic development and social welfare of Rwandan communities.",
+    "nav": {
+      "about": "About Radio",
+      "vision": "Vision & Mission",
+      "editorial": "Editorial Line",
+      "programs": "Programs",
+      "coverage": "Coverage & Reach",
+      "beneficiaries": "Beneficiaries"
+    },
+    "about": {
+      "tag": "Historical Background",
+      "title": "From a Long-Cherished Dream to Reality",
+      "desc": "Many years before the Genocide against the Tutsi in 1994, the idea of a CPR radio kept returning in the discussions of CPR structural organ meetings — but it was never put into practice. The Ministry of Evangelism judged a radio communication tool relevant for spreading the Gospel to a great number of people across the country, the region, and the world.",
+      "body": [
+        "At the beginning, CPR hired airspace on the national Radio Rwanda and started broadcasting evangelization messages for 30 minutes at a time.",
+        "CPR built a small studio at its head offices in Kicukiro, used by the Communication and Evangelization Department to prepare and edit evangelization programmes before they were aired on Radio Rwanda.",
+        "Protestant Sunday services were broadcast live by Radio Rwanda through two technical studios — one at the Saint Etienne cathedral of the Anglican Church of Rwanda (Diocese of Kigali) and the second at the Kiyovu parish of the Presbyterian Church.",
+        "In 2012, the CPR General Secretary, together with the Technical Staff team of the Mission and Church Mobilization Department and the support of radio technicians, conducted a study to establish Radio Inkoramutima.",
+        "On 27 December 2012, the dream of many years became a reality: Radio Inkoramutima was born.",
+        "Today the station operates 17 hours daily — from 5:00 am to 10:00 pm — from its premises at Kimihurura Sector, Gasabo District, Kigali."
+      ]
+    },
+    "vision": {
+      "tag": "Vision & Mission",
+      "visionTag": "Our Vision",
+      "visionSub": "Where we're headed",
+      "visionDesc": "To unite CPR members in spreading the Gospel by fighting against false teaching and promoting the holistic development and social welfare of Rwandan communities in particular and the world in general.",
+      "missionTag": "Our Mission",
+      "missionSub": "What we do every day",
+      "missionDesc": "To inform, educate, and entertain the community in different sectors of national life."
+    },
+    "editorial": {
+      "tag": "Editorial Line",
+      "title": "Evangelization, Unity & Holistic Development",
+      "desc": "From its very beginnings, the editorial line of Radio Inkoramutima has been built on three pillars that shape every programme we broadcast.",
+      "items": [
+        {
+          "title": "Evangelization",
+          "desc": "Sharing the Gospel of Jesus Christ through devotions, sermons, and faith-based programmes that reach thousands of homes every day."
+        },
+        {
+          "title": "Unity",
+          "desc": "Promoting the unity of Christian believers in their diversity, strengthening national reconciliation and the bonds between CPR member churches."
+        },
+        {
+          "title": "Holistic Development",
+          "desc": "Supporting education, health, agriculture, environment, and social welfare through informative programmes and community messaging."
+        }
+      ]
+    },
+    "programs": {
+      "tag": "Programs",
+      "title": "A Full Day of Hope on 107.1 FM",
+      "desc": "Radio Inkoramutima broadcasts 17 hours every day, from 5:00 am to 10:00 pm, with programmes that inform, educate, and entertain.",
+      "items": [
+        {
+          "time": "5:00 — 7:00",
+          "title": "Morning Devotion & Gospel Music",
+          "desc": "Start the day with prayer, worship, and uplifting gospel music."
+        },
+        {
+          "time": "7:00 — 9:00",
+          "title": "Community News & Announcements",
+          "desc": "Local news, public announcements, and development messaging."
+        },
+        {
+          "time": "9:00 — 12:00",
+          "title": "Evangelization & Sermons",
+          "desc": "Preaching from CPR member churches and faith-based teaching."
+        },
+        {
+          "time": "12:00 — 14:00",
+          "title": "Trauma Counseling & Talk Shows",
+          "desc": "Mental health and reconciliation programmes reaching rural listeners."
+        },
+        {
+          "time": "14:00 — 17:00",
+          "title": "Youth & Women's Programmes",
+          "desc": "Programmes promoting social cohesion, women's empowerment, and young leadership."
+        },
+        {
+          "time": "17:00 — 20:00",
+          "title": "Education & Development",
+          "desc": "Health, agriculture, environment, and education programming."
+        },
+        {
+          "time": "20:00 — 22:00",
+          "title": "Evening Devotion & Live Services",
+          "desc": "Close the day with worship, evening devotion, and live coverage of church services."
+        }
+      ]
+    },
+    "coverage": {
+      "tag": "Coverage & Reach",
+      "title": "A Voice That Crosses Borders",
+      "desc": "Broadcasting on 107.1 FM with a coverage of 65% of the country, Radio Inkoramutima can be captured by listeners from West to East and from North to South of Rwanda — and in some parts of neighbouring countries.",
+      "stats": [
+        {
+          "value": "107.1",
+          "label": "FM Frequency"
+        },
+        {
+          "value": "65%",
+          "label": "Countrywide Coverage"
+        },
+        {
+          "value": "17h",
+          "label": "Daily Broadcast"
+        },
+        {
+          "value": "5",
+          "label": "Countries Reached"
+        }
+      ],
+      "regions": [
+        "Burundi",
+        "Uganda",
+        "Tanzania",
+        "Eastern DRC"
+      ]
+    },
+    "beneficiaries": {
+      "tag": "Beneficiaries",
+      "title": "Serving the Church and the Nation",
+      "desc": "Radio Inkoramutima serves the congregations of the 23 Protestant member churches of CPR, 5 Christian member organizations, and the entire Rwandan population.",
+      "stats": [
+        {
+          "value": "23",
+          "label": "Member Churches"
+        },
+        {
+          "value": "5",
+          "label": "Christian Organizations"
+        },
+        {
+          "value": "13M",
+          "label": "Rwandan Population"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Tune In to Radio Inkoramutima",
+      "desc": "Follow our daily programmes from 5:00 am to 10:00 pm on 107.1 FM — the Voice of the Heart of the Protestant Council of Rwanda.",
+      "btn": "Listen Live",
+      "btnSecondary": "Contact Us"
+    }
   }
 }
