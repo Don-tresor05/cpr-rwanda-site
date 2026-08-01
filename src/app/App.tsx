@@ -11,6 +11,8 @@ import { Departments } from "./pages/Departments";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
+import { FixedWatermark } from "./components/ui/FixedWatermark";
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
@@ -25,22 +27,25 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen">
+      <FixedWatermark variant="default" />
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/secretariat" element={<Secretariat />} />
-        <Route path="/departments" element={<Departments />} />
-        <Route path="/newsroom" element={<Newsroom />} />
-        <Route path="/newsroom/:slug" element={<NewsDetail />} />
-        <Route path="/news" element={<Newsroom />} />
-        <Route path="/news/:slug" element={<NewsDetail />} />
-      </Routes>
-      <Footer />
+      <div className="relative z-10">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/secretariat" element={<Secretariat />} />
+          <Route path="/departments" element={<Departments />} />
+          <Route path="/newsroom" element={<Newsroom />} />
+          <Route path="/newsroom/:slug" element={<NewsDetail />} />
+          <Route path="/news" element={<Newsroom />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

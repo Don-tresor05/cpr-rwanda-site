@@ -25,7 +25,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-xs font-semibold text-[#4E6132]/70 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/10">
+            <div className="text-sm font-semibold text-[#4E6132]/80 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/10">
               {col.heading}
             </div>
           )}
@@ -37,12 +37,12 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                   onClick={onClose}
                   className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
                 >
-                  <span className="text-sm font-semibold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
+                  <span className="text-[15px] font-bold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                     <span>{link.label}</span>
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
+                    <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#8B6543]" />
                   </span>
                   {link.desc && (
-                    <span className="text-xs text-[#4E6132]/75 group-hover:text-[#8B6543]/90 leading-tight transition-colors">{link.desc}</span>
+                    <span className="text-[13px] font-medium text-[#4E6132]/75 group-hover:text-[#8B6543]/90 mt-0.5 leading-snug transition-colors">{link.desc}</span>
                   )}
                 </Link>
               </li>
@@ -90,21 +90,17 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
-            : "bg-[#F5F5DC] shadow-sm"
-        }`}
+        className="bg-[#F5F5DC] shadow-sm"
       >
-        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
+          <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center gap-1">
             <img
               src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
-              className="h-10 lg:h-12 w-auto object-contain"
+              className="h-12 lg:h-16 w-auto object-contain"
             />
-            <span className="text-[10px] lg:text-xs font-bold text-[#8B6543] mt-0.5 leading-none tracking-wide">
+            <span className="text-xs lg:text-sm font-bold text-[#8B6543] leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
@@ -136,11 +132,9 @@ export function Header() {
                       />
                     )}
                   </Link>
-                  <AnimatePresence>
-                    {activeMenu === item.label && item.children && (
-                      <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
-                    )}
-                  </AnimatePresence>
+                  {activeMenu === item.label && item.children && (
+                    <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
+                  )}
                 </div>
               );
             })}

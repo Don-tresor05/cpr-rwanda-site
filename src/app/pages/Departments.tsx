@@ -148,7 +148,7 @@ export function Departments() {
   const cta = (dp?.cta as Record<string, string>) ?? {};
 
   return (
-    <main className="bg-white">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
         ref={heroRef}

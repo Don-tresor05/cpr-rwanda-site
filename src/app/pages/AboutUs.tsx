@@ -54,7 +54,7 @@ export function AboutUs() {
   const coreValuesItems = (t("aboutPage.coreValues.items", { returnObjects: true }) as { title: string; desc: string }[]) || [];
 
   return (
-    <main className="bg-white">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
         className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
