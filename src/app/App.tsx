@@ -9,6 +9,7 @@ import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
 import { Departments } from "./pages/Departments";
+import { RadioPage } from "./pages/RadioPage";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/secretariat" element={<Secretariat />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/radio" element={<RadioPage />} />
         <Route path="/newsroom" element={<Newsroom />} />
         <Route path="/newsroom/:slug" element={<NewsDetail />} />
         <Route path="/news" element={<Newsroom />} />

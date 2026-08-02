@@ -71,14 +71,14 @@ export const getNavItems = (t: any): NavItem[] => [
   },
   {
     label: t("nav.radio"),
-    href: "/#radio",
+    href: "/radio",
     children: [
       {
         heading: t("nav.radioStation"),
         links: [
-          { label: t("nav.aboutRadio"), href: "/#radio-about", desc: t("nav.aboutRadioDesc") },
-          { label: t("nav.editorialLine"), href: "/#editorial", desc: t("nav.editorialLineDesc") },
-          { label: t("nav.programs"), href: "/#programs", desc: t("nav.programsDesc") },
+          { label: t("nav.aboutRadio"), href: "/radio#about", desc: t("nav.aboutRadioDesc") },
+          { label: t("nav.editorialLine"), href: "/radio#editorial", desc: t("nav.editorialLineDesc") },
+          { label: t("nav.programs"), href: "/radio#programs", desc: t("nav.programsDesc") },
         ],
       },
     ],

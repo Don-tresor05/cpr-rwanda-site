@@ -11,7 +11,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
-const COMING_SOON = new Set(["/#radio-about", "/#editorial", "/#programs", "/#radio", "/#gallery"]);
+const COMING_SOON = new Set(["/#gallery"]);
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   const { showComingSoon } = useComingSoon();
