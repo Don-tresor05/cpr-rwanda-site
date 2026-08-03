@@ -87,7 +87,7 @@ export function LanguageSwitcher({ variant = "compact", className = "" }: Langua
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full right-0 mt-1 w-32 bg-white/95 backdrop-blur-xl rounded-xl shadow-xl border border-[#4E6132]/10 overflow-hidden z-50"
+            className="absolute top-full right-0 mt-1 w-32 bg-white/95 backdrop-blur-xl rounded-xl shadow-xl border border-[#4E6132]/10 overflow-hidden z-[100]"
           >
             {LANGUAGES.map((lang) => (
               <button

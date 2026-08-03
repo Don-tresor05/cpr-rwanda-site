@@ -57,11 +57,11 @@ export function AboutUs() {
     <main className="bg-white">
       {/* Hero */}
       <div
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center 15%"
+          backgroundPosition: "center 5%"
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">

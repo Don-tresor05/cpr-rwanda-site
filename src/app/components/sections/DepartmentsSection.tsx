@@ -3,10 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { getDepartments } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router";
 
 export function DepartmentsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const navigate = useNavigate();
   const departments = getDepartments(t);
   return (
     <section id="departments" ref={ref} className="py-24 bg-[#F8F9FA]">
@@ -36,6 +38,7 @@ export function DepartmentsSection() {
             return (
               <motion.div
                 key={dept.title}
+                onClick={() => navigate(dept.link)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={visible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
@@ -46,12 +49,13 @@ export function DepartmentsSection() {
                 </div>
                 <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-2 leading-tight">{dept.title}</h3>
                 <p className="text-[#4A4A4A] text-sm leading-relaxed mb-5 line-clamp-3">{dept.desc}</p>
-                <a
-                  href={dept.link}
+                <Link
+                  to={dept.link}
+                  onClick={(e) => e.stopPropagation()}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8B6543] hover:text-[#784B24] transition-colors mt-auto"
                 >
                   {t("departments.learnMore")} <ArrowRight size={13} />
-                </a>
+                </Link>
               </motion.div>
             );
           })}
