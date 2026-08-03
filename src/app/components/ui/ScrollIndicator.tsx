@@ -13,7 +13,7 @@ export function ScrollIndicator() {
   return (
     <button
       onClick={handleScroll}
-      className="absolute bottom-8 right-8 lg:right-12 flex items-center gap-4 text-white hover:text-white transition-colors z-10 cursor-pointer"
+      className="absolute bottom-6 right-6 lg:right-12 flex items-center gap-4 text-white hover:text-white transition-colors z-10 cursor-pointer"
       aria-label="Scroll to content"
     >
       <div className="flex flex-col -space-y-5">

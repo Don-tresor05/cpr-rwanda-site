@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import { ScrollIndicator } from "../ui/ScrollIndicator";
 
 export function HeroSection() {
@@ -14,9 +15,9 @@ export function HeroSection() {
   // We can merge the translated strings with the images from the static slides if we want,
   // but we can also just define the images inline here since we only have 3 slides.
   const slides = [
-    { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0] },
-    { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1] },
-    { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2] },
+    { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
+    { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
+    { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
   ];
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function HeroSection() {
   const slide = slides[active];
 
   return (
-    <section id="home" className="relative h-[75vh] lg:h-[89vh] min-h-[500px] overflow-hidden">
+    <section id="home" className="relative h-[calc(100vh-80px)] lg:h-[calc(100vh-130px)] min-h-[480px] overflow-hidden">
       {/* Background image */}
       <AnimatePresence mode="sync">
         <motion.div
@@ -56,7 +57,7 @@ export function HeroSection() {
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover object-[center_25%]"
+            className="w-full h-full object-cover object-[center_10%]"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#4E6132]/90 via-[#4E6132]/60 to-[#4E6132]/25" />
@@ -96,19 +97,19 @@ export function HeroSection() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="#about"
+                <Link
+                  to={slide.ctaHref}
                   className="inline-flex items-center gap-2 bg-[#8B6543] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />
-                </a>
-                <a
-                  href="#departments"
+                </Link>
+                <Link
+                  to={slide.ctaSecondaryHref}
                   className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/20 transition-all duration-300 text-sm"
                 >
                   {slide.ctaSecondary}
-                </a>
+                </Link>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -116,7 +117,7 @@ export function HeroSection() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
         {slides.map((_, i) => (
           <button
             key={i}

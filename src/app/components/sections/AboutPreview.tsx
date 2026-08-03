@@ -47,15 +47,15 @@ export function AboutPreview() {
               {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+              <Link to="/about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 {t("about.historyBtn")} <ArrowRight size={15} />
-              </a>
-              <button
-                onClick={() => showComingSoon(t("about.visionBtn"))}
+              </Link>
+              <Link
+                to="/about#vision-mission"
                 className="inline-flex items-center gap-2 text-[#4E6132] font-semibold px-6 py-3 rounded-xl border-2 border-[#4E6132]/20 hover:border-[#4E6132] transition-all duration-300 text-sm cursor-pointer"
               >
                 {t("about.visionBtn")}
-              </button>
+              </Link>
             </div>
           </motion.div>
 

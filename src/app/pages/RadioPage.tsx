@@ -68,7 +68,7 @@ export function RadioPage() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[88vh] flex items-end justify-start pb-16 lg:pb-24 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -76,7 +76,7 @@ export function RadioPage() {
             backgroundImage:
               "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/radio-hero.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center 30%",
+            backgroundPosition: "center 10%",
             y: heroBgY,
           }}
         />
@@ -580,16 +580,16 @@ function CoverageBlock() {
             </div>
 
             {/* Regions */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {regions.map((region, i) => (
                 <motion.span
                   key={region}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={visible ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.3, delay: 0.4 + i * 0.08 }}
-                  className="inline-flex items-center gap-1.5 bg-white border border-[#4E6132]/15 rounded-full px-4 py-1.5 text-xs font-semibold text-[#4E6132] shadow-sm"
+                  className="inline-flex items-center gap-2 bg-white border border-[#4E6132]/20 rounded-full px-5 py-2.5 text-sm font-bold text-[#4E6132] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <MapPin size={11} className="text-[#8B6543]" /> {region}
+                  <MapPin size={15} className="text-[#8B6543]" /> {region}
                 </motion.span>
               ))}
             </div>
@@ -659,7 +659,7 @@ function CoverageBlock() {
                     <div className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#EAD196]">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] lg:text-xs text-white/70 uppercase tracking-wider mt-1">
+                    <div className="text-[10px] text-white/75 font-bold uppercase tracking-wider mt-0.5">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -690,7 +690,7 @@ function CoverageStat({ stat, index, active }: { stat: { value: string; label: s
         {display}
         {stat.value.includes(".") ? "" : stat.value.includes("%") ? "%" : stat.value.includes("h") ? "h" : ""}
       </div>
-      <div className="text-[10px] text-[#4A4A4A]/70 uppercase tracking-wider mt-1">{stat.label}</div>
+      <div className="text-[10px] text-[#4A4A4A]/75 font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
     </motion.div>
   );
 }
