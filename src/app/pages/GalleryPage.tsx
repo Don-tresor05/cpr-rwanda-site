@@ -123,7 +123,7 @@ export function GalleryPage() {
       {/* Hero — matches Secretariat/Departments pattern */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -131,7 +131,7 @@ export function GalleryPage() {
             backgroundImage:
               "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/Bisanzeda.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center 30%",
+            backgroundPosition: "center 5%",
             y: heroBgY,
           }}
         />
@@ -142,17 +142,6 @@ export function GalleryPage() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-3 mb-6"
-          >
-            <div className="h-px w-12 bg-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-[3px]">
-              National Ministry, Media & Events
-            </span>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -213,7 +202,7 @@ export function GalleryPage() {
                     <img
                       src={thumb.src}
                       alt={thumb.alt}
-                      className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-[center_15%] block transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                   </div>

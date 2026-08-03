@@ -5,6 +5,7 @@ import {
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { getNavItems } from "../../data/navigation";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 function XIcon({ size = 15, className = "" }: { size?: number; className?: string }) {
   return (
@@ -69,10 +70,10 @@ export function Footer() {
             <ul className="space-y-2.5">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
+                  <Link to={item.href} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -83,19 +84,19 @@ export function Footer() {
             <h4 className="font-['Outfit'] font-bold text-sm uppercase tracking-widest text-[#8B6543] mb-5">{t("nav.departments")}</h4>
             <ul className="space-y-2.5">
               {[
-                t("nav.generalSecretary"),
-                t("nav.education"),
-                t("nav.diakonia"),
-                t("nav.finance"),
-                t("nav.youthProgram"),
-                t("nav.genderPromotion"),
-                t("nav.radioStation")
-              ].map((l) => (
-                <li key={l}>
-                  <a href="#departments" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
+                { label: t("nav.generalSecretary"), href: "/departments#gs" },
+                { label: t("nav.education"), href: "/departments#bnep" },
+                { label: t("nav.diakonia"), href: "/departments#diakonia" },
+                { label: t("nav.finance"), href: "/departments#finance" },
+                { label: t("nav.youthProgram"), href: "/departments#youth" },
+                { label: t("nav.genderPromotion"), href: "/departments#gender" },
+                { label: t("nav.radioStation"), href: "/departments#radio" }
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link to={item.href} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm flex items-center gap-2 group">
                     <ChevronRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    {l}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

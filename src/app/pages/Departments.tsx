@@ -200,7 +200,7 @@ export function Departments() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -208,7 +208,7 @@ export function Departments() {
             backgroundImage:
               "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/departments-hero.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center 30%",
+            backgroundPosition: "center 10%",
             y: heroBgY,
           }}
         />
