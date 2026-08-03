@@ -10,6 +10,7 @@ import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
 import { Departments } from "./pages/Departments";
 import { RadioPage } from "./pages/RadioPage";
+import { GalleryPage } from "./pages/GalleryPage";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/secretariat" element={<Secretariat />} />
         <Route path="/departments" element={<Departments />} />
         <Route path="/radio" element={<RadioPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/newsroom" element={<Newsroom />} />
         <Route path="/newsroom/:slug" element={<NewsDetail />} />
         <Route path="/news" element={<Newsroom />} />

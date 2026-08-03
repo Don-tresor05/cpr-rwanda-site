@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link, useLocation } from "react-router";
 import {
@@ -11,7 +11,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
-const COMING_SOON = new Set(["/#gallery"]);
+const COMING_SOON = new Set<string>([]);
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   const { showComingSoon } = useComingSoon();
@@ -82,12 +82,43 @@ export function Header() {
   const navItems = getNavItems(t);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const mobileOpenRef = useRef(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
+    mobileOpenRef.current = mobileOpen;
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handler = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+
+      const stickyNav = document.querySelector("[data-sticky-subnav]");
+      let isStickyActive = false;
+      if (stickyNav) {
+        const rect = stickyNav.getBoundingClientRect();
+        if (rect.top <= 100) {
+          isStickyActive = true;
+        }
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100 && !mobileOpenRef.current) {
+        setHidden(true);
+        setActiveMenu(null);
+      } else if (currentScrollY < lastScrollY || currentScrollY <= 100) {
+        if (!isStickyActive || currentScrollY <= 100) {
+          setHidden(false);
+        } else {
+          setHidden(true);
+        }
+      }
+      lastScrollY = currentScrollY;
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -116,21 +147,23 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
+        className={`sticky top-0 z-[70] transition-all duration-300 ${
+          hidden ? "-translate-y-full pointer-events-none" : "translate-y-0"
+        } ${
           scrolled
             ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
             : "bg-[#F5F5DC] shadow-sm"
         }`}
       >
-        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+        <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
             <img
               src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
-              className="h-10 lg:h-12 w-auto object-contain"
+              className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span className="text-[10px] lg:text-xs font-bold text-[#8B6543] mt-0.5 leading-none tracking-wide">
+            <span className="text-[11.5px] lg:text-[13.5px] font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
