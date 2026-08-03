@@ -6,6 +6,7 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useCountUp } from "../hooks/useCountUp";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
+import { ImageLightbox } from "../components/ui/ImageLightbox";
 import {
   Radio, RadioTower, PlayCircle, Clock,
   BookOpen, Shield, Sprout, MapPin, Phone, Mail,
@@ -155,9 +156,9 @@ export function RadioPage() {
       </div>
 
       {/* ─── STICKY SUB-NAV ─── */}
-      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
+      <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -203,6 +204,7 @@ export function RadioPage() {
 /* ───────────── ABOUT / HISTORY ───────────── */
 function RadioHistoryBlock() {
   const { ref, visible } = useScrollReveal();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const { t } = useTranslation("home");
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const about = (rp?.about as Record<string, unknown>) ?? {};
@@ -262,9 +264,12 @@ function RadioHistoryBlock() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={visible ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="relative lg:sticky lg:top-28"
+            className="relative lg:sticky lg:top-32"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-[#1C2A10]">
+            <div
+              onClick={() => setLightboxOpen(true)}
+              className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-[#1C2A10] cursor-pointer hover:opacity-95 transition-opacity"
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -309,6 +314,11 @@ function RadioHistoryBlock() {
           </motion.div>
         </div>
       </div>
+      <ImageLightbox
+        images={[{ src: "/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
+        selectedIndex={lightboxOpen ? 0 : null}
+        onClose={() => setLightboxOpen(false)}
+      />
     </WatermarkSection>
   );
 }
@@ -644,7 +654,7 @@ function CoverageBlock() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-4 text-center"
+                    className="bg-white/10 backdrop-blur-sm border border-white/15 border-l-4 border-l-[#8B6543] rounded-2xl p-4 text-center"
                   >
                     <div className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#EAD196]">
                       {stat.value}
@@ -674,7 +684,7 @@ function CoverageStat({ stat, index, active }: { stat: { value: string; label: s
       initial={{ opacity: 0, y: 15 }}
       animate={active ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4, delay: 0.25 + index * 0.08 }}
-      className="bg-white rounded-2xl p-4 text-center shadow-sm border border-[#4E6132]/5 hover:shadow-lg transition-shadow"
+      className="bg-white rounded-2xl p-4 text-center shadow-sm border border-[#4E6132]/15 border-l-4 border-l-[#8B6543] hover:shadow-lg transition-shadow"
     >
       <div className="font-['Outfit'] font-black text-xl lg:text-2xl text-[#4E6132]">
         {display}

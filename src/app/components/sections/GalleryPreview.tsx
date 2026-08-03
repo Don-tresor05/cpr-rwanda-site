@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 import { ExternalLink } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { ImageLightbox } from "../ui/ImageLightbox";
 
 const GALLERY_IMAGES = [
   { src: "/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
@@ -14,6 +17,8 @@ const GALLERY_IMAGES = [
 export function GalleryPreview() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
+
   return (
     <section id="gallery" ref={ref} className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -25,28 +30,32 @@ export function GalleryPreview() {
             </div>
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">{t("gallery.title")}</h2>
           </motion.div>
-          <a href="#gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E6132] border-2 border-[#4E6132]/15 px-5 py-2.5 rounded-xl hover:border-[#4E6132] transition-all whitespace-nowrap">
+          <Link to="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-[#4E6132] border-2 border-[#4E6132]/15 px-5 py-2.5 rounded-xl hover:border-[#4E6132] transition-all whitespace-nowrap">
             {t("gallery.viewAllBtn")} <ExternalLink size={13} />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[500px]">
           {GALLERY_IMAGES.map((img, i) => (
             <motion.div
               key={i}
+              onClick={() => setSelectedImgIdx(i)}
               initial={{ opacity: 0, scale: 0.97 }}
               animate={visible ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className={`${img.span ?? ""} rounded-2xl overflow-hidden bg-[#EDF1F7] group relative cursor-pointer`}
+              className={`${img.span ?? ""} rounded-2xl overflow-hidden bg-[#EDF1F7] group relative cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02]`}
             >
-              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-[#4E6132]/0 group-hover:bg-[#4E6132]/30 transition-all duration-300 flex items-end p-4">
-                <span className="text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">{img.alt}</span>
-              </div>
+              <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 block" />
             </motion.div>
           ))}
         </div>
       </div>
+
+      <ImageLightbox
+        images={GALLERY_IMAGES}
+        selectedIndex={selectedImgIdx}
+        onClose={() => setSelectedImgIdx(null)}
+      />
     </section>
   );
 }
