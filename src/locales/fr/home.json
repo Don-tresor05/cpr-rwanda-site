@@ -276,7 +276,9 @@
     "readMore": "En savoir plus",
     "prev": "Précédent",
     "next": "Suivant",
-    "noNewsFound": "Aucun article trouvé dans cette catégorie."
+    "noNewsFound": "Aucun article trouvé dans cette catégorie.",
+    "heroChip1": "Dernières Mises à Jour",
+    "heroChip2": "Rapports Communautaires"
   },
   "departmentsPage": {
     "heroTag": "Nos Départements",
