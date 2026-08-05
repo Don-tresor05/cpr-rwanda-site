@@ -650,5 +650,147 @@
       "btn": "Écouter en Direct",
       "btnSecondary": "Contactez-Nous"
     }
+  },
+  "contactPage": {
+    "heroTag": "Contactez-nous",
+    "heroTitle": "Commençons une Conversation",
+    "heroDesc": "Nous serions ravis de vous entendre. Que vous ayez une question, une idée de partenariat ou simplement l'envie d'en savoir plus sur notre travail, notre équipe est prête à vous aider.",
+    "heroChip1": "KG 2 Av 4, Kigali",
+    "heroChip2": "Lun – Ven, 8h00 – 17h00",
+    "nav": {
+      "form": "Envoyer un Message",
+      "info": "Coordonnées",
+      "hours": "Heures d'Ouverture",
+      "faq": "FAQ"
+    },
+    "info": {
+      "tag": "Coordonnées",
+      "title": "Joignez-nous par l'un de ces moyens",
+      "desc": "Choisissez le canal qui vous convient le mieux — nous sommes toujours heureux de nous connecter avec nos membres, partenaires et amis.",
+      "cards": [
+        {
+          "title": "Visitez nos Bureaux",
+          "line1": "KG 2 Av 4, B.P 79",
+          "line2": "Kigali, Rwanda"
+        },
+        {
+          "title": "Appelez-nous",
+          "line1": "+250 788 314 718",
+          "line2": "Lun – Ven, 8h00 – 17h00"
+        },
+        {
+          "title": "Écrivez-nous",
+          "line1": "cprgs@cpr-rwanda.rw",
+          "line2": "Réponse sous 48 heures"
+        },
+        {
+          "title": "Radio Inkoramutima",
+          "line1": "107.1 FM",
+          "line2": "Émissions 5h00 – 22h00 chaque jour"
+        }
+      ]
+    },
+    "form": {
+      "tag": "Envoyer un Message",
+      "title": "Nous Serions Ravi de Vous Entendre",
+      "desc": "Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible. Votre application mail s'ouvrira avec votre message prêt à être envoyé.",
+      "name": "Nom Complet",
+      "namePh": "ex. Jean Bosco Nkurunziza",
+      "email": "Adresse Email",
+      "emailPh": "vous@exemple.com",
+      "phone": "Téléphone (optionnel)",
+      "phonePh": "+250 7XX XXX XXX",
+      "subject": "Sujet",
+      "subjectOptions": [
+        "Demande Générale",
+        "Partenariat",
+        "Éducation / BNEP",
+        "Diakonia & Développement",
+        "Radio Inkoramutima",
+        "Médias & Presse",
+        "Don & Soutien",
+        "Autre"
+      ],
+      "message": "Votre Message",
+      "messagePh": "Dites-nous comment nous pouvons vous aider...",
+      "send": "Envoyer le Message",
+      "sending": "Ouverture de votre application mail...",
+      "successTitle": "Merci !",
+      "successDesc": "Votre application mail s'est ouverte avec votre message prêt à être envoyé. Si elle ne s'est pas ouverte, écrivez-nous directement à cprgs@cpr-rwanda.rw",
+      "sendAnother": "Envoyer un autre message",
+      "errors": {
+        "name": "Veuillez entrer votre nom",
+        "email": "Veuillez entrer une adresse email valide",
+        "message": "Veuillez écrire un message"
+      }
+    },
+    "hours": {
+      "tag": "Heures d'Ouverture",
+      "title": "Quand Nous Trouver",
+      "desc": "Nos portes sont ouvertes toute la semaine. Le dimanche, notre équipe se joint au culte — nous vous répondrons lundi.",
+      "days": [
+        {
+          "day": "Lundi",
+          "time": "8h00 – 17h00"
+        },
+        {
+          "day": "Mardi",
+          "time": "8h00 – 17h00"
+        },
+        {
+          "day": "Mercredi",
+          "time": "8h00 – 17h00"
+        },
+        {
+          "day": "Jeudi",
+          "time": "8h00 – 17h00"
+        },
+        {
+          "day": "Vendredi",
+          "time": "8h00 – 17h00"
+        },
+        {
+          "day": "Samedi",
+          "time": "9h00 – 13h00"
+        },
+        {
+          "day": "Dimanche",
+          "time": "Fermé"
+        }
+      ]
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Questions Fréquemment Posées",
+      "desc": "Des réponses rapides aux questions que nous entendons le plus souvent.",
+      "items": [
+        {
+          "q": "Comment mon église peut-elle devenir membre du CPR ?",
+          "a": "L'adhésion est ouverte aux églises protestantes et aux organisations chrétiennes du Rwanda qui partagent notre vision d'unité et de développement holistique. Contactez le Secrétariat Général et notre équipe vous guidera dans le processus."
+        },
+        {
+          "q": "Comment puis-je m'associer au CPR sur un projet ?",
+          "a": "Nous accueillons les partenaires nationaux et internationaux. Envoyez-nous un message via le formulaire ou adressez vos demandes de partenariat à cprgs@cpr-rwanda.rw et notre équipe répondra sous 48 heures."
+        },
+        {
+          "q": "Comment puis-je soutenir le travail du CPR ?",
+          "a": "Vous pouvez nous soutenir par la prière, le bénévolat ou les dons. Contactez-nous et nous partagerons les façons dont votre contribution peut avoir un impact durable sur les communautés rwandaises."
+        },
+        {
+          "q": "Puis-je demander une couverture médiatique ou une interview ?",
+          "a": "Absolument. Notre équipe de communication gère les demandes des médias — y compris la couverture de nos événements et les interviews avec nos dirigeants. Contactez-nous avec les détails de votre demande."
+        },
+        {
+          "q": "Où se trouve le siège du CPR ?",
+          "a": "Notre siège est situé au KG 2 Av 4, B.P 79, Kigali, Rwanda — au cœur de la capitale."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Préférez Parler Directement ?",
+      "desc": "Appelez-nous ou écrivez-nous et un membre de notre équipe se fera un plaisir de vous aider pendant les heures de bureau.",
+      "callBtn": "Appelez-nous",
+      "emailBtn": "Écrivez-nous"
+    }
   }
 }
