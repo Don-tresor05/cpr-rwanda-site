@@ -792,5 +792,32 @@
       "callBtn": "Call Us",
       "emailBtn": "Email Us"
     }
+  },
+  "galleryPage": {
+    "heroTag": "Gallery",
+    "heroTitle": "Moments & Memories",
+    "heroDesc": "A visual journey through CPR Rwanda's ministry, events, community outreach, and commemorations.",
+    "heroChip1": "4 Collections",
+    "heroChip2": "32 Photos",
+    "filters": {
+      "all": "All Collections",
+      "conferences": "Conferences & Meetings",
+      "commemorations": "Commemorations",
+      "youth": "Youth & Wellness",
+      "education": "Education & Media"
+    },
+    "stats": {
+      "collections": "Collections",
+      "photos": "Photos",
+      "churches": "Member Churches",
+      "years": "Years of Service"
+    },
+    "viewCollection": "View Collection",
+    "photoCount": "Photos",
+    "openGallery": "Open Gallery",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "breadcrumb": "Home"
   }
 }
