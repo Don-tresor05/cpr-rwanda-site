@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import {
   Phone, Mail, MapPin, ArrowRight, Quote, type LucideIcon
 } from "lucide-react";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
+import { ImageLightbox } from "../components/ui/ImageLightbox";
 
 interface SubSection {
   id: string;
@@ -30,43 +31,50 @@ const secImages: Record<string, string> = {
   publications: "/assets/secretariat-publications.webp",
 };
 
-const secStats: Record<string, { label: string; value: string }[]> = {
-  sg: [
-    { label: "Member Churches", value: "25+" },
-    { label: "Staff Members", value: "50+" },
-    { label: "Years Active", value: "60+" },
-  ],
-  events: [
-    { label: "Annual Assemblies", value: "1" },
-    { label: "Biennial Synods", value: "1" },
-    { label: "Youth Summits", value: "5+" },
-  ],
-  meetings: [
-    { label: "Comm. Sessions", value: "4/yr" },
-    { label: "Board Meetings", value: "6/yr" },
-    { label: "Retreats", value: "1/yr" },
-  ],
-  advocacy: [
-    { label: "Policy Areas", value: "5+" },
-    { label: "Nat. Forums", value: "10+" },
-    { label: "Intl. Platforms", value: "3+" },
-  ],
-  sustainability: [
-    { label: "Tree Initiatives", value: "15+" },
-    { label: "Green Schools", value: "50+" },
-    { label: "Partners", value: "8+" },
-  ],
-  publications: [
-    { label: "Annual Reports", value: "60+" },
-    { label: "Newsletters", value: "200+" },
-    { label: "Communiqués", value: "100+" },
-  ],
+const getSecStats = (lang: string): Record<string, { label: string; value: string }[]> => {
+  const isFr = lang === "fr";
+  const isRw = lang === "rw";
+  return {
+    sg: [
+      { label: isFr ? "Églises Membres" : isRw ? "Amatorera Nyamuryango" : "Member Churches", value: "25+" },
+      { label: isFr ? "Membres du Personnel" : isRw ? "Abakozi b'Umuryango" : "Staff Members", value: "50+" },
+      { label: isFr ? "Années d'Activité" : isRw ? "Imyaka Imarijeho" : "Years Active", value: "60+" },
+    ],
+    events: [
+      { label: isFr ? "Assemblées Annuelles" : isRw ? "Inteko z'Umwaka" : "Annual Assemblies", value: "1" },
+      { label: isFr ? "Synodes Biennaux" : isRw ? "Sinode z'Amatora" : "Biennial Synods", value: "1" },
+      { label: isFr ? "Sommets des Jeunes" : isRw ? "Inama z'Urubyiruko" : "Youth Summits", value: "5+" },
+    ],
+    meetings: [
+      { label: isFr ? "Sessions Com." : isRw ? "Inama z'Ihuriro" : "Comm. Sessions", value: isFr ? "4/an" : isRw ? "4/umwaka" : "4/yr" },
+      { label: isFr ? "Réunions du Conseil" : isRw ? "Inama z'Inzego" : "Board Meetings", value: isFr ? "6/an" : isRw ? "6/umwaka" : "6/yr" },
+      { label: isFr ? "Retraites" : isRw ? "Umwiherero" : "Retreats", value: isFr ? "1/an" : isRw ? "1/umwaka" : "1/yr" },
+    ],
+    advocacy: [
+      { label: isFr ? "Domaines Politiques" : isRw ? "Inzego z'Amategeko" : "Policy Areas", value: "5+" },
+      { label: isFr ? "Forums Nationaux" : isRw ? "Inama z'Igihugu" : "Nat. Forums", value: "10+" },
+      { label: isFr ? "Plateformes Intern." : isRw ? "Inzego Mpuzamahanga" : "Intl. Platforms", value: "3+" },
+    ],
+    sustainability: [
+      { label: isFr ? "Initiatives Arbres" : isRw ? "Imishinga y'Ibiti" : "Tree Initiatives", value: "15+" },
+      { label: isFr ? "Écoles Vertes" : isRw ? "Amashuri Arengera Isi" : "Green Schools", value: "50+" },
+      { label: isFr ? "Partenaires" : isRw ? "Abafatanyabikorwa" : "Partners", value: "8+" },
+    ],
+    publications: [
+      { label: isFr ? "Rapports Annuels" : isRw ? "Raporu z'Umwaka" : "Annual Reports", value: "60+" },
+      { label: isFr ? "Bulletins" : isRw ? "Utumenyesha" : "Newsletters", value: "200+" },
+      { label: isFr ? "Communiqués" : isRw ? "Amatangazo" : "Communiqués", value: "100+" },
+    ],
+  };
 };
 
 export function Secretariat() {
   const [activeSection, setActiveSection] = useState("");
+  const [sgPhotoOpen, setSgPhotoOpen] = useState(false);
   const location = useLocation();
-  const { t } = useTranslation("home");
+  const { t, i18n } = useTranslation("home");
+  const lang = i18n.language ? i18n.language.substring(0, 2) : "en";
+  const secStats = getSecStats(lang);
   const { ref: introRef, visible: introVisible } = useScrollReveal();
   const { ref: sgRef, visible: sgVisible } = useScrollReveal();
   const heroRef = useRef<HTMLDivElement>(null);
@@ -176,7 +184,7 @@ export function Secretariat() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -184,7 +192,7 @@ export function Secretariat() {
             backgroundImage:
               "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center 30%",
+            backgroundPosition: "center 10%",
             y: heroBgY,
           }}
         />
@@ -218,9 +226,9 @@ export function Secretariat() {
       </div>
 
       {/* Sticky Sub-Nav */}
-      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
+      <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -285,7 +293,10 @@ export function Secretariat() {
                 transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                 className="flex-shrink-0"
               >
-                <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl">
+                <div
+                  onClick={() => setSgPhotoOpen(true)}
+                  className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl cursor-pointer hover:opacity-95 transition-opacity"
+                >
                   <img
                     src="/assets/Mutabazi_Samuel.webp"
                     alt="Rev. Samuel Mutabazi"
@@ -407,24 +418,34 @@ export function Secretariat() {
             <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
             <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali</span>
           </motion.div>
-          <motion.a
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            href="/#contact"
-            className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
           >
-            {t("secretariatPage.cta.btn")} <ArrowRight size={16} />
-          </motion.a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
+            >
+              {t("secretariatPage.cta.btn")} <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </motion.section>
+
+      <ImageLightbox
+        images={[{ src: "/assets/Mutabazi_Samuel.webp", alt: "Rev. Samuel Mutabazi" }]}
+        selectedIndex={sgPhotoOpen ? 0 : null}
+        onClose={() => setSgPhotoOpen(false)}
+      />
     </main>
   );
 }
 
 function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: { label: string; value: string }[]; isEven: boolean; index: number }) {
   const { ref, visible } = useScrollReveal();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const blockRef = useRef<HTMLDivElement>(null);
   const Icon = sec.icon;
 
@@ -507,8 +528,8 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                     key={stat.label}
                     initial={{ opacity: 0, y: 10 }}
                     animate={visible ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.1 }}
-                    className="bg-white rounded-xl p-3.5 text-center shadow-sm border border-[#4E6132]/5"
+                    className="bg-white rounded-xl p-3.5 text-center shadow-sm border border-[#4E6132]/15 border-l-4"
+                    style={{ borderLeftColor: sec.accent }}
                   >
                     <div
                       className="text-lg font-black"
@@ -516,7 +537,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                     >
                       {stat.value}
                     </div>
-                    <div className="text-[10px] text-[#4A4A4A]/60 uppercase tracking-wider mt-0.5">
+                    <div className="text-[10px] text-[#4A4A4A]/75 font-bold uppercase tracking-wider mt-0.5">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -550,7 +571,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                     className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
                     style={{ backgroundColor: sec.accent }}
                   />
-                  <span className="leading-relaxed">{item}</span>
+                  <span className="leading-relaxed">{item.replace(/^\d+[\.\)]\s*/, "")}</span>
                 </motion.li>
               ))}
             </ul>
@@ -564,7 +585,11 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
             className="relative"
           >
             {/* Image with overlay */}
-            <div className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3]" style={{ backgroundColor: `${sec.accent}20` }}>
+            <div
+              onClick={() => setLightboxOpen(true)}
+              className="relative rounded-lg overflow-hidden shadow-2xl aspect-[4/3] cursor-pointer hover:opacity-95 transition-opacity"
+              style={{ backgroundColor: `${sec.accent}20` }}
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -581,18 +606,6 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                   background: `linear-gradient(135deg, ${sec.accent}40 0%, transparent 50%, ${sec.accent}20 100%)`,
                 }}
               />
-              {/* Badge */}
-              <div className="absolute bottom-4 left-4">
-                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                  <Icon size={14} style={{ color: sec.accent }} />
-                  <span
-                    className="text-xs font-bold"
-                    style={{ color: sec.accent }}
-                  >
-                    {sec.tag}
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* Decorative element */}
@@ -613,6 +626,12 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
           <div className="h-px bg-gradient-to-r from-transparent via-[#4E6132]/10 to-transparent" />
         </div>
       )}
+
+      <ImageLightbox
+        images={[{ src: sec.image, alt: sec.title }]}
+        selectedIndex={lightboxOpen ? 0 : null}
+        onClose={() => setLightboxOpen(false)}
+      />
     </section>
   );
 }

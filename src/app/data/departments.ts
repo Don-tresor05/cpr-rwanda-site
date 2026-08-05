@@ -3,7 +3,7 @@ import {
   GraduationCap,
   Handshake,
   Coins,
-  Cog,
+  Users,
   Scale,
   Radio,
   Heart,
@@ -25,7 +25,7 @@ export const getDepartments = (t: any): Department[] => {
     { icon: GraduationCap, title: items[1].title, desc: items[1].desc, link: "/departments#bnep" },
     { icon: Handshake, title: items[2].title, desc: items[2].desc, link: "/departments#diakonia" },
     { icon: Coins, title: items[3].title, desc: items[3].desc, link: "/departments#finance" },
-    { icon: Cog, title: items[4].title, desc: items[4].desc, link: "/departments#youth" },
+    { icon: Users, title: items[4].title, desc: items[4].desc, link: "/departments#youth" },
     { icon: Scale, title: items[5].title, desc: items[5].desc, link: "/departments#gender" },
     { icon: Radio, title: items[6].title, desc: items[6].desc, link: "/departments#radio" },
   ];

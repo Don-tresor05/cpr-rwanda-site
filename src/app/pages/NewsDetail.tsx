@@ -13,11 +13,13 @@ import {
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { getNewsBySlug, getNews, NewsArticle } from "../data/news";
+import { ImageLightbox, LightboxImage } from "../components/ui/ImageLightbox";
 
 export function NewsDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation("home");
   const [copied, setCopied] = useState(false);
+  const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +37,17 @@ export function NewsDetail() {
   const relatedNews = useMemo(() => {
     return allNews.filter((n) => n.slug !== article.slug).slice(0, 3);
   }, [allNews, article]);
+
+  const allArticleImages: LightboxImage[] = useMemo(() => {
+    const list: LightboxImage[] = [{ src: article.image, alt: article.title }];
+    if (article.inlineImages) {
+      article.inlineImages.forEach((img) => list.push({ src: img.src, alt: img.caption || "" }));
+    }
+    if (!article.inlineImages && article.secondaryImage) {
+      list.push({ src: article.secondaryImage, alt: article.secondaryCaption || "" });
+    }
+    return list;
+  }, [article]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -75,7 +88,10 @@ export function NewsDetail() {
           </div>
 
           {/* Main Hero Image - Sharp edges (rounded-none) */}
-          <div className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10]">
+          <div
+            onClick={() => setSelectedImgIdx(0)}
+            className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
+          >
             <img
               src={article.image}
               alt={article.title}
@@ -115,7 +131,13 @@ export function NewsDetail() {
                       {/* Inline Image block with caption - sharp edges */}
                       {inlineImg && (
                         <div className="my-4">
-                          <div className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10]">
+                          <div
+                            onClick={() => {
+                              const imgIndex = allArticleImages.findIndex((img) => img.src === inlineImg.src);
+                              if (imgIndex !== -1) setSelectedImgIdx(imgIndex);
+                            }}
+                            className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
+                          >
                             <img
                               src={inlineImg.src}
                               alt={inlineImg.caption || "Kwibuka event highlight"}
@@ -139,7 +161,13 @@ export function NewsDetail() {
                 {/* Fallback for secondaryImage if inlineImages array is not provided */}
                 {!article.inlineImages && article.secondaryImage && (
                   <div className="my-4">
-                    <div className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10]">
+                    <div
+                      onClick={() => {
+                        const imgIndex = allArticleImages.findIndex((img) => img.src === article.secondaryImage);
+                        if (imgIndex !== -1) setSelectedImgIdx(imgIndex);
+                      }}
+                      className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
+                    >
                       <img
                         src={article.secondaryImage}
                         alt="Secondary event highlight"
@@ -266,6 +294,11 @@ export function NewsDetail() {
           </div>
         </div>
       </section>
+      <ImageLightbox
+        images={allArticleImages}
+        selectedIndex={selectedImgIdx}
+        onClose={() => setSelectedImgIdx(null)}
+      />
     </WatermarkSection>
   );
 }

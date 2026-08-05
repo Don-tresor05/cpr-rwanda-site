@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link, useLocation } from "react-router";
 import {
@@ -11,7 +11,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 
-const COMING_SOON = new Set(["/#gallery"]);
+const COMING_SOON = new Set<string>([]);
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
   const { showComingSoon } = useComingSoon();
@@ -29,7 +29,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-sm font-semibold text-[#4E6132]/80 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/10">
+            <div className="text-sm font-bold text-[#4E6132]/80 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/15">
               {col.heading}
             </div>
           )}
@@ -42,28 +42,28 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                       onClose();
                       showComingSoon(link.label);
                     }}
-                    className="w-full text-left group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
+                    className="w-full text-left group flex flex-col gap-1 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
                   >
                     <span className="text-[15px] font-bold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                       <span>{link.label}</span>
-                      <span className="text-[10px] font-medium text-[#BC8A5F]/50 group-hover:text-[#BC8A5F] transition-colors">Coming Soon</span>
+                      <span className="text-[10px] font-medium text-[#BC8A5F]/60 group-hover:text-[#BC8A5F] transition-colors">Coming Soon</span>
                     </span>
                     {link.desc && (
-                      <span className="text-[13px] font-medium text-[#4E6132]/75 group-hover:text-[#8B6543]/90 mt-0.5 leading-snug transition-colors">{link.desc}</span>
+                      <span className="text-[13px] font-medium text-[#4E6132]/90 group-hover:text-[#8B6543] mt-0.5 leading-snug transition-colors">{link.desc}</span>
                     )}
                   </button>
                 ) : (
                   <Link
                     to={link.href}
                     onClick={onClose}
-                    className="group flex flex-col gap-0.5 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
+                    className="group flex flex-col gap-1 px-3.5 py-2.5 rounded-xl hover:bg-[#8B6543]/15 transition-all duration-200"
                   >
                     <span className="text-[15px] font-bold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                       <span>{link.label}</span>
                       <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#8B6543]" />
                     </span>
                     {link.desc && (
-                      <span className="text-[13px] font-medium text-[#4E6132]/75 group-hover:text-[#8B6543]/90 mt-0.5 leading-snug transition-colors">{link.desc}</span>
+                      <span className="text-[13px] font-medium text-[#4E6132]/90 group-hover:text-[#8B6543] mt-0.5 leading-snug transition-colors">{link.desc}</span>
                     )}
                   </Link>
                 )}
@@ -82,12 +82,43 @@ export function Header() {
   const navItems = getNavItems(t);
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const mobileOpenRef = useRef(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
+    mobileOpenRef.current = mobileOpen;
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handler = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+
+      const stickyNav = document.querySelector("[data-sticky-subnav]");
+      let isStickyActive = false;
+      if (stickyNav) {
+        const rect = stickyNav.getBoundingClientRect();
+        if (rect.top <= 100) {
+          isStickyActive = true;
+        }
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100 && !mobileOpenRef.current) {
+        setHidden(true);
+        setActiveMenu(null);
+      } else if (currentScrollY < lastScrollY || currentScrollY <= 100) {
+        if (!isStickyActive || currentScrollY <= 100) {
+          setHidden(false);
+        } else {
+          setHidden(true);
+        }
+      }
+      lastScrollY = currentScrollY;
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -96,7 +127,7 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden lg:flex bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
+      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
         <div className="flex items-center gap-5">
           <span className="flex items-center gap-1.5"><Phone size={11} /><span>+250 788 314 718</span></span>
           <span className="flex items-center gap-1.5"><Mail size={11} /><span>cprgs@cpr-rwanda.rw</span></span>
@@ -116,7 +147,13 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className="bg-[#F5F5DC] shadow-sm"
+        className={`sticky top-0 z-[70] transition-all duration-300 ${
+          hidden ? "-translate-y-full pointer-events-none" : "translate-y-0"
+        } ${
+          scrolled
+            ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
+            : "bg-[#F5F5DC] shadow-sm"
+        }`}
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
@@ -124,9 +161,9 @@ export function Header() {
             <img
               src="/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
-              className="h-12 lg:h-16 w-auto object-contain"
+              className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span className="text-xs lg:text-sm font-bold text-[#8B6543] leading-none tracking-wide">
+            <span className="text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
@@ -191,7 +228,7 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              to="/#contact"
+              to="/contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
               {t("nav.contact")}
@@ -305,7 +342,7 @@ export function Header() {
                   >
                     {t("nav.donate")}
                   </button>
-                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</a>
+                  <Link to="/contact" onClick={() => setMobileOpen(false)} className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</Link>
                 </div>
               </div>
             </motion.div>

@@ -57,11 +57,11 @@ export function AboutUs() {
     <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center 15%"
+          backgroundPosition: "center 5%"
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
@@ -73,9 +73,9 @@ export function AboutUs() {
       </div>
 
       {/* Sub-Navigation */}
-      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md transition-all duration-300">
+      <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}

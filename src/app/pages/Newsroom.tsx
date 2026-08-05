@@ -209,12 +209,12 @@ export function Newsroom() {
     <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)", minHeight: "100vh" }}>
       {/* Hero */}
       <div
-        className="relative min-h-[75vh] lg:min-h-[85vh] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/youth.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center 25%",
+          backgroundPosition: "center 10%",
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">

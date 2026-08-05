@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { getProjects } from "../../data/departments";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 export function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
@@ -73,12 +74,12 @@ export function ProjectsSection() {
                     ))}
                   </ul>
 
-                  <a
-                    href="#projects"
+                  <Link
+                    to="/departments#diakonia"
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors group/link"
                   >
                     {t("projects.viewDetails")} <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             );

@@ -6,6 +6,7 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useCountUp } from "../hooks/useCountUp";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
+import { ImageLightbox } from "../components/ui/ImageLightbox";
 import {
   Radio, RadioTower, PlayCircle, Clock,
   BookOpen, Shield, Sprout, MapPin, Phone, Mail,
@@ -67,7 +68,7 @@ export function RadioPage() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[75vh] lg:min-h-[88vh] flex items-end justify-start pb-16 lg:pb-24 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -75,7 +76,7 @@ export function RadioPage() {
             backgroundImage:
               "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/radio-hero.webp')",
             backgroundSize: "cover",
-            backgroundPosition: "center 30%",
+            backgroundPosition: "center 10%",
             y: heroBgY,
           }}
         />
@@ -155,9 +156,9 @@ export function RadioPage() {
       </div>
 
       {/* ─── STICKY SUB-NAV ─── */}
-      <div className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
+      <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-16 lg:h-20 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -203,6 +204,7 @@ export function RadioPage() {
 /* ───────────── ABOUT / HISTORY ───────────── */
 function RadioHistoryBlock() {
   const { ref, visible } = useScrollReveal();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const { t } = useTranslation("home");
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const about = (rp?.about as Record<string, unknown>) ?? {};
@@ -262,9 +264,12 @@ function RadioHistoryBlock() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={visible ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="relative lg:sticky lg:top-28"
+            className="relative lg:sticky lg:top-32"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-[#1C2A10]">
+            <div
+              onClick={() => setLightboxOpen(true)}
+              className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] bg-[#1C2A10] cursor-pointer hover:opacity-95 transition-opacity"
+            >
               <motion.div
                 className="absolute inset-0"
                 style={{
@@ -309,6 +314,11 @@ function RadioHistoryBlock() {
           </motion.div>
         </div>
       </div>
+      <ImageLightbox
+        images={[{ src: "/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
+        selectedIndex={lightboxOpen ? 0 : null}
+        onClose={() => setLightboxOpen(false)}
+      />
     </WatermarkSection>
   );
 }
@@ -570,16 +580,16 @@ function CoverageBlock() {
             </div>
 
             {/* Regions */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {regions.map((region, i) => (
                 <motion.span
                   key={region}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={visible ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.3, delay: 0.4 + i * 0.08 }}
-                  className="inline-flex items-center gap-1.5 bg-white border border-[#4E6132]/15 rounded-full px-4 py-1.5 text-xs font-semibold text-[#4E6132] shadow-sm"
+                  className="inline-flex items-center gap-2 bg-white border border-[#4E6132]/20 rounded-full px-5 py-2.5 text-sm font-bold text-[#4E6132] shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <MapPin size={11} className="text-[#8B6543]" /> {region}
+                  <MapPin size={15} className="text-[#8B6543]" /> {region}
                 </motion.span>
               ))}
             </div>
@@ -644,12 +654,12 @@ function CoverageBlock() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-4 text-center"
+                    className="bg-white/10 backdrop-blur-sm border border-white/15 border-l-4 border-l-[#8B6543] rounded-2xl p-4 text-center"
                   >
                     <div className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#EAD196]">
                       {stat.value}
                     </div>
-                    <div className="text-[10px] lg:text-xs text-white/70 uppercase tracking-wider mt-1">
+                    <div className="text-[10px] text-white/75 font-bold uppercase tracking-wider mt-0.5">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -674,13 +684,13 @@ function CoverageStat({ stat, index, active }: { stat: { value: string; label: s
       initial={{ opacity: 0, y: 15 }}
       animate={active ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.4, delay: 0.25 + index * 0.08 }}
-      className="bg-white rounded-2xl p-4 text-center shadow-sm border border-[#4E6132]/5 hover:shadow-lg transition-shadow"
+      className="bg-white rounded-2xl p-4 text-center shadow-sm border border-[#4E6132]/15 border-l-4 border-l-[#8B6543] hover:shadow-lg transition-shadow"
     >
       <div className="font-['Outfit'] font-black text-xl lg:text-2xl text-[#4E6132]">
         {display}
         {stat.value.includes(".") ? "" : stat.value.includes("%") ? "%" : stat.value.includes("h") ? "h" : ""}
       </div>
-      <div className="text-[10px] text-[#4A4A4A]/70 uppercase tracking-wider mt-1">{stat.label}</div>
+      <div className="text-[10px] text-[#4A4A4A]/75 font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
     </motion.div>
   );
 }
@@ -749,7 +759,7 @@ function RadioCtaBlock() {
             <PlayCircle size={16} /> {(cta?.btn as string) ?? "Listen Live"}
           </a>
           <Link
-            to="/#contact"
+            to="/contact"
             className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300"
           >
             {(cta?.btnSecondary as string) ?? "Contact Us"} <ArrowRight size={16} />

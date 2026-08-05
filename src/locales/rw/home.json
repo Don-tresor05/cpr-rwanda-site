@@ -443,12 +443,12 @@
       "title": "Inama, Sinode & Inteko",
       "desc": "CPR iterana buri gihe inama zihuza abayobozi b'amatorera, abayobozi ba leta, umuryango w'abaturage, n'inshuti z'amahanga kugira ngo bafatanye ibyemezo.",
       "body": [
-        "1. Inteko Rusange ya buri mwaka y'amatorera 25 agize umuryango",
-        "2. Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
-        "3. Iminsi y'isengesho ry'igihugu n'ibikorwa byo kwibuka (nk'Iyicibwa ry'Abatutsi)",
-        "4. Inama z'ubukristo hamwe na FECCLAHA n'Inama y'Amatorera y'Isi Yose",
-        "5. Inama z'ubuyobozi n'amahugurwa yo gukomeza ubushobozi",
-        "6. Inteko z'urubyiruko n'abagore kugira ngo bose bagire uruhare"
+        "Inteko Rusange ya buri mwaka y'amatorera 25 agize umuryango",
+        "Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
+        "Iminsi y'isengesho ry'igihugu n'ibikorwa byo kwibuka (nk'Iyicibwa ry'Abatutsi)",
+        "Inama z'ubukristo hamwe na FECCLAHA n'Inama y'Amatorera y'Isi Yose",
+        "Inama z'ubuyobozi n'amahugurwa yo gukomeza ubushobozi",
+        "Inteko z'urubyiruko n'abagore kugira ngo bose bagire uruhare"
       ]
     },
     "advocacy": {
@@ -639,7 +639,7 @@
           "label": "Imiryango y'Abakristu"
         },
         {
-          "value": "13M",
+          "value": "14M",
           "label": "Abaturage b'u Rwanda"
         }
       ]
@@ -649,6 +649,148 @@
       "desc": "Kurikira ibiganiro byacu bya buri munsi kuva saa kumi n'imwe z'ijoro (5:00) kugeza saa kumi na zine z'ijoro (22:00) kuri 107.1 FM — Ijwi ry'Umutima w'Inama y'Abaporotesitanti mu Rwanda.",
       "btn": "Umva ku Mubonano",
       "btnSecondary": "Twandikire"
+    }
+  },
+  "contactPage": {
+    "heroTag": "Twandikire",
+    "heroTitle": "Reka Tubone Ikiganiro",
+    "heroDesc": "Twishimira kumva ibyo utugiriye. Nubwo ufite ikibazo, igitekerezo cyo gufatanya, cyangwa ushaka kumenya byinshi ku mirimo yacu, itsinda ryacu riri kwiteguye kugufasha.",
+    "heroChip1": "KG 2 Av 4, Kigali",
+    "heroChip2": "Kuwa Mbere – Kuwa Gatanu, 8:00 – 17:00",
+    "nav": {
+      "form": "Ohereza Ubutumwa",
+      "info": "Aho Twaboneka",
+      "hours": "Amasaha Y'akazi",
+      "faq": "Ibibazo"
+    },
+    "info": {
+      "tag": "Aho Twaboneka",
+      "title": "Dusanga Mu Buryo Butandukanye",
+      "desc": "Hitamo inzira ikwifitiye — duhora twishimiye gufatanya n'abanyamuryango bacu, abafatanyacyakorera n'inshuti zacu.",
+      "cards": [
+        {
+          "title": "Dusure mu Biro Byacu",
+          "line1": "KG 2 Av 4, B.P 79",
+          "line2": "Kigali, Rwanda"
+        },
+        {
+          "title": "Duhamagare",
+          "line1": "+250 788 314 718",
+          "line2": "Kuwa Mbere – Kuwa Gatanu, 8:00 – 17:00"
+        },
+        {
+          "title": "Twandikire",
+          "line1": "cprgs@cpr-rwanda.rw",
+          "line2": "Tusubiza mu masaha 48"
+        },
+        {
+          "title": "Radio Inkoramutima",
+          "line1": "107.1 FM",
+          "line2": "Itangaza 5:00 – 22:00 buri munsi"
+        }
+      ]
+    },
+    "form": {
+      "tag": "Ohereza Ubutumwa",
+      "title": "Twishimira Kumva Ibyo Udufitiye",
+      "desc": "Uzuza ifishi iri hepfo maze itsinda ryacu risubize vuba. Porogaramu ya email izafunguka ifite ubutumwa bwawe bwerekerejwe.",
+      "name": "Amazina Yombi",
+      "namePh": "urugero: Jean Bosco Nkurunziza",
+      "email": "Imeyili",
+      "emailPh": "wowe@urugero.com",
+      "phone": "Telefone (bidakenewe)",
+      "phonePh": "+250 7XX XXX XXX",
+      "subject": "Icyegeranyo",
+      "subjectOptions": [
+        "Ikibazo Rusange",
+        "Ubutwererane",
+        "Uburezi / BNEP",
+        "Diakoniya n'Iterambere",
+        "Radio Inkoramutima",
+        "Ittangazamakuru",
+        "Umutere / Inkunga",
+        "Ibindi"
+      ],
+      "message": "Ubutumwa Bwawe",
+      "messagePh": "Tubwire uko twagufasha...",
+      "send": "Ohereza Ubutumwa",
+      "sending": "Rafungura porogaramu ya email...",
+      "successTitle": "Murakoze!",
+      "successDesc": "Porogaramu ya email yafungutse ifite ubutumwa bwawe. Niba itafungutse, twandikire kuri cprgs@cpr-rwanda.rw",
+      "sendAnother": "Ohereza irindi butumwa",
+      "errors": {
+        "name": "Nyamuneka andika amazina yawe",
+        "email": "Nyamuneka andika imeyili ikwiye",
+        "message": "Nyamuneka andika ubutumwa"
+      }
+    },
+    "hours": {
+      "tag": "Amasaha Y'akazi",
+      "title": "Igihe Ushobora Kutubona",
+      "desc": "Inzugi zacu zifungura mu byumweru byose. Ku cyumweru, itsinda ryacu ryifatanya n'amasengesho — tuzagusubiza ku wa mbere.",
+      "days": [
+        {
+          "day": "Kuwa Mbere",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Kuwa Kabiri",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Kuwa Gatatu",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Kuwa Kane",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Kuwa Gatanu",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Kuwa Gatandatu",
+          "time": "9:00 – 13:00"
+        },
+        {
+          "day": "Ku Cyumweru",
+          "time": "Ifunze"
+        }
+      ]
+    },
+    "faq": {
+      "tag": "Ibibazo",
+      "title": "Ibibazo Bikunze Kubazwa",
+      "desc": "Ibintu byinshi dusanga abantu babaza.",
+      "items": [
+        {
+          "q": "Itorero ryanjye rikora iki kugira ngo ribe umunyamuryango wa CPR?",
+          "a": "Ubunyamuryango bufunguye amatorero y'Abaporotesitanti n'imiryango ya gikristo mu Rwanda ihuje n'iyerekwa ryacu ry'ubumwe n'iterambere. Wandikire Ikigega Gikuru maze itsinda ryacu rikugirire inzira."
+        },
+        {
+          "q": "Ndifata gute ubufatanye na CPR ku mushinga?",
+          "a": "Tubakirira abafatanyacyakorera b'igihugu ndetse n'ab'amahanga. Ohereza ubutumwa ukoresheje ifishi cyangwa wandikire cprgs@cpr-rwanda.rw maze itsinda ryacu risubize mu masaha 48."
+        },
+        {
+          "q": "Nshobora gute gushyigikira imirimo ya CPR?",
+          "a": "Ushobora kudushyigikira mu masengesho, ubukorera bushake, cyangwa inkunga. Twandikire maze tuguhere imbaraga zishobora guhindura ubuzima bw'abaturage b'u Rwanda."
+        },
+        {
+          "q": "Nshobora gusaba itangazamakuru cyangwa ikiganiro?",
+          "a": "Yego rwose. Itsinda ryacu ry'itangazamakuru rikoresha ibyo byifuzo — harimo gutangaza ibirori byacu n'ikiganiro n'abayobozi bacu. Twandikire ubutumwa butandukanye."
+        },
+        {
+          "q": "Ibiro by'ikigo cya CPR biherereye he?",
+          "a": "Ibiro byacu biherereye kuri KG 2 Av 4, B.P 79, Kigali, Rwanda — mu mutima w'umurwa mukuru."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Urashaka Kuvugana Natwe Mu Buryo Bwihuse?",
+      "desc": "Duhamagare cyangwa utwandikire maze umunyamuryango w'itsinda ryacu agufashe mu masaha y'akazi.",
+      "callBtn": "Duhamagare",
+      "emailBtn": "Twandikire"
     }
   }
 }
