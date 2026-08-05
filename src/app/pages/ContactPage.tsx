@@ -8,6 +8,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
   Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  MessageCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -185,7 +186,49 @@ export function ContactPage() {
 
       {/* ─── CTA ─── */}
       <ContactCtaBlock />
+
+      {/* ─── FLOATING CHAT BUTTON ─── */}
+      <ChatButton />
     </main>
+  );
+}
+
+/* ───────────── FLOATING CHAT BUTTON ───────────── */
+function ChatButton() {
+  const { t } = useTranslation("home");
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setVisible(window.scrollY > 250);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const scrollToForm = () => {
+    const el = document.getElementById("form");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <motion.button
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      onClick={scrollToForm}
+      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#4E6132] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#3a4f26] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      aria-label={(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+    >
+      <span className="relative flex items-center justify-center">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-40 animate-ping" style={{ animationDuration: "2.2s" }} />
+        <span className="relative w-9 h-9 rounded-full bg-[#EAD196] flex items-center justify-center">
+          <MessageCircle size={18} className="text-[#4E6132]" />
+        </span>
+      </span>
+      <span className="text-sm font-bold whitespace-nowrap">
+        {(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+      </span>
+    </motion.button>
   );
 }
 
