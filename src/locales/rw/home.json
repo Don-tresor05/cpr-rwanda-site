@@ -792,5 +792,32 @@
       "callBtn": "Duhamagare",
       "emailBtn": "Twandikire"
     }
+  },
+  "galleryPage": {
+    "heroTag": "Amafoto",
+    "heroTitle": "Ibihe & Ibuka",
+    "heroDesc": "Urugero rw'amafoto yerekana imirimo ya CPR Rwanda, ibirori, ibikorwa by'abaturage, n'urwibutso rwacu.",
+    "heroChip1": "Amatsinda 4",
+    "heroChip2": "Amafoto 32",
+    "filters": {
+      "all": "Amatsinda Yose",
+      "conferences": "Inama & Ibyegeranyo",
+      "commemorations": "Urwibutso",
+      "youth": "Urubyiruko & Ubuzima",
+      "education": "Uburezi & Itangazamakuru"
+    },
+    "stats": {
+      "collections": "Amatsinda",
+      "photos": "Amafoto",
+      "churches": "Amatorero Nyamuryango",
+      "years": "Imyaka Y'imirimo"
+    },
+    "viewCollection": "Reba Itsinda",
+    "photoCount": "Amafoto",
+    "openGallery": "Fungura Amafoto",
+    "close": "Funga",
+    "prev": "Ibibanza",
+    "next": "Ibikurikira",
+    "breadcrumb": "Ahabanza"
   }
 }
