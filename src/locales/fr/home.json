@@ -792,5 +792,32 @@
       "callBtn": "Appelez-nous",
       "emailBtn": "Écrivez-nous"
     }
+  },
+  "galleryPage": {
+    "heroTag": "Galerie",
+    "heroTitle": "Moments & Souvenirs",
+    "heroDesc": "Un voyage visuel à travers le ministère du CPR Rwanda, ses événements, ses actions communautaires et ses commémorations.",
+    "heroChip1": "4 Collections",
+    "heroChip2": "32 Photos",
+    "filters": {
+      "all": "Toutes les Collections",
+      "conferences": "Conférences & Réunions",
+      "commemorations": "Commémorations",
+      "youth": "Jeunesse & Bien-être",
+      "education": "Éducation & Médias"
+    },
+    "stats": {
+      "collections": "Collections",
+      "photos": "Photos",
+      "churches": "Églises Membres",
+      "years": "Années de Service"
+    },
+    "viewCollection": "Voir la Collection",
+    "photoCount": "Photos",
+    "openGallery": "Ouvrir la Galerie",
+    "close": "Fermer",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "breadcrumb": "Accueil"
   }
 }
