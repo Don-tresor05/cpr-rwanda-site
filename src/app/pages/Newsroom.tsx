@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Calendar, ArrowRight, Filter, ChevronDown, Check } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { ArrowRight, Filter, ChevronDown, Check, Newspaper, Megaphone, Users } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -101,6 +101,12 @@ export function Newsroom() {
   const { ref, visible } = useScrollReveal();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroBgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const heroContentY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   const newsItems: NewsItem[] = useMemo(() => {
     const translatedItems = (t("newsroom.items", { returnObjects: true }) as NewsItem[]) || [];
@@ -207,24 +213,90 @@ export function Newsroom() {
 
   return (
     <main className="bg-white min-h-screen">
-      {/* Hero */}
+      {/* ─── HERO ─── */}
       <div
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/youth.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 10%",
-        }}
+        ref={heroRef}
+        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
-        <div className="relative z-10 max-w-7xl w-full mx-auto">
-          <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(28,42,16,0.40), rgba(28,42,16,0.92)), url('/assets/youth.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 20%",
+            y: heroBgY,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A10] via-transparent to-transparent pointer-events-none" />
+
+        <motion.div
+          className="relative z-10 max-w-7xl w-full mx-auto"
+          style={{ opacity: heroOpacity, y: heroContentY }}
+        >
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-2 text-white/60 text-sm mb-5"
+          >
+            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">{t("newsroom.breadcrumbHome")}</Link>
+            <span className="text-white/30">/</span>
+            <span className="text-[#BC8A5F] font-semibold">{t("newsroom.breadcrumbNews")}</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
+          >
+            <Newspaper size={15} className="text-[#BC8A5F]" />
+            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
+              {t("newsroom.breadcrumbNews")}
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+          >
             {t("newsroom.title", "Newsroom")}
-          </h1>
-          <p className="text-white/80 mt-4 max-w-2xl text-lg leading-relaxed">
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+            className="text-white/75 text-lg max-w-2xl leading-relaxed mb-8"
+          >
             {t("newsroom.subtitle", "Latest news, event reports, and updates from Conseil Protestant du Rwanda.")}
-          </p>
-        </div>
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="flex flex-wrap gap-3"
+          >
+            {[
+              { icon: Megaphone, label: t("newsroom.heroChip1", "Latest Updates") },
+              { icon: Users, label: t("newsroom.heroChip2", "Community Reports") },
+            ].map((chip, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 text-sm text-white/85"
+              >
+                <chip.icon size={15} className="text-[#BC8A5F]" />
+                {chip.label}
+              </span>
+            ))}
+          </motion.div>
+        </motion.div>
+
         <ScrollIndicator />
       </div>
 
