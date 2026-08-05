@@ -520,7 +520,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
             {/* Stats mini-cards */}
             {stats.length > 0 && (
               <div className="grid grid-cols-3 gap-3 mb-8">
-                {stats.map((stat, idx) => (
+                {stats.map((stat) => (
                   <motion.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 10 }}
