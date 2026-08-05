@@ -31,32 +31,40 @@ export const getDepartments = (t: any): Department[] => {
   ];
 };
 
-export const MEMBER_CHURCHES = [
-  "Eglise Presbytérienne au Rwanda (EPR)",
-  "Eglise Méthodiste Libre au Rwanda (EMLR)",
-  "Union des Eglises Baptistes au Rwanda (UEBR)",
-  "Association des Eglises Baptistes au Rwanda (AEBR)",
-  "Association des Eglises Pentecôte au Rwanda (ADEPR)",
-  "Eglise Évangélique des Amis au Rwanda (EEAR)",
-  "Harvest Christian Church (HCC)",
-  "Eglise Luthérienne du Rwanda (ELR)",
-  "The Salvation Army (SA)",
-  "Believers Eastern Church (BEC)",
-  "SIERRA Community Church (SIERRA CC)",
-  "EAR — Diocese of Kigali",
-  "EAR — Diocese of Shyira",
-  "EAR — Diocese of Butare",
-  "EAR — Diocese of Gahini",
-  "EAR — Diocese of Gasabo",
-  "EAR — Diocese of Byumba",
-  "EAR — Diocese of Kigeme",
-  "EAR — Diocese of Shyogwe",
-  "EAR — Diocese of Kibungo",
-  "EAR — Diocese of Cyangugu",
-  "EAR — Diocese of Karongi",
-  "Eglise Adventiste du Septième Jour (EASJ)",
-  "African Evangelistic Enterprises (AEE)",
-  "BARAKABAHO Foundation",
+export interface MemberChurch {
+  name: string;
+  url?: string;
+}
+
+export const MEMBER_CHURCHES: MemberChurch[] = [
+  { name: "Eglise Presbytérienne au Rwanda (EPR)", url: "https://www.epr.rw" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Kigali (EAR-D/Kigali)" },
+  { name: "Union des Eglises Baptistes au Rwanda (UEBR)" },
+  { name: "Eglise Méthodiste Libre au Rwanda (EMLR)" },
+  { name: "Association des Eglises Baptistes au Rwanda (AEBR)", url: "https://aebr.org.rw/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Byumba (EAR-D/Byumba)" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Butare (EAR-D/Butare)", url: "https://www.earbutarediocese.org/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Shyogwe (EAR-D/Shyogwe)", url: "https://earshyogwe.com/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Cyangugu (EAR-D/Cyangugu)", url: "https://www.earcyangugudiocese.rw/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Kibungo (EAR-D/Kibungo)" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Kigeme (EAR-D/Kigeme)", url: "https://kigemediocese.rw/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Gahini (EAR-D/Gahini)" },
+  { name: "Eglise Adventiste du Septième Jour au Rwanda (EASJR)", url: "https://www.rumadventist.org/" },
+  { name: "Association des Eglises de Pentecôte au Rwanda (ADEPR)", url: "http://www.adeprchurch.rw/" },
+  { name: "Eglise Évangélique des Amis au Rwanda (EEAR)", url: "https://www.evangelicalfriendschurchofrwanda.com/" },
+  { name: "Harvest Christian Church (HCC)" },
+  { name: "Lutheran Church of Rwanda (LCR)", url: "https://lutheranchurchofrwanda.org/" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Karongi (EAR-D/Karongi)" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Shyira (EAR-D/Shyira)" },
+  { name: "Eglise Anglicane au Rwanda, Diocèse de Gasabo (EAR-D/Gasabo)", url: "https://eargasabo.rw/" },
+  { name: "The Salvation Army Church", url: "https://www.salvationarmy.org/territories/rwanda" },
+  { name: "Believers Eastern Church (BEC)", url: "https://www.bec.org/" },
+  { name: "SEIRA Community Church", url: "https://www.seirachurch.org" },
+  { name: "Ligue pour La Lecture de la Bible (LLBR)", url: "https://scriptureunion.rw/" },
+  { name: "Jeunesse Pour Christ (JPC)", url: "https://www.christchurch.us/" },
+  { name: "African Leadership and Reconciliation Ministries (ALARM)", url: "https://www.alarm-inc.org/" },
+  { name: "African Evangelistics Enterprises (AEE)", url: "https://www.aeerwanda.ngo/" },
+  { name: "BARAKABAHO Foundation" },
 ];
 
 export interface Project {
