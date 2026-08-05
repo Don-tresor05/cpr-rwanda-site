@@ -793,7 +793,8 @@
       "desc": "Call or email us and a member of our team will be glad to assist you during office hours.",
       "callBtn": "Call Us",
       "emailBtn": "Email Us"
-    }
+    },
+    "chatLabel": "Chat with us"
   },
   "galleryPage": {
     "heroTag": "Gallery",
