@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 
@@ -114,7 +114,6 @@ export function GalleryPage() {
   };
 
   const currentPhoto = activeImage ? GALLERY_EVENTS[activeImage.eventIdx].images[activeImage.imgIdx] : null;
-  const currentEventTitle = activeImage ? GALLERY_EVENTS[activeImage.eventIdx].title : "";
   const isFirstPhoto = activeImage ? activeImage.imgIdx === 0 : true;
   const isLastPhoto = activeImage ? activeImage.imgIdx === GALLERY_EVENTS[activeImage.eventIdx].images.length - 1 : true;
 
