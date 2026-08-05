@@ -793,7 +793,8 @@
       "desc": "Appelez-nous ou écrivez-nous et un membre de notre équipe se fera un plaisir de vous aider pendant les heures de bureau.",
       "callBtn": "Appelez-nous",
       "emailBtn": "Écrivez-nous"
-    }
+    },
+    "chatLabel": "Discutez avec nous"
   },
   "galleryPage": {
     "heroTag": "Galerie",
