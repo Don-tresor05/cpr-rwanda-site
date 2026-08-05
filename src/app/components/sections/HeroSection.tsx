@@ -83,13 +83,13 @@ export function HeroSection() {
                   <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-[#EAD196]/20 animate-ping" style={{ animationDuration: "2s" }} />
                   <div className="absolute -inset-1.5 rounded-full border-2 border-dashed border-[#EAD196]/20 animate-spin" style={{ animationDuration: "6s" }} />
                 </div>
-                <span className="font-['Alex_Brush'] text-2xl lg:text-3xl text-[#EAD196]">{slide.label}</span>
+                <span className="font-['Allura'] text-2xl lg:text-3xl text-[#EAD196]">{slide.label}</span>
               </div>
 
               <h1 className="font-['Outfit'] font-black text-5xl lg:text-7xl text-white leading-none tracking-tight mb-3">
                 {slide.title}
               </h1>
-              <p className="font-['Alex_Brush'] text-2xl lg:text-3xl text-[#EAD196] mb-5">
+              <p className="font-['Allura'] text-2xl lg:text-3xl text-[#EAD196] mb-5">
                 &ldquo;{slide.subtitle}&rdquo;
               </p>
               <p className="text-white/75 text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
