@@ -793,7 +793,8 @@
       "desc": "Duhamagare cyangwa utwandikire maze umunyamuryango w'itsinda ryacu agufashe mu masaha y'akazi.",
       "callBtn": "Duhamagare",
       "emailBtn": "Twandikire"
-    }
+    },
+    "chatLabel": "Ganira natwe"
   },
   "galleryPage": {
     "heroTag": "Amafoto",
