@@ -276,7 +276,9 @@
     "readMore": "Soma ibirambuye",
     "prev": "Ibubanza",
     "next": "Ibikirikira",
-    "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro."
+    "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro.",
+    "heroChip1": "Amakuru Mashya",
+    "heroChip2": "Raporu z'Abaturage"
   },
   "departmentsPage": {
     "heroTag": "Amashami Yacu",
