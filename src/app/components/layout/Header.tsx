@@ -230,7 +230,7 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              to="/#contact"
+              to="/contact"
               className="bg-[#4E6132] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
             >
               {t("nav.contact")}
@@ -344,7 +344,7 @@ export function Header() {
                   >
                     {t("nav.donate")}
                   </button>
-                  <a href="#contact" className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</a>
+                  <Link to="/contact" onClick={() => setMobileOpen(false)} className="bg-[#4E6132] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</Link>
                 </div>
               </div>
             </motion.div>

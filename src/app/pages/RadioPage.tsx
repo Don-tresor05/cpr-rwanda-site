@@ -759,7 +759,7 @@ function RadioCtaBlock() {
             <PlayCircle size={16} /> {(cta?.btn as string) ?? "Listen Live"}
           </a>
           <Link
-            to="/#contact"
+            to="/contact"
             className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300"
           >
             {(cta?.btnSecondary as string) ?? "Contact Us"} <ArrowRight size={16} />

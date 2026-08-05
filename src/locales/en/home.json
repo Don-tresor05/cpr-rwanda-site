@@ -650,5 +650,147 @@
       "btn": "Listen Live",
       "btnSecondary": "Contact Us"
     }
+  },
+  "contactPage": {
+    "heroTag": "Contact Us",
+    "heroTitle": "Let's Start a Conversation",
+    "heroDesc": "We would love to hear from you. Whether you have a question, a partnership idea, or simply want to learn more about our work, our team is ready to help.",
+    "heroChip1": "KG 2 Av 4, Kigali",
+    "heroChip2": "Mon – Fri, 8:00 – 17:00",
+    "nav": {
+      "form": "Send a Message",
+      "info": "Contact Info",
+      "hours": "Office Hours",
+      "faq": "FAQ"
+    },
+    "info": {
+      "tag": "Contact Info",
+      "title": "Reach Us Any of These Ways",
+      "desc": "Choose the channel that suits you best — we are always happy to connect with our members, partners, and friends.",
+      "cards": [
+        {
+          "title": "Visit Our Offices",
+          "line1": "KG 2 Av 4, B.P 79",
+          "line2": "Kigali, Rwanda"
+        },
+        {
+          "title": "Call Us",
+          "line1": "+250 788 314 718",
+          "line2": "Mon – Fri, 8:00 – 17:00"
+        },
+        {
+          "title": "Email Us",
+          "line1": "cprgs@cpr-rwanda.rw",
+          "line2": "We reply within 48 hours"
+        },
+        {
+          "title": "Radio Inkoramutima",
+          "line1": "107.1 FM",
+          "line2": "Broadcasting 5:00 – 22:00 daily"
+        }
+      ]
+    },
+    "form": {
+      "tag": "Send a Message",
+      "title": "We'd Love to Hear From You",
+      "desc": "Fill out the form below and our team will get back to you as soon as possible. Your email app will open with your message ready to send.",
+      "name": "Full Name",
+      "namePh": "e.g. Jean Bosco Nkurunziza",
+      "email": "Email Address",
+      "emailPh": "you@example.com",
+      "phone": "Phone (optional)",
+      "phonePh": "+250 7XX XXX XXX",
+      "subject": "Subject",
+      "subjectOptions": [
+        "General Inquiry",
+        "Partnership",
+        "Education / BNEP",
+        "Diakonia & Development",
+        "Radio Inkoramutima",
+        "Media & Press",
+        "Donation & Support",
+        "Other"
+      ],
+      "message": "Your Message",
+      "messagePh": "Tell us how we can help you...",
+      "send": "Send Message",
+      "sending": "Opening your email app...",
+      "successTitle": "Thank You!",
+      "successDesc": "Your email app has opened with your message ready to send. If it didn't open, write to us directly at cprgs@cpr-rwanda.rw",
+      "sendAnother": "Send another message",
+      "errors": {
+        "name": "Please enter your name",
+        "email": "Please enter a valid email address",
+        "message": "Please write a message"
+      }
+    },
+    "hours": {
+      "tag": "Office Hours",
+      "title": "When You Can Find Us",
+      "desc": "Our doors are open throughout the week. On Sundays, our team joins worship — we will get back to you on Monday.",
+      "days": [
+        {
+          "day": "Monday",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Tuesday",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Wednesday",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Thursday",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Friday",
+          "time": "8:00 – 17:00"
+        },
+        {
+          "day": "Saturday",
+          "time": "9:00 – 13:00"
+        },
+        {
+          "day": "Sunday",
+          "time": "Closed"
+        }
+      ]
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Frequently Asked Questions",
+      "desc": "Quick answers to the questions we hear most often.",
+      "items": [
+        {
+          "q": "How can my church become a member of CPR?",
+          "a": "Membership is open to Protestant churches and Christian organizations in Rwanda that share our vision of unity and holistic development. Contact the General Secretariat and our team will guide you through the process."
+        },
+        {
+          "q": "How do I partner with CPR on a project?",
+          "a": "We welcome national and international partners. Send us a message through the form or email partnerships inquiries to cprgs@cpr-rwanda.rw and our team will respond within 48 hours."
+        },
+        {
+          "q": "How can I support CPR's work?",
+          "a": "You can support us through prayer, volunteering, or donations. Reach out to us and we will share the ways your contribution can make a lasting impact on Rwandan communities."
+        },
+        {
+          "q": "Can I request media coverage or an interview?",
+          "a": "Absolutely. Our communications team handles media requests — including coverage of our events and interviews with our leadership. Contact us with the details of your request."
+        },
+        {
+          "q": "Where is the CPR head office located?",
+          "a": "Our head office is located at KG 2 Av 4, B.P 79, Kigali, Rwanda — in the heart of the capital city."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Prefer to Talk Directly?",
+      "desc": "Call or email us and a member of our team will be glad to assist you during office hours.",
+      "callBtn": "Call Us",
+      "emailBtn": "Email Us"
+    }
   }
 }

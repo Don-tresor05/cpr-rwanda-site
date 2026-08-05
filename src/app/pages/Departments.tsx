@@ -443,7 +443,7 @@ export function Departments() {
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
-              to="/#contact"
+              to="/contact"
               className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
             >
               {(cta?.btn as string) ?? "Contact Us"} <ArrowRight size={16} />

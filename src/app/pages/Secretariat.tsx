@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
@@ -418,16 +418,19 @@ export function Secretariat() {
             <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
             <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali</span>
           </motion.div>
-          <motion.a
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            href="/#contact"
-            className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
           >
-            {t("secretariatPage.cta.btn")} <ArrowRight size={16} />
-          </motion.a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
+            >
+              {t("secretariatPage.cta.btn")} <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </div>
       </motion.section>
 
