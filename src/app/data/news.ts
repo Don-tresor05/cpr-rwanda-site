@@ -20,6 +20,10 @@ export interface NewsArticle {
   paragraphs?: string[];
   quote?: string;
   keyPoints?: string[];
+  /** Raw Sanity portable-text body (CMS articles only). */
+  bodyBlocks?: unknown[];
+  /** Whether the post is pinned as a featured story (CMS articles only). */
+  featured?: boolean;
 }
 
 export const getNews = (t: any): NewsArticle[] => {
