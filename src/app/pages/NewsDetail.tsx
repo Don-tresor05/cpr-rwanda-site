@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
-import { getNewsBySlug, getNews, NewsArticle } from "../data/news";
+import { getNews, NewsArticle } from "../data/news";
+import { useCmsNews } from "../data/sanityNews";
 import { ImageLightbox, LightboxImage } from "../components/ui/ImageLightbox";
+import { PortableContent } from "../components/ui/PortableContent";
 
 export function NewsDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -25,14 +27,15 @@ export function NewsDetail() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const allNews = useMemo(() => getNews(t), [t]);
+  const cmsNews = useCmsNews();
+  const allNews = useMemo(() => cmsNews ?? getNews(t), [cmsNews, t]);
   const article: NewsArticle = useMemo(() => {
     if (slug) {
-      const found = getNewsBySlug(slug, t);
+      const found = allNews.find((n) => n.slug === slug);
       if (found) return found;
     }
     return allNews[0];
-  }, [slug, allNews, t]);
+  }, [slug, allNews]);
 
   const relatedNews = useMemo(() => {
     return allNews.filter((n) => n.slug !== article.slug).slice(0, 3);
@@ -109,7 +112,9 @@ export function NewsDetail() {
 
           {/* Article Paragraphs - Compact font size & tight spacing */}
           <div className="space-y-3 text-[#374151] text-sm sm:text-base leading-relaxed">
-            {article.paragraphs && article.paragraphs.length > 0 ? (
+            {article.bodyBlocks && article.bodyBlocks.length > 0 ? (
+              <PortableContent blocks={article.bodyBlocks} />
+            ) : article.paragraphs && article.paragraphs.length > 0 ? (
               <>
                 {article.paragraphs.map((paragraph, idx) => {
                   const inlineImg = article.inlineImages?.find(
