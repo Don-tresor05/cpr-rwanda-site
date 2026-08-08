@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
+import { useCmsNews } from "../data/sanityNews";
 
 export interface NewsItem {
   slug: string;
@@ -101,6 +102,8 @@ export function Newsroom() {
   const { ref, visible } = useScrollReveal();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  // CMS posts take over when staff publish them; the lists below are fallbacks.
+  const cmsNews = useCmsNews();
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -109,6 +112,16 @@ export function Newsroom() {
   const heroContentY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   const newsItems: NewsItem[] = useMemo(() => {
+    if (cmsNews && cmsNews.length > 0) {
+      return cmsNews.map((n) => ({
+        slug: n.slug,
+        title: n.title,
+        date: n.date,
+        category: n.category,
+        excerpt: n.excerpt,
+        image: n.image,
+      }));
+    }
     const translatedItems = (t("newsroom.items", { returnObjects: true }) as NewsItem[]) || [];
     if (Array.isArray(translatedItems) && translatedItems.length > 0) {
       return translatedItems;
@@ -180,7 +193,7 @@ export function Newsroom() {
         image: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
       },
     ];
-  }, [t]);
+  }, [cmsNews, t]);
 
   // Categories list
   const categories = useMemo(() => {
