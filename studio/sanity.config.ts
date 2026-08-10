@@ -1,11 +1,19 @@
 import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
+import { structureTool, type StructureBuilder } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemaTypes";
 
-// Override via studio/.env if needed (SANITY_STUDIO_PROJECT_ID / SANITY_STUDIO_DATASET)
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "7kmzwj0g";
-const dataset = process.env.SANITY_STUDIO_DATASET || "production";
+// Each developer uses their OWN Sanity project. Copy studio/.env.example to
+// studio/.env and set SANITY_STUDIO_PROJECT_ID / SANITY_STUDIO_DATASET.
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
+const dataset = process.env.SANITY_STUDIO_DATASET;
+
+if (!projectId || !dataset) {
+  throw new Error(
+    "Sanity Studio is not configured. Copy studio/.env.example to studio/.env and set " +
+      "SANITY_STUDIO_PROJECT_ID and SANITY_STUDIO_DATASET (use your own Sanity project)."
+  );
+}
 
 export default defineConfig({
   name: "cpr-rwanda",
@@ -16,7 +24,7 @@ export default defineConfig({
   schema: { types: schemaTypes },
 
   // Show News Posts first, newest first, so staff see the latest at a glance.
-  structure: (S) =>
+  structure: (S: StructureBuilder) =>
     S.list()
       .title("Content")
       .items([
