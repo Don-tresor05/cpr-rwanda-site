@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 const WORDMARK = "CPR RWANDA".split("");
 
 export function LoadingScreen({ onDone }: { onDone: () => void }) {
+  const { t } = useTranslation("common");
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
   const onDoneRef = useRef(onDone);
@@ -177,7 +179,7 @@ export function LoadingScreen({ onDone }: { onDone: () => void }) {
             >
               <div className="flex items-center justify-between mb-2.5">
                 <span className="text-[#F5F5DC]/60 text-[10px] uppercase tracking-[0.25em] font-medium">
-                  Preparing
+                  {t("loading.preparing")}
                 </span>
                 <span
                   role="status"
@@ -219,7 +221,7 @@ export function LoadingScreen({ onDone }: { onDone: () => void }) {
             transition={{ delay: 1.4, duration: 0.8 }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 font-['Alex_Brush'] text-2xl text-[#F5F5DC]/70 whitespace-nowrap"
           >
-            Serving Rwanda Since 1963
+            {t("loading.tagline")}
           </motion.p>
         </motion.div>
       )}
