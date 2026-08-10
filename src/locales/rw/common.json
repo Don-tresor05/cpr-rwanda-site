@@ -9,6 +9,7 @@
     "news": "Amakuru",
     "contact": "Twandikire",
     "donate": "Tanga Inkunga",
+    "comingSoon": "Bidatinze",
     "organization": "Umuryango",
     "whoWeAre": "Abo Turi Bo",
     "whoWeAreDesc": "Yashinzwe mu 1963, ihuza amatorero y'abaporotesitanti mu Rwanda",
@@ -71,6 +72,13 @@
     "contactUs": "Twandikire",
     "followUs": "Dukurikire",
     "rights": "Uburenganzira bwose burabitswe.",
-    "developedBy": "Yakozwe na"
+    "developedBy": "Yakozwe na",
+    "sendMessage": "Tumiza ubutumwa",
+    "privacyPolicy": "Politiki y'ibanga",
+    "termsOfService": "Amabwiriza yo gukoresha"
+  },
+  "loading": {
+    "preparing": "Kugenzura",
+    "tagline": "Gukorera u Rwanda kuva mu 1963"
   }
 }
