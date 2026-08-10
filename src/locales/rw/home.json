@@ -81,29 +81,121 @@
     "viewAllBtn": "Reba Amakuru Yose",
     "items": [
       {
-        "category": "Igikorwa",
+        "slug": "cpr-june-2026-highlights",
+        "date": "7 July 2026",
+        "category": "Report",
+        "title": "Abakozi ba CPR basuye Urwibutso rwa Jenoside rwa Nyanza bagafasha imiryango y'abacitse ku icumu mu Mudugudu wa Mulinja",
+        "excerpt": "Abakozi ba CPR bahaye icyubahiro abahohotewe ku Rwibutso rwa Jenoside rwa Nyanza mu Karere ka Kicukiro kandi batanga ubufasha bwihariye ku miryango y'abacitse ku icumu ryo mu 1994 mu Mudugudu wa Mulinja, mu rwego rw'urwibutso rwa buri mwaka rwa Kwibuka 31.",
+        "body": [
+          "Conseil Protestant du Rwanda (CPR) ni inama y'amatorero y'Abaporotesitanti mu Rwanda. Mu myaka irenga icumi na kabiri (12) ikurikirana, gukora ibikorwa bya buri mwaka byo kwibuka Kwibuka—by'umwihariko gusura no gufasha imiryango y'abacitse ku icumu ryo mu 1994 rya Jenoside yakorewe Abatutsi—byabaye umugenzo wa buri mwaka ushimangiye muri CPR.",
+          "Ku nshuro ya Kwibuka 31, mu gihe Abanyarwanda bibuka Jenoside yakorewe Abatutsi mu 1994, abakozi ba CPR bakoze ibikorwa bibiri bikomeye by'ingenzi:",
+          "1. Gusura Urwibutso rwa Jenoside rwa Nyanza rw'icumu ryo mu 1994 rya Jenoside yakorewe Abatutsi i Nyanza, mu Karere ka Kicukiro, kugira ngo bahane abahohotewe icyubahiro gikwiye.",
+          "2. Gusura no gufasha imiryango y'abacitse ku icumu ryo mu 1994 rya Jenoside yakorewe Abatutsi yimukiye mu Mudugudu wa Mulinja, mu Kagari ka Gahanga, mu Karere ka Kicukiro. Ibi bikorwa byose byo kwibuka byakozwe neza ku ya 19 Gicurasi 2025.",
+          "Ku Rwibutso rwa Jenoside rwa Nyanza, aho hahambwe abahohotewe barenze 105.600 b'icumu ryo mu 1994 rya Jenoside yakorewe Abatutsi baturutse mu Mujyi wa Kigali wose, abakozi ba CPR naso basuye imirima y'urwibutso. Bayobowe mu bimenyetso byimbitse biri mu miterere y'ahantu—nka mirima y'amasaka, inzira zigendana, imisozi mito, amazi atemba, urubingo, n'ibiti kavukire—bamenya amasomo adashira y'urwibutso, ubunyamwete, n'ubumwe muri iki gihe.",
+          "Nyuma yo gusura urwibutso, abakozi ba CPR baje gusura imiryango y'abacitse ku icumu yimukiye mu Mudugudu wa Mulinja. Iyi miryango 46 yahujije imbaraga na CPR n'abakozi bayo mu gukora ibikorwa bya buri mwaka byo kwibuka Kwibuka mu myaka irenga 12 ishize. Igihe cyose ibikorwa bihari, CPR isura iyi miryango ikayitanga ubufasha bw'ibanze—harimo ibikoresho byo mu ngo, ibiribwa, n'ibindi bikenewe.",
+          "Kuri iyi nshuro, abakozi ba CPR bahujwe n'Umunyamabanga Mukuru wa CPR hamwe n'Uwuhagarariye Perezida wa CPR. Iyi ntsindagirano yateraniye kuri Kiliziya ya Nazarene iherereye hafi y'icyicaro cy'Umurenge wa Gahanga, ihura n'imiryango yose 46 y'abacitse ku icumu yimitswe n'Akarere ka Kicukiro mu Mudugudu wa Mulinja mu gihe cy'umubano, ubwumvikane n'inkunga yombi."
+        ],
+        "quote": "Kwibuka no guhagarara hamwe n'abacitse ku icumu ni inshingano yacu yera idahagarara. Binyuze mu kwizera, urwibutso, n'ubufasha bufatika, dushimangira ubumwe n'icyizere.",
+        "image": "/assets/news-kwibuka.jpg"
+      },
+      {
+        "slug": "annual-convention-2026",
+        "date": "2 July 2026",
+        "category": "Event",
+        "title": "Imbere y'Inama Nkuru ya buri mwaka ya CPR y'ubufatanye bw'amatorero",
+        "excerpt": "Umuryango w'Abaporotesitanti mu Rwanda ubaka ubufatanye buramba mu gihugu hose. Amatorero y'ubumwe yateraniye kugira ngo ahuze ingamba z'uburezi, uburayobozi bw'urubyiruko, no guhanga imbaraga mu mibereho n'ubukungu.",
+        "body": [
+          "Inama Nkuru ya 2026 ya Conseil Protestant du Rwanda yateranije hamwe abayobozi b'amatorero, abahanga mu bya tewolojiya, n'abaharanira abaturage bo muri Afurika y'Iburasirazuba hose kugira ngo baganire ku gihe kizaza cy'ubufatanye bw'amatorero.",
+          "Abavuga imvugo nyamukuru bagaragaje uruhare runini rw'ibigo by'Abaporotesitanti mu guteza imbere uburezi bwiza, ubuzima bwigera, no kurinda ibidukikije mu ntara zose z'u Rwanda.",
+          "Iyi Nama yateranije abahagarariye barenze 300, harimo abaminisitiri, abaambasaderi, abafatanyabikorwa b'iterambere, abashakashatsi, n'abayobozi b'urubyiruko, itangiza urubuga rw'igihe kirekire rwo guteza imbere ubufatanye bufatika mu matorero y'ubumwe.",
+          "Inama yarangiye n'itangazo rikomeye ryemeza ubufatanye, ikiganiro hagati y'amadini, no kwitabira ibikorwa by'iterambere ry'igihugu."
+        ],
+        "quote": "Ubufatanye bw'amatorero ntabwo ari intego ya tewolojiya gusa—ni inshingano yacu ifatika yo gukorera abantu hamwe.",
+        "image": "/assets/news-education.webp"
+      },
+      {
+        "slug": "may-highlights-2026",
+        "date": "2 June 2026",
+        "category": "Youth",
+        "title": "Iby'ingenzi byo muri Gicurasi 2026 muri CPR n'Urukurikirane rw'Urubyiruko",
+        "excerpt": "Gicurasi 2026 yari ukwezi k'ingenzi ku rwego rw'urubyiruko rwa CPR, hagiye hatangizwa amahugurwa yo kubaka amahoro hamwe no guhugura mu by'ikoranabuhanga abayobozi bato b'itorero barenga 800 mu gihugu hose.",
+        "body": [
+          "Mu kwezi kwa Gicurasi 2026, Ishami ry'Urubyiruko rya CPR ryakoze amahugurwa mu Ntara z'Iburengerazuba n'Amajyepfo, ryongera imbaraga abayobozi bato mu buhanga bw'ikoranabuhanga, uburyo bwo gukemura amakimbirane, n'amahugurwa y'ubucuruzi.",
+          "Abitabiriye bakurikiranye amaseminari y'ibiganira agamije ubutumwa bwiza bukoresheje ikoranabuhanga, gukorerera abaturage serivisi, no kumenya ubuzima bwo mu mutwe, bibaha imbaraga zo kuyobora ibikorwa by'ingenzi mu barishya babo.",
+          "Intsinzi y'ibikorwa by'urubyiruko byo muri Gicurasi ishyiraho urufatiro rw'inama y'igihugu y'urubyiruko iteganyijwe nyuma muri uyu mwaka."
+        ],
+        "quote": "Guha urubyiruko ubuhanga n'ukwizera ni ishoramari rikomeye dushobora gukora ku gihe kizaza cy'u Rwanda.",
+        "image": "/assets/news-trauma.jpg"
+      },
+      {
+        "slug": "kwibuka-31-commemoration",
+        "date": "28 June 2025",
+        "category": "Event",
         "title": "Kwibuka 31 muri Diyosezi ya Gahini",
-        "excerpt": "Amatorero agize CPR yifatanyije n'abandi banyarwanda kwibuka Jenoside yakorewe Abatutsi mu 1994."
+        "excerpt": "Amatorero agize CPR yifatanyije n'abandi banyarwanda kwibuka Jenoside yakorewe Abatutsi mu 1994, bongera gushimangira ubumwe bwabo ku mahoro, ubwiyunge n'«Ibyo ntibizongera kubaho».",
+        "body": [
+          "Mu rwego rw'urwibutso rwa Kwibuka 31, abayobozi ba CPR n'abayobozi b'amatorero y'ubumwe bateraniye mu Diyosezi ya Gahini mu muhango wo kwibuka wahaye icyubahiro abahohotewe na Jenoside yakorewe Abatutsi mu 1994.",
+          "Abavuze mu biganiro bashimangira inshingano ihoraho y'amatorero ya gikristo yo kuzanura ukuri, gufasha abacitse ku icumu, no gutoza urubyiruko kwirinda jenoside.",
+          "CPR yongeye gushimangira ubumwe bwayo bwo gufasha ibiro bivuza ihungabana n'amatsinda y'ibiganiro by'ubwiyunge mu baturage mu gihugu hose."
+        ],
+        "quote": "Kwibuka ni inshingano yacu yera. Binyuze mu kwibuka, ukuri, n'ukwizera, turinda ubumwe bw'u Rwanda iteka.",
+        "image": "/assets/Gahini 2.webp"
       },
       {
-        "category": "Uburezi",
+        "slug": "bnep-active-pedagogy-training",
+        "date": "14 May 2025",
+        "category": "Education",
         "title": "BNEP yatangije Amahugurwa ku Barezi 1,200",
-        "excerpt": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti byatangije gahunda y'imyigishirize igezweho."
+        "excerpt": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti byatangije gahunda y'imyigishirize igezweho mu bufatanye n'abafatanyabikorwa mpuzamahanga.",
+        "body": [
+          "Bureau National de l'Éducation Protestante (BNEP) yatangije ku mugaragaro gahunda y'amahugurwa akomeye ku barezi 1.200 b'amarushuri abanza n'ayisumbuye bakorera mu mashuri ari mu byiciro bya CPR.",
+          "Gahunda yibanda ku myigishirize ifatika ibanda ku munyeshuri, uburezi bushyira mu rwego abana bafite ibyo bakeneye by'umwihariko, no gushyiramo indangagaciro mu nteguro za STEM.",
+          "Ku mashuri arenga 595 ayoborwa n'amatorero y'ubumwe bwa CPR, BNEP ikomeza kuzamura urwego rw'uburezi mu gihugu hose."
+        ],
+        "quote": "Uburezi bwiza bufite urufatiro rw'imyitwarire ikomeye buhindura abiga abayobozi bafite impuhwe.",
+        "image": "/assets/Primary.jpg"
       },
       {
-        "category": "Ubuzima",
+        "slug": "trauma-counselor-certification",
+        "date": "3 April 2025",
+        "category": "Health",
         "title": "Amahugurwa y'Abajyanama b'Ihungabana",
-        "excerpt": "Abajyanama b'ubuzima 42 mu ntara zitanu bahawe impabumenyi mu gufasha abafite ihungabana."
+        "excerpt": "Abajyanama b'ubuzima 42 mu ntara zitanu bahawe impabumenyi mu gufasha abafite ihungabana, bikomeza ubushobozi bwa CPR mu kuvuga ku buzima bwo mu mutwe.",
+        "body": [
+          "Ishami ry'Uburinganire n'Ubuzima rya CPR ryishimiye gusoza abajyanama 42 bemewe mu gufasha abafite ihungabana, nyuma y'icyiciro gikomeye cy'amahugurwa y'amezi atandatu.",
+          "Aba bajyanama bashyirwa mu bigo nderabuzima byo mu cyaro no mu biro by'ubujyanama bya paruwasi kugira ngo batange ubufasha bwo mu mutwe, ubujyanama bw'umuryango, no kwita ku bahungabanye.",
+          "Iyi gahunda igabanya ikimwaro cyo kuvugana ku by'ubuzima bwo mu mutwe ikanemeza ko kwita ku bantu bikorwa mu mpuhwe ku rwego rw'ibanze."
+        ],
+        "quote": "Gukiza imitima no kugarura ubuzima bwiza bwo mu mutwe ni ingenzi ku miryango ifite ubuzima bwiza n'abaturage bakomeye.",
+        "image": "/assets/Trauma 1.webp"
       },
       {
-        "category": "Iterambere",
+        "slug": "agricultural-cooperatives-sustainability",
+        "date": "12 March 2025",
+        "category": "Development",
         "title": "CPR mu Bufatanye na Koperative z'Abahinzi",
-        "excerpt": "Gahunda nshya yo gufasha abahinzi guhangana n'imihindagurikire y'ikirere yatangirijwe mu Burasirazuba."
+        "excerpt": "Gahunda nshya yo gufasha abaturage bo mu cyaro n'ubuhinzi bwihangana n'imihindagurikire y'ikirere yatangirijwe mu Burasirazuba, igira akamaro ku miryango irenga 500.",
+        "body": [
+          "Ishami rya Diyakoniya rya CPR ryatangije umushinga w'igerageza w'ubuhinzi bwihangana n'imihindagurikire y'ikirere mu bufatanye n'amakoperative y'abahinzi bo mu karere ka Bugesera na Nyagatare.",
+          "Umushinga uha abahinzi batoya imbuto zihangana n'izuba, ibikoresho byo kuhira, n'ubuhanga bwo gukoresha ubutaka mu buryo bw'ikamere kugira ngo umutekano w'ibiribwa urenze.",
+          "Imiryango irenga 500 imaze kugirira akamaro, ikuzamura umusaruro mu gihe irengera umutungo kamere."
+        ],
+        "quote": "Ubuhinzi buramba bubaha ibiremwa by'Imana mu gihe bwikikije imibereho n'icyubahiro by'imiryango yo mu cyaro.",
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
-        "category": "Urubyiruko",
+        "slug": "youth-reconciliation-summit",
+        "date": "18 February 2025",
+        "category": "Youth",
         "title": "Inama y'Urubyiruko ku Mahoro n'Ubwiyunge",
-        "excerpt": "Abayobozi b'urubyiruko bazahurira i Kigali kuganira ku mahoro n'ubuyobozi."
+        "excerpt": "Abayobozi b'urubyiruko bo mu matorero atandukanye y'Abaporotesitanti mu gihugu hose bazahurira i Kigali kuganira ku kubaka amahoro, ubuyobozi, n'ubutumwa bwiza bukoresheje ikoranabuhanga.",
+        "body": [
+          "Ubuyobozi bw'Urubyiruko rwa CPR bwatangaje iminsi y'inama y'igihugu y'urubyiruko izaza, izahuriza hamwe abahagarariye b'urubyiruko barenga 600 baturutse mu matorero y'Abaporotesitanti mu gihugu hose.",
+          "Ku nsanganyamatsiko «Urubyiruko nk'abaambasaderi b'amahoro n'ubuhanga», iyi nama izaba irimo amahugurwa yo gukemura amakimbirane, ubucuruzi mbonezamubano, no kumenya ikoranabuhanga.",
+          "Kwiyandikisha byakozwe binyuze mu biro bya paruwasi n'abahuzabikorwa b'urubyiruko ba CPR."
+        ],
+        "quote": "Iyo urubyiruko ruyoboye mu mahoro n'intego, igihugu cyose kibaho imbere.",
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -133,7 +225,13 @@
     "nowPlaying": "Ikiganiro Kiriho:",
     "nowPlayingDesc": "Isengesho rya Mu Gitondo & Amakuru",
     "listenBtn": "Umva Nonaha",
-    "scheduleBtn": "Gahunda y'Ibiganiro"
+    "scheduleBtn": "Gahunda y'Ibiganiro",
+    "tagline": "Ijwi ry'Umutima",
+    "pillars": [
+      "Ivanjilizasiyo",
+      "Ubumwe",
+      "Iterambere"
+    ]
   },
   "gallery": {
     "galleryLabel": "Amafoto",
@@ -251,6 +349,8 @@
       ]
     },
     "execCommittee": {
+      "bnepRep": "Uhagarariye BNEP",
+      "staffMember": "Umukozi",
       "title": "Komite Nyobozi",
       "desc": "Ikipe yacu y'abanyamwuga n'abayobozi b'amatorero izana ubushobozi butandukanye gushyigikira inshingano z a CPR.",
       "boardMembers": "Abagize Inama y'Ubuyobozi",
@@ -274,11 +374,87 @@
     "filterLabel": "Gushungura ku Icyiciro:",
     "allCategories": "Ibyiciro Byose",
     "readMore": "Soma ibirambuye",
+    "backToNewsroom": "Subira ku Makuru",
+    "returnToNewsroom": "Subira ku Makuru",
+    "byAuthor": "Na {{author}}",
+    "shareLabel": "Sangira:",
+    "shareBtn": "Sangira",
+    "copied": "Byakoporowe!",
+    "moreNews": "Andi Makuru n'Inkuru",
+    "secondaryCaption": "Igicapo cya kabiri mu rwibutso rwa CPR.",
     "prev": "Ibubanza",
     "next": "Ibikirikira",
     "noNewsFound": "Nta nkuru zabonetse mu iki cyiciro.",
     "heroChip1": "Amakuru Mashya",
-    "heroChip2": "Raporu z'Abaturage"
+    "heroChip2": "Raporu z'Abaturage",
+    "article": "Inkuru",
+    "articles": "Inkuru",
+    "items": [
+      {
+        "slug": "cpr-june-2026-highlights",
+        "date": "7 July 2026",
+        "category": "Report",
+        "title": "Abakozi ba CPR basuye Urwibutso rwa Jenoside rwa Nyanza bagafasha imiryango y'abacitse ku icumu mu Mudugudu wa Mulinja",
+        "excerpt": "Abakozi ba CPR bahaye icyubahiro abahohotewe ku Rwibutso rwa Jenoside rwa Nyanza mu Karere ka Kicukiro kandi batanga ubufasha bwihariye ku miryango y'abacitse ku icumu ryo mu 1994 mu Mudugudu wa Mulinja, mu rwego rw'urwibutso rwa buri mwaka rwa Kwibuka 31.",
+        "image": "/assets/news-kwibuka.jpg"
+      },
+      {
+        "slug": "annual-convention-2026",
+        "date": "2 July 2026",
+        "category": "Event",
+        "title": "Imbere y'Inama Nkuru ya buri mwaka ya CPR y'ubufatanye bw'amatorero",
+        "excerpt": "Umuryango w'Abaporotesitanti mu Rwanda ubaka ubufatanye buramba mu gihugu hose. Amatorero y'ubumwe yateraniye kugira ngo ahuze ingamba z'uburezi, uburayobozi bw'urubyiruko, no guhanga imbaraga mu mibereho n'ubukungu.",
+        "image": "/assets/news-education.webp"
+      },
+      {
+        "slug": "may-highlights-2026",
+        "date": "2 June 2026",
+        "category": "Youth",
+        "title": "Iby'ingenzi byo muri Gicurasi 2026 muri CPR n'Urukurikirane rw'Urubyiruko",
+        "excerpt": "Gicurasi 2026 yari ukwezi k'ingenzi ku rwego rw'urubyiruko rwa CPR, hagiye hatangizwa amahugurwa yo kubaka amahoro hamwe no guhugura mu by'ikoranabuhanga abayobozi bato b'itorero barenga 800 mu gihugu hose.",
+        "image": "/assets/news-trauma.jpg"
+      },
+      {
+        "slug": "kwibuka-31-commemoration",
+        "date": "28 June 2025",
+        "category": "Event",
+        "title": "Kwibuka 31 muri Diyosezi ya Gahini",
+        "excerpt": "Amatorero agize CPR yifatanyije n'abandi banyarwanda kwibuka Jenoside yakorewe Abatutsi mu 1994, bongera gushimangira ubumwe bwabo ku mahoro, ubwiyunge n'«Ibyo ntibizongera kubaho».",
+        "image": "/assets/Gahini 2.webp"
+      },
+      {
+        "slug": "bnep-active-pedagogy-training",
+        "date": "14 May 2025",
+        "category": "Education",
+        "title": "BNEP yatangije Amahugurwa ku Barezi 1,200",
+        "excerpt": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti byatangije gahunda y'imyigishirize igezweho mu bufatanye n'abafatanyabikorwa mpuzamahanga.",
+        "image": "/assets/Primary.jpg"
+      },
+      {
+        "slug": "trauma-counselor-certification",
+        "date": "3 April 2025",
+        "category": "Health",
+        "title": "Amahugurwa y'Abajyanama b'Ihungabana",
+        "excerpt": "Abajyanama b'ubuzima 42 mu ntara zitanu bahawe impabumenyi mu gufasha abafite ihungabana, bikomeza ubushobozi bwa CPR mu kuvuga ku buzima bwo mu mutwe.",
+        "image": "/assets/Trauma 1.webp"
+      },
+      {
+        "slug": "agricultural-cooperatives-sustainability",
+        "date": "12 March 2025",
+        "category": "Development",
+        "title": "CPR mu Bufatanye na Koperative z'Abahinzi",
+        "excerpt": "Gahunda nshya yo gufasha abaturage bo mu cyaro n'ubuhinzi bwihangana n'imihindagurikire y'ikirere yatangirijwe mu Burasirazuba, igira akamaro ku miryango irenga 500.",
+        "image": "/assets/CPR 3 - Copy.webp"
+      },
+      {
+        "slug": "youth-reconciliation-summit",
+        "date": "18 February 2025",
+        "category": "Youth",
+        "title": "Inama y'Urubyiruko ku Mahoro n'Ubwiyunge",
+        "excerpt": "Abayobozi b'urubyiruko bo mu matorero atandukanye y'Abaporotesitanti mu gihugu hose bazahurira i Kigali kuganira ku kubaka amahoro, ubuyobozi, n'ubutumwa bwiza bukoresheje ikoranabuhanga.",
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+      }
+    ]
   },
   "departmentsPage": {
     "heroTag": "Amashami Yacu",
@@ -287,6 +463,10 @@
     "introTag": "Imiterere Yacu",
     "introTitle": "Amashami y'Inama y'Abaporotesitanti mu Rwanda",
     "introDesc": "Ibikorwa bya CPR bikorwa binyuze mu mashami arindwi yihariye, buri shami riyobowe n'impuguke zifite uburambe. Hamwe, bashyira mu bikorwa gahunda zigera mu ntara zose z'u Rwanda, uhereye ku burezi n'ubuzima kugeza ku gufasha urubyiruko n'iterambere ry'abaturage.",
+    "overview": {
+      "title": "Suzuma Amashami Yacu",
+      "desc": "Kanda ku shami iryo ariryo ryose urebe ibisobanuro byaryo bikurikira"
+    },
     "nav": {
       "gs": "Ubunyamabanga Bukuru",
       "bnep": "Uburezi / BNEP",
@@ -516,6 +696,7 @@
       "beneficiaries": "Abayungukiwa"
     },
     "about": {
+      "hours": "5:00 — 22:00 buri munsi",
       "tag": "Amateka",
       "title": "Kuva mu Nzozi Igaragiraho Ukuri",
       "desc": "Imbaba na mbere ya Jenoside yakorewe Abatutsi mu 1994, igitekerezo cya radiyo ya CPR cyakomeje kugaragara mu nama z'inzego z'ubuyobozi bwa CPR — ariko nticyashyirwa mu bikorwa. Minisiteri y'Ubwiza (Evangelisation) yasangaga ko itumanaho rya radiyo ari ngombwa kugira ngo Ubutumwa Bwiza bugere ku bantu benshi mu gihugu, mu karere no ku isi hose.",
@@ -557,6 +738,7 @@
       ]
     },
     "programs": {
+      "footerTag": "107.1 FM — Ijwi ry'Umutima",
       "tag": "Ibiganiro",
       "title": "Umunsi Wuzuye w'Ibyiringiro kuri 107.1 FM",
       "desc": "Radiyo Inkoramutima itangaza amasaha 17 buri munsi, kuva saa kumi n'imwe z'ijoro (5:00) kugeza saa kumi na zine z'ijoro (22:00), mu biganiro bimenyesha, birera kandi bihagurukira.",
