@@ -4,7 +4,8 @@ import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
 import { BackToTop } from "./components/ui/BackToTop";
-import { LoadingScreen } from "./components/ui/LoadingScreen";
+// Loading screen temporarily disabled — kept for future use
+// import { LoadingScreen } from "./components/ui/LoadingScreen";
 import { ComingSoonProvider } from "./components/ui/ComingSoonModal";
 import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
@@ -29,14 +30,17 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [booted, setBooted] = useState(false);
+  // Loading screen temporarily disabled — kept for future use
+  // const [booted, setBooted] = useState(false);
 
   return (
     <div className="min-h-screen">
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
+      {/* Loading screen temporarily disabled — kept for future use
       {!booted && <LoadingScreen onDone={() => setBooted(true)} />}
+      */}
       <ComingSoonProvider>
       <Header />
       <Routes>
