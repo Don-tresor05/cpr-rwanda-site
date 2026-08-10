@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { getDepartments } from "../../data/departments";
+import { useDepartments } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
@@ -9,7 +10,7 @@ export function DepartmentsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const navigate = useNavigate();
-  const departments = getDepartments(t);
+  const departments = useDepartments() ?? getDepartments(t);
   return (
     <section id="departments" ref={ref} className="py-24 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
