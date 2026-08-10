@@ -33,8 +33,12 @@ export const newsPost = defineType({
       group: "main",
       description: "Auto-generated from the English headline — leave as is.",
       options: {
-        source: (doc: { title?: { en?: string; fr?: string; rw?: string } }) =>
-          doc.title?.en || doc.title?.fr || doc.title?.rw || "post",
+        source: (doc) => {
+          const t = doc.title as
+            | { en?: string; fr?: string; rw?: string }
+            | undefined;
+          return t?.en || t?.fr || t?.rw || "post";
+        },
       },
     }),
     defineField({
