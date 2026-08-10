@@ -68,7 +68,7 @@ export function NewsDetail() {
             to="/newsroom"
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#4E6132] hover:text-[#8B6543] active:text-[#8B6543] transition-colors mb-4"
           >
-            <ArrowLeft size={13} /> Back to Newsroom
+            <ArrowLeft size={13} /> {t("newsroom.backToNewsroom", "Back to Newsroom")}
           </Link>
 
           {/* Article Title */}
@@ -85,7 +85,7 @@ export function NewsDetail() {
             {article.author && (
               <>
                 <span className="text-[#4E6132]/40">•</span>
-                <span className="hover:text-[#8B6543] transition-colors">By {article.author}</span>
+                <span className="hover:text-[#8B6543] transition-colors">{t("newsroom.byAuthor", { defaultValue: "By {{author}}", author: article.author })}</span>
               </>
             )}
           </div>
@@ -183,7 +183,7 @@ export function NewsDetail() {
                       />
                     </div>
                     <p className="text-xs text-[#6B7280] leading-normal border-b border-[#4E6132]/10 pb-2">
-                      {article.secondaryCaption || "Secondary view during CPR commemoration."}
+                      {article.secondaryCaption || t("newsroom.secondaryCaption", "Secondary view during CPR commemoration.")}
                     </p>
                   </div>
                 )}
@@ -206,19 +206,19 @@ export function NewsDetail() {
               to="/newsroom"
               className="inline-flex items-center gap-1.5 bg-[#4E6132] text-white text-xs font-bold px-4 py-2 rounded-none hover:bg-[#3a4f26] transition-colors shadow-sm"
             >
-              <ArrowLeft size={14} /> Return to Newsroom
+              <ArrowLeft size={14} /> {t("newsroom.returnToNewsroom", "Return to Newsroom")}
             </Link>
 
             <div className="flex items-center gap-3">
               <span className="text-xs font-bold uppercase tracking-wider text-[#4E6132] flex items-center gap-1.5">
-                <Share2 size={14} className="text-[#8B6543]" /> Share:
+                <Share2 size={14} className="text-[#8B6543]" /> {t("newsroom.shareLabel", "Share:")}
               </span>
               <button
                 onClick={handleCopyLink}
                 className="inline-flex items-center gap-1.5 bg-[#F8F9FA] text-[#4E6132] border border-[#4E6132]/20 hover:bg-[#4E6132] hover:text-white px-3 py-1.5 rounded-none text-xs font-bold transition-all"
               >
                 {copied ? <Check size={14} className="text-green-500" /> : <Share2 size={14} />}
-                <span>{copied ? "Copied!" : "Share"}</span>
+                <span>{copied ? t("newsroom.copied", "Copied!") : t("newsroom.shareBtn", "Share")}</span>
               </button>
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}`}
@@ -253,7 +253,7 @@ export function NewsDetail() {
       <section className="py-12 bg-[#F8F9FA] border-t border-[#4E6132]/10">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <h3 className="font-['Outfit'] font-bold text-2xl text-[#4E6132] mb-8">
-            More News & Stories
+            {t("newsroom.moreNews", "More News & Stories")}
           </h3>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
