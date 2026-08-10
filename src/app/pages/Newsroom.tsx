@@ -335,7 +335,7 @@ export function Newsroom() {
             </div>
 
             <div className="text-xs font-semibold text-[#8B6543]">
-              {filteredItems.length} {filteredItems.length === 1 ? "Article" : "Articles"}
+              {filteredItems.length} {filteredItems.length === 1 ? t("newsroom.article", "Article") : t("newsroom.articles", "Articles")}
             </div>
           </div>
 
