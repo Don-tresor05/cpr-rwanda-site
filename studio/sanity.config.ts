@@ -21,6 +21,47 @@ export default defineConfig({
       .title("Content")
       .items([
         S.listItem()
+          .title("Site Settings")
+          .id("siteSettings")
+          .schemaType("siteSettings")
+          .child(
+            S.editor()
+              .id("siteSettings")
+              .schemaType("siteSettings")
+              .title("Site Settings")
+          ),
+        // Page editors — one document per page, controlling the deep text.
+        S.listItem()
+          .title("Departments Page")
+          .id("departmentsPage")
+          .schemaType("departmentsPage")
+          .child(
+            S.editor()
+              .id("departmentsPage")
+              .schemaType("departmentsPage")
+              .title("Departments Page")
+          ),
+        S.listItem()
+          .title("About Page")
+          .id("aboutPage")
+          .schemaType("aboutPage")
+          .child(
+            S.editor()
+              .id("aboutPage")
+              .schemaType("aboutPage")
+              .title("About Page")
+          ),
+        S.listItem()
+          .title("Secretariat Page")
+          .id("secretariatPage")
+          .schemaType("secretariatPage")
+          .child(
+            S.editor()
+              .id("secretariatPage")
+              .schemaType("secretariatPage")
+              .title("Secretariat Page")
+          ),
+        S.listItem()
           .title("News & Announcements")
           .id("newsPosts")
           .schemaType("newsPost")
@@ -29,6 +70,66 @@ export default defineConfig({
               .title("News & Announcements")
               .schemaType("newsPost")
               .defaultOrdering([{ field: "publishedAt", direction: "desc" }])
+          ),
+        S.listItem()
+          .title("Member Churches")
+          .id("memberChurches")
+          .schemaType("memberChurch")
+          .child(
+            S.documentList()
+              .title("Member Churches")
+              .schemaType("memberChurch")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Departments")
+          .id("departments")
+          .schemaType("department")
+          .child(
+            S.documentList()
+              .title("Departments")
+              .schemaType("department")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Gallery Collections")
+          .id("galleryEvents")
+          .schemaType("galleryEvent")
+          .child(
+            S.documentList()
+              .title("Gallery Collections")
+              .schemaType("galleryEvent")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Radio Programs")
+          .id("radioPrograms")
+          .schemaType("radioProgram")
+          .child(
+            S.documentList()
+              .title("Radio Programs")
+              .schemaType("radioProgram")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Testimonials")
+          .id("testimonials")
+          .schemaType("testimonial")
+          .child(
+            S.documentList()
+              .title("Testimonials")
+              .schemaType("testimonial")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Projects")
+          .id("projects")
+          .schemaType("project")
+          .child(
+            S.documentList()
+              .title("Projects")
+              .schemaType("project")
+              .defaultOrdering([{ field: "order", direction: "asc" }])
           ),
         ...S.documentTypeListItems(),
       ]),
