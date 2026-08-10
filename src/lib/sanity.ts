@@ -5,14 +5,24 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 /**
  * Sanity headless CMS connection for the CPR Rwanda website.
  *
- * The project/dataset identifiers are public (safe to ship in the bundle) —
- * the dataset is read-only via the CDN and needs no API token. Override them
- * locally via a .env file if needed:
- *   VITE_SANITY_PROJECT_ID
- *   VITE_SANITY_DATASET
+ * Each developer uses their OWN Sanity project — no credentials are baked
+ * into the code anymore. Configure yours locally:
+ *
+ *   VITE_SANITY_PROJECT_ID   (from manage.sanity.io → your project)
+ *   VITE_SANITY_DATASET      (e.g. "production", "dev", "dev2", …)
+ *
+ * Copy `.env.example` to `.env` and fill in your own values. The dataset is
+ * read-only via the CDN and needs no API token.
  */
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || "7kmzwj0g";
-const dataset = import.meta.env.VITE_SANITY_DATASET || "production";
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const dataset = import.meta.env.VITE_SANITY_DATASET;
+
+if (!projectId || !dataset) {
+  throw new Error(
+    "Sanity is not configured. Copy .env.example to .env and set " +
+      "VITE_SANITY_PROJECT_ID and VITE_SANITY_DATASET (use your own Sanity project)."
+  );
+}
 
 export const sanityClient = createClient({
   projectId,
