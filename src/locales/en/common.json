@@ -9,6 +9,7 @@
     "news": "News",
     "contact": "Contact Us",
     "donate": "Donate Now",
+    "comingSoon": "Coming Soon",
     "organization": "Organization",
     "whoWeAre": "About Conseil Protestant du Rwanda",
     "whoWeAreDesc": "Founded in 1963, uniting Rwanda's Protestant churches",
@@ -71,6 +72,13 @@
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
     "rights": "All rights reserved.",
-    "developedBy": "Developed by"
+    "developedBy": "Developed by",
+    "sendMessage": "Send a Message",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "loading": {
+    "preparing": "Preparing",
+    "tagline": "Serving Rwanda Since 1963"
   }
 }

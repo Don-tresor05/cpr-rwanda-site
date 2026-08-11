@@ -4,10 +4,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
+import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
   Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  MessageCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -87,7 +89,7 @@ export function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex items-center gap-2 text-white/60 text-sm mb-5"
           >
-            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">{t("newsroom.breadcrumbHome", "Home")}</Link>
             <span className="text-white/30">/</span>
             <span className="text-[#BC8A5F] font-semibold">{(cp?.heroTag as string) ?? "Contact Us"}</span>
           </motion.div>
@@ -185,7 +187,49 @@ export function ContactPage() {
 
       {/* ─── CTA ─── */}
       <ContactCtaBlock />
+
+      {/* ─── FLOATING CHAT BUTTON ─── */}
+      <ChatButton />
     </main>
+  );
+}
+
+/* ───────────── FLOATING CHAT BUTTON ───────────── */
+function ChatButton() {
+  const { t } = useTranslation("home");
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setVisible(window.scrollY > 250);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const scrollToForm = () => {
+    const el = document.getElementById("form");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <motion.button
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      onClick={scrollToForm}
+      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#4E6132] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#3a4f26] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      aria-label={(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+    >
+      <span className="relative flex items-center justify-center">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-40 animate-ping" style={{ animationDuration: "2.2s" }} />
+        <span className="relative w-9 h-9 rounded-full bg-[#EAD196] flex items-center justify-center">
+          <MessageCircle size={18} className="text-[#4E6132]" />
+        </span>
+      </span>
+      <span className="text-sm font-bold whitespace-nowrap">
+        {(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+      </span>
+    </motion.button>
   );
 }
 
@@ -193,6 +237,8 @@ export function ContactPage() {
 function ContactFormBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const settings = useSiteSettings();
+  const contact = settings?.contact ?? FALLBACK_CONTACT;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
   const form = (cp?.form as Record<string, unknown>) ?? {};
   const errors = (form?.errors as Record<string, string>) ?? {};
@@ -225,7 +271,7 @@ function ContactFormBlock() {
     );
     // Brief delay for the "sending" state to be visible, then open the mail client
     setTimeout(() => {
-      window.location.href = `mailto:cprgs@cpr-rwanda.rw?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
       setSending(false);
       setSent(true);
     }, 600);
@@ -265,9 +311,9 @@ function ContactFormBlock() {
             {/* Quick contact list */}
             <div className="space-y-4">
               {[
-                { icon: MapPin, line1: "KG 2 Av 4, B.P 79", line2: "Kigali, Rwanda" },
-                { icon: Phone, line1: "+250 788 314 718", line2: "" },
-                { icon: Mail, line1: "cprgs@cpr-rwanda.rw", line2: "" },
+                { icon: MapPin, line1: contact.addressLine1, line2: contact.addressLine2 },
+                { icon: Phone, line1: contact.phone, line2: "" },
+                { icon: Mail, line1: contact.email, line2: "" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -426,9 +472,19 @@ function ContactFormBlock() {
 function InfoCardsBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const settings = useSiteSettings();
+  const contact = settings?.contact;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
   const info = (cp?.info as Record<string, unknown>) ?? {};
-  const cards = (info?.cards as { title: string; line1: string; line2: string }[]) ?? [];
+  const cards = ((info?.cards as { title: string; line1: string; line2: string }[]) ?? []).map(
+    (card, i) => {
+      if (!contact) return card;
+      if (i === 0) return { ...card, line1: contact.addressLine1 || card.line1, line2: contact.addressLine2 || card.line2 };
+      if (i === 1) return { ...card, line1: contact.phone || card.line1 };
+      if (i === 2) return { ...card, line1: contact.email || card.line1 };
+      return card;
+    }
+  );
 
   const icons: LucideIcon[] = [Building2, Phone, Mail, Radio];
   const colors = ["#4E6132", "#8B6543", "#BC8A5F", "#4E6132"];
@@ -648,6 +704,7 @@ function FaqBlock() {
 /* ───────────── CTA ───────────── */
 function ContactCtaBlock() {
   const { t } = useTranslation("home");
+  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
   const cta = (cp?.cta as Record<string, unknown>) ?? {};
 
@@ -691,13 +748,13 @@ function ContactCtaBlock() {
           className="flex flex-wrap justify-center gap-4"
         >
           <a
-            href="tel:+250788314718"
+            href={`tel:${contact.phone}`}
             className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-3.5 rounded-xl hover:bg-[#EAD196] hover:text-[#4E6132] transition-all duration-300 hover:scale-105"
           >
             <Phone size={16} /> {(cta?.callBtn as string) ?? "Call Us"}
           </a>
           <a
-            href="mailto:cprgs@cpr-rwanda.rw"
+            href={`mailto:${contact.email}`}
             className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300"
           >
             <Mail size={16} /> {(cta?.emailBtn as string) ?? "Email Us"} <ArrowRight size={16} />

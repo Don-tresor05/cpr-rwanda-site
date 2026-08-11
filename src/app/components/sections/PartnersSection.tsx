@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { PARTNERS } from "../../data/partners";
+import { useSiteSettings } from "../../data/siteSettings";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
@@ -7,6 +8,9 @@ import { WatermarkSection } from "../ui/WatermarkBackground";
 export function PartnersSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const settings = useSiteSettings();
+  const partners =
+    settings?.partners && settings.partners.length > 0 ? settings.partners : PARTNERS;
   return (
     <WatermarkSection ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -19,7 +23,7 @@ export function PartnersSection() {
           <span className="text-[#4A4A4A]/60 text-sm font-medium uppercase tracking-widest">{t("partners.trustedBy")}</span>
         </motion.div>
         <div className="flex flex-wrap justify-center items-center gap-4">
-          {PARTNERS.map((partner, i) => (
+          {partners.map((partner, i) => (
             <motion.div
               key={partner}
               initial={{ opacity: 0, scale: 0.9 }}

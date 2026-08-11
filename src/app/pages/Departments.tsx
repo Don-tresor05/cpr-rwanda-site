@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
+import { useDepartmentsPage } from "../data/pageContent";
 import {
   Crown, GraduationCap, Handshake, Coins, Users, Scale, Radio,
   Phone, Mail, MapPin, ArrowRight, CheckCircle2, Building2, type LucideIcon
@@ -20,6 +22,7 @@ interface DepartmentSection {
   body: string[];
   accent: string;
   image: string;
+  stats: { label: string; value: string }[];
 }
 
 const deptImages: Record<string, string> = {
@@ -122,6 +125,7 @@ export function Departments() {
   const lang = i18n.language ? i18n.language.substring(0, 2) : "en";
   const deptStats = getDeptStats(lang);
   const quickFactsData = getQuickFacts(lang);
+  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const { ref: introRef, visible: introVisible } = useScrollReveal();
   const heroRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
@@ -165,15 +169,18 @@ export function Departments() {
   }, []);
 
   const dp = t("departmentsPage", { returnObjects: true }) as Record<string, unknown>;
+  const cms = useDepartmentsPage();
+  /** Returns the CMS section for a department key, if staff filled it in. */
+  const cmsSec = (key: string) => cms?.sections?.find((s) => s.key === key);
 
   const navLinks = [
-    { label: (dp?.nav as Record<string, string>)?.gs ?? "General Secretary", href: "#gs" },
-    { label: (dp?.nav as Record<string, string>)?.bnep ?? "Education/BNEP", href: "#bnep" },
-    { label: (dp?.nav as Record<string, string>)?.diakonia ?? "Diakonia", href: "#diakonia" },
-    { label: (dp?.nav as Record<string, string>)?.finance ?? "Finance", href: "#finance" },
-    { label: (dp?.nav as Record<string, string>)?.youth ?? "Youth", href: "#youth" },
-    { label: (dp?.nav as Record<string, string>)?.gender ?? "Gender", href: "#gender" },
-    { label: (dp?.nav as Record<string, string>)?.radio ?? "Radio", href: "#radio" },
+    { label: cmsSec("gs")?.nav ?? (dp?.nav as Record<string, string>)?.gs ?? "General Secretary", href: "#gs" },
+    { label: cmsSec("bnep")?.nav ?? (dp?.nav as Record<string, string>)?.bnep ?? "Education/BNEP", href: "#bnep" },
+    { label: cmsSec("diakonia")?.nav ?? (dp?.nav as Record<string, string>)?.diakonia ?? "Diakonia", href: "#diakonia" },
+    { label: cmsSec("finance")?.nav ?? (dp?.nav as Record<string, string>)?.finance ?? "Finance", href: "#finance" },
+    { label: cmsSec("youth")?.nav ?? (dp?.nav as Record<string, string>)?.youth ?? "Youth", href: "#youth" },
+    { label: cmsSec("gender")?.nav ?? (dp?.nav as Record<string, string>)?.gender ?? "Gender", href: "#gender" },
+    { label: cmsSec("radio")?.nav ?? (dp?.nav as Record<string, string>)?.radio ?? "Radio", href: "#radio" },
   ];
 
   const deptKeys = ["gs", "bnep", "diakonia", "finance", "youth", "gender", "radio"] as const;
@@ -181,15 +188,20 @@ export function Departments() {
 
   const sections: DepartmentSection[] = deptKeys.map((key, i) => {
     const deptData = (dp?.[key] as Record<string, unknown>) ?? {};
+    const c = cmsSec(key);
+    const fallbackStats = deptStats[key] ?? [];
     return {
       id: key,
       icon: icons[i],
-      tag: (deptData?.tag as string) ?? "",
-      title: (deptData?.title as string) ?? "",
-      desc: (deptData?.desc as string) ?? "",
-      body: (deptData?.body as string[]) ?? [],
+      tag: c?.tag ?? (deptData?.tag as string) ?? "",
+      title: c?.title ?? (deptData?.title as string) ?? "",
+      desc: c?.desc ?? (deptData?.desc as string) ?? "",
+      body: c?.body?.length ? c.body : ((deptData?.body as string[]) ?? []),
       accent: i % 2 === 0 ? "#4E6132" : "#8B6543",
-      image: deptImages[key] ?? "",
+      image: c?.image ?? deptImages[key] ?? "",
+      stats: c?.stats?.length
+        ? c.stats.map((s) => ({ value: s.value, label: s.label ?? "" }))
+        : fallbackStats,
     };
   });
 
@@ -227,7 +239,7 @@ export function Departments() {
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
             className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {(dp?.heroTitle as string) ?? "Our Departments"}
+            {cms?.heroTitle ?? (dp?.heroTitle as string) ?? "Our Departments"}
           </motion.h1>
 
           <motion.p
@@ -236,7 +248,7 @@ export function Departments() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
-            {(dp?.heroDesc as string) ?? ""}
+            {cms?.heroDesc ?? (dp?.heroDesc as string) ?? ""}
           </motion.p>
         </motion.div>
 
@@ -282,15 +294,15 @@ export function Departments() {
               <div className="inline-flex items-center gap-2">
                 <div className="h-px w-8 bg-[#8B6543]" />
                 <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                  {(dp?.introTag as string) ?? ""}
+                  {cms?.introTag ?? (dp?.introTag as string) ?? ""}
                 </span>
                 <div className="h-px w-8 bg-[#8B6543]" />
               </div>
               <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5">
-                {(dp?.introTitle as string) ?? ""}
+                {cms?.introTitle ?? (dp?.introTitle as string) ?? ""}
               </h2>
               <p className="text-[#4A4A4A] text-lg leading-relaxed">
-                {(dp?.introDesc as string) ?? ""}
+                {cms?.introDesc ?? (dp?.introDesc as string) ?? ""}
               </p>
             </motion.div>
 
@@ -302,10 +314,10 @@ export function Departments() {
             >
               <div className="bg-[#4E6132]/5 rounded-3xl p-7 border border-[#4E6132]/15 shadow-sm">
                 <h3 className="font-['Outfit'] font-bold text-[#4E6132] text-lg mb-4 flex items-center gap-2">
-                  <Building2 size={20} /> {quickFactsData.title}
+                  <Building2 size={20} /> {cms?.quickFactsTitle ?? quickFactsData.title}
                 </h3>
                 <ul className="space-y-3">
-                  {quickFactsData.facts.map((fact, i) => (
+                  {(cms?.quickFacts?.length ? cms.quickFacts : quickFactsData.facts).map((fact, i) => (
                     <motion.li
                       key={i}
                       initial={{ opacity: 0, x: -10 }}
@@ -333,17 +345,17 @@ export function Departments() {
             className="text-center mb-14"
           >
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">
-              Explore Our Departments
+              {(dp?.overview as Record<string, string> | undefined)?.title ?? "Explore Our Departments"}
             </h2>
             <p className="text-[#4A4A4A] mt-3 max-w-xl mx-auto">
-              Click any department to jump to its detailed section below
+              {(dp?.overview as Record<string, string> | undefined)?.desc ?? "Click any department to jump to its detailed section below"}
             </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-5">
             {sections.map((sec, i) => {
               const Icon = sec.icon;
-              const statData = deptStats[sec.id]?.[0];
+              const statData = sec.stats[0];
               return (
                 <motion.a
                   key={sec.id}
@@ -387,7 +399,7 @@ export function Departments() {
           <DepartmentDetailBlock
             key={sec.id}
             sec={sec}
-            stats={deptStats[sec.id] ?? []}
+            stats={sec.stats}
             isEven={isEven}
             index={i}
           />
@@ -413,7 +425,7 @@ export function Departments() {
             transition={{ duration: 0.5 }}
             className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
           >
-            {(cta?.title as string) ?? "Partner with Our Departments"}
+            {cms?.cta?.title ?? (cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -422,7 +434,7 @@ export function Departments() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
           >
-            {(cta?.desc as string) ?? ""}
+            {cms?.cta?.desc ?? (cta?.desc as string) ?? ""}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -431,9 +443,9 @@ export function Departments() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-wrap justify-center gap-6 text-white/80 text-sm mb-8"
           >
-            <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> +250 788 314 718</span>
-            <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
-            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali</span>
+            <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> {contact.phone}</span>
+            <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> {contact.email}</span>
+            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> {contact.addressLine1}, {contact.addressLine2}</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -446,7 +458,7 @@ export function Departments() {
               to="/contact"
               className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
             >
-              {(cta?.btn as string) ?? "Contact Us"} <ArrowRight size={16} />
+              {cms?.cta?.btn ?? (cta?.btn as string) ?? "Contact Us"} <ArrowRight size={16} />
             </Link>
           </motion.div>
         </div>

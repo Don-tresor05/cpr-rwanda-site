@@ -1,15 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
+import { useGalleryEvents } from "../data/cmsContent";
 
-interface GalleryItem {
+export interface GalleryItem {
   src: string;
   alt: string;
 }
 
-interface GalleryEvent {
+export type GalleryCategory = "conferences" | "commemorations" | "youth" | "education";
+
+export interface GalleryEvent {
+  category: GalleryCategory;
   title: string;
   locationDate: string;
   images: GalleryItem[];
@@ -17,6 +22,7 @@ interface GalleryEvent {
 
 const GALLERY_EVENTS: GalleryEvent[] = [
   {
+    category: "conferences",
     title: "Executive Committee & Member Churches Annual Conference",
     locationDate: "Kigali, January 2026",
     images: [
@@ -31,6 +37,7 @@ const GALLERY_EVENTS: GalleryEvent[] = [
     ],
   },
   {
+    category: "commemorations",
     title: "Kwibuka Commemoration & Interfaith Remembrance Service",
     locationDate: "Kigali, April 2025",
     images: [
@@ -45,6 +52,7 @@ const GALLERY_EVENTS: GalleryEvent[] = [
     ],
   },
   {
+    category: "youth",
     title: "Youth Empowerment, Peacebuilding & Mental Health Programs",
     locationDate: "Various Districts, 2025",
     images: [
@@ -59,6 +67,7 @@ const GALLERY_EVENTS: GalleryEvent[] = [
     ],
   },
   {
+    category: "education",
     title: "Education, Protestant Schools & Radio Inkoramutima Ministry",
     locationDate: "Kigali & East, 2025",
     images: [
@@ -75,6 +84,12 @@ const GALLERY_EVENTS: GalleryEvent[] = [
 ];
 
 export function GalleryPage() {
+  const { t } = useTranslation("home");
+  const gp = t("galleryPage", { returnObjects: true }) as Record<string, unknown>;
+
+  // CMS collections when staff have created them; otherwise the built-in albums.
+  const galleryEvents = useGalleryEvents() ?? GALLERY_EVENTS;
+
   const [activeImage, setActiveImage] = useState<{ eventIdx: number; imgIdx: number } | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -86,40 +101,42 @@ export function GalleryPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (!activeImage) return;
-    if (e.key === "Escape") setActiveImage(null);
-    if (e.key === "ArrowRight") handleNext();
-    if (e.key === "ArrowLeft") handlePrev();
-  };
+  const currentEvent = activeImage ? galleryEvents[activeImage.eventIdx] : null;
+  const currentPhoto = activeImage && currentEvent ? currentEvent.images[activeImage.imgIdx] : null;
+  const isFirstPhoto = activeImage ? activeImage.imgIdx === 0 : true;
+  const isLastPhoto = activeImage && currentEvent ? activeImage.imgIdx === currentEvent.images.length - 1 : true;
+
+  const handleNext = useCallback(() => {
+    setActiveImage((img) => {
+      if (!img) return img;
+      const ev = galleryEvents[img.eventIdx];
+      if (img.imgIdx < ev.images.length - 1) return { ...img, imgIdx: img.imgIdx + 1 };
+      return img;
+    });
+  }, [galleryEvents]);
+
+  const handlePrev = useCallback(() => {
+    setActiveImage((img) => {
+      if (!img) return img;
+      if (img.imgIdx > 0) return { ...img, imgIdx: img.imgIdx - 1 };
+      return img;
+    });
+  }, []);
 
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!activeImage) return;
+      if (e.key === "Escape") setActiveImage(null);
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+    };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeImage]);
-
-  const handleNext = () => {
-    if (!activeImage) return;
-    const currentEvent = GALLERY_EVENTS[activeImage.eventIdx];
-    if (activeImage.imgIdx < currentEvent.images.length - 1) {
-      setActiveImage({ ...activeImage, imgIdx: activeImage.imgIdx + 1 });
-    }
-  };
-
-  const handlePrev = () => {
-    if (!activeImage) return;
-    if (activeImage.imgIdx > 0) {
-      setActiveImage({ ...activeImage, imgIdx: activeImage.imgIdx - 1 });
-    }
-  };
-
-  const currentPhoto = activeImage ? GALLERY_EVENTS[activeImage.eventIdx].images[activeImage.imgIdx] : null;
-  const isFirstPhoto = activeImage ? activeImage.imgIdx === 0 : true;
-  const isLastPhoto = activeImage ? activeImage.imgIdx === GALLERY_EVENTS[activeImage.eventIdx].images.length - 1 : true;
+  }, [activeImage, handleNext, handlePrev]);
 
   return (
     <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
-      {/* Hero — matches Secretariat/Departments pattern */}
+      {/* ─── HERO ─── */}
       <div
         ref={heroRef}
         className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
@@ -141,14 +158,13 @@ export function GalleryPage() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
             className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            Gallery
+            {(gp?.heroTag as string) ?? "Gallery"}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -156,19 +172,18 @@ export function GalleryPage() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
-            A visual journey through CPR Rwanda's ministry, events, community outreach, and commemorations.
+            {(gp?.heroDesc as string) ?? ""}
           </motion.p>
         </motion.div>
-        {/* Scroll indicator */}
         <ScrollIndicator />
       </div>
 
-      {/* Gallery Body */}
+      {/* ─── COLLECTIONS ─── */}
       <WatermarkSection variant="default" className="py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-14">
-          {GALLERY_EVENTS.map((event, eventIdx) => (
+          {galleryEvents.map((event, eventIdx) => (
             <motion.div
-              key={eventIdx}
+              key={`${event.title}-${eventIdx}`}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -188,6 +203,14 @@ export function GalleryPage() {
                     {event.title}
                   </h2>
                 </div>
+                <div className="flex-shrink-0 text-right">
+                  <div className="font-['Outfit'] font-black text-2xl text-[#8B6543] leading-none">
+                    {String(eventIdx + 1).padStart(2, "0")}
+                  </div>
+                  <div className="text-[10px] text-[#4A4A4A]/60 font-bold uppercase tracking-wider mt-1">
+                    {event.images.length}
+                  </div>
+                </div>
               </div>
 
               {/* Thumbnail Grid */}
@@ -204,6 +227,14 @@ export function GalleryPage() {
                       className="w-full h-full object-cover object-[center_15%] block transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Zoom icon */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-11 h-11 rounded-full bg-[#4E6132]/85 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                        <ZoomIn size={18} className="text-white" />
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -212,9 +243,9 @@ export function GalleryPage() {
         </div>
       </WatermarkSection>
 
-      {/* Lightbox Modal */}
+      {/* ─── LIGHTBOX ─── */}
       <AnimatePresence>
-        {activeImage && currentPhoto && (
+        {activeImage && currentPhoto && currentEvent && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -222,11 +253,11 @@ export function GalleryPage() {
             className="fixed inset-0 z-[100] flex items-center justify-center select-none"
             style={{ background: "rgba(0, 0, 0, 0.92)" }}
           >
-            {/* Close Button — top right */}
+            {/* Close Button */}
             <button
               onClick={() => setActiveImage(null)}
               className="absolute top-5 right-7 z-20 bg-transparent hover:bg-white/10 text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full transition-all cursor-pointer"
-              aria-label="Close lightbox"
+              aria-label={(gp?.close as string) ?? "Close"}
             >
               <X size={22} />
             </button>
@@ -240,7 +271,7 @@ export function GalleryPage() {
                   ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
                   : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
               }`}
-              aria-label="Previous image"
+              aria-label={(gp?.prev as string) ?? "Previous"}
             >
               <ChevronLeft size={20} />
             </button>
@@ -254,14 +285,14 @@ export function GalleryPage() {
                   ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
                   : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
               }`}
-              aria-label="Next image"
+              aria-label={(gp?.next as string) ?? "Next"}
             >
               <ChevronRight size={20} />
             </button>
 
-            {/* Full-height flex column: image centered in remaining space, thumbs at bottom edge */}
+            {/* Full-height flex column: image centered, thumbs at bottom */}
             <div className="flex flex-col w-full h-full">
-              {/* Image area — flex-1 centers the image vertically in whatever space is left */}
+              {/* Image area */}
               <div className="flex-1 flex items-center justify-center min-h-0 px-16 sm:px-20">
                 <div className="relative flex items-center justify-center">
                   <motion.img
@@ -281,22 +312,22 @@ export function GalleryPage() {
                     }}
                   />
 
-                  {/* Counter — overlaid inside the image, bottom center */}
+                  {/* Counter */}
                   <div
                     className="absolute bottom-3 left-1/2 -translate-x-1/2 text-white text-sm font-medium tracking-wide px-3 py-1 rounded-full"
                     style={{ background: "rgba(0, 0, 0, 0.55)", backdropFilter: "blur(2px)" }}
                   >
-                    {activeImage.imgIdx + 1} / {GALLERY_EVENTS[activeImage.eventIdx].images.length}
+                    {activeImage.imgIdx + 1} / {currentEvent.images.length}
                   </div>
                 </div>
               </div>
 
-              {/* Thumbnail strip — pinned at the very bottom edge */}
+              {/* Thumbnail strip */}
               <div
                 className="flex-shrink-0 flex gap-2.5 justify-center overflow-x-auto max-w-full px-4 py-2"
                 style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.3) transparent" }}
               >
-                {GALLERY_EVENTS[activeImage.eventIdx].images.map((thumb, idx) => (
+                {currentEvent.images.map((thumb, idx) => (
                   <button
                     key={idx}
                     ref={(el) => {
@@ -307,7 +338,7 @@ export function GalleryPage() {
                     onClick={() => setActiveImage({ eventIdx: activeImage.eventIdx, imgIdx: idx })}
                     className={`flex-shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
                       idx === activeImage.imgIdx
-                        ? "border-[#d4af37] opacity-100"
+                        ? "border-[#EAD196] opacity-100"
                         : "border-transparent opacity-60 hover:opacity-90"
                     }`}
                   >
