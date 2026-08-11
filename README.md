@@ -1,4 +1,47 @@
-# React + TypeScript + Vite
+# CPR Rwanda — Website + Sanity CMS
+
+React + TypeScript + Vite SPA with a Sanity headless CMS. This is a **multi-developer** repo — every developer uses **their own Sanity project**, and no Sanity credentials are committed to git.
+
+## Sanity setup (every developer)
+
+1. **Create your own Sanity project** at [manage.sanity.io](https://manage.sanity.io) (free tier is fine).
+2. From the project dashboard, copy your **Project ID** and **Dataset** name (e.g. `production`, `dev`, or `dev2`).
+3. Copy the env templates and fill in **your** values:
+
+   ```bash
+   # Front-end (site reads from your project)
+   cp .env.example .env
+   # edit .env → set VITE_SANITY_PROJECT_ID / VITE_SANITY_DATASET
+
+   # Studio (the content editor connects to your project)
+   cp studio/.env.example studio/.env
+   # edit studio/.env → set SANITY_STUDIO_PROJECT_ID / SANITY_STUDIO_DATASET
+   ```
+
+4. `.env` files are gitignored — they **never** get pushed. Never commit them.
+5. Log in to the CLI with your own account: `cd studio && pnpm sanity login`.
+
+> If you don't set your own env vars, the app will **fail loudly** with a clear error instead of silently connecting to someone else's project.
+
+## Development
+
+```bash
+pnpm install
+pnpm dev        # site → http://localhost:5173
+
+cd studio
+pnpm install
+pnpm dev        # CMS editor → http://localhost:3333
+```
+
+## Deployments
+
+- **Vercel / cPanel**: set the same `VITE_SANITY_PROJECT_ID` / `VITE_SANITY_DATASET` as **build-time environment variables** in the hosting dashboard — they are no longer baked into the code.
+- **Studio**: `cd studio && pnpm deploy` after configuring `studio/.env`.
+
+---
+
+## Original Vite template notes
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

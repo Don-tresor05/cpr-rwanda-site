@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { getProjects } from "../../data/departments";
+import { useProjects } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
@@ -8,7 +9,7 @@ import { Link } from "react-router";
 export function ProjectsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  const projects = getProjects(t);
+  const projects = useProjects() ?? getProjects(t);
 
   return (
     <section id="projects" ref={ref} className="py-24 bg-[#F8F9FA] overflow-hidden">

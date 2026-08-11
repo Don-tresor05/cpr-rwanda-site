@@ -1,8 +1,25 @@
+import { useMemo } from "react";
 import { motion } from "motion/react";
 import { getStats, Stat } from "../../data/stats";
+import { useSiteSettings } from "../../data/siteSettings";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useCountUp } from "../../hooks/useCountUp";
 import { useTranslation } from "react-i18next";
+import { Radio, Users, Heart, Scale, Briefcase } from "lucide-react";
+import { ChurchIcon, SchoolIcon, ServiceRibbonIcon } from "../icons/StatsIcons";
+import type { ComponentType } from "react";
+
+/** Maps the icon keys staff pick in the CMS to the site's icon components. */
+const STAT_ICON_MAP: Record<string, ComponentType<any>> = {
+  church: ChurchIcon,
+  school: SchoolIcon,
+  radio: Radio,
+  ribbon: ServiceRibbonIcon,
+  users: Users,
+  heart: Heart,
+  scale: Scale,
+  briefcase: Briefcase,
+};
 
 function StatCard({ stat, active }: { stat: Stat; active: boolean }) {
   const count = useCountUp(stat.value, 1800, active);
@@ -23,7 +40,20 @@ function StatCard({ stat, active }: { stat: Stat; active: boolean }) {
 export function StatsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("common");
-  const stats = getStats(t);
+  const settings = useSiteSettings();
+
+  const stats = useMemo<Stat[]>(() => {
+    const cmsStats = settings?.stats?.filter((s) => typeof s.value === "number" && s.label);
+    if (cmsStats && cmsStats.length > 0) {
+      return cmsStats.map((s) => ({
+        value: s.value as number,
+        label: s.label as string,
+        suffix: s.suffix || "",
+        icon: STAT_ICON_MAP[s.icon || "church"] || ChurchIcon,
+      }));
+    }
+    return getStats(t);
+  }, [settings, t]);
   
   return (
     <section ref={ref} className="bg-[#4E6132] py-20">

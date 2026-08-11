@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Church, ExternalLink } from "lucide-react";
 import { MEMBER_CHURCHES } from "../../data/departments";
+import { useMemberChurches } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
@@ -8,6 +9,7 @@ import { WatermarkSection } from "../ui/WatermarkBackground";
 export function MemberChurchesSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const churches = useMemberChurches() ?? MEMBER_CHURCHES;
 
   return (
     <WatermarkSection ref={ref} className="py-24 bg-white overflow-hidden">
@@ -33,7 +35,7 @@ export function MemberChurchesSection() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {MEMBER_CHURCHES.map((church, i) => {
+          {churches.map((church, i) => {
             const CardContent = (
               <div className="flex items-center justify-between w-full gap-3">
                 <div className="flex items-center gap-3">
@@ -98,12 +100,12 @@ export function MemberChurchesSection() {
                 </div>
               ))}
               <div className="w-8 h-8 rounded-full bg-[#EAD196] border-2 border-white flex items-center justify-center">
-                <span className="text-[9px] font-bold text-[#4E6132]">+{MEMBER_CHURCHES.length - 4}</span>
+                <span className="text-[9px] font-bold text-[#4E6132]">+{churches.length - 4}</span>
               </div>
             </div>
             <span 
               className="text-sm text-[#4A4A4A]/70"
-              dangerouslySetInnerHTML={{ __html: t("memberChurches.unitedNote", { count: MEMBER_CHURCHES.length }) }}
+              dangerouslySetInnerHTML={{ __html: t("memberChurches.unitedNote", { count: churches.length }) }}
             />
           </div>
         </motion.div>

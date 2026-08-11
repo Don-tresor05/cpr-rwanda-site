@@ -5,12 +5,14 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
+import { useAboutPage } from "../data/pageContent";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
   const location = useLocation();
   const { ref: visionRef, visible: visionVisible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const cms = useAboutPage();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -43,15 +45,18 @@ export function AboutUs() {
   }, []);
 
   const navLinks = [
-    { label: t("aboutPage.nav.whoWeAre"), href: "#who-we-are" },
-    { label: t("aboutPage.nav.visionMission"), href: "#vision-mission" },
-    { label: t("aboutPage.nav.coreValues"), href: "#core-values" },
-    { label: t("aboutPage.nav.execCommittee"), href: "#executive-committee" },
-    { label: t("aboutPage.nav.organigram"), href: "#organigram" },
-    { label: t("aboutPage.nav.ourPartners"), href: "#our-partners" },
+    { label: cms?.nav?.whoWeAre ?? t("aboutPage.nav.whoWeAre"), href: "#who-we-are" },
+    { label: cms?.nav?.visionMission ?? t("aboutPage.nav.visionMission"), href: "#vision-mission" },
+    { label: cms?.nav?.coreValues ?? t("aboutPage.nav.coreValues"), href: "#core-values" },
+    { label: cms?.nav?.execCommittee ?? t("aboutPage.nav.execCommittee"), href: "#executive-committee" },
+    { label: cms?.nav?.organigram ?? t("aboutPage.nav.organigram"), href: "#organigram" },
+    { label: cms?.nav?.ourPartners ?? t("aboutPage.nav.ourPartners"), href: "#our-partners" },
   ];
 
-  const coreValuesItems = (t("aboutPage.coreValues.items", { returnObjects: true }) as { title: string; desc: string }[]) || [];
+  const coreValuesItems =
+    cms?.coreValues?.items?.length
+      ? cms.coreValues.items
+      : (t("aboutPage.coreValues.items", { returnObjects: true }) as { title: string; desc: string }[]) || [];
 
   return (
     <main className="bg-white">
@@ -66,7 +71,7 @@ export function AboutUs() {
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
           <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
-            {t("aboutPage.heroTitle")}
+            {cms?.heroTitle ?? t("aboutPage.heroTitle")}
           </h1>
         </div>
         <ScrollIndicator />
@@ -109,11 +114,11 @@ export function AboutUs() {
             {/* Right side: Text Content */}
             <div className="md:col-span-7 lg:col-span-8">
               <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-6">
-                {t("aboutPage.whoWeAre.title")}
+                {cms?.whoWeAre?.title ?? t("aboutPage.whoWeAre.title")}
               </h2>
               <div className="text-[#4A4A4A] text-lg leading-relaxed space-y-4">
-                <p>{t("aboutPage.whoWeAre.p1")}</p>
-                <p>{t("aboutPage.whoWeAre.p2")}</p>
+                <p>{cms?.whoWeAre?.p1 ?? t("aboutPage.whoWeAre.p1")}</p>
+                <p>{cms?.whoWeAre?.p2 ?? t("aboutPage.whoWeAre.p2")}</p>
               </div>
             </div>
           </div>
@@ -125,7 +130,7 @@ export function AboutUs() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
-              {t("aboutPage.visionMission.title")}
+              {cms?.visionMission?.title ?? t("aboutPage.visionMission.title")}
             </h2>
           </div>
 
@@ -144,13 +149,13 @@ export function AboutUs() {
                 </svg>
               </div>
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                {t("aboutPage.visionMission.visionTag")}
+                {cms?.visionMission?.visionTag ?? t("aboutPage.visionMission.visionTag")}
               </span>
               <h3 className="font-['Outfit'] font-black text-2xl text-[#4E6132] mt-2 mb-4">
-                {t("aboutPage.visionMission.visionSub")}
+                {cms?.visionMission?.visionSub ?? t("aboutPage.visionMission.visionSub")}
               </h3>
               <p className="text-[#4A4A4A] leading-relaxed">
-                {t("aboutPage.visionMission.visionDesc")}
+                {cms?.visionMission?.visionDesc ?? t("aboutPage.visionMission.visionDesc")}
               </p>
             </motion.div>
 
@@ -169,13 +174,13 @@ export function AboutUs() {
                 </svg>
               </div>
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                {t("aboutPage.visionMission.missionTag")}
+                {cms?.visionMission?.missionTag ?? t("aboutPage.visionMission.missionTag")}
               </span>
               <h3 className="font-['Outfit'] font-black text-2xl text-[#4E6132] mt-2 mb-4">
-                {t("aboutPage.visionMission.missionSub")}
+                {cms?.visionMission?.missionSub ?? t("aboutPage.visionMission.missionSub")}
               </h3>
               <p className="text-[#4A4A4A] leading-relaxed">
-                {t("aboutPage.visionMission.missionDesc")}
+                {cms?.visionMission?.missionDesc ?? t("aboutPage.visionMission.missionDesc")}
               </p>
             </motion.div>
           </div>
@@ -187,10 +192,10 @@ export function AboutUs() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
-              {t("aboutPage.model.title")}
+              {cms?.model?.title ?? t("aboutPage.model.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto mt-4 leading-relaxed">
-              {t("aboutPage.model.desc")}
+              {cms?.model?.desc ?? t("aboutPage.model.desc")}
             </p>
           </div>
 
@@ -209,13 +214,13 @@ export function AboutUs() {
                 </svg>
               </div>
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest mb-2">
-                {t("aboutPage.model.step1Tag")}
+                {cms?.model?.step1Tag ?? t("aboutPage.model.step1Tag")}
               </span>
               <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-3">
-                {t("aboutPage.model.step1Title")}
+                {cms?.model?.step1Title ?? t("aboutPage.model.step1Title")}
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                {t("aboutPage.model.step1Desc")}
+                {cms?.model?.step1Desc ?? t("aboutPage.model.step1Desc")}
               </p>
             </div>
 
@@ -229,13 +234,13 @@ export function AboutUs() {
                 </svg>
               </div>
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest mb-2">
-                {t("aboutPage.model.step2Tag")}
+                {cms?.model?.step2Tag ?? t("aboutPage.model.step2Tag")}
               </span>
               <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-3">
-                {t("aboutPage.model.step2Title")}
+                {cms?.model?.step2Title ?? t("aboutPage.model.step2Title")}
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                {t("aboutPage.model.step2Desc")}
+                {cms?.model?.step2Desc ?? t("aboutPage.model.step2Desc")}
               </p>
             </div>
 
@@ -247,13 +252,13 @@ export function AboutUs() {
                 </svg>
               </div>
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest mb-2">
-                {t("aboutPage.model.step3Tag")}
+                {cms?.model?.step3Tag ?? t("aboutPage.model.step3Tag")}
               </span>
               <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-3">
-                {t("aboutPage.model.step3Title")}
+                {cms?.model?.step3Title ?? t("aboutPage.model.step3Title")}
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                {t("aboutPage.model.step3Desc")}
+                {cms?.model?.step3Desc ?? t("aboutPage.model.step3Desc")}
               </p>
             </div>
           </div>
@@ -264,7 +269,7 @@ export function AboutUs() {
       <section id="core-values" className="py-20 bg-[#4E6132] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-10">
-            {t("aboutPage.coreValues.title")}
+            {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreValuesItems.map((val, i) => (
@@ -282,16 +287,16 @@ export function AboutUs() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-4">
-              {t("aboutPage.execCommittee.title")}
+              {cms?.execCommittee?.title ?? t("aboutPage.execCommittee.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto">
-              {t("aboutPage.execCommittee.desc")}
+              {cms?.execCommittee?.desc ?? t("aboutPage.execCommittee.desc")}
             </p>
           </div>
           {/* Board Members */}
           <div className="mb-8">
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
-              {t("aboutPage.execCommittee.boardMembers")}
+              {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {[
@@ -299,7 +304,7 @@ export function AboutUs() {
                 { name: "Jael", role: "", img: "/assets/Jael.webp" },
                 { name: "Peter Mukunzi", role: "", img: "/assets/Mukunzi Peter.jpg" },
                 { name: "Joselyne Iragena", role: "", img: "/assets/IRAGENA Joselyne.webp" },
-                { name: "BNEP Representative", role: "BNEP Representative", img: "/assets/BNEP Representative.webp" },
+                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/assets/BNEP Representative.webp" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -316,10 +321,10 @@ export function AboutUs() {
                   </div>
                   <div className="p-6 text-left bg-white grow flex flex-col justify-center">
                     <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
-                      {member.name || t("aboutPage.execCommittee.defaultName")}
+                      {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-xs font-semibold">
-                      {member.role || t("aboutPage.execCommittee.defaultRole")}
+                      {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                   </div>
                 </div>
@@ -330,14 +335,14 @@ export function AboutUs() {
           {/* Staff */}
           <div>
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
-              {t("aboutPage.execCommittee.staff")}
+              {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { name: "Eric Mugwaneza", role: "", img: "/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: "", img: "/assets/Anne Marie PP.webp" },
                 { name: "Felicien", role: "", img: "/assets/Sec Photo.webp" },
-                { name: "Staff Member", role: "", img: "/assets/Passport ed.png" },
+                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/assets/Passport ed.png" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -354,10 +359,10 @@ export function AboutUs() {
                   </div>
                   <div className="p-6 text-left bg-white grow flex flex-col justify-center">
                     <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
-                      {member.name || t("aboutPage.execCommittee.defaultName")}
+                      {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-xs font-semibold">
-                      {member.role || t("aboutPage.execCommittee.defaultRole")}
+                      {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                   </div>
                 </div>
@@ -371,10 +376,10 @@ export function AboutUs() {
       <WatermarkSection id="organigram" className="py-20 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-12">
-            {t("aboutPage.organigram.title")}
+            {cms?.organigram?.title ?? t("aboutPage.organigram.title")}
           </h2>
           <div className="w-full max-w-4xl mx-auto aspect-[16/9] bg-[#F8F9FA] border border-[#8B6543]/20 rounded-2xl flex items-center justify-center text-[#8B6543] font-bold shadow-inner">
-            {t("aboutPage.organigram.comingSoon")}
+            {cms?.organigram?.comingSoon ?? t("aboutPage.organigram.comingSoon")}
           </div>
         </div>
       </WatermarkSection>
@@ -383,7 +388,7 @@ export function AboutUs() {
       <section id="our-partners" className="py-16 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-10">
-            {t("aboutPage.partners.title")}
+            {cms?.partners?.title ?? t("aboutPage.partners.title")}
           </h2>
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
