@@ -36,23 +36,24 @@ export function RadioSection() {
               alt={t("radio.title")} 
               className="h-16 lg:h-20 w-auto mb-6"
             />
-            <p className="text-white/60 text-lg italic mb-2">&ldquo;Voice of the Heart&rdquo;</p>
+            <p className="text-white/60 text-lg italic mb-2">&ldquo;{t("radio.tagline")}&rdquo;</p>
             <p 
               className="text-white/75 text-base leading-relaxed mb-8"
               dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
             />
 
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              {([
-                { icon: BookOpen, label: "Evangelization" },
-                { icon: Shield, label: "Unity" },
-                { icon: Globe, label: "Development" },
-              ] as const).map(({ icon: Icon, label }) => (
-                <div key={label} className="bg-white/8 border border-white/10 rounded-xl p-4 text-center">
-                  <Icon size={20} className="text-[#BC8A5F] mx-auto mb-2" />
-                  <div className="text-white text-xs font-semibold">{label}</div>
-                </div>
-              ))}
+            <div className="grid grid-cols-3 gap-4 mb-8">              {(() => {
+                const pillarLabels = (t("radio.pillars", { returnObjects: true }) as unknown) || [];
+                const labels = Array.isArray(pillarLabels) && pillarLabels.length > 0 ? pillarLabels : ["Evangelization", "Unity", "Development"];
+                return labels
+                  .map((label: string, i: number) => ({ icon: [BookOpen, Shield, Globe][i] || Globe, label }))
+                  .map(({ icon: Icon, label }) => (
+                    <div key={label} className="bg-white/8 border border-white/10 rounded-xl p-4 text-center">
+                      <Icon size={20} className="text-[#BC8A5F] mx-auto mb-2" />
+                      <div className="text-white text-xs font-semibold">{label}</div>
+                    </div>
+                  ));
+              })()}
             </div>
 
             <div className="flex gap-4 flex-wrap">

@@ -1,9 +1,11 @@
+import type { ComponentType } from "react";
 import {
   ChevronRight, ArrowRight, Phone, Mail,
   MapPin, Radio, Facebook, Instagram, Youtube
 } from "lucide-react";
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { getNavItems } from "../../data/navigation";
+import { FALLBACK_CONTACT, useSiteSettings } from "../../data/siteSettings";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
@@ -21,9 +23,23 @@ function XIcon({ size = 15, className = "" }: { size?: number; className?: strin
   );
 }
 
+const SOCIAL_ICONS: Record<string, ComponentType<{ size?: number; className?: string }>> = {
+  facebook: Facebook,
+  x: XIcon,
+  instagram: Instagram,
+  youtube: Youtube,
+};
+
 export function Footer() {
   const { t } = useTranslation("common");
   const { showComingSoon } = useComingSoon();
+  const settings = useSiteSettings();
+  const contact = settings?.contact ?? FALLBACK_CONTACT;
+  const radio = settings?.radio;
+  const socials =
+    contact.socials && contact.socials.length > 0
+      ? contact.socials
+      : FALLBACK_CONTACT.socials ?? [];
   const navItems = getNavItems(t);
   
   return (
@@ -47,20 +63,20 @@ export function Footer() {
               {t("footer.desc")}
             </p>
             <div className="flex gap-3">
-              {[
-                { icon: Facebook, href: "https://www.facebook.com/cprrwanda" },
-                { icon: XIcon, href: "https://x.com/cprrwanda" },
-                { icon: Instagram, href: "https://www.instagram.com/cprrwanda" },
-                { icon: Youtube, href: "https://youtube.com/@cprrwanda" },
-              ].map(({ icon: Icon, href }, index) => (
-                <a
-                  key={`social-${index}`}
-                  href={href}
-                  className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#8B6543] hover:text-[#060F1F] text-white/60 transition-all duration-300 flex items-center justify-center"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
+              {socials.map((social, index) => {
+                const Icon = SOCIAL_ICONS[social.platform || ""] || Facebook;
+                return (
+                  <a
+                    key={`social-${index}`}
+                    href={social.url || "#"}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-9 h-9 rounded-lg bg-white/8 hover:bg-[#8B6543] hover:text-[#060F1F] text-white/60 transition-all duration-300 flex items-center justify-center"
+                  >
+                    <Icon size={15} />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -108,19 +124,19 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-[#8B6543] mt-0.5 flex-shrink-0" />
-                <span className="text-white/55 text-sm leading-relaxed">KG 2 Av 4, B.P 79<br />Kigali, Rwanda</span>
+                <span className="text-white/55 text-sm leading-relaxed">{contact.addressLine1}<br />{contact.addressLine2}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={14} className="text-[#8B6543] flex-shrink-0" />
-                <a href="tel:+250788314718" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">+250 788 314 718</a>
+                <a href={`tel:${contact.phone}`} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">{contact.phone}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-[#8B6543] flex-shrink-0" />
-                <a href="mailto:cprgs@cpr-rwanda.rw" className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">cprgs@cpr-rwanda.rw</a>
+                <a href={`mailto:${contact.email}`} className="text-white/55 hover:text-[#8B6543] transition-colors text-sm">{contact.email}</a>
               </li>
               <li className="flex items-center gap-3">
                 <Radio size={14} className="text-[#8B6543] flex-shrink-0" />
-                <span className="text-white/55 text-sm">Radio Inkoramutima 107.1 FM</span>
+                <span className="text-white/55 text-sm">Radio Inkoramutima {radio?.frequency ?? "107.1"} FM</span>
               </li>
             </ul>
 
@@ -129,7 +145,7 @@ export function Footer() {
               href="#contact"
               className="mt-6 inline-flex items-center gap-2 bg-[#8B6543] text-[#060F1F] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
             >
-              Send a Message <ArrowRight size={14} />
+              {t("footer.sendMessage")} <ArrowRight size={14} />
             </a>
           </div>
         </div>
@@ -141,16 +157,16 @@ export function Footer() {
           <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. {t("footer.rights")}</span>
           <div className="flex gap-5">
             <button
-              onClick={() => showComingSoon("Privacy Policy")}
+              onClick={() => showComingSoon(t("footer.privacyPolicy"))}
               className="hover:text-white/70 transition-colors cursor-pointer"
             >
-              Privacy Policy
+              {t("footer.privacyPolicy")}
             </button>
             <button
-              onClick={() => showComingSoon("Terms of Service")}
+              onClick={() => showComingSoon(t("footer.termsOfService"))}
               className="hover:text-white/70 transition-colors cursor-pointer"
             >
-              Terms of Service
+              {t("footer.termsOfService")}
             </button>
           </div>
         </div>

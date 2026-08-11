@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { getTestimonials } from "../../data/testimonials";
+import { useTestimonials } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
@@ -9,11 +10,16 @@ import { WatermarkSection } from "../ui/WatermarkBackground";
 export function TestimonialsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  const testimonials = getTestimonials(t);
+  const testimonials = useTestimonials() ?? getTestimonials(t);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(0);
 
   const total = testimonials.length;
+
+  // Keep the active index in range when the CMS changes the testimonial count.
+  useEffect(() => {
+    setActive((a) => (a >= total ? 0 : a));
+  }, [total]);
 
   const goTo = useCallback((idx: number, dir: number) => {
     setDirection(dir);
@@ -140,41 +146,43 @@ export function TestimonialsSection() {
                   </div>
                 </div>
 
-                {/* Side cards */}
-                <div className="hidden lg:flex flex-col gap-6">
-                  {[1, 2].map((offset) => {
-                    const idx = (active + offset) % total;
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => goTo(idx, offset)}
-                        className="flex-1 bg-white rounded-2xl p-6 shadow-lg border border-[#4E6132]/5 text-left group hover:border-[#EAD196]/40 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
-                      >
-                        <div className="absolute -top-8 -right-8 w-20 h-20 rounded-full bg-gradient-to-br from-[#EAD196]/8 to-transparent" />
-                        <div className="flex items-start gap-3 relative">
-                          <img
-                            src={testimonials[idx].avatar}
-                            alt={testimonials[idx].author}
-                            className="w-10 h-10 rounded-full object-cover ring-1 ring-[#EAD196]/30 flex-shrink-0"
-                          />
-                          <div className="min-w-0">
-                            <p className="text-[#1A1A1A] text-sm leading-relaxed line-clamp-3 mb-3 italic">
-                              &ldquo;{testimonials[idx].quote}&rdquo;
-                            </p>
-                            <div>
-                              <div className="font-['Outfit'] font-semibold text-[#4E6132] text-xs">
-                                {testimonials[idx].author}
-                              </div>
-                              <div className="text-[#4A4A4A]/50 text-[10px] truncate">
-                                {testimonials[idx].role}
+                {/* Side cards (hidden when there are fewer than 3 to avoid duplicates) */}
+                {total >= 3 && (
+                  <div className="hidden lg:flex flex-col gap-6">
+                    {[1, 2].map((offset) => {
+                      const idx = (active + offset) % total;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => goTo(idx, offset)}
+                          className="flex-1 bg-white rounded-2xl p-6 shadow-lg border border-[#4E6132]/5 text-left group hover:border-[#EAD196]/40 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute -top-8 -right-8 w-20 h-20 rounded-full bg-gradient-to-br from-[#EAD196]/8 to-transparent" />
+                          <div className="flex items-start gap-3 relative">
+                            <img
+                              src={testimonials[idx].avatar}
+                              alt={testimonials[idx].author}
+                              className="w-10 h-10 rounded-full object-cover ring-1 ring-[#EAD196]/30 flex-shrink-0"
+                            />
+                            <div className="min-w-0">
+                              <p className="text-[#1A1A1A] text-sm leading-relaxed line-clamp-3 mb-3 italic">
+                                &ldquo;{testimonials[idx].quote}&rdquo;
+                              </p>
+                              <div>
+                                <div className="font-['Outfit'] font-semibold text-[#4E6132] text-xs">
+                                  {testimonials[idx].author}
+                                </div>
+                                <div className="text-[#4A4A4A]/50 text-[10px] truncate">
+                                  {testimonials[idx].role}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
