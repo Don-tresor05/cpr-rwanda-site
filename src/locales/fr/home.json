@@ -81,29 +81,121 @@
     "viewAllBtn": "Toutes les Nouvelles",
     "items": [
       {
-        "category": "Événement",
+        "slug": "cpr-june-2026-highlights",
+        "date": "7 July 2026",
+        "category": "Report",
+        "title": "Le personnel du CPR visite le Mémorial du Génocide de Nyanza et soutient les familles de survivants du village de Mulinja",
+        "excerpt": "Le personnel du CPR a rendu hommage aux victimes au Mémorial du Génocide de Nyanza, dans le district de Kicukiro, et a apporté un soutien ciblé aux familles de survivants du Génocide de 1994 dans le village de Mulinja, dans le cadre des commémorations annuelles de Kwibuka 31.",
+        "body": [
+          "Le Conseil Protestant du Rwanda (CPR) est le conseil des églises protestantes du Rwanda. Depuis plus de douze (12) années consécutives, la conduite des activités annuelles de commémoration de Kwibuka — notamment la visite et le soutien des familles de survivants du Génocide de 1994 contre les Tutsi — est restée une tradition annuelle bien établie au sein du CPR.",
+          "À l'occasion de Kwibuka 31, alors que les Rwandais commémorent le Génocide de 1994 contre les Tutsi, le personnel du CPR a mené deux activités principales :",
+          "1. La visite du Mémorial du Génocide de Nyanza, dédié au Génocide de 1994 contre les Tutsi, à Nyanza, dans le district de Kicukiro, pour rendre un hommage solennel aux victimes.",
+          "2. La visite et le soutien aux familles de survivants du Génocide de 1994 contre les Tutsi réinstallées dans le village de Mulinja, secteur de Gahanga, district de Kicukiro. Toutes ces activités commémoratives ont été menées avec succès le 19 mai 2025.",
+          "Au Mémorial du Génocide de Nyanza, lieu de repos final de plus de 105 600 victimes du Génocide de 1994 contre les Tutsi de toute la ville de Kigali, le personnel du CPR a également visité les jardins du mémorial. Guidés à travers le symbolisme profond inscrit dans les éléments du paysage — champs de sorgho, sentiers sinueux, collines miniatures, eaux vives, roseaux de papyrus et arbres indigènes — ils ont tiré les leçons durables de la mémoire, de la résilience et de l'unité.",
+          "Après la visite du mémorial, le personnel du CPR s'est rendu auprès des familles de survivants du Génocide réinstallées dans le village de Mulinja. Ces 46 familles collaborent avec le CPR et son personnel à la conduite des activités annuelles de commémoration de Kwibuka depuis plus de 12 ans. Chaque fois que les ressources le permettent, le CPR rend visite à ces familles pour leur apporter un soutien essentiel — notamment des fournitures ménagères, des vivres et d'autres produits de première nécessité.",
+          "À cette occasion, le Secrétaire Général du CPR et le Représentant du Président du CPR se sont joints au personnel de l'institution. La délégation s'est réunie à l'Église du Nazaréen, située près du siège du secteur de Gahanga, rencontrant les 46 familles de survivants réinstallées par le district de Kicukiro dans le village de Mulinja pour un moment significatif de fraternité, de solidarité et d'encouragement mutuel."
+        ],
+        "quote": "Se souvenir et soutenir les survivants est notre devoir sacré permanent. Par la foi, la mémoire et le soutien concret, nous renforçons l'unité et l'espoir.",
+        "image": "/assets/news-kwibuka.jpg"
+      },
+      {
+        "slug": "annual-convention-2026",
+        "date": "2 July 2026",
+        "category": "Event",
+        "title": "Dans les coulisses de la Convention annuelle du CPR sur la coopération œcuménique",
+        "excerpt": "La communauté protestante du Rwanda bâtit des partenariats durables à travers le pays. Les églises membres se sont réunies pour aligner leurs stratégies en matière d'éducation, de leadership des jeunes et d'autonomisation socio-économique.",
+        "body": [
+          "La Convention annuelle 2026 du Conseil Protestant du Rwanda a réuni des responsables d'églises, des théologiens et des acteurs communautaires de toute l'Afrique de l'Est pour discuter de l'avenir du partenariat œcuménique.",
+          "Les orateurs principaux ont souligné le rôle central des institutions protestantes dans la promotion de l'excellence éducative, de l'accès aux soins de santé et de la gestion environnementale dans toutes les provinces du Rwanda.",
+          "Rassemblant plus de 300 délégués, notamment des ministres, des ambassadeurs, des partenaires au développement, des universitaires et des leaders de la jeunesse, la Convention a marqué le début d'une plateforme à long terme visant à faire progresser la coopération pratique entre les églises membres.",
+          "La convention s'est conclue par une déclaration solennelle affirmant la coopération mutuelle, le dialogue interconfessionnel et la participation active aux projets de développement national."
+        ],
+        "quote": "La coopération œcuménique n'est pas seulement un objectif théologique : c'est notre responsabilité active de servir ensemble l'humanité.",
+        "image": "/assets/news-education.webp"
+      },
+      {
+        "slug": "may-highlights-2026",
+        "date": "2 June 2026",
+        "category": "Youth",
+        "title": "Faits marquants de mai 2026 et programmes jeunesse du CPR",
+        "excerpt": "Mai 2026 a été un mois décisif pour le programme jeunesse du CPR, avec le déploiement d'ateliers de consolidation de la paix et de formations aux compétences numériques pour plus de 800 jeunes responsables d'églises à travers le pays.",
+        "body": [
+          "Tout au long du mois de mai 2026, le département jeunesse du CPR a organisé des ateliers dans les provinces de l'Ouest et du Sud, renforçant les capacités des jeunes leaders en compétences numériques, en outils de résolution de conflits et en formation à l'entrepreneuriat.",
+          "Les participants ont pris part à des séminaires interactifs axés sur l'évangélisation numérique, le service communautaire et la sensibilisation à la santé mentale, les préparant à mener des initiatives actives au sein de leurs paroisses.",
+          "Le succès des initiatives jeunesse de mai pose les fondations de notre prochain sommet national de la jeunesse prévu plus tard cette année."
+        ],
+        "quote": "Autonomiser les jeunes par les compétences et la foi est le plus bel investissement que nous puissions faire pour l'avenir du Rwanda.",
+        "image": "/assets/news-trauma.jpg"
+      },
+      {
+        "slug": "kwibuka-31-commemoration",
+        "date": "28 June 2025",
+        "category": "Event",
         "title": "Kwibuka 31: Commémoration au Diocèse de Gahini",
-        "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi."
+        "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi, réaffirmant leur engagement en faveur de la paix, de la réconciliation et du « Plus jamais ça ».",
+        "body": [
+          "Dans le cadre des commémorations de Kwibuka 31, la direction du CPR et les chefs des églises membres se sont réunis au diocèse de Gahini pour un service commémoratif solennel en hommage aux victimes du Génocide de 1994 contre les Tutsi.",
+          "Les intervenants ont souligné le devoir permanent des églises chrétiennes de promouvoir la vérité, de soutenir les survivants et de développer l'éducation à la prévention du génocide auprès des jeunes générations.",
+          "Le CPR a réaffirmé son engagement à soutenir les cliniques de guérison des traumatismes et les groupes de dialogue communautaire pour la réconciliation à travers le pays."
+        ],
+        "quote": "Se souvenir est notre devoir sacré. Par la mémoire, la vérité et la foi, nous protégeons l'unité du Rwanda pour toujours.",
+        "image": "/assets/Gahini 2.webp"
       },
       {
-        "category": "Éducation",
+        "slug": "bnep-active-pedagogy-training",
+        "date": "14 May 2025",
+        "category": "Education",
         "title": "Le BNEP Lance une Formation en Pédagogie Active",
-        "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active."
+        "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active en partenariat avec des partenaires internationaux de développement.",
+        "body": [
+          "Le Bureau National de l'Éducation Protestante (BNEP) a officiellement lancé une initiative intensive de formation pour 1 200 enseignants du primaire et du secondaire exerçant dans les écoles affiliées au CPR.",
+          "Le programme met l'accent sur l'apprentissage actif centré sur l'élève, l'éducation inclusive pour les enfants à besoins spécifiques et l'intégration de l'éthique morale dans les programmes STEM.",
+          "Avec plus de 595 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
+        ],
+        "quote": "Une éducation de qualité, fondée sur des valeurs morales fortes, transforme les apprenants en leaders compatissants.",
+        "image": "/assets/Primary.jpg"
       },
       {
-        "category": "Santé",
+        "slug": "trauma-counselor-certification",
+        "date": "3 April 2025",
+        "category": "Health",
         "title": "Certification de Conseillers en Traumatisme",
-        "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme."
+        "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme dans cinq provinces, renforçant la capacité d'intervention du CPR en santé mentale.",
+        "body": [
+          "Le département Genre et Santé du CPR a célébré la diplomation de 42 conseillers communautaires certifiés en traumatologie, à l'issue d'un programme rigoureux de formation pratique de six mois.",
+          "Ces conseillers sont déployés dans les centres de santé ruraux et les services d'écoute des paroisses pour offrir un soutien psychosocial accessible, la médiation familiale et la prise en charge des traumatismes.",
+          "Cette initiative lutte contre la stigmatisation liée à la santé mentale et garantit une prise en charge bienveillante au niveau local."
+        ],
+        "quote": "Guérir les cœurs et restaurer le bien-être mental est essentiel pour des familles saines et des communautés fortes.",
+        "image": "/assets/Trauma 1.webp"
       },
       {
-        "category": "Développement",
+        "slug": "agricultural-cooperatives-sustainability",
+        "date": "12 March 2025",
+        "category": "Development",
         "title": "Le CPR s'Associe aux Coopératives Locales",
-        "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales a été lancée dans la province de l'Est."
+        "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales avec des techniques agricoles intelligentes face au climat a été lancée dans la province de l'Est, touchant plus de 500 familles.",
+        "body": [
+          "Le département de la Diaconie du CPR a lancé un projet pilote d'agriculture intelligente face au climat en collaboration avec des coopératives agricoles locales des districts de Bugesera et de Nyagatare.",
+          "Le projet fournit aux petits exploitants des semences résistantes à la sécheresse, des kits d'irrigation goutte-à-goutte et des techniques de gestion organique des sols pour renforcer la sécurité alimentaire.",
+          "Plus de 500 familles en ont déjà bénéficié, augmentant les rendements tout en préservant les ressources naturelles."
+        ],
+        "quote": "Une agriculture durable honore la création de Dieu tout en assurant les moyens de subsistance et la dignité des familles rurales.",
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
-        "category": "Jeunesse",
+        "slug": "youth-reconciliation-summit",
+        "date": "18 February 2025",
+        "category": "Youth",
         "title": "Sommet Annuel de la Jeunesse Annoncé",
-        "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la paix."
+        "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la consolidation de la paix, du leadership et de l'évangélisation numérique.",
+        "body": [
+          "La direction de la Jeunesse du CPR a annoncé les dates du prochain Sommet national de la Jeunesse, qui réunira plus de 600 jeunes représentants des églises protestantes de tout le pays.",
+          "Sous le thème « La jeunesse, ambassadrice de la paix et de l'innovation », le sommet proposera des ateliers sur la résolution des conflits, l'entrepreneuriat social et la culture numérique.",
+          "Les inscriptions sont ouvertes auprès des secrétariats des paroisses locales et des coordinateurs jeunesse du CPR."
+        ],
+        "quote": "Lorsque les jeunes dirigent avec paix et détermination, toute la nation avance.",
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -133,7 +225,13 @@
     "nowPlaying": "En Cours :",
     "nowPlayingDesc": "Dévotion Matinale & Nouvelles",
     "listenBtn": "Écouter en Direct",
-    "scheduleBtn": "Programme"
+    "scheduleBtn": "Programme",
+    "tagline": "La Voix du Cœur",
+    "pillars": [
+      "Évangélisation",
+      "Unité",
+      "Développement"
+    ]
   },
   "gallery": {
     "galleryLabel": "Galerie",
@@ -251,6 +349,8 @@
       ]
     },
     "execCommittee": {
+      "bnepRep": "Représentant BNEP",
+      "staffMember": "Membre du Personnel",
       "title": "Comité Exécutif",
       "desc": "Notre équipe dévouée de professionnels et de dirigeants d'églises apporte son expertise de divers secteurs pour faire avancer la mission du CPR.",
       "boardMembers": "Membres du Conseil",
@@ -274,9 +374,87 @@
     "filterLabel": "Filtrer par Catégorie :",
     "allCategories": "Toutes les Catégories",
     "readMore": "En savoir plus",
+    "backToNewsroom": "Retour à la Salle de Presse",
+    "returnToNewsroom": "Retour à la Salle de Presse",
+    "byAuthor": "Par {{author}}",
+    "shareLabel": "Partager :",
+    "shareBtn": "Partager",
+    "copied": "Copié !",
+    "moreNews": "Plus de Nouvelles & Histoires",
+    "secondaryCaption": "Vue secondaire lors de la commémoration du CPR.",
     "prev": "Précédent",
     "next": "Suivant",
-    "noNewsFound": "Aucun article trouvé dans cette catégorie."
+    "noNewsFound": "Aucun article trouvé dans cette catégorie.",
+    "heroChip1": "Dernières Mises à Jour",
+    "heroChip2": "Rapports Communautaires",
+    "article": "Article",
+    "articles": "Articles",
+    "items": [
+      {
+        "slug": "cpr-june-2026-highlights",
+        "date": "7 July 2026",
+        "category": "Report",
+        "title": "Le personnel du CPR visite le Mémorial du Génocide de Nyanza et soutient les familles de survivants du village de Mulinja",
+        "excerpt": "Le personnel du CPR a rendu hommage aux victimes au Mémorial du Génocide de Nyanza, dans le district de Kicukiro, et a apporté un soutien ciblé aux familles de survivants du Génocide de 1994 dans le village de Mulinja, dans le cadre des commémorations annuelles de Kwibuka 31.",
+        "image": "/assets/news-kwibuka.jpg"
+      },
+      {
+        "slug": "annual-convention-2026",
+        "date": "2 July 2026",
+        "category": "Event",
+        "title": "Dans les coulisses de la Convention annuelle du CPR sur la coopération œcuménique",
+        "excerpt": "La communauté protestante du Rwanda bâtit des partenariats durables à travers le pays. Les églises membres se sont réunies pour aligner leurs stratégies en matière d'éducation, de leadership des jeunes et d'autonomisation socio-économique.",
+        "image": "/assets/news-education.webp"
+      },
+      {
+        "slug": "may-highlights-2026",
+        "date": "2 June 2026",
+        "category": "Youth",
+        "title": "Faits marquants de mai 2026 et programmes jeunesse du CPR",
+        "excerpt": "Mai 2026 a été un mois décisif pour le programme jeunesse du CPR, avec le déploiement d'ateliers de consolidation de la paix et de formations aux compétences numériques pour plus de 800 jeunes responsables d'églises à travers le pays.",
+        "image": "/assets/news-trauma.jpg"
+      },
+      {
+        "slug": "kwibuka-31-commemoration",
+        "date": "28 June 2025",
+        "category": "Event",
+        "title": "Kwibuka 31: Commémoration au Diocèse de Gahini",
+        "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi, réaffirmant leur engagement en faveur de la paix, de la réconciliation et du « Plus jamais ça ».",
+        "image": "/assets/Gahini 2.webp"
+      },
+      {
+        "slug": "bnep-active-pedagogy-training",
+        "date": "14 May 2025",
+        "category": "Education",
+        "title": "Le BNEP Lance une Formation en Pédagogie Active",
+        "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active en partenariat avec des partenaires internationaux de développement.",
+        "image": "/assets/Primary.jpg"
+      },
+      {
+        "slug": "trauma-counselor-certification",
+        "date": "3 April 2025",
+        "category": "Health",
+        "title": "Certification de Conseillers en Traumatisme",
+        "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme dans cinq provinces, renforçant la capacité d'intervention du CPR en santé mentale.",
+        "image": "/assets/Trauma 1.webp"
+      },
+      {
+        "slug": "agricultural-cooperatives-sustainability",
+        "date": "12 March 2025",
+        "category": "Development",
+        "title": "Le CPR s'Associe aux Coopératives Locales",
+        "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales avec des techniques agricoles intelligentes face au climat a été lancée dans la province de l'Est, touchant plus de 500 familles.",
+        "image": "/assets/CPR 3 - Copy.webp"
+      },
+      {
+        "slug": "youth-reconciliation-summit",
+        "date": "18 February 2025",
+        "category": "Youth",
+        "title": "Sommet Annuel de la Jeunesse Annoncé",
+        "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la consolidation de la paix, du leadership et de l'évangélisation numérique.",
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+      }
+    ]
   },
   "departmentsPage": {
     "heroTag": "Nos Départements",
@@ -285,6 +463,10 @@
     "introTag": "Notre Structure",
     "introTitle": "Départements du Conseil Protestant du Rwanda",
     "introDesc": "Le travail du CPR est organisé à travers sept départements spécialisés, chacun dirigé par des professionnels expérimentés et soutenu par une équipe dévouée. Ensemble, ils mettent en œuvre des programmes qui touchent chaque province du Rwanda, de l'éducation et la santé à l'autonomisation des jeunes et au développement communautaire.",
+    "overview": {
+      "title": "Explorez Nos Départements",
+      "desc": "Cliquez sur un département pour accéder à sa section détaillée ci-dessous"
+    },
     "nav": {
       "gs": "Secrétariat Général",
       "bnep": "Éducation / BNEP",
@@ -514,6 +696,7 @@
       "beneficiaries": "Bénéficiaires"
     },
     "about": {
+      "hours": "5h00 — 22h00 chaque jour",
       "tag": "Contexte Historique",
       "title": "D'un Rêve Longtemps Chéri à la Réalité",
       "desc": "Bien avant le Génocide contre les Tutsi en 1994, l'idée d'une radio du CPR revenait constamment dans les discussions des réunions des organes structurels du CPR — sans jamais être mise en pratique. Le Ministère de l'Évangélisation jugea pertinent un outil de communication radiophonique pour répandre l'Évangile auprès d'un grand nombre de personnes dans le pays, la région et le monde.",
@@ -555,6 +738,7 @@
       ]
     },
     "programs": {
+      "footerTag": "107.1 FM — La Voix du Cœur",
       "tag": "Programmes",
       "title": "Une Journée d'Espérance sur 107.1 FM",
       "desc": "Radio Inkoramutima émet 17 heures chaque jour, de 5h00 à 22h00, avec des programmes qui informent, éduquent et divertissent.",
@@ -791,6 +975,34 @@
       "desc": "Appelez-nous ou écrivez-nous et un membre de notre équipe se fera un plaisir de vous aider pendant les heures de bureau.",
       "callBtn": "Appelez-nous",
       "emailBtn": "Écrivez-nous"
-    }
+    },
+    "chatLabel": "Discutez avec nous"
+  },
+  "galleryPage": {
+    "heroTag": "Galerie",
+    "heroTitle": "Moments & Souvenirs",
+    "heroDesc": "Un voyage visuel à travers le ministère du CPR Rwanda, ses événements, ses actions communautaires et ses commémorations.",
+    "heroChip1": "4 Collections",
+    "heroChip2": "32 Photos",
+    "filters": {
+      "all": "Toutes les Collections",
+      "conferences": "Conférences & Réunions",
+      "commemorations": "Commémorations",
+      "youth": "Jeunesse & Bien-être",
+      "education": "Éducation & Médias"
+    },
+    "stats": {
+      "collections": "Collections",
+      "photos": "Photos",
+      "churches": "Églises Membres",
+      "years": "Années de Service"
+    },
+    "viewCollection": "Voir la Collection",
+    "photoCount": "Photos",
+    "openGallery": "Ouvrir la Galerie",
+    "close": "Fermer",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "breadcrumb": "Accueil"
   }
 }

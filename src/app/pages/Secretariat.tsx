@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
+import { useSecretariatPage } from "../data/pageContent";
 
 interface SubSection {
   id: string;
@@ -75,6 +77,10 @@ export function Secretariat() {
   const { t, i18n } = useTranslation("home");
   const lang = i18n.language ? i18n.language.substring(0, 2) : "en";
   const secStats = getSecStats(lang);
+  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
+  const cms = useSecretariatPage();
+  /** Returns the CMS section for a key, if staff filled it in. */
+  const cmsSec = (key: string) => cms?.sections?.find((s) => s.key === key);
   const { ref: introRef, visible: introVisible } = useScrollReveal();
   const { ref: sgRef, visible: sgVisible } = useScrollReveal();
   const heroRef = useRef<HTMLDivElement>(null);
@@ -108,76 +114,38 @@ export function Secretariat() {
   }, []);
 
   const navLinks = [
-    { label: t("secretariatPage.nav.sg"), href: "#sg" },
-    { label: t("secretariatPage.nav.events"), href: "#events" },
-    { label: t("secretariatPage.nav.meetings"), href: "#meetings" },
-    { label: t("secretariatPage.nav.advocacy"), href: "#advocacy" },
-    { label: t("secretariatPage.nav.sustainability"), href: "#sustainability" },
-    { label: t("secretariatPage.nav.publications"), href: "#publications" },
+    { label: cmsSec("sg")?.nav ?? t("secretariatPage.nav.sg"), href: "#sg" },
+    { label: cmsSec("events")?.nav ?? t("secretariatPage.nav.events"), href: "#events" },
+    { label: cmsSec("meetings")?.nav ?? t("secretariatPage.nav.meetings"), href: "#meetings" },
+    { label: cmsSec("advocacy")?.nav ?? t("secretariatPage.nav.advocacy"), href: "#advocacy" },
+    { label: cmsSec("sustainability")?.nav ?? t("secretariatPage.nav.sustainability"), href: "#sustainability" },
+    { label: cmsSec("publications")?.nav ?? t("secretariatPage.nav.publications"), href: "#publications" },
   ];
 
-  const sections: SubSection[] = [
-    {
-      id: "sg",
-      icon: Landmark,
-      tag: t("secretariatPage.sg.tag"),
-      title: t("secretariatPage.sg.title"),
-      desc: t("secretariatPage.sg.desc"),
-      body: t("secretariatPage.sg.body", { returnObjects: true }) as string[],
-      accent: "#4E6132",
-      image: secImages.sg,
-    },
-    {
-      id: "events",
-      icon: CalendarDays,
-      tag: t("secretariatPage.events.tag"),
-      title: t("secretariatPage.events.title"),
-      desc: t("secretariatPage.events.desc"),
-      body: t("secretariatPage.events.body", { returnObjects: true }) as string[],
-      accent: "#8B6543",
-      image: secImages.events,
-    },
-    {
-      id: "meetings",
-      icon: Users,
-      tag: t("secretariatPage.meetings.tag"),
-      title: t("secretariatPage.meetings.title"),
-      desc: t("secretariatPage.meetings.desc"),
-      body: t("secretariatPage.meetings.body", { returnObjects: true }) as string[],
-      accent: "#4E6132",
-      image: secImages.meetings,
-    },
-    {
-      id: "advocacy",
-      icon: Megaphone,
-      tag: t("secretariatPage.advocacy.tag"),
-      title: t("secretariatPage.advocacy.title"),
-      desc: t("secretariatPage.advocacy.desc"),
-      body: t("secretariatPage.advocacy.body", { returnObjects: true }) as string[],
-      accent: "#8B6543",
-      image: secImages.advocacy,
-    },
-    {
-      id: "sustainability",
-      icon: Leaf,
-      tag: t("secretariatPage.sustainability.tag"),
-      title: t("secretariatPage.sustainability.title"),
-      desc: t("secretariatPage.sustainability.desc"),
-      body: t("secretariatPage.sustainability.body", { returnObjects: true }) as string[],
-      accent: "#4E6132",
-      image: secImages.sustainability,
-    },
-    {
-      id: "publications",
-      icon: BookOpen,
-      tag: t("secretariatPage.publications.tag"),
-      title: t("secretariatPage.publications.title"),
-      desc: t("secretariatPage.publications.desc"),
-      body: t("secretariatPage.publications.body", { returnObjects: true }) as string[],
-      accent: "#8B6543",
-      image: secImages.publications,
-    },
+  const sectionDefs: { id: string; icon: LucideIcon; accent: string }[] = [
+    { id: "sg", icon: Landmark, accent: "#4E6132" },
+    { id: "events", icon: CalendarDays, accent: "#8B6543" },
+    { id: "meetings", icon: Users, accent: "#4E6132" },
+    { id: "advocacy", icon: Megaphone, accent: "#8B6543" },
+    { id: "sustainability", icon: Leaf, accent: "#4E6132" },
+    { id: "publications", icon: BookOpen, accent: "#8B6543" },
   ];
+
+  const sections: SubSection[] = sectionDefs.map(({ id, icon, accent }) => {
+    const c = cmsSec(id);
+    return {
+      id,
+      icon,
+      tag: c?.tag ?? t(`secretariatPage.${id}.tag`),
+      title: c?.title ?? t(`secretariatPage.${id}.title`),
+      desc: c?.desc ?? t(`secretariatPage.${id}.desc`),
+      body: c?.body?.length
+        ? c.body
+        : (t(`secretariatPage.${id}.body`, { returnObjects: true }) as string[]),
+      accent,
+      image: secImages[id] ?? "",
+    };
+  });
 
   return (
     <main className="bg-white">
@@ -210,7 +178,7 @@ export function Secretariat() {
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
             className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {t("secretariatPage.heroTitle")}
+            {cms?.heroTitle ?? t("secretariatPage.heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -218,7 +186,7 @@ export function Secretariat() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
-            {t("secretariatPage.heroDesc")}
+            {cms?.heroDesc ?? t("secretariatPage.heroDesc")}
           </motion.p>
         </motion.div>
         {/* Scroll indicator */}
@@ -262,15 +230,15 @@ export function Secretariat() {
             <div className="inline-flex items-center gap-2">
               <div className="h-px w-8 bg-[#8B6543]" />
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                {t("secretariatPage.introTag")}
+                {cms?.introTag ?? t("secretariatPage.introTag")}
               </span>
               <div className="h-px w-8 bg-[#8B6543]" />
             </div>
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5">
-              {t("secretariatPage.introTitle")}
+              {cms?.introTitle ?? t("secretariatPage.introTitle")}
             </h2>
             <p className="text-[#4A4A4A] text-lg leading-relaxed">
-              {t("secretariatPage.introDesc")}
+              {cms?.introDesc ?? t("secretariatPage.introDesc")}
             </p>
           </motion.div>
         </div>
@@ -314,7 +282,7 @@ export function Secretariat() {
                 >
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                    {t("secretariatPage.sgProfile.role")}
+                    {cms?.sgProfile?.role ?? t("secretariatPage.sgProfile.role")}
                   </span>
                   <div className="h-px w-8 bg-[#8B6543]" />
                 </motion.div>
@@ -324,7 +292,7 @@ export function Secretariat() {
                   transition={{ duration: 0.4, delay: 0.3 }}
                   className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#4E6132] mt-1 mb-1"
                 >
-                  {t("secretariatPage.sgProfile.name")}
+                  {cms?.sgProfile?.name ?? t("secretariatPage.sgProfile.name")}
                 </motion.h3>
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -332,7 +300,7 @@ export function Secretariat() {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="text-[#8B6543] font-semibold text-sm mb-4"
                 >
-                  {t("secretariatPage.sgProfile.title")}
+                  {cms?.sgProfile?.title ?? t("secretariatPage.sgProfile.title")}
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -342,7 +310,7 @@ export function Secretariat() {
                 >
                   <Quote size={28} className="text-[#4E6132]/15 absolute -top-1 -left-1 hidden md:block" />
                   <p className="text-[#4A4A4A] leading-relaxed md:pl-7 italic">
-                    {t("secretariatPage.sgProfile.quote")}
+                    {cms?.sgProfile?.quote ?? t("secretariatPage.sgProfile.quote")}
                   </p>
                 </motion.div>
                 <motion.div
@@ -352,17 +320,17 @@ export function Secretariat() {
                   className="mt-5 flex flex-wrap gap-3 justify-center md:justify-start"
                 >
                   <a
-                    href="mailto:cprgs@cpr-rwanda.rw"
+                    href={`mailto:${contact.email}`}
                     className="inline-flex items-center gap-2 text-sm text-[#4E6132] font-semibold hover:text-[#8B6543] transition-colors"
                   >
-                    <Mail size={14} /> cprgs@cpr-rwanda.rw
+                    <Mail size={14} /> {contact.email}
                   </a>
                   <span className="text-[#4E6132]/20 hidden md:inline">|</span>
                   <a
-                    href="tel:+250788314718"
+                    href={`tel:${contact.phone}`}
                     className="inline-flex items-center gap-2 text-sm text-[#4E6132] font-semibold hover:text-[#8B6543] transition-colors"
                   >
-                    <Phone size={14} /> +250 788 314 718
+                    <Phone size={14} /> {contact.phone}
                   </a>
                 </motion.div>
               </div>
@@ -396,7 +364,7 @@ export function Secretariat() {
             transition={{ duration: 0.5 }}
             className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
           >
-            {t("secretariatPage.cta.title")}
+            {cms?.cta?.title ?? t("secretariatPage.cta.title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -405,7 +373,7 @@ export function Secretariat() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
           >
-            {t("secretariatPage.cta.desc")}
+            {cms?.cta?.desc ?? t("secretariatPage.cta.desc")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -414,9 +382,9 @@ export function Secretariat() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-wrap justify-center gap-6 text-white/80 text-sm mb-8"
           >
-            <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> +250 788 314 718</span>
-            <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
-            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> KG 2 Av 4, B.P 79, Kigali</span>
+            <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> {contact.phone}</span>
+            <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> {contact.email}</span>
+            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> {contact.addressLine1}, {contact.addressLine2}</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -428,7 +396,7 @@ export function Secretariat() {
               to="/contact"
               className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-3.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105"
             >
-              {t("secretariatPage.cta.btn")} <ArrowRight size={16} />
+              {cms?.cta?.btn ?? t("secretariatPage.cta.btn")} <ArrowRight size={16} />
             </Link>
           </motion.div>
         </div>

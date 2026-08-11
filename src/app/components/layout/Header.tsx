@@ -6,6 +6,7 @@ import {
   MapPin
 } from "lucide-react";
 import { getNavItems } from "../../data/navigation";
+import { FALLBACK_CONTACT, useSiteSettings } from "../../data/siteSettings";
 import type { NavItem } from "../../types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useComingSoon } from "../ui/ComingSoonModal";
@@ -14,6 +15,7 @@ import { useTranslation } from "react-i18next";
 const COMING_SOON = new Set<string>([]);
 
 function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
+  const { t } = useTranslation("common");
   const { showComingSoon } = useComingSoon();
   if (!item.children) return null;
   return (
@@ -46,7 +48,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                   >
                     <span className="text-[15px] font-bold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                       <span>{link.label}</span>
-                      <span className="text-[10px] font-medium text-[#BC8A5F]/60 group-hover:text-[#BC8A5F] transition-colors">Coming Soon</span>
+                      <span className="text-[10px] font-medium text-[#BC8A5F]/60 group-hover:text-[#BC8A5F] transition-colors">{t("nav.comingSoon")}</span>
                     </span>
                     {link.desc && (
                       <span className="text-[13px] text-[#4E6132]/90 font-medium group-hover:text-[#8B6543] leading-snug transition-colors">{link.desc}</span>
@@ -80,6 +82,8 @@ export function Header() {
   const { t } = useTranslation("common");
   const { showComingSoon } = useComingSoon();
   const navItems = getNavItems(t);
+  const settings = useSiteSettings();
+  const contact = settings?.contact ?? FALLBACK_CONTACT;
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -129,9 +133,9 @@ export function Header() {
       {/* Top bar */}
       <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
         <div className="flex items-center gap-5">
-          <span className="flex items-center gap-1.5"><Phone size={11} /><span>+250 788 314 718</span></span>
-          <span className="flex items-center gap-1.5"><Mail size={11} /><span>cprgs@cpr-rwanda.rw</span></span>
-          <span className="flex items-center gap-1.5"><MapPin size={11} /><span>KG 2 Av 4, B.P 79, Kigali-Rwanda</span></span>
+          <span className="flex items-center gap-1.5"><Phone size={11} /><span>{contact.phone}</span></span>
+          <span className="flex items-center gap-1.5"><Mail size={11} /><span>{contact.email}</span></span>
+          <span className="flex items-center gap-1.5"><MapPin size={11} /><span>{contact.addressLine1}, {contact.addressLine2}</span></span>
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="full" />
@@ -315,7 +319,7 @@ export function Header() {
                           className="w-full text-left px-4 py-2.5 text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 rounded-xl transition-colors flex items-center justify-between"
                         >
                           <span>{link.label}</span>
-                          <span className="text-[10px] font-medium text-[#BC8A5F]/50">Coming Soon</span>
+                          <span className="text-[10px] font-medium text-[#BC8A5F]/50">{t("nav.comingSoon")}</span>
                         </button>
                       ) : (
                         <Link

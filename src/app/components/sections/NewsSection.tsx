@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { getNews } from "../../data/news";
+import { useCmsNews } from "../../data/sanityNews";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
@@ -10,7 +11,8 @@ import { useTranslation } from "react-i18next";
 export function NewsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  const news = getNews(t);
+  // CMS posts take over when staff publish them; hardcoded news is the fallback.
+  const news = useCmsNews() ?? getNews(t);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);

@@ -20,10 +20,25 @@ export interface NewsArticle {
   paragraphs?: string[];
   quote?: string;
   keyPoints?: string[];
+  /** Raw Sanity portable-text body (CMS articles only). */
+  bodyBlocks?: unknown[];
+  /** Whether the post is pinned as a featured story (CMS articles only). */
+  featured?: boolean;
 }
 
 export const getNews = (t: any): NewsArticle[] => {
-  return [
+  // Localized fallback content (en/fr/rw) from the locale files. The
+  // hardcoded English below remains as the ultimate fallback when a
+  // translation is missing.
+  const locItems: any[] = (t && t("news.items", { returnObjects: true })) || [];
+  const locBySlug = new Map<string, any>();
+  if (Array.isArray(locItems)) {
+    for (const item of locItems) {
+      if (item && item.slug) locBySlug.set(item.slug, item);
+    }
+  }
+
+  const articles: NewsArticle[] = [
     {
       slug: "cpr-june-2026-highlights",
       date: "7 July 2026",
@@ -222,6 +237,19 @@ export const getNews = (t: any): NewsArticle[] => {
       ]
     }
   ];
+
+  // Apply the localized title/excerpt/body/quote when available.
+  return articles.map((a) => {
+    const loc = locBySlug.get(a.slug);
+    if (!loc) return a;
+    return {
+      ...a,
+      title: loc.title || a.title,
+      excerpt: loc.excerpt || a.excerpt,
+      paragraphs: loc.body && loc.body.length ? loc.body : a.paragraphs,
+      quote: loc.quote || a.quote,
+    };
+  });
 };
 
 export const getNewsBySlug = (slug: string, t: any): NewsArticle | undefined => {
