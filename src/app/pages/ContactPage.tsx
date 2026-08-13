@@ -553,13 +553,16 @@ function MapBlock() {
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
   const map = (cp?.map as Record<string, unknown>) ?? {};
 
-  // Clean the address for better geocoding (drop postal box like "B.P 79")
+  // Query Google Maps by the exact place name so the pin lands on the
+  // CPR building (street-address geocoding puts it on the wrong plot).
+  const MAP_PLACE = "Protestant Council of Rwanda, Kigali, Rwanda";
+  const query = encodeURIComponent(MAP_PLACE);
+  // Full address shown on the floating card (postal box dropped for display)
   const address = `${contact.addressLine1}, ${contact.addressLine2}`
     .replace(/B\.?\s?P\.?\s?\d+/gi, "")
     .replace(/,\s*,/g, ",")
     .replace(/^\s*,|,\s*$/g, "")
     .trim();
-  const query = encodeURIComponent(address);
   const embedUrl = `https://www.google.com/maps?q=${query}&z=16&output=embed`;
   const placeUrl = `https://www.google.com/maps?q=${query}`;
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
