@@ -874,6 +874,14 @@
         }
       ]
     },
+    "map": {
+      "tag": "Dusange",
+      "title": "Aho Tuherereye",
+      "desc": "Dusange mu mutima wa Kigali — KG 2 Avenue, hafi y'umujyi. Turateganyirije kukwakira.",
+      "cardTitle": "Icyicaro Gikuru cya CPR",
+      "directionsBtn": "Inzira yo Kugera",
+      "openInMaps": "Fungura muri Google Maps"
+    },
     "form": {
       "tag": "Ohereza Ubutumwa",
       "title": "Twishimira Kumva Ibyo Udufitiye",
