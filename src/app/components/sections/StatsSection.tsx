@@ -35,9 +35,6 @@ function StatCard({ stat, active }: { stat: Stat; active: boolean }) {
       {/* Top hairline accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[3px] rounded-b-full bg-gradient-to-r from-transparent via-[#EAD196]/70 to-transparent transition-all duration-500 group-hover:w-full group-hover:via-[#EAD196]" />
 
-      {/* Faint watermark icon */}
-      <Icon size={96} className="absolute -bottom-7 -left-5 text-white/[0.04] transition-all duration-500 group-hover:text-[#EAD196]/10 group-hover:scale-110 group-hover:-rotate-6" />
-
       {/* Icon chip with glow */}
       <div className="relative mt-1">
         <span className="absolute inset-0 rounded-2xl bg-[#EAD196]/30 blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
