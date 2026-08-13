@@ -874,6 +874,14 @@
         }
       ]
     },
+    "map": {
+      "tag": "Find Us",
+      "title": "Our Location",
+      "desc": "Find us in the heart of Kigali — KG 2 Avenue, just minutes from the city center. We look forward to welcoming you.",
+      "cardTitle": "CPR Rwanda Headquarters",
+      "directionsBtn": "Get Directions",
+      "openInMaps": "Open in Google Maps"
+    },
     "form": {
       "tag": "Send a Message",
       "title": "We'd Love to Hear From You",
