@@ -874,6 +874,14 @@
         }
       ]
     },
+    "map": {
+      "tag": "Nous Trouver",
+      "title": "Notre Emplacement",
+      "desc": "Retrouvez-nous au cœur de Kigali — KG 2 Avenue, à quelques minutes du centre-ville. Nous serons ravis de vous accueillir.",
+      "cardTitle": "Siège du CPR Rwanda",
+      "directionsBtn": "Itinéraire",
+      "openInMaps": "Ouvrir dans Google Maps"
+    },
     "form": {
       "tag": "Envoyer un Message",
       "title": "Nous Serions Ravi de Vous Entendre",
