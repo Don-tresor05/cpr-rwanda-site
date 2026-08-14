@@ -1,6 +1,7 @@
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { X, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,8 @@ import { useAboutPage } from "../data/pageContent";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
+  const [historyModalOpen, setHistoryModalOpen] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const location = useLocation();
   const { ref: visionRef, visible: visionVisible } = useScrollReveal();
   const { t } = useTranslation("home");
@@ -44,6 +47,26 @@ export function AboutUs() {
     return () => sections.forEach(sec => observer.unobserve(sec));
   }, []);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (historyModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [historyModalOpen]);
+
+  // Hide scroll indicator once user scrolls past the hero
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > window.innerHeight * 0.3);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navLinks = [
     { label: cms?.nav?.whoWeAre ?? t("aboutPage.nav.whoWeAre"), href: "#who-we-are" },
     { label: cms?.nav?.visionMission ?? t("aboutPage.nav.visionMission"), href: "#vision-mission" },
@@ -74,7 +97,7 @@ export function AboutUs() {
             {cms?.heroTitle ?? t("aboutPage.heroTitle")}
           </h1>
         </div>
-        <ScrollIndicator />
+        {!scrolledPastHero && !historyModalOpen && <ScrollIndicator />}
       </div>
 
       {/* Sub-Navigation */}
@@ -120,6 +143,14 @@ export function AboutUs() {
                 <p>{cms?.whoWeAre?.p1 ?? t("aboutPage.whoWeAre.p1")}</p>
                 <p>{cms?.whoWeAre?.p2 ?? t("aboutPage.whoWeAre.p2")}</p>
               </div>
+
+              <button
+                onClick={() => setHistoryModalOpen(true)}
+                className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
+              >
+                Learn More
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>
@@ -398,6 +429,99 @@ export function AboutUs() {
           </div>
         </div>
       </section>
+      {/* History Modal */}
+      <AnimatePresence>
+        {historyModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 lg:p-8"
+            onClick={() => setHistoryModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setHistoryModalOpen(false)}
+                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="p-6 lg:p-8">
+                <div className="inline-flex items-center gap-2">
+                  <div className="h-px w-8 bg-[#8B6543]" />
+                  <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
+                    Our Story
+                  </span>
+                  <div className="h-px w-8 bg-[#8B6543]" />
+                </div>
+                <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#4E6132] mt-2 mb-4">
+                  About Conseil Protestant du Rwanda
+                </h2>
+
+                <div className="grid md:grid-cols-3 gap-6 items-start">
+                  {/* Text content */}
+                  <div className="md:col-span-2 text-[#4A4A4A] leading-relaxed space-y-4">
+                    <p>
+                      The Protestant Council of Rwanda (CPR) was established in 1963 to promote and
+                      share innovative development initiatives and deliver essential services to our
+                      member churches and the wider community. For over 60 years, CPR has united
+                      Protestant denominations across Rwanda under a shared mission of faith, unity,
+                      and sustainable development.
+                    </p>
+                    <p>
+                      Through its network of specialized departments, CPR coordinates efforts in
+                      education, health, youth empowerment, gender equality, and community advocacy —
+                      developing strong, impactful partnerships and providing world-class services
+                      that foster sustainable development across Rwanda.
+                    </p>
+                  </div>
+
+                  {/* Image + caption */}
+                  <div className="md:col-span-1">
+                    <div className="rounded-2xl overflow-hidden shadow-lg border border-[#4E6132]/10">
+                      <img
+                        src="/assets/Mutabazi_Samuel.webp"
+                        alt="Rev. Samuel Mutabazi"
+                        className="w-full aspect-[4/5] object-cover object-top"
+                      />
+                    </div>
+                    <p className="text-center mt-3">
+                      <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm">
+                        Rev. Samuel Mutabazi
+                      </span>
+                      <span className="block text-[#8B6543] text-xs font-semibold mt-0.5">
+                        Secretary General
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Learn More -> Departments */}
+                <div className="mt-4 pt-4 border-t border-[#4E6132]/10">
+                  <Link
+                    to="/departments"
+                    onClick={() => setHistoryModalOpen(false)}
+                    className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 hover:scale-105 text-sm"
+                  >
+                    Explore Our Departments <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
