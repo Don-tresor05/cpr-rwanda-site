@@ -364,6 +364,16 @@
     },
     "partners": {
       "title": "Abafatanyabikorwa Bacu"
+    },
+    "learnMore": "Menya Byinshi",
+    "modal": {
+      "title": "Amateka Yacu",
+      "tag": "Ibyerekeye Inama y'Abaporotesitanti mu Rwanda",
+      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu 1963. Kuva yatangira, CPR yabaye umutima w'imibereho y'Abanyarwanda — yubaka imiryango nyuma y'amakimbirane, iteza imbere uburezi, kandi ishyigikira agaciro ka buri muntu.",
+      "p2": "Binyuze mu mashami yayo yihariye, CPR ihuza ibikorwa by'amatorero 25 anyamuryango kugira ngo batange gahunda zigira uruhare mu burezi (BNEP), ubuvuzi, isanamitima, n'iterambere ry'abaturage. Kicaro gikuru kiri i Kigali, CPR ihagarariye ijwi ryunze ubumwe ry'Abaporotesitanti riharanira impinduka zirambye.",
+      "sgName": "Pasiteri Samuel Mutabazi",
+      "sgRole": "Umunyamabanga Mukuru",
+      "exploreBtn": "Menya Amashami Yacu"
     }
   },
   "newsroom": {
@@ -1004,5 +1014,217 @@
     "prev": "Ibibanza",
     "next": "Ibikurikira",
     "breadcrumb": "Ahabanza"
+  },
+  "departmentResourcesUI": {
+    "overview": "Incamake",
+    "about": "Ibyerekeye",
+    "keyActivities": "Ibikorwa by'Ingenzi",
+    "partOfCpr": "Igice cy'urusobe rwa CPR rw'amashami 7 yihariye akorera mu ntara zose z'u Rwanda.",
+    "resourcesAndDocs": "Ibyigwa n'Inyandiko",
+    "accessResources": "Bona ibyigwa, raporo, n'inyandiko z'ingenzi ziva mw'ishami rya",
+    "department": " ",
+    "download": "Kuramo",
+    "visit": "Sura",
+    "view": "Reba",
+    "exploreMore": "Menya Andi Mashami",
+    "discoverHow": "Menya uburyo urusobe rwa CPR rw'amashami yihariye rufatanya gukorera abaturage mu Rwanda hose.",
+    "allDepartments": "Amashami Yose",
+    "notFoundTitle": "Ibyigwa ntibibonetse.",
+    "deptNotFoundTitle": "Ishami Ntiryabonetse",
+    "deptNotFoundDesc": "Ishami urimo gushaka ntiribaho cyangwa ryimuwe.",
+    "backToDepartments": "Subira ku Mashami",
+    "backTo": "Subira kuri",
+    "resources": "Ibyigwa",
+    "documents": "Inyandiko",
+    "title": "Umutwe",
+    "info": "Amakuru",
+    "modified": "Byahinduwe",
+    "noFiles": "Nta nyandiko zirashyirwaho kuri ibi byigwa. Ongera urebe vuba."
+  },
+  "departmentResourcesData": {
+    "gs": {
+      "title": "Umunyamabanga Mukuru",
+      "tag": "Ibiro by'Umunyamabanga Mukuru",
+      "overview": "Ibiro by'Umunyamabanga Mukuru bitanga ubuyobozi rusange n'imikoranire ngamba kuri CPR, bireba umubano hagati y'amatorero, imiyoborere y'ikigo, n'ubufatanye n'abo hanze. Biba ihuriro rihuza amashami yose mu cyerekezo kimwe cyo kwizera, ubumwe, n'iterambere.",
+      "keyActivities": [
+        "Igenamigambi n'imiyoborere y'ikigo",
+        "Ihuza ry'amatorero anyamuryango n'amashami",
+        "Ihuza mu manama y'imbere mu gihugu n'amahanga",
+        "Gucunga ibiganiro hagati y'amatorero n'ubufatanye n'andi matorero",
+        "Gukurikirana gahunda z'iterambere ry'umuryango wa CPR"
+      ],
+      "resources": [
+        {
+          "title": "Raporo y'Umwaka ya CPR 2024",
+          "description": "Incamake yuzuye y'ibikorwa n'ingaruka bya CPR"
+        },
+        {
+          "title": "Igenamigambi rya CPR 2023–2028",
+          "description": "Gahunda y'imyaka itanu y'iterambere ry'ikigo"
+        },
+        {
+          "title": "Urutonde rw'Amatorero Anyamuryango",
+          "description": "Umwirondoro w'amatorero anyamuryango 25+"
+        }
+      ]
+    },
+    "bnep": {
+      "title": "Uburezi / BNEP",
+      "tag": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti",
+      "overview": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti (BNEP) bicunga kandi bihuza amashuri abanza y'Abaporotesitanti mu Rwanda hose. Kuri ubu rifite amashuri 595+, BNEP yibanda ku burezi bufite ireme, amahugurwa y'abarimu, itegurwa ry'integanyanyigisho, n'ivugurura ry'ibikorwaremezo by'amashuri.",
+      "keyActivities": [
+        "Gucunga amashuri abanza y'Abaporotesitanti 595+ mu gihugu hose",
+        "Amahugurwa y'umwuga y'abarimu na gahunda zo gutanga ibyemezo",
+        "Guteza imbere integanyanyigisho ijyanye n'amahame y'uburezi y'igihugu",
+        "Imishinga yo kuvugurura ibikorwaremezo by'amashuri",
+        "Imibereho y'abanyeshuri na gahunda za buruse",
+        "Gukurikirana no gusuzuma umusaruro w'uburezi"
+      ],
+      "resources": [
+        {
+          "title": "Urutonde rw'Amashuri ya BNEP",
+          "description": "Urutonde rwuzuye rw'amashuri abanza y'Abaporotesitanti"
+        },
+        {
+          "title": "Igitabo cy'Amahugurwa y'Abarimu",
+          "description": "Ibyigwa by'amahugurwa y'umwuga"
+        },
+        {
+          "title": "Raporo y'Imibare y'Uburezi",
+          "description": "Amakuru y'umusaruro w'umwaka w'amashuri yose"
+        }
+      ]
+    },
+    "diakonia": {
+      "title": "Diyakoniya / Iterambere",
+      "tag": "Iterambere ry'Abaturage na Serivisi z'Imibereho",
+      "overview": "Ishami rya Diyakoniya riyobora gahunda z'iterambere ry'abaturage n'ubufasha mu by'imitekerereze bya CPR. Rishingiye ku gukorera Imana, ryita ku isanamitima, ubwiyunge, n'imibereho irambye binyuze mu bajyanama babihuguriwe, amatsinda yo kurwanya ihungabana, n'ubufatanye bw'itorero n'abaturage.",
+      "keyActivities": [
+        "Amahugurwa mu by'ihungabana n'itangwa ry'ibyemezo ku bajyanama",
+        "Amatsinda yo kurwanya ihungabana mu mashuri n'abaturage",
+        "Ibikorwa by'ubwiyunge n'iyubakwagihugu",
+        "Gahunda z'iterambere ry'abaturage zishingiye ku itorero",
+        "Gufasha abatishoboye n'imibereho myiza",
+        "Ubufatanye na ROPRE (Umuryango w'Inzobere mu by'Ihungabana mu Rwanda)"
+      ],
+      "resources": [
+        {
+          "title": "Intego ya Gahunda y'Isanamitima",
+          "description": "Imiterere y'ubufasha mu by'imitekerereze bushingiye ku baturage"
+        },
+        {
+          "title": "Amahame y'Ibyemezo bya ROPRE",
+          "description": "Ibisabwa kugira ngo uhabwe icyemezo cy'ubujyanama"
+        },
+        {
+          "title": "Ibikoresho by'Iterambere ry'Abaturage",
+          "description": "Ibyigwa ku mishinga y'iterambere ishingiye ku itorero"
+        }
+      ]
+    },
+    "finance": {
+      "title": "Imari n'Ubukangurambaga",
+      "tag": "Imicungire y'Imari n'Ubukangurambaga bw'Umutungo",
+      "overview": "Ishami ry'Imari n'Ubukangurambaga ryemeza imicungire y'imari isobanutse, umubano n'abaterankunga, n'ubukangurambaga bw'umutungo muri gahunda za CPR. Rifite amanota ya AAA mu isuzumabikorwa, rikomeza amahame yo hejuru y'uburyozwe n'imicungire myiza.",
+      "keyActivities": [
+        "Igenamigambi ry'imari, ingengo y'imari, na raporo",
+        "Umubano n'abaterankunga n'imicungire y'inkunga",
+        "Ubukangurambaga bw'umutungo n'ingamba zo gushaka inkunga",
+        "Ihuza ry'isuzumabikorwa ry'imbere n'iryo hanze",
+        "Kongerera ubushobozi mu by'imari ku matorero anyamuryango",
+        "Kubahiriza amahame y'imari y'igihugu n'amahanga"
+      ],
+      "resources": [
+        {
+          "title": "Raporo y'Ikoranabuhanga ry'Imari",
+          "description": "Raporo y'imari y'umwaka n'ibisubizo by'isuzumabikorwa"
+        },
+        {
+          "title": "Amabwiriza y'Ubufatanye n'Abaterankunga",
+          "description": "Imiterere y'ubufatanye bw'inkunga"
+        }
+      ]
+    },
+    "youth": {
+      "title": "Gahunda y'Urubyiruko",
+      "tag": "Kongerera Ubushobozi Urubyiruko n'Ubuyobozi",
+      "overview": "Ishami rya Gahunda y'Urubyiruko ryongerera ubushobozi urubyiruko mu Rwanda hose binyuze mu mahugurwa y'ubuyobozi, inama ngarukamwaka, gahunda z'ubwihangangire, n'ubujyanama bushingiye ku kwizera. Rigera ku rubyiruko 10,000+ buri mwaka, rikomeza abayobozi b'ejo hazaza.",
+      "keyActivities": [
+        "Itunganya ry'Inama Nkuru y'Igihugu y'Urubyiruko ngarukamwaka",
+        "Amahugurwa y'ubuyobozi n'ubwihangangire",
+        "Gahunda z'ubujyanama ku rubyiruko rushingiye ku kwizera",
+        "Ubuvugizi bw'urubyiruko n'ibikorwa byo kugira uruhare",
+        "Gahunda z'ubuhanahana hagati y'urubyiruko rw'amatorero",
+        "Imikino n'umuco mu iterambere ry'urubyiruko"
+      ],
+      "resources": [
+        {
+          "title": "Integanyanyigisho y'Ubuyobozi bw'Urubyiruko",
+          "description": "Ibyigwa by'amahugurwa muri gahunda z'iterambere ry'urubyiruko"
+        },
+        {
+          "title": "Raporo z'Inama Nkuru n'Ibisubizo",
+          "description": "Inyandiko ziva mu nama nkuru z'urubyiruko ngarukamwaka"
+        },
+        {
+          "title": "Ibyigwa by'Ivugabutumwa ry'Urubyiruko",
+          "description": "Ibikoresho kuri gahunda z'urubyiruko zishingiye ku itorero"
+        }
+      ]
+    },
+    "gender": {
+      "title": "Iterambere ry'Uburinganire",
+      "tag": "Uburinganire n'Ubwuzuzanye",
+      "overview": "Ishami ry'Iterambere ry'Uburinganire riteza imbere uburinganire n'ubwuzuzanye binyuze mu mahugurwa yo gukumira ihohoterwa rishingiye ku gitsina (GBV), amakoperative y'abagore, gahunda zo kwihangira imirimo, n'ubuvugizi ku mategeko yubahiriza bose mu matorero n'abaturage.",
+      "keyActivities": [
+        "Amahugurwa yo gukumira no gusubiza ihohoterwa rishingiye ku gitsina (GBV)",
+        "Kwihangira imirimo ku bagore binyuze mu makoperative",
+        "Kwinjiza uburinganire muri gahunda z'itorero n'abaturage",
+        "Ubuvugizi ku mategeko aharanira uburinganire",
+        "Ubujyanama n'iterambere ry'ubuyobozi ku bagore",
+        "Ubukangurambaga mu baturage ku buringanire"
+      ],
+      "resources": [
+        {
+          "title": "Igitabo cy'Amahugurwa yo Gukumira GBV",
+          "description": "Ibyigwa byuzuye by'amahugurwa ku baturage"
+        },
+        {
+          "title": "Igitabo cy'Amakoperative y'Abagore",
+          "description": "Igitabo cyo gushinga no gucunga amakoperative"
+        },
+        {
+          "title": "Imiterere y'Amategeko y'Uburinganire",
+          "description": "Inyandiko y'amategeko y'uburinganire mu kigo ya CPR"
+        }
+      ]
+    },
+    "radio": {
+      "title": "Radio Inkoramutima",
+      "tag": "107.1 FM — Gutambutsa Icyizere",
+      "overview": "Radio Inkoramutima (107.1 FM) imaze gutambutsa icyizere n'ibitekerezo kuva mu 2005. Nka shami ry'itumanaho rya CPR, iyi radiyo igera ku baturage barenga miliyoni 1 buri munsi na gahunda zishingiye ku kwizera, amakuru y'abaturage, ibiganiro by'uburezi, n'umuco.",
+      "keyActivities": [
+        "Gutambutsa buri munsi gahunda zishingiye ku kwizera n'abaturage",
+        "Gutara amakuru n'imibereho y'abaturage",
+        "Ibiganiro by'uburezi n'ubukangurambaga ku buzima",
+        "Gahunda z'umuco n'umuziki",
+        "Gutambutsa imbonankubone ibikorwa by'itorero",
+        "Ikoranabuhanga ry'itangazamakuru n'iyaguka ryo kumva kuri interineti"
+      ],
+      "resources": [
+        {
+          "title": "Gahunda y'Ibiganiro bya Radiyo",
+          "description": "Gahunda y'ibiganiro y'icyumweru kuri 107.1 FM"
+        },
+        {
+          "title": "Raporo y'Ibitekerezo by'Abumva Radiyo",
+          "description": "Uruhare rw'abumva radiyo n'amakuru y'ingaruka"
+        },
+        {
+          "title": "Amabwiriza y'Ubufatanye mu Itangazamakuru",
+          "description": "Amakuru ku kwamamaza n'ubufatanye"
+        }
+      ]
+    }
   }
 }

@@ -139,6 +139,26 @@ export default defineConfig({
               .schemaType("project")
               .defaultOrdering([{ field: "order", direction: "asc" }])
           ),
+        S.listItem()
+          .title("Department Resource Files")
+          .id("departmentResourceFiles")
+          .schemaType("departmentResourceFile")
+          .child(
+            S.documentList()
+              .title("Department Resource Files")
+              .schemaType("departmentResourceFile")
+              .defaultOrdering([{ field: "department", direction: "asc" }])
+          ),
+        S.listItem()
+          .title("Department Resource Groups")
+          .id("departmentResourceGroups")
+          .schemaType("departmentResourceGroup")
+          .child(
+            S.documentList()
+              .title("Department Resource Groups")
+              .schemaType("departmentResourceGroup")
+              .defaultOrdering([{ field: "department", direction: "asc" }])
+          ),
         ...S.documentTypeListItems(),
       ]),
 });
