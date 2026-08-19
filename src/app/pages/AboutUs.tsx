@@ -148,7 +148,7 @@ export function AboutUs() {
                 onClick={() => setHistoryModalOpen(true)}
                 className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
               >
-                Learn More
+                {t("aboutPage.historyModal.learnMore")}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -461,29 +461,22 @@ export function AboutUs() {
                 <div className="inline-flex items-center gap-2">
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                    Our Story
+                    {t("aboutPage.historyModal.badge")}
                   </span>
                   <div className="h-px w-8 bg-[#8B6543]" />
                 </div>
                 <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#4E6132] mt-2 mb-4">
-                  About Conseil Protestant du Rwanda
+                  {t("aboutPage.historyModal.title")}
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-6 items-start">
                   {/* Text content */}
                   <div className="md:col-span-2 text-[#4A4A4A] leading-relaxed space-y-4">
                     <p>
-                      The Protestant Council of Rwanda (CPR) was established in 1963 to promote and
-                      share innovative development initiatives and deliver essential services to our
-                      member churches and the wider community. For over 60 years, CPR has united
-                      Protestant denominations across Rwanda under a shared mission of faith, unity,
-                      and sustainable development.
+                      {t("aboutPage.historyModal.p1")}
                     </p>
                     <p>
-                      Through its network of specialized departments, CPR coordinates efforts in
-                      education, health, youth empowerment, gender equality, and community advocacy —
-                      developing strong, impactful partnerships and providing world-class services
-                      that foster sustainable development across Rwanda.
+                      {t("aboutPage.historyModal.p2")}
                     </p>
                   </div>
 
@@ -498,10 +491,10 @@ export function AboutUs() {
                     </div>
                     <p className="text-center mt-3">
                       <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm">
-                        Rev. Samuel Mutabazi
+                        {t("aboutPage.historyModal.personName")}
                       </span>
                       <span className="block text-[#8B6543] text-xs font-semibold mt-0.5">
-                        Secretary General
+                        {t("aboutPage.historyModal.personRole")}
                       </span>
                     </p>
                   </div>
@@ -514,7 +507,7 @@ export function AboutUs() {
                     onClick={() => setHistoryModalOpen(false)}
                     className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 hover:scale-105 text-sm"
                   >
-                    Explore Our Departments <ArrowRight size={16} />
+                    {t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
