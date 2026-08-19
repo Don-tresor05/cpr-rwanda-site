@@ -148,7 +148,7 @@ export function AboutUs() {
                 onClick={() => setHistoryModalOpen(true)}
                 className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
               >
-                {t("aboutPage.historyModal.learnMore")}
+                {cms?.historyModal?.learnMore ?? t("aboutPage.historyModal.learnMore")}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -461,22 +461,22 @@ export function AboutUs() {
                 <div className="inline-flex items-center gap-2">
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                    {t("aboutPage.historyModal.badge")}
+                    {cms?.historyModal?.badge ?? t("aboutPage.historyModal.badge")}
                   </span>
                   <div className="h-px w-8 bg-[#8B6543]" />
                 </div>
                 <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#4E6132] mt-2 mb-4">
-                  {t("aboutPage.historyModal.title")}
+                  {cms?.historyModal?.title ?? t("aboutPage.historyModal.title")}
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-6 items-start">
                   {/* Text content */}
                   <div className="md:col-span-2 text-[#4A4A4A] leading-relaxed space-y-4">
                     <p>
-                      {t("aboutPage.historyModal.p1")}
+                      {cms?.historyModal?.p1 ?? t("aboutPage.historyModal.p1")}
                     </p>
                     <p>
-                      {t("aboutPage.historyModal.p2")}
+                      {cms?.historyModal?.p2 ?? t("aboutPage.historyModal.p2")}
                     </p>
                   </div>
 
@@ -491,10 +491,10 @@ export function AboutUs() {
                     </div>
                     <p className="text-center mt-3">
                       <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm">
-                        {t("aboutPage.historyModal.personName")}
+                        {cms?.historyModal?.personName ?? t("aboutPage.historyModal.personName")}
                       </span>
                       <span className="block text-[#8B6543] text-xs font-semibold mt-0.5">
-                        {t("aboutPage.historyModal.personRole")}
+                        {cms?.historyModal?.personRole ?? t("aboutPage.historyModal.personRole")}
                       </span>
                     </p>
                   </div>
@@ -507,7 +507,7 @@ export function AboutUs() {
                     onClick={() => setHistoryModalOpen(false)}
                     className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 hover:scale-105 text-sm"
                   >
-                    {t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
+                    {cms?.historyModal?.cta ?? t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
