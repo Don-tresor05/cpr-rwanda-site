@@ -364,6 +364,16 @@
     },
     "partners": {
       "title": "Our Partners"
+    },
+    "historyModal": {
+      "learnMore": "Learn More",
+      "badge": "Our Story",
+      "title": "About Conseil Protestant du Rwanda",
+      "p1": "The Protestant Council of Rwanda (CPR) was established in 1963 to promote and share innovative development initiatives and deliver essential services to our member churches and the wider community. For over 60 years, CPR has united Protestant denominations across Rwanda under a shared mission of faith, unity, and sustainable development.",
+      "p2": "Through its network of specialized departments, CPR coordinates efforts in education, health, youth empowerment, gender equality, and community advocacy — developing strong, impactful partnerships and providing world-class services that foster sustainable development across Rwanda.",
+      "personName": "Rev. Samuel Mutabazi",
+      "personRole": "Secretary General",
+      "cta": "Explore Our Departments"
     }
   },
   "newsroom": {
