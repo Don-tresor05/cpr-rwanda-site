@@ -364,6 +364,16 @@
     },
     "partners": {
       "title": "Abafatanyabikorwa Bacu"
+    },
+    "historyModal": {
+      "learnMore": "Menya Byinshi",
+      "badge": "Amateka Yacu",
+      "title": "Iwuri ry'Inama y'Abaporotesitanti mu Rwanda",
+      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashizwomu 1963 kugira ngo iteze imbere kandi igasangiza ingamba z'iterambere rirambye n'ubushobozi buke mu mikorere y'ibikorera amatorero yacu y'ubumwe n'abaturage bakubiyemo. Hejuru y'emyaka 60, CPR yahuje amadini y'abaporotesitanti mu Rwanda hose hasi mu nshingano z'ubumwe, ukwizera, n'iterambere rirambye.",
+      "p2": "Binyuze mu mutima w'amashami yayo yihariye, CPR yita ku guhuza ibikorwa mu burezi, ubuzima, ubushobozi bw'urubyiruko, uburinganire bw'igitsina, no kwizera kw'abaturage — kubaka ubufatanye bukomeye bufite ingaruka kandi itange serivisi z'ubuhejuru zifasha iterambere rirambye mu Rwanda hose.",
+      "personName": "Padesiyo Samuel Mutabazi",
+      "personRole": "Umunyamabanga Mukuru",
+      "cta": "Menya Amashami Yacu"
     }
   },
   "newsroom": {
