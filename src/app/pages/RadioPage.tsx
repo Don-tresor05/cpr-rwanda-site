@@ -92,14 +92,14 @@ export function RadioPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#EAD196]/40 rounded-full px-4 py-2 mb-6"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BC8A5F] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#BC8A5F]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#EAD196]" />
             </span>
-            <RadioTower size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
+            <RadioTower size={15} className="text-[#EAD196]" />
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
               {(rp?.heroTag as string) ?? "Radio Inkoramutima"}
             </span>
           </motion.div>
