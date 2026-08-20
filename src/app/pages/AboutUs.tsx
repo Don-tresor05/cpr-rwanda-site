@@ -157,7 +157,7 @@ export function AboutUs() {
       </section>
 
       {/* Vision / Mission */}
-      <WatermarkSection id="vision-mission" className="pt-2 pb-20 lg:pb-24 bg-white scroll-mt-32">
+      <WatermarkSection id="vision-mission" className="pt-16 lg:pt-20 pb-20 lg:pb-24 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">

@@ -369,8 +369,8 @@
       "learnMore": "Learn More",
       "badge": "Our Story",
       "title": "About Conseil Protestant du Rwanda",
-      "p1": "The Protestant Council of Rwanda (CPR) was established in 1963 to promote and share innovative development initiatives and deliver essential services to our member churches and the wider community. For over 60 years, CPR has united Protestant denominations across Rwanda under a shared mission of faith, unity, and sustainable development.",
-      "p2": "Through its network of specialized departments, CPR coordinates efforts in education, health, youth empowerment, gender equality, and community advocacy — developing strong, impactful partnerships and providing world-class services that foster sustainable development across Rwanda.",
+      "p1": "The Protestant Council of Rwanda (CPR) was established in 1963. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+      "p2": "Through its network of specialized departments, CPR coordinates efforts across 25 member churches to deliver impactful programs in education (BNEP), healthcare, trauma healing, and community development. Headquartered in Kigali, CPR represents a unified Protestant voice dedicated to sustainable transformation.",
       "personName": "Rev. Samuel Mutabazi",
       "personRole": "Secretary General",
       "cta": "Explore Our Departments"
@@ -1022,5 +1022,217 @@
     "prev": "Previous",
     "next": "Next",
     "breadcrumb": "Home"
+  },
+  "departmentResourcesUI": {
+    "overview": "Overview",
+    "about": "About",
+    "keyActivities": "Key Activities",
+    "partOfCpr": "Part of CPR's network of 7 specialized departments serving all provinces of Rwanda.",
+    "resourcesAndDocs": "Resources & Documents",
+    "accessResources": "Access key resources, reports, and materials from the",
+    "department": "department",
+    "download": "Download",
+    "visit": "Visit",
+    "view": "View",
+    "exploreMore": "Explore More Departments",
+    "discoverHow": "Discover how CPR's network of specialized departments works together to serve communities across Rwanda.",
+    "allDepartments": "All Departments",
+    "notFoundTitle": "Resource not found.",
+    "deptNotFoundTitle": "Department Not Found",
+    "deptNotFoundDesc": "The department you're looking for doesn't exist or may have been moved.",
+    "backToDepartments": "Back to Departments",
+    "backTo": "Back to",
+    "resources": "Resources",
+    "documents": "Documents",
+    "title": "Title",
+    "info": "Info",
+    "modified": "Modified",
+    "noFiles": "No files uploaded yet for this resource. Check back soon."
+  },
+  "departmentResourcesData": {
+    "gs": {
+      "title": "General Secretary",
+      "tag": "Office of the Secretary General",
+      "overview": "The General Secretary's office provides overall leadership and strategic coordination for CPR, overseeing inter-church relations, institutional governance, and external partnerships. It serves as the central hub connecting all departments under a shared vision of faith, unity, and development.",
+      "keyActivities": [
+        "Strategic planning and institutional governance",
+        "Coordination between member churches and departments",
+        "Representation at national and international forums",
+        "Management of inter-church dialogue and ecumenical partnerships",
+        "Oversight of CPR's organizational development initiatives"
+      ],
+      "resources": [
+        {
+          "title": "CPR Annual Report 2024",
+          "description": "Comprehensive overview of CPR's activities and impact"
+        },
+        {
+          "title": "CPR Strategic Plan 2023–2028",
+          "description": "Five-year roadmap for institutional growth"
+        },
+        {
+          "title": "Member Church Directory",
+          "description": "Contact details for all 25+ member churches"
+        }
+      ]
+    },
+    "bnep": {
+      "title": "Education / BNEP",
+      "tag": "Bureau National de l'Enseignement Protestant",
+      "overview": "The Bureau National de l'Enseignement Protestant (BNEP) manages and coordinates Protestant primary schools across Rwanda. With 595+ schools under its umbrella, BNEP focuses on quality education, teacher training, curriculum development, and school infrastructure improvements.",
+      "keyActivities": [
+        "Management of 595+ Protestant primary schools nationwide",
+        "Teacher professional development and certification programs",
+        "Curriculum enhancement aligned with national education standards",
+        "School infrastructure improvement projects",
+        "Student welfare and scholarship programs",
+        "Monitoring and evaluation of education outcomes"
+      ],
+      "resources": [
+        {
+          "title": "BNEP School Directory",
+          "description": "Complete listing of Protestant primary schools"
+        },
+        {
+          "title": "Teacher Training Handbook",
+          "description": "Resources for professional development"
+        },
+        {
+          "title": "Education Statistics Report",
+          "description": "Annual performance data across all schools"
+        }
+      ]
+    },
+    "diakonia": {
+      "title": "Diakonia / Development",
+      "tag": "Community Development & Social Services",
+      "overview": "The Diakonia department leads CPR's community development and psychosocial support programs. Rooted in faith-based service, it addresses trauma healing, reconciliation, and sustainable livelihoods through certified counselors, anti-trauma clubs, and church-community partnerships.",
+      "keyActivities": [
+        "Psychotraumatology training and counselor certification",
+        "Anti-trauma clubs in schools and communities",
+        "Reconciliation and peace-building initiatives",
+        "Church-based community development programs",
+        "Support for vulnerable populations and social welfare",
+        "Partnership with ROPRE (Rwanda Organization of Psychotraumatology Experts)"
+      ],
+      "resources": [
+        {
+          "title": "Trauma Healing Program Guide",
+          "description": "Framework for community-based psychosocial support"
+        },
+        {
+          "title": "ROPRE Certification Standards",
+          "description": "Requirements for counselor certification"
+        },
+        {
+          "title": "Community Development Toolkit",
+          "description": "Resources for church-based development initiatives"
+        }
+      ]
+    },
+    "finance": {
+      "title": "Finance & Mobilization",
+      "tag": "Financial Management & Resource Mobilization",
+      "overview": "The Finance & Mobilization department ensures transparent financial management, donor relations, and resource mobilization for CPR's programs. With an AAA audit rating, it maintains the highest standards of accountability and fiduciary responsibility.",
+      "keyActivities": [
+        "Financial planning, budgeting, and reporting",
+        "Donor relations and grant management",
+        "Resource mobilization and fundraising strategies",
+        "Internal and external audit coordination",
+        "Financial capacity building for member churches",
+        "Compliance with national and international financial standards"
+      ],
+      "resources": [
+        {
+          "title": "Financial Transparency Report",
+          "description": "Annual financial statements and audit results"
+        },
+        {
+          "title": "Donor Partnership Guidelines",
+          "description": "Framework for funding partnerships"
+        }
+      ]
+    },
+    "youth": {
+      "title": "Youth Program",
+      "tag": "Youth Empowerment & Leadership",
+      "overview": "The Youth Program department empowers young people across Rwanda through leadership training, annual summits, entrepreneurship programs, and faith-based mentoring. Reaching 10,000+ youth annually, it cultivates the next generation of community leaders.",
+      "keyActivities": [
+        "Annual National Youth Summit organization",
+        "Leadership and entrepreneurship training camps",
+        "Faith-based youth mentoring programs",
+        "Youth advocacy and civic engagement initiatives",
+        "Inter-church youth exchange programs",
+        "Sports and cultural activities for youth development"
+      ],
+      "resources": [
+        {
+          "title": "Youth Leadership Curriculum",
+          "description": "Training materials for youth development programs"
+        },
+        {
+          "title": "Summit Reports & Outcomes",
+          "description": "Documentation from annual youth summits"
+        },
+        {
+          "title": "Youth Ministry Resources",
+          "description": "Tools for church-based youth programs"
+        }
+      ]
+    },
+    "gender": {
+      "title": "Gender Promotion",
+      "tag": "Gender Equality & Women's Empowerment",
+      "overview": "The Gender Promotion department advances gender equality and women's empowerment through GBV prevention training, women's cooperatives, economic empowerment programs, and advocacy for inclusive policies within churches and communities.",
+      "keyActivities": [
+        "Gender-based violence (GBV) prevention and response training",
+        "Women's economic empowerment through cooperatives",
+        "Gender mainstreaming in church and community programs",
+        "Advocacy for gender-responsive policies",
+        "Mentoring and leadership development for women",
+        "Community awareness campaigns on gender equality"
+      ],
+      "resources": [
+        {
+          "title": "GBV Prevention Training Manual",
+          "description": "Comprehensive training resources for communities"
+        },
+        {
+          "title": "Women's Cooperative Handbook",
+          "description": "Guide for establishing and managing cooperatives"
+        },
+        {
+          "title": "Gender Policy Framework",
+          "description": "CPR's institutional gender policy document"
+        }
+      ]
+    },
+    "radio": {
+      "title": "Radio Inkoramutima",
+      "tag": "107.1 FM — Broadcasting Hope",
+      "overview": "Radio Inkoramutima (107.1 FM) has been broadcasting hope and inspiration since 2005. As CPR's communications arm, the station reaches over 1 million daily listeners with faith-based programming, community news, educational content, and cultural programs.",
+      "keyActivities": [
+        "Daily broadcasting of faith-based and community programming",
+        "News coverage and community reporting",
+        "Educational and health awareness programs",
+        "Cultural and music programming",
+        "Live event broadcasting for church activities",
+        "Digital media and online streaming expansion"
+      ],
+      "resources": [
+        {
+          "title": "Radio Program Schedule",
+          "description": "Weekly programming guide for 107.1 FM"
+        },
+        {
+          "title": "Listener Feedback Reports",
+          "description": "Audience engagement and impact data"
+        },
+        {
+          "title": "Media Partnership Guidelines",
+          "description": "Information for advertising and partnerships"
+        }
+      ]
+    }
   }
 }
