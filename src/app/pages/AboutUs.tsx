@@ -505,7 +505,7 @@ export function AboutUs() {
                   <Link
                     to="/departments"
                     onClick={() => setHistoryModalOpen(false)}
-                    className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 hover:scale-105 text-sm"
+                    className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
                   >
                     {cms?.historyModal?.cta ?? t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>

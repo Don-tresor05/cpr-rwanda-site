@@ -28,7 +28,7 @@ export function DepartmentResources() {
           </p>
           <Link
             to="/departments"
-            className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 text-sm"
+            className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 text-sm"
           >
             <ArrowLeft size={16} /> {t("departmentResourcesUI.backToDepartments")}
           </Link>

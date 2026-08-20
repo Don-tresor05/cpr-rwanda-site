@@ -132,7 +132,7 @@ export function NewsSection() {
         <div className="mt-12 text-center">
           <Link
             to="/newsroom"
-            className="inline-flex items-center gap-2 bg-[#4E6132] text-white text-base font-bold px-8 py-3.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
+            className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white text-base font-bold px-8 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-200 hover:scale-105 hover:shadow-md"
           >
             {t("news.viewAllBtn")} <ArrowRight size={17} />
           </Link>

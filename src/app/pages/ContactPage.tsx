@@ -220,7 +220,7 @@ function ChatButton() {
       animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       onClick={scrollToForm}
-      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#4E6132] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#3a4f26] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#BC8A5F] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#4E6132] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
       aria-label={(t("contactPage.chatLabel") as string) ?? "Chat with us"}
     >
       <span className="relative flex items-center justify-center">
@@ -365,7 +365,7 @@ function ContactFormBlock() {
                   </p>
                   <button
                     onClick={() => { setSent(false); setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "" }); }}
-                    className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3a4f26] transition-all duration-300 hover:scale-105 text-sm"
+                    className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
                   >
                     {(form?.sendAnother as string) ?? "Send another message"}
                   </button>
@@ -448,7 +448,7 @@ function ContactFormBlock() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#4E6132] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#3a4f26] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:hover:scale-100 text-sm"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:hover:scale-100 text-sm"
                   >
                     {sending ? (
                       <>
@@ -635,7 +635,7 @@ function MapBlock() {
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 mt-3 bg-[#4E6132] text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-[#3a4f26] hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center gap-1.5 mt-3 bg-[#BC8A5F] text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-[#4E6132] hover:scale-105 transition-all duration-300"
                 >
                   <Navigation size={12} />
                   {(map?.directionsBtn as string) ?? "Get Directions"}

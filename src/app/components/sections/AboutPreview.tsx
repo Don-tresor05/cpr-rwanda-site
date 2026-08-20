@@ -47,7 +47,7 @@ export function AboutPreview() {
               {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+              <Link to="/about" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 {t("about.historyBtn")} <ArrowRight size={15} />
               </Link>
               <Link
