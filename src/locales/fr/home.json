@@ -364,6 +364,16 @@
     },
     "partners": {
       "title": "Nos Partenaires"
+    },
+    "historyModal": {
+      "learnMore": "En Savoir Plus",
+      "badge": "Notre Histoire",
+      "title": "À Propos du Conseil Protestant du Rwanda",
+      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
+      "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 25 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
+      "personName": "Rév. Samuel Mutabazi",
+      "personRole": "Secrétaire Général",
+      "cta": "Explorez Nos Départements"
     }
   },
   "newsroom": {
@@ -1012,5 +1022,217 @@
     "prev": "Précédent",
     "next": "Suivant",
     "breadcrumb": "Accueil"
+  },
+  "departmentResourcesUI": {
+    "overview": "Aperçu",
+    "about": "À propos de",
+    "keyActivities": "Activités Clés",
+    "partOfCpr": "Fait partie du réseau du CPR de 7 départements spécialisés desservant toutes les provinces du Rwanda.",
+    "resourcesAndDocs": "Ressources et Documents",
+    "accessResources": "Accédez aux ressources clés, rapports et documents du département",
+    "department": " ",
+    "download": "Télécharger",
+    "visit": "Visiter",
+    "view": "Voir",
+    "exploreMore": "Explorez Plus de Départements",
+    "discoverHow": "Découvrez comment le réseau de départements spécialisés du CPR travaille ensemble pour servir les communautés à travers le Rwanda.",
+    "allDepartments": "Tous les Départements",
+    "notFoundTitle": "Ressource introuvable.",
+    "deptNotFoundTitle": "Département Introuvable",
+    "deptNotFoundDesc": "Le département que vous recherchez n'existe pas ou a peut-être été déplacé.",
+    "backToDepartments": "Retour aux Départements",
+    "backTo": "Retour à",
+    "resources": "Ressources",
+    "documents": "Documents",
+    "title": "Titre",
+    "info": "Info",
+    "modified": "Modifié",
+    "noFiles": "Aucun fichier téléchargé pour cette ressource pour le moment. Revenez bientôt."
+  },
+  "departmentResourcesData": {
+    "gs": {
+      "title": "Secrétariat Général",
+      "tag": "Bureau du Secrétaire Général",
+      "overview": "Le bureau du Secrétaire Général assure le leadership global et la coordination stratégique du CPR, supervisant les relations inter-églises, la gouvernance institutionnelle et les partenariats externes. Il sert de centre de connexion pour tous les départements sous une vision commune de foi, d'unité et de développement.",
+      "keyActivities": [
+        "Planification stratégique et gouvernance institutionnelle",
+        "Coordination entre les églises membres et les départements",
+        "Représentation aux forums nationaux et internationaux",
+        "Gestion du dialogue inter-églises et des partenariats œcuméniques",
+        "Supervision des initiatives de développement organisationnel du CPR"
+      ],
+      "resources": [
+        {
+          "title": "Rapport Annuel du CPR 2024",
+          "description": "Aperçu complet des activités et de l'impact du CPR"
+        },
+        {
+          "title": "Plan Stratégique du CPR 2023–2028",
+          "description": "Feuille de route quinquennale pour la croissance institutionnelle"
+        },
+        {
+          "title": "Annuaire des Églises Membres",
+          "description": "Coordonnées de toutes les plus de 25 églises membres"
+        }
+      ]
+    },
+    "bnep": {
+      "title": "Éducation / BNEP",
+      "tag": "Bureau National de l'Enseignement Protestant",
+      "overview": "Le Bureau National de l'Enseignement Protestant (BNEP) gère et coordonne les écoles primaires protestantes à travers le Rwanda. Avec plus de 595 écoles sous son égide, le BNEP se concentre sur une éducation de qualité, la formation des enseignants, l'élaboration des programmes d'études et l'amélioration des infrastructures scolaires.",
+      "keyActivities": [
+        "Gestion de plus de 595 écoles primaires protestantes à l'échelle nationale",
+        "Programmes de développement professionnel et de certification des enseignants",
+        "Amélioration des programmes d'études alignée sur les normes éducatives nationales",
+        "Projets d'amélioration des infrastructures scolaires",
+        "Programmes de bien-être et de bourses pour les étudiants",
+        "Suivi et évaluation des résultats éducatifs"
+      ],
+      "resources": [
+        {
+          "title": "Annuaire des Écoles du BNEP",
+          "description": "Liste complète des écoles primaires protestantes"
+        },
+        {
+          "title": "Manuel de Formation des Enseignants",
+          "description": "Ressources pour le développement professionnel"
+        },
+        {
+          "title": "Rapport sur les Statistiques de l'Éducation",
+          "description": "Données de performance annuelle de toutes les écoles"
+        }
+      ]
+    },
+    "diakonia": {
+      "title": "Diaconie / Développement",
+      "tag": "Développement Communautaire et Services Sociaux",
+      "overview": "Le département de la Diaconie dirige les programmes de développement communautaire et de soutien psychosocial du CPR. Enraciné dans un service fondé sur la foi, il aborde la guérison des traumatismes, la réconciliation et les moyens de subsistance durables par le biais de conseillers certifiés, de clubs anti-traumatisme et de partenariats église-communauté.",
+      "keyActivities": [
+        "Formation en psychotraumatologie et certification des conseillers",
+        "Clubs anti-traumatisme dans les écoles et les communautés",
+        "Initiatives de réconciliation et de consolidation de la paix",
+        "Programmes de développement communautaire basés sur l'église",
+        "Soutien aux populations vulnérables et protection sociale",
+        "Partenariat avec ROPRE (Organisation Rwandaise des Experts en Psychotraumatologie)"
+      ],
+      "resources": [
+        {
+          "title": "Guide du Programme de Guérison des Traumatismes",
+          "description": "Cadre de soutien psychosocial à base communautaire"
+        },
+        {
+          "title": "Normes de Certification ROPRE",
+          "description": "Exigences pour la certification de conseiller"
+        },
+        {
+          "title": "Boîte à Outils de Développement Communautaire",
+          "description": "Ressources pour les initiatives de développement basées sur l'église"
+        }
+      ]
+    },
+    "finance": {
+      "title": "Finance et Mobilisation",
+      "tag": "Gestion Financière et Mobilisation des Ressources",
+      "overview": "Le département Finance et Mobilisation assure une gestion financière transparente, les relations avec les donateurs et la mobilisation des ressources pour les programmes du CPR. Avec une note d'audit AAA, il maintient les normes les plus élevées de responsabilité et d'obligation fiduciaire.",
+      "keyActivities": [
+        "Planification financière, budgétisation et rapports",
+        "Relations avec les donateurs et gestion des subventions",
+        "Stratégies de mobilisation des ressources et de collecte de fonds",
+        "Coordination des audits internes et externes",
+        "Renforcement des capacités financières des églises membres",
+        "Conformité aux normes financières nationales et internationales"
+      ],
+      "resources": [
+        {
+          "title": "Rapport de Transparence Financière",
+          "description": "États financiers annuels et résultats d'audit"
+        },
+        {
+          "title": "Lignes Directrices pour les Partenariats de Donateurs",
+          "description": "Cadre de partenariats de financement"
+        }
+      ]
+    },
+    "youth": {
+      "title": "Programme Jeunesse",
+      "tag": "Autonomisation et Leadership des Jeunes",
+      "overview": "Le département du Programme Jeunesse autonomise les jeunes rwandais grâce à une formation en leadership, des sommets annuels, des programmes d'entrepreneuriat et un mentorat basé sur la foi. Touchant plus de 10 000 jeunes chaque année, il cultive la prochaine génération de leaders communautaires.",
+      "keyActivities": [
+        "Organisation du Sommet National Annuel de la Jeunesse",
+        "Camps de formation au leadership et à l'entrepreneuriat",
+        "Programmes de mentorat des jeunes basés sur la foi",
+        "Initiatives de plaidoyer et d'engagement civique des jeunes",
+        "Programmes d'échange de jeunes inter-églises",
+        "Activités sportives et culturelles pour le développement des jeunes"
+      ],
+      "resources": [
+        {
+          "title": "Programme de Leadership des Jeunes",
+          "description": "Matériel de formation pour les programmes de développement des jeunes"
+        },
+        {
+          "title": "Rapports et Résultats du Sommet",
+          "description": "Documentation des sommets annuels des jeunes"
+        },
+        {
+          "title": "Ressources du Ministère de la Jeunesse",
+          "description": "Outils pour les programmes de jeunes basés sur l'église"
+        }
+      ]
+    },
+    "gender": {
+      "title": "Promotion du Genre",
+      "tag": "Égalité des Genres et Autonomisation des Femmes",
+      "overview": "Le département de Promotion du Genre fait progresser l'égalité des genres et l'autonomisation des femmes grâce à la formation sur la prévention des VBG, aux coopératives de femmes, aux programmes d'autonomisation économique et au plaidoyer en faveur de politiques inclusives au sein des églises et des communautés.",
+      "keyActivities": [
+        "Formation sur la prévention et la réponse aux violences basées sur le genre (VBG)",
+        "Autonomisation économique des femmes par le biais des coopératives",
+        "Intégration de la dimension de genre dans les programmes de l'église et de la communauté",
+        "Plaidoyer en faveur de politiques sensibles au genre",
+        "Mentorat et développement du leadership pour les femmes",
+        "Campagnes de sensibilisation communautaire sur l'égalité des genres"
+      ],
+      "resources": [
+        {
+          "title": "Manuel de Formation sur la Prévention des VBG",
+          "description": "Ressources de formation complètes pour les communautés"
+        },
+        {
+          "title": "Manuel des Coopératives de Femmes",
+          "description": "Guide pour l'établissement et la gestion des coopératives"
+        },
+        {
+          "title": "Cadre de la Politique de Genre",
+          "description": "Document de politique institutionnelle de genre du CPR"
+        }
+      ]
+    },
+    "radio": {
+      "title": "Radio Inkoramutima",
+      "tag": "107.1 FM — Diffuser l'Espoir",
+      "overview": "Radio Inkoramutima (107.1 FM) diffuse de l'espoir et de l'inspiration depuis 2005. En tant que branche de communication du CPR, la station touche plus d'un million d'auditeurs quotidiens avec des programmes basés sur la foi, des nouvelles communautaires, du contenu éducatif et des programmes culturels.",
+      "keyActivities": [
+        "Diffusion quotidienne de programmes communautaires et basés sur la foi",
+        "Couverture de l'actualité et reportages communautaires",
+        "Programmes éducatifs et de sensibilisation à la santé",
+        "Programmation culturelle et musicale",
+        "Diffusion d'événements en direct pour les activités de l'église",
+        "Médias numériques et expansion du streaming en ligne"
+      ],
+      "resources": [
+        {
+          "title": "Grille des Programmes Radio",
+          "description": "Guide de programmation hebdomadaire pour 107.1 FM"
+        },
+        {
+          "title": "Rapports de Rétroaction des Auditeurs",
+          "description": "Engagement de l'audience et données d'impact"
+        },
+        {
+          "title": "Lignes Directrices pour les Partenariats Médias",
+          "description": "Informations pour la publicité et les partenariats"
+        }
+      ]
+    }
   }
 }

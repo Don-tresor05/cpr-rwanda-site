@@ -29,11 +29,11 @@ export function CTABanner() {
           <div className="flex flex-wrap gap-4 justify-center">
             <button
               onClick={() => showComingSoon(t("cta.donateBtn"))}
-              className="inline-flex items-center gap-2 bg-[#EAD196] text-[#4E6132] font-bold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
             >
               {t("cta.donateBtn")} <ArrowRight size={16} />
             </button>
-            <a href="#contact" className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+            <a href="#contact" className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-[#BC8A5F]/30 transition-all duration-300">
               {t("cta.contactBtn")}
             </a>
           </div>
