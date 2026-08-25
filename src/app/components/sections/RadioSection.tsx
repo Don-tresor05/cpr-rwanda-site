@@ -25,9 +25,9 @@ export function RadioSection() {
             animate={visible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-3 bg-[#BC8A5F]/15 border border-[#BC8A5F]/30 rounded-full px-4 py-2 mb-6">
-              <Radio size={14} className="text-[#BC8A5F]" />
-              <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">{t("radio.nowPlaying")}</span>
+            <div className="inline-flex items-center gap-3 bg-[#EAD196]/15 border border-[#EAD196]/30 rounded-full px-4 py-2 mb-6">
+              <Radio size={14} className="text-[#EAD196]" />
+              <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">{t("radio.nowPlaying")}</span>
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </div>
 
@@ -49,7 +49,7 @@ export function RadioSection() {
                   .map((label: string, i: number) => ({ icon: [BookOpen, Shield, Globe][i] || Globe, label }))
                   .map(({ icon: Icon, label }) => (
                     <div key={label} className="bg-white/8 border border-white/10 rounded-xl p-4 text-center">
-                      <Icon size={20} className="text-[#BC8A5F] mx-auto mb-2" />
+                      <Icon size={20} className="text-[#EAD196] mx-auto mb-2" />
                       <div className="text-white text-xs font-semibold">{label}</div>
                     </div>
                   ));
@@ -76,19 +76,19 @@ export function RadioSection() {
             className="hidden lg:flex justify-center"
           >
             <div className="relative">
-              <div className="w-72 h-72 rounded-full bg-[#BC8A5F]/10 border border-[#BC8A5F]/20 flex items-center justify-center">
-                <div className="w-52 h-52 rounded-full bg-[#BC8A5F]/15 border border-[#BC8A5F]/30 flex items-center justify-center">
-                  <div className="w-36 h-36 rounded-full bg-[#BC8A5F]/20 border border-[#BC8A5F]/40 flex items-center justify-center">
+              <div className="w-72 h-72 rounded-full bg-[#EAD196]/10 border border-[#EAD196]/20 flex items-center justify-center">
+                <div className="w-52 h-52 rounded-full bg-[#EAD196]/15 border border-[#EAD196]/30 flex items-center justify-center">
+                  <div className="w-36 h-36 rounded-full bg-[#EAD196]/20 border border-[#EAD196]/40 flex items-center justify-center">
                     <div className="text-center">
-                      <Radio size={40} className="text-[#BC8A5F] mx-auto mb-2" />
+                      <Radio size={40} className="text-[#EAD196] mx-auto mb-2" />
                       <div className="font-['Outfit'] font-black text-white text-3xl">107.1</div>
-                      <div className="text-[#BC8A5F] text-sm font-semibold">FM</div>
+                      <div className="text-[#EAD196] text-sm font-semibold">FM</div>
                     </div>
                   </div>
                 </div>
               </div>
               {/* Animated rings */}
-              <div className="absolute inset-0 rounded-full border border-[#BC8A5F]/20 animate-ping" style={{ animationDuration: "3s" }} />
+              <div className="absolute inset-0 rounded-full border border-[#EAD196]/20 animate-ping" style={{ animationDuration: "3s" }} />
             </div>
           </motion.div>
         </div>

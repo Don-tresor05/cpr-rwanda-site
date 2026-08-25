@@ -51,7 +51,7 @@ function CategoryDropdown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-between gap-3 bg-[#4E6132] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md hover:bg-[#3b4b26] active:scale-95 transition-all duration-200 cursor-pointer min-w-[170px]"
+        className="inline-flex items-center justify-between gap-3 bg-[#BC8A5F] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md hover:bg-[#4E6132] active:scale-95 transition-all duration-200 cursor-pointer min-w-[170px]"
       >
         <span>{getCategoryLabel(selectedCategory)}</span>
         <ChevronDown
@@ -254,19 +254,19 @@ export function Newsroom() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex items-center gap-2 text-white/60 text-sm mb-5"
           >
-            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">{t("newsroom.breadcrumbHome")}</Link>
+            <Link to="/" className="hover:text-[#EAD196] transition-colors">{t("newsroom.breadcrumbHome")}</Link>
             <span className="text-white/30">/</span>
-            <span className="text-[#BC8A5F] font-semibold">{t("newsroom.breadcrumbNews")}</span>
+            <span className="text-[#EAD196] font-semibold">{t("newsroom.breadcrumbNews")}</span>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#EAD196]/40 rounded-full px-4 py-2 mb-6"
           >
-            <Newspaper size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
+            <Newspaper size={15} className="text-[#EAD196]" />
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
               {t("newsroom.breadcrumbNews")}
             </span>
           </motion.div>
@@ -303,7 +303,7 @@ export function Newsroom() {
                 key={i}
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 text-sm text-white/85"
               >
-                <chip.icon size={15} className="text-[#BC8A5F]" />
+                <chip.icon size={15} className="text-[#EAD196]" />
                 {chip.label}
               </span>
             ))}
@@ -408,7 +408,7 @@ export function Newsroom() {
                   onClick={() => setCurrentPage(page)}
                   className={`w-10 h-10 rounded-xl text-sm font-bold transition-all duration-200 ${
                     currentPage === page
-                      ? "bg-[#4E6132] text-white shadow-md scale-105"
+                      ? "bg-[#BC8A5F] text-white shadow-md scale-105"
                       : "text-[#4E6132] border border-[#4E6132]/15 hover:bg-[#4E6132]/10"
                   }`}
                 >

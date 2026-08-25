@@ -402,6 +402,7 @@ export function Departments() {
             stats={sec.stats}
             isEven={isEven}
             index={i}
+            t={t}
           />
         );
       })}
@@ -473,11 +474,13 @@ function DepartmentDetailBlock({
   stats,
   isEven,
   index,
+  t,
 }: {
   sec: DepartmentSection;
   stats: { label: string; value: string }[];
   isEven: boolean;
   index: number;
+  t: any;
 }) {
   const { ref, visible } = useScrollReveal();
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -611,6 +614,14 @@ function DepartmentDetailBlock({
                 </motion.li>
               ))}
             </ul>
+
+            <Link
+              to={`/departments/${sec.id}/resources`}
+              className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
+            >
+              {t("departments.learnMore")}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
 
           {/* Image side */}

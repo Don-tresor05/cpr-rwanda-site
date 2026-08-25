@@ -11,6 +11,8 @@ import { Home } from "./pages/Home";
 import { AboutUs } from "./pages/AboutUs";
 import { Secretariat } from "./pages/Secretariat";
 import { Departments } from "./pages/Departments";
+import { DepartmentResources } from "./pages/DepartmentResources";
+import { DepartmentResourceFiles } from "./pages/DepartmentResourceFiles";
 import { RadioPage } from "./pages/RadioPage";
 import { ContactPage } from "./pages/ContactPage";
 import { GalleryPage } from "./pages/GalleryPage";
@@ -48,6 +50,8 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/secretariat" element={<Secretariat />} />
         <Route path="/departments" element={<Departments />} />
+        <Route path="/departments/:deptId/resources" element={<DepartmentResources />} />
+        <Route path="/departments/:deptId/resources/:resourceSlug" element={<DepartmentResourceFiles />} />
         <Route path="/radio" element={<RadioPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/gallery" element={<GalleryPage />} />

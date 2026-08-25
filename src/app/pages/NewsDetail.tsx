@@ -204,7 +204,7 @@ export function NewsDetail() {
           <div className="mt-6 pt-4 border-t border-[#4E6132]/10 flex flex-wrap items-center justify-between gap-3">
             <Link
               to="/newsroom"
-              className="inline-flex items-center gap-1.5 bg-[#4E6132] text-white text-xs font-bold px-4 py-2 rounded-none hover:bg-[#3a4f26] transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 bg-[#BC8A5F] text-white text-xs font-bold px-4 py-2 rounded-none hover:bg-[#4E6132] transition-colors shadow-sm"
             >
               <ArrowLeft size={14} /> {t("newsroom.returnToNewsroom", "Return to Newsroom")}
             </Link>
@@ -215,7 +215,7 @@ export function NewsDetail() {
               </span>
               <button
                 onClick={handleCopyLink}
-                className="inline-flex items-center gap-1.5 bg-[#F8F9FA] text-[#4E6132] border border-[#4E6132]/20 hover:bg-[#4E6132] hover:text-white px-3 py-1.5 rounded-none text-xs font-bold transition-all"
+                className="inline-flex items-center gap-1.5 bg-[#F8F9FA] text-[#4E6132] border border-[#4E6132]/20 hover:bg-[#BC8A5F] hover:text-white px-3 py-1.5 rounded-none text-xs font-bold transition-all"
               >
                 {copied ? <Check size={14} className="text-green-500" /> : <Share2 size={14} />}
                 <span>{copied ? t("newsroom.copied", "Copied!") : t("newsroom.shareBtn", "Share")}</span>
@@ -224,7 +224,7 @@ export function NewsDetail() {
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
               >
                 <Twitter size={14} />
               </a>
@@ -232,7 +232,7 @@ export function NewsDetail() {
                 href={`https://www.facebook.com/sharer/sharer.php`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
               >
                 <Facebook size={14} />
               </a>
@@ -240,7 +240,7 @@ export function NewsDetail() {
                 href={`https://www.linkedin.com/shareArticle`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
               >
                 <Linkedin size={14} />
               </a>
