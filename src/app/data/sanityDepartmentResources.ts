@@ -26,7 +26,7 @@ interface SanityGroupDoc {
 interface SanityFileDoc {
   _id: string;
   title: string;
-  file?: { asset?: { url: string; size?: number } };
+  file?: { url: string; size?: number };
   _updatedAt: string;
 }
 
@@ -35,7 +35,7 @@ const GROUPS_QUERY = `*[_type == "departmentResourceGroup" && department == $dep
 }`;
 
 const FILES_QUERY = `*[_type == "departmentResourceFile" && group->slug.current == $slug] | order(order asc) {
-  _id, title, "file": file.asset->{url, size}, _updatedAt
+  _id, title, "file": file->{url, size}, _updatedAt
 }`;
 
 function formatSize(bytes?: number): string {
@@ -96,7 +96,7 @@ export function useCmsResourceFiles(groupSlug?: string): CmsResourceFile[] | nul
           .filter((d) => d.file?.url)
           .map((d) => ({
             name: d.title,
-            url: d.file!.url,
+            url: d.file!.url as string,
             info: formatSize(d.file!.size),
             modified: formatDate(d._updatedAt),
           }));
