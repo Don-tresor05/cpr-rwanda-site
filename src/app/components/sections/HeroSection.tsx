@@ -1,24 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { ScrollIndicator } from "../ui/ScrollIndicator";
+import { useSiteSettings } from "../../data/siteSettings";
 
 export function HeroSection() {
   const [active, setActive] = useState(0);
   const { t } = useTranslation("home");
-  
-  // Cast the translated array (it won't have the image/id properties initially, so we merge them or just rely on the static ones)
+  const settings = useSiteSettings();
+
+  // CMS hero slides take over once staff fill them in; otherwise fall back to
+  // the current translated slides with their fixed images and links.
   const translatedSlides: any[] = t("hero.slides", { returnObjects: true }) as any[] || [];
-  
-  // We can merge the translated strings with the images from the static slides if we want,
-  // but we can also just define the images inline here since we only have 3 slides.
-  const slides = [
-    { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
-    { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
-    { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
-  ];
+
+  const slides = useMemo(() => {
+    const cmsSlides = settings?.heroSlides?.filter((s) => s.title);
+    if (cmsSlides && cmsSlides.length > 0) {
+      return cmsSlides.map((s, i) => ({
+        id: i + 1,
+        image: s.image || "/assets/1.jpeg",
+        label: s.label || "",
+        title: s.title || "",
+        subtitle: s.subtitle || "",
+        desc: s.desc || "",
+        cta: s.cta || "",
+        ctaHref: s.ctaHref || "/about#vision-mission",
+        ctaSecondary: s.ctaSecondary || "",
+        ctaSecondaryHref: s.ctaSecondaryHref || "/about#executive-committee",
+      }));
+    }
+    return [
+      { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
+      { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
+      { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
+    ];
+  }, [settings, translatedSlides]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,7 +117,7 @@ export function HeroSection() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to={slide.ctaHref}
-                  className="inline-flex items-center gap-2 bg-[#8B6543] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                  className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />

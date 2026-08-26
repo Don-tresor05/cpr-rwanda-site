@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { Church } from "lucide-react";
+import { Church, ExternalLink } from "lucide-react";
 import { MEMBER_CHURCHES } from "../../data/departments";
+import { useMemberChurches } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
@@ -8,6 +9,7 @@ import { WatermarkSection } from "../ui/WatermarkBackground";
 export function MemberChurchesSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const churches = useMemberChurches() ?? MEMBER_CHURCHES;
 
   return (
     <WatermarkSection ref={ref} className="py-24 bg-white overflow-hidden">
@@ -33,22 +35,51 @@ export function MemberChurchesSection() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {MEMBER_CHURCHES.map((church, i) => (
-            <motion.div
-              key={church}
-              initial={{ opacity: 0, y: 20 }}
-              animate={visible ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.02 * i, duration: 0.4 }}
-              className="group bg-white rounded-xl px-5 py-4 shadow-sm hover:shadow-md border border-transparent hover:border-[#4E6132]/15 transition-all duration-300 flex items-center gap-3"
-            >
-              <div className="w-9 h-9 rounded-lg bg-[#4E6132]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#4E6132] transition-colors duration-300">
-                <Church size={16} className="text-[#4E6132] group-hover:text-white transition-colors duration-300" />
+          {churches.map((church, i) => {
+            const CardContent = (
+              <div className="flex items-center justify-between w-full gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-[#4E6132]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#4E6132] transition-colors duration-300">
+                    <Church size={16} className="text-[#4E6132] group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <span className="text-sm text-[#4A4A4A] group-hover:text-[#4E6132] font-medium transition-colors leading-snug">
+                    {church.name}
+                  </span>
+                </div>
+                {church.url && (
+                  <ExternalLink size={15} className="text-[#8B6543]/50 group-hover:text-[#8B6543] group-hover:scale-110 transition-all duration-300 flex-shrink-0 ml-1" />
+                )}
               </div>
-              <span className="text-sm text-[#4A4A4A] group-hover:text-[#4E6132] font-medium transition-colors leading-snug">
-                {church}
-              </span>
-            </motion.div>
-          ))}
+            );
+
+            const className = `group bg-white rounded-xl px-5 py-4 shadow-sm hover:shadow-md border border-[#4E6132]/5 hover:border-[#4E6132]/25 transition-all duration-300 flex items-center w-full h-full ${
+              church.url ? "cursor-pointer hover:-translate-y-0.5" : ""
+            }`;
+
+            return (
+              <motion.div
+                key={church.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={visible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.02 * i, duration: 0.4 }}
+              >
+                {church.url ? (
+                  <a
+                    href={church.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {CardContent}
+                  </a>
+                ) : (
+                  <div className={className}>
+                    {CardContent}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Stats note */}
@@ -69,12 +100,12 @@ export function MemberChurchesSection() {
                 </div>
               ))}
               <div className="w-8 h-8 rounded-full bg-[#EAD196] border-2 border-white flex items-center justify-center">
-                <span className="text-[9px] font-bold text-[#4E6132]">+{MEMBER_CHURCHES.length - 4}</span>
+                <span className="text-[9px] font-bold text-[#4E6132]">+{churches.length - 4}</span>
               </div>
             </div>
             <span 
               className="text-sm text-[#4A4A4A]/70"
-              dangerouslySetInnerHTML={{ __html: t("memberChurches.unitedNote", { count: MEMBER_CHURCHES.length }) }}
+              dangerouslySetInnerHTML={{ __html: t("memberChurches.unitedNote", { count: churches.length }) }}
             />
           </div>
         </motion.div>

@@ -9,6 +9,7 @@
     "news": "Actualités",
     "contact": "Nous Contacter",
     "donate": "Faire un Don",
+    "comingSoon": "Bientôt Disponible",
     "organization": "Organisation",
     "whoWeAre": "Qui Sommes-Nous",
     "whoWeAreDesc": "Fondé en 1963, unissant les églises protestantes du Rwanda",
@@ -60,8 +61,8 @@
     "programsDesc": "Horaires, émissions et podcasts"
   },
   "stats": {
-    "churches": "Églises Membres",
-    "schools": "Écoles Primaires",
+    "churches": "Membres",
+    "schools": "Écoles",
     "fm": "Fréquence FM",
     "years": "Années de Service"
   },
@@ -71,6 +72,13 @@
     "contactUs": "Contactez-Nous",
     "followUs": "Suivez-Nous",
     "rights": "Tous droits réservés.",
-    "developedBy": "Développé par"
+    "developedBy": "Développé par",
+    "sendMessage": "Envoyer un message",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation"
+  },
+  "loading": {
+    "preparing": "Préparation",
+    "tagline": "Au service du Rwanda depuis 1963"
   }
 }

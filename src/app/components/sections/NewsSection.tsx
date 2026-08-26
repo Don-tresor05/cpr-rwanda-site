@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { getNews } from "../../data/news";
+import { useCmsNews } from "../../data/sanityNews";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
@@ -10,7 +11,8 @@ import { useTranslation } from "react-i18next";
 export function NewsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  const news = getNews(t);
+  // CMS posts take over when staff publish them; hardcoded news is the fallback.
+  const news = useCmsNews() ?? getNews(t);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -130,7 +132,7 @@ export function NewsSection() {
         <div className="mt-12 text-center">
           <Link
             to="/newsroom"
-            className="inline-flex items-center gap-2 bg-[#4E6132] text-white text-base font-bold px-8 py-3.5 rounded-xl hover:bg-[#3a4f26] transition-all duration-200 hover:scale-105 hover:shadow-md"
+            className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white text-base font-bold px-8 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-200 hover:scale-105 hover:shadow-md"
           >
             {t("news.viewAllBtn")} <ArrowRight size={17} />
           </Link>

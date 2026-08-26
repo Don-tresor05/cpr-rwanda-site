@@ -7,6 +7,8 @@ import { useCountUp } from "../hooks/useCountUp";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
+import { useRadioPrograms } from "../data/cmsContent";
 import {
   Radio, RadioTower, PlayCircle, Clock,
   BookOpen, Shield, Sprout, MapPin, Phone, Mail,
@@ -90,14 +92,14 @@ export function RadioPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#EAD196]/40 rounded-full px-4 py-2 mb-6"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BC8A5F] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#BC8A5F]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#EAD196]" />
             </span>
-            <RadioTower size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
+            <RadioTower size={15} className="text-[#EAD196]" />
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
               {(rp?.heroTag as string) ?? "Radio Inkoramutima"}
             </span>
           </motion.div>
@@ -308,7 +310,7 @@ function RadioHistoryBlock() {
               </div>
               <div>
                 <div className="font-['Outfit'] font-black text-[#4E6132] leading-none">17h</div>
-                <div className="text-xs text-[#4A4A4A]/70 mt-1">5:00 — 22:00 daily</div>
+                <div className="text-xs text-[#4A4A4A]/70 mt-1">{(about?.hours as string) ?? "5:00 — 22:00 daily"}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -468,7 +470,11 @@ function ProgramsBlock() {
   const { t } = useTranslation("home");
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const programs = (rp?.programs as Record<string, unknown>) ?? {};
-  const items = (programs?.items as { time: string; title: string; desc: string }[]) ?? [];
+  // CMS schedule when staff have created one; otherwise the translated default.
+  const cmsPrograms = useRadioPrograms();
+  const items =
+    cmsPrograms ??
+    ((programs?.items as { time: string; title: string; desc: string }[]) ?? []);
 
   return (
     <section id="programs" ref={ref} className="relative py-16 lg:py-24 scroll-mt-20 overflow-hidden bg-[#1C2A10]">
@@ -530,7 +536,7 @@ function ProgramsBlock() {
           className="text-center text-white/50 text-xs mt-10 flex items-center justify-center gap-2"
         >
           <AudioLines size={14} className="text-[#BC8A5F]" />
-          107.1 FM — Voice of the Heart
+          {(programs?.footerTag as string) ?? "107.1 FM — Voice of the Heart"}
         </motion.p>
       </div>
     </section>
@@ -698,6 +704,7 @@ function CoverageStat({ stat, index, active }: { stat: { value: string; label: s
 /* ───────────── CTA ───────────── */
 function RadioCtaBlock() {
   const { t } = useTranslation("home");
+  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const cta = (rp?.cta as Record<string, unknown>) ?? {};
 
@@ -740,9 +747,9 @@ function RadioCtaBlock() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-6 text-white/80 text-sm mb-8"
         >
-          <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> +250 788 314 718</span>
-          <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> cprgs@cpr-rwanda.rw</span>
-          <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> Kimihurura, Kigali</span>
+          <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> {contact.phone}</span>
+          <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> {contact.email}</span>
+          <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> {contact.addressLine1}, {contact.addressLine2}</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
