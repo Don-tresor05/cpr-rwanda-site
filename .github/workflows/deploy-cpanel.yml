@@ -96,11 +96,4 @@ jobs:
             *.md
             *.sh
           dangerous-clean-slate: true
-          # Skip if FTP secrets aren't configured yet
-          statefile: .ftp-deploy-state
-
-      - name: Skip deploy if FTP not configured
-        if: failure()
-        run: |
-          echo '::warning::FTP deployment skipped — check that CPANEL_FTP_SERVER, CPANEL_FTP_USERNAME, and CPANEL_FTP_PASSWORD are set in GitHub Secrets'
-          exit 0
+          state-name: .ftp-deploy-state
