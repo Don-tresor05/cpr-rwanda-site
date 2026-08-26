@@ -19,18 +19,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2. Setup Node.js ──
+      # ── 2. Install pnpm (must come BEFORE setup-node cache) ──
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # ── 3. Setup Node.js ──
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-
-      # ── 3. Install pnpm ──
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       # ── 4. Install dependencies ──
       - name: Install dependencies
@@ -96,3 +96,11 @@ jobs:
             *.md
             *.sh
           dangerous-clean-slate: true
+          # Skip if FTP secrets aren't configured yet
+          statefile: .ftp-deploy-state
+
+      - name: Skip deploy if FTP not configured
+        if: failure()
+        run: |
+          echo '::warning::FTP deployment skipped — check that CPANEL_FTP_SERVER, CPANEL_FTP_USERNAME, and CPANEL_FTP_PASSWORD are set in GitHub Secrets'
+          exit 0
