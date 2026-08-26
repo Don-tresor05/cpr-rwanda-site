@@ -416,6 +416,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const blockRef = useRef<HTMLDivElement>(null);
   const Icon = sec.icon;
+  const { t } = useTranslation("home");
 
   const { scrollYProgress } = useScroll({
     target: blockRef,
@@ -543,6 +544,15 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                 </motion.li>
               ))}
             </ul>
+
+            {/* Learn More Button */}
+            <Link
+              to={`/secretariat/${sec.id}/resources`}
+              className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
+            >
+              {t("departments.learnMore", { defaultValue: "Learn More" })}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
 
           {/* Image side */}
