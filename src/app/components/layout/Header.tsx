@@ -139,6 +139,7 @@ export function Header() {
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="full" />
+          {/* Donate button - temporarily hidden
           <div className="h-4 w-px bg-white/20" />
           <button
             onClick={() => showComingSoon(t("nav.donate"))}
@@ -146,6 +147,7 @@ export function Header() {
           >
             {t("nav.donate")}
           </button>
+          */}
         </div>
       </div>
 
