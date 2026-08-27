@@ -20,7 +20,7 @@ export function HeroSection() {
     if (cmsSlides && cmsSlides.length > 0) {
       return cmsSlides.map((s, i) => ({
         id: i + 1,
-        image: s.image || "/assets/1.jpeg",
+        image: s.image || "/cpr/assets/1.jpeg",
         label: s.label || "",
         title: s.title || "",
         subtitle: s.subtitle || "",
@@ -32,9 +32,9 @@ export function HeroSection() {
       }));
     }
     return [
-      { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
-      { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
-      { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
+      { id: 1, image: "/cpr/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
+      { id: 2, image: "/cpr/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
+      { id: 3, image: "/cpr/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
     ];
   }, [settings, translatedSlides]);
 
