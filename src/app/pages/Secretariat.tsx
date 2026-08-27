@@ -25,12 +25,12 @@ interface SubSection {
 }
 
 const secImages: Record<string, string> = {
-  sg: "/assets/secretariat-sg.webp",
-  events: "/assets/secretariat-events.webp",
-  meetings: "/assets/secretariat-meetings.webp",
-  advocacy: "/assets/secretariat-advocacy.webp",
-  sustainability: "/assets/secretariat-sustainability.webp",
-  publications: "/assets/secretariat-publications.webp",
+  sg: "/cpr/cpr/assets/secretariat-sg.webp",
+  events: "/cpr/cpr/assets/secretariat-events.webp",
+  meetings: "/cpr/cpr/assets/secretariat-meetings.webp",
+  advocacy: "/cpr/cpr/assets/secretariat-advocacy.webp",
+  sustainability: "/cpr/cpr/assets/secretariat-sustainability.webp",
+  publications: "/cpr/cpr/assets/secretariat-publications.webp",
 };
 
 const getSecStats = (lang: string): Record<string, { label: string; value: string }[]> => {
@@ -158,7 +158,7 @@ export function Secretariat() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -266,7 +266,7 @@ export function Secretariat() {
                   className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl cursor-pointer hover:opacity-95 transition-opacity"
                 >
                   <img
-                    src="/assets/Mutabazi_Samuel.webp"
+                    src="/cpr/cpr/assets/Mutabazi_Samuel.webp"
                     alt="Rev. Samuel Mutabazi"
                     className="w-full h-full object-cover object-top"
                   />
@@ -403,7 +403,7 @@ export function Secretariat() {
       </motion.section>
 
       <ImageLightbox
-        images={[{ src: "/assets/Mutabazi_Samuel.webp", alt: "Rev. Samuel Mutabazi" }]}
+        images={[{ src: "/cpr/cpr/assets/Mutabazi_Samuel.webp", alt: "Rev. Samuel Mutabazi" }]}
         selectedIndex={sgPhotoOpen ? 0 : null}
         onClose={() => setSgPhotoOpen(false)}
       />
