@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, Link } from "react-router";
+import { useLocation } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -8,7 +8,7 @@ import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
-  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays,
   MessageCircle,
   type LucideIcon,
 } from "lucide-react";
@@ -70,79 +70,35 @@ export function ContactPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/about-us.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/about-us.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             y: heroBgY,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A10] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
         <motion.div
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 text-white/60 text-sm mb-5"
-          >
-            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">{t("newsroom.breadcrumbHome", "Home")}</Link>
-            <span className="text-white/30">/</span>
-            <span className="text-[#BC8A5F] font-semibold">{(cp?.heroTag as string) ?? "Contact Us"}</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
-          >
-            <MessageSquare size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
-              {(cp?.heroTag as string) ?? "Contact Us"}
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-4xl sm:text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4 max-w-3xl"
+            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {(cp?.heroTitle as string) ?? "Let's Start a Conversation"}
+            {(cp?.heroTitle as string) ?? "Contact Us"}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-base lg:text-lg max-w-2xl leading-relaxed mb-8"
+            className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
             {(cp?.heroDesc as string) ?? ""}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap gap-3"
-          >
-            {[
-              { icon: MapPin, label: (cp?.heroChip1 as string) ?? "KG 2 Av 4, Kigali" },
-              { icon: Clock, label: (cp?.heroChip2 as string) ?? "Mon – Fri, 8:00 – 17:00" },
-            ].map((chip, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 text-sm text-white/85"
-              >
-                <chip.icon size={15} className="text-[#BC8A5F]" />
-                {chip.label}
-              </span>
-            ))}
-          </motion.div>
         </motion.div>
 
         <ScrollIndicator />
