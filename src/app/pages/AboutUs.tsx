@@ -7,10 +7,12 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
+import { ImageLightbox } from "../components/ui/ImageLightbox";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
+  const [organigramLightboxOpen, setOrganigramLightboxOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const location = useLocation();
   const { ref: visionRef, visible: visionVisible } = useScrollReveal();
@@ -409,9 +411,21 @@ export function AboutUs() {
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-12">
             {cms?.organigram?.title ?? t("aboutPage.organigram.title")}
           </h2>
-          <div className="w-full max-w-4xl mx-auto aspect-[16/9] bg-[#F8F9FA] border border-[#8B6543]/20 rounded-2xl flex items-center justify-center text-[#8B6543] font-bold shadow-inner">
-            {cms?.organigram?.comingSoon ?? t("aboutPage.organigram.comingSoon")}
+          <div 
+            className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-sm border border-[#8B6543]/20 bg-[#F8F9FA] cursor-pointer hover:shadow-md transition-shadow"
+            onClick={() => setOrganigramLightboxOpen(true)}
+          >
+            <img 
+              src="/assets/Organigam.jpeg" 
+              alt="CPR Rwanda Organigram" 
+              className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
+            />
           </div>
+          <ImageLightbox 
+            images={[{ src: "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            selectedIndex={organigramLightboxOpen ? 0 : null} 
+            onClose={() => setOrganigramLightboxOpen(false)} 
+          />
         </div>
       </WatermarkSection>
 
