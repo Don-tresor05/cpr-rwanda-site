@@ -12,7 +12,7 @@ export interface HeroSlide {
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
-    image: "/cpr/cpr/assets/1.jpeg",
+    image: "/cpr/assets/1.jpeg",
     label: "Serving Rwanda Since 1963",
     title: "Bose Babe Umwe",
     subtitle: "That All of Them May Be One",
@@ -22,7 +22,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 2,
-    image: "/cpr/cpr/assets/Primary.jpg",
+    image: "/cpr/assets/Primary.jpg",
     label: "Education Department (BNEP)",
     title: "Shaping Rwanda's Future",
     subtitle: "595 Protestant Primary Schools",
@@ -32,7 +32,7 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 3,
-    image: "/cpr/cpr/assets/Inkoramutima-Logo.jpg",
+    image: "/cpr/assets/Inkoramutima-Logo.jpg",
     label: "Radio Inkoramutima",
     title: "107.1 FM — Broadcasting Hope",
     subtitle: "Voice of the Protestant Council in Rwanda",
