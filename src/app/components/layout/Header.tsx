@@ -163,7 +163,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center gap-1">
             <img
-              src="/assets/logo-1.jpg"
+              src="/cpr/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-16 w-auto object-contain"
             />
