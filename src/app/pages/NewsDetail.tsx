@@ -100,7 +100,7 @@ export function NewsDetail() {
               alt={article.title}
               className="w-full h-full object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
+                (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
               }}
             />
           </div>
@@ -142,26 +142,26 @@ export function NewsDetail() {
                               if (imgIndex !== -1) setSelectedImgIdx(imgIndex);
                             }}
                             className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
-                          >
-                            <img
-                              src={inlineImg.src}
-                              alt={inlineImg.caption || "Kwibuka event highlight"}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
-                              }}
-                            />
-                          </div>
-                          {inlineImg.caption && (
-                            <p className="text-xs text-[#6B7280] leading-normal border-b border-[#4E6132]/10 pb-2">
-                              {inlineImg.caption}
-                            </p>
-                          )}
-                        </div>
+                      >
+                        <img
+                          src={inlineImg.src}
+                          alt={inlineImg.caption || "Kwibuka event highlight"}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
+                          }}
+                        />
+                      </div>
+                      {inlineImg.caption && (
+                        <p className="text-xs text-[#6B7280] leading-normal border-b border-[#4E6132]/10 pb-2">
+                          {inlineImg.caption}
+                        </p>
                       )}
                     </div>
-                  );
-                })}
+                  )}
+                </div>
+                );
+              })}
 
                 {/* Fallback for secondaryImage if inlineImages array is not provided */}
                 {!article.inlineImages && article.secondaryImage && (
@@ -178,7 +178,7 @@ export function NewsDetail() {
                         alt="Secondary event highlight"
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
+                          (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
                         }}
                       />
                     </div>
@@ -268,7 +268,7 @@ export function NewsDetail() {
                     alt={item.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
+                      (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
                     }}
                   />
                 </Link>
