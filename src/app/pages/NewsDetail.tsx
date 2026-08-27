@@ -100,7 +100,7 @@ export function NewsDetail() {
               alt={article.title}
               className="w-full h-full object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
               }}
             />
           </div>
@@ -148,7 +148,7 @@ export function NewsDetail() {
                               alt={inlineImg.caption || "Kwibuka event highlight"}
                               className="w-full h-full object-cover"
                               onError={(e) => {
-                                (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                                (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
                               }}
                             />
                           </div>
@@ -178,7 +178,7 @@ export function NewsDetail() {
                         alt="Secondary event highlight"
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                          (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
                         }}
                       />
                     </div>
@@ -268,7 +268,7 @@ export function NewsDetail() {
                     alt={item.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                      (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
                     }}
                   />
                 </Link>
