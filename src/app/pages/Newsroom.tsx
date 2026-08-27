@@ -134,7 +134,7 @@ export function Newsroom() {
         date: "7 July 2026",
         category: "Report",
         excerpt: "In June 2026, CPR strengthened its position as a leading platform for faith-based community engagement, bringing together member churches united by a shared mission of peace, education, and development.",
-        image: "/cpr/cpr/assets/news-kwibuka.jpg",
+        image: "/cpr/assets/news-kwibuka.jpg",
       },
       {
         slug: "annual-convention-2026",
@@ -142,7 +142,7 @@ export function Newsroom() {
         date: "2 July 2026",
         category: "Event",
         excerpt: "Rwanda's Protestant community is building sustainable partnerships across the country. Member churches met to align strategies for education, youth leadership, and socio-economic empowerment.",
-        image: "/cpr/cpr/assets/news-education.webp",
+        image: "/cpr/assets/news-education.webp",
       },
       {
         slug: "may-highlights-2026",
@@ -150,7 +150,7 @@ export function Newsroom() {
         date: "2 June 2026",
         category: "Youth",
         excerpt: "May 2026 was a landmark month for CPR's Youth Program, rolling out peacebuilding workshops and digital skills training for over 800 young church leaders nationwide.",
-        image: "/cpr/cpr/assets/news-trauma.jpg",
+        image: "/cpr/assets/news-trauma.jpg",
       },
       {
         slug: "kwibuka-31-commemoration",
@@ -158,7 +158,7 @@ export function Newsroom() {
         date: "28 June 2025",
         category: "Event",
         excerpt: "CPR member churches joined thousands across Rwanda to remember the 1994 Genocide against the Tutsi, reaffirming their commitment to peace, reconciliation, and 'Never Again'.",
-        image: "/cpr/cpr/assets/Gahini 2.webp",
+        image: "/cpr/assets/Gahini 2.webp",
       },
       {
         slug: "bnep-active-pedagogy-training",
@@ -166,7 +166,7 @@ export function Newsroom() {
         date: "14 May 2025",
         category: "Education",
         excerpt: "The Bureau National de l'Éducation Protestante rolled out its flagship Participatory Active Pedagogy program in partnership with international development partners.",
-        image: "/cpr/cpr/assets/Primary.jpg",
+        image: "/cpr/assets/Primary.jpg",
       },
       {
         slug: "trauma-counselor-certification",
@@ -174,7 +174,7 @@ export function Newsroom() {
         date: "3 April 2025",
         category: "Health",
         excerpt: "Forty-two community health workers across five provinces were certified as trauma counselors, strengthening CPR's mental health outreach capacity.",
-        image: "/cpr/cpr/assets/Trauma 1.webp",
+        image: "/cpr/assets/Trauma 1.webp",
       },
       {
         slug: "agricultural-cooperatives-sustainability",
@@ -182,7 +182,7 @@ export function Newsroom() {
         date: "12 March 2025",
         category: "Development",
         excerpt: "A new initiative aiming to support rural communities with climate-smart farming techniques was launched in Eastern Province, impacting over 500 families.",
-        image: "/cpr/cpr/assets/CPR 3 - Copy.webp",
+        image: "/cpr/assets/CPR 3 - Copy.webp",
       },
       {
         slug: "youth-reconciliation-summit",
@@ -190,7 +190,7 @@ export function Newsroom() {
         date: "18 February 2025",
         category: "Youth",
         excerpt: "Youth leaders from various Protestant parishes across the country will gather in Kigali to discuss peacemaking, leadership, and digital evangelism.",
-        image: "/cpr/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+        image: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
       },
     ];
   }, [cmsNews, t]);
@@ -235,7 +235,7 @@ export function Newsroom() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.40), rgba(28,42,16,0.92)), url('/cpr/cpr/assets/youth.webp')",
+              "linear-gradient(rgba(28,42,16,0.40), rgba(28,42,16,0.92)), url('/cpr/assets/youth.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 20%",
             y: heroBgY,
@@ -352,7 +352,7 @@ export function Newsroom() {
                     alt={item.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/cpr/cpr/assets/CPR 3 - Copy.webp";
+                      (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
                     }}
                   />
                 </Link>
