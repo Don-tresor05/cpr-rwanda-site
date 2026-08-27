@@ -50,7 +50,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
         { slug: "leadership-reports", title: "Leadership Reports", description: "Annual and quarterly leadership updates.", type: "document", icon: FileText, files: [] },
         { slug: "strategic-documents", title: "Strategic Documents", description: "CPR's core strategic frameworks.", type: "download", icon: Download, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-sg.webp",
+      image: "/cpr/assets/secretariat-sg.webp",
     },
     events: {
       id: "events",
@@ -68,7 +68,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
         { slug: "event-schedules", title: "Event Schedules", description: "Upcoming national assemblies and synods.", type: "document", icon: FileText, files: [] },
         { slug: "assembly-reports", title: "Assembly Reports", description: "Outcomes from past major gatherings.", type: "document", icon: FileText, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-events.webp",
+      image: "/cpr/assets/secretariat-events.webp",
     },
     meetings: {
       id: "meetings",
@@ -85,7 +85,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
       resources: [
         { slug: "meeting-minutes", title: "Meeting Minutes", description: "Official records of CPR board meetings.", type: "document", icon: FileText, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-meetings.webp",
+      image: "/cpr/assets/secretariat-meetings.webp",
     },
     advocacy: {
       id: "advocacy",
@@ -103,7 +103,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
         { slug: "policy-briefs", title: "Policy Briefs", description: "CPR's stance on key national policies.", type: "document", icon: FileText, files: [] },
         { slug: "advocacy-reports", title: "Advocacy Reports", description: "Impact reports from our advocacy efforts.", type: "download", icon: Download, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-advocacy.webp",
+      image: "/cpr/assets/secretariat-advocacy.webp",
     },
     sustainability: {
       id: "sustainability",
@@ -121,7 +121,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
         { slug: "green-school-guides", title: "Green School Guides", description: "Manuals for implementing green initiatives in schools.", type: "document", icon: FileText, files: [] },
         { slug: "sustainability-reports", title: "Sustainability Reports", description: "Progress on our environmental goals.", type: "download", icon: Download, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-sustainability.webp",
+      image: "/cpr/assets/secretariat-sustainability.webp",
     },
     publications: {
       id: "publications",
@@ -139,7 +139,7 @@ export const getSecretariatResources = (t: any): Record<string, SecretariatResou
         { slug: "newsletters", title: "Newsletters", description: "Archive of CPR's monthly newsletters.", type: "document", icon: FileText, files: [] },
         { slug: "official-communiques", title: "Official Communiqués", description: "Public statements from CPR.", type: "document", icon: FileText, files: [] },
       ],
-      image: "/cpr/cpr/assets/secretariat-publications.webp",
+      image: "/cpr/assets/secretariat-publications.webp",
     },
   };
 };
