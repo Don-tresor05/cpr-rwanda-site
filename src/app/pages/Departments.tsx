@@ -26,13 +26,13 @@ interface DepartmentSection {
 }
 
 const deptImages: Record<string, string> = {
-  gs: "/cpr/cpr/assets/cpr-members.webp",
-  bnep: "/cpr/cpr/assets/education.webp",
-  diakonia: "/cpr/cpr/assets/handover.webp",
-  finance: "/cpr/cpr/assets/autorites.webp",
-  youth: "/cpr/cpr/assets/Youth2.webp",
-  gender: "/cpr/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
-  radio: "/cpr/cpr/assets/radio-studio.webp",
+  gs: "/cpr/assets/cpr-members.webp",
+  bnep: "/cpr/assets/education.webp",
+  diakonia: "/cpr/assets/handover.webp",
+  finance: "/cpr/assets/autorites.webp",
+  youth: "/cpr/assets/Youth2.webp",
+  gender: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+  radio: "/cpr/assets/radio-studio.webp",
 };
 
 const getDeptStats = (lang: string): Record<string, { label: string; value: string }[]> => {
@@ -218,7 +218,7 @@ export function Departments() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/cpr/assets/departments-hero.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/departments-hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
