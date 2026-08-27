@@ -76,7 +76,7 @@ export function RadioPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/radio-hero.webp')",
+              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/cpr/cpr/cpr/assets/radio-hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -105,7 +105,7 @@ export function RadioPage() {
           </motion.div>
 
           <motion.img
-            src="/assets/Inkoramutima-Logo.jpg"
+            src="/cpr/cpr/cpr/assets/Inkoramutima-Logo.jpg"
             alt={(rp?.heroTitle as string) ?? "Radio Inkoramutima"}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -275,7 +275,7 @@ function RadioHistoryBlock() {
               <motion.div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: "url('/assets/radio-studio.webp')",
+                  backgroundImage: "url('/cpr/cpr/cpr/assets/radio-studio.webp')",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -292,7 +292,7 @@ function RadioHistoryBlock() {
               {/* Studio GIF */}
               <div className="absolute bottom-4 right-4">
                 <img
-                  src="/assets/radio-studio.gif"
+                  src="/cpr/cpr/cpr/assets/radio-studio.gif"
                   alt="Radio Inkoramutima studio"
                   className="w-44 lg:w-56 rounded-xl shadow-2xl border border-white/20"
                 />
@@ -317,7 +317,7 @@ function RadioHistoryBlock() {
         </div>
       </div>
       <ImageLightbox
-        images={[{ src: "/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
+        images={[{ src: "/cpr/cpr/cpr/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
         selectedIndex={lightboxOpen ? 0 : null}
         onClose={() => setLightboxOpen(false)}
       />
@@ -718,7 +718,7 @@ function RadioCtaBlock() {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
       <div className="absolute inset-0 opacity-[0.04]">
-        <img src="/assets/Inkoramutima-Logo.jpg" alt="" className="w-full h-full object-contain" />
+        <img src="/cpr/cpr/cpr/assets/Inkoramutima-Logo.jpg" alt="" className="w-full h-full object-contain" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
