@@ -131,11 +131,11 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
-        <div className="flex items-center gap-5">
-          <span className="flex items-center gap-1.5"><Phone size={11} /><span>{contact.phone}</span></span>
-          <span className="flex items-center gap-1.5"><Mail size={11} /><span>{contact.email}</span></span>
-          <span className="flex items-center gap-1.5"><MapPin size={11} /><span>{contact.addressLine1}, {contact.addressLine2}</span></span>
+      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/70 text-sm py-2 px-6 items-center justify-between">
+        <div className="flex items-center gap-5 font-medium">
+          <span className="flex items-center gap-1.5"><Phone size={14} /><span>{contact.phone}</span></span>
+          <span className="flex items-center gap-1.5"><Mail size={14} /><span>{contact.email}</span></span>
+          <span className="flex items-center gap-1.5"><MapPin size={14} /><span>{contact.addressLine1}, {contact.addressLine2}</span></span>
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="full" />
