@@ -45,7 +45,7 @@ export function FixedWatermark({ variant = "default" }: { variant?: "sparse" | "
       {marks.map((w, i) => (
         <img
           key={i}
-          src="/assets/logo.png"
+          src="/cpr/assets/logo.png"
           alt=""
           style={{
             position: "absolute",
