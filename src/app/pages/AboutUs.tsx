@@ -416,13 +416,13 @@ export function AboutUs() {
             onClick={() => setOrganigramLightboxOpen(true)}
           >
             <img 
-              src="/assets/Organigam.jpeg" 
+              src="/cpr/assets/Organigam.jpeg" 
               alt="CPR Rwanda Organigram" 
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
           <ImageLightbox 
-            images={[{ src: "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            images={[{ src: "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
             selectedIndex={organigramLightboxOpen ? 0 : null} 
             onClose={() => setOrganigramLightboxOpen(false)} 
           />
