@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
 
 export interface LightboxImage {
   src: string;
@@ -17,6 +17,7 @@ interface ImageLightboxProps {
 
 export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: ImageLightboxProps) {
   const [currentIdx, setCurrentIdx] = useState<number>(0);
+  const [zoom, setZoom] = useState<number>(1);
 
   useEffect(() => {
     if (selectedIndex !== null) {
@@ -26,6 +27,7 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
 
   const handleIndexChange = (newIndex: number) => {
     setCurrentIdx(newIndex);
+    setZoom(1);
     if (onNavigate) {
       onNavigate(newIndex);
     }
@@ -49,6 +51,8 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowRight") handleNext();
       if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "=" || e.key === "+") setZoom((prev) => Math.min(prev + 0.5, 4));
+      if (e.key === "-") setZoom((prev) => Math.max(prev - 0.5, 1));
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -71,13 +75,20 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
         style={{ background: "rgba(0, 0, 0, 0.92)" }}
       >
         {/* Close Button — top right */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-7 z-20 bg-transparent hover:bg-white/10 text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full transition-all cursor-pointer"
-          aria-label="Close lightbox"
-        >
-          <X size={22} />
-        </button>
+        <div className="absolute top-5 right-7 z-20 flex items-center gap-4">
+          <div className="flex items-center gap-3 bg-black/40 rounded-full px-4 py-2 border border-white/10">
+            <button onClick={() => setZoom((prev) => Math.max(prev - 0.5, 1))} disabled={zoom <= 1} className="text-white hover:text-[#EAD196] disabled:opacity-30 transition-colors" aria-label="Zoom out"><ZoomOut size={18} /></button>
+            <span className="text-white text-xs font-semibold w-10 text-center">{Math.round(zoom * 100)}%</span>
+            <button onClick={() => setZoom((prev) => Math.min(prev + 0.5, 4))} disabled={zoom >= 4} className="text-white hover:text-[#EAD196] disabled:opacity-30 transition-colors" aria-label="Zoom in"><ZoomIn size={18} /></button>
+          </div>
+          <button
+            onClick={onClose}
+            className="bg-black/40 hover:bg-black/60 border border-white/10 text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full transition-all cursor-pointer"
+            aria-label="Close lightbox"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
         {/* Prev Button */}
         {showNav && (
@@ -115,18 +126,22 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
         <div className="flex flex-col w-full h-full">
           {/* Image area — flex-1 centers the image vertically in whatever space is left */}
           <div className="flex-1 flex items-center justify-center min-h-0 px-16 sm:px-20 py-6">
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center w-full h-full overflow-hidden">
               <motion.img
                 key={currentIdx}
                 initial={{ scale: 0.97, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.15 }}
+                animate={{ scale: zoom, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                drag={zoom > 1}
+                dragConstraints={{ left: -1000, right: 1000, top: -1000, bottom: 1000 }}
+                dragElastic={0.1}
+                onDoubleClick={() => setZoom(zoom > 1 ? 1 : 2)}
                 src={currentPhoto.src}
                 alt={currentPhoto.alt || ""}
-                className="block rounded-md shadow-2xl"
+                className={`block rounded-md shadow-2xl ${zoom > 1 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"}`}
                 style={{
-                  maxWidth: "68vw",
-                  maxHeight: showNav ? "56vh" : "64vh",
+                  maxWidth: "95vw",
+                  maxHeight: showNav ? "80vh" : "95vh",
                   width: "auto",
                   height: "auto",
                   objectFit: "contain",
