@@ -134,7 +134,7 @@ export function LoadingScreen({ onDone }: { onDone: () => void }) {
                 className="relative w-full h-full rounded-full bg-[#F5F5DC] shadow-2xl shadow-black/40 flex items-center justify-center overflow-hidden border-4 border-[#EAD196]/70"
               >
                 <img
-                  src="/assets/logo-1.jpg"
+                  src="/cpr/assets/logo-1.jpg"
                   alt="CPR Rwanda — Conseil Protestant du Rwanda"
                   className="w-[88%] h-[88%] object-contain"
                 />

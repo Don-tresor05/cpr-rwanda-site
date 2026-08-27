@@ -20,6 +20,7 @@ export const aboutPage = defineType({
     { name: "execCommittee", title: "Executive Committee" },
     { name: "organigram", title: "Organigram" },
     { name: "partners", title: "Partners" },
+    { name: "historyModal", title: "History Modal" },
   ],
   fields: [
     defineField({
@@ -151,6 +152,23 @@ export const aboutPage = defineType({
       type: "object",
       group: "partners",
       fields: [{ name: "title", title: "Section title", type: "localizedString" }],
+    }),
+    defineField({
+      name: "historyModal",
+      title: "History Modal",
+      description: "Content for the 'Our Story' modal opened from the Who We Are section.",
+      type: "object",
+      group: "historyModal",
+      fields: [
+        { name: "learnMore", title: "'Learn More' button label", type: "localizedString" },
+        { name: "badge", title: "Badge text (e.g. 'Our Story')", type: "localizedString" },
+        { name: "title", title: "Modal title", type: "localizedString" },
+        { name: "p1", title: "Paragraph 1", type: "localizedText" },
+        { name: "p2", title: "Paragraph 2", type: "localizedText" },
+        { name: "personName", title: "Person name", type: "localizedString" },
+        { name: "personRole", title: "Person role", type: "localizedString" },
+        { name: "cta", title: "CTA button label", type: "localizedString" },
+      ],
     }),
   ],
   preview: {

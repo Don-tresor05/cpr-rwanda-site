@@ -8,8 +8,8 @@ import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
-  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays,
-  MessageCircle,
+  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  MessageCircle, Navigation, ExternalLink,
   type LucideIcon,
 } from "lucide-react";
 
@@ -70,7 +70,7 @@ export function ContactPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/about-us.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/about-us.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             y: heroBgY,
@@ -135,6 +135,9 @@ export function ContactPage() {
       {/* ─── INFO CARDS ─── */}
       <InfoCardsBlock />
 
+      {/* ─── MAP ─── */}
+      <MapBlock />
+
       {/* ─── OFFICE HOURS ─── */}
       <OfficeHoursBlock />
 
@@ -173,7 +176,7 @@ function ChatButton() {
       animate={visible ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       onClick={scrollToForm}
-      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#4E6132] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#3a4f26] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
+      className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#BC8A5F] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#4E6132] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
       aria-label={(t("contactPage.chatLabel") as string) ?? "Chat with us"}
     >
       <span className="relative flex items-center justify-center">
@@ -318,7 +321,7 @@ function ContactFormBlock() {
                   </p>
                   <button
                     onClick={() => { setSent(false); setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "" }); }}
-                    className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3a4f26] transition-all duration-300 hover:scale-105 text-sm"
+                    className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
                   >
                     {(form?.sendAnother as string) ?? "Send another message"}
                   </button>
@@ -401,7 +404,7 @@ function ContactFormBlock() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#4E6132] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#3a4f26] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:hover:scale-100 text-sm"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-60 disabled:hover:scale-100 text-sm"
                   >
                     {sending ? (
                       <>
@@ -493,6 +496,110 @@ function InfoCardsBlock() {
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────── MAP ───────────── */
+function MapBlock() {
+  const { ref, visible } = useScrollReveal();
+  const { t } = useTranslation("home");
+  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
+  const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
+  const map = (cp?.map as Record<string, unknown>) ?? {};
+
+  // Query Google Maps by the exact place name so the pin lands on the
+  // CPR building (street-address geocoding puts it on the wrong plot).
+  const MAP_PLACE = "Protestant Council of Rwanda, Kigali, Rwanda";
+  const query = encodeURIComponent(MAP_PLACE);
+  // Full address shown on the floating card (postal box dropped for display)
+  const address = `${contact.addressLine1}, ${contact.addressLine2}`
+    .replace(/B\.?\s?P\.?\s?\d+/gi, "")
+    .replace(/,\s*,/g, ",")
+    .replace(/^\s*,|,\s*$/g, "")
+    .trim();
+  const embedUrl = `https://www.google.com/maps?q=${query}&z=16&output=embed`;
+  const placeUrl = `https://www.google.com/maps?q=${query}`;
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
+
+  return (
+    <section id="map" className="py-16 lg:py-24 bg-white scroll-mt-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div ref={ref} className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 justify-center mb-3">
+            <div className="h-px w-8 bg-[#8B6543]" />
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
+              {(map?.tag as string) ?? "Find Us"}
+            </span>
+            <div className="h-px w-8 bg-[#8B6543]" />
+          </div>
+          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">
+            {(map?.title as string) ?? "Our Location"}
+          </h2>
+          <p className="text-[#4A4A4A] mt-3 max-w-2xl mx-auto">
+            {(map?.desc as string) ?? ""}
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#4E6132]/15 group"
+        >
+          {/* Google Maps embed */}
+          <iframe
+            title={(map?.cardTitle as string) ?? "CPR Rwanda location map"}
+            src={embedUrl}
+            className="w-full h-[420px] lg:h-[540px] grayscale-[40%] group-hover:grayscale-0 contrast-[1.02] transition-all duration-700"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+
+          {/* Top gradient for depth */}
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/25 to-transparent pointer-events-none" />
+
+          {/* Open in Google Maps chip */}
+          <a
+            href={placeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-md text-[#4E6132] text-xs font-bold px-4 py-2 rounded-full shadow-lg hover:bg-[#4E6132] hover:text-white hover:scale-105 transition-all duration-300"
+          >
+            <ExternalLink size={12} />
+            {(map?.openInMaps as string) ?? "Open in Google Maps"}
+          </a>
+
+          {/* Floating address card */}
+          <div className="absolute left-4 bottom-4 lg:left-8 lg:bottom-8 max-w-[300px] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-5 border border-[#4E6132]/10">
+            <div className="flex items-start gap-3">
+              <div className="relative w-11 h-11 rounded-full bg-[#4E6132] flex items-center justify-center flex-shrink-0">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[#4E6132] opacity-40 animate-ping" style={{ animationDuration: "2.4s" }} />
+                <MapPin size={20} className="text-white relative" />
+              </div>
+              <div className="min-w-0">
+                <div className="font-['Outfit'] font-black text-[#4E6132] text-sm">
+                  {(map?.cardTitle as string) ?? "CPR Rwanda Headquarters"}
+                </div>
+                <div className="text-[#4A4A4A] text-xs mt-1 leading-relaxed">
+                  {`${contact.addressLine1}, ${contact.addressLine2}`}
+                </div>
+                <a
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-3 bg-[#BC8A5F] text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-[#4E6132] hover:scale-105 transition-all duration-300"
+                >
+                  <Navigation size={12} />
+                  {(map?.directionsBtn as string) ?? "Get Directions"}
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -674,7 +781,7 @@ function ContactCtaBlock() {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
       <div className="absolute inset-0 opacity-[0.04]">
-        <img src="/assets/logo.png" alt="" className="w-full h-full object-contain" />
+        <img src="/cpr/assets/logo.png" alt="" className="w-full h-full object-contain" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">

@@ -9,10 +9,10 @@ import { WatermarkSection } from "../ui/WatermarkBackground";
 import { ImageLightbox } from "../ui/ImageLightbox";
 
 const ABOUT_IMAGES = [
-  { src: "/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
-  { src: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp", alt: "Ensemble Biryogo Event", heightClass: "h-32" },
-  { src: "/assets/Gahini 2.webp", alt: "Gahini Community Gathering", heightClass: "h-32" },
-  { src: "/assets/Gahini 3.webp", alt: "Gahini Fellowship and Outreach", heightClass: "h-48" },
+  { src: "/cpr/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
+  { src: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp", alt: "Ensemble Biryogo Event", heightClass: "h-32" },
+  { src: "/cpr/assets/Gahini 2.webp", alt: "Gahini Community Gathering", heightClass: "h-32" },
+  { src: "/cpr/assets/Gahini 3.webp", alt: "Gahini Fellowship and Outreach", heightClass: "h-48" },
 ];
 
 export function AboutPreview() {
@@ -47,7 +47,7 @@ export function AboutPreview() {
               {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/about" className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#BC8A5F] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+              <Link to="/about" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 {t("about.historyBtn")} <ArrowRight size={15} />
               </Link>
               <Link

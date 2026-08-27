@@ -51,7 +51,7 @@ function CategoryDropdown({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-between gap-3 bg-[#4E6132] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md hover:bg-[#3b4b26] active:scale-95 transition-all duration-200 cursor-pointer min-w-[170px]"
+        className="inline-flex items-center justify-between gap-3 bg-[#BC8A5F] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md hover:bg-[#4E6132] active:scale-95 transition-all duration-200 cursor-pointer min-w-[170px]"
       >
         <span>{getCategoryLabel(selectedCategory)}</span>
         <ChevronDown
@@ -134,7 +134,7 @@ export function Newsroom() {
         date: "7 July 2026",
         category: "Report",
         excerpt: "In June 2026, CPR strengthened its position as a leading platform for faith-based community engagement, bringing together member churches united by a shared mission of peace, education, and development.",
-        image: "/assets/news-kwibuka.jpg",
+        image: "/cpr/assets/news-kwibuka.jpg",
       },
       {
         slug: "annual-convention-2026",
@@ -142,7 +142,7 @@ export function Newsroom() {
         date: "2 July 2026",
         category: "Event",
         excerpt: "Rwanda's Protestant community is building sustainable partnerships across the country. Member churches met to align strategies for education, youth leadership, and socio-economic empowerment.",
-        image: "/assets/news-education.webp",
+        image: "/cpr/assets/news-education.webp",
       },
       {
         slug: "may-highlights-2026",
@@ -150,7 +150,7 @@ export function Newsroom() {
         date: "2 June 2026",
         category: "Youth",
         excerpt: "May 2026 was a landmark month for CPR's Youth Program, rolling out peacebuilding workshops and digital skills training for over 800 young church leaders nationwide.",
-        image: "/assets/news-trauma.jpg",
+        image: "/cpr/assets/news-trauma.jpg",
       },
       {
         slug: "kwibuka-31-commemoration",
@@ -158,7 +158,7 @@ export function Newsroom() {
         date: "28 June 2025",
         category: "Event",
         excerpt: "CPR member churches joined thousands across Rwanda to remember the 1994 Genocide against the Tutsi, reaffirming their commitment to peace, reconciliation, and 'Never Again'.",
-        image: "/assets/Gahini 2.webp",
+        image: "/cpr/assets/Gahini 2.webp",
       },
       {
         slug: "bnep-active-pedagogy-training",
@@ -166,7 +166,7 @@ export function Newsroom() {
         date: "14 May 2025",
         category: "Education",
         excerpt: "The Bureau National de l'Éducation Protestante rolled out its flagship Participatory Active Pedagogy program in partnership with international development partners.",
-        image: "/assets/Primary.jpg",
+        image: "/cpr/assets/Primary.jpg",
       },
       {
         slug: "trauma-counselor-certification",
@@ -174,7 +174,7 @@ export function Newsroom() {
         date: "3 April 2025",
         category: "Health",
         excerpt: "Forty-two community health workers across five provinces were certified as trauma counselors, strengthening CPR's mental health outreach capacity.",
-        image: "/assets/Trauma 1.webp",
+        image: "/cpr/assets/Trauma 1.webp",
       },
       {
         slug: "agricultural-cooperatives-sustainability",
@@ -182,7 +182,7 @@ export function Newsroom() {
         date: "12 March 2025",
         category: "Development",
         excerpt: "A new initiative aiming to support rural communities with climate-smart farming techniques was launched in Eastern Province, impacting over 500 families.",
-        image: "/assets/CPR 3 - Copy.webp",
+        image: "/cpr/assets/CPR 3 - Copy.webp",
       },
       {
         slug: "youth-reconciliation-summit",
@@ -190,7 +190,7 @@ export function Newsroom() {
         date: "18 February 2025",
         category: "Youth",
         excerpt: "Youth leaders from various Protestant parishes across the country will gather in Kigali to discuss peacemaking, leadership, and digital evangelism.",
-        image: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+        image: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
       },
     ];
   }, [cmsNews, t]);
@@ -225,7 +225,7 @@ export function Newsroom() {
   }, []);
 
   return (
-    <main className="bg-white min-h-screen">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)", minHeight: "100vh" }}>
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
@@ -235,7 +235,7 @@ export function Newsroom() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/youth.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/youth.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 20%",
             y: heroBgY,
@@ -308,7 +308,7 @@ export function Newsroom() {
                     alt={item.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                      (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
                     }}
                   />
                 </Link>
@@ -364,7 +364,7 @@ export function Newsroom() {
                   onClick={() => setCurrentPage(page)}
                   className={`w-10 h-10 rounded-xl text-sm font-bold transition-all duration-200 ${
                     currentPage === page
-                      ? "bg-[#4E6132] text-white shadow-md scale-105"
+                      ? "bg-[#BC8A5F] text-white shadow-md scale-105"
                       : "text-[#4E6132] border border-[#4E6132]/15 hover:bg-[#4E6132]/10"
                   }`}
                 >

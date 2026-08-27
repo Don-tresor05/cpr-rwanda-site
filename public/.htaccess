@@ -6,7 +6,7 @@
 # ── SPA routing: send all non-file requests to index.html ──
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
+  RewriteBase /cpr/
 
   # Serve existing files (images, css, js, fonts) directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]

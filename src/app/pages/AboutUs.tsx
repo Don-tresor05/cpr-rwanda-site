@@ -84,12 +84,12 @@ export function AboutUs() {
       : (t("aboutPage.coreValues.items", { returnObjects: true }) as { title: string; desc: string }[]) || [];
 
   return (
-    <main className="bg-white">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
         className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
+          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/cpr/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center 5%"
         }}
@@ -133,7 +133,7 @@ export function AboutUs() {
           <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left side: Full Logo */}
             <div className="flex justify-center md:justify-start md:col-span-5 lg:col-span-4">
-              <img src="/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
+              <img src="/cpr/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
             </div>
 
             {/* Right side: Text Content */}
@@ -150,7 +150,7 @@ export function AboutUs() {
                 onClick={() => setHistoryModalOpen(true)}
                 className="inline-flex items-center gap-2 mt-6 text-[#4E6132] font-bold text-sm hover:text-[#8B6543] transition-colors group"
               >
-                {t("aboutPage.learnMore")}
+                {cms?.historyModal?.learnMore ?? t("aboutPage.historyModal.learnMore")}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -333,11 +333,11 @@ export function AboutUs() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {[
-                { name: "Samuel Mutabazi", role: "", img: "/assets/Mutabazi_Samuel.webp" },
-                { name: "Jael", role: "", img: "/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", img: "/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", img: "/assets/IRAGENA Joselyne.webp" },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/assets/BNEP Representative.webp" },
+                { name: "Samuel Mutabazi", role: "", img: "/cpr/assets/Mutabazi_Samuel.webp" },
+                { name: "Jael", role: "", img: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/cpr/assets/BNEP Representative.webp" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -372,10 +372,10 @@ export function AboutUs() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
-                { name: "Eric Mugwaneza", role: "", img: "/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: "", img: "/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: "", img: "/assets/Sec Photo.webp" },
-                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/assets/Passport ed.png" },
+                { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: "", img: "/cpr/assets/Sec Photo.webp" },
+                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/cpr/assets/Passport ed.png" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -416,13 +416,13 @@ export function AboutUs() {
             onClick={() => setOrganigramLightboxOpen(true)}
           >
             <img 
-              src="/assets/Organigam.jpeg" 
+              src="/cpr/assets/Organigam.jpeg" 
               alt="CPR Rwanda Organigram" 
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
           <ImageLightbox 
-            images={[{ src: "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            images={[{ src: "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
             selectedIndex={organigramLightboxOpen ? 0 : null} 
             onClose={() => setOrganigramLightboxOpen(false)} 
           />
@@ -475,36 +475,40 @@ export function AboutUs() {
                 <div className="inline-flex items-center gap-2">
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                    {t("aboutPage.modal.tag")}
+                    {cms?.historyModal?.badge ?? t("aboutPage.historyModal.badge")}
                   </span>
                   <div className="h-px w-8 bg-[#8B6543]" />
                 </div>
                 <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#4E6132] mt-2 mb-4">
-                  {t("aboutPage.modal.title")}
+                  {cms?.historyModal?.title ?? t("aboutPage.historyModal.title")}
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-6 items-start">
                   {/* Text content */}
                   <div className="md:col-span-2 text-[#4A4A4A] leading-relaxed space-y-4">
-                    <p>{t("aboutPage.modal.p1")}</p>
-                    <p>{t("aboutPage.modal.p2")}</p>
+                    <p>
+                      {cms?.historyModal?.p1 ?? t("aboutPage.historyModal.p1")}
+                    </p>
+                    <p>
+                      {cms?.historyModal?.p2 ?? t("aboutPage.historyModal.p2")}
+                    </p>
                   </div>
 
                   {/* Image + caption */}
                   <div className="md:col-span-1">
                     <div className="rounded-2xl overflow-hidden shadow-lg border border-[#4E6132]/10">
                       <img
-                        src="/assets/Mutabazi_Samuel.webp"
+                        src="/cpr/assets/Mutabazi_Samuel.webp"
                         alt="Rev. Samuel Mutabazi"
                         className="w-full aspect-[4/5] object-cover object-top"
                       />
                     </div>
                     <p className="text-center mt-3">
                       <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm">
-                        {t("aboutPage.modal.sgName")}
+                        {cms?.historyModal?.personName ?? t("aboutPage.historyModal.personName")}
                       </span>
                       <span className="block text-[#8B6543] text-xs font-semibold mt-0.5">
-                        {t("aboutPage.modal.sgRole")}
+                        {cms?.historyModal?.personRole ?? t("aboutPage.historyModal.personRole")}
                       </span>
                     </p>
                   </div>
@@ -515,9 +519,9 @@ export function AboutUs() {
                   <Link
                     to="/departments"
                     onClick={() => setHistoryModalOpen(false)}
-                    className="inline-flex items-center gap-2 bg-[#4E6132] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#3b4b26] transition-all duration-300 hover:scale-105 text-sm"
+                    className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
                   >
-                    {t("aboutPage.modal.exploreBtn")} <ArrowRight size={16} />
+                    {cms?.historyModal?.cta ?? t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
