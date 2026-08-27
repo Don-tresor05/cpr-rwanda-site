@@ -30,7 +30,7 @@ const FranceFlag = () => (
 );
 
 const RwandaFlag = () => (
-  <img src="/assets/rw-flag.png" alt="Rwanda flag" className="w-5 h-3.5 rounded-sm shadow-sm flex-shrink-0 object-cover" />
+  <img src="/cpr/cpr/cpr/assets/rw-flag.png" alt="Rwanda flag" className="w-5 h-3.5 rounded-sm shadow-sm flex-shrink-0 object-cover" />
 );
 
 const LANGUAGES: Language[] = [
