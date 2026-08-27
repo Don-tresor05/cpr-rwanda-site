@@ -70,7 +70,7 @@ export function ContactPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/about-us.webp')",
+              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/cpr/cpr/assets/about-us.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             y: heroBgY,
@@ -825,7 +825,7 @@ function ContactCtaBlock() {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
       <div className="absolute inset-0 opacity-[0.04]">
-        <img src="/assets/logo.png" alt="" className="w-full h-full object-contain" />
+        <img src="/cpr/cpr/assets/logo.png" alt="" className="w-full h-full object-contain" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
