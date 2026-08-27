@@ -87,7 +87,7 @@ export function AboutUs() {
       <div
         className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/assets/CPR 3 - Copy.webp')",
+          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/cpr/cpr/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center 5%"
         }}
@@ -131,7 +131,7 @@ export function AboutUs() {
           <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left side: Full Logo */}
             <div className="flex justify-center md:justify-start md:col-span-5 lg:col-span-4">
-              <img src="/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
+              <img src="/cpr/cpr/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
             </div>
 
             {/* Right side: Text Content */}
@@ -331,11 +331,11 @@ export function AboutUs() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {[
-                { name: "Samuel Mutabazi", role: "", img: "/assets/Mutabazi_Samuel.webp" },
-                { name: "Jael", role: "", img: "/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", img: "/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", img: "/assets/IRAGENA Joselyne.webp" },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/assets/BNEP Representative.webp" },
+                { name: "Samuel Mutabazi", role: "", img: "/cpr/cpr/assets/Mutabazi_Samuel.webp" },
+                { name: "Jael", role: "", img: "/cpr/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: "", img: "/cpr/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: "", img: "/cpr/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/cpr/cpr/assets/BNEP Representative.webp" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -370,10 +370,10 @@ export function AboutUs() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
-                { name: "Eric Mugwaneza", role: "", img: "/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: "", img: "/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: "", img: "/assets/Sec Photo.webp" },
-                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/assets/Passport ed.png" },
+                { name: "Eric Mugwaneza", role: "", img: "/cpr/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: "", img: "/cpr/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: "", img: "/cpr/cpr/assets/Sec Photo.webp" },
+                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/cpr/cpr/assets/Passport ed.png" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -484,7 +484,7 @@ export function AboutUs() {
                   <div className="md:col-span-1">
                     <div className="rounded-2xl overflow-hidden shadow-lg border border-[#4E6132]/10">
                       <img
-                        src="/assets/Mutabazi_Samuel.webp"
+                        src="/cpr/cpr/assets/Mutabazi_Samuel.webp"
                         alt="Rev. Samuel Mutabazi"
                         className="w-full aspect-[4/5] object-cover object-top"
                       />
