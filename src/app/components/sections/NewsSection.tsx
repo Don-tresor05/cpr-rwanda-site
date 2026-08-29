@@ -20,12 +20,12 @@ export function NewsSection() {
   // Map WP posts to the local format, fallback to hardcoded if none
   const news = useMemo(() => {
     if (wpPosts && wpPosts.length > 0) {
-      return wpPosts.map(post => ({
-        title: post.title.rendered,
+      return wpPosts.filter(Boolean).map(post => ({
+        title: post.title?.rendered ?? '',
         slug: post.slug,
         image: getFeaturedImageUrl(post, "large") || "/assets/placeholder-news.jpg",
         date: formatWPDate(post.date),
-        excerpt: stripHtml(post.excerpt.rendered),
+        excerpt: stripHtml(post.excerpt?.rendered ?? ''),
       }));
     }
     return fallbackNews;

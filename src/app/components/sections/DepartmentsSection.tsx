@@ -31,9 +31,9 @@ export function DepartmentsSection() {
   // Map WP departments to the local format, fallback to hardcoded if none
   const departments = useMemo(() => {
     if (wpDepts && wpDepts.length > 0) {
-      return wpDepts.map(dept => ({
-        title: dept.title.rendered,
-        desc: stripHtml(dept.excerpt.rendered).slice(0, 150) + "...",
+      return wpDepts.filter(Boolean).map(dept => ({
+        title: dept.title?.rendered ?? '',
+        desc: stripHtml(dept.excerpt?.rendered ?? '').slice(0, 150) + "...",
         link: `/departments#${dept.slug}`,
         icon: ICON_MAP[dept.slug] || Briefcase,
       }));
