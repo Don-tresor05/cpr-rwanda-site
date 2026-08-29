@@ -895,7 +895,7 @@
     "form": {
       "tag": "Send a Message",
       "title": "We'd Love to Hear From You",
-      "desc": "Fill out the form below and our team will get back to you as soon as possible. Your email app will open with your message ready to send.",
+      "desc": "Fill out the form below and our team will get back to you as soon as possible.",
       "name": "Full Name",
       "namePh": "e.g. Jean Bosco Nkurunziza",
       "email": "Email Address",
