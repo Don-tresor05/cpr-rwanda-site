@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { getNews } from "../../data/news";
-import { useCmsNews } from "../../data/sanityNews";
+import { usePosts } from "../../hooks/useWordPress";
+import { getFeaturedImageUrl, formatWPDate, stripHtml } from "../../lib/wordpress";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
@@ -11,8 +12,24 @@ import { useTranslation } from "react-i18next";
 export function NewsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  // CMS posts take over when staff publish them; hardcoded news is the fallback.
-  const news = useCmsNews() ?? getNews(t);
+  
+  // WordPress Headless Integration
+  const { data: wpPosts, loading } = usePosts({ per_page: 6 });
+  const fallbackNews = useMemo(() => getNews(t), [t]);
+
+  // Map WP posts to the local format, fallback to hardcoded if none
+  const news = useMemo(() => {
+    if (wpPosts && wpPosts.length > 0) {
+      return wpPosts.map(post => ({
+        title: post.title.rendered,
+        slug: post.slug,
+        image: getFeaturedImageUrl(post, "large") || "/assets/placeholder-news.jpg",
+        date: formatWPDate(post.date),
+        excerpt: stripHtml(post.excerpt.rendered),
+      }));
+    }
+    return fallbackNews;
+  }, [wpPosts, fallbackNews]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -67,7 +84,7 @@ export function NewsSection() {
           <div className="flex items-center gap-3 self-end md:self-auto">
             <button
               onClick={prevSlide}
-              disabled={currentIndex === 0}
+              disabled={currentIndex === 0 || loading}
               aria-label="Previous articles"
               className="w-12 h-12 rounded-full border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#4E6132] transition-all duration-300 shadow-sm"
             >
@@ -75,7 +92,7 @@ export function NewsSection() {
             </button>
             <button
               onClick={nextSlide}
-              disabled={currentIndex >= maxIndex}
+              disabled={currentIndex >= maxIndex || loading}
               aria-label="Next articles"
               className="w-12 h-12 rounded-full border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#4E6132] transition-all duration-300 shadow-sm"
             >
@@ -84,49 +101,51 @@ export function NewsSection() {
           </div>
         </div>
 
-        <div className="overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-out gap-7"
-            style={{
-              transform: currentIndex === 0 ? "none" : `translateX(calc(-${currentIndex} * (100% + 28px) / ${visibleCount}))`,
-            }}
-          >
-            {news.map((article, i) => (
-              <motion.article
-                key={article.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={visible ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white rounded-2xl overflow-hidden border border-[#4E6132]/10 shadow-sm flex flex-col flex-shrink-0"
-                style={{ width: `calc((100% - ${(visibleCount - 1) * 28}px) / ${visibleCount})` }}
-              >
-                <Link to={`/newsroom/${article.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover"
-                  />
-                </Link>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="text-xs font-semibold text-[#8B6543] mb-3">
-                    {article.date}
-                  </div>
-                  <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] leading-snug mb-3 hover:text-[#8B6543] transition-colors line-clamp-2 min-h-[56px]">
-                    <Link to={`/newsroom/${article.slug}`}>
-                      {article.title}
-                    </Link>
-                  </h3>
-                  <p className="text-[#4A4A4A] text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
-                  <Link
-                    to={`/newsroom/${article.slug}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors mt-auto"
-                  >
-                    {t("news.readArticle")} <ArrowRight size={14} />
+        <div className="overflow-hidden min-h-[400px] relative">
+          {loading ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Loader2 className="w-10 h-10 text-[#4E6132] animate-spin" />
+            </div>
+          ) : (
+            <div
+              className="flex transition-transform duration-500 ease-out gap-7"
+              style={{
+                transform: currentIndex === 0 ? "none" : `translateX(calc(-${currentIndex} * (100% + 28px) / ${visibleCount}))`,
+              }}
+            >
+              {news.map((article, i) => (
+                <motion.article
+                  key={article.title + i}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={visible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="bg-white rounded-2xl overflow-hidden border border-[#4E6132]/10 shadow-sm flex flex-col flex-shrink-0"
+                  style={{ width: `calc((100% - ${(visibleCount - 1) * 28}px) / ${visibleCount})` }}
+                >
+                  <Link to={`/newsroom/${article.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover"
+                    />
                   </Link>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="text-xs font-semibold text-[#8B6543] mb-3">
+                      {article.date}
+                    </div>
+                    <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] leading-snug mb-3 hover:text-[#8B6543] transition-colors line-clamp-2 min-h-[56px]" dangerouslySetInnerHTML={{ __html: article.title }} />
+                    <p className="text-[#4A4A4A] text-sm leading-relaxed mb-6 line-clamp-3" dangerouslySetInnerHTML={{ __html: article.excerpt }} />
+                    <Link
+                      to={`/newsroom/${article.slug}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors mt-auto"
+                    >
+                      {t("news.readArticle")} <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mt-12 text-center">

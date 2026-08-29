@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
-import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { WatermarkSection } from "../ui/WatermarkBackground";
@@ -17,7 +16,6 @@ const ABOUT_IMAGES = [
 
 export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
-  const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
 
