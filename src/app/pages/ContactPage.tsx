@@ -210,6 +210,16 @@ function ContactFormBlock() {
   const [sent, setSent] = useState(false);
   const [sendError, setSendError] = useState(false);
 
+  // Auto-return to the blank form a few seconds after a successful send
+  useEffect(() => {
+    if (!sent) return;
+    const timer = setTimeout(() => {
+      setSent(false);
+      setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "" });
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, [sent]);
+
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!values.name.trim()) errs.name = errors.name ?? "Please enter your name";
