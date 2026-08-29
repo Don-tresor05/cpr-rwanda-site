@@ -895,7 +895,7 @@
     "form": {
       "tag": "Envoyer un Message",
       "title": "Nous Serions Ravi de Vous Entendre",
-      "desc": "Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible. Votre application mail s'ouvrira avec votre message prêt à être envoyé.",
+      "desc": "Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible.",
       "name": "Nom Complet",
       "namePh": "ex. Jean Bosco Nkurunziza",
       "email": "Adresse Email",
