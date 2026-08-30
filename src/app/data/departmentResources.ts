@@ -49,7 +49,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "strategic-plan-2023-2028", title: data.gs.resources[1].title, description: data.gs.resources[1].description, type: "document", icon: BookOpen, files: [] },
         { slug: "member-church-directory", title: data.gs.resources[2].title, description: data.gs.resources[2].description, type: "download", icon: Download, files: [] },
       ],
-      image: "/assets/cpr-members.webp",
+      image: "/cpr/assets/cpr-members.webp",
     },
     bnep: {
       id: "bnep",
@@ -64,7 +64,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "teacher-training-handbook", title: data.bnep.resources[1].title, description: data.bnep.resources[1].description, type: "download", icon: Download, files: [] },
         { slug: "education-statistics-report", title: data.bnep.resources[2].title, description: data.bnep.resources[2].description, type: "document", icon: BookOpen, files: [] },
       ],
-      image: "/assets/education.webp",
+      image: "/cpr/assets/education.webp",
     },
     diakonia: {
       id: "diakonia",
@@ -79,7 +79,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "ropre-certification-standards", title: data.diakonia.resources[1].title, description: data.diakonia.resources[1].description, type: "document", icon: FileText, files: [] },
         { slug: "community-development-toolkit", title: data.diakonia.resources[2].title, description: data.diakonia.resources[2].description, type: "download", icon: Download, files: [] },
       ],
-      image: "/assets/handover.webp",
+      image: "/cpr/assets/handover.webp",
     },
     finance: {
       id: "finance",
@@ -93,7 +93,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "financial-transparency-report", title: data.finance.resources[0].title, description: data.finance.resources[0].description, type: "document", icon: FileText, files: [] },
         { slug: "donor-partnership-guidelines", title: data.finance.resources[1].title, description: data.finance.resources[1].description, type: "document", icon: BookOpen, files: [] },
       ],
-      image: "/assets/autorites.webp",
+      image: "/cpr/assets/autorites.webp",
     },
     youth: {
       id: "youth",
@@ -108,7 +108,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "summit-reports-outcomes", title: data.youth.resources[1].title, description: data.youth.resources[1].description, type: "document", icon: FileText, files: [] },
         { slug: "youth-ministry-resources", title: data.youth.resources[2].title, description: data.youth.resources[2].description, type: "download", icon: Download, files: [] },
       ],
-      image: "/assets/Youth2.webp",
+      image: "/cpr/assets/Youth2.webp",
     },
     gender: {
       id: "gender",
@@ -123,7 +123,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "womens-cooperative-handbook", title: data.gender.resources[1].title, description: data.gender.resources[1].description, type: "download", icon: Download, files: [] },
         { slug: "gender-policy-framework", title: data.gender.resources[2].title, description: data.gender.resources[2].description, type: "document", icon: FileText, files: [] },
       ],
-      image: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+      image: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
     },
     radio: {
       id: "radio",
@@ -138,7 +138,7 @@ export const getDepartmentResources = (t: any): Record<string, DepartmentResourc
         { slug: "listener-feedback-reports", title: data.radio.resources[1].title, description: data.radio.resources[1].description, type: "document", icon: BookOpen, files: [] },
         { slug: "media-partnership-guidelines", title: data.radio.resources[2].title, description: data.radio.resources[2].description, type: "link", icon: ExternalLink, files: [] },
       ],
-      image: "/assets/radio-studio.webp",
+      image: "/cpr/assets/radio-studio.webp",
     },
   };
 };

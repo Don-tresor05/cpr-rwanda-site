@@ -5,7 +5,7 @@ import "./i18n";
 import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/cpr">
     <App />
   </BrowserRouter>
 );

@@ -234,6 +234,16 @@ export interface AboutPageContent {
   };
   organigram?: { title?: string; comingSoon?: string };
   partners?: { title?: string };
+  historyModal?: {
+    learnMore?: string;
+    badge?: string;
+    title?: string;
+    p1?: string;
+    p2?: string;
+    personName?: string;
+    personRole?: string;
+    cta?: string;
+  };
 }
 
 const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
@@ -258,7 +268,8 @@ const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
   },
   execCommittee { title, desc, boardMembers, staff, defaultName, defaultRole },
   organigram { title, comingSoon },
-  partners { title }
+  partners { title },
+  historyModal { learnMore, badge, title, p1, p2, personName, personRole, cta }
 }`;
 
 interface AboutPageRaw {
@@ -308,6 +319,16 @@ interface AboutPageRaw {
   };
   organigram?: { title?: LocalizedField; comingSoon?: LocalizedField };
   partners?: { title?: LocalizedField };
+  historyModal?: {
+    learnMore?: LocalizedField;
+    badge?: LocalizedField;
+    title?: LocalizedField;
+    p1?: LocalizedField;
+    p2?: LocalizedField;
+    personName?: LocalizedField;
+    personRole?: LocalizedField;
+    cta?: LocalizedField;
+  };
 }
 
 /**
@@ -404,6 +425,18 @@ export function useAboutPage(): AboutPageContent | null {
             : undefined,
           partners: doc.partners
             ? { title: pickOrUndef(doc.partners.title, lang) }
+            : undefined,
+          historyModal: doc.historyModal
+            ? {
+                learnMore: pickOrUndef(doc.historyModal.learnMore, lang),
+                badge: pickOrUndef(doc.historyModal.badge, lang),
+                title: pickOrUndef(doc.historyModal.title, lang),
+                p1: pickOrUndef(doc.historyModal.p1, lang),
+                p2: pickOrUndef(doc.historyModal.p2, lang),
+                personName: pickOrUndef(doc.historyModal.personName, lang),
+                personRole: pickOrUndef(doc.historyModal.personRole, lang),
+                cta: pickOrUndef(doc.historyModal.cta, lang),
+              }
             : undefined,
         });
       })

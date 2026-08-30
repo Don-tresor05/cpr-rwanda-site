@@ -20,7 +20,7 @@ export function HeroSection() {
     if (cmsSlides && cmsSlides.length > 0) {
       return cmsSlides.map((s, i) => ({
         id: i + 1,
-        image: s.image || "/assets/1.jpeg",
+        image: s.image || "/cpr/assets/1.jpeg",
         label: s.label || "",
         title: s.title || "",
         subtitle: s.subtitle || "",
@@ -32,9 +32,9 @@ export function HeroSection() {
       }));
     }
     return [
-      { id: 1, image: "/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
-      { id: 2, image: "/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
-      { id: 3, image: "/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
+      { id: 1, image: "/cpr/assets/1.jpeg", ...translatedSlides[0], ctaHref: "/about#vision-mission", ctaSecondaryHref: "/about#executive-committee" },
+      { id: 2, image: "/cpr/assets/Primary.jpg", ...translatedSlides[1], ctaHref: "/departments#bnep", ctaSecondaryHref: "/departments" },
+      { id: 3, image: "/cpr/assets/Inkoramutima-Logo.jpg", ...translatedSlides[2], ctaHref: "/radio", ctaSecondaryHref: "/radio#programs" },
     ];
   }, [settings, translatedSlides]);
 
@@ -117,7 +117,7 @@ export function HeroSection() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to={slide.ctaHref}
-                  className="inline-flex items-center gap-2 bg-[#8B6543] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#a6784f] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                  className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />

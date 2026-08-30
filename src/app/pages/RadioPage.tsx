@@ -76,7 +76,7 @@ export function RadioPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/radio-hero.webp')",
+              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/cpr/assets/radio-hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -92,20 +92,20 @@ export function RadioPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#EAD196]/40 rounded-full px-4 py-2 mb-6"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#BC8A5F] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#BC8A5F]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#EAD196]" />
             </span>
-            <RadioTower size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
+            <RadioTower size={15} className="text-[#EAD196]" />
+            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
               {(rp?.heroTag as string) ?? "Radio Inkoramutima"}
             </span>
           </motion.div>
 
           <motion.img
-            src="/assets/Inkoramutima-Logo.jpg"
+            src="/cpr/assets/Inkoramutima-Logo.jpg"
             alt={(rp?.heroTitle as string) ?? "Radio Inkoramutima"}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -275,7 +275,7 @@ function RadioHistoryBlock() {
               <motion.div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: "url('/assets/radio-studio.webp')",
+                  backgroundImage: "url('/cpr/assets/radio-studio.webp')",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -292,7 +292,7 @@ function RadioHistoryBlock() {
               {/* Studio GIF */}
               <div className="absolute bottom-4 right-4">
                 <img
-                  src="/assets/radio-studio.gif"
+                  src="/cpr/assets/radio-studio.gif"
                   alt="Radio Inkoramutima studio"
                   className="w-44 lg:w-56 rounded-xl shadow-2xl border border-white/20"
                 />
@@ -317,7 +317,7 @@ function RadioHistoryBlock() {
         </div>
       </div>
       <ImageLightbox
-        images={[{ src: "/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
+        images={[{ src: "/cpr/assets/radio-studio.webp", alt: "Radio Inkoramutima Studio" }]}
         selectedIndex={lightboxOpen ? 0 : null}
         onClose={() => setLightboxOpen(false)}
       />
@@ -718,7 +718,7 @@ function RadioCtaBlock() {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
       <div className="absolute inset-0 opacity-[0.04]">
-        <img src="/assets/Inkoramutima-Logo.jpg" alt="" className="w-full h-full object-contain" />
+        <img src="/cpr/assets/Inkoramutima-Logo.jpg" alt="" className="w-full h-full object-contain" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
