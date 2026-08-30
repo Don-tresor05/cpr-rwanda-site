@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { sanityClient } from "../../lib/sanity";
+import { client as sanityClient } from "../../lib/sanityClient";
 import type { NewsArticle } from "./news";
 
 /**

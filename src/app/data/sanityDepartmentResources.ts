@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { sanityClient } from "../../lib/sanity";
+import { client as sanityClient } from "../../lib/sanityClient";
 
 export interface CmsResourceFile {
   name: string;
