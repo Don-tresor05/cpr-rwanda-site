@@ -10,6 +10,8 @@
     "cors:add": "sanity cors add"
   },
   "dependencies": {
+    "@sanity/client": "^7.26.2",
+    "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^3.99.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
