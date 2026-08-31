@@ -95,7 +95,7 @@ export function AboutUs() {
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
-          <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
+          <h1            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md">
             {cms?.heroTitle ?? t("aboutPage.heroTitle")}
           </h1>
         </div>
@@ -105,7 +105,7 @@ export function AboutUs() {
       {/* Sub-Navigation */}
       <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-14 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}

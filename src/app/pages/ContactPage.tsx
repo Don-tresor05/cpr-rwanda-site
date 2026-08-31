@@ -86,7 +86,7 @@ export function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {(cp?.heroTitle as string) ?? "Contact Us"}
           </motion.h1>
@@ -95,7 +95,7 @@ export function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-lg max-w-2xl leading-relaxed"
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
             {(cp?.heroDesc as string) ?? ""}
           </motion.p>
@@ -107,7 +107,7 @@ export function ContactPage() {
       {/* ─── STICKY SUB-NAV ─── */}
       <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-14 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -606,7 +606,7 @@ function MapBlock() {
           <iframe
             title={(map?.cardTitle as string) ?? "CPR Rwanda location map"}
             src={embedUrl}
-            className="w-full h-[420px] lg:h-[540px] grayscale-[40%] group-hover:grayscale-0 contrast-[1.02] transition-all duration-700"
+            className="w-full h-[300px] sm:h-[420px] lg:h-[540px] grayscale-[40%] group-hover:grayscale-0 contrast-[1.02] transition-all duration-700"
             style={{ border: 0 }}
             loading="lazy"
             allowFullScreen
@@ -628,7 +628,7 @@ function MapBlock() {
           </a>
 
           {/* Floating address card */}
-          <div className="absolute left-4 bottom-4 lg:left-8 lg:bottom-8 max-w-[300px] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-5 border border-[#4E6132]/10">
+          <div className="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 lg:left-8 lg:bottom-8 max-w-[260px] sm:max-w-[300px] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-4 sm:p-5 border border-[#4E6132]/10">
             <div className="flex items-start gap-3">
               <div className="relative w-11 h-11 rounded-full bg-[#4E6132] flex items-center justify-center flex-shrink-0">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#4E6132] opacity-40 animate-ping" style={{ animationDuration: "2.4s" }} />

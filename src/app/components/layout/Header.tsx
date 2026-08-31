@@ -169,7 +169,7 @@ export function Header() {
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span className="text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
+            <span className="text-[10px] sm:text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide hidden sm:block">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
