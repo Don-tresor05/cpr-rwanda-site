@@ -830,7 +830,7 @@ function ContactCtaBlock() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="py-20 bg-[#1C2A10] relative overflow-hidden"
+      className="py-14 sm:py-20 bg-[#1C2A10] relative overflow-hidden"
     >
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />

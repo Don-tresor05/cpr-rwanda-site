@@ -713,7 +713,7 @@ function RadioCtaBlock() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="py-20 bg-[#1C2A10] relative overflow-hidden"
+      className="py-14 sm:py-20 bg-[#1C2A10] relative overflow-hidden"
     >
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
@@ -727,7 +727,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
+          className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
         >
           {(cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
         </motion.h2>
@@ -736,7 +736,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
+          className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
         >
           {(cta?.desc as string) ?? ""}
         </motion.p>

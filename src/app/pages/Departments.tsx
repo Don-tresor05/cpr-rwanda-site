@@ -412,7 +412,7 @@ export function Departments() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="py-20 bg-[#4E6132] relative overflow-hidden"
+        className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden"
       >
         {/* Decorative circles */}
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
@@ -424,7 +424,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? (cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
@@ -433,7 +433,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
+            className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
           >
             {cms?.cta?.desc ?? (cta?.desc as string) ?? ""}
           </motion.p>
@@ -507,7 +507,7 @@ function DepartmentDetailBlock({
         style={{ backgroundColor: sec.accent }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 sm:py-20 lg:py-28">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
             !isEven ? "lg:[&>*:first-child]:order-2" : ""
@@ -547,7 +547,7 @@ function DepartmentDetailBlock({
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}

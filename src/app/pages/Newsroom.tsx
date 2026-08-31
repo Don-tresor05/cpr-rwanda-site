@@ -296,11 +296,11 @@ export function Newsroom() {
           </div>
 
           {/* News Grid - Slimmer card widths matching cooperation.rw reference */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {paginatedItems.map((item) => (
               <article
                 key={item.slug}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full max-w-[360px] mx-auto w-full"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
               >
                 <Link to={`/newsroom/${item.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
                   <img

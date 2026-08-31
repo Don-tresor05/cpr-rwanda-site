@@ -224,7 +224,7 @@ export function AboutUs() {
       <WatermarkSection className="pt-16 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132]">
+            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132]">
               {cms?.model?.title ?? t("aboutPage.model.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto mt-4 leading-relaxed">
@@ -299,9 +299,8 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Values */}
-      <section id="core-values" className="py-20 bg-[#4E6132] scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-10">
+      <section id="core-values" className="py-14 sm:py-20 bg-[#4E6132] scroll-mt-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-8 sm:mb-10">
             {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -316,10 +315,10 @@ export function AboutUs() {
       </section>
 
       {/* Team */}
-      <section id="executive-committee" className="py-20 bg-[#F8F9FA] scroll-mt-32">
+      <section id="executive-committee" className="py-14 sm:py-20 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-4">
+            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-[#4E6132] mb-4">
               {cms?.execCommittee?.title ?? t("aboutPage.execCommittee.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto">

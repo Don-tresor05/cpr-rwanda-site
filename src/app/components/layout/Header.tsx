@@ -265,7 +265,7 @@ export function Header() {
                   <div key={item.label}>
                     {COMING_SOON.has(item.href) ? (
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => {
                           setMobileOpen(false);
                           showComingSoon(item.label);
@@ -281,7 +281,7 @@ export function Header() {
                       </button>
                     ) : item.children ? (
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                       >
                         {item.label}
@@ -293,7 +293,7 @@ export function Header() {
                     ) : (
                       <Link
                         to={item.href}
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-semibold text-[#4E6132] hover:bg-[#4E6132]/15 transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.label}
