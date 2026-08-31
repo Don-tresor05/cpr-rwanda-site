@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { sanityClient } from "../../lib/sanity";
+import { client as sanityClient } from "../../lib/sanityClient";
 import type { NewsArticle } from "./news";
 
 /**
@@ -87,7 +87,7 @@ function mapPost(post: SanityNewsPost, lang: string): NewsArticle {
     category: post.category || "Announcement",
     title: pick(post.title, lang),
     excerpt: pick(post.excerpt, lang),
-    image: post.image || "/assets/CPR 3 - Copy.webp",
+    image: post.image || "/cpr/assets/CPR 3 - Copy.webp",
     imageCaption: post.imageCaption || undefined,
     author: post.author || undefined,
     quote: pick(post.quote, lang) || undefined,

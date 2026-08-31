@@ -2,22 +2,20 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
-import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { ImageLightbox } from "../ui/ImageLightbox";
 
 const ABOUT_IMAGES = [
-  { src: "/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
-  { src: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp", alt: "Ensemble Biryogo Event", heightClass: "h-32" },
-  { src: "/assets/Gahini 2.webp", alt: "Gahini Community Gathering", heightClass: "h-32" },
-  { src: "/assets/Gahini 3.webp", alt: "Gahini Fellowship and Outreach", heightClass: "h-48" },
+  { src: "/cpr/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
+  { src: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp", alt: "Ensemble Biryogo Event", heightClass: "h-32" },
+  { src: "/cpr/assets/Gahini 2.webp", alt: "Gahini Community Gathering", heightClass: "h-32" },
+  { src: "/cpr/assets/Gahini 3.webp", alt: "Gahini Fellowship and Outreach", heightClass: "h-48" },
 ];
 
 export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
-  const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
 

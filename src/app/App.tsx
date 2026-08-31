@@ -21,6 +21,8 @@ import { GalleryPage } from "./pages/GalleryPage";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
+import { FixedWatermark } from "./components/ui/FixedWatermark";
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
@@ -38,33 +40,33 @@ export default function App() {
   // const [booted, setBooted] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen">
+      <FixedWatermark variant="default" />
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
-      {/* Loading screen temporarily disabled — kept for future use
-      {!booted && <LoadingScreen onDone={() => setBooted(true)} />}
-      */}
       <ComingSoonProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/secretariat" element={<Secretariat />} />
-        <Route path="/secretariat/:sectionId/resources" element={<SecretariatResources />} />
-        <Route path="/secretariat/:sectionId/resources/:resourceSlug" element={<SecretariatResourceFiles />} />
-        <Route path="/departments" element={<Departments />} />
-        <Route path="/departments/:deptId/resources" element={<DepartmentResources />} />
-        <Route path="/departments/:deptId/resources/:resourceSlug" element={<DepartmentResourceFiles />} />
-        <Route path="/radio" element={<RadioPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/newsroom" element={<Newsroom />} />
-        <Route path="/newsroom/:slug" element={<NewsDetail />} />
-        <Route path="/news" element={<Newsroom />} />
-        <Route path="/news/:slug" element={<NewsDetail />} />
-      </Routes>
-      <Footer />
+        <div className="relative z-10">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/secretariat" element={<Secretariat />} />
+            <Route path="/secretariat/:sectionId/resources" element={<SecretariatResources />} />
+            <Route path="/secretariat/:sectionId/resources/:resourceSlug" element={<SecretariatResourceFiles />} />
+            <Route path="/departments" element={<Departments />} />
+            <Route path="/departments/:deptId/resources" element={<DepartmentResources />} />
+            <Route path="/departments/:deptId/resources/:resourceSlug" element={<DepartmentResourceFiles />} />
+            <Route path="/radio" element={<RadioPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/newsroom" element={<Newsroom />} />
+            <Route path="/newsroom/:slug" element={<NewsDetail />} />
+            <Route path="/news" element={<Newsroom />} />
+            <Route path="/news/:slug" element={<NewsDetail />} />
+          </Routes>
+          <Footer />
+        </div>
       </ComingSoonProvider>
     </div>
   );

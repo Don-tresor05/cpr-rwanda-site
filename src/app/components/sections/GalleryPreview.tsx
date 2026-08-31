@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
 import { ImageLightbox } from "../ui/ImageLightbox";
 
 const GALLERY_IMAGES = [
-  { src: "/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
-  { src: "/assets/2.jpeg", alt: "CPR Community Work", span: "" },
-  { src: "/assets/3.jpeg", alt: "Kwibuka Commemoration", span: "" },
-  { src: "/assets/preacher-site-logo-dcd17-1.webp", alt: "Preacher Ministry", span: "" },
-  { src: "/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
+  { src: "/cpr/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
+  { src: "/cpr/assets/2.jpeg", alt: "CPR Community Work", span: "" },
+  { src: "/cpr/assets/3.jpeg", alt: "Kwibuka Commemoration", span: "" },
+  { src: "/cpr/assets/preacher-site-logo-dcd17-1.webp", alt: "Preacher Ministry", span: "" },
+  { src: "/cpr/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
 ];
 
 export function GalleryPreview() {

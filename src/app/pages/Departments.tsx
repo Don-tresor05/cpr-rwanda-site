@@ -26,13 +26,13 @@ interface DepartmentSection {
 }
 
 const deptImages: Record<string, string> = {
-  gs: "/assets/cpr-members.webp",
-  bnep: "/assets/education.webp",
-  diakonia: "/assets/handover.webp",
-  finance: "/assets/autorites.webp",
-  youth: "/assets/Youth2.webp",
-  gender: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
-  radio: "/assets/radio-studio.webp",
+  gs: "/cpr/assets/cpr-members.webp",
+  bnep: "/cpr/assets/education.webp",
+  diakonia: "/cpr/assets/handover.webp",
+  finance: "/cpr/assets/autorites.webp",
+  youth: "/cpr/assets/Youth2.webp",
+  gender: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+  radio: "/cpr/assets/radio-studio.webp",
 };
 
 const getDeptStats = (lang: string): Record<string, { label: string; value: string }[]> => {
@@ -208,7 +208,7 @@ export function Departments() {
   const cta = (dp?.cta as Record<string, string>) ?? {};
 
   return (
-    <main className="bg-white">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
         ref={heroRef}
@@ -218,7 +218,7 @@ export function Departments() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/assets/departments-hero.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/departments-hero.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,

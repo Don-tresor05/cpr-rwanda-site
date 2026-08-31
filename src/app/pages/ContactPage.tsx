@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, Link } from "react-router";
+import { useLocation } from "react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -9,7 +9,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
   Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
-  MessageCircle, Navigation, ExternalLink,
+  MessageCircle, Navigation, ExternalLink, AlertCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -70,79 +70,35 @@ export function ContactPage() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/assets/about-us.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/about-us.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             y: heroBgY,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A10] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
         <motion.div
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 text-white/60 text-sm mb-5"
-          >
-            <Link to="/" className="hover:text-[#BC8A5F] transition-colors">{t("newsroom.breadcrumbHome", "Home")}</Link>
-            <span className="text-white/30">/</span>
-            <span className="text-[#BC8A5F] font-semibold">{(cp?.heroTag as string) ?? "Contact Us"}</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#BC8A5F]/40 rounded-full px-4 py-2 mb-6"
-          >
-            <MessageSquare size={15} className="text-[#BC8A5F]" />
-            <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
-              {(cp?.heroTag as string) ?? "Contact Us"}
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-4xl sm:text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4 max-w-3xl"
+            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {(cp?.heroTitle as string) ?? "Let's Start a Conversation"}
+            {(cp?.heroTitle as string) ?? "Contact Us"}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-base lg:text-lg max-w-2xl leading-relaxed mb-8"
+            className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
             {(cp?.heroDesc as string) ?? ""}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap gap-3"
-          >
-            {[
-              { icon: MapPin, label: (cp?.heroChip1 as string) ?? "KG 2 Av 4, Kigali" },
-              { icon: Clock, label: (cp?.heroChip2 as string) ?? "Mon – Fri, 8:00 – 17:00" },
-            ].map((chip, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 text-sm text-white/85"
-              >
-                <chip.icon size={15} className="text-[#BC8A5F]" />
-                {chip.label}
-              </span>
-            ))}
-          </motion.div>
         </motion.div>
 
         <ScrollIndicator />
@@ -247,11 +203,22 @@ function ContactFormBlock() {
   const errors = (form?.errors as Record<string, string>) ?? {};
 
   const [values, setValues] = useState({
-    name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "",
+    name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "",
   });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sendError, setSendError] = useState(false);
+
+  // Auto-return to the blank form a few seconds after a successful send
+  useEffect(() => {
+    if (!sent) return;
+    const timer = setTimeout(() => {
+      setSent(false);
+      setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "" });
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, [sent]);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -261,23 +228,32 @@ function ContactFormBlock() {
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     setFieldErrors(errs);
     if (Object.keys(errs).length > 0) return;
+    if (values.website) return; // honeypot — real visitors never fill this in
 
     setSending(true);
-    const subject = encodeURIComponent(`[CPR Website] ${values.subject}`);
-    const body = encodeURIComponent(
-      `Name: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone || "—"}\nSubject: ${values.subject}\n\n${values.message}`
-    );
-    // Brief delay for the "sending" state to be visible, then open the mail client
-    setTimeout(() => {
-      window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+    setSendError(false);
+    try {
+      const res = await fetch("/cpr/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = await res.json().catch(() => ({ success: false }));
+      if (res.ok && data.success) {
+        setSent(true);
+      } else {
+        setSendError(true);
+      }
+    } catch {
+      setSendError(true);
+    } finally {
       setSending(false);
-      setSent(true);
-    }, 600);
+    }
   };
 
   const inputClass = (hasError: boolean) =>
@@ -364,14 +340,48 @@ function ContactFormBlock() {
                     {(form?.successDesc as string) ?? ""}
                   </p>
                   <button
-                    onClick={() => { setSent(false); setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "" }); }}
+                    onClick={() => { setSent(false); setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "" }); }}
                     className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
                   >
                     {(form?.sendAnother as string) ?? "Send another message"}
                   </button>
                 </motion.div>
+              ) : sendError ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative z-10 py-16 text-center"
+                >
+                  <div className="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-6">
+                    <AlertCircle size={40} className="text-red-500" />
+                  </div>
+                  <h3 className="font-['Outfit'] font-black text-2xl text-[#4E6132] mb-3">
+                    {(form?.errorTitle as string) ?? "Something Went Wrong"}
+                  </h3>
+                  <p className="text-[#4A4A4A] text-sm leading-relaxed max-w-md mx-auto mb-8">
+                    {(form?.errorDesc as string) ?? `We couldn't send your message. Please try again, or email us directly at ${contact.email}`}
+                  </p>
+                  <button
+                    onClick={() => setSendError(false)}
+                    className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm"
+                  >
+                    {(form?.tryAgain as string) ?? "Try Again"}
+                  </button>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="relative z-10 space-y-5" noValidate>
+                  {/* Honeypot — hidden from real visitors, catches simple bots */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={values.website}
+                    onChange={(e) => setValues({ ...values, website: e.target.value })}
+                    autoComplete="off"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] top-0 w-px h-px opacity-0 overflow-hidden"
+                  />
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-bold text-[#4E6132] uppercase tracking-wider mb-2">
@@ -825,7 +835,7 @@ function ContactCtaBlock() {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
       <div className="absolute inset-0 opacity-[0.04]">
-        <img src="/assets/logo.png" alt="" className="w-full h-full object-contain" />
+        <img src="/cpr/assets/logo.png" alt="" className="w-full h-full object-contain" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">

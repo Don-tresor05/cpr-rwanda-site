@@ -31,7 +31,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
       {item.children.map((col) => (
         <div key={col.heading}>
           {col.heading && (
-            <div className="text-xs font-bold text-[#4E6132]/75 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/15">
+            <div className="text-sm font-bold text-[#4E6132]/80 uppercase tracking-widest mb-3 pb-2 border-b border-[#4E6132]/15">
               {col.heading}
             </div>
           )}
@@ -51,7 +51,7 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                       <span className="text-[10px] font-medium text-[#BC8A5F]/60 group-hover:text-[#BC8A5F] transition-colors">{t("nav.comingSoon")}</span>
                     </span>
                     {link.desc && (
-                      <span className="text-[13px] text-[#4E6132]/90 font-medium group-hover:text-[#8B6543] leading-snug transition-colors">{link.desc}</span>
+                      <span className="text-[13px] font-medium text-[#4E6132]/90 group-hover:text-[#8B6543] mt-0.5 leading-snug transition-colors">{link.desc}</span>
                     )}
                   </button>
                 ) : (
@@ -62,10 +62,10 @@ function MegaMenu({ item, onClose }: { item: NavItem; onClose: () => void }) {
                   >
                     <span className="text-[15px] font-bold text-[#4E6132] group-hover:text-[#8B6543] transition-colors flex items-center justify-between">
                       <span>{link.label}</span>
-                      <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#8B6543]" />
+                      <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#8B6543]" />
                     </span>
                     {link.desc && (
-                      <span className="text-[13px] text-[#4E6132]/90 font-medium group-hover:text-[#8B6543] leading-snug transition-colors">{link.desc}</span>
+                      <span className="text-[13px] font-medium text-[#4E6132]/90 group-hover:text-[#8B6543] mt-0.5 leading-snug transition-colors">{link.desc}</span>
                     )}
                   </Link>
                 )}
@@ -131,14 +131,15 @@ export function Header() {
   return (
     <>
       {/* Top bar */}
-      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/80 text-xs py-2 px-6 items-center justify-between">
-        <div className="flex items-center gap-5">
-          <span className="flex items-center gap-1.5"><Phone size={11} /><span>{contact.phone}</span></span>
-          <span className="flex items-center gap-1.5"><Mail size={11} /><span>{contact.email}</span></span>
-          <span className="flex items-center gap-1.5"><MapPin size={11} /><span>{contact.addressLine1}, {contact.addressLine2}</span></span>
+      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/70 text-sm py-2 px-6 items-center justify-between">
+        <div className="flex items-center gap-5 font-medium">
+          <span className="flex items-center gap-1.5"><Phone size={14} /><span>{contact.phone}</span></span>
+          <span className="flex items-center gap-1.5"><Mail size={14} /><span>{contact.email}</span></span>
+          <span className="flex items-center gap-1.5"><MapPin size={14} /><span>{contact.addressLine1}, {contact.addressLine2}</span></span>
         </div>
         <div className="flex items-center gap-3">
           <LanguageSwitcher variant="full" />
+          {/* Donate button - temporarily hidden
           <div className="h-4 w-px bg-white/20" />
           <button
             onClick={() => showComingSoon(t("nav.donate"))}
@@ -146,6 +147,7 @@ export function Header() {
           >
             {t("nav.donate")}
           </button>
+          */}
         </div>
       </div>
 
@@ -161,13 +163,13 @@ export function Header() {
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
-          <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center">
+          <Link to="/" className="flex flex-col items-center justify-center flex-shrink-0 text-center gap-1">
             <img
-              src="/assets/logo-1.jpg"
+              src="/cpr/assets/logo-1.jpg"
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span className="text-[11.5px] lg:text-[13.5px] font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
+            <span className="text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
@@ -221,11 +223,9 @@ export function Header() {
                       )}
                     </Link>
                   )}
-                  <AnimatePresence>
-                    {activeMenu === item.label && item.children && (
-                      <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
-                    )}
-                  </AnimatePresence>
+                  {activeMenu === item.label && item.children && (
+                    <MegaMenu item={item} onClose={() => setActiveMenu(null)} />
+                  )}
                 </div>
               );
             })}

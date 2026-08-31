@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useState, useMemo, useRef, useEffect } from "react";
-import { ArrowRight, Filter, ChevronDown, Check, Newspaper, Megaphone, Users } from "lucide-react";
+import { ArrowRight, Filter, ChevronDown, Check } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
@@ -134,7 +134,7 @@ export function Newsroom() {
         date: "7 July 2026",
         category: "Report",
         excerpt: "In June 2026, CPR strengthened its position as a leading platform for faith-based community engagement, bringing together member churches united by a shared mission of peace, education, and development.",
-        image: "/assets/news-kwibuka.jpg",
+        image: "/cpr/assets/news-kwibuka.jpg",
       },
       {
         slug: "annual-convention-2026",
@@ -142,7 +142,7 @@ export function Newsroom() {
         date: "2 July 2026",
         category: "Event",
         excerpt: "Rwanda's Protestant community is building sustainable partnerships across the country. Member churches met to align strategies for education, youth leadership, and socio-economic empowerment.",
-        image: "/assets/news-education.webp",
+        image: "/cpr/assets/news-education.webp",
       },
       {
         slug: "may-highlights-2026",
@@ -150,7 +150,7 @@ export function Newsroom() {
         date: "2 June 2026",
         category: "Youth",
         excerpt: "May 2026 was a landmark month for CPR's Youth Program, rolling out peacebuilding workshops and digital skills training for over 800 young church leaders nationwide.",
-        image: "/assets/news-trauma.jpg",
+        image: "/cpr/assets/news-trauma.jpg",
       },
       {
         slug: "kwibuka-31-commemoration",
@@ -158,7 +158,7 @@ export function Newsroom() {
         date: "28 June 2025",
         category: "Event",
         excerpt: "CPR member churches joined thousands across Rwanda to remember the 1994 Genocide against the Tutsi, reaffirming their commitment to peace, reconciliation, and 'Never Again'.",
-        image: "/assets/Gahini 2.webp",
+        image: "/cpr/assets/Gahini 2.webp",
       },
       {
         slug: "bnep-active-pedagogy-training",
@@ -166,7 +166,7 @@ export function Newsroom() {
         date: "14 May 2025",
         category: "Education",
         excerpt: "The Bureau National de l'Éducation Protestante rolled out its flagship Participatory Active Pedagogy program in partnership with international development partners.",
-        image: "/assets/Primary.jpg",
+        image: "/cpr/assets/Primary.jpg",
       },
       {
         slug: "trauma-counselor-certification",
@@ -174,7 +174,7 @@ export function Newsroom() {
         date: "3 April 2025",
         category: "Health",
         excerpt: "Forty-two community health workers across five provinces were certified as trauma counselors, strengthening CPR's mental health outreach capacity.",
-        image: "/assets/Trauma 1.webp",
+        image: "/cpr/assets/Trauma 1.webp",
       },
       {
         slug: "agricultural-cooperatives-sustainability",
@@ -182,7 +182,7 @@ export function Newsroom() {
         date: "12 March 2025",
         category: "Development",
         excerpt: "A new initiative aiming to support rural communities with climate-smart farming techniques was launched in Eastern Province, impacting over 500 families.",
-        image: "/assets/CPR 3 - Copy.webp",
+        image: "/cpr/assets/CPR 3 - Copy.webp",
       },
       {
         slug: "youth-reconciliation-summit",
@@ -190,7 +190,7 @@ export function Newsroom() {
         date: "18 February 2025",
         category: "Youth",
         excerpt: "Youth leaders from various Protestant parishes across the country will gather in Kigali to discuss peacemaking, leadership, and digital evangelism.",
-        image: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+        image: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
       },
     ];
   }, [cmsNews, t]);
@@ -225,7 +225,7 @@ export function Newsroom() {
   }, []);
 
   return (
-    <main className="bg-white min-h-screen">
+    <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)", minHeight: "100vh" }}>
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
@@ -235,42 +235,18 @@ export function Newsroom() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.40), rgba(28,42,16,0.92)), url('/assets/youth.webp')",
+              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/youth.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center 20%",
             y: heroBgY,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A10] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
         <motion.div
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 text-white/60 text-sm mb-5"
-          >
-            <Link to="/" className="hover:text-[#EAD196] transition-colors">{t("newsroom.breadcrumbHome")}</Link>
-            <span className="text-white/30">/</span>
-            <span className="text-[#EAD196] font-semibold">{t("newsroom.breadcrumbNews")}</span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-[#EAD196]/40 rounded-full px-4 py-2 mb-6"
-          >
-            <Newspaper size={15} className="text-[#EAD196]" />
-            <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
-              {t("newsroom.breadcrumbNews")}
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -284,30 +260,10 @@ export function Newsroom() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-lg max-w-2xl leading-relaxed mb-8"
+            className="text-white/75 text-lg max-w-2xl leading-relaxed"
           >
             {t("newsroom.subtitle", "Latest news, event reports, and updates from Conseil Protestant du Rwanda.")}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex flex-wrap gap-3"
-          >
-            {[
-              { icon: Megaphone, label: t("newsroom.heroChip1", "Latest Updates") },
-              { icon: Users, label: t("newsroom.heroChip2", "Community Reports") },
-            ].map((chip, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full px-5 py-2.5 text-sm text-white/85"
-              >
-                <chip.icon size={15} className="text-[#EAD196]" />
-                {chip.label}
-              </span>
-            ))}
-          </motion.div>
         </motion.div>
 
         <ScrollIndicator />
@@ -352,7 +308,7 @@ export function Newsroom() {
                     alt={item.title}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = "/assets/CPR 3 - Copy.webp";
+                      (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
                     }}
                   />
                 </Link>
