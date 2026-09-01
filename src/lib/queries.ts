@@ -24,7 +24,7 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
 
 export async function getNewsPosts(limit = 10): Promise<NewsPost[]> {
   return client.fetch(
-    `*[_type == "newsPost"] | order(publishedAt desc) [0...$limit] {
+    `*[_type == "newsPost"] | order(coalesce(publishedAt, _createdAt) desc) [0...$limit] {
       _id, _type, _createdAt, _updatedAt,
       title, slug, excerpt, mainImage, publishedAt, category, author, tags
     }`,
@@ -44,7 +44,7 @@ export async function getNewsPost(slug: string): Promise<NewsPost | null> {
 
 export async function getFeaturedNews(limit = 3): Promise<NewsPost[]> {
   return client.fetch(
-    `*[_type == "newsPost"] | order(publishedAt desc) [0...$limit] {
+    `*[_type == "newsPost"] | order(coalesce(publishedAt, _createdAt) desc) [0...$limit] {
       _id, title, slug, excerpt, mainImage, publishedAt, category
     }`,
     { limit: limit - 1 }
