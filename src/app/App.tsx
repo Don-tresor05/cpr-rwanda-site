@@ -22,6 +22,7 @@ import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
 
 import { FixedWatermark } from "./components/ui/FixedWatermark";
+import { CookieConsent } from "./components/ui/CookieConsent";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -42,6 +43,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen">
       <FixedWatermark variant="default" />
+      <CookieConsent />
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
