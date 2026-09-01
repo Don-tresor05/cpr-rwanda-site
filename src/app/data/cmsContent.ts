@@ -103,7 +103,7 @@ export function useDepartments(): Department[] | null {
         // Only keep departments that have a title in at least one language,
         // so an incomplete draft can't render a broken card.
         const valid = (docs || []).filter(
-          (d) => d.title?.en || d.title?.fr || d.title?.rw
+          (d) => typeof d.title === "string" ? d.title : (d.title?.en || d.title?.fr || d.title?.rw)
         );
         if (valid.length === 0) {
           setDepartments(null);
@@ -112,7 +112,7 @@ export function useDepartments(): Department[] | null {
         setDepartments(
           valid.map((d) => ({
             icon: DEPT_ICON_MAP[d.icon || ""] || Crown,
-            title: pickOrUndef(d.title, lang) || "",
+            title: (typeof d.title === "string" ? d.title : pickOrUndef(d.title, lang)) || "",
             desc: pickOrUndef(d.desc, lang) || "",
             link: d.link || "/departments",
           }))
@@ -129,7 +129,7 @@ export function useDepartments(): Department[] | null {
   return departments;
 }
 
-const GALLERY_QUERY = `*[_type == "galleryEvent"] | order(order asc) {
+const GALLERY_QUERY = `*[_type == "galleryCollection"] | order(publishedAt desc) {
   order,
   category,
   title,
@@ -150,8 +150,8 @@ const VALID_GALLERY_CATEGORIES: GalleryCategory[] = [
 
 interface GalleryRawEvent {
   category?: string;
-  title?: LocalizedField;
-  locationDate?: LocalizedField;
+  title?: LocalizedField | string;
+  locationDate?: LocalizedField | string;
   images?: { src?: string | null; alt?: string }[];
 }
 
@@ -173,7 +173,7 @@ export function useGalleryEvents(): GalleryEvent[] | null {
       .then((docs) => {
         if (cancelled) return;
         const valid = (docs || []).filter(
-          (d) => d.title?.en || d.title?.fr || d.title?.rw
+          (d) => typeof d.title === "string" ? d.title : (d.title?.en || d.title?.fr || d.title?.rw)
         );
         if (valid.length === 0) {
           setEvents(null);
@@ -185,8 +185,8 @@ export function useGalleryEvents(): GalleryEvent[] | null {
               category: VALID_GALLERY_CATEGORIES.includes(d.category as GalleryCategory)
                 ? (d.category as GalleryCategory)
                 : "conferences",
-              title: pickOrUndef(d.title, lang) || "",
-              locationDate: pickOrUndef(d.locationDate, lang) || "",
+              title: (typeof d.title === "string" ? d.title : pickOrUndef(d.title, lang)) || "",
+              locationDate: (typeof d.locationDate === "string" ? d.locationDate : pickOrUndef(d.locationDate, lang)) || "",
               images: (d.images || [])
                 .filter((img) => img.src)
                 .map((img) => ({ src: img.src as string, alt: img.alt || "" })),
