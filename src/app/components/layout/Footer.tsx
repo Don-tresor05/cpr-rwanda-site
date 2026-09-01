@@ -45,7 +45,7 @@ export function Footer() {
   return (
     <footer id="contact" className="bg-[#1C2A10] text-white">
       {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-10 sm:py-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -53,7 +53,7 @@ export function Footer() {
               <img
                 src="/cpr/assets/logo-1.jpg"
                 alt="CPR Rwanda - Conseil Protestant du Rwanda"
-                className="h-20 w-auto object-contain"
+                className="h-16 sm:h-20 w-auto object-contain"
               />
               <span className="text-base font-bold text-[#8B6543] mt-3 leading-tight tracking-wide">
                 Conseil Protestant du Rwanda (CPR)

@@ -251,7 +251,7 @@ export function Newsroom() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {t("newsroom.title", "Newsroom")}
           </motion.h1>
@@ -260,7 +260,7 @@ export function Newsroom() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-lg max-w-2xl leading-relaxed"
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
             {t("newsroom.subtitle", "Latest news, event reports, and updates from Conseil Protestant du Rwanda.")}
           </motion.p>
@@ -296,11 +296,11 @@ export function Newsroom() {
           </div>
 
           {/* News Grid - Slimmer card widths matching cooperation.rw reference */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {paginatedItems.map((item) => (
               <article
                 key={item.slug}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full max-w-[360px] mx-auto w-full"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
               >
                 <Link to={`/newsroom/${item.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
                   <img

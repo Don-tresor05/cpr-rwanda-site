@@ -117,7 +117,7 @@ export function RadioPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-4xl sm:text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {(rp?.heroTitle as string) ?? "107.1 FM — Broadcasting Hope"}
           </motion.h1>
@@ -160,7 +160,7 @@ export function RadioPage() {
       {/* ─── STICKY SUB-NAV ─── */}
       <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-14 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -713,7 +713,7 @@ function RadioCtaBlock() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="py-20 bg-[#1C2A10] relative overflow-hidden"
+      className="py-14 sm:py-20 bg-[#1C2A10] relative overflow-hidden"
     >
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
       <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5" />
@@ -727,7 +727,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
+          className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
         >
           {(cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
         </motion.h2>
@@ -736,7 +736,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
+          className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
         >
           {(cta?.desc as string) ?? ""}
         </motion.p>
