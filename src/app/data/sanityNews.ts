@@ -28,8 +28,8 @@ interface SanityNewsPost {
   image?: string | null;
   imageCaption?: string;
   featured?: boolean;
-  title?: LocalizedText;
-  excerpt?: LocalizedText;
+  title?: LocalizedText | string;
+  excerpt?: LocalizedText | string;
   quote?: LocalizedText;
   body?: { en?: unknown[]; fr?: unknown[]; rw?: unknown[] };
 }
@@ -41,7 +41,7 @@ const NEWS_QUERY = `*[_type == "newsPost" && defined(slug.current)] | order(publ
   publishedAt,
   author,
   featured,
-  "image": coverImage.asset->url,
+  "image": mainImage.asset->url,
   imageCaption,
   title,
   excerpt,
@@ -72,8 +72,9 @@ export function formatCmsDate(iso?: string, lang = "en"): string {
   return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-function pick(obj: LocalizedText | null | undefined, lang: string): string {
+function pick(obj: LocalizedText | string | null | undefined, lang: string): string {
   if (!obj) return "";
+  if (typeof obj === "string") return obj;
   const key = lang === "fr" || lang === "rw" ? lang : "en";
   return obj[key] || obj.en || "";
 }
