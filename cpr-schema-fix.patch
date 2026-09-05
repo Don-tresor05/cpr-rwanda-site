@@ -1,0 +1,2949 @@
+From 708b8d91e19dfe0e87b5feae77347e9f8b10c27b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 5 Sep 2026 17:35:22 +0000
+Subject: [PATCH 1/2] fix(studio): restore correct Sanity schema matching live
+ site architecture
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The Studio was wired to studio/schemas/ (sanity.config.ts imported from
+there), but that folder was an old, incompatible schema: field names like
+department.name/description, testimonial.name/quote(plain), radioProgram
+.schedule, project.status/body, and siteSettings.title/socialLinks bore no
+resemblance to what the live frontend actually queries (icon/title/desc
+/link for department cards, localized quote/author/avatar for testimonials,
+heroSlides/stats/contact/radio/partners for site settings, etc). Every one
+of these content types was therefore non-functional in Sanity Studio even
+though the frontend had working CMS-integration code waiting for it.
+
+studio/schemaTypes/ (never imported anywhere, dead code) turned out to be
+the correct, complete schema — same field names, same localized
+(en/fr/rw) structure the frontend's pageContent.ts, cmsContent.ts,
+siteSettings.ts and sanityNews.ts already expect, including a fully-built
+"Secretariat Page" type that had no schema registered at all before this.
+
+Changes:
+- Promote studio/schemaTypes/ to studio/schemas/ (single source of truth);
+  delete the old incompatible studio/schemas/.
+- Register secretariatPage in sanity.config.ts (was completely missing
+  from the Studio despite the frontend's useSecretariatPage() hook).
+- Rename galleryEvent -> galleryCollection to match the frontend's
+  `_type == "galleryCollection"` query and the existing Studio nav item.
+- Rename newsPost's `coverImage` field -> `mainImage` to match the
+  frontend query and already-published news documents (avoids
+  reintroducing the exact bug fixed in an earlier deploy).
+- Remove a stray `lucide-react` icon import in departmentResourceGroup.ts
+  that isn't a Studio dependency and would have broken `sanity build`.
+
+Net effect: every CMS section staff can already reach from the live
+site's code (hero slider, stats, departments, testimonials, radio
+schedule, projects, gallery, member churches, About/Departments/
+Secretariat page copy, department resource groups & files) now has a
+matching, usable Sanity Studio form.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xNEugH42JGJDBqiHFtfyU
+---
+ studio/sanity.config.ts                       |   2 +
+ studio/schemaTypes/aboutPage.ts               | 182 ---------------
+ studio/schemaTypes/department.ts              |  62 -----
+ studio/schemaTypes/departmentResourceFile.ts  |  44 ----
+ studio/schemaTypes/departmentResourceGroup.ts |  77 -------
+ studio/schemaTypes/departmentsPage.ts         | 172 --------------
+ studio/schemaTypes/galleryEvent.ts            |  94 --------
+ studio/schemaTypes/index.ts                   |  33 ---
+ studio/schemaTypes/memberChurch.ts            |  48 ----
+ studio/schemaTypes/newsPost.ts                | 171 --------------
+ studio/schemaTypes/project.ts                 |  65 ------
+ studio/schemaTypes/radioProgram.ts            |  48 ----
+ studio/schemaTypes/siteSettings.ts            | 152 ------------
+ studio/schemaTypes/testimonial.ts             |  57 -----
+ studio/schemas/aboutPage.ts                   | 216 +++++++++++++++---
+ studio/schemas/department.ts                  |  76 ++++--
+ studio/schemas/departmentResourceFile.ts      |  54 +++--
+ studio/schemas/departmentResourceGroup.ts     |  83 ++++++-
+ studio/schemas/departmentsPage.ts             | 181 ++++++++++++++-
+ studio/schemas/galleryCollection.ts           | 111 +++++++--
+ studio/schemas/index.ts                       |  43 ++--
+ .../localizedString.ts                        |   0
+ .../{schemaTypes => schemas}/localizedText.ts |   0
+ studio/schemas/memberChurch.ts                |  63 +++--
+ studio/schemas/newsPost.ts                    | 184 +++++++++++++--
+ studio/schemas/project.ts                     |  79 +++++--
+ studio/schemas/radioProgram.ts                |  61 +++--
+ .../secretariatPage.ts                        |   0
+ studio/schemas/siteSettings.ts                | 167 ++++++++++++--
+ studio/schemas/testimonial.ts                 |  67 ++++--
+ 30 files changed, 1152 insertions(+), 1440 deletions(-)
+ delete mode 100644 studio/schemaTypes/aboutPage.ts
+ delete mode 100644 studio/schemaTypes/department.ts
+ delete mode 100644 studio/schemaTypes/departmentResourceFile.ts
+ delete mode 100644 studio/schemaTypes/departmentResourceGroup.ts
+ delete mode 100644 studio/schemaTypes/departmentsPage.ts
+ delete mode 100644 studio/schemaTypes/galleryEvent.ts
+ delete mode 100644 studio/schemaTypes/index.ts
+ delete mode 100644 studio/schemaTypes/memberChurch.ts
+ delete mode 100644 studio/schemaTypes/newsPost.ts
+ delete mode 100644 studio/schemaTypes/project.ts
+ delete mode 100644 studio/schemaTypes/radioProgram.ts
+ delete mode 100644 studio/schemaTypes/siteSettings.ts
+ delete mode 100644 studio/schemaTypes/testimonial.ts
+ rename studio/{schemaTypes => schemas}/localizedString.ts (100%)
+ rename studio/{schemaTypes => schemas}/localizedText.ts (100%)
+ rename studio/{schemaTypes => schemas}/secretariatPage.ts (100%)
+
+diff --git a/studio/sanity.config.ts b/studio/sanity.config.ts
+index d9d477e..e55e78e 100644
+--- a/studio/sanity.config.ts
++++ b/studio/sanity.config.ts
+@@ -23,6 +23,8 @@ export default defineConfig({
+               .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
+             S.listItem().title('Departments Page').id('departmentsPage')
+               .child(S.document().schemaType('departmentsPage').documentId('departmentsPage')),
++            S.listItem().title('Secretariat Page').id('secretariatPage')
++              .child(S.document().schemaType('secretariatPage').documentId('secretariatPage')),
+             S.divider(),
+             // Collections
+             S.documentTypeListItem('newsPost').title('News Posts'),
+diff --git a/studio/schemaTypes/aboutPage.ts b/studio/schemaTypes/aboutPage.ts
+deleted file mode 100644
+index 883e79e..0000000
+--- a/studio/schemaTypes/aboutPage.ts
++++ /dev/null
+@@ -1,182 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * One document that controls the deep copy on the About Us page:
+- * hero title, Who We Are paragraphs, Vision & Mission, the three-step
+- * model, core values, executive committee headings, organigram and the
+- * partners heading. Everything is localized; empty languages fall back
+- * to English on the website.
+- */
+-export const aboutPage = defineType({
+-  name: "aboutPage",
+-  title: "About Page",
+-  type: "document",
+-  groups: [
+-    { name: "hero", title: "Hero" },
+-    { name: "whoWeAre", title: "Who We Are" },
+-    { name: "visionMission", title: "Vision & Mission" },
+-    { name: "model", title: "Our Model" },
+-    { name: "coreValues", title: "Core Values" },
+-    { name: "execCommittee", title: "Executive Committee" },
+-    { name: "organigram", title: "Organigram" },
+-    { name: "partners", title: "Partners" },
+-    { name: "historyModal", title: "History Modal" },
+-  ],
+-  fields: [
+-    defineField({
+-      name: "heroTitle",
+-      title: "Hero title",
+-      type: "localizedString",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "nav",
+-      title: "Sub-navigation labels",
+-      description: "The pills in the sticky bar under the hero.",
+-      type: "object",
+-      group: "hero",
+-      fields: [
+-        { name: "whoWeAre", title: "Who We Are", type: "localizedString" },
+-        { name: "visionMission", title: "Vision & Mission", type: "localizedString" },
+-        { name: "coreValues", title: "Core Values", type: "localizedString" },
+-        { name: "execCommittee", title: "Executive Committee", type: "localizedString" },
+-        { name: "organigram", title: "Organigram", type: "localizedString" },
+-        { name: "ourPartners", title: "Our Partners", type: "localizedString" },
+-      ],
+-    }),
+-    defineField({
+-      name: "whoWeAre",
+-      title: "Who We Are",
+-      type: "object",
+-      group: "whoWeAre",
+-      fields: [
+-        { name: "title", title: "Title", type: "localizedString" },
+-        { name: "p1", title: "Paragraph 1", type: "localizedText" },
+-        { name: "p2", title: "Paragraph 2", type: "localizedText" },
+-      ],
+-    }),
+-    defineField({
+-      name: "visionMission",
+-      title: "Vision & Mission",
+-      type: "object",
+-      group: "visionMission",
+-      fields: [
+-        { name: "title", title: "Section title", type: "localizedString" },
+-        { name: "visionTag", title: "Vision tag", type: "localizedString" },
+-        { name: "visionSub", title: "Vision subtitle", type: "localizedString" },
+-        { name: "visionDesc", title: "Vision description", type: "localizedText" },
+-        { name: "missionTag", title: "Mission tag", type: "localizedString" },
+-        { name: "missionSub", title: "Mission subtitle", type: "localizedString" },
+-        { name: "missionDesc", title: "Mission description", type: "localizedText" },
+-      ],
+-    }),
+-    defineField({
+-      name: "model",
+-      title: "Our Model",
+-      description: "The three-step collaborative structure shown on the About page.",
+-      type: "object",
+-      group: "model",
+-      fields: [
+-        { name: "title", title: "Section title", type: "localizedString" },
+-        { name: "desc", title: "Description", type: "localizedText" },
+-        { name: "step1Tag", title: "Step 1 tag", type: "localizedString" },
+-        { name: "step1Title", title: "Step 1 title", type: "localizedString" },
+-        { name: "step1Desc", title: "Step 1 description", type: "localizedText" },
+-        { name: "step2Tag", title: "Step 2 tag", type: "localizedString" },
+-        { name: "step2Title", title: "Step 2 title", type: "localizedString" },
+-        { name: "step2Desc", title: "Step 2 description", type: "localizedText" },
+-        { name: "step3Tag", title: "Step 3 tag", type: "localizedString" },
+-        { name: "step3Title", title: "Step 3 title", type: "localizedString" },
+-        { name: "step3Desc", title: "Step 3 description", type: "localizedText" },
+-      ],
+-    }),
+-    defineField({
+-      name: "coreValues",
+-      title: "Core Values",
+-      type: "object",
+-      group: "coreValues",
+-      fields: [
+-        { name: "title", title: "Section title", type: "localizedString" },
+-        {
+-          name: "items",
+-          title: "Values",
+-          type: "array",
+-          of: [
+-            {
+-              type: "object",
+-              name: "value",
+-              title: "Value",
+-              fields: [
+-                { name: "title", title: "Title", type: "localizedString" },
+-                { name: "desc", title: "Description", type: "localizedText" },
+-              ],
+-              preview: {
+-                select: { title: "title.en" },
+-                prepare({ title }) {
+-                  return { title: title || "Core value" };
+-                },
+-              },
+-            },
+-          ],
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "execCommittee",
+-      title: "Executive Committee",
+-      description: "The headings around the board & staff photo cards (the people themselves stay fixed).",
+-      type: "object",
+-      group: "execCommittee",
+-      fields: [
+-        { name: "title", title: "Section title", type: "localizedString" },
+-        { name: "desc", title: "Description", type: "localizedText" },
+-        { name: "boardMembers", title: "'Board Members' heading", type: "localizedString" },
+-        { name: "staff", title: "'Staff' heading", type: "localizedString" },
+-        { name: "defaultName", title: "Default member name", type: "localizedString" },
+-        { name: "defaultRole", title: "Default role", type: "localizedString" },
+-      ],
+-    }),
+-    defineField({
+-      name: "organigram",
+-      title: "Organigram",
+-      type: "object",
+-      group: "organigram",
+-      fields: [
+-        { name: "title", title: "Section title", type: "localizedString" },
+-        { name: "comingSoon", title: "Placeholder text", type: "localizedString" },
+-      ],
+-    }),
+-    defineField({
+-      name: "partners",
+-      title: "Partners",
+-      type: "object",
+-      group: "partners",
+-      fields: [{ name: "title", title: "Section title", type: "localizedString" }],
+-    }),
+-    defineField({
+-      name: "historyModal",
+-      title: "History Modal",
+-      description: "Content for the 'Our Story' modal opened from the Who We Are section.",
+-      type: "object",
+-      group: "historyModal",
+-      fields: [
+-        { name: "learnMore", title: "'Learn More' button label", type: "localizedString" },
+-        { name: "badge", title: "Badge text (e.g. 'Our Story')", type: "localizedString" },
+-        { name: "title", title: "Modal title", type: "localizedString" },
+-        { name: "p1", title: "Paragraph 1", type: "localizedText" },
+-        { name: "p2", title: "Paragraph 2", type: "localizedText" },
+-        { name: "personName", title: "Person name", type: "localizedString" },
+-        { name: "personRole", title: "Person role", type: "localizedString" },
+-        { name: "cta", title: "CTA button label", type: "localizedString" },
+-      ],
+-    }),
+-  ],
+-  preview: {
+-    prepare() {
+-      return {
+-        title: "About Page",
+-        subtitle: "Hero, who we are, vision, model, values & committee",
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/department.ts b/studio/schemaTypes/department.ts
+deleted file mode 100644
+index 942becb..0000000
+--- a/studio/schemaTypes/department.ts
++++ /dev/null
+@@ -1,62 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/** Icon choices that match the icons the site renders for each department. */
+-const DEPT_ICONS = [
+-  { title: "Crown — General Secretariat", value: "crown" },
+-  { title: "Graduation cap — Education (BNEP)", value: "graduation-cap" },
+-  { title: "Handshake — Diakonia", value: "handshake" },
+-  { title: "Coins — Finance", value: "coins" },
+-  { title: "Users — Youth", value: "users" },
+-  { title: "Scale — Gender", value: "scale" },
+-  { title: "Radio — Radio Inkoramutima", value: "radio" },
+-];
+-
+-/**
+- * A CPR department shown as a card on the home page. Titles and short
+- * descriptions are localized (EN/FR/RW); the `order` field controls the
+- * display position on the page.
+- */
+-export const department = defineType({
+-  name: "department",
+-  title: "Department",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first on the home page. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-    defineField({
+-      name: "icon",
+-      title: "Icon",
+-      type: "string",
+-      options: { list: DEPT_ICONS },
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "Department name",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "desc",
+-      title: "Short description",
+-      type: "localizedText",
+-    }),
+-    defineField({
+-      name: "link",
+-      title: "Link",
+-      description: "e.g. /departments#bnep — where the card leads.",
+-      type: "string",
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title.en", order: "order" },
+-    prepare({ title, order }) {
+-      return {
+-        title: title || "Untitled department",
+-        subtitle: order !== undefined && order !== null ? `Position ${order}` : "No order set",
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/departmentResourceFile.ts b/studio/schemaTypes/departmentResourceFile.ts
+deleted file mode 100644
+index 975499e..0000000
+--- a/studio/schemaTypes/departmentResourceFile.ts
++++ /dev/null
+@@ -1,44 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * A single file belonging to a resource group. Staff pick the group from a
+- * dropdown (no free-text slugs to mistype) and upload the file.
+- */
+-export const departmentResourceFile = defineType({
+-  name: "departmentResourceFile",
+-  title: "Department Resource File",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "group",
+-      title: "Resource group",
+-      type: "reference",
+-      to: [{ type: "departmentResourceGroup" }],
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "File title",
+-      type: "string",
+-      description: "The name shown in the document list, e.g. 'BNEP School Directory 2026.pdf'.",
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "file",
+-      title: "File",
+-      type: "file",
+-      options: { accept: ".pdf,.doc,.docx,.xls,.xlsx" },
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      type: "number",
+-      description: "Lower numbers appear first.",
+-      initialValue: 1,
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title", subtitle: "group.title" },
+-  },
+-});
+diff --git a/studio/schemaTypes/departmentResourceGroup.ts b/studio/schemaTypes/departmentResourceGroup.ts
+deleted file mode 100644
+index 3f986b3..0000000
+--- a/studio/schemaTypes/departmentResourceGroup.ts
++++ /dev/null
+@@ -1,77 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-import { FileText } from "lucide-react";
+-
+-/**
+- * A resource "folder" shown as a card on a department's Resources page
+- * (e.g. "School Directory", "Past Papers"). Staff can create new groups
+- * here without any code changes — they appear automatically as cards.
+- */
+-export const departmentResourceGroup = defineType({
+-  name: "departmentResourceGroup",
+-  title: "Department Resource Group",
+-  type: "document",
+-  icon: FileText,
+-  fields: [
+-    defineField({
+-      name: "department",
+-      title: "Department",
+-      type: "string",
+-      options: {
+-        list: [
+-          { title: "General Secretary", value: "gs" },
+-          { title: "Education / BNEP", value: "bnep" },
+-          { title: "Diakonia / Development", value: "diakonia" },
+-          { title: "Finance & Mobilization", value: "finance" },
+-          { title: "Youth Program", value: "youth" },
+-          { title: "Gender Promotion", value: "gender" },
+-          { title: "Radio Inkoramutima", value: "radio" },
+-        ],
+-      },
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "Group title",
+-      type: "string",
+-      description: "e.g. 'Past Papers', 'School Directory', 'Annual Reports'",
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "slug",
+-      title: "Slug",
+-      type: "slug",
+-      options: { source: "title" },
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "description",
+-      title: "Description",
+-      type: "string",
+-      description: "Short blurb shown on the resource card.",
+-    }),
+-    defineField({
+-      name: "cardType",
+-      title: "Card type",
+-      type: "string",
+-      description: "Controls the icon/label on the card.",
+-      options: {
+-        list: [
+-          { title: "Document (View)", value: "document" },
+-          { title: "Download", value: "download" },
+-          { title: "External link", value: "link" },
+-        ],
+-      },
+-      initialValue: "document",
+-    }),
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      type: "number",
+-      description: "Lower numbers appear first.",
+-      initialValue: 1,
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title", subtitle: "department" },
+-  },
+-});
+diff --git a/studio/schemaTypes/departmentsPage.ts b/studio/schemaTypes/departmentsPage.ts
+deleted file mode 100644
+index b7bcab0..0000000
+--- a/studio/schemaTypes/departmentsPage.ts
++++ /dev/null
+@@ -1,172 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/** The fixed department section keys the /departments page renders. */
+-const SECTION_KEYS = [
+-  { title: "General Secretary", value: "gs" },
+-  { title: "Education / BNEP", value: "bnep" },
+-  { title: "Diakonia / Development", value: "diakonia" },
+-  { title: "Finance & Mobilization", value: "finance" },
+-  { title: "Youth Program", value: "youth" },
+-  { title: "Gender Promotion", value: "gender" },
+-  { title: "Radio Inkoramutima", value: "radio" },
+-];
+-
+-/**
+- * One document that controls the deep text on the Departments page
+- * (/departments): hero, intro, quick facts, the sub-navigation labels,
+- * every department's detailed section (tag, title, description, body
+- * bullets) and the closing call-to-action. Everything is localized;
+- * empty languages fall back to English on the website.
+- */
+-export const departmentsPage = defineType({
+-  name: "departmentsPage",
+-  title: "Departments Page",
+-  type: "document",
+-  groups: [
+-    { name: "hero", title: "Hero & Intro" },
+-    { name: "quickFacts", title: "Quick Facts" },
+-    { name: "sections", title: "Department Sections" },
+-    { name: "cta", title: "Call to Action" },
+-  ],
+-  fields: [
+-    defineField({
+-      name: "heroTitle",
+-      title: "Hero title",
+-      type: "localizedString",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "heroDesc",
+-      title: "Hero description",
+-      type: "localizedText",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "introTag",
+-      title: "Intro tag",
+-      type: "localizedString",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "introTitle",
+-      title: "Intro title",
+-      type: "localizedString",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "introDesc",
+-      title: "Intro description",
+-      type: "localizedText",
+-      group: "hero",
+-    }),
+-    defineField({
+-      name: "quickFactsTitle",
+-      title: "Quick facts heading",
+-      type: "localizedString",
+-      group: "quickFacts",
+-    }),
+-    defineField({
+-      name: "quickFacts",
+-      title: "Quick facts",
+-      description: "The bullet list shown next to the intro (e.g. '7 specialized departments serving all provinces').",
+-      type: "array",
+-      group: "quickFacts",
+-      of: [{ type: "localizedText" }],
+-    }),
+-    defineField({
+-      name: "sections",
+-      title: "Department sections",
+-      description:
+-        "One entry per department. Pick the department key, then fill its sub-navigation label, tag, title, description and body bullets.",
+-      type: "array",
+-      group: "sections",
+-      of: [
+-        {
+-          type: "object",
+-          name: "departmentSection",
+-          title: "Department section",
+-          fields: [
+-            {
+-              name: "key",
+-              title: "Department",
+-              type: "string",
+-              options: { list: SECTION_KEYS },
+-              validation: (Rule) => Rule.required(),
+-            },
+-            { name: "nav", title: "Sub-navigation label", type: "localizedString" },
+-            { name: "tag", title: "Tag (small label)", type: "localizedString" },
+-            { name: "title", title: "Title", type: "localizedString" },
+-            { name: "desc", title: "Description", type: "localizedText" },
+-            {
+-              name: "image",
+-              title: "Photo",
+-              description: "The large photo beside this department's section. Leave empty to keep the current default photo.",
+-              type: "image",
+-              options: { hotspot: true },
+-            },
+-            {
+-              name: "stats",
+-              title: "Stat numbers",
+-              description: "Up to 3 key numbers shown as mini-cards (e.g. value '595+', label 'Primary Schools'). Leave empty to keep the current numbers.",
+-              type: "array",
+-              of: [
+-                {
+-                  type: "object",
+-                  name: "departmentStat",
+-                  title: "Stat",
+-                  fields: [
+-                    {
+-                      name: "value",
+-                      title: "Value",
+-                      description: "e.g. 595+, 300K+, 1963",
+-                      type: "string",
+-                      validation: (Rule) => Rule.required(),
+-                    },
+-                    { name: "label", title: "Label", type: "localizedString" },
+-                  ],
+-                  preview: {
+-                    select: { value: "value", label: "label.en" },
+-                    prepare({ value, label }) {
+-                      return { title: value || "Stat", subtitle: label || "" };
+-                    },
+-                  },
+-                },
+-              ],
+-            },
+-            {
+-              name: "body",
+-              title: "Body bullets",
+-              type: "array",
+-              of: [{ type: "localizedText" }],
+-            },
+-          ],
+-          preview: {
+-            select: { key: "key", title: "title.en" },
+-            prepare({ key, title }) {
+-              return { title: title || (key || "Department") };
+-            },
+-          },
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "cta",
+-      title: "Call to action",
+-      type: "object",
+-      group: "cta",
+-      fields: [
+-        { name: "title", title: "Title", type: "localizedString" },
+-        { name: "desc", title: "Description", type: "localizedText" },
+-        { name: "btn", title: "Button text", type: "localizedString" },
+-      ],
+-    }),
+-  ],
+-  preview: {
+-    prepare() {
+-      return {
+-        title: "Departments Page",
+-        subtitle: "Hero, quick facts, department sections & CTA",
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/galleryEvent.ts b/studio/schemaTypes/galleryEvent.ts
+deleted file mode 100644
+index b23a6c6..0000000
+--- a/studio/schemaTypes/galleryEvent.ts
++++ /dev/null
+@@ -1,94 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/** The four filter categories shown on the gallery page. */
+-const GALLERY_CATEGORIES = [
+-  { title: "Conferences & Meetings", value: "conferences" },
+-  { title: "Commemorations", value: "commemorations" },
+-  { title: "Youth & Wellness", value: "youth" },
+-  { title: "Education & Media", value: "education" },
+-];
+-
+-/**
+- * A photo collection on the gallery page. Staff create one document per
+- * collection (e.g. "Kwibuka Commemoration"), upload its photos, and the
+- * `order` field controls where it appears. Titles, locations and dates are
+- * localized; empty languages fall back to English on the website.
+- */
+-export const galleryEvent = defineType({
+-  name: "galleryEvent",
+-  title: "Gallery Collection",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first on the gallery page. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-    defineField({
+-      name: "category",
+-      title: "Category",
+-      description: "Determines which filter the collection appears under.",
+-      type: "string",
+-      options: { list: GALLERY_CATEGORIES },
+-      validation: (Rule) => Rule.required(),
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "Collection title",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "locationDate",
+-      title: "Location & date",
+-      description: "e.g. Kigali, January 2026",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "images",
+-      title: "Photos",
+-      type: "array",
+-      of: [
+-        {
+-          type: "object",
+-          name: "photo",
+-          title: "Photo",
+-          fields: [
+-            {
+-              name: "image",
+-              title: "Image",
+-              type: "image",
+-              options: { hotspot: true },
+-            },
+-            {
+-              name: "alt",
+-              title: "Description (alt text)",
+-              description: "Short text describing the photo, shown to screen readers.",
+-              type: "string",
+-            },
+-          ],
+-          preview: {
+-            select: { media: "image", title: "alt" },
+-            prepare({ media, title }) {
+-              return { media, title: title || "Photo" };
+-            },
+-          },
+-        },
+-      ],
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title.en", category: "category", order: "order", images: "images" },
+-    prepare({ title, category, order, images }) {
+-      const parts = [
+-        category ? category : "no category",
+-        `${images?.length ?? 0} photos`,
+-      ];
+-      if (order !== undefined && order !== null) parts.push(`position ${order}`);
+-      return {
+-        title: title || "Untitled collection",
+-        subtitle: parts.join(" · "),
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/index.ts b/studio/schemaTypes/index.ts
+deleted file mode 100644
+index c949adf..0000000
+--- a/studio/schemaTypes/index.ts
++++ /dev/null
+@@ -1,33 +0,0 @@
+-import { localizedString } from "./localizedString";
+-import { localizedText } from "./localizedText";
+-import { newsPost } from "./newsPost";
+-import { departmentResourceFile } from "./departmentResourceFile";
+-import { departmentResourceGroup } from "./departmentResourceGroup";
+-import { siteSettings } from "./siteSettings";
+-import { memberChurch } from "./memberChurch";
+-import { department } from "./department";
+-import { galleryEvent } from "./galleryEvent";
+-import { radioProgram } from "./radioProgram";
+-import { testimonial } from "./testimonial";
+-import { project } from "./project";
+-import { departmentsPage } from "./departmentsPage";
+-import { aboutPage } from "./aboutPage";
+-import { secretariatPage } from "./secretariatPage";
+-
+-export const schemaTypes = [
+-  newsPost,
+-  departmentResourceFile,
+-  departmentResourceGroup,
+-  siteSettings,
+-  memberChurch,
+-  department,
+-  galleryEvent,
+-  radioProgram,
+-  testimonial,
+-  project,
+-  departmentsPage,
+-  aboutPage,
+-  secretariatPage,
+-  localizedString,
+-  localizedText,
+-];
+diff --git a/studio/schemaTypes/memberChurch.ts b/studio/schemaTypes/memberChurch.ts
+deleted file mode 100644
+index 2815362..0000000
+--- a/studio/schemaTypes/memberChurch.ts
++++ /dev/null
+@@ -1,48 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * A member church of the Protestant Council of Rwanda (CPR).
+- *
+- * Staff can add, remove or rename churches from the grid shown on the home
+- * page. The optional website URL turns the card into an external link.
+- */
+-export const memberChurch = defineType({
+-  name: "memberChurch",
+-  title: "Member Church",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "name",
+-      title: "Church name",
+-      description: "e.g. Eglise Presbytérienne au Rwanda (EPR)",
+-      type: "string",
+-      validation: (Rule) => Rule.required(),
+-    }),
+-    defineField({
+-      name: "url",
+-      title: "Website (optional)",
+-      description: "e.g. https://www.epr.rw — shown as a link on the card.",
+-      type: "url",
+-    }),
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first on the home page. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "name", url: "url", order: "order" },
+-    prepare({ title, url, order }) {
+-      return {
+-        title: title || "Untitled church",
+-        subtitle:
+-          order !== undefined && order !== null
+-            ? `Position ${order}`
+-            : url
+-              ? `Website: ${url}`
+-              : "No website",
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/newsPost.ts b/studio/schemaTypes/newsPost.ts
+deleted file mode 100644
+index 4b0b597..0000000
+--- a/studio/schemaTypes/newsPost.ts
++++ /dev/null
+@@ -1,171 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * News & Announcements document.
+- *
+- * Staff write a post here and hit Publish — it appears on the website's
+- * Newsroom, home page news section, and its own article page automatically.
+- * Titles, summaries, quotes and article bodies are localized in the site's
+- * three languages; leaving French/Kinyarwanda empty falls back to English.
+- */
+-export const newsPost = defineType({
+-  name: "newsPost",
+-  title: "News Post",
+-  type: "document",
+-  groups: [
+-    { name: "main", title: "Main" },
+-    { name: "body", title: "Article Body" },
+-    { name: "media", title: "Media" },
+-  ],
+-  fields: [
+-    defineField({
+-      name: "title",
+-      title: "Headline",
+-      type: "localizedString",
+-      group: "main",
+-      description: "The headline in each language. English is required.",
+-      validation: (rule) => rule.required(),
+-    }),
+-    defineField({
+-      name: "slug",
+-      title: "Slug (web address)",
+-      type: "slug",
+-      group: "main",
+-      description: "Auto-generated from the English headline — leave as is.",
+-      options: {
+-        source: (doc) => {
+-          const t = doc.title as
+-            | { en?: string; fr?: string; rw?: string }
+-            | undefined;
+-          return t?.en || t?.fr || t?.rw || "post";
+-        },
+-      },
+-    }),
+-    defineField({
+-      name: "category",
+-      title: "Category",
+-      type: "string",
+-      group: "main",
+-      options: {
+-        list: [
+-          { title: "Announcement", value: "Announcement" },
+-          { title: "Report", value: "Report" },
+-          { title: "Event", value: "Event" },
+-          { title: "Education", value: "Education" },
+-          { title: "Health", value: "Health" },
+-          { title: "Youth", value: "Youth" },
+-          { title: "Development", value: "Development" },
+-        ],
+-      },
+-      initialValue: "Announcement",
+-    }),
+-    defineField({
+-      name: "publishedAt",
+-      title: "Publish date",
+-      type: "datetime",
+-      group: "main",
+-      initialValue: () => new Date().toISOString(),
+-    }),
+-    defineField({
+-      name: "author",
+-      title: "Author / Department",
+-      type: "string",
+-      group: "main",
+-      description: "e.g. CPR Secretariat, BNEP Department",
+-    }),
+-    defineField({
+-      name: "featured",
+-      title: "Featured story",
+-      type: "boolean",
+-      group: "main",
+-      initialValue: false,
+-      description: "Pinned stories are highlighted first.",
+-    }),
+-    defineField({
+-      name: "excerpt",
+-      title: "Short summary",
+-      type: "localizedText",
+-      group: "main",
+-      description: "One or two sentences shown on the news cards.",
+-    }),
+-    defineField({
+-      name: "body",
+-      title: "Article Body",
+-      type: "object",
+-      group: "body",
+-      fields: [
+-        {
+-          name: "en",
+-          title: "English",
+-          type: "array",
+-          of: [
+-            { type: "block" },
+-            { type: "image", options: { hotspot: true }, fields: [
+-              { name: "alt", type: "string", title: "Alt text" },
+-              { name: "caption", type: "string", title: "Caption" },
+-            ] },
+-          ],
+-        },
+-        {
+-          name: "fr",
+-          title: "Français",
+-          type: "array",
+-          of: [
+-            { type: "block" },
+-            { type: "image", options: { hotspot: true }, fields: [
+-              { name: "alt", type: "string", title: "Alt text" },
+-              { name: "caption", type: "string", title: "Caption" },
+-            ] },
+-          ],
+-        },
+-        {
+-          name: "rw",
+-          title: "Kinyarwanda",
+-          type: "array",
+-          of: [
+-            { type: "block" },
+-            { type: "image", options: { hotspot: true }, fields: [
+-              { name: "alt", type: "string", title: "Alt text" },
+-              { name: "caption", type: "string", title: "Caption" },
+-            ] },
+-          ],
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "quote",
+-      title: "Pull quote",
+-      type: "localizedString",
+-      group: "body",
+-      description: "Optional — a highlighted quotation shown in the article.",
+-    }),
+-    defineField({
+-      name: "coverImage",
+-      title: "Cover image",
+-      type: "image",
+-      group: "media",
+-      options: { hotspot: true },
+-      fields: [{ name: "alt", type: "string", title: "Alt text" }],
+-    }),
+-    defineField({
+-      name: "imageCaption",
+-      title: "Cover image caption",
+-      type: "string",
+-      group: "media",
+-    }),
+-  ],
+-  preview: {
+-    select: {
+-      title: "title.en",
+-      media: "coverImage",
+-      date: "publishedAt",
+-    },
+-    prepare({ title, media, date }: { title?: string; media?: any; date?: string }) {
+-      return {
+-        title: title || "Untitled post",
+-        media,
+-        subtitle: date ? new Date(date).toDateString() : undefined,
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/project.ts b/studio/schemaTypes/project.ts
+deleted file mode 100644
+index 7128e3c..0000000
+--- a/studio/schemaTypes/project.ts
++++ /dev/null
+@@ -1,65 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/** Icon choices that match the icons the site renders for each project. */
+-const PROJECT_ICONS = [
+-  { title: "Briefcase — Capacity Building", value: "briefcase" },
+-  { title: "Heart — Trauma Healing", value: "heart" },
+-];
+-
+-/**
+- * A featured project shown on the home page. All text is localized
+- * (EN/FR/RW); the `order` field controls the display position and `icon`
+- * picks the card icon. Highlights are one bullet point per array row.
+- */
+-export const project = defineType({
+-  name: "project",
+-  title: "Project",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first on the home page. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-    defineField({
+-      name: "icon",
+-      title: "Icon",
+-      type: "string",
+-      options: { list: PROJECT_ICONS },
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "Project title",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "period",
+-      title: "Period",
+-      description: "e.g. 2019 — 2022 or Ongoing",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "desc",
+-      title: "Description",
+-      type: "localizedText",
+-    }),
+-    defineField({
+-      name: "highlights",
+-      title: "Key highlights",
+-      description: "Add one bullet point per row; each can be translated into the three languages.",
+-      type: "array",
+-      of: [{ type: "localizedText" }],
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title.en", order: "order" },
+-    prepare({ title, order }) {
+-      return {
+-        title: title || "Untitled project",
+-        subtitle:
+-          order !== undefined && order !== null ? `Position ${order}` : undefined,
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/radioProgram.ts b/studio/schemaTypes/radioProgram.ts
+deleted file mode 100644
+index 59ae98d..0000000
+--- a/studio/schemaTypes/radioProgram.ts
++++ /dev/null
+@@ -1,48 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * A programme in Radio Inkoramutima's daily schedule, shown as a card on
+- * the radio page. Titles and descriptions are localized (EN/FR/RW); the
+- * `order` field controls where the programme appears in the schedule.
+- */
+-export const radioProgram = defineType({
+-  name: "radioProgram",
+-  title: "Radio Program",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first in the schedule. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-    defineField({
+-      name: "time",
+-      title: "Time slot",
+-      description: "e.g. 5:00 — 7:00",
+-      type: "string",
+-    }),
+-    defineField({
+-      name: "title",
+-      title: "Program title",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "desc",
+-      title: "Short description",
+-      type: "localizedText",
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "title.en", time: "time", order: "order" },
+-    prepare({ title, time, order }) {
+-      const parts: string[] = [];
+-      if (order !== undefined && order !== null) parts.push(`#${order}`);
+-      if (time) parts.push(time);
+-      return {
+-        title: title || "Untitled program",
+-        subtitle: parts.length > 0 ? parts.join(" · ") : undefined,
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/siteSettings.ts b/studio/schemaTypes/siteSettings.ts
+deleted file mode 100644
+index 732184a..0000000
+--- a/studio/schemaTypes/siteSettings.ts
++++ /dev/null
+@@ -1,152 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * Global site settings — ONE document that controls the site-wide content
+- * staff edit most often: hero slides, statistics, contact details (used in
+- * the header, footer and contact page), social links, radio info, and the
+- * partner list. Everything is localized; empty languages fall back to
+- * English on the website.
+- */
+-export const siteSettings = defineType({
+-  name: "siteSettings",
+-  title: "Site Settings",
+-  type: "document",
+-  groups: [
+-    { name: "hero", title: "Hero" },
+-    { name: "stats", title: "Statistics" },
+-    { name: "contact", title: "Contact" },
+-    { name: "radio", title: "Radio" },
+-    { name: "partners", title: "Partners" },
+-  ],
+-  fields: [
+-    defineField({
+-      name: "heroSlides",
+-      title: "Hero Slides",
+-      description:
+-        "The rotating banner on the home page. Add as many as you like — the first one shows first.",
+-      type: "array",
+-      group: "hero",
+-      of: [
+-        {
+-          type: "object",
+-          name: "heroSlide",
+-          title: "Hero Slide",
+-          fields: [
+-            { name: "image", title: "Background image", type: "image", options: { hotspot: true } },
+-            { name: "label", title: "Eyebrow (small script text)", type: "localizedString" },
+-            { name: "title", title: "Headline", type: "localizedString" },
+-            { name: "subtitle", title: "Subtitle (script quote)", type: "localizedString" },
+-            { name: "desc", title: "Description", type: "localizedText" },
+-            { name: "cta", title: "Main button text", type: "localizedString" },
+-            { name: "ctaHref", title: "Main button link", type: "string", description: "e.g. /about#vision-mission" },
+-            { name: "ctaSecondary", title: "Secondary button text", type: "localizedString" },
+-            { name: "ctaSecondaryHref", title: "Secondary button link", type: "string", description: "e.g. /departments" },
+-          ],
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "stats",
+-      title: "Statistics",
+-      description: "The numbers shown on the home page (member churches, schools, FM, years).",
+-      type: "array",
+-      group: "stats",
+-      of: [
+-        {
+-          type: "object",
+-          name: "stat",
+-          title: "Statistic",
+-          fields: [
+-            { name: "value", title: "Value", type: "number" },
+-            { name: "suffix", title: "Suffix", type: "string", description: "e.g. + or  FM" },
+-            {
+-              name: "icon",
+-              title: "Icon",
+-              type: "string",
+-              options: {
+-                list: [
+-                  { title: "Church", value: "church" },
+-                  { title: "School", value: "school" },
+-                  { title: "Radio", value: "radio" },
+-                  { title: "Service ribbon", value: "ribbon" },
+-                  { title: "Users", value: "users" },
+-                  { title: "Heart", value: "heart" },
+-                  { title: "Scale", value: "scale" },
+-                  { title: "Briefcase", value: "briefcase" },
+-                ],
+-              },
+-            },
+-            { name: "label", title: "Label", type: "localizedString" },
+-          ],
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "contact",
+-      title: "Contact Information",
+-      description: "Shown in the header, footer and contact page.",
+-      type: "object",
+-      group: "contact",
+-      fields: [
+-        { name: "phone", title: "Phone", type: "string" },
+-        { name: "email", title: "Email", type: "string" },
+-        { name: "addressLine1", title: "Address line 1", type: "string" },
+-        { name: "addressLine2", title: "Address line 2", type: "string" },
+-        {
+-          name: "socials",
+-          title: "Social links",
+-          type: "array",
+-          of: [
+-            {
+-              type: "object",
+-              name: "social",
+-              fields: [
+-                {
+-                  name: "platform",
+-                  title: "Platform",
+-                  type: "string",
+-                  options: {
+-                    list: [
+-                      { title: "Facebook", value: "facebook" },
+-                      { title: "X (Twitter)", value: "x" },
+-                      { title: "Instagram", value: "instagram" },
+-                      { title: "YouTube", value: "youtube" },
+-                    ],
+-                  },
+-                },
+-                { name: "url", title: "URL", type: "url" },
+-              ],
+-            },
+-          ],
+-        },
+-      ],
+-    }),
+-    defineField({
+-      name: "radio",
+-      title: "Radio Inkoramutima",
+-      type: "object",
+-      group: "radio",
+-      fields: [
+-        { name: "frequency", title: "Frequency", type: "string", description: "e.g. 107.1" },
+-        { name: "tagline", title: "Tagline", type: "localizedString" },
+-        { name: "listenUrl", title: "Listen live URL", type: "url" },
+-      ],
+-    }),
+-    defineField({
+-      name: "partners",
+-      title: "Partners",
+-      description: "The partner names shown on the home page.",
+-      type: "array",
+-      group: "partners",
+-      of: [{ type: "string" }],
+-    }),
+-  ],
+-  preview: {
+-    prepare() {
+-      return {
+-        title: "Site Settings",
+-        subtitle: "Hero, statistics, contact, radio & partners",
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemaTypes/testimonial.ts b/studio/schemaTypes/testimonial.ts
+deleted file mode 100644
+index a785354..0000000
+--- a/studio/schemaTypes/testimonial.ts
++++ /dev/null
+@@ -1,57 +0,0 @@
+-import { defineType, defineField } from "sanity";
+-
+-/**
+- * A testimonial shown in the carousel on the home page. Quotes and roles
+- * are localized (EN/FR/RW); the author name is a single string and the
+- * photo is optional. The `order` field controls the carousel position.
+- */
+-export const testimonial = defineType({
+-  name: "testimonial",
+-  title: "Testimonial",
+-  type: "document",
+-  fields: [
+-    defineField({
+-      name: "order",
+-      title: "Display order",
+-      description: "1 = shown first in the carousel. Use 1, 2, 3…",
+-      type: "number",
+-    }),
+-    defineField({
+-      name: "quote",
+-      title: "Quote",
+-      type: "localizedText",
+-    }),
+-    defineField({
+-      name: "author",
+-      title: "Author name",
+-      description: "e.g. Dr. Claudine Uwimana",
+-      type: "string",
+-    }),
+-    defineField({
+-      name: "role",
+-      title: "Role / title",
+-      description: "e.g. Education Specialist, BNEP",
+-      type: "localizedString",
+-    }),
+-    defineField({
+-      name: "avatar",
+-      title: "Photo (optional)",
+-      description: "If left empty, a default profile photo is shown.",
+-      type: "image",
+-      options: { hotspot: true },
+-    }),
+-  ],
+-  preview: {
+-    select: { title: "author", quote: "quote.en", order: "order", media: "avatar" },
+-    prepare({ title, quote, order, media }) {
+-      const parts: string[] = [];
+-      if (order !== undefined && order !== null) parts.push(`#${order}`);
+-      if (quote) parts.unshift(quote.slice(0, 60));
+-      return {
+-        title: title || "Untitled testimonial",
+-        subtitle: parts.length > 0 ? parts.join(" · ") : undefined,
+-        media,
+-      };
+-    },
+-  },
+-});
+diff --git a/studio/schemas/aboutPage.ts b/studio/schemas/aboutPage.ts
+index 0c1de56..883e79e 100644
+--- a/studio/schemas/aboutPage.ts
++++ b/studio/schemas/aboutPage.ts
+@@ -1,42 +1,182 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'aboutPage',
+-  title: 'About Page',
+-  type: 'document',
+-  __experimental_actions: ['update', 'publish'],
++/**
++ * One document that controls the deep copy on the About Us page:
++ * hero title, Who We Are paragraphs, Vision & Mission, the three-step
++ * model, core values, executive committee headings, organigram and the
++ * partners heading. Everything is localized; empty languages fall back
++ * to English on the website.
++ */
++export const aboutPage = defineType({
++  name: "aboutPage",
++  title: "About Page",
++  type: "document",
++  groups: [
++    { name: "hero", title: "Hero" },
++    { name: "whoWeAre", title: "Who We Are" },
++    { name: "visionMission", title: "Vision & Mission" },
++    { name: "model", title: "Our Model" },
++    { name: "coreValues", title: "Core Values" },
++    { name: "execCommittee", title: "Executive Committee" },
++    { name: "organigram", title: "Organigram" },
++    { name: "partners", title: "Partners" },
++    { name: "historyModal", title: "History Modal" },
++  ],
+   fields: [
+-    defineField({ name: 'title', title: 'Page Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
+-    defineField({ name: 'heroImage', title: 'Hero Image', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'mission', title: 'Mission Statement', type: 'text', rows: 3 }),
+-    defineField({ name: 'vision', title: 'Vision Statement', type: 'text', rows: 3 }),
+-    defineField({ name: 'history', title: 'History', type: 'array', of: [{ type: 'block' }] }),
+-    defineField({
+-      name: 'values', title: 'Core Values', type: 'array',
+-      of: [{
+-        type: 'object',
+-        fields: [
+-          { name: 'title', title: 'Value Title', type: 'string' },
+-          { name: 'description', title: 'Description', type: 'text', rows: 2 },
+-          { name: 'icon', title: 'Icon', type: 'image' },
+-        ],
+-        preview: { select: { title: 'title' } },
+-      }],
+-    }),
+-    defineField({
+-      name: 'leadershipTeam', title: 'Leadership Team', type: 'array',
+-      of: [{
+-        type: 'object',
+-        fields: [
+-          { name: 'name', title: 'Name', type: 'string' },
+-          { name: 'role', title: 'Role', type: 'string' },
+-          { name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } },
+-          { name: 'bio', title: 'Bio', type: 'text', rows: 3 },
+-        ],
+-        preview: { select: { title: 'name', subtitle: 'role', media: 'image' } },
+-      }],
++    defineField({
++      name: "heroTitle",
++      title: "Hero title",
++      type: "localizedString",
++      group: "hero",
++    }),
++    defineField({
++      name: "nav",
++      title: "Sub-navigation labels",
++      description: "The pills in the sticky bar under the hero.",
++      type: "object",
++      group: "hero",
++      fields: [
++        { name: "whoWeAre", title: "Who We Are", type: "localizedString" },
++        { name: "visionMission", title: "Vision & Mission", type: "localizedString" },
++        { name: "coreValues", title: "Core Values", type: "localizedString" },
++        { name: "execCommittee", title: "Executive Committee", type: "localizedString" },
++        { name: "organigram", title: "Organigram", type: "localizedString" },
++        { name: "ourPartners", title: "Our Partners", type: "localizedString" },
++      ],
++    }),
++    defineField({
++      name: "whoWeAre",
++      title: "Who We Are",
++      type: "object",
++      group: "whoWeAre",
++      fields: [
++        { name: "title", title: "Title", type: "localizedString" },
++        { name: "p1", title: "Paragraph 1", type: "localizedText" },
++        { name: "p2", title: "Paragraph 2", type: "localizedText" },
++      ],
++    }),
++    defineField({
++      name: "visionMission",
++      title: "Vision & Mission",
++      type: "object",
++      group: "visionMission",
++      fields: [
++        { name: "title", title: "Section title", type: "localizedString" },
++        { name: "visionTag", title: "Vision tag", type: "localizedString" },
++        { name: "visionSub", title: "Vision subtitle", type: "localizedString" },
++        { name: "visionDesc", title: "Vision description", type: "localizedText" },
++        { name: "missionTag", title: "Mission tag", type: "localizedString" },
++        { name: "missionSub", title: "Mission subtitle", type: "localizedString" },
++        { name: "missionDesc", title: "Mission description", type: "localizedText" },
++      ],
++    }),
++    defineField({
++      name: "model",
++      title: "Our Model",
++      description: "The three-step collaborative structure shown on the About page.",
++      type: "object",
++      group: "model",
++      fields: [
++        { name: "title", title: "Section title", type: "localizedString" },
++        { name: "desc", title: "Description", type: "localizedText" },
++        { name: "step1Tag", title: "Step 1 tag", type: "localizedString" },
++        { name: "step1Title", title: "Step 1 title", type: "localizedString" },
++        { name: "step1Desc", title: "Step 1 description", type: "localizedText" },
++        { name: "step2Tag", title: "Step 2 tag", type: "localizedString" },
++        { name: "step2Title", title: "Step 2 title", type: "localizedString" },
++        { name: "step2Desc", title: "Step 2 description", type: "localizedText" },
++        { name: "step3Tag", title: "Step 3 tag", type: "localizedString" },
++        { name: "step3Title", title: "Step 3 title", type: "localizedString" },
++        { name: "step3Desc", title: "Step 3 description", type: "localizedText" },
++      ],
++    }),
++    defineField({
++      name: "coreValues",
++      title: "Core Values",
++      type: "object",
++      group: "coreValues",
++      fields: [
++        { name: "title", title: "Section title", type: "localizedString" },
++        {
++          name: "items",
++          title: "Values",
++          type: "array",
++          of: [
++            {
++              type: "object",
++              name: "value",
++              title: "Value",
++              fields: [
++                { name: "title", title: "Title", type: "localizedString" },
++                { name: "desc", title: "Description", type: "localizedText" },
++              ],
++              preview: {
++                select: { title: "title.en" },
++                prepare({ title }) {
++                  return { title: title || "Core value" };
++                },
++              },
++            },
++          ],
++        },
++      ],
++    }),
++    defineField({
++      name: "execCommittee",
++      title: "Executive Committee",
++      description: "The headings around the board & staff photo cards (the people themselves stay fixed).",
++      type: "object",
++      group: "execCommittee",
++      fields: [
++        { name: "title", title: "Section title", type: "localizedString" },
++        { name: "desc", title: "Description", type: "localizedText" },
++        { name: "boardMembers", title: "'Board Members' heading", type: "localizedString" },
++        { name: "staff", title: "'Staff' heading", type: "localizedString" },
++        { name: "defaultName", title: "Default member name", type: "localizedString" },
++        { name: "defaultRole", title: "Default role", type: "localizedString" },
++      ],
++    }),
++    defineField({
++      name: "organigram",
++      title: "Organigram",
++      type: "object",
++      group: "organigram",
++      fields: [
++        { name: "title", title: "Section title", type: "localizedString" },
++        { name: "comingSoon", title: "Placeholder text", type: "localizedString" },
++      ],
++    }),
++    defineField({
++      name: "partners",
++      title: "Partners",
++      type: "object",
++      group: "partners",
++      fields: [{ name: "title", title: "Section title", type: "localizedString" }],
++    }),
++    defineField({
++      name: "historyModal",
++      title: "History Modal",
++      description: "Content for the 'Our Story' modal opened from the Who We Are section.",
++      type: "object",
++      group: "historyModal",
++      fields: [
++        { name: "learnMore", title: "'Learn More' button label", type: "localizedString" },
++        { name: "badge", title: "Badge text (e.g. 'Our Story')", type: "localizedString" },
++        { name: "title", title: "Modal title", type: "localizedString" },
++        { name: "p1", title: "Paragraph 1", type: "localizedText" },
++        { name: "p2", title: "Paragraph 2", type: "localizedText" },
++        { name: "personName", title: "Person name", type: "localizedString" },
++        { name: "personRole", title: "Person role", type: "localizedString" },
++        { name: "cta", title: "CTA button label", type: "localizedString" },
++      ],
+     }),
+   ],
+-  preview: { select: { title: 'title' } },
+-})
++  preview: {
++    prepare() {
++      return {
++        title: "About Page",
++        subtitle: "Hero, who we are, vision, model, values & committee",
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/department.ts b/studio/schemas/department.ts
+index b4dd27e..942becb 100644
+--- a/studio/schemas/department.ts
++++ b/studio/schemas/department.ts
+@@ -1,20 +1,62 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'department',
+-  title: 'Department',
+-  type: 'document',
++/** Icon choices that match the icons the site renders for each department. */
++const DEPT_ICONS = [
++  { title: "Crown — General Secretariat", value: "crown" },
++  { title: "Graduation cap — Education (BNEP)", value: "graduation-cap" },
++  { title: "Handshake — Diakonia", value: "handshake" },
++  { title: "Coins — Finance", value: "coins" },
++  { title: "Users — Youth", value: "users" },
++  { title: "Scale — Gender", value: "scale" },
++  { title: "Radio — Radio Inkoramutima", value: "radio" },
++];
++
++/**
++ * A CPR department shown as a card on the home page. Titles and short
++ * descriptions are localized (EN/FR/RW); the `order` field controls the
++ * display position on the page.
++ */
++export const department = defineType({
++  name: "department",
++  title: "Department",
++  type: "document",
+   fields: [
+-    defineField({ name: 'name', title: 'Name', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' } }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
+-    defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'headName', title: 'Department Head Name', type: 'string' }),
+-    defineField({ name: 'headTitle', title: 'Department Head Title', type: 'string' }),
+-    defineField({ name: 'headImage', title: 'Department Head Photo', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'email', title: 'Email', type: 'string' }),
+-    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
+-    defineField({ name: 'order', title: 'Display Order', type: 'number' }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first on the home page. Use 1, 2, 3…",
++      type: "number",
++    }),
++    defineField({
++      name: "icon",
++      title: "Icon",
++      type: "string",
++      options: { list: DEPT_ICONS },
++    }),
++    defineField({
++      name: "title",
++      title: "Department name",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "desc",
++      title: "Short description",
++      type: "localizedText",
++    }),
++    defineField({
++      name: "link",
++      title: "Link",
++      description: "e.g. /departments#bnep — where the card leads.",
++      type: "string",
++    }),
+   ],
+-  preview: { select: { title: 'name', media: 'image' } },
+-})
++  preview: {
++    select: { title: "title.en", order: "order" },
++    prepare({ title, order }) {
++      return {
++        title: title || "Untitled department",
++        subtitle: order !== undefined && order !== null ? `Position ${order}` : "No order set",
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/departmentResourceFile.ts b/studio/schemas/departmentResourceFile.ts
+index 83dd417..975499e 100644
+--- a/studio/schemas/departmentResourceFile.ts
++++ b/studio/schemas/departmentResourceFile.ts
+@@ -1,16 +1,44 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'departmentResourceFile',
+-  title: 'Department Resource File',
+-  type: 'document',
++/**
++ * A single file belonging to a resource group. Staff pick the group from a
++ * dropdown (no free-text slugs to mistype) and upload the file.
++ */
++export const departmentResourceFile = defineType({
++  name: "departmentResourceFile",
++  title: "Department Resource File",
++  type: "document",
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'file', title: 'File', type: 'file' }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
+-    defineField({ name: 'category', title: 'Category', type: 'string' }),
+-    defineField({ name: 'department', title: 'Department', type: 'reference', to: [{ type: 'department' }] }),
+-    defineField({ name: 'publishedAt', title: 'Published At', type: 'datetime' }),
++    defineField({
++      name: "group",
++      title: "Resource group",
++      type: "reference",
++      to: [{ type: "departmentResourceGroup" }],
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "title",
++      title: "File title",
++      type: "string",
++      description: "The name shown in the document list, e.g. 'BNEP School Directory 2026.pdf'.",
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "file",
++      title: "File",
++      type: "file",
++      options: { accept: ".pdf,.doc,.docx,.xls,.xlsx" },
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      type: "number",
++      description: "Lower numbers appear first.",
++      initialValue: 1,
++    }),
+   ],
+-  preview: { select: { title: 'title', subtitle: 'category' } },
+-})
++  preview: {
++    select: { title: "title", subtitle: "group.title" },
++  },
++});
+diff --git a/studio/schemas/departmentResourceGroup.ts b/studio/schemas/departmentResourceGroup.ts
+index 8781f59..6b4ca75 100644
+--- a/studio/schemas/departmentResourceGroup.ts
++++ b/studio/schemas/departmentResourceGroup.ts
+@@ -1,14 +1,75 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'departmentResourceGroup',
+-  title: 'Department Resource Group',
+-  type: 'document',
++/**
++ * A resource "folder" shown as a card on a department's Resources page
++ * (e.g. "School Directory", "Past Papers"). Staff can create new groups
++ * here without any code changes — they appear automatically as cards.
++ */
++export const departmentResourceGroup = defineType({
++  name: "departmentResourceGroup",
++  title: "Department Resource Group",
++  type: "document",
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
+-    defineField({ name: 'department', title: 'Department', type: 'reference', to: [{ type: 'department' }] }),
+-    defineField({ name: 'resources', title: 'Resources', type: 'array', of: [{ type: 'reference', to: [{ type: 'departmentResourceFile' }] }] }),
++    defineField({
++      name: "department",
++      title: "Department",
++      type: "string",
++      options: {
++        list: [
++          { title: "General Secretary", value: "gs" },
++          { title: "Education / BNEP", value: "bnep" },
++          { title: "Diakonia / Development", value: "diakonia" },
++          { title: "Finance & Mobilization", value: "finance" },
++          { title: "Youth Program", value: "youth" },
++          { title: "Gender Promotion", value: "gender" },
++          { title: "Radio Inkoramutima", value: "radio" },
++        ],
++      },
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "title",
++      title: "Group title",
++      type: "string",
++      description: "e.g. 'Past Papers', 'School Directory', 'Annual Reports'",
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "slug",
++      title: "Slug",
++      type: "slug",
++      options: { source: "title" },
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "description",
++      title: "Description",
++      type: "string",
++      description: "Short blurb shown on the resource card.",
++    }),
++    defineField({
++      name: "cardType",
++      title: "Card type",
++      type: "string",
++      description: "Controls the icon/label on the card.",
++      options: {
++        list: [
++          { title: "Document (View)", value: "document" },
++          { title: "Download", value: "download" },
++          { title: "External link", value: "link" },
++        ],
++      },
++      initialValue: "document",
++    }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      type: "number",
++      description: "Lower numbers appear first.",
++      initialValue: 1,
++    }),
+   ],
+-  preview: { select: { title: 'title', subtitle: 'department.name' } },
+-})
++  preview: {
++    select: { title: "title", subtitle: "department" },
++  },
++});
+diff --git a/studio/schemas/departmentsPage.ts b/studio/schemas/departmentsPage.ts
+index de5b564..b7bcab0 100644
+--- a/studio/schemas/departmentsPage.ts
++++ b/studio/schemas/departmentsPage.ts
+@@ -1,15 +1,172 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'departmentsPage',
+-  title: 'Departments Page',
+-  type: 'document',
+-  __experimental_actions: ['update', 'publish'],
++/** The fixed department section keys the /departments page renders. */
++const SECTION_KEYS = [
++  { title: "General Secretary", value: "gs" },
++  { title: "Education / BNEP", value: "bnep" },
++  { title: "Diakonia / Development", value: "diakonia" },
++  { title: "Finance & Mobilization", value: "finance" },
++  { title: "Youth Program", value: "youth" },
++  { title: "Gender Promotion", value: "gender" },
++  { title: "Radio Inkoramutima", value: "radio" },
++];
++
++/**
++ * One document that controls the deep text on the Departments page
++ * (/departments): hero, intro, quick facts, the sub-navigation labels,
++ * every department's detailed section (tag, title, description, body
++ * bullets) and the closing call-to-action. Everything is localized;
++ * empty languages fall back to English on the website.
++ */
++export const departmentsPage = defineType({
++  name: "departmentsPage",
++  title: "Departments Page",
++  type: "document",
++  groups: [
++    { name: "hero", title: "Hero & Intro" },
++    { name: "quickFacts", title: "Quick Facts" },
++    { name: "sections", title: "Department Sections" },
++    { name: "cta", title: "Call to Action" },
++  ],
+   fields: [
+-    defineField({ name: 'title', title: 'Page Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
+-    defineField({ name: 'heroImage', title: 'Hero Image', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'introText', title: 'Intro Text', type: 'array', of: [{ type: 'block' }] }),
++    defineField({
++      name: "heroTitle",
++      title: "Hero title",
++      type: "localizedString",
++      group: "hero",
++    }),
++    defineField({
++      name: "heroDesc",
++      title: "Hero description",
++      type: "localizedText",
++      group: "hero",
++    }),
++    defineField({
++      name: "introTag",
++      title: "Intro tag",
++      type: "localizedString",
++      group: "hero",
++    }),
++    defineField({
++      name: "introTitle",
++      title: "Intro title",
++      type: "localizedString",
++      group: "hero",
++    }),
++    defineField({
++      name: "introDesc",
++      title: "Intro description",
++      type: "localizedText",
++      group: "hero",
++    }),
++    defineField({
++      name: "quickFactsTitle",
++      title: "Quick facts heading",
++      type: "localizedString",
++      group: "quickFacts",
++    }),
++    defineField({
++      name: "quickFacts",
++      title: "Quick facts",
++      description: "The bullet list shown next to the intro (e.g. '7 specialized departments serving all provinces').",
++      type: "array",
++      group: "quickFacts",
++      of: [{ type: "localizedText" }],
++    }),
++    defineField({
++      name: "sections",
++      title: "Department sections",
++      description:
++        "One entry per department. Pick the department key, then fill its sub-navigation label, tag, title, description and body bullets.",
++      type: "array",
++      group: "sections",
++      of: [
++        {
++          type: "object",
++          name: "departmentSection",
++          title: "Department section",
++          fields: [
++            {
++              name: "key",
++              title: "Department",
++              type: "string",
++              options: { list: SECTION_KEYS },
++              validation: (Rule) => Rule.required(),
++            },
++            { name: "nav", title: "Sub-navigation label", type: "localizedString" },
++            { name: "tag", title: "Tag (small label)", type: "localizedString" },
++            { name: "title", title: "Title", type: "localizedString" },
++            { name: "desc", title: "Description", type: "localizedText" },
++            {
++              name: "image",
++              title: "Photo",
++              description: "The large photo beside this department's section. Leave empty to keep the current default photo.",
++              type: "image",
++              options: { hotspot: true },
++            },
++            {
++              name: "stats",
++              title: "Stat numbers",
++              description: "Up to 3 key numbers shown as mini-cards (e.g. value '595+', label 'Primary Schools'). Leave empty to keep the current numbers.",
++              type: "array",
++              of: [
++                {
++                  type: "object",
++                  name: "departmentStat",
++                  title: "Stat",
++                  fields: [
++                    {
++                      name: "value",
++                      title: "Value",
++                      description: "e.g. 595+, 300K+, 1963",
++                      type: "string",
++                      validation: (Rule) => Rule.required(),
++                    },
++                    { name: "label", title: "Label", type: "localizedString" },
++                  ],
++                  preview: {
++                    select: { value: "value", label: "label.en" },
++                    prepare({ value, label }) {
++                      return { title: value || "Stat", subtitle: label || "" };
++                    },
++                  },
++                },
++              ],
++            },
++            {
++              name: "body",
++              title: "Body bullets",
++              type: "array",
++              of: [{ type: "localizedText" }],
++            },
++          ],
++          preview: {
++            select: { key: "key", title: "title.en" },
++            prepare({ key, title }) {
++              return { title: title || (key || "Department") };
++            },
++          },
++        },
++      ],
++    }),
++    defineField({
++      name: "cta",
++      title: "Call to action",
++      type: "object",
++      group: "cta",
++      fields: [
++        { name: "title", title: "Title", type: "localizedString" },
++        { name: "desc", title: "Description", type: "localizedText" },
++        { name: "btn", title: "Button text", type: "localizedString" },
++      ],
++    }),
+   ],
+-  preview: { select: { title: 'title' } },
+-})
++  preview: {
++    prepare() {
++      return {
++        title: "Departments Page",
++        subtitle: "Hero, quick facts, department sections & CTA",
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/galleryCollection.ts b/studio/schemas/galleryCollection.ts
+index d9d6e40..a50d991 100644
+--- a/studio/schemas/galleryCollection.ts
++++ b/studio/schemas/galleryCollection.ts
+@@ -1,27 +1,94 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'galleryCollection',
+-  title: 'Gallery Collection',
+-  type: 'document',
++/** The four filter categories shown on the gallery page. */
++const GALLERY_CATEGORIES = [
++  { title: "Conferences & Meetings", value: "conferences" },
++  { title: "Commemorations", value: "commemorations" },
++  { title: "Youth & Wellness", value: "youth" },
++  { title: "Education & Media", value: "education" },
++];
++
++/**
++ * A photo collection on the gallery page. Staff create one document per
++ * collection (e.g. "Kwibuka Commemoration"), upload its photos, and the
++ * `order` field controls where it appears. Titles, locations and dates are
++ * localized; empty languages fall back to English on the website.
++ */
++export const galleryCollection = defineType({
++  name: "galleryCollection",
++  title: "Gallery Collection",
++  type: "document",
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' } }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
+-    defineField({ name: 'coverImage', title: 'Cover Image', type: 'image', options: { hotspot: true } }),
+     defineField({
+-      name: 'images', title: 'Images', type: 'array',
+-      of: [{
+-        type: 'object',
+-        fields: [
+-          { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+-          { name: 'caption', title: 'Caption', type: 'string' },
+-        ],
+-        preview: { select: { media: 'image', title: 'caption' } },
+-      }],
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first on the gallery page. Use 1, 2, 3…",
++      type: "number",
++    }),
++    defineField({
++      name: "category",
++      title: "Category",
++      description: "Determines which filter the collection appears under.",
++      type: "string",
++      options: { list: GALLERY_CATEGORIES },
++      validation: (Rule) => Rule.required(),
++    }),
++    defineField({
++      name: "title",
++      title: "Collection title",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "locationDate",
++      title: "Location & date",
++      description: "e.g. Kigali, January 2026",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "images",
++      title: "Photos",
++      type: "array",
++      of: [
++        {
++          type: "object",
++          name: "photo",
++          title: "Photo",
++          fields: [
++            {
++              name: "image",
++              title: "Image",
++              type: "image",
++              options: { hotspot: true },
++            },
++            {
++              name: "alt",
++              title: "Description (alt text)",
++              description: "Short text describing the photo, shown to screen readers.",
++              type: "string",
++            },
++          ],
++          preview: {
++            select: { media: "image", title: "alt" },
++            prepare({ media, title }) {
++              return { media, title: title || "Photo" };
++            },
++          },
++        },
++      ],
+     }),
+-    defineField({ name: 'publishedAt', title: 'Published At', type: 'datetime' }),
+-    defineField({ name: 'category', title: 'Category', type: 'string' }),
+   ],
+-  preview: { select: { title: 'title', media: 'coverImage', subtitle: 'category' } },
+-})
++  preview: {
++    select: { title: "title.en", category: "category", order: "order", images: "images" },
++    prepare({ title, category, order, images }) {
++      const parts = [
++        category ? category : "no category",
++        `${images?.length ?? 0} photos`,
++      ];
++      if (order !== undefined && order !== null) parts.push(`position ${order}`);
++      return {
++        title: title || "Untitled collection",
++        subtitle: parts.join(" · "),
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/index.ts b/studio/schemas/index.ts
+index 100f609..67f537b 100644
+--- a/studio/schemas/index.ts
++++ b/studio/schemas/index.ts
+@@ -1,30 +1,33 @@
+-import newsPost from './newsPost'
+-import department from './department'
+-import departmentResourceFile from './departmentResourceFile'
+-import departmentResourceGroup from './departmentResourceGroup'
+-import siteSettings from './siteSettings'
+-import memberChurch from './memberChurch'
+-import galleryCollection from './galleryCollection'
+-import radioProgram from './radioProgram'
+-import testimonial from './testimonial'
+-import project from './project'
+-import departmentsPage from './departmentsPage'
+-import aboutPage from './aboutPage'
++import { localizedString } from "./localizedString";
++import { localizedText } from "./localizedText";
++import { newsPost } from "./newsPost";
++import { departmentResourceFile } from "./departmentResourceFile";
++import { departmentResourceGroup } from "./departmentResourceGroup";
++import { siteSettings } from "./siteSettings";
++import { memberChurch } from "./memberChurch";
++import { department } from "./department";
++import { galleryCollection } from "./galleryCollection";
++import { radioProgram } from "./radioProgram";
++import { testimonial } from "./testimonial";
++import { project } from "./project";
++import { departmentsPage } from "./departmentsPage";
++import { aboutPage } from "./aboutPage";
++import { secretariatPage } from "./secretariatPage";
+ 
+ export const schemaTypes = [
+-  // Singleton pages
+-  siteSettings,
+-  aboutPage,
+-  departmentsPage,
+-
+-  // Collections
+   newsPost,
+-  department,
+   departmentResourceFile,
+   departmentResourceGroup,
++  siteSettings,
+   memberChurch,
++  department,
+   galleryCollection,
+   radioProgram,
+   testimonial,
+   project,
+-]
++  departmentsPage,
++  aboutPage,
++  secretariatPage,
++  localizedString,
++  localizedText,
++];
+diff --git a/studio/schemaTypes/localizedString.ts b/studio/schemas/localizedString.ts
+similarity index 100%
+rename from studio/schemaTypes/localizedString.ts
+rename to studio/schemas/localizedString.ts
+diff --git a/studio/schemaTypes/localizedText.ts b/studio/schemas/localizedText.ts
+similarity index 100%
+rename from studio/schemaTypes/localizedText.ts
+rename to studio/schemas/localizedText.ts
+diff --git a/studio/schemas/memberChurch.ts b/studio/schemas/memberChurch.ts
+index 0039fee..2815362 100644
+--- a/studio/schemas/memberChurch.ts
++++ b/studio/schemas/memberChurch.ts
+@@ -1,21 +1,48 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'memberChurch',
+-  title: 'Member Church',
+-  type: 'document',
++/**
++ * A member church of the Protestant Council of Rwanda (CPR).
++ *
++ * Staff can add, remove or rename churches from the grid shown on the home
++ * page. The optional website URL turns the card into an external link.
++ */
++export const memberChurch = defineType({
++  name: "memberChurch",
++  title: "Member Church",
++  type: "document",
+   fields: [
+-    defineField({ name: 'name', title: 'Church Name', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' } }),
+-    defineField({ name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
+-    defineField({ name: 'location', title: 'Location', type: 'string' }),
+-    defineField({ name: 'website', title: 'Website', type: 'url' }),
+-    defineField({ name: 'email', title: 'Email', type: 'string' }),
+-    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
+-    defineField({ name: 'leaderName', title: 'Leader Name', type: 'string' }),
+-    defineField({ name: 'leaderTitle', title: 'Leader Title', type: 'string' }),
+-    defineField({ name: 'leaderImage', title: 'Leader Photo', type: 'image', options: { hotspot: true } }),
++    defineField({
++      name: "name",
++      title: "Church name",
++      description: "e.g. Eglise Presbytérienne au Rwanda (EPR)",
++      type: "string",
++      validation: (Rule) => Rule.required(),
++    }),
++    defineField({
++      name: "url",
++      title: "Website (optional)",
++      description: "e.g. https://www.epr.rw — shown as a link on the card.",
++      type: "url",
++    }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first on the home page. Use 1, 2, 3…",
++      type: "number",
++    }),
+   ],
+-  preview: { select: { title: 'name', media: 'logo', subtitle: 'location' } },
+-})
++  preview: {
++    select: { title: "name", url: "url", order: "order" },
++    prepare({ title, url, order }) {
++      return {
++        title: title || "Untitled church",
++        subtitle:
++          order !== undefined && order !== null
++            ? `Position ${order}`
++            : url
++              ? `Website: ${url}`
++              : "No website",
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/newsPost.ts b/studio/schemas/newsPost.ts
+index 5f4b367..19c8208 100644
+--- a/studio/schemas/newsPost.ts
++++ b/studio/schemas/newsPost.ts
+@@ -1,19 +1,171 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'newsPost',
+-  title: 'News Post',
+-  type: 'document',
++/**
++ * News & Announcements document.
++ *
++ * Staff write a post here and hit Publish — it appears on the website's
++ * Newsroom, home page news section, and its own article page automatically.
++ * Titles, summaries, quotes and article bodies are localized in the site's
++ * three languages; leaving French/Kinyarwanda empty falls back to English.
++ */
++export const newsPost = defineType({
++  name: "newsPost",
++  title: "News Post",
++  type: "document",
++  groups: [
++    { name: "main", title: "Main" },
++    { name: "body", title: "Article Body" },
++    { name: "media", title: "Media" },
++  ],
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 }, validation: (R) => R.required() }),
+-    defineField({ name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3 }),
+-    defineField({ name: 'mainImage', title: 'Main Image', type: 'image', options: { hotspot: true }, fields: [defineField({ name: 'alt', type: 'string', title: 'Alt text' })] }),
+-    defineField({ name: 'body', title: 'Body', type: 'array', of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }] }),
+-    defineField({ name: 'publishedAt', title: 'Published At', type: 'datetime', initialValue: () => new Date().toISOString() }),
+-    defineField({ name: 'category', title: 'Category', type: 'string' }),
+-    defineField({ name: 'author', title: 'Author', type: 'string' }),
+-    defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }] }),
++    defineField({
++      name: "title",
++      title: "Headline",
++      type: "localizedString",
++      group: "main",
++      description: "The headline in each language. English is required.",
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "slug",
++      title: "Slug (web address)",
++      type: "slug",
++      group: "main",
++      description: "Auto-generated from the English headline — leave as is.",
++      options: {
++        source: (doc) => {
++          const t = doc.title as
++            | { en?: string; fr?: string; rw?: string }
++            | undefined;
++          return t?.en || t?.fr || t?.rw || "post";
++        },
++      },
++    }),
++    defineField({
++      name: "category",
++      title: "Category",
++      type: "string",
++      group: "main",
++      options: {
++        list: [
++          { title: "Announcement", value: "Announcement" },
++          { title: "Report", value: "Report" },
++          { title: "Event", value: "Event" },
++          { title: "Education", value: "Education" },
++          { title: "Health", value: "Health" },
++          { title: "Youth", value: "Youth" },
++          { title: "Development", value: "Development" },
++        ],
++      },
++      initialValue: "Announcement",
++    }),
++    defineField({
++      name: "publishedAt",
++      title: "Publish date",
++      type: "datetime",
++      group: "main",
++      initialValue: () => new Date().toISOString(),
++    }),
++    defineField({
++      name: "author",
++      title: "Author / Department",
++      type: "string",
++      group: "main",
++      description: "e.g. CPR Secretariat, BNEP Department",
++    }),
++    defineField({
++      name: "featured",
++      title: "Featured story",
++      type: "boolean",
++      group: "main",
++      initialValue: false,
++      description: "Pinned stories are highlighted first.",
++    }),
++    defineField({
++      name: "excerpt",
++      title: "Short summary",
++      type: "localizedText",
++      group: "main",
++      description: "One or two sentences shown on the news cards.",
++    }),
++    defineField({
++      name: "body",
++      title: "Article Body",
++      type: "object",
++      group: "body",
++      fields: [
++        {
++          name: "en",
++          title: "English",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++            ] },
++          ],
++        },
++        {
++          name: "fr",
++          title: "Français",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++            ] },
++          ],
++        },
++        {
++          name: "rw",
++          title: "Kinyarwanda",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++            ] },
++          ],
++        },
++      ],
++    }),
++    defineField({
++      name: "quote",
++      title: "Pull quote",
++      type: "localizedString",
++      group: "body",
++      description: "Optional — a highlighted quotation shown in the article.",
++    }),
++    defineField({
++      name: "mainImage",
++      title: "Main image",
++      type: "image",
++      group: "media",
++      options: { hotspot: true },
++      fields: [{ name: "alt", type: "string", title: "Alt text" }],
++    }),
++    defineField({
++      name: "imageCaption",
++      title: "Main image caption",
++      type: "string",
++      group: "media",
++    }),
+   ],
+-  preview: { select: { title: 'title', media: 'mainImage', subtitle: 'publishedAt' } },
+-})
++  preview: {
++    select: {
++      title: "title.en",
++      media: "mainImage",
++      date: "publishedAt",
++    },
++    prepare({ title, media, date }: { title?: string; media?: any; date?: string }) {
++      return {
++        title: title || "Untitled post",
++        media,
++        subtitle: date ? new Date(date).toDateString() : undefined,
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/project.ts b/studio/schemas/project.ts
+index 2f4efc2..7128e3c 100644
+--- a/studio/schemas/project.ts
++++ b/studio/schemas/project.ts
+@@ -1,20 +1,65 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'project',
+-  title: 'Project',
+-  type: 'document',
++/** Icon choices that match the icons the site renders for each project. */
++const PROJECT_ICONS = [
++  { title: "Briefcase — Capacity Building", value: "briefcase" },
++  { title: "Heart — Trauma Healing", value: "heart" },
++];
++
++/**
++ * A featured project shown on the home page. All text is localized
++ * (EN/FR/RW); the `order` field controls the display position and `icon`
++ * picks the card icon. Highlights are one bullet point per array row.
++ */
++export const project = defineType({
++  name: "project",
++  title: "Project",
++  type: "document",
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' } }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
+-    defineField({ name: 'mainImage', title: 'Main Image', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'body', title: 'Full Details', type: 'array', of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }] }),
+-    defineField({ name: 'status', title: 'Status', type: 'string', options: { list: ['ongoing', 'completed', 'planned'], layout: 'radio' }, initialValue: 'ongoing' }),
+-    defineField({ name: 'startDate', title: 'Start Date', type: 'date' }),
+-    defineField({ name: 'endDate', title: 'End Date', type: 'date' }),
+-    defineField({ name: 'department', title: 'Department', type: 'reference', to: [{ type: 'department' }] }),
+-    defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }] }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first on the home page. Use 1, 2, 3…",
++      type: "number",
++    }),
++    defineField({
++      name: "icon",
++      title: "Icon",
++      type: "string",
++      options: { list: PROJECT_ICONS },
++    }),
++    defineField({
++      name: "title",
++      title: "Project title",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "period",
++      title: "Period",
++      description: "e.g. 2019 — 2022 or Ongoing",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "desc",
++      title: "Description",
++      type: "localizedText",
++    }),
++    defineField({
++      name: "highlights",
++      title: "Key highlights",
++      description: "Add one bullet point per row; each can be translated into the three languages.",
++      type: "array",
++      of: [{ type: "localizedText" }],
++    }),
+   ],
+-  preview: { select: { title: 'title', media: 'mainImage', subtitle: 'status' } },
+-})
++  preview: {
++    select: { title: "title.en", order: "order" },
++    prepare({ title, order }) {
++      return {
++        title: title || "Untitled project",
++        subtitle:
++          order !== undefined && order !== null ? `Position ${order}` : undefined,
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/radioProgram.ts b/studio/schemas/radioProgram.ts
+index e17d6cc..59ae98d 100644
+--- a/studio/schemas/radioProgram.ts
++++ b/studio/schemas/radioProgram.ts
+@@ -1,19 +1,48 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'radioProgram',
+-  title: 'Radio Program',
+-  type: 'document',
++/**
++ * A programme in Radio Inkoramutima's daily schedule, shown as a card on
++ * the radio page. Titles and descriptions are localized (EN/FR/RW); the
++ * `order` field controls where the programme appears in the schedule.
++ */
++export const radioProgram = defineType({
++  name: "radioProgram",
++  title: "Radio Program",
++  type: "document",
+   fields: [
+-    defineField({ name: 'title', title: 'Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' } }),
+-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
+-    defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'host', title: 'Host', type: 'string' }),
+-    defineField({ name: 'schedule', title: 'Schedule', type: 'string' }),
+-    defineField({ name: 'audioFile', title: 'Audio File', type: 'file' }),
+-    defineField({ name: 'streamUrl', title: 'Stream URL', type: 'url' }),
+-    defineField({ name: 'publishedAt', title: 'Published At', type: 'datetime' }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first in the schedule. Use 1, 2, 3…",
++      type: "number",
++    }),
++    defineField({
++      name: "time",
++      title: "Time slot",
++      description: "e.g. 5:00 — 7:00",
++      type: "string",
++    }),
++    defineField({
++      name: "title",
++      title: "Program title",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "desc",
++      title: "Short description",
++      type: "localizedText",
++    }),
+   ],
+-  preview: { select: { title: 'title', media: 'image', subtitle: 'host' } },
+-})
++  preview: {
++    select: { title: "title.en", time: "time", order: "order" },
++    prepare({ title, time, order }) {
++      const parts: string[] = [];
++      if (order !== undefined && order !== null) parts.push(`#${order}`);
++      if (time) parts.push(time);
++      return {
++        title: title || "Untitled program",
++        subtitle: parts.length > 0 ? parts.join(" · ") : undefined,
++      };
++    },
++  },
++});
+diff --git a/studio/schemaTypes/secretariatPage.ts b/studio/schemas/secretariatPage.ts
+similarity index 100%
+rename from studio/schemaTypes/secretariatPage.ts
+rename to studio/schemas/secretariatPage.ts
+diff --git a/studio/schemas/siteSettings.ts b/studio/schemas/siteSettings.ts
+index 26ad957..732184a 100644
+--- a/studio/schemas/siteSettings.ts
++++ b/studio/schemas/siteSettings.ts
+@@ -1,29 +1,152 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'siteSettings',
+-  title: 'Site Settings',
+-  type: 'document',
+-  __experimental_actions: ['update', 'publish'],
++/**
++ * Global site settings — ONE document that controls the site-wide content
++ * staff edit most often: hero slides, statistics, contact details (used in
++ * the header, footer and contact page), social links, radio info, and the
++ * partner list. Everything is localized; empty languages fall back to
++ * English on the website.
++ */
++export const siteSettings = defineType({
++  name: "siteSettings",
++  title: "Site Settings",
++  type: "document",
++  groups: [
++    { name: "hero", title: "Hero" },
++    { name: "stats", title: "Statistics" },
++    { name: "contact", title: "Contact" },
++    { name: "radio", title: "Radio" },
++    { name: "partners", title: "Partners" },
++  ],
+   fields: [
+-    defineField({ name: 'title', title: 'Site Title', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'description', title: 'Site Description', type: 'text', rows: 3 }),
+-    defineField({ name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'favicon', title: 'Favicon', type: 'image' }),
+-    defineField({ name: 'email', title: 'Contact Email', type: 'string' }),
+-    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
+-    defineField({ name: 'address', title: 'Address', type: 'text', rows: 2 }),
+     defineField({
+-      name: 'socialLinks', title: 'Social Links', type: 'object',
++      name: "heroSlides",
++      title: "Hero Slides",
++      description:
++        "The rotating banner on the home page. Add as many as you like — the first one shows first.",
++      type: "array",
++      group: "hero",
++      of: [
++        {
++          type: "object",
++          name: "heroSlide",
++          title: "Hero Slide",
++          fields: [
++            { name: "image", title: "Background image", type: "image", options: { hotspot: true } },
++            { name: "label", title: "Eyebrow (small script text)", type: "localizedString" },
++            { name: "title", title: "Headline", type: "localizedString" },
++            { name: "subtitle", title: "Subtitle (script quote)", type: "localizedString" },
++            { name: "desc", title: "Description", type: "localizedText" },
++            { name: "cta", title: "Main button text", type: "localizedString" },
++            { name: "ctaHref", title: "Main button link", type: "string", description: "e.g. /about#vision-mission" },
++            { name: "ctaSecondary", title: "Secondary button text", type: "localizedString" },
++            { name: "ctaSecondaryHref", title: "Secondary button link", type: "string", description: "e.g. /departments" },
++          ],
++        },
++      ],
++    }),
++    defineField({
++      name: "stats",
++      title: "Statistics",
++      description: "The numbers shown on the home page (member churches, schools, FM, years).",
++      type: "array",
++      group: "stats",
++      of: [
++        {
++          type: "object",
++          name: "stat",
++          title: "Statistic",
++          fields: [
++            { name: "value", title: "Value", type: "number" },
++            { name: "suffix", title: "Suffix", type: "string", description: "e.g. + or  FM" },
++            {
++              name: "icon",
++              title: "Icon",
++              type: "string",
++              options: {
++                list: [
++                  { title: "Church", value: "church" },
++                  { title: "School", value: "school" },
++                  { title: "Radio", value: "radio" },
++                  { title: "Service ribbon", value: "ribbon" },
++                  { title: "Users", value: "users" },
++                  { title: "Heart", value: "heart" },
++                  { title: "Scale", value: "scale" },
++                  { title: "Briefcase", value: "briefcase" },
++                ],
++              },
++            },
++            { name: "label", title: "Label", type: "localizedString" },
++          ],
++        },
++      ],
++    }),
++    defineField({
++      name: "contact",
++      title: "Contact Information",
++      description: "Shown in the header, footer and contact page.",
++      type: "object",
++      group: "contact",
+       fields: [
+-        { name: 'facebook', title: 'Facebook URL', type: 'url' },
+-        { name: 'twitter', title: 'Twitter / X URL', type: 'url' },
+-        { name: 'instagram', title: 'Instagram URL', type: 'url' },
+-        { name: 'youtube', title: 'YouTube URL', type: 'url' },
+-        { name: 'linkedin', title: 'LinkedIn URL', type: 'url' },
++        { name: "phone", title: "Phone", type: "string" },
++        { name: "email", title: "Email", type: "string" },
++        { name: "addressLine1", title: "Address line 1", type: "string" },
++        { name: "addressLine2", title: "Address line 2", type: "string" },
++        {
++          name: "socials",
++          title: "Social links",
++          type: "array",
++          of: [
++            {
++              type: "object",
++              name: "social",
++              fields: [
++                {
++                  name: "platform",
++                  title: "Platform",
++                  type: "string",
++                  options: {
++                    list: [
++                      { title: "Facebook", value: "facebook" },
++                      { title: "X (Twitter)", value: "x" },
++                      { title: "Instagram", value: "instagram" },
++                      { title: "YouTube", value: "youtube" },
++                    ],
++                  },
++                },
++                { name: "url", title: "URL", type: "url" },
++              ],
++            },
++          ],
++        },
+       ],
+     }),
+-    defineField({ name: 'footerText', title: 'Footer Text', type: 'string' }),
++    defineField({
++      name: "radio",
++      title: "Radio Inkoramutima",
++      type: "object",
++      group: "radio",
++      fields: [
++        { name: "frequency", title: "Frequency", type: "string", description: "e.g. 107.1" },
++        { name: "tagline", title: "Tagline", type: "localizedString" },
++        { name: "listenUrl", title: "Listen live URL", type: "url" },
++      ],
++    }),
++    defineField({
++      name: "partners",
++      title: "Partners",
++      description: "The partner names shown on the home page.",
++      type: "array",
++      group: "partners",
++      of: [{ type: "string" }],
++    }),
+   ],
+-  preview: { select: { title: 'title' } },
+-})
++  preview: {
++    prepare() {
++      return {
++        title: "Site Settings",
++        subtitle: "Hero, statistics, contact, radio & partners",
++      };
++    },
++  },
++});
+diff --git a/studio/schemas/testimonial.ts b/studio/schemas/testimonial.ts
+index 5a87ad8..a785354 100644
+--- a/studio/schemas/testimonial.ts
++++ b/studio/schemas/testimonial.ts
+@@ -1,16 +1,57 @@
+-import { defineField, defineType } from 'sanity'
++import { defineType, defineField } from "sanity";
+ 
+-export default defineType({
+-  name: 'testimonial',
+-  title: 'Testimonial',
+-  type: 'document',
++/**
++ * A testimonial shown in the carousel on the home page. Quotes and roles
++ * are localized (EN/FR/RW); the author name is a single string and the
++ * photo is optional. The `order` field controls the carousel position.
++ */
++export const testimonial = defineType({
++  name: "testimonial",
++  title: "Testimonial",
++  type: "document",
+   fields: [
+-    defineField({ name: 'name', title: 'Name', type: 'string', validation: (R) => R.required() }),
+-    defineField({ name: 'role', title: 'Role / Position', type: 'string' }),
+-    defineField({ name: 'church', title: 'Church', type: 'string' }),
+-    defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } }),
+-    defineField({ name: 'quote', title: 'Quote', type: 'text', rows: 4, validation: (R) => R.required() }),
+-    defineField({ name: 'featured', title: 'Featured on Homepage', type: 'boolean', initialValue: false }),
++    defineField({
++      name: "order",
++      title: "Display order",
++      description: "1 = shown first in the carousel. Use 1, 2, 3…",
++      type: "number",
++    }),
++    defineField({
++      name: "quote",
++      title: "Quote",
++      type: "localizedText",
++    }),
++    defineField({
++      name: "author",
++      title: "Author name",
++      description: "e.g. Dr. Claudine Uwimana",
++      type: "string",
++    }),
++    defineField({
++      name: "role",
++      title: "Role / title",
++      description: "e.g. Education Specialist, BNEP",
++      type: "localizedString",
++    }),
++    defineField({
++      name: "avatar",
++      title: "Photo (optional)",
++      description: "If left empty, a default profile photo is shown.",
++      type: "image",
++      options: { hotspot: true },
++    }),
+   ],
+-  preview: { select: { title: 'name', subtitle: 'church', media: 'image' } },
+-})
++  preview: {
++    select: { title: "author", quote: "quote.en", order: "order", media: "avatar" },
++    prepare({ title, quote, order, media }) {
++      const parts: string[] = [];
++      if (order !== undefined && order !== null) parts.push(`#${order}`);
++      if (quote) parts.unshift(quote.slice(0, 60));
++      return {
++        title: title || "Untitled testimonial",
++        subtitle: parts.length > 0 ? parts.join(" · ") : undefined,
++        media,
++      };
++    },
++  },
++});
+-- 
+2.43.0
+
+
+From 0157444304b9bb24fa7b673c945a6e6217246d91 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 5 Sep 2026 17:36:09 +0000
+Subject: [PATCH 2/2] ci: don't redeploy the React site for Sanity Studio-only
+ changes
+
+The cPanel deploy workflow triggered on every push to Dev regardless of
+what changed, so a studio/ schema fix would still re-run the full FTP
+deploy (dangerous-clean-slate: true) that hit a disk-full failure earlier.
+Studio schema changes don't affect the React build output at all, and the
+Studio itself deploys separately via `sanity deploy`.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xNEugH42JGJDBqiHFtfyU
+---
+ .github/workflows/deploy.yml | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index c205ff3..f73a3b7 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -3,6 +3,13 @@ name: Deploy to cPanel
+ on:
+   push:
+     branches: [Dev]
++    # Only rebuild/redeploy the React site when something that actually
++    # affects its build output changes. The Sanity Studio (studio/) is a
++    # separate app deployed on its own (`sanity deploy`), so schema-only
++    # commits no longer trigger a cPanel FTP deploy.
++    paths-ignore:
++      - 'studio/**'
++      - '**.md'
+ 
+ # Cancel in-progress runs for the same branch
+ concurrency:
+-- 
+2.43.0
+

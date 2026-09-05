@@ -1,21 +1,48 @@
-import { defineField, defineType } from 'sanity'
+import { defineType, defineField } from "sanity";
 
-export default defineType({
-  name: 'memberChurch',
-  title: 'Member Church',
-  type: 'document',
+/**
+ * A member church of the Protestant Council of Rwanda (CPR).
+ *
+ * Staff can add, remove or rename churches from the grid shown on the home
+ * page. The optional website URL turns the card into an external link.
+ */
+export const memberChurch = defineType({
+  name: "memberChurch",
+  title: "Member Church",
+  type: "document",
   fields: [
-    defineField({ name: 'name', title: 'Church Name', type: 'string', validation: (R) => R.required() }),
-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' } }),
-    defineField({ name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } }),
-    defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
-    defineField({ name: 'location', title: 'Location', type: 'string' }),
-    defineField({ name: 'website', title: 'Website', type: 'url' }),
-    defineField({ name: 'email', title: 'Email', type: 'string' }),
-    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
-    defineField({ name: 'leaderName', title: 'Leader Name', type: 'string' }),
-    defineField({ name: 'leaderTitle', title: 'Leader Title', type: 'string' }),
-    defineField({ name: 'leaderImage', title: 'Leader Photo', type: 'image', options: { hotspot: true } }),
+    defineField({
+      name: "name",
+      title: "Church name",
+      description: "e.g. Eglise Presbytérienne au Rwanda (EPR)",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "url",
+      title: "Website (optional)",
+      description: "e.g. https://www.epr.rw — shown as a link on the card.",
+      type: "url",
+    }),
+    defineField({
+      name: "order",
+      title: "Display order",
+      description: "1 = shown first on the home page. Use 1, 2, 3…",
+      type: "number",
+    }),
   ],
-  preview: { select: { title: 'name', media: 'logo', subtitle: 'location' } },
-})
+  preview: {
+    select: { title: "name", url: "url", order: "order" },
+    prepare({ title, url, order }) {
+      return {
+        title: title || "Untitled church",
+        subtitle:
+          order !== undefined && order !== null
+            ? `Position ${order}`
+            : url
+              ? `Website: ${url}`
+              : "No website",
+      };
+    },
+  },
+});

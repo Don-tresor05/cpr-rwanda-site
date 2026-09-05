@@ -23,6 +23,8 @@ export default defineConfig({
               .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
             S.listItem().title('Departments Page').id('departmentsPage')
               .child(S.document().schemaType('departmentsPage').documentId('departmentsPage')),
+            S.listItem().title('Secretariat Page').id('secretariatPage')
+              .child(S.document().schemaType('secretariatPage').documentId('secretariatPage')),
             S.divider(),
             // Collections
             S.documentTypeListItem('newsPost').title('News Posts'),
