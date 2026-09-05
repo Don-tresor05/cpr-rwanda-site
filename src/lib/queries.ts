@@ -12,12 +12,27 @@ import type {
   Project,
   DepartmentsPage,
   AboutPage,
+  SecretariatPage,
 } from '../types/sanity'
 
 // ─── Site Settings ────────────────────────────────────────────────────────────
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
-  return client.fetch(`*[_type == "siteSettings"][0]`)
+  return client.fetch(`*[_type == "siteSettings"][0] {
+    _id, _type,
+    heroSlides[] {
+      image,
+      label, title, subtitle, desc,
+      cta, ctaHref, ctaSecondary, ctaSecondaryHref
+    },
+    stats[] { value, suffix, icon, label },
+    contact {
+      phone, email, addressLine1, addressLine2,
+      socials[] { platform, url }
+    },
+    radio { frequency, tagline, listenUrl },
+    partners
+  }`)
 }
 
 // ─── News Posts ───────────────────────────────────────────────────────────────
@@ -26,7 +41,7 @@ export async function getNewsPosts(limit = 10): Promise<NewsPost[]> {
   return client.fetch(
     `*[_type == "newsPost"] | order(coalesce(publishedAt, _createdAt) desc) [0...$limit] {
       _id, _type, _createdAt, _updatedAt,
-      title, slug, excerpt, mainImage, publishedAt, category, author, tags
+      title, slug, excerpt, mainImage, publishedAt, category, author, featured
     }`,
     { limit: limit - 1 }
   )
@@ -36,7 +51,8 @@ export async function getNewsPost(slug: string): Promise<NewsPost | null> {
   return client.fetch(
     `*[_type == "newsPost" && slug.current == $slug][0] {
       _id, _type, _createdAt, _updatedAt,
-      title, slug, excerpt, mainImage, body, publishedAt, category, author, tags
+      title, slug, excerpt, mainImage, body, quote, imageCaption,
+      publishedAt, category, author, featured
     }`,
     { slug }
   )
@@ -51,47 +67,43 @@ export async function getFeaturedNews(limit = 3): Promise<NewsPost[]> {
   )
 }
 
-// ─── Departments ──────────────────────────────────────────────────────────────
+// ─── Departments (home page cards) ───────────────────────────────────────────
 
 export async function getDepartments(): Promise<Department[]> {
   return client.fetch(
-    `*[_type == "department"] | order(order asc, name asc) {
-      _id, name, slug, description, image, headName, headTitle, headImage, email, phone, order
+    `*[_type == "department"] | order(order asc) {
+      _id, order, icon, title, desc, link
     }`
-  )
-}
-
-export async function getDepartment(slug: string): Promise<Department | null> {
-  return client.fetch(
-    `*[_type == "department" && slug.current == $slug][0]`,
-    { slug }
   )
 }
 
 // ─── Department Resources ─────────────────────────────────────────────────────
 
-export async function getDepartmentResources(departmentId?: string): Promise<DepartmentResourceFile[]> {
-  const filter = departmentId
-    ? `*[_type == "departmentResourceFile" && department._ref == $departmentId]`
-    : `*[_type == "departmentResourceFile"]`
+export async function getDepartmentResourceGroups(department?: string): Promise<DepartmentResourceGroup[]> {
+  const filter = department
+    ? `*[_type == "departmentResourceGroup" && department == $department]`
+    : `*[_type == "departmentResourceGroup"]`
 
   return client.fetch(
-    `${filter} | order(publishedAt desc) {
-      _id, title, description, category, publishedAt,
-      "fileUrl": file.asset->url,
-      department->{ _id, name }
+    `${filter} | order(order asc) {
+      _id, department, title, slug, description, cardType, order
     }`,
-    departmentId ? { departmentId } : {}
+    department ? { department } : {}
   )
 }
 
-export async function getDepartmentResourceGroups(): Promise<DepartmentResourceGroup[]> {
+export async function getDepartmentResourceFiles(groupId?: string): Promise<DepartmentResourceFile[]> {
+  const filter = groupId
+    ? `*[_type == "departmentResourceFile" && group._ref == $groupId]`
+    : `*[_type == "departmentResourceFile"]`
+
   return client.fetch(
-    `*[_type == "departmentResourceGroup"] {
-      _id, title, description,
-      department->{ _id, name },
-      resources[]->{ _id, title, description, category, "fileUrl": file.asset->url }
-    }`
+    `${filter} | order(order asc) {
+      _id, title, order,
+      "fileUrl": file.asset->url,
+      group->{ _id, title, department }
+    }`,
+    groupId ? { groupId } : {}
   )
 }
 
@@ -99,17 +111,9 @@ export async function getDepartmentResourceGroups(): Promise<DepartmentResourceG
 
 export async function getMemberChurches(): Promise<MemberChurch[]> {
   return client.fetch(
-    `*[_type == "memberChurch"] | order(name asc) {
-      _id, name, slug, logo, description, location, website, email, phone,
-      leaderName, leaderTitle, leaderImage
+    `*[_type == "memberChurch"] | order(order asc, name asc) {
+      _id, name, url, order
     }`
-  )
-}
-
-export async function getMemberChurch(slug: string): Promise<MemberChurch | null> {
-  return client.fetch(
-    `*[_type == "memberChurch" && slug.current == $slug][0]`,
-    { slug }
   )
 }
 
@@ -117,18 +121,13 @@ export async function getMemberChurch(slug: string): Promise<MemberChurch | null
 
 export async function getGalleryCollections(): Promise<GalleryCollection[]> {
   return client.fetch(
-    `*[_type == "galleryCollection"] | order(publishedAt desc) {
-      _id, title, slug, description, coverImage, publishedAt, category
+    `*[_type == "galleryCollection"] | order(order asc) {
+      _id, order, category, title, locationDate,
+      images[] {
+        "src": image.asset->url,
+        alt
+      }
     }`
-  )
-}
-
-export async function getGalleryCollection(slug: string): Promise<GalleryCollection | null> {
-  return client.fetch(
-    `*[_type == "galleryCollection" && slug.current == $slug][0] {
-      _id, title, slug, description, coverImage, images, publishedAt, category
-    }`,
-    { slug }
   )
 }
 
@@ -136,55 +135,31 @@ export async function getGalleryCollection(slug: string): Promise<GalleryCollect
 
 export async function getRadioPrograms(): Promise<RadioProgram[]> {
   return client.fetch(
-    `*[_type == "radioProgram"] | order(publishedAt desc) {
-      _id, title, slug, description, image, host, schedule, streamUrl, publishedAt,
-      "audioUrl": audioFile.asset->url
+    `*[_type == "radioProgram"] | order(order asc) {
+      _id, order, time, title, desc
     }`
-  )
-}
-
-export async function getRadioProgram(slug: string): Promise<RadioProgram | null> {
-  return client.fetch(
-    `*[_type == "radioProgram" && slug.current == $slug][0]`,
-    { slug }
   )
 }
 
 // ─── Testimonials ─────────────────────────────────────────────────────────────
 
-export async function getTestimonials(featuredOnly = false): Promise<Testimonial[]> {
-  const filter = featuredOnly
-    ? `*[_type == "testimonial" && featured == true]`
-    : `*[_type == "testimonial"]`
-
-  return client.fetch(`${filter} | order(_createdAt desc) {
-    _id, name, role, church, image, quote, featured
-  }`)
+export async function getTestimonials(): Promise<Testimonial[]> {
+  return client.fetch(
+    `*[_type == "testimonial"] | order(order asc) {
+      _id, order, quote, author, role,
+      "avatar": avatar.asset->url
+    }`
+  )
 }
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
-export async function getProjects(status?: string): Promise<Project[]> {
-  const filter = status
-    ? `*[_type == "project" && status == $status]`
-    : `*[_type == "project"]`
-
+export async function getProjects(): Promise<Project[]> {
   return client.fetch(
-    `${filter} | order(startDate desc) {
-      _id, title, slug, description, mainImage, status, startDate, endDate, tags,
-      department->{ _id, name }
-    }`,
-    status ? { status } : {}
-  )
-}
-
-export async function getProject(slug: string): Promise<Project | null> {
-  return client.fetch(
-    `*[_type == "project" && slug.current == $slug][0] {
-      _id, title, slug, description, mainImage, body, status, startDate, endDate, tags,
-      department->{ _id, name }
-    }`,
-    { slug }
+    `*[_type == "project"] | order(order asc) {
+      _id, order, icon, title, period, desc,
+      highlights[] { en, fr, rw }
+    }`
   )
 }
 
@@ -195,5 +170,31 @@ export async function getAboutPage(): Promise<AboutPage | null> {
 }
 
 export async function getDepartmentsPage(): Promise<DepartmentsPage | null> {
-  return client.fetch(`*[_type == "departmentsPage"][0]`)
+  return client.fetch(`*[_type == "departmentsPage"][0] {
+    _id, _type,
+    heroTitle, heroDesc,
+    introTag, introTitle, introDesc,
+    quickFactsTitle,
+    quickFacts,
+    sections[] {
+      key, nav, tag, title, desc,
+      "image": image.asset->url,
+      stats[] { value, label },
+      body
+    },
+    cta { title, desc, btn }
+  }`)
+}
+
+export async function getSecretariatPage(): Promise<SecretariatPage | null> {
+  return client.fetch(`*[_type == "secretariatPage"][0] {
+    _id, _type,
+    heroTitle, heroDesc,
+    introTag, introTitle, introDesc,
+    sgProfile { role, name, title, quote },
+    sections[] {
+      key, nav, tag, title, desc, body
+    },
+    cta { title, desc, btn }
+  }`)
 }
