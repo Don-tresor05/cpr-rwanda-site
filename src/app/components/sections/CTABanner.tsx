@@ -9,7 +9,7 @@ export function CTABanner() {
   const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
   return (
-    <section ref={ref} className="py-20 bg-[#4E6132] relative overflow-hidden">
+    <section ref={ref} className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#EAD196] blur-3xl translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#EAD196] blur-3xl -translate-x-1/2 translate-y-1/2" />
@@ -20,13 +20,13 @@ export function CTABanner() {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-white mb-5 leading-tight">
+          <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-white mb-5 leading-tight">
             {t("cta.title")}
           </h2>
-          <p className="text-white/70 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto leading-relaxed">
             {t("cta.desc")}
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <button
               onClick={() => showComingSoon(t("cta.donateBtn"))}
               className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"

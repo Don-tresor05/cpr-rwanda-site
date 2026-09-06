@@ -176,7 +176,7 @@ export function Secretariat() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {cms?.heroTitle ?? t("secretariatPage.heroTitle")}
           </motion.h1>
@@ -184,7 +184,7 @@ export function Secretariat() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-lg max-w-2xl leading-relaxed"
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
             {cms?.heroDesc ?? t("secretariatPage.heroDesc")}
           </motion.p>
@@ -196,7 +196,7 @@ export function Secretariat() {
       {/* Sticky Sub-Nav */}
       <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-14 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -350,7 +350,7 @@ export function Secretariat() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="py-20 bg-[#4E6132] relative overflow-hidden"
+        className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden"
       >
         {/* Decorative circles */}
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
@@ -362,7 +362,7 @@ export function Secretariat() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? t("secretariatPage.cta.title")}
           </motion.h2>
@@ -371,7 +371,7 @@ export function Secretariat() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
+            className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
           >
             {cms?.cta?.desc ?? t("secretariatPage.cta.desc")}
           </motion.p>
@@ -438,7 +438,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
         style={{ backgroundColor: sec.accent }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 sm:py-20 lg:py-28">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
             !isEven ? "lg:[&>*:first-child]:order-2" : ""
@@ -478,14 +478,14 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}
               </h2>
             </div>
 
-            <p className="text-[#4A4A4A] text-base lg:text-lg leading-relaxed mb-8">
+            <p className="text-[#4A4A4A] text-sm sm:text-base lg:text-lg leading-relaxed mb-8">
               {sec.desc}
             </p>
 

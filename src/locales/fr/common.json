@@ -80,5 +80,24 @@
   "loading": {
     "preparing": "Préparation",
     "tagline": "Au service du Rwanda depuis 1963"
+  },
+  "cookie": {
+    "title": "Nous Respectons Votre Vie Privée",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience de navigation, fournir du contenu personnalisé et analyser notre trafic. En cliquant sur \"Tout accepter\", vous consentez à notre utilisation des cookies. Vous pouvez personnaliser vos préférences ou refuser les cookies non essentiels.",
+    "accept": "Tout Accepter",
+    "reject": "Tout Refuser",
+    "settings": "Paramètres des Cookies",
+    "hideSettings": "Masquer les Paramètres",
+    "save": "Enregistrer les Préférences",
+    "essential": "Cookies Essentiels",
+    "essentialDesc": "Nécessaires au bon fonctionnement du site",
+    "functional": "Cookies Fonctionnels",
+    "functionalDesc": "Mémorisent vos préférences de langue et de région",
+    "analytics": "Cookies Analytiques",
+    "analyticsDesc": "Nous aident à comprendre comment les visiteurs utilisent le site",
+    "marketing": "Cookies Marketing",
+    "marketingDesc": "Utilisés pour diffuser des publicités personnalisées",
+    "trustPrivacy": "Site axé sur la confidentialité",
+    "trustGdpr": "Conforme au RGPD"
   }
 }

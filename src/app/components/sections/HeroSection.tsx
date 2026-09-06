@@ -104,17 +104,17 @@ export function HeroSection() {
                 <span className="font-['Allura'] text-2xl lg:text-3xl text-[#EAD196]">{slide.label}</span>
               </div>
 
-              <h1 className="font-['Outfit'] font-black text-5xl lg:text-7xl text-white leading-none tracking-tight mb-3">
+              <h1 className="font-['Outfit'] font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-none tracking-tight mb-3">
                 {slide.title}
               </h1>
-              <p className="font-['Allura'] text-2xl lg:text-3xl text-[#EAD196] mb-5">
+              <p className="font-['Allura'] text-xl sm:text-2xl lg:text-3xl text-[#EAD196] mb-5">
                 &ldquo;{slide.subtitle}&rdquo;
               </p>
-              <p className="text-white/75 text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-white/75 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
                 {slide.desc}
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                 <Link
                   to={slide.ctaHref}
                   className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"

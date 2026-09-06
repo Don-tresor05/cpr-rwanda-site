@@ -34,7 +34,7 @@ export function AboutPreview() {
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("about.ourStory")}</span>
             </div>
             <h2 
-              className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
+              className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
               dangerouslySetInnerHTML={{ __html: t("about.title") }}
             />
             <p 
@@ -97,8 +97,8 @@ export function AboutPreview() {
               </div>
             </div>
             {/* Floating badge */}
-            <div className="absolute -bottom-5 -left-5 bg-[#BC8A5F] rounded-2xl px-5 py-4 shadow-xl pointer-events-none">
-              <div className="font-['Outfit'] font-black text-white text-3xl">25</div>
+            <div className="absolute -bottom-5 left-2 sm:-left-5 bg-[#BC8A5F] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-xl pointer-events-none">
+              <div className="font-['Outfit'] font-black text-white text-2xl sm:text-3xl">25</div>
               <div 
                 className="text-white/70 text-xs font-semibold"
                 dangerouslySetInnerHTML={{ __html: t("stats.churches", { ns: "common" }).replace(' ', '<br />') }}

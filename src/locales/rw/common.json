@@ -80,5 +80,24 @@
   "loading": {
     "preparing": "Kugenzura",
     "tagline": "Gukorera u Rwanda kuva mu 1963"
+  },
+  "cookie": {
+    "title": "Dukurikiza Ubwangano Bwawe",
+    "description": "Dukoresha cookie kugira ngo duhuze uburambe bwawe mu gucukumbura, dutange ibikubiyemo kandi dushyire mu ivuga yacu. Usibye ku kanda \"Emera Vyose\", wemera ko dukoresha cookie. Urashobora guhindura amatoranya yawe cyangwa ukane cookie zidafite akamaro.",
+    "accept": "Emera Vyose",
+    "reject": "Anka Vyose",
+    "settings": "Amategeko ya Cookie",
+    "hideSettings": "Hisha Amategeko",
+    "save": "Bika Amatoranya",
+    "essential": "Cookie Zingenzi",
+    "essentialDesc": "Zikenewe kugira urubuga rukore neza",
+    "functional": "Cookie Zikoresha",
+    "functionalDesc": "Zibuka icyo wifuza mu rurimi n'ahantu",
+    "analytics": "Cookie z'Isuzuma",
+    "analyticsDesc": "Zitufasha kumva uko abashitsi bakoresheje urubuga",
+    "marketing": "Cookie z'Isubiramo",
+    "marketingDesc": "Zikoreshwa gutanga amatangazo yatsinze",
+    "trustPrivacy": "Urubuga rukiza ubwangano",
+    "trustGdpr": "Rushingiye ku GDPR"
   }
 }

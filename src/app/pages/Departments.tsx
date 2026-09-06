@@ -237,7 +237,7 @@ export function Departments() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {cms?.heroTitle ?? (dp?.heroTitle as string) ?? "Our Departments"}
           </motion.h1>
@@ -259,7 +259,7 @@ export function Departments() {
       {/* Sticky Sub-Nav */}
       <div data-sticky-subnav className="bg-[#F5F5DC] border-b border-[#8B6543]/10 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-20 lg:h-24 scrollbar-hide">
+          <nav className="flex items-center justify-start lg:justify-center gap-2 lg:gap-3 overflow-x-auto h-14 lg:h-20 scrollbar-hide">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -301,7 +301,7 @@ export function Departments() {
               <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5">
                 {cms?.introTitle ?? (dp?.introTitle as string) ?? ""}
               </h2>
-              <p className="text-[#4A4A4A] text-lg leading-relaxed">
+              <p className="text-[#4A4A4A] text-base sm:text-lg leading-relaxed">
                 {cms?.introDesc ?? (dp?.introDesc as string) ?? ""}
               </p>
             </motion.div>
@@ -344,7 +344,7 @@ export function Departments() {
             animate={overviewVisible ? { opacity: 1, y: 0 } : {}}
             className="text-center mb-14"
           >
-            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">
+            <h2            className="font-['Outfit'] font-black text-3xl sm:text-4xl text-[#4E6132]">
               {(dp?.overview as Record<string, string> | undefined)?.title ?? "Explore Our Departments"}
             </h2>
             <p className="text-[#4A4A4A] mt-3 max-w-xl mx-auto">
@@ -352,7 +352,7 @@ export function Departments() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 sm:gap-5">
             {sections.map((sec, i) => {
               const Icon = sec.icon;
               const statData = sec.stats[0];
@@ -367,7 +367,7 @@ export function Departments() {
                     e.preventDefault();
                     document.getElementById(sec.id)?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="group bg-white rounded-2xl p-6 min-h-[230px] shadow-sm hover:shadow-xl transition-all duration-300 border border-[#4E6132]/10 hover:border-[#4E6132]/30 flex flex-col items-center text-center gap-3.5 cursor-pointer hover:-translate-y-1 justify-between"
+                  className="group bg-white rounded-2xl p-4 sm:p-6 min-h-[200px] sm:min-h-[230px] shadow-sm hover:shadow-xl transition-all duration-300 border border-[#4E6132]/10 hover:border-[#4E6132]/30 flex flex-col items-center text-center gap-3.5 cursor-pointer hover:-translate-y-1 justify-between"
                 >
                   <div className="flex flex-col items-center gap-3.5 w-full">
                     <div
@@ -412,7 +412,7 @@ export function Departments() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="py-20 bg-[#4E6132] relative overflow-hidden"
+        className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden"
       >
         {/* Decorative circles */}
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5" />
@@ -424,7 +424,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? (cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
@@ -433,7 +433,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white/70 text-lg mb-10 max-w-xl mx-auto"
+            className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
           >
             {cms?.cta?.desc ?? (cta?.desc as string) ?? ""}
           </motion.p>
@@ -507,7 +507,7 @@ function DepartmentDetailBlock({
         style={{ backgroundColor: sec.accent }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 sm:py-20 lg:py-28">
         <div
           className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
             !isEven ? "lg:[&>*:first-child]:order-2" : ""
@@ -547,7 +547,7 @@ function DepartmentDetailBlock({
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}

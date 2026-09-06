@@ -162,7 +162,7 @@ export function GalleryPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-            className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
             {(gp?.heroTag as string) ?? "Gallery"}
           </motion.h1>
@@ -170,7 +170,7 @@ export function GalleryPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-            className="text-white/75 text-lg max-w-2xl leading-relaxed"
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
             {(gp?.heroDesc as string) ?? ""}
           </motion.p>
@@ -293,7 +293,7 @@ export function GalleryPage() {
             {/* Full-height flex column: image centered, thumbs at bottom */}
             <div className="flex flex-col w-full h-full">
               {/* Image area */}
-              <div className="flex-1 flex items-center justify-center min-h-0 px-16 sm:px-20">
+              <div className="flex-1 flex items-center justify-center min-h-0 px-14 sm:px-20">
                 <div className="relative flex items-center justify-center">
                   <motion.img
                     key={`${activeImage.eventIdx}-${activeImage.imgIdx}`}

@@ -73,7 +73,7 @@ export function NewsSection() {
               <div className="h-px w-10 bg-[#8B6543]" />
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("news.ourStories")}</span>
             </div>
-            <h2 className="font-['Outfit'] font-black text-4xl lg:text-5xl text-[#4E6132] leading-tight">
+            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight">
               {t("news.title")}
             </h2>
             <p className="text-[#4A4A4A] mt-3 max-w-xl text-base">

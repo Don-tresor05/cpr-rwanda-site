@@ -98,3 +98,4 @@ jobs:
             *.md
             *.sh
           dangerous-clean-slate: true
+          state-name: .ftp-deploy-state
