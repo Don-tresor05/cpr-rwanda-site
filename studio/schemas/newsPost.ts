@@ -103,6 +103,18 @@ export const newsPost = defineType({
             { type: "image", options: { hotspot: true }, fields: [
               { name: "alt", type: "string", title: "Alt text" },
               { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+                initialValue: "full",
+              },
             ] },
           ],
         },
@@ -115,6 +127,18 @@ export const newsPost = defineType({
             { type: "image", options: { hotspot: true }, fields: [
               { name: "alt", type: "string", title: "Alt text" },
               { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+                initialValue: "full",
+              },
             ] },
           ],
         },
@@ -127,6 +151,18 @@ export const newsPost = defineType({
             { type: "image", options: { hotspot: true }, fields: [
               { name: "alt", type: "string", title: "Alt text" },
               { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+                initialValue: "full",
+              },
             ] },
           ],
         },

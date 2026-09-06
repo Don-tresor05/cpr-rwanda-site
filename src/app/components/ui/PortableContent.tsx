@@ -46,15 +46,26 @@ const components: PortableTextComponents = {
   types: {
     image: ({ value }) => {
       if (!value?.asset) return null;
+      
+      const isSmall = value.size === "small";
+
       return (
-        <figure className="my-4">
+        <figure className={`my-4 ${isSmall ? "max-w-[500px]" : ""}`}>
           <img
-            src={urlFor(value.asset).width(1600).url()}
+            src={urlFor(value.asset).width(isSmall ? 500 : 1600).url()}
             alt={value.alt || "Article image"}
-            className="w-full aspect-[16/10] object-cover shadow-sm bg-[#EDF1F7]"
+            className={
+              isSmall
+                ? "w-full object-contain shadow-sm bg-[#EDF1F7]"
+                : "w-full aspect-[16/10] object-cover shadow-sm bg-[#EDF1F7]"
+            }
           />
           {value.caption && (
-            <figcaption className="text-xs text-[#6B7280] mt-1.5 border-b border-[#4E6132]/10 pb-2">
+            <figcaption
+              className={`text-xs text-[#6B7280] mt-1.5 border-[#4E6132]/10 pb-2 ${
+                isSmall ? "italic" : "border-b"
+              }`}
+            >
               {value.caption}
             </figcaption>
           )}

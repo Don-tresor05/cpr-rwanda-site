@@ -3,6 +3,8 @@ name: Deploy to cPanel
 on:
   push:
     branches: [Dev]
+    paths-ignore:
+      - 'studio/**'
 
 # Cancel in-progress runs for the same branch
 concurrency:
