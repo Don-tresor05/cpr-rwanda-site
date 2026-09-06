@@ -98,8 +98,8 @@ function CategoryDropdown({
 }
 
 export function Newsroom() {
-  const { t } = useTranslation("home");
-  const { ref, visible } = useScrollReveal();
+  const { t, i18n } = useTranslation("news");
+  const { ref } = useScrollReveal();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");
   // CMS posts take over when staff publish them; the lists below are fallbacks.

@@ -8,7 +8,7 @@ import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
-  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays,
   MessageCircle, Navigation, ExternalLink, AlertCircle,
   type LucideIcon,
 } from "lucide-react";
