@@ -424,7 +424,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? (cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
@@ -547,7 +547,7 @@ function DepartmentDetailBlock({
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}

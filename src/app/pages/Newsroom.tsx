@@ -296,7 +296,7 @@ export function Newsroom() {
           </div>
 
           {/* News Grid - Slimmer card widths matching cooperation.rw reference */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {paginatedItems.map((item) => (
               <article
                 key={item.slug}

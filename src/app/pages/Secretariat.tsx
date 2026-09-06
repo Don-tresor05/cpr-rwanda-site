@@ -362,7 +362,7 @@ export function Secretariat() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? t("secretariatPage.cta.title")}
           </motion.h2>
@@ -478,14 +478,14 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}
               </h2>
             </div>
 
-            <p className="text-[#4A4A4A] text-sm sm:text-base lg:text-lg leading-relaxed mb-8">
+            <p className="text-[#4A4A4A] text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed mb-8">
               {sec.desc}
             </p>
 

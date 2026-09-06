@@ -224,7 +224,7 @@ export function AboutUs() {
       <WatermarkSection className="pt-16 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132]">
+            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-[#4E6132]">
               {cms?.model?.title ?? t("aboutPage.model.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto mt-4 leading-relaxed">
@@ -300,7 +300,7 @@ export function AboutUs() {
 
       {/* Values */}
       <section id="core-values" className="py-14 sm:py-20 bg-[#4E6132] scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-8 sm:mb-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-8 sm:mb-10">
             {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -318,7 +318,7 @@ export function AboutUs() {
       <section id="executive-committee" className="py-14 sm:py-20 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-[#4E6132] mb-4">
+            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-[#4E6132] mb-4">
               {cms?.execCommittee?.title ?? t("aboutPage.execCommittee.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto">
@@ -459,18 +459,18 @@ export function AboutUs() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative"
+              className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
             >
               {/* Close button */}
               <button
                 onClick={() => setHistoryModalOpen(false)}
-                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10 sticky top-0 float-right"
                 aria-label="Close"
               >
                 <X size={18} />
               </button>
 
-              <div className="p-6 lg:p-8">
+              <div className="p-5 sm:p-6 lg:p-8 clear-both">
                 <div className="inline-flex items-center gap-2">
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">

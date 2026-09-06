@@ -727,7 +727,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
+          className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
         >
           {(cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
         </motion.h2>

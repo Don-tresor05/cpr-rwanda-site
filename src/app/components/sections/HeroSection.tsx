@@ -107,10 +107,10 @@ export function HeroSection() {
               <h1 className="font-['Outfit'] font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-none tracking-tight mb-3">
                 {slide.title}
               </h1>
-              <p className="font-['Allura'] text-xl sm:text-2xl lg:text-3xl text-[#EAD196] mb-5">
+              <p className="font-['Allura'] text-xl sm:text-2xl md:text-3xl lg:text-3xl text-[#EAD196] mb-5">
                 &ldquo;{slide.subtitle}&rdquo;
               </p>
-              <p className="text-white/75 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-white/75 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed mb-8 max-w-xl">
                 {slide.desc}
               </p>
 
