@@ -14,8 +14,8 @@ const GALLERY_CATEGORIES = [
  * `order` field controls where it appears. Titles, locations and dates are
  * localized; empty languages fall back to English on the website.
  */
-export const galleryCollection = defineType({
-  name: "galleryCollection",
+export const galleryEvent = defineType({
+  name: "galleryEvent",
   title: "Gallery Collection",
   type: "document",
   fields: [

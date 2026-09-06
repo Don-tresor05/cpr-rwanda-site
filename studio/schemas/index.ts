@@ -6,7 +6,7 @@ import { departmentResourceGroup } from "./departmentResourceGroup";
 import { siteSettings } from "./siteSettings";
 import { memberChurch } from "./memberChurch";
 import { department } from "./department";
-import { galleryCollection } from "./galleryCollection";
+import { galleryEvent } from "./galleryEvent";
 import { radioProgram } from "./radioProgram";
 import { testimonial } from "./testimonial";
 import { project } from "./project";
@@ -21,7 +21,7 @@ export const schemaTypes = [
   siteSettings,
   memberChurch,
   department,
-  galleryCollection,
+  galleryEvent,
   radioProgram,
   testimonial,
   project,

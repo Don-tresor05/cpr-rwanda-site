@@ -129,7 +129,7 @@ export function useDepartments(): Department[] | null {
   return departments;
 }
 
-const GALLERY_QUERY = `*[_type == "galleryCollection"] | order(publishedAt desc) {
+const GALLERY_QUERY = `*[_type == "galleryEvent"] | order(order asc) {
   order,
   category,
   title,
