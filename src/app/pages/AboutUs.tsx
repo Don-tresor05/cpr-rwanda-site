@@ -356,7 +356,7 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-2 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-[#222222] text-base mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-xs font-semibold mb-4 block">
@@ -400,7 +400,7 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-[#222222] text-base mb-5 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-xs font-semibold">
@@ -590,7 +590,7 @@ export function AboutUs() {
 
                   {/* Text content column (8/12) */}
                   <div className="md:col-span-8 lg:col-span-9 leading-relaxed">
-                    <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-1">
+                    <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#222222] mb-1">
                       {selectedBoardMember.name}
                     </h2>
                     <span className="block text-[#8B6543] text-sm lg:text-base font-semibold mb-6 uppercase tracking-wider">
