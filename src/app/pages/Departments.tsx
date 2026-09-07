@@ -212,7 +212,7 @@ export function Departments() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[55vh] sm:min-h-[65vh] md:min-h-[75vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
