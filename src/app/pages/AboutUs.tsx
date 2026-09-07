@@ -366,7 +366,7 @@ export function AboutUs() {
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
                       className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
                     >
-                      Read Bio <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      Read Bio
                     </button>
                   </div>
                 </div>
