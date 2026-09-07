@@ -336,11 +336,11 @@ export function AboutUs() {
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
-                { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp" },
-                { name: "Jael", role: "", image: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", image: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", image: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), image: "/cpr/assets/BNEP Representative.webp" },
+                { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu. Aenean vehicula, ex sagittis congue interdum, mauris massa efficitur velit, sit amet iaculis libero odio eget enim. In mollis justo in risus consectetur, lacinia laoreet nisi aliquet. Nunc odio lorem, euismod dignissim lorem vel, venenatis hendrerit enim.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit. Morbi ultrices nisl eget semper malesuada. Maecenas in lacus mattis, aliquam turpis sit amet, finibus justo. Integer egestas fermentum neque, vitae mollis ligula pellentesque ac. Donec feugiat luctus molestie." },
+                { name: "Jael", role: "", image: "/cpr/assets/Jael.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
+                { name: "Peter Mukunzi", role: "", image: "/cpr/assets/Mukunzi Peter.jpg", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
+                { name: "Joselyne Iragena", role: "", image: "/cpr/assets/IRAGENA Joselyne.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
+                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), image: "/cpr/assets/BNEP Representative.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -569,10 +569,10 @@ export function AboutUs() {
 
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-start">
-                  {/* Left column: Photo + Name + Role */}
+                  {/* Left column: Photo + "Board Member" label */}
                   <div className="md:col-span-4 lg:col-span-3">
-                    {/* Photo - flush to top */}
-                    <div className="overflow-hidden">
+                    {/* Photo - flush to top, smaller on mobile */}
+                    <div className="overflow-hidden w-3/4 sm:w-full mx-auto md:mx-0">
                       {selectedBoardMember.image ? (
                         <img
                           src={selectedBoardMember.image}
@@ -587,20 +587,17 @@ export function AboutUs() {
                         </div>
                       )}
                     </div>
-                    {/* Name + Role below image */}
-                    <p className="mt-4 text-left">
-                      <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm leading-tight">
-                        {selectedBoardMember.name}
-                      </span>
-                      <span className="block text-[#8B6543] text-xs mt-1 italic">
-                        {selectedBoardMember.role || "Board Member"}
+                    {/* "Board Member" label below image */}
+                    <p className="mt-4 text-left w-3/4 sm:w-full mx-auto md:mx-0">
+                      <span className="block text-[#4A4A4A] text-sm">
+                        Board Member
                       </span>
                     </p>
                   </div>
 
                   {/* Right column: Name heading + Bio */}
                   <div className="md:col-span-8 lg:col-span-9">
-                    <h2 className="font-['Outfit'] font-bold text-2xl lg:text-3xl text-[#4E6132] mb-1 italic">
+                    <h2 className="font-['Outfit'] font-bold text-xl lg:text-2xl text-[#4E6132] mb-1">
                       {selectedBoardMember.name}
                     </h2>
                     
