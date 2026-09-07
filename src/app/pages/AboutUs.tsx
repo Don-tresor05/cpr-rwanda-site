@@ -334,7 +334,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
                 { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu. Aenean vehicula, ex sagittis congue interdum, mauris massa efficitur velit, sit amet iaculis libero odio eget enim. In mollis justo in risus consectetur, lacinia laoreet nisi aliquet. Nunc odio lorem, euismod dignissim lorem vel, venenatis hendrerit enim.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit. Morbi ultrices nisl eget semper malesuada. Maecenas in lacus mattis, aliquam turpis sit amet, finibus justo. Integer egestas fermentum neque, vitae mollis ligula pellentesque ac. Donec feugiat luctus molestie." },
                 { name: "Jael", role: "", image: "/cpr/assets/Jael.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
@@ -379,7 +379,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {[
                 { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
@@ -561,16 +561,16 @@ export function AboutUs() {
               {/* Close button */}
               <button
                 onClick={() => setSelectedBoardMember(null)}
-                className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center text-[#4A4A4A] hover:text-[#4E6132] transition-colors z-20"
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-[#4A4A4A]/60 hover:text-[#4E6132] transition-colors z-20"
                 aria-label="Close"
               >
-                <X size={28} strokeWidth={1.5} />
+                <X size={20} strokeWidth={1.5} />
               </button>
 
               <div className="p-5 sm:p-6 lg:p-10">
                 {/* Image + Board Member label */}
                 <div className="mb-6 lg:mb-0 lg:float-left lg:w-[280px] lg:mr-10">
-                  <div className="overflow-hidden w-4/5 sm:w-3/5 md:w-2/5 lg:w-full">
+                  <div className="overflow-hidden w-full sm:w-3/5 md:w-2/5 lg:w-full">
                     {selectedBoardMember.image ? (
                       <img
                         src={selectedBoardMember.image}
@@ -585,7 +585,7 @@ export function AboutUs() {
                       </div>
                     )}
                   </div>
-                  <p className="mt-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-full">
+                  <p className="mt-3 w-full sm:w-3/5 md:w-2/5 lg:w-full">
                     <span className="block text-[#8B6543] text-sm font-semibold">
                       Board Member
                     </span>
