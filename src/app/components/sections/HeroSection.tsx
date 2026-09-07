@@ -61,8 +61,12 @@ export function HeroSection() {
   const slide = slides[active];
 
   return (
-    <section id="home" className="relative h-[40vh] sm:h-[50vh] md:h-[65vh] lg:h-[calc(100vh-130px)] min-h-[300px] overflow-hidden">
-      {/* Background image */}
+    <section
+      id="home"
+      className="relative min-h-[50vh] sm:min-h-[55vh] md:min-h-[65vh] lg:h-[calc(100vh-130px)] overflow-hidden"
+    >
+      {/* Background image — object-cover + object-position ensures any image
+          auto-adjusts to the container without stretching or losing quality */}
       <AnimatePresence mode="sync">
         <motion.div
           key={slide.id}
@@ -70,12 +74,12 @@ export function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute inset-0 bg-[#4E6132] bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-[#4E6132]"
         >
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-full object-cover object-[center_10%]"
+            className="w-full h-full object-cover object-center"
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#4E6132]/90 via-[#4E6132]/60 to-[#4E6132]/25" />
@@ -84,7 +88,7 @@ export function HeroSection() {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
+      <div className="relative z-10 h-full flex items-center py-10 sm:py-14 md:py-16 lg:py-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -101,30 +105,30 @@ export function HeroSection() {
                   <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-[#EAD196]/20 animate-ping" style={{ animationDuration: "2s" }} />
                   <div className="absolute -inset-1.5 rounded-full border-2 border-dashed border-[#EAD196]/20 animate-spin" style={{ animationDuration: "6s" }} />
                 </div>
-                <span className="font-['Allura'] text-2xl lg:text-3xl text-[#EAD196]">{slide.label}</span>
+                <span className="font-['Allura'] text-xl sm:text-2xl lg:text-3xl text-[#EAD196]">{slide.label}</span>
               </div>
 
-              <h1 className="font-['Outfit'] font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-none tracking-tight mb-3">
+              <h1 className="font-['Outfit'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white leading-none tracking-tight mb-2 sm:mb-3">
                 {slide.title}
               </h1>
-              <p className="font-['Allura'] text-xl sm:text-2xl md:text-3xl lg:text-3xl text-[#EAD196] mb-5">
+              <p className="font-['Allura'] text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#EAD196] mb-3 sm:mb-5">
                 &ldquo;{slide.subtitle}&rdquo;
               </p>
-              <p className="text-white/75 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-white/75 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed mb-5 sm:mb-8 max-w-xl">
                 {slide.desc}
               </p>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-4">
                 <Link
                   to={slide.ctaHref}
-                  className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-[#BC8A5F] text-white font-bold px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-xl text-xs sm:text-sm"
                 >
                   {slide.cta}
                   <ArrowRight size={16} />
                 </Link>
                 <Link
                   to={slide.ctaSecondaryHref}
-                  className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/20 transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl hover:bg-white/20 transition-all duration-300 text-xs sm:text-sm"
                 >
                   {slide.ctaSecondary}
                 </Link>
@@ -135,7 +139,7 @@ export function HeroSection() {
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
