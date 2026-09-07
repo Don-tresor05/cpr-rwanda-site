@@ -495,7 +495,7 @@ export function AboutUs() {
 
                   {/* Image + caption */}
                   <div className="md:col-span-1">
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-[#4E6132]/10">
+                    <div className="rounded-none overflow-hidden shadow-lg border border-[#4E6132]/10">
                       <img
                         src="/cpr/assets/Mutabazi_Samuel.webp"
                         alt="Rev. Samuel Mutabazi"
