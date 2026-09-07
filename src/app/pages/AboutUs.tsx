@@ -7,17 +7,21 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
+import { useBoardMembers, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { PortableText } from "@portabletext/react";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
+  const [selectedBoardMember, setSelectedBoardMember] = useState<BoardMember | null>(null);
   const [organigramLightboxOpen, setOrganigramLightboxOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const location = useLocation();
   const { ref: visionRef, visible: visionVisible } = useScrollReveal();
   const { t } = useTranslation("home");
   const cms = useAboutPage();
+  const boardMembers = useBoardMembers();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -51,13 +55,13 @@ export function AboutUs() {
 
   // Lock body scroll when modal is open
   useEffect(() => {
-    if (historyModalOpen) {
+    if (historyModalOpen || selectedBoardMember) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [historyModalOpen]);
+  }, [historyModalOpen, selectedBoardMember]);
 
   // Hide scroll indicator once user scrolls past the hero
   useEffect(() => {
@@ -331,18 +335,18 @@ export function AboutUs() {
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-              {[
-                { name: "Samuel Mutabazi", role: "", img: "/cpr/assets/Mutabazi_Samuel.webp" },
-                { name: "Jael", role: "", img: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/cpr/assets/BNEP Representative.webp" },
-              ].map((member, i) => (
+              {(boardMembers && boardMembers.length > 0 ? boardMembers : [
+                { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp" },
+                { name: "Jael", role: "", image: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: "", image: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: "", image: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), image: "/cpr/assets/BNEP Representative.webp" },
+              ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
                   <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
-                    {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                    {member.image ? (
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
                     ) : (
                       <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -352,12 +356,18 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-xs font-semibold">
+                    <span className="text-[#8B6543] text-xs font-semibold mb-4 block">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
+                    <button 
+                      onClick={() => setSelectedBoardMember(member as BoardMember)}
+                      className="text-[#BC8A5F] text-xs font-bold uppercase tracking-wider hover:text-[#4E6132] transition-colors flex items-center gap-1 mt-auto"
+                    >
+                      Read Bio <ArrowRight size={14} />
+                    </button>
                   </div>
                 </div>
               ))}
@@ -522,6 +532,85 @@ export function AboutUs() {
                   >
                     {cms?.historyModal?.cta ?? t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Board Member Bio Modal */}
+      <AnimatePresence>
+        {selectedBoardMember && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 lg:p-8"
+            onClick={() => setSelectedBoardMember(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-[5px] max-w-[1140px] w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedBoardMember(null)}
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10 sticky top-0 float-right"
+                aria-label="Close"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="p-5 sm:p-6 lg:p-10 clear-both">
+                <div className="grid md:grid-cols-12 gap-8 items-start">
+                  {/* Photo column (4/12) */}
+                  <div className="md:col-span-4 lg:col-span-3">
+                    <div className="rounded-none overflow-hidden shadow-sm border border-[#4E6132]/10">
+                      {selectedBoardMember.image ? (
+                        <img
+                          src={selectedBoardMember.image}
+                          alt={selectedBoardMember.name}
+                          className="w-full aspect-[4/5] object-cover object-top"
+                        />
+                      ) : (
+                        <div className="w-full aspect-[4/5] bg-[#E5E9F0] flex items-center justify-center text-[#8B6543]/40">
+                          <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Text content column (8/12) */}
+                  <div className="md:col-span-8 lg:col-span-9 leading-relaxed">
+                    <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-1">
+                      {selectedBoardMember.name}
+                    </h2>
+                    <span className="block text-[#8B6543] text-sm lg:text-base font-semibold mb-6 uppercase tracking-wider">
+                      {selectedBoardMember.role}
+                    </span>
+                    
+                    <div className="text-[#4A4A4A] space-y-4 text-base">
+                      {selectedBoardMember.bio ? (
+                        typeof selectedBoardMember.bio === 'string' ? (
+                          selectedBoardMember.bio.split('\n').map((paragraph: string, idx: number) => (
+                            <p key={idx}>{paragraph}</p>
+                          ))
+                        ) : (
+                          <PortableText value={selectedBoardMember.bio} />
+                        )
+                      ) : (
+                        <p className="italic text-gray-400">Bio coming soon...</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

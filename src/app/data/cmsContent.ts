@@ -322,7 +322,56 @@ export function useTestimonials(): Testimonial[] | null {
     };
   }, [lang]);
 
-  return testimonials;
+}
+
+export interface BoardMember {
+  name: string;
+  role: string;
+  image: string;
+  bio?: any;
+}
+
+const BOARD_MEMBERS_QUERY = `*[_type == "boardMember"] | order(order asc) {
+  name,
+  role,
+  "image": image.asset->url,
+  bio
+}`;
+
+export function useBoardMembers(): BoardMember[] | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [members, setMembers] = useState<BoardMember[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    sanityClient
+      .fetch<{ name?: string; role?: LocalizedField; image?: string; bio?: LocalizedField }[]>(BOARD_MEMBERS_QUERY)
+      .then((docs) => {
+        if (cancelled) return;
+        const valid = (docs || []).filter((d) => d.name);
+        if (valid.length === 0) {
+          setMembers(null);
+          return;
+        }
+        setMembers(
+          valid.map((d) => ({
+            name: d.name || "",
+            role: pickOrUndef(d.role, lang) || "",
+            image: d.image || "",
+            bio: pickOrUndef(d.bio, lang),
+          }))
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setMembers(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  return members;
 }
 
 const PROJECT_QUERY = `*[_type == "project"] | order(order asc) {
