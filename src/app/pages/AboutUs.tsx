@@ -561,43 +561,50 @@ export function AboutUs() {
               {/* Close button */}
               <button
                 onClick={() => setSelectedBoardMember(null)}
-                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10 sticky top-0 float-right"
+                className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center text-[#4A4A4A] hover:text-[#4E6132] transition-colors z-20"
                 aria-label="Close"
               >
-                <X size={24} />
+                <X size={28} strokeWidth={1.5} />
               </button>
 
-              <div className="p-5 sm:p-6 lg:p-10 clear-both">
-                <div className="grid md:grid-cols-12 gap-8 items-start">
-                  {/* Photo column (4/12) */}
+              <div className="p-6 sm:p-8 lg:p-10">
+                <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-start">
+                  {/* Left column: Photo + Name + Role */}
                   <div className="md:col-span-4 lg:col-span-3">
-                    <div className="rounded-none overflow-hidden shadow-sm border border-[#4E6132]/10">
+                    {/* Photo - flush to top */}
+                    <div className="overflow-hidden">
                       {selectedBoardMember.image ? (
                         <img
                           src={selectedBoardMember.image}
                           alt={selectedBoardMember.name}
-                          className="w-full aspect-[4/5] object-cover object-top"
+                          className="w-full aspect-[3/4] object-cover object-top"
                         />
                       ) : (
-                        <div className="w-full aspect-[4/5] bg-[#E5E9F0] flex items-center justify-center text-[#8B6543]/40">
+                        <div className="w-full aspect-[3/4] bg-[#F0F0F0] flex items-center justify-center text-[#8B6543]/30">
                           <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
                         </div>
                       )}
                     </div>
+                    {/* Name + Role below image */}
+                    <p className="mt-4 text-left">
+                      <span className="block font-['Outfit'] font-bold text-[#4E6132] text-sm leading-tight">
+                        {selectedBoardMember.name}
+                      </span>
+                      <span className="block text-[#8B6543] text-xs mt-1 italic">
+                        {selectedBoardMember.role || "Board Member"}
+                      </span>
+                    </p>
                   </div>
 
-                  {/* Text content column (8/12) */}
-                  <div className="md:col-span-8 lg:col-span-9 leading-relaxed">
-                    <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4A4A4A] mb-1">
+                  {/* Right column: Name heading + Bio */}
+                  <div className="md:col-span-8 lg:col-span-9">
+                    <h2 className="font-['Outfit'] font-bold text-2xl lg:text-3xl text-[#4E6132] mb-1 italic">
                       {selectedBoardMember.name}
                     </h2>
-                    <span className="block text-[#8B6543] text-sm lg:text-base font-semibold mb-6 uppercase tracking-wider">
-                      {selectedBoardMember.role}
-                    </span>
                     
-                    <div className="text-[#4A4A4A] space-y-4 text-base">
+                    <div className="text-[#4A4A4A] space-y-4 text-[15px] leading-relaxed mt-4">
                       {selectedBoardMember.bio ? (
                         typeof selectedBoardMember.bio === 'string' ? (
                           selectedBoardMember.bio.split('\n').map((paragraph: string, idx: number) => (
@@ -607,7 +614,7 @@ export function AboutUs() {
                           <PortableText value={selectedBoardMember.bio} />
                         )
                       ) : (
-                        <p className="italic text-gray-400">Bio coming soon...</p>
+                        <p className="italic text-[#8B6543]/50">Bio coming soon...</p>
                       )}
                     </div>
                   </div>
