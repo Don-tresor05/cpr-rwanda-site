@@ -334,7 +334,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
                 { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu. Aenean vehicula, ex sagittis congue interdum, mauris massa efficitur velit, sit amet iaculis libero odio eget enim. In mollis justo in risus consectetur, lacinia laoreet nisi aliquet. Nunc odio lorem, euismod dignissim lorem vel, venenatis hendrerit enim.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit. Morbi ultrices nisl eget semper malesuada. Maecenas in lacus mattis, aliquam turpis sit amet, finibus justo. Integer egestas fermentum neque, vitae mollis ligula pellentesque ac. Donec feugiat luctus molestie." },
                 { name: "Jael", role: "", image: "/cpr/assets/Jael.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
@@ -379,7 +379,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
               {[
                 { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
@@ -567,55 +567,52 @@ export function AboutUs() {
                 <X size={28} strokeWidth={1.5} />
               </button>
 
-              <div className="p-6 sm:p-8 lg:p-10">
-                <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-start">
-                  {/* Left column: Photo + "Board Member" label */}
-                  <div className="md:col-span-4 lg:col-span-3">
-                    {/* Photo - flush to top, smaller on mobile */}
-                    <div className="overflow-hidden w-3/4 sm:w-full mx-auto md:mx-0">
-                      {selectedBoardMember.image ? (
-                        <img
-                          src={selectedBoardMember.image}
-                          alt={selectedBoardMember.name}
-                          className="w-full aspect-[3/4] object-cover object-top"
-                        />
-                      ) : (
-                        <div className="w-full aspect-[3/4] bg-[#F0F0F0] flex items-center justify-center text-[#8B6543]/30">
-                          <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    {/* "Board Member" label below image */}
-                    <p className="mt-4 text-left w-3/4 sm:w-full mx-auto md:mx-0">
-                      <span className="block text-[#4A4A4A] text-sm">
-                        Board Member
-                      </span>
-                    </p>
+              <div className="p-5 sm:p-6 lg:p-10">
+                {/* Image + Board Member label */}
+                <div className="mb-6 lg:mb-0 lg:float-left lg:w-[280px] lg:mr-10">
+                  <div className="overflow-hidden w-4/5 sm:w-3/5 md:w-2/5 lg:w-full">
+                    {selectedBoardMember.image ? (
+                      <img
+                        src={selectedBoardMember.image}
+                        alt={selectedBoardMember.name}
+                        className="w-full aspect-[3/4] object-cover object-top"
+                      />
+                    ) : (
+                      <div className="w-full aspect-[3/4] bg-[#F0F0F0] flex items-center justify-center text-[#8B6543]/30">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
+                  <p className="mt-3 w-4/5 sm:w-3/5 md:w-2/5 lg:w-full">
+                    <span className="block text-[#8B6543] text-sm font-semibold">
+                      Board Member
+                    </span>
+                  </p>
+                </div>
 
-                  {/* Right column: Name heading + Bio */}
-                  <div className="md:col-span-8 lg:col-span-9">
-                    <h2 className="font-['Outfit'] font-bold text-xl lg:text-2xl text-[#4E6132] mb-1">
-                      {selectedBoardMember.name}
-                    </h2>
-                    
-                    <div className="text-[#4A4A4A] space-y-4 text-[15px] leading-relaxed mt-4">
-                      {selectedBoardMember.bio ? (
-                        typeof selectedBoardMember.bio === 'string' ? (
-                          selectedBoardMember.bio.split('\n').map((paragraph: string, idx: number) => (
-                            <p key={idx}>{paragraph}</p>
-                          ))
-                        ) : (
-                          <PortableText value={selectedBoardMember.bio} />
-                        )
+                {/* Name + Bio */}
+                <div className="mt-8 lg:mt-0">
+                  <h2 className="font-['Outfit'] font-bold text-xl lg:text-2xl text-[#4E6132] mb-4">
+                    {selectedBoardMember.name}
+                  </h2>
+                  
+                  <div className="text-[#3A3A3A] space-y-4 text-[15px] leading-relaxed">
+                    {selectedBoardMember.bio ? (
+                      typeof selectedBoardMember.bio === 'string' ? (
+                        selectedBoardMember.bio.split('\n').map((paragraph: string, idx: number) => (
+                          <p key={idx}>{paragraph}</p>
+                        ))
                       ) : (
-                        <p className="italic text-[#8B6543]/50">Bio coming soon...</p>
-                      )}
-                    </div>
+                        <PortableText value={selectedBoardMember.bio} />
+                      )
+                    ) : (
+                      <p className="italic text-[#8B6543]/50">Bio coming soon...</p>
+                    )}
                   </div>
                 </div>
+                <div className="clear-both" />
               </div>
             </motion.div>
           </motion.div>
