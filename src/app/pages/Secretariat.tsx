@@ -152,7 +152,7 @@ export function Secretariat() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[55vh] sm:min-h-[65vh] md:min-h-[75vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
