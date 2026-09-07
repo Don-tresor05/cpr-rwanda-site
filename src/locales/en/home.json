@@ -356,7 +356,10 @@
       "boardMembers": "Board Members",
       "staff": "Staff",
       "defaultName": "Member Name",
-      "defaultRole": "Title / Role"
+      "defaultRole": "Title / Role",
+      "readBio": "Read Bio",
+      "boardMemberLabel": "Board Member",
+      "bioComingSoon": "Bio coming soon..."
     },
     "organigram": {
       "title": "Organigram",

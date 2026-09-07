@@ -356,7 +356,10 @@
       "boardMembers": "Abagize Inama y'Ubuyobozi",
       "staff": "Abakozi",
       "defaultName": "Izina ry'Umukozi",
-      "defaultRole": "Inshingano"
+      "defaultRole": "Inshingano",
+      "readBio": "Soma Amateka",
+      "boardMemberLabel": "Uwo mu Nama y'Ubuyobozi",
+      "bioComingSoon": "Amateka vuba..."
     },
     "organigram": {
       "title": "Inyubako y'Ubuyobozi",

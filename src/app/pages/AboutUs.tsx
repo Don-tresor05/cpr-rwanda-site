@@ -366,7 +366,7 @@ export function AboutUs() {
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
                       className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
                     >
-                      Read Bio
+                      {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                     </button>
                   </div>
                 </div>
@@ -587,7 +587,7 @@ export function AboutUs() {
                   </div>
                   <p className="mt-3 w-full sm:w-3/5 md:w-2/5 lg:w-full">
                     <span className="block text-[#8B6543] text-sm font-semibold">
-                      Board Member
+                      {cms?.execCommittee?.boardMemberLabel ?? t("aboutPage.execCommittee.boardMemberLabel")}
                     </span>
                   </p>
                 </div>
@@ -608,7 +608,9 @@ export function AboutUs() {
                         <PortableText value={selectedBoardMember.bio} />
                       )
                     ) : (
-                      <p className="italic text-[#8B6543]/50">Bio coming soon...</p>
+                      <p className="italic text-[#8B6543]/50">
+                        {cms?.execCommittee?.bioComingSoon ?? t("aboutPage.execCommittee.bioComingSoon")}
+                      </p>
                     )}
                   </div>
                 </div>

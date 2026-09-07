@@ -356,7 +356,10 @@
       "boardMembers": "Membres du Conseil",
       "staff": "Personnel",
       "defaultName": "Nom du Membre",
-      "defaultRole": "Titre / Rôle"
+      "defaultRole": "Titre / Rôle",
+      "readBio": "Lire la Biographie",
+      "boardMemberLabel": "Membre du Conseil",
+      "bioComingSoon": "Biographie à venir..."
     },
     "organigram": {
       "title": "Organigramme",
