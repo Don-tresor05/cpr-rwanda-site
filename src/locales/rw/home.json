@@ -1240,5 +1240,107 @@
         }
       ]
     }
+  },
+  "galleryEvents": [
+    {
+      "category": "conferences",
+      "title": "Inama y'Umwaka ya Komite Nyobozi n'Amatorero Nyamuryango",
+      "locationDate": "Kigali, Mutarama 2026"
+    },
+    {
+      "category": "commemorations",
+      "title": "Kwibuka n'Igiterane cy'Amadini Yandukanye cyo Kwibuka",
+      "locationDate": "Kigali, Mata 2025"
+    },
+    {
+      "category": "youth",
+      "title": "Kongerera Ubushobozi Urubyiruko, Kubaka Amahoro n'Ubuzima Bwo Mu Mutwe",
+      "locationDate": "Uturere Dutandukanye, 2025"
+    },
+    {
+      "category": "education",
+      "title": "Uburezi, Amashuri y'Abaporotesitanti na Radio Inkoramutima",
+      "locationDate": "Kigali n'Iburasirazuba, 2025"
+    }
+  ],
+  "secretariatStats": {
+    "sg": [
+      { "label": "Amatorera Nyamuryango", "value": "25+" },
+      { "label": "Abakozi b'Umuryango", "value": "50+" },
+      { "label": "Imyaka Imarijeho", "value": "60+" }
+    ],
+    "events": [
+      { "label": "Inteko z'Umwaka", "value": "1" },
+      { "label": "Sinode z'Amatora", "value": "1" },
+      { "label": "Inama z'Urubyiruko", "value": "5+" }
+    ],
+    "meetings": [
+      { "label": "Inama z'Ihuriro", "value": "4/umwaka" },
+      { "label": "Inama z'Inzego", "value": "6/umwaka" },
+      { "label": "Umwiherero", "value": "1/umwaka" }
+    ],
+    "advocacy": [
+      { "label": "Inzego z'Amategeko", "value": "5+" },
+      { "label": "Inama z'Igihugu", "value": "10+" },
+      { "label": "Inzego Mpuzamahanga", "value": "3+" }
+    ],
+    "sustainability": [
+      { "label": "Imishinga y'Ibiti", "value": "15+" },
+      { "label": "Amashuri Arengera Isi", "value": "50+" },
+      { "label": "Abafatanyabikorwa", "value": "8+" }
+    ],
+    "publications": [
+      { "label": "Raporu z'Umwaka", "value": "60+" },
+      { "label": "Utumenyesha", "value": "200+" },
+      { "label": "Amatangazo", "value": "100+" }
+    ]
+  },
+  "departmentStats": {
+    "gs": [
+      { "label": "Amatorera Nyamuryango", "value": "25+" },
+      { "label": "Umwaka Yashingwehe", "value": "1963" },
+      { "label": "Abakozi b'Umuryango", "value": "50+" }
+    ],
+    "bnep": [
+      { "label": "Amashuri Abanza", "value": "595+" },
+      { "label": "Abanyeshuri Bafashijwe", "value": "300K+" },
+      { "label": "Abarezi Bahuguwe", "value": "1,200+" }
+    ],
+    "diakonia": [
+      { "label": "Amatorera Yafashijwe", "value": "20+" },
+      { "label": "Abajyanama Bemewe", "value": "200+" },
+      { "label": "Imishinga Ikora", "value": "6+" }
+    ],
+    "finance": [
+      { "label": "Abaterankunga", "value": "10+" },
+      { "label": "Imyaka Imarijeho", "value": "60+" },
+      { "label": "Amanota y'Ubugenzuzi", "value": "AAA" }
+    ],
+    "youth": [
+      { "label": "Urubyiruko Rwanaswe", "value": "10,000+" },
+      { "label": "Inama z'Umwaka", "value": "1" },
+      { "label": "Amahuriro y'Ubuyobozi", "value": "5+" }
+    ],
+    "gender": [
+      { "label": "Abagore Bafashijwe", "value": "5,000+" },
+      { "label": "Amahugurwa ya GBV", "value": "100+" },
+      { "label": "Amakoperative", "value": "25+" }
+    ],
+    "radio": [
+      { "label": "Umurongo wa FM", "value": "107.1" },
+      { "label": "Itangaza Kuva", "value": "2005" },
+      { "label": "Abayikurikira Buri Munsi", "value": "1M+" }
+    ]
+  },
+  "quickFacts": {
+    "title": "Ibyo Wamenya",
+    "facts": [
+      "Amashami 7 yihariye akorera mu ntara zose z'igihugu",
+      "Amashuri abanza ya giporoso 595+ mu gihugu hose",
+      "Abajyanama bagenwe mu by'ihahamuko 200+ mu Rwanda rwose",
+      "Urubyiruko 10,000+ rwagezweho binyuze muri gahunda z'umwaka",
+      "Abagore 5,000+ bahawe ubushobozi binyuze mu mishinga y'iterambere",
+      "107.1 FM — itangaza ibyiringiro kuva mu 2005"
+    ]
   }
 }

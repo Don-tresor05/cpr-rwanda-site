@@ -1240,5 +1240,107 @@
         }
       ]
     }
+  },
+  "galleryEvents": [
+    {
+      "category": "conferences",
+      "title": "Conférence Annuelle du Comité Exécutif & des Églises Membres",
+      "locationDate": "Kigali, Janvier 2026"
+    },
+    {
+      "category": "commemorations",
+      "title": "Commémoration du Kwibuka & Service de Souvenir Interreligieux",
+      "locationDate": "Kigali, Avril 2025"
+    },
+    {
+      "category": "youth",
+      "title": "Autonomisation des Jeunes, Consolidation de la Paix & Santé Mentale",
+      "locationDate": "Divers Districts, 2025"
+    },
+    {
+      "category": "education",
+      "title": "Éducation, Écoles Protestantes & Ministère de la Radio Inkoramutima",
+      "locationDate": "Kigali & Est, 2025"
+    }
+  ],
+  "secretariatStats": {
+    "sg": [
+      { "label": "Églises Membres", "value": "25+" },
+      { "label": "Membres du Personnel", "value": "50+" },
+      { "label": "Années d'Activité", "value": "60+" }
+    ],
+    "events": [
+      { "label": "Assemblées Annuelles", "value": "1" },
+      { "label": "Synodes Biennaux", "value": "1" },
+      { "label": "Sommets des Jeunes", "value": "5+" }
+    ],
+    "meetings": [
+      { "label": "Sessions Com.", "value": "4/an" },
+      { "label": "Réunions du Conseil", "value": "6/an" },
+      { "label": "Retraites", "value": "1/an" }
+    ],
+    "advocacy": [
+      { "label": "Domaines Politiques", "value": "5+" },
+      { "label": "Forums Nationaux", "value": "10+" },
+      { "label": "Plateformes Intern.", "value": "3+" }
+    ],
+    "sustainability": [
+      { "label": "Initiatives Arbres", "value": "15+" },
+      { "label": "Écoles Vertes", "value": "50+" },
+      { "label": "Partenaires", "value": "8+" }
+    ],
+    "publications": [
+      { "label": "Rapports Annuels", "value": "60+" },
+      { "label": "Bulletins", "value": "200+" },
+      { "label": "Communiqués", "value": "100+" }
+    ]
+  },
+  "departmentStats": {
+    "gs": [
+      { "label": "Églises Membres", "value": "25+" },
+      { "label": "Année de Fondation", "value": "1963" },
+      { "label": "Membres du Personnel", "value": "50+" }
+    ],
+    "bnep": [
+      { "label": "Écoles Primaires", "value": "595+" },
+      { "label": "Élèves Touchés", "value": "300K+" },
+      { "label": "Enseignants Formés", "value": "1,200+" }
+    ],
+    "diakonia": [
+      { "label": "Églises Soutenues", "value": "20+" },
+      { "label": "Conseillers Certifiés", "value": "200+" },
+      { "label": "Programmes Actifs", "value": "6+" }
+    ],
+    "finance": [
+      { "label": "Partenaires Financiers", "value": "10+" },
+      { "label": "Années d'Activité", "value": "60+" },
+      { "label": "Note d'Audit", "value": "AAA" }
+    ],
+    "youth": [
+      { "label": "Jeunes Touchés", "value": "10,000+" },
+      { "label": "Sommets Annuels", "value": "1" },
+      { "label": "Camps de Leadership", "value": "5+" }
+    ],
+    "gender": [
+      { "label": "Femmes Autonomisées", "value": "5,000+" },
+      { "label": "Formations VBG", "value": "100+" },
+      { "label": "Coopératives", "value": "25+" }
+    ],
+    "radio": [
+      { "label": "Fréquence FM", "value": "107.1" },
+      { "label": "Diffusion Depuis", "value": "2005" },
+      { "label": "Auditeurs Quotidiens", "value": "1M+" }
+    ]
+  },
+  "quickFacts": {
+    "title": "Chiffres Clés",
+    "facts": [
+      "7 départements spécialisés servant dans toutes les provinces",
+      "595+ écoles primaires protestantes à l'échelle nationale",
+      "200+ conseillers certifiés en traumatologie à travers le Rwanda",
+      "10 000+ jeunes touchés grâce aux programmes annuels",
+      "5 000+ femmes autonomisées grâce aux initiatives pour le genre",
+      "107.1 FM — diffusant l'espoir depuis 2005"
+    ]
   }
 }

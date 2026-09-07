@@ -1240,5 +1240,107 @@
         }
       ]
     }
+  },
+  "galleryEvents": [
+    {
+      "category": "conferences",
+      "title": "Executive Committee & Member Churches Annual Conference",
+      "locationDate": "Kigali, January 2026"
+    },
+    {
+      "category": "commemorations",
+      "title": "Kwibuka Commemoration & Interfaith Remembrance Service",
+      "locationDate": "Kigali, April 2025"
+    },
+    {
+      "category": "youth",
+      "title": "Youth Empowerment, Peacebuilding & Mental Health Programs",
+      "locationDate": "Various Districts, 2025"
+    },
+    {
+      "category": "education",
+      "title": "Education, Protestant Schools & Radio Inkoramutima Ministry",
+      "locationDate": "Kigali & East, 2025"
+    }
+  ],
+  "secretariatStats": {
+    "sg": [
+      { "label": "Member Churches", "value": "25+" },
+      { "label": "Staff Members", "value": "50+" },
+      { "label": "Years Active", "value": "60+" }
+    ],
+    "events": [
+      { "label": "Annual Assemblies", "value": "1" },
+      { "label": "Biennial Synods", "value": "1" },
+      { "label": "Youth Summits", "value": "5+" }
+    ],
+    "meetings": [
+      { "label": "Comm. Sessions", "value": "4/yr" },
+      { "label": "Board Meetings", "value": "6/yr" },
+      { "label": "Retreats", "value": "1/yr" }
+    ],
+    "advocacy": [
+      { "label": "Policy Areas", "value": "5+" },
+      { "label": "Nat. Forums", "value": "10+" },
+      { "label": "Intl. Platforms", "value": "3+" }
+    ],
+    "sustainability": [
+      { "label": "Tree Initiatives", "value": "15+" },
+      { "label": "Green Schools", "value": "50+" },
+      { "label": "Partners", "value": "8+" }
+    ],
+    "publications": [
+      { "label": "Annual Reports", "value": "60+" },
+      { "label": "Newsletters", "value": "200+" },
+      { "label": "Communiqués", "value": "100+" }
+    ]
+  },
+  "departmentStats": {
+    "gs": [
+      { "label": "Member Churches", "value": "25+" },
+      { "label": "Years Established", "value": "1963" },
+      { "label": "Staff Members", "value": "50+" }
+    ],
+    "bnep": [
+      { "label": "Primary Schools", "value": "595+" },
+      { "label": "Students Reached", "value": "300K+" },
+      { "label": "Teachers Trained", "value": "1,200+" }
+    ],
+    "diakonia": [
+      { "label": "Churches Supported", "value": "20+" },
+      { "label": "Counselors Certified", "value": "200+" },
+      { "label": "Programs Active", "value": "6+" }
+    ],
+    "finance": [
+      { "label": "Donor Partners", "value": "10+" },
+      { "label": "Years Operating", "value": "60+" },
+      { "label": "Audit Rating", "value": "AAA" }
+    ],
+    "youth": [
+      { "label": "Youth Reached", "value": "10,000+" },
+      { "label": "Annual Summits", "value": "1" },
+      { "label": "Leadership Camps", "value": "5+" }
+    ],
+    "gender": [
+      { "label": "Women Empowered", "value": "5,000+" },
+      { "label": "GBV Trainings", "value": "100+" },
+      { "label": "Cooperatives", "value": "25+" }
+    ],
+    "radio": [
+      { "label": "FM Frequency", "value": "107.1" },
+      { "label": "Broadcasting Since", "value": "2005" },
+      { "label": "Daily Listeners", "value": "1M+" }
+    ]
+  },
+  "quickFacts": {
+    "title": "Quick Facts",
+    "facts": [
+      "7 specialized departments serving all provinces",
+      "595+ Protestant primary schools nationwide",
+      "200+ trauma counselors certified across Rwanda",
+      "10,000+ youth reached through annual programs",
+      "5,000+ women empowered through gender initiatives",
+      "107.1 FM — broadcasting hope since 2005"
+    ]
   }
 }

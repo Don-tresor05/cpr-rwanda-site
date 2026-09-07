@@ -88,7 +88,14 @@ export function GalleryPage() {
   const gp = t("galleryPage", { returnObjects: true }) as Record<string, unknown>;
 
   // CMS collections when staff have created them; otherwise the built-in albums.
-  const galleryEvents = useGalleryEvents() ?? GALLERY_EVENTS;
+  const translatedGalleryEvents = t("galleryEvents", { returnObjects: true }) as any[];
+  const galleryEvents = useGalleryEvents() ?? (translatedGalleryEvents && translatedGalleryEvents.length === GALLERY_EVENTS.length
+    ? GALLERY_EVENTS.map((event, i) => ({
+        ...event,
+        title: translatedGalleryEvents[i].title,
+        locationDate: translatedGalleryEvents[i].locationDate,
+      }))
+    : GALLERY_EVENTS);
 
   const [activeImage, setActiveImage] = useState<{ eventIdx: number; imgIdx: number } | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);

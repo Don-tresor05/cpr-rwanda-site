@@ -33,50 +33,14 @@ const secImages: Record<string, string> = {
   publications: "/cpr/assets/secretariat-publications.webp",
 };
 
-const getSecStats = (lang: string): Record<string, { label: string; value: string }[]> => {
-  const isFr = lang === "fr";
-  const isRw = lang === "rw";
-  return {
-    sg: [
-      { label: isFr ? "Églises Membres" : isRw ? "Amatorera Nyamuryango" : "Member Churches", value: "25+" },
-      { label: isFr ? "Membres du Personnel" : isRw ? "Abakozi b'Umuryango" : "Staff Members", value: "50+" },
-      { label: isFr ? "Années d'Activité" : isRw ? "Imyaka Imarijeho" : "Years Active", value: "60+" },
-    ],
-    events: [
-      { label: isFr ? "Assemblées Annuelles" : isRw ? "Inteko z'Umwaka" : "Annual Assemblies", value: "1" },
-      { label: isFr ? "Synodes Biennaux" : isRw ? "Sinode z'Amatora" : "Biennial Synods", value: "1" },
-      { label: isFr ? "Sommets des Jeunes" : isRw ? "Inama z'Urubyiruko" : "Youth Summits", value: "5+" },
-    ],
-    meetings: [
-      { label: isFr ? "Sessions Com." : isRw ? "Inama z'Ihuriro" : "Comm. Sessions", value: isFr ? "4/an" : isRw ? "4/umwaka" : "4/yr" },
-      { label: isFr ? "Réunions du Conseil" : isRw ? "Inama z'Inzego" : "Board Meetings", value: isFr ? "6/an" : isRw ? "6/umwaka" : "6/yr" },
-      { label: isFr ? "Retraites" : isRw ? "Umwiherero" : "Retreats", value: isFr ? "1/an" : isRw ? "1/umwaka" : "1/yr" },
-    ],
-    advocacy: [
-      { label: isFr ? "Domaines Politiques" : isRw ? "Inzego z'Amategeko" : "Policy Areas", value: "5+" },
-      { label: isFr ? "Forums Nationaux" : isRw ? "Inama z'Igihugu" : "Nat. Forums", value: "10+" },
-      { label: isFr ? "Plateformes Intern." : isRw ? "Inzego Mpuzamahanga" : "Intl. Platforms", value: "3+" },
-    ],
-    sustainability: [
-      { label: isFr ? "Initiatives Arbres" : isRw ? "Imishinga y'Ibiti" : "Tree Initiatives", value: "15+" },
-      { label: isFr ? "Écoles Vertes" : isRw ? "Amashuri Arengera Isi" : "Green Schools", value: "50+" },
-      { label: isFr ? "Partenaires" : isRw ? "Abafatanyabikorwa" : "Partners", value: "8+" },
-    ],
-    publications: [
-      { label: isFr ? "Rapports Annuels" : isRw ? "Raporu z'Umwaka" : "Annual Reports", value: "60+" },
-      { label: isFr ? "Bulletins" : isRw ? "Utumenyesha" : "Newsletters", value: "200+" },
-      { label: isFr ? "Communiqués" : isRw ? "Amatangazo" : "Communiqués", value: "100+" },
-    ],
-  };
-};
+
 
 export function Secretariat() {
   const [activeSection, setActiveSection] = useState("");
   const [sgPhotoOpen, setSgPhotoOpen] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation("home");
-  const lang = i18n.language ? i18n.language.substring(0, 2) : "en";
-  const secStats = getSecStats(lang);
+  const secStats = t("secretariatStats", { returnObjects: true }) as Record<string, { label: string; value: string }[]>;
   const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const cms = useSecretariatPage();
   /** Returns the CMS section for a key, if staff filled it in. */
