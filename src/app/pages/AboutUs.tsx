@@ -99,9 +99,24 @@ export function AboutUs() {
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
-          <h1            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+          >
             {cms?.heroTitle ?? t("aboutPage.heroTitle")}
-          </h1>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
+          >
+            {/* @ts-ignore */}
+            {cms?.heroDesc ?? t("aboutPage.heroDesc")}
+          </motion.p>
         </div>
         {!scrolledPastHero && !historyModalOpen && <ScrollIndicator />}
       </div>
