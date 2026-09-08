@@ -5,7 +5,7 @@
         "label": "Serving Rwanda Since 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "That All of Them May Be One",
-        "desc": "Uniting 25 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
+        "desc": "Uniting 28 Protestant member churches to serve Rwanda's communities through faith, education, health, and sustainable development.",
         "cta": "Explore Our Mission",
         "ctaSecondary": "Meet Our Team"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Our Story",
     "title": "Six Decades of\nFaith & Service",
-    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 25 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 28 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
     "p2Start": "Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — ",
     "motto": "“Bose Babe Umwe” (That All of Them May Be One)",
     "p2End": " — guides every initiative.",
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Our Community",
     "title": "Member Churches & Organizations",
-    "desc": "The Conseil Protestant du Rwanda unites <strong className=\"text-[#4E6132]\">25+</strong> Protestant churches and Christian organizations across Rwanda, working together in faith, service, and national transformation.",
+    "desc": "The Conseil Protestant du Rwanda unites <strong className=\"text-[#4E6132]\">28+</strong> Protestant churches and Christian organizations across Rwanda, working together in faith, service, and national transformation.",
     "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> churches and organizations united in Christ"
   },
   "projects": {
@@ -314,7 +314,7 @@
       "title": "Our Model",
       "desc": "A collaborative partnership structure connecting member churches to community impact.",
       "step1Tag": "Step 1",
-      "step1Title": "25 Member Churches",
+      "step1Title": "28 Member Churches",
       "step1Desc": "Protestant denominations across Rwanda unite under a shared framework.",
       "step2Tag": "Step 2",
       "step2Title": "CPR Coordination",
@@ -373,7 +373,7 @@
       "badge": "Our Story",
       "title": "About Conseil Protestant du Rwanda",
       "p1": "The Protestant Council of Rwanda (CPR) was established in 1963. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
-      "p2": "Through its network of specialized departments, CPR coordinates efforts across 25 member churches to deliver impactful programs in education (BNEP), healthcare, trauma healing, and community development. Headquartered in Kigali, CPR represents a unified Protestant voice dedicated to sustainable transformation.",
+      "p2": "Through its network of specialized departments, CPR coordinates efforts across 28 member churches to deliver impactful programs in education (BNEP), healthcare, trauma healing, and community development. Headquartered in Kigali, CPR represents a unified Protestant voice dedicated to sustainable transformation.",
       "personName": "Rev. Samuel Mutabazi",
       "personRole": "Secretary General",
       "cta": "Explore Our Departments"
@@ -613,7 +613,7 @@
       "desc": "Beyond public events, CPR holds regular internal governance meetings that ensure accountability, strategic alignment, and effective coordination across all member churches and departments.",
       "body": [
         "Executive Committee meetings — held quarterly to review institutional performance and approve key decisions",
-        "General Assembly sessions — the supreme governing body, convened annually with all 25 member churches",
+        "General Assembly sessions — the supreme governing body, convened annually with all 28 member churches",
         "Bureau meetings — monthly coordination between the Secretary General and department heads",
         "Finance and Audit Committee meetings — oversight of budgets, expenditures, and donor reporting",
         "Inter-church coordination meetings — bilateral and multilateral dialogue between member denominations",
@@ -638,7 +638,7 @@
       "title": "Conferences, Synods & Assemblies",
       "desc": "CPR convenes regular gatherings that bring together church leaders, government officials, civil society, and international partners to deliberate on matters of faith, governance, and national development.",
       "body": [
-        "Annual General Assembly of all 25 member churches",
+        "Annual General Assembly of all 28 member churches",
         "Biennial Synods for theological reflection and policy review",
         "National prayer days and commemorative services (e.g. Kwibuka)",
         "Ecumenical conferences with FECCLAHA and World Council of Churches",
@@ -1078,7 +1078,7 @@
         },
         {
           "title": "Member Church Directory",
-          "description": "Contact details for all 25+ member churches"
+          "description": "Contact details for all 28+ member churches"
         }
       ]
     },
@@ -1265,7 +1265,7 @@
   ],
   "secretariatStats": {
     "sg": [
-      { "label": "Member Churches", "value": "25+" },
+      { "label": "Member Churches", "value": "28+" },
       { "label": "Staff Members", "value": "50+" },
       { "label": "Years Active", "value": "60+" }
     ],
@@ -1297,7 +1297,7 @@
   },
   "departmentStats": {
     "gs": [
-      { "label": "Member Churches", "value": "25+" },
+      { "label": "Member Churches", "value": "28+" },
       { "label": "Years Established", "value": "1963" },
       { "label": "Staff Members", "value": "50+" }
     ],

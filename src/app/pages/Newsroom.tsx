@@ -98,7 +98,7 @@ function CategoryDropdown({
 }
 
 export function Newsroom() {
-  const { t, i18n } = useTranslation("news");
+  const { t, i18n } = useTranslation("home");
   const { ref } = useScrollReveal();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");

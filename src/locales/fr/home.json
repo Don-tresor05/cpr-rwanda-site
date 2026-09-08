@@ -5,7 +5,7 @@
         "label": "Au service du Rwanda depuis 1963",
         "title": "Bose Babe Umwe",
         "subtitle": "Pour que tous soient un",
-        "desc": "Unissant 25 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
+        "desc": "Unissant 28 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
         "cta": "Explorez Notre Mission",
         "ctaSecondary": "Rencontrez Notre Équipe"
       },
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Notre Histoire",
     "title": "Six Décennies de\nFoi et de Service",
-    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 25 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 28 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
     "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
     "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
     "p2End": " — guide chaque initiative.",
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Notre Communauté",
     "title": "Églises Membres & Organisations",
-    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 25</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
+    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 28</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
     "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> églises et organisations unies en Christ"
   },
   "projects": {
@@ -314,7 +314,7 @@
       "title": "Notre Modèle",
       "desc": "Une structure de partenariat collaboratif reliant les églises membres à l'impact communautaire.",
       "step1Tag": "Étape 1",
-      "step1Title": "25 Églises Membres",
+      "step1Title": "28 Églises Membres",
       "step1Desc": "Les dénominations protestantes à travers le Rwanda s'unissent sous un cadre partagé.",
       "step2Tag": "Étape 2",
       "step2Title": "Coordination du CPR",
@@ -373,7 +373,7 @@
       "badge": "Notre Histoire",
       "title": "À Propos du Conseil Protestant du Rwanda",
       "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
-      "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 25 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
+      "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 28 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
       "personName": "Rév. Samuel Mutabazi",
       "personRole": "Secrétaire Général",
       "cta": "Explorez Nos Départements"
@@ -613,7 +613,7 @@
       "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
       "body": [
         "Réunions du Comité Exécutif — tenues trimestriellement pour examiner les performances institutionnelles et approuver les décisions clés",
-        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 25 églises membres",
+        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 28 églises membres",
         "Réunions du Bureau — coordination mensuelle entre le Secrétaire Général et les chefs de département",
         "Réunions du Comité des Finances et d'Audit — supervision des budgets, dépenses et rapports aux donateurs",
         "Réunions de coordination inter-ecclésiale — dialogue bilatéral et multilatéral entre les dénominations membres",
@@ -638,7 +638,7 @@
       "title": "Conférences, Synodes & Assemblées",
       "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
       "body": [
-        "Assemblée Générale annuelle des 25 églises membres",
+        "Assemblée Générale annuelle des 28 églises membres",
         "Synodes biennaux pour la réflexion théologique et la révision des politiques",
         "Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
         "Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
@@ -1078,7 +1078,7 @@
         },
         {
           "title": "Annuaire des Églises Membres",
-          "description": "Coordonnées de toutes les plus de 25 églises membres"
+          "description": "Coordonnées de toutes les plus de 28 églises membres"
         }
       ]
     },
@@ -1265,7 +1265,7 @@
   ],
   "secretariatStats": {
     "sg": [
-      { "label": "Églises Membres", "value": "25+" },
+      { "label": "Églises Membres", "value": "28+" },
       { "label": "Membres du Personnel", "value": "50+" },
       { "label": "Années d'Activité", "value": "60+" }
     ],
@@ -1297,7 +1297,7 @@
   },
   "departmentStats": {
     "gs": [
-      { "label": "Églises Membres", "value": "25+" },
+      { "label": "Églises Membres", "value": "28+" },
       { "label": "Année de Fondation", "value": "1963" },
       { "label": "Membres du Personnel", "value": "50+" }
     ],
