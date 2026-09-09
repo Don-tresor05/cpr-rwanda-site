@@ -20,6 +20,8 @@ import { ContactPage } from "./pages/ContactPage";
 import { GalleryPage } from "./pages/GalleryPage";
 import { Newsroom } from "./pages/Newsroom";
 import { NewsDetail } from "./pages/NewsDetail";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { TermsOfService } from "./pages/TermsOfService";
 
 import { FixedWatermark } from "./components/ui/FixedWatermark";
 import { CookieConsent } from "./components/ui/CookieConsent";
@@ -43,7 +45,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen">
       <FixedWatermark variant="default" />
-      <CookieConsent />
+      {/* <CookieConsent /> */}
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
@@ -66,6 +68,8 @@ export default function App() {
             <Route path="/newsroom/:slug" element={<NewsDetail />} />
             <Route path="/news" element={<Newsroom />} />
             <Route path="/news/:slug" element={<NewsDetail />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
           </Routes>
           <Footer />
         </div>
