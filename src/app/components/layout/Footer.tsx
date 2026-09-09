@@ -3,7 +3,6 @@ import {
   ChevronRight, ArrowRight, Phone, Mail,
   MapPin, Radio, Facebook, Instagram, Youtube
 } from "lucide-react";
-import { useComingSoon } from "../ui/ComingSoonModal";
 import { getNavItems } from "../../data/navigation";
 import { FALLBACK_CONTACT, useSiteSettings } from "../../data/siteSettings";
 import { useTranslation } from "react-i18next";
@@ -32,7 +31,6 @@ const SOCIAL_ICONS: Record<string, ComponentType<{ size?: number; className?: st
 
 export function Footer() {
   const { t } = useTranslation("common");
-  const { showComingSoon } = useComingSoon();
   const settings = useSiteSettings();
   const contact = settings?.contact ?? FALLBACK_CONTACT;
   const radio = settings?.radio;
@@ -156,18 +154,18 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
           <span>© {new Date().getFullYear()} Conseil Protestant du Rwanda. {t("footer.rights")}</span>
           <div className="flex gap-5">
-            <button
-              onClick={() => showComingSoon(t("footer.privacyPolicy"))}
-              className="hover:text-white/70 transition-colors cursor-pointer"
+            <Link
+              to="/privacy"
+              className="hover:text-white/70 transition-colors"
             >
               {t("footer.privacyPolicy")}
-            </button>
-            <button
-              onClick={() => showComingSoon(t("footer.termsOfService"))}
-              className="hover:text-white/70 transition-colors cursor-pointer"
+            </Link>
+            <Link
+              to="/terms"
+              className="hover:text-white/70 transition-colors"
             >
               {t("footer.termsOfService")}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
