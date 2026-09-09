@@ -351,11 +351,11 @@ export function AboutUs() {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
-                { name: "Samuel Mutabazi", role: "", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu. Aenean vehicula, ex sagittis congue interdum, mauris massa efficitur velit, sit amet iaculis libero odio eget enim. In mollis justo in risus consectetur, lacinia laoreet nisi aliquet. Nunc odio lorem, euismod dignissim lorem vel, venenatis hendrerit enim.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit. Morbi ultrices nisl eget semper malesuada. Maecenas in lacus mattis, aliquam turpis sit amet, finibus justo. Integer egestas fermentum neque, vitae mollis ligula pellentesque ac. Donec feugiat luctus molestie." },
-                { name: "Jael", role: "", image: "/cpr/assets/Jael.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
-                { name: "Peter Mukunzi", role: "", image: "/cpr/assets/Mukunzi Peter.jpg", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
-                { name: "Joselyne Iragena", role: "", image: "/cpr/assets/IRAGENA Joselyne.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), image: "/cpr/assets/BNEP Representative.webp", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus et justo sit amet varius. Morbi suscipit lectus non erat aliquet tincidunt. Mauris convallis mauris risus, vitae consectetur erat dignissim at. Nullam hendrerit ultricies eros, vitae vehicula dolor maximus eu.\n\nDonec rhoncus nibh ac nunc cursus ultrices. Curabitur erat ante, ornare sit amet tellus sed, fringilla dapibus turpis. Integer aliquet et lacus nec aliquam. Duis felis est, varius a elit iaculis, imperdiet convallis elit." },
+                { name: "Mgr Dr Manasseh Gahima", role: "Président et Représentant Légal", image: "", bio: "" },
+                { name: "Rev Dr Pascal Bataringaya", role: "Vice-Président et Représentant Légal suppléant", image: "", bio: "" },
+                { name: "Mme Béatrice Uwizeyimana", role: "Trésorière du CPR", image: "", bio: "" },
+                { name: "Rev Past Thomas Murwanashyaka", role: "Conseiller du CPR", image: "", bio: "" },
+                { name: "Rev Pasteur Samuel Mutabazi", role: "Secrétaire Général du CPR", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -399,7 +399,11 @@ export function AboutUs() {
                 { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
                 { name: "Felicien", role: "", img: "/cpr/assets/Sec Photo.webp" },
-                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/cpr/assets/Passport ed.png" },
+                { name: "Nirere Jael", role: "Coordinatrice du projet", img: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Alfred Ntabanganyimana", role: "Coordinateur des Finances", img: "" },
+                { name: "Joseph Nyisingize", role: "Comptable", img: "" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />

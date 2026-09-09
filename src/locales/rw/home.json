@@ -299,8 +299,8 @@
     },
     "whoWeAre": {
       "title": "Kuri Inama y'Abaporotesitanti mu Rwanda",
-      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu 1963 ngo iteze imbere kandi isangize abantu ibikorwa bishya z'iterambere n'oserivisi z'ingenzi mu matorero yacu n'abaturage bose.",
-      "p2": "Twiyemeje kubaka ubufatanye bukomeye no gutanga serivisi zo ku rwego rwo hejuru mu gushyigikira ukwizera, ubumwe, n'iterambere rirambye mu Rwanda hose."
+      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) ni ihuriro ry'Amatorero y'Abaporotesitanti n'Imiryango ya Gikristo mu Rwanda. Yashinzwe ku wa 06 Ugushyingo 1962, nyuma y'ubwigenge bw'u Rwanda.",
+      "p2": "CPR ikorera cyane cyane mu byiciro by'uburezi, iterambere ry'imibereho n'ubukungu, ivugabutumwa n'itumanaho, guteza imbere abagore n'urubyiruko, kubaka amahoro, ndetse no komora ibikomere."
     },
     "visionMission": {
       "title": "Icyerekezo n'Inshingano",
@@ -309,7 +309,7 @@
       "visionDesc": "Umuryango w'abanyarwanda wunze ubumwe, wizerwa, kandi uteye imbere aho buri muntu aba mu cyubahiro n'amahoro.",
       "missionTag": "Inshingano Zacu",
       "missionSub": "Ibyo dukora buri munsi",
-      "missionDesc": "Guhuza amatorero y'abaporotesitanti mu Rwanda ngo tugire uruhare rugaragara mu ivugabutumwa, uburezi, ubuzima, n'iterambere rusange w'imibereho n'ubukungu."
+      "missionDesc": "Guteza imbere ubumwe bushingiye ku bikorwa n'Icyerekezo cy'Amatorero ya Gikristo mu Rwanda nk'uko byanditswe muri Yohana 17:21, hagamijwe ubuhamya bwiza bushingiye ku ivugabutumwa ndetse n'imibereho myiza y'abaturage."
     },
     "model": {
       "title": "Uburyo Twukora",
