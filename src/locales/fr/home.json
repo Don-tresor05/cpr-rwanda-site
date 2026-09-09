@@ -2,17 +2,17 @@
   "hero": {
     "slides": [
       {
-        "label": "Au service du Rwanda depuis 1963",
+        "label": "Au service du Rwanda depuis 1962",
         "title": "Bose Babe Umwe",
         "subtitle": "Pour que tous soient un",
-        "desc": "Unissant 25 églises membres protestantes pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
+        "desc": "Unissant 28 églises et organisations membres pour servir les communautés du Rwanda à travers la foi, l'éducation, la santé et le développement durable.",
         "cta": "Explorez Notre Mission",
         "ctaSecondary": "Rencontrez Notre Équipe"
       },
       {
         "label": "Département de l'Éducation (BNEP)",
         "title": "Façonner l'avenir du Rwanda",
-        "subtitle": "595 Écoles Primaires Protestantes",
+        "subtitle": "1 500+ Écoles",
         "desc": "Le Bureau National de l'Éducation Protestante supervise la qualité de l'éducation à travers le Rwanda, formant plus de 300 000 apprenants chaque année.",
         "cta": "En savoir plus sur le BNEP",
         "ctaSecondary": "Voir les Statistiques"
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Notre Histoire",
     "title": "Six Décennies de\nFoi et de Service",
-    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 25 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1962</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 28 églises et organisations protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
     "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
     "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
     "p2End": " — guide chaque initiative.",
@@ -150,7 +150,7 @@
         "body": [
           "Le Bureau National de l'Éducation Protestante (BNEP) a officiellement lancé une initiative intensive de formation pour 1 200 enseignants du primaire et du secondaire exerçant dans les écoles affiliées au CPR.",
           "Le programme met l'accent sur l'apprentissage actif centré sur l'élève, l'éducation inclusive pour les enfants à besoins spécifiques et l'intégration de l'éthique morale dans les programmes STEM.",
-          "Avec plus de 595 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
+          "Avec plus de 1 500 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
         ],
         "quote": "Une éducation de qualité, fondée sur des valeurs morales fortes, transforme les apprenants en leaders compatissants.",
         "image": "/cpr/assets/Primary.jpg"
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Notre Communauté",
     "title": "Églises Membres & Organisations",
-    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 25</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
+    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">28</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
     "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> églises et organisations unies en Christ"
   },
   "projects": {
@@ -288,6 +288,7 @@
   },
   "aboutPage": {
     "heroTitle": "Qui Sommes-Nous",
+    "heroDesc": "Découvrez l'histoire, la mission et les dirigeants du Conseil Protestant du Rwanda.",
     "nav": {
       "whoWeAre": "À Propos du Conseil Protestant du Rwanda",
       "visionMission": "Vision & Mission",
@@ -298,8 +299,8 @@
     },
     "whoWeAre": {
       "title": "À Propos du Conseil Protestant du Rwanda",
-      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963 pour promouvoir et partager des initiatives de développement innovantes et fournir des services essentiels à nos églises membres et à la communauté élargie.",
-      "p2": "Nous nous engageons à développer des partenariats solides et impactants et à fournir des services de qualité supérieure à ceux avec qui nous travaillons, en favorisant la foi, l'unité et le développement durable à travers le Rwanda."
+      "p1": "Le Conseil Protestant du Rwanda (CPR) est un collectif regroupant des Eglises Protestantes et Organisations Chrétiennes au Rwanda. Il a été fondé le 06 novembre 1962, au lendemain de l'indépendance du Rwanda.",
+      "p2": "Le CPR opère principalement dans les domaines de l'éducation, du développement socioéconomique, de l'évangélisation et de la communication, de la promotion des femmes et des jeunes, de la paix, et de la guérison des traumatismes."
     },
     "visionMission": {
       "title": "Vision & Mission",
@@ -308,13 +309,13 @@
       "visionDesc": "Une société rwandaise unie, fidèle et prospère où chaque individu vit dans la dignité et la paix.",
       "missionTag": "Notre Mission",
       "missionSub": "Ce que nous faisons chaque jour",
-      "missionDesc": "Rassembler les églises protestantes du Rwanda pour un impact coordonné dans l'évangélisation, l'éducation, la santé et le développement socio-économique holistique."
+      "missionDesc": "Promouvoir l'unité basée sur l'action et la Vision des Eglises Chrétiennes au Rwanda tel qu’écrit dans Jean 17:21, avec l’objectif du bon témoignage basé sur l’évangélisation ainsi que le bien-être de la population."
     },
     "model": {
       "title": "Notre Modèle",
       "desc": "Une structure de partenariat collaboratif reliant les églises membres à l'impact communautaire.",
       "step1Tag": "Étape 1",
-      "step1Title": "25 Églises Membres",
+      "step1Title": "28 Églises Membres",
       "step1Desc": "Les dénominations protestantes à travers le Rwanda s'unissent sous un cadre partagé.",
       "step2Tag": "Étape 2",
       "step2Title": "Coordination du CPR",
@@ -356,7 +357,20 @@
       "boardMembers": "Membres du Conseil",
       "staff": "Personnel",
       "defaultName": "Nom du Membre",
-      "defaultRole": "Titre / Rôle"
+      "defaultRole": "Titre / Rôle",
+      "readBio": "Lire la Biographie",
+      "boardMemberLabel": "Membre du Conseil",
+      "bioComingSoon": "Biographie à venir...",
+      "roles": {
+        "president": "Président et Représentant Légal",
+        "vicePresident": "Vice-Président et Représentant Légal suppléant",
+        "treasurer": "Trésorière du CPR",
+        "advisor": "Conseiller du CPR",
+        "secretaryGeneral": "Secrétaire Général du CPR",
+        "projectCoordinator": "Coordinatrice du projet",
+        "financeCoordinator": "Coordinateur des Finances",
+        "accountant": "Comptable"
+      }
     },
     "organigram": {
       "title": "Organigramme",
@@ -369,8 +383,8 @@
       "learnMore": "En Savoir Plus",
       "badge": "Notre Histoire",
       "title": "À Propos du Conseil Protestant du Rwanda",
-      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
-      "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 25 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
+      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1962. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
+      "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 28 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
       "personName": "Rév. Samuel Mutabazi",
       "personRole": "Secrétaire Général",
       "cta": "Explorez Nos Départements"
@@ -507,9 +521,9 @@
     "bnep": {
       "tag": "Bureau d'Éducation",
       "title": "Bureau National de l'Éducation Protestante (BNEP)",
-      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 595 écoles primaires et des centaines d'établissements secondaires, le BNEP façonne l'avenir des enfants du Rwanda.",
+      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 1 500 écoles, le BNEP façonne l'avenir des enfants du Rwanda.",
       "body": [
-        "Supervision de 595+ écoles primaires protestantes et écoles secondaires associées",
+        "Supervision de 1 500+ écoles protestantes à l'échelle nationale",
         "Formation à la Pédagogie Active Participative (PAP) pour les enseignants",
         "Développement des programmes d'éducation religieuse protestante",
         "Inspection scolaire, assurance qualité et application des normes éducatives",
@@ -533,7 +547,7 @@
     "finance": {
       "tag": "Gestion des Ressources",
       "title": "Finances & Mobilisation des Ressources",
-      "desc": "Le département des Finances assure la durabilité institutionnelle du CPR grâce à une administration financière transparente, une mobilisation stratégique des ressources et une supervision rigoureuse.",
+      "desc": "Le département Finances & Mobilisation assure une gestion financière transparente, les relations avec les donateurs et la mobilisation des ressources pour les programmes du CPR. Il maintient les plus hauts standards de responsabilité et d'obligation fiduciaire.",
       "body": [
         "Préparation du budget, suivi et rapports financiers aux parties prenantes",
         "Gestion des fonds des donateurs et conformité des subventions",
@@ -609,8 +623,8 @@
       "title": "Gouvernance & Réunions Internes",
       "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
       "body": [
-        "Réunions du Comité Exécutif — tenues trimestriellement pour examiner les performances institutionnelles et approuver les décisions clés",
-        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 25 églises membres",
+        "Réunions du Comité Exécutif — se réunit deux fois par an pour examiner les performances institutionnelles et approuver les décisions clés",
+        "Sessions de l'Assemblée Générale — l'organe directeur suprême, se réunit une fois tous les deux ans avec les 28 organisations membres",
         "Réunions du Bureau — coordination mensuelle entre le Secrétaire Général et les chefs de département",
         "Réunions du Comité des Finances et d'Audit — supervision des budgets, dépenses et rapports aux donateurs",
         "Réunions de coordination inter-ecclésiale — dialogue bilatéral et multilatéral entre les dénominations membres",
@@ -635,7 +649,7 @@
       "title": "Conférences, Synodes & Assemblées",
       "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
       "body": [
-        "Assemblée Générale annuelle des 25 églises membres",
+        "Assemblée Générale annuelle des 28 églises membres",
         "Synodes biennaux pour la réflexion théologique et la révision des politiques",
         "Journées nationales de prière et services commémoratifs (ex. Kwibuka)",
         "Conférences œcuméniques avec la FECCLAHA et le Conseil Œcuménique des Églises",
@@ -1075,16 +1089,16 @@
         },
         {
           "title": "Annuaire des Églises Membres",
-          "description": "Coordonnées de toutes les plus de 25 églises membres"
+          "description": "Coordonnées de tous les 28 membres"
         }
       ]
     },
     "bnep": {
       "title": "Éducation / BNEP",
       "tag": "Bureau National de l'Enseignement Protestant",
-      "overview": "Le Bureau National de l'Enseignement Protestant (BNEP) gère et coordonne les écoles primaires protestantes à travers le Rwanda. Avec plus de 595 écoles sous son égide, le BNEP se concentre sur une éducation de qualité, la formation des enseignants, l'élaboration des programmes d'études et l'amélioration des infrastructures scolaires.",
+      "overview": "Le Bureau National de l'Enseignement Protestant (BNEP) gère et coordonne les écoles protestantes à travers le Rwanda. Avec plus de 1 500 écoles sous son égide, le BNEP se concentre sur une éducation de qualité, la formation des enseignants, l'élaboration des programmes d'études et l'amélioration des infrastructures scolaires.",
       "keyActivities": [
-        "Gestion de plus de 595 écoles primaires protestantes à l'échelle nationale",
+        "Gestion de plus de 1 500 écoles protestantes à l'échelle nationale",
         "Programmes de développement professionnel et de certification des enseignants",
         "Amélioration des programmes d'études alignée sur les normes éducatives nationales",
         "Projets d'amélioration des infrastructures scolaires",
@@ -1237,5 +1251,107 @@
         }
       ]
     }
+  },
+  "galleryEvents": [
+    {
+      "category": "conferences",
+      "title": "Conférence Annuelle du Comité Exécutif & des Églises Membres",
+      "locationDate": "Kigali, Janvier 2026"
+    },
+    {
+      "category": "commemorations",
+      "title": "Commémoration du Kwibuka & Service de Souvenir Interreligieux",
+      "locationDate": "Kigali, Avril 2025"
+    },
+    {
+      "category": "youth",
+      "title": "Autonomisation des Jeunes, Consolidation de la Paix & Santé Mentale",
+      "locationDate": "Divers Districts, 2025"
+    },
+    {
+      "category": "education",
+      "title": "Éducation, Écoles Protestantes & Ministère de la Radio Inkoramutima",
+      "locationDate": "Kigali & Est, 2025"
+    }
+  ],
+  "secretariatStats": {
+    "sg": [
+      { "label": "Membres", "value": "28" },
+      { "label": "Membres du Personnel", "value": "50+" },
+      { "label": "Années d'Activité", "value": "60+" }
+    ],
+    "events": [
+      { "label": "Assemblées Annuelles", "value": "1" },
+      { "label": "Synodes Biennaux", "value": "1" },
+      { "label": "Sommets des Jeunes", "value": "5+" }
+    ],
+    "meetings": [
+      { "label": "Sessions Com.", "value": "4/an" },
+      { "label": "Réunions du Conseil", "value": "6/an" },
+      { "label": "Retraites", "value": "1/an" }
+    ],
+    "advocacy": [
+      { "label": "Domaines Politiques", "value": "5+" },
+      { "label": "Forums Nationaux", "value": "10+" },
+      { "label": "Plateformes Intern.", "value": "3+" }
+    ],
+    "sustainability": [
+      { "label": "Initiatives Arbres", "value": "15+" },
+      { "label": "Écoles Vertes", "value": "50+" },
+      { "label": "Partenaires", "value": "8+" }
+    ],
+    "publications": [
+      { "label": "Rapports Annuels", "value": "60+" },
+      { "label": "Bulletins", "value": "200+" },
+      { "label": "Communiqués", "value": "100+" }
+    ]
+  },
+  "departmentStats": {
+    "gs": [
+      { "label": "Membres", "value": "28" },
+      { "label": "Année de Fondation", "value": "1962" },
+      { "label": "Membres du Personnel", "value": "50+" }
+    ],
+    "bnep": [
+      { "label": "Écoles", "value": "1 500+" },
+      { "label": "Élèves Touchés", "value": "300K+" },
+      { "label": "Enseignants Formés", "value": "1,200+" }
+    ],
+    "diakonia": [
+      { "label": "Églises Soutenues", "value": "20+" },
+      { "label": "Conseillers Certifiés", "value": "200+" },
+      { "label": "Programmes Actifs", "value": "6+" }
+    ],
+    "finance": [
+      { "label": "Partenaires Financiers", "value": "10+" },
+      { "label": "Années d'Activité", "value": "60+" },
+      { "label": "Note d'Audit", "value": "AAA" }
+    ],
+    "youth": [
+      { "label": "Jeunes Touchés", "value": "10,000+" },
+      { "label": "Sommets Annuels", "value": "1" },
+      { "label": "Camps de Leadership", "value": "5+" }
+    ],
+    "gender": [
+      { "label": "Femmes Autonomisées", "value": "5,000+" },
+      { "label": "Formations VBG", "value": "100+" },
+      { "label": "Coopératives", "value": "25+" }
+    ],
+    "radio": [
+      { "label": "Fréquence FM", "value": "107.1" },
+      { "label": "Diffusion Depuis", "value": "2005" },
+      { "label": "Auditeurs Quotidiens", "value": "1M+" }
+    ]
+  },
+  "quickFacts": {
+    "title": "Chiffres Clés",
+    "facts": [
+      "7 départements spécialisés servant dans toutes les provinces",
+      "1 500+ écoles protestantes à l'échelle nationale",
+      "200+ conseillers certifiés en traumatologie à travers le Rwanda",
+      "10 000+ jeunes touchés grâce aux programmes annuels",
+      "5 000+ femmes autonomisées grâce aux initiatives pour le genre",
+      "107.1 FM — diffusant l'espoir depuis 2005"
+    ]
   }
 }

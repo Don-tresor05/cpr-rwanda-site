@@ -70,7 +70,7 @@ export function RadioPage() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -727,7 +727,7 @@ function RadioCtaBlock() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
+          className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
         >
           {(cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
         </motion.h2>

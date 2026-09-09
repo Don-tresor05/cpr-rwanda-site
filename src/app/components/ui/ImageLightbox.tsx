@@ -140,8 +140,8 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
                 alt={currentPhoto.alt || ""}
                 className={`block rounded-md shadow-2xl ${zoom > 1 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"}`}
                 style={{
-                  maxWidth: "95vw",
-                  maxHeight: showNav ? "80vh" : "95vh",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
                   width: "auto",
                   height: "auto",
                   objectFit: "contain",

@@ -103,7 +103,7 @@ export function useDepartments(): Department[] | null {
         // Only keep departments that have a title in at least one language,
         // so an incomplete draft can't render a broken card.
         const valid = (docs || []).filter(
-          (d) => d.title?.en || d.title?.fr || d.title?.rw
+          (d) => typeof d.title === "string" ? d.title : (d.title?.en || d.title?.fr || d.title?.rw)
         );
         if (valid.length === 0) {
           setDepartments(null);
@@ -112,7 +112,7 @@ export function useDepartments(): Department[] | null {
         setDepartments(
           valid.map((d) => ({
             icon: DEPT_ICON_MAP[d.icon || ""] || Crown,
-            title: pickOrUndef(d.title, lang) || "",
+            title: (typeof d.title === "string" ? d.title : pickOrUndef(d.title, lang)) || "",
             desc: pickOrUndef(d.desc, lang) || "",
             link: d.link || "/departments",
           }))
@@ -150,8 +150,8 @@ const VALID_GALLERY_CATEGORIES: GalleryCategory[] = [
 
 interface GalleryRawEvent {
   category?: string;
-  title?: LocalizedField;
-  locationDate?: LocalizedField;
+  title?: LocalizedField | string;
+  locationDate?: LocalizedField | string;
   images?: { src?: string | null; alt?: string }[];
 }
 
@@ -173,7 +173,7 @@ export function useGalleryEvents(): GalleryEvent[] | null {
       .then((docs) => {
         if (cancelled) return;
         const valid = (docs || []).filter(
-          (d) => d.title?.en || d.title?.fr || d.title?.rw
+          (d) => typeof d.title === "string" ? d.title : (d.title?.en || d.title?.fr || d.title?.rw)
         );
         if (valid.length === 0) {
           setEvents(null);
@@ -185,8 +185,8 @@ export function useGalleryEvents(): GalleryEvent[] | null {
               category: VALID_GALLERY_CATEGORIES.includes(d.category as GalleryCategory)
                 ? (d.category as GalleryCategory)
                 : "conferences",
-              title: pickOrUndef(d.title, lang) || "",
-              locationDate: pickOrUndef(d.locationDate, lang) || "",
+              title: (typeof d.title === "string" ? d.title : pickOrUndef(d.title, lang)) || "",
+              locationDate: (typeof d.locationDate === "string" ? d.locationDate : pickOrUndef(d.locationDate, lang)) || "",
               images: (d.images || [])
                 .filter((img) => img.src)
                 .map((img) => ({ src: img.src as string, alt: img.alt || "" })),
@@ -322,7 +322,56 @@ export function useTestimonials(): Testimonial[] | null {
     };
   }, [lang]);
 
-  return testimonials;
+}
+
+export interface BoardMember {
+  name: string;
+  role: string;
+  image: string;
+  bio?: any;
+}
+
+const BOARD_MEMBERS_QUERY = `*[_type == "boardMember"] | order(order asc) {
+  name,
+  role,
+  "image": image.asset->url,
+  bio
+}`;
+
+export function useBoardMembers(): BoardMember[] | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [members, setMembers] = useState<BoardMember[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    sanityClient
+      .fetch<{ name?: string; role?: LocalizedField; image?: string; bio?: LocalizedField }[]>(BOARD_MEMBERS_QUERY)
+      .then((docs) => {
+        if (cancelled) return;
+        const valid = (docs || []).filter((d) => d.name);
+        if (valid.length === 0) {
+          setMembers(null);
+          return;
+        }
+        setMembers(
+          valid.map((d) => ({
+            name: d.name || "",
+            role: pickOrUndef(d.role, lang) || "",
+            image: d.image || "",
+            bio: pickOrUndef(d.bio, lang),
+          }))
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setMembers(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  return members;
 }
 
 const PROJECT_QUERY = `*[_type == "project"] | order(order asc) {

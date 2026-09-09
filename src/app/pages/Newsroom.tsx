@@ -98,8 +98,8 @@ function CategoryDropdown({
 }
 
 export function Newsroom() {
-  const { t } = useTranslation("home");
-  const { ref, visible } = useScrollReveal();
+  const { t, i18n } = useTranslation("home");
+  const { ref } = useScrollReveal();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState("All");
   // CMS posts take over when staff publish them; the lists below are fallbacks.
@@ -229,7 +229,7 @@ export function Newsroom() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -296,7 +296,7 @@ export function Newsroom() {
           </div>
 
           {/* News Grid - Slimmer card widths matching cooperation.rw reference */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {paginatedItems.map((item) => (
               <article
                 key={item.slug}

@@ -12,7 +12,7 @@
     "comingSoon": "Bientôt Disponible",
     "organization": "Organisation",
     "whoWeAre": "Qui Sommes-Nous",
-    "whoWeAreDesc": "Fondé en 1963, unissant les églises protestantes du Rwanda",
+    "whoWeAreDesc": "Fondé en 1962, unissant les églises protestantes du Rwanda",
     "visionMission": "Vision & Mission",
     "visionMissionDesc": "Nos principes directeurs et objectifs à long terme",
     "coreValues": "Valeurs Fondamentales",
@@ -67,7 +67,7 @@
     "years": "Années de Service"
   },
   "footer": {
-    "desc": "Unissant les églises protestantes au Rwanda pour la croissance spirituelle, la consolidation de la paix et le développement holistique depuis 1963.",
+    "desc": "Unissant les églises protestantes au Rwanda pour la croissance spirituelle, la consolidation de la paix et le développement holistique depuis 1962.",
     "quickLinks": "Liens Rapides",
     "contactUs": "Contactez-Nous",
     "followUs": "Suivez-Nous",
@@ -79,7 +79,7 @@
   },
   "loading": {
     "preparing": "Préparation",
-    "tagline": "Au service du Rwanda depuis 1963"
+    "tagline": "Au service du Rwanda depuis 1962"
   },
   "cookie": {
     "title": "Nous Respectons Votre Vie Privée",
@@ -283,4 +283,6 @@
       }
     ]
   }
+,
+  "scroll": "Défiler"
 }

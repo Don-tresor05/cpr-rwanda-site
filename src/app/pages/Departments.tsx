@@ -35,96 +35,15 @@ const deptImages: Record<string, string> = {
   radio: "/cpr/assets/radio-studio.webp",
 };
 
-const getDeptStats = (lang: string): Record<string, { label: string; value: string }[]> => {
-  const isFr = lang === "fr";
-  const isRw = lang === "rw";
-  return {
-    gs: [
-      { label: isFr ? "Églises Membres" : isRw ? "Amatorera Nyamuryango" : "Member Churches", value: "25+" },
-      { label: isFr ? "Année de Fondation" : isRw ? "Umwaka Yashingwehe" : "Years Established", value: "1963" },
-      { label: isFr ? "Membres du Personnel" : isRw ? "Abakozi b'Umuryango" : "Staff Members", value: "50+" },
-    ],
-    bnep: [
-      { label: isFr ? "Écoles Primaires" : isRw ? "Amashuri Abanza" : "Primary Schools", value: "595+" },
-      { label: isFr ? "Élèves Touchés" : isRw ? "Abanyeshuri Bafashijwe" : "Students Reached", value: "300K+" },
-      { label: isFr ? "Enseignants Formés" : isRw ? "Abarezi Bahuguwe" : "Teachers Trained", value: "1,200+" },
-    ],
-    diakonia: [
-      { label: isFr ? "Églises Soutenues" : isRw ? "Amatorera Yafashijwe" : "Churches Supported", value: "20+" },
-      { label: isFr ? "Conseillers Certifiés" : isRw ? "Abajyanama Bemewe" : "Counselors Certified", value: "200+" },
-      { label: isFr ? "Programmes Actifs" : isRw ? "Imishinga Ikora" : "Programs Active", value: "6+" },
-    ],
-    finance: [
-      { label: isFr ? "Partenaires Financiers" : isRw ? "Abaterankunga" : "Donor Partners", value: "10+" },
-      { label: isFr ? "Années d'Activité" : isRw ? "Imyaka Imarijeho" : "Years Operating", value: "60+" },
-      { label: isFr ? "Note d'Audit" : isRw ? "Amanota y'Ubugenzuzi" : "Audit Rating", value: "AAA" },
-    ],
-    youth: [
-      { label: isFr ? "Jeunes Touchés" : isRw ? "Urubyiruko Rwanaswe" : "Youth Reached", value: "10,000+" },
-      { label: isFr ? "Sommets Annuels" : isRw ? "Inama z'Umwaka" : "Annual Summits", value: "1" },
-      { label: isFr ? "Camps de Leadership" : isRw ? "Amahuriro y'Ubuyobozi" : "Leadership Camps", value: "5+" },
-    ],
-    gender: [
-      { label: isFr ? "Femmes Autonomisées" : isRw ? "Abagore Bafashijwe" : "Women Empowered", value: "5,000+" },
-      { label: isFr ? "Formations VBG" : isRw ? "Amahugurwa ya GBV" : "GBV Trainings", value: "100+" },
-      { label: isFr ? "Coopératives" : isRw ? "Amakoperative" : "Cooperatives", value: "25+" },
-    ],
-    radio: [
-      { label: isFr ? "Fréquence FM" : isRw ? "Umurongo wa FM" : "FM Frequency", value: "107.1" },
-      { label: isFr ? "Diffusion Depuis" : isRw ? "Itangaza Kuva" : "Broadcasting Since", value: "2005" },
-      { label: isFr ? "Auditeurs Quotidiens" : isRw ? "Abayikurikira Buri Munsi" : "Daily Listeners", value: "1M+" },
-    ],
-  };
-};
 
-const getQuickFacts = (lang: string) => {
-  if (lang === "fr") {
-    return {
-      title: "Chiffres Clés",
-      facts: [
-        "7 départements spécialisés servant dans toutes les provinces",
-        "595+ écoles primaires protestantes à l'échelle nationale",
-        "200+ conseillers certifiés en traumatologie à travers le Rwanda",
-        "10 000+ jeunes touchés grâce aux programmes annuels",
-        "5 000+ femmes autonomisées grâce aux initiatives pour le genre",
-        "107.1 FM — diffusant l'espoir depuis 2005",
-      ],
-    };
-  }
-  if (lang === "rw") {
-    return {
-      title: "Ibyo Wamenya",
-      facts: [
-        "Amashami 7 yihariye akorera mu ntara zose z'igihugu",
-        "Amashuri abanza ya giporoso 595+ mu gihugu hose",
-        "Abajyanama bagenwe mu by'ihahamuko 200+ mu Rwanda rwose",
-        "Urubyiruko 10,000+ rwahafariwe mu bikorwa bya buri mwaka",
-        "Abagore 5,000+ bafashijwe binyuze mu mishinga y'uburinganire",
-        "107.1 FM — itangaza icyizere kuva mu 2005",
-      ],
-    };
-  }
-  return {
-    title: "Quick Facts",
-    facts: [
-      "7 specialized departments serving all provinces",
-      "595+ Protestant primary schools nationwide",
-      "200+ certified trauma counselors across Rwanda",
-      "10,000+ youth reached through annual programs",
-      "5,000+ women empowered through gender initiatives",
-      "107.1 FM — broadcasting hope since 2005",
-    ],
-  };
-};
 
 export function Departments() {
   const [activeSection, setActiveSection] = useState("");
   const [overviewVisible, setOverviewVisible] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation("home");
-  const lang = i18n.language ? i18n.language.substring(0, 2) : "en";
-  const deptStats = getDeptStats(lang);
-  const quickFactsData = getQuickFacts(lang);
+  const deptStats = t("departmentStats", { returnObjects: true }) as Record<string, { label: string; value: string }[]>;
+  const quickFactsData = t("quickFacts", { returnObjects: true }) as { title: string; facts: string[] };
   const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const { ref: introRef, visible: introVisible } = useScrollReveal();
   const heroRef = useRef<HTMLDivElement>(null);
@@ -212,7 +131,7 @@ export function Departments() {
       {/* Hero */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"
@@ -424,7 +343,7 @@ export function Departments() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-4"
+            className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
           >
             {cms?.cta?.title ?? (cta?.title as string) ?? "Partner with Our Departments"}
           </motion.h2>
@@ -547,7 +466,7 @@ function DepartmentDetailBlock({
                 <Icon size={28} color="white" strokeWidth={1.5} />
               </div>
               <h2 
-                className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl leading-tight pt-1"
+                className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl leading-tight pt-1"
                 style={{ color: sec.accent }}
               >
                 {sec.title}

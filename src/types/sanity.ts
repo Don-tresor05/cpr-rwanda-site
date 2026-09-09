@@ -1,3 +1,19 @@
+// ─── Localized field helpers ──────────────────────────────────────────────────
+
+/** A field with EN / FR / RW translations (short text). */
+export interface LocalizedString {
+  en?: string
+  fr?: string
+  rw?: string
+}
+
+/** A field with EN / FR / RW translations (multi-line text). */
+export interface LocalizedText {
+  en?: string
+  fr?: string
+  rw?: string
+}
+
 // ─── Base Sanity Types ────────────────────────────────────────────────────────
 
 export interface SanityImage {
@@ -43,6 +59,52 @@ export interface SanityBlock {
 
 export type PortableTextBlock = SanityBlock | SanityImage
 
+// ─── Site Settings ────────────────────────────────────────────────────────────
+
+export interface HeroSlide {
+  image?: SanityImage
+  label?: LocalizedString
+  title?: LocalizedString
+  subtitle?: LocalizedString
+  desc?: LocalizedText
+  cta?: LocalizedString
+  ctaHref?: string
+  ctaSecondary?: LocalizedString
+  ctaSecondaryHref?: string
+}
+
+export interface StatItem {
+  value?: number
+  suffix?: string
+  icon?: string
+  label?: LocalizedString
+}
+
+export interface SocialLink {
+  platform?: 'facebook' | 'x' | 'instagram' | 'youtube'
+  url?: string
+}
+
+export interface SiteSettings {
+  _id: string
+  _type: 'siteSettings'
+  heroSlides?: HeroSlide[]
+  stats?: StatItem[]
+  contact?: {
+    phone?: string
+    email?: string
+    addressLine1?: string
+    addressLine2?: string
+    socials?: SocialLink[]
+  }
+  radio?: {
+    frequency?: string
+    tagline?: LocalizedString
+    listenUrl?: string
+  }
+  partners?: string[]
+}
+
 // ─── News Post ───────────────────────────────────────────────────────────────
 
 export interface NewsPost {
@@ -50,32 +112,33 @@ export interface NewsPost {
   _type: 'newsPost'
   _createdAt: string
   _updatedAt: string
-  title: string
-  slug: SanitySlug
-  excerpt?: string
+  title?: LocalizedString
+  slug?: SanitySlug
+  excerpt?: LocalizedText
   mainImage?: SanityImage
-  body?: PortableTextBlock[]
+  body?: {
+    en?: PortableTextBlock[]
+    fr?: PortableTextBlock[]
+    rw?: PortableTextBlock[]
+  }
+  quote?: LocalizedString
+  imageCaption?: string
   publishedAt?: string
   category?: string
   author?: string
-  tags?: string[]
+  featured?: boolean
 }
 
-// ─── Department Resource File ─────────────────────────────────────────────────
+// ─── Department (home page card) ──────────────────────────────────────────────
 
-export interface DepartmentResourceFile {
+export interface Department {
   _id: string
-  _type: 'departmentResourceFile'
-  _createdAt: string
-  title: string
-  file?: SanityFile
-  description?: string
-  category?: string
-  department?: {
-    _ref: string
-    _type: 'reference'
-  }
-  publishedAt?: string
+  _type: 'department'
+  order?: number
+  icon?: string
+  title?: LocalizedString
+  desc?: LocalizedText
+  link?: string
 }
 
 // ─── Department Resource Group ────────────────────────────────────────────────
@@ -83,35 +146,27 @@ export interface DepartmentResourceFile {
 export interface DepartmentResourceGroup {
   _id: string
   _type: 'departmentResourceGroup'
-  title: string
+  department?: string
+  title?: string
+  slug?: SanitySlug
   description?: string
-  department?: {
+  cardType?: 'document' | 'download' | 'link'
+  order?: number
+}
+
+// ─── Department Resource File ─────────────────────────────────────────────────
+
+export interface DepartmentResourceFile {
+  _id: string
+  _type: 'departmentResourceFile'
+  group?: {
     _ref: string
     _type: 'reference'
   }
-  resources?: DepartmentResourceFile[]
-}
-
-// ─── Site Settings ────────────────────────────────────────────────────────────
-
-export interface SiteSettings {
-  _id: string
-  _type: 'siteSettings'
-  title: string
-  description?: string
-  logo?: SanityImage
-  favicon?: SanityImage
-  email?: string
-  phone?: string
-  address?: string
-  socialLinks?: {
-    facebook?: string
-    twitter?: string
-    instagram?: string
-    youtube?: string
-    linkedin?: string
-  }
-  footerText?: string
+  title?: string
+  file?: SanityFile
+  fileUrl?: string
+  order?: number
 }
 
 // ─── Member Church ────────────────────────────────────────────────────────────
@@ -120,53 +175,27 @@ export interface MemberChurch {
   _id: string
   _type: 'memberChurch'
   name: string
-  slug?: SanitySlug
-  logo?: SanityImage
-  description?: string
-  location?: string
-  website?: string
-  email?: string
-  phone?: string
-  leaderName?: string
-  leaderTitle?: string
-  leaderImage?: SanityImage
-}
-
-// ─── Department ───────────────────────────────────────────────────────────────
-
-export interface Department {
-  _id: string
-  _type: 'department'
-  name: string
-  slug?: SanitySlug
-  description?: string
-  image?: SanityImage
-  headName?: string
-  headTitle?: string
-  headImage?: SanityImage
-  email?: string
-  phone?: string
+  url?: string
   order?: number
 }
 
 // ─── Gallery Collection ───────────────────────────────────────────────────────
 
-export interface GalleryItem {
-  _key: string
-  image: SanityImage
-  caption?: string
+export interface GalleryPhoto {
+  _key?: string
+  image?: SanityImage
+  src?: string
+  alt?: string
 }
 
 export interface GalleryCollection {
   _id: string
   _type: 'galleryCollection'
-  title: string
-  slug?: SanitySlug
-  description?: string
-  coverImage?: SanityImage
-  images?: GalleryItem[]
-  publishedAt?: string
+  order?: number
   category?: string
+  title?: LocalizedString
+  locationDate?: LocalizedString
+  images?: GalleryPhoto[]
 }
 
 // ─── Radio Program ────────────────────────────────────────────────────────────
@@ -174,15 +203,10 @@ export interface GalleryCollection {
 export interface RadioProgram {
   _id: string
   _type: 'radioProgram'
-  title: string
-  slug?: SanitySlug
-  description?: string
-  image?: SanityImage
-  host?: string
-  schedule?: string
-  audioFile?: SanityFile
-  streamUrl?: string
-  publishedAt?: string
+  order?: number
+  time?: string
+  title?: LocalizedString
+  desc?: LocalizedText
 }
 
 // ─── Testimonial ─────────────────────────────────────────────────────────────
@@ -190,12 +214,11 @@ export interface RadioProgram {
 export interface Testimonial {
   _id: string
   _type: 'testimonial'
-  name: string
-  role?: string
-  church?: string
-  image?: SanityImage
-  quote: string
-  featured?: boolean
+  order?: number
+  quote?: LocalizedText
+  author?: string
+  role?: LocalizedString
+  avatar?: SanityImage | string
 }
 
 // ─── Project ─────────────────────────────────────────────────────────────────
@@ -203,30 +226,48 @@ export interface Testimonial {
 export interface Project {
   _id: string
   _type: 'project'
-  title: string
-  slug?: SanitySlug
-  description?: string
-  mainImage?: SanityImage
-  body?: PortableTextBlock[]
-  status?: 'ongoing' | 'completed' | 'planned'
-  startDate?: string
-  endDate?: string
-  department?: {
-    _ref: string
-    _type: 'reference'
-  }
-  tags?: string[]
+  order?: number
+  icon?: string
+  title?: LocalizedString
+  period?: LocalizedString
+  desc?: LocalizedText
+  highlights?: LocalizedText[]
 }
 
 // ─── Departments Page ─────────────────────────────────────────────────────────
 
+export interface DepartmentSectionStat {
+  value?: string
+  label?: LocalizedString
+}
+
+export interface DepartmentSection {
+  key?: string
+  nav?: LocalizedString
+  tag?: LocalizedString
+  title?: LocalizedString
+  desc?: LocalizedText
+  image?: SanityImage | string
+  stats?: DepartmentSectionStat[]
+  body?: LocalizedText[]
+}
+
 export interface DepartmentsPage {
   _id: string
   _type: 'departmentsPage'
-  title: string
-  subtitle?: string
-  heroImage?: SanityImage
-  introText?: PortableTextBlock[]
+  heroTitle?: LocalizedString
+  heroDesc?: LocalizedText
+  introTag?: LocalizedString
+  introTitle?: LocalizedString
+  introDesc?: LocalizedText
+  quickFactsTitle?: LocalizedString
+  quickFacts?: LocalizedText[]
+  sections?: DepartmentSection[]
+  cta?: {
+    title?: LocalizedString
+    desc?: LocalizedText
+    btn?: LocalizedString
+  }
 }
 
 // ─── About Page ───────────────────────────────────────────────────────────────
@@ -234,23 +275,105 @@ export interface DepartmentsPage {
 export interface AboutPage {
   _id: string
   _type: 'aboutPage'
-  title: string
-  subtitle?: string
-  heroImage?: SanityImage
-  mission?: string
-  vision?: string
-  history?: PortableTextBlock[]
-  values?: Array<{
-    _key: string
-    title: string
-    description: string
-    icon?: SanityImage
-  }>
-  leadershipTeam?: Array<{
-    _key: string
-    name: string
-    role: string
-    image?: SanityImage
-    bio?: string
-  }>
+  heroTitle?: LocalizedString
+  nav?: {
+    whoWeAre?: LocalizedString
+    visionMission?: LocalizedString
+    coreValues?: LocalizedString
+    execCommittee?: LocalizedString
+    organigram?: LocalizedString
+    ourPartners?: LocalizedString
+  }
+  whoWeAre?: {
+    title?: LocalizedString
+    p1?: LocalizedText
+    p2?: LocalizedText
+  }
+  visionMission?: {
+    title?: LocalizedString
+    visionTag?: LocalizedString
+    visionSub?: LocalizedString
+    visionDesc?: LocalizedText
+    missionTag?: LocalizedString
+    missionSub?: LocalizedString
+    missionDesc?: LocalizedText
+  }
+  model?: {
+    title?: LocalizedString
+    desc?: LocalizedText
+    step1Tag?: LocalizedString
+    step1Title?: LocalizedString
+    step1Desc?: LocalizedText
+    step2Tag?: LocalizedString
+    step2Title?: LocalizedString
+    step2Desc?: LocalizedText
+    step3Tag?: LocalizedString
+    step3Title?: LocalizedString
+    step3Desc?: LocalizedText
+  }
+  coreValues?: {
+    title?: LocalizedString
+    items?: Array<{
+      title?: LocalizedString
+      desc?: LocalizedText
+    }>
+  }
+  execCommittee?: {
+    title?: LocalizedString
+    desc?: LocalizedText
+    boardMembers?: LocalizedString
+    staff?: LocalizedString
+    defaultName?: LocalizedString
+    defaultRole?: LocalizedString
+  }
+  organigram?: {
+    title?: LocalizedString
+    comingSoon?: LocalizedString
+  }
+  partners?: {
+    title?: LocalizedString
+  }
+  historyModal?: {
+    learnMore?: LocalizedString
+    badge?: LocalizedString
+    title?: LocalizedString
+    p1?: LocalizedText
+    p2?: LocalizedText
+    personName?: LocalizedString
+    personRole?: LocalizedString
+    cta?: LocalizedString
+  }
+}
+
+// ─── Secretariat Page ─────────────────────────────────────────────────────────
+
+export interface SecretariatSection {
+  key?: string
+  nav?: LocalizedString
+  tag?: LocalizedString
+  title?: LocalizedString
+  desc?: LocalizedText
+  body?: LocalizedText[]
+}
+
+export interface SecretariatPage {
+  _id: string
+  _type: 'secretariatPage'
+  heroTitle?: LocalizedString
+  heroDesc?: LocalizedText
+  introTag?: LocalizedString
+  introTitle?: LocalizedString
+  introDesc?: LocalizedText
+  sgProfile?: {
+    role?: LocalizedString
+    name?: LocalizedString
+    title?: LocalizedString
+    quote?: LocalizedText
+  }
+  sections?: SecretariatSection[]
+  cta?: {
+    title?: LocalizedString
+    desc?: LocalizedText
+    btn?: LocalizedString
+  }
 }

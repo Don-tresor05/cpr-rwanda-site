@@ -98,7 +98,7 @@ export function AboutPreview() {
             </div>
             {/* Floating badge */}
             <div className="absolute -bottom-5 left-2 sm:-left-5 bg-[#BC8A5F] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-xl pointer-events-none">
-              <div className="font-['Outfit'] font-black text-white text-2xl sm:text-3xl">25</div>
+              <div className="font-['Outfit'] font-black text-white text-2xl sm:text-3xl">28</div>
               <div 
                 className="text-white/70 text-xs font-semibold"
                 dangerouslySetInnerHTML={{ __html: t("stats.churches", { ns: "common" }).replace(' ', '<br />') }}

@@ -12,7 +12,7 @@
     "comingSoon": "Bidatinze",
     "organization": "Umuryango",
     "whoWeAre": "Abo Turi Bo",
-    "whoWeAreDesc": "Yashinzwe mu 1963, ihuza amatorero y'abaporotesitanti mu Rwanda",
+    "whoWeAreDesc": "Yashinzwe mu 1962, ihuza amatorero y'abaporotesitanti mu Rwanda",
     "visionMission": "Icyerekezo n'Inshingano",
     "visionMissionDesc": "Amahame atuyobora n'intego z'igihe kirekire",
     "coreValues": "Indangagaciro",
@@ -67,7 +67,7 @@
     "years": "Imyaka y'Imirimo"
   },
   "footer": {
-    "desc": "Ihuza amatorero y'abaporotesitanti mu Rwanda mu gukura mu mwuka, kubaka amahoro, n'iterambere rusange kuva mu 1963.",
+    "desc": "Ihuza amatorero y'abaporotesitanti mu Rwanda mu gukura mu mwuka, kubaka amahoro, n'iterambere rusange kuva mu 1962.",
     "quickLinks": "Aho wakanda vuba",
     "contactUs": "Twandikire",
     "followUs": "Dukurikire",
@@ -79,7 +79,7 @@
   },
   "loading": {
     "preparing": "Kugenzura",
-    "tagline": "Gukorera u Rwanda kuva mu 1963"
+    "tagline": "Gukorera u Rwanda kuva mu 1962"
   },
   "cookie": {
     "title": "Dukurikiza Ubwangano Bwawe",
@@ -283,4 +283,6 @@
       }
     ]
   }
+,
+  "scroll": "Kumanuka"
 }

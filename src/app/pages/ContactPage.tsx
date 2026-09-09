@@ -8,7 +8,7 @@ import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
-  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays, MessageSquare,
+  Clock, ChevronDown, CheckCircle2, Building2, CalendarDays,
   MessageCircle, Navigation, ExternalLink, AlertCircle,
   type LucideIcon,
 } from "lucide-react";
@@ -64,7 +64,7 @@ export function ContactPage() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 lg:pb-20 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"

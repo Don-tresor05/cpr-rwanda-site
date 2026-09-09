@@ -20,13 +20,13 @@ export interface LocalizedField {
 
 export interface HeroSlideSettings {
   image?: string;
-  label?: LocalizedField;
-  title?: LocalizedField;
-  subtitle?: LocalizedField;
-  desc?: LocalizedField;
-  cta?: LocalizedField;
+  label?: string;
+  title?: string;
+  subtitle?: string;
+  desc?: string;
+  cta?: string;
   ctaHref?: string;
-  ctaSecondary?: LocalizedField;
+  ctaSecondary?: string;
   ctaSecondaryHref?: string;
 }
 
@@ -34,7 +34,7 @@ export interface StatSettings {
   value?: number;
   suffix?: string;
   icon?: string;
-  label?: LocalizedField;
+  label?: string;
 }
 
 export interface SocialLink {
@@ -52,7 +52,7 @@ export interface ContactSettings {
 
 export interface RadioSettings {
   frequency?: string;
-  tagline?: LocalizedField;
+  tagline?: string;
   listenUrl?: string;
 }
 
@@ -61,6 +61,14 @@ export interface SiteSettings {
   stats?: StatSettings[];
   contact?: ContactSettings;
   radio?: RadioSettings;
+  partners?: string[];
+}
+
+interface RawSiteSettings {
+  heroSlides?: any[];
+  stats?: any[];
+  contact?: ContactSettings;
+  radio?: any;
   partners?: string[];
 }
 
@@ -107,7 +115,7 @@ export const FALLBACK_CONTACT: Required<Pick<ContactSettings, "phone" | "email" 
 
 export const FALLBACK_RADIO: RadioSettings = {
   frequency: "107.1",
-  tagline: { en: "Voice of the Protestant Council in Rwanda" },
+  tagline: "Voice of the Protestant Council in Rwanda",
 };
 
 export const FALLBACK_PARTNERS: string[] = [
@@ -141,7 +149,7 @@ export function useSiteSettings(): SiteSettings | null {
     let cancelled = false;
     setSettings(null);
     sanityClient
-      .fetch<SiteSettings>(SITE_SETTINGS_QUERY)
+      .fetch<RawSiteSettings>(SITE_SETTINGS_QUERY)
       .then((doc) => {
         if (cancelled) return;
         if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio && !doc.partners)) {

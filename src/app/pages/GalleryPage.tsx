@@ -88,7 +88,14 @@ export function GalleryPage() {
   const gp = t("galleryPage", { returnObjects: true }) as Record<string, unknown>;
 
   // CMS collections when staff have created them; otherwise the built-in albums.
-  const galleryEvents = useGalleryEvents() ?? GALLERY_EVENTS;
+  const translatedGalleryEvents = t("galleryEvents", { returnObjects: true }) as any[];
+  const galleryEvents = useGalleryEvents() ?? (translatedGalleryEvents && translatedGalleryEvents.length === GALLERY_EVENTS.length
+    ? GALLERY_EVENTS.map((event, i) => ({
+        ...event,
+        title: translatedGalleryEvents[i].title,
+        locationDate: translatedGalleryEvents[i].locationDate,
+      }))
+    : GALLERY_EVENTS);
 
   const [activeImage, setActiveImage] = useState<{ eventIdx: number; imgIdx: number } | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -139,7 +146,7 @@ export function GalleryPage() {
       {/* ─── HERO ─── */}
       <div
         ref={heroRef}
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white overflow-hidden"
       >
         <motion.div
           className="absolute inset-0"

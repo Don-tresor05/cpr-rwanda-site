@@ -1,8 +1,10 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function ScrollIndicator() {
   const shouldReduceMotion = useReducedMotion();
+  const { t } = useTranslation("common");
 
   const handleScroll = () => {
     // Scroll down by 1 viewport height, subtracting a bit for any sticky header if needed.
@@ -38,7 +40,7 @@ export function ScrollIndicator() {
         ))}
       </div>
       <span className="text-sm font-semibold tracking-[0.25em] uppercase [writing-mode:vertical-lr] drop-shadow-[0_0_5px_rgba(255,255,255,0.6)]">
-        Scroll
+        {t("scroll", "Scroll")}
       </span>
     </button>
   );

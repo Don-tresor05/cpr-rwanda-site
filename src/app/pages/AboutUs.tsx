@@ -7,17 +7,21 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
+import { useBoardMembers, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { PortableText } from "@portabletext/react";
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
+  const [selectedBoardMember, setSelectedBoardMember] = useState<BoardMember | null>(null);
   const [organigramLightboxOpen, setOrganigramLightboxOpen] = useState(false);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const location = useLocation();
   const { ref: visionRef, visible: visionVisible } = useScrollReveal();
   const { t } = useTranslation("home");
   const cms = useAboutPage();
+  const boardMembers = useBoardMembers();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -51,13 +55,13 @@ export function AboutUs() {
 
   // Lock body scroll when modal is open
   useEffect(() => {
-    if (historyModalOpen) {
+    if (historyModalOpen || selectedBoardMember) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [historyModalOpen]);
+  }, [historyModalOpen, selectedBoardMember]);
 
   // Hide scroll indicator once user scrolls past the hero
   useEffect(() => {
@@ -87,7 +91,7 @@ export function AboutUs() {
     <main style={{ backgroundColor: "rgba(255, 255, 255, 0.88)" }}>
       {/* Hero */}
       <div
-        className="relative min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
+        className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
           backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/cpr/assets/CPR 3 - Copy.webp')",
           backgroundSize: "cover",
@@ -95,9 +99,24 @@ export function AboutUs() {
         }}
       >
         <div className="relative z-10 max-w-7xl w-full mx-auto">
-          <h1            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+            className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
+          >
             {cms?.heroTitle ?? t("aboutPage.heroTitle")}
-          </h1>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+            className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
+          >
+            {/* @ts-ignore */}
+            {cms?.heroDesc ?? t("aboutPage.heroDesc")}
+          </motion.p>
         </div>
         {!scrolledPastHero && !historyModalOpen && <ScrollIndicator />}
       </div>
@@ -224,7 +243,7 @@ export function AboutUs() {
       <WatermarkSection className="pt-16 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132]">
+            <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-[#4E6132]">
               {cms?.model?.title ?? t("aboutPage.model.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto mt-4 leading-relaxed">
@@ -300,7 +319,7 @@ export function AboutUs() {
 
       {/* Values */}
       <section id="core-values" className="py-14 sm:py-20 bg-[#4E6132] scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-white mb-8 sm:mb-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-8 sm:mb-10">
             {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -318,7 +337,7 @@ export function AboutUs() {
       <section id="executive-committee" className="py-14 sm:py-20 bg-[#F8F9FA] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl lg:text-4xl text-[#4E6132] mb-4">
+            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-[#4E6132] mb-4">
               {cms?.execCommittee?.title ?? t("aboutPage.execCommittee.title")}
             </h2>
             <p className="text-[#4A4A4A] max-w-2xl mx-auto">
@@ -330,19 +349,19 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-              {[
-                { name: "Samuel Mutabazi", role: "", img: "/cpr/assets/Mutabazi_Samuel.webp" },
-                { name: "Jael", role: "", img: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: t("aboutPage.execCommittee.bnepRep"), role: t("aboutPage.execCommittee.bnepRep"), img: "/cpr/assets/BNEP Representative.webp" },
-              ].map((member, i) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
+              {(boardMembers && boardMembers.length > 0 ? boardMembers : [
+                { name: "Mgr Dr Manasseh Gahima", role: t("aboutPage.execCommittee.roles.president"), image: "", bio: "" },
+                { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
+                { name: "Mme Béatrice Uwizeyimana", role: t("aboutPage.execCommittee.roles.treasurer"), image: "", bio: "" },
+                { name: "Rev Past Thomas Murwanashyaka", role: t("aboutPage.execCommittee.roles.advisor"), image: "", bio: "" },
+                { name: "Rev Pasteur Samuel Mutabazi", role: t("aboutPage.execCommittee.roles.secretaryGeneral"), image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
+              ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
                   <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
-                    {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                    {member.image ? (
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
                     ) : (
                       <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -351,13 +370,19 @@ export function AboutUs() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
+                  <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
+                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-1 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-xs font-semibold">
+                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold mb-2.5 block">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
+                    <button 
+                      onClick={() => setSelectedBoardMember(member as BoardMember)}
+                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
+                    >
+                      {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
+                    </button>
                   </div>
                 </div>
               ))}
@@ -369,12 +394,16 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
               {[
-                { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: "", img: "/cpr/assets/Sec Photo.webp" },
-                { name: t("aboutPage.execCommittee.staffMember"), role: "", img: "/cpr/assets/Passport ed.png" },
+                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Sec Photo.webp" },
+                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), img: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
+                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -389,11 +418,11 @@ export function AboutUs() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4E6132] text-base mb-5 leading-tight">
+                  <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
+                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-xs font-semibold">
+                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                   </div>
@@ -437,8 +466,12 @@ export function AboutUs() {
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">AACC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECLAC</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECCLAHA</div>
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">CBF</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PPLM</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RIC</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RICH</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PEACE PLAN RWANDA</div>
           </div>
         </div>
       </section>
@@ -459,18 +492,18 @@ export function AboutUs() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative"
+              className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
             >
               {/* Close button */}
               <button
                 onClick={() => setHistoryModalOpen(false)}
-                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 rounded-full bg-[#4E6132]/5 hover:bg-[#4E6132]/10 flex items-center justify-center text-[#4E6132] transition-colors z-10 sticky top-0 float-right"
                 aria-label="Close"
               >
                 <X size={18} />
               </button>
 
-              <div className="p-6 lg:p-8">
+              <div className="p-5 sm:p-6 lg:p-8 clear-both">
                 <div className="inline-flex items-center gap-2">
                   <div className="h-px w-8 bg-[#8B6543]" />
                   <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
@@ -495,7 +528,7 @@ export function AboutUs() {
 
                   {/* Image + caption */}
                   <div className="md:col-span-1">
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-[#4E6132]/10">
+                    <div className="rounded-none overflow-hidden shadow-lg border border-[#4E6132]/10">
                       <img
                         src="/cpr/assets/Mutabazi_Samuel.webp"
                         alt="Rev. Samuel Mutabazi"
@@ -523,6 +556,88 @@ export function AboutUs() {
                     {cms?.historyModal?.cta ?? t("aboutPage.historyModal.cta")} <ArrowRight size={16} />
                   </Link>
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Board Member Bio Modal */}
+      <AnimatePresence>
+        {selectedBoardMember && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 lg:p-8"
+            onClick={() => setSelectedBoardMember(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-[5px] max-w-[1140px] w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedBoardMember(null)}
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 rounded-full bg-white shadow-md border border-gray-200/80 hover:bg-gray-100 hover:text-[#4E6132] flex items-center justify-center text-[#4A4A4A] transition-all z-30"
+                aria-label="Close"
+              >
+                <X size={18} strokeWidth={2} />
+              </button>
+
+              <div className="p-5 sm:p-6 lg:p-10">
+                {/* Image + Board Member label */}
+                <div className="mb-6 lg:mb-0 lg:float-left lg:w-[280px] lg:mr-10 mt-7 sm:mt-0">
+                  <div className="overflow-hidden w-full sm:w-3/5 md:w-2/5 lg:w-full">
+                    {selectedBoardMember.image ? (
+                      <img
+                        src={selectedBoardMember.image}
+                        alt={selectedBoardMember.name}
+                        className="w-full aspect-[3/4] object-cover object-top"
+                      />
+                    ) : (
+                      <div className="w-full aspect-[3/4] bg-[#F0F0F0] flex items-center justify-center text-[#8B6543]/30">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-3 w-full sm:w-3/5 md:w-2/5 lg:w-full">
+                    <span className="block text-[#8B6543] text-sm font-semibold">
+                      {cms?.execCommittee?.boardMemberLabel ?? t("aboutPage.execCommittee.boardMemberLabel")}
+                    </span>
+                  </p>
+                </div>
+
+                {/* Name + Bio */}
+                <div className="mt-8 lg:mt-0">
+                  <h2 className="font-['Outfit'] font-bold text-xl lg:text-2xl text-[#4E6132] mb-4">
+                    {selectedBoardMember.name}
+                  </h2>
+                  
+                  <div className="text-[#3A3A3A] space-y-4 text-[15px] leading-relaxed">
+                    {selectedBoardMember.bio ? (
+                      typeof selectedBoardMember.bio === 'string' ? (
+                        selectedBoardMember.bio.split('\n').map((paragraph: string, idx: number) => (
+                          <p key={idx}>{paragraph}</p>
+                        ))
+                      ) : (
+                        <PortableText value={selectedBoardMember.bio} />
+                      )
+                    ) : (
+                      <p className="italic text-[#8B6543]/50">
+                        {cms?.execCommittee?.bioComingSoon ?? t("aboutPage.execCommittee.bioComingSoon")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="clear-both" />
               </div>
             </motion.div>
           </motion.div>
