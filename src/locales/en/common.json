@@ -98,7 +98,191 @@
     "marketing": "Marketing Cookies",
     "marketingDesc": "Used to deliver personalized advertisements",
     "trustPrivacy": "Privacy-first website",
-    "trustGdpr": "GDPR-ready"
+    "trustGdpr": "GDPR-ready",
+    "learnMore": "Learn more in our Privacy Policy"
   },
+  "privacyPolicy": {
+    "badge": "Your Data, Protected",
+    "title": "Privacy Policy",
+    "heroDesc": "How Conseil Protestant du Rwanda collects, uses, and protects your information when you use our website.",
+    "lastUpdated": "Last updated: September 2026",
+    "contactTitle": "Questions About Your Privacy?",
+    "contactIntro": "If you have questions about this Privacy Policy or how we handle your data, please reach out:",
+    "backHome": "Back to Home",
+    "sections": [
+      {
+        "icon": "shield",
+        "title": "1. Introduction",
+        "paragraphs": [
+          "Conseil Protestant du Rwanda (CPR), located at KG 2 Av 4, B.P 79, Kigali, Rwanda, operates this website. This Privacy Policy explains what information we collect, how we use it, and the choices you have.",
+          "By using this website, you agree to the practices described in this policy."
+        ]
+      },
+      {
+        "icon": "database",
+        "title": "2. Information We Collect",
+        "paragraphs": [
+          "We keep data collection to a minimum. Depending on how you use the site, we may collect:"
+        ],
+        "list": [
+          "Contact details you choose to share (name, email address, phone number) when you fill in the contact form",
+          "Usage information such as pages visited and language preference, stored locally on your device",
+          "Messages you send us by email"
+        ]
+      },
+      {
+        "icon": "file",
+        "title": "3. How We Use Your Information",
+        "paragraphs": [
+          "We use the information we collect only to respond to your enquiries, improve the website experience, and communicate with you about CPR activities when you have asked us to.",
+          "We do not sell, rent, or trade your personal information."
+        ]
+      },
+      {
+        "icon": "cookie",
+        "title": "4. Cookies and Tracking Technologies",
+        "paragraphs": [
+          "This website uses only essential cookies and browser storage (such as localStorage) to remember your language preference and your cookie choice.",
+          "No advertising or cross-site tracking cookies are used. You can clear or block cookies in your browser settings at any time; the site will continue to work."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. Data Sharing and Disclosure",
+        "paragraphs": [
+          "We do not share your personal information with third parties except where necessary to operate the website (for example, our content management and hosting providers) or when required by Rwandan law."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "6. Data Security",
+        "paragraphs": [
+          "We apply reasonable technical and organisational measures to protect the information we hold. However, no method of transmission over the Internet is completely secure, and we cannot guarantee absolute security."
+        ]
+      },
+      {
+        "icon": "server",
+        "title": "7. Third-Party Services",
+        "paragraphs": [
+          "Our website relies on a small number of trusted providers, such as our hosting and content delivery services, to function. These providers process data only on our behalf."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "8. Your Rights",
+        "paragraphs": [
+          "You may ask us at any time to access, correct, or delete the personal information you have shared with us, by contacting us using the details below.",
+          "You can also withdraw your cookie consent at any time by clearing your browser storage."
+        ]
+      },
+      {
+        "icon": "baby",
+        "title": "9. Children's Privacy",
+        "paragraphs": [
+          "Our website is not directed at children under 13, and we do not knowingly collect personal information from children."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "10. Changes to This Policy",
+        "paragraphs": [
+          "We may update this Privacy Policy from time to time. Any changes will be published on this page with an updated revision date."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "11. Contact Us",
+        "paragraphs": [
+          "If you have questions about this Privacy Policy or how we handle your data, please contact us."
+        ]
+      }
+    ]
+  },
+  "termsOfService": {
+    "badge": "Using Our Website",
+    "title": "Terms of Service",
+    "heroDesc": "The rules that govern your use of the Conseil Protestant du Rwanda website.",
+    "lastUpdated": "Last updated: September 2026",
+    "contactTitle": "Questions About These Terms?",
+    "contactIntro": "If you have questions about these Terms of Service, please reach out:",
+    "backHome": "Back to Home",
+    "sections": [
+      {
+        "icon": "file",
+        "title": "1. Acceptance of Terms",
+        "paragraphs": [
+          "These Terms of Service govern your use of the CPR Rwanda website. By accessing or using this website, you agree to be bound by these terms.",
+          "If you do not agree with any part of these terms, please do not use the website."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "2. About This Website",
+        "paragraphs": [
+          "This website is operated by Conseil Protestant du Rwanda (CPR) to share information about its mission, member churches, departments, radio ministry, news, and events.",
+          "Content is published in English, French, and Kinyarwanda. In case of differences between language versions, the English version is authoritative."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "3. Use of Content",
+        "paragraphs": [
+          "All content on this website — including text, images, logos, and documents — is the property of CPR or its partners and is protected by applicable law.",
+          "You may view, download, and share content for personal, educational, or church-related purposes with attribution. Commercial reuse requires our prior written permission."
+        ]
+      },
+      {
+        "icon": "heart",
+        "title": "4. Donations",
+        "paragraphs": [
+          "Where the website allows donations or support for CPR activities, funds are used in line with CPR's mission of faith, unity, and sustainable development.",
+          "Donations are voluntary and, unless otherwise agreed, non-refundable. For any question about a contribution, please contact us."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. External Links",
+        "paragraphs": [
+          "This website may link to third-party websites. We are not responsible for the content or privacy practices of those sites."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "6. Acceptable Use",
+        "paragraphs": [
+          "When using this website or contacting us through it, you agree not to submit unlawful, offensive, or misleading content, and not to attempt to disrupt or misuse the website or its infrastructure."
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "7. Limitation of Liability",
+        "paragraphs": [
+          "The website is provided on an \"as is\" and \"as available\" basis. While we work to keep information accurate and up to date, CPR makes no warranties and is not liable for any loss arising from use of the website."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "8. Changes to These Terms",
+        "paragraphs": [
+          "We may revise these terms from time to time. Continued use of the website after changes are published constitutes acceptance of the revised terms."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "9. Governing Law",
+        "paragraphs": [
+          "These terms are governed by the laws of the Republic of Rwanda."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "10. Contact Us",
+        "paragraphs": [
+          "For questions about these Terms of Service, please contact us."
+        ]
+      }
+    ]
+  }
+,
   "scroll": "Scroll"
 }

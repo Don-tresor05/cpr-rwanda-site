@@ -98,7 +98,191 @@
     "marketing": "Cookies Marketing",
     "marketingDesc": "Utilisés pour diffuser des publicités personnalisées",
     "trustPrivacy": "Site axé sur la confidentialité",
-    "trustGdpr": "Conforme au RGPD"
+    "trustGdpr": "Conforme au RGPD",
+    "learnMore": "En savoir plus dans notre Politique de Confidentialité"
   },
+  "privacyPolicy": {
+    "badge": "Vos Données, Protégées",
+    "title": "Politique de Confidentialité",
+    "heroDesc": "Comment le Conseil Protestant du Rwanda collecte, utilise et protège vos informations lorsque vous utilisez notre site web.",
+    "lastUpdated": "Dernière mise à jour : septembre 2026",
+    "contactTitle": "Des Questions sur Votre Vie Privée ?",
+    "contactIntro": "Si vous avez des questions sur cette Politique de Confidentialité ou sur la manière dont nous traitons vos données, veuillez nous contacter :",
+    "backHome": "Retour à l'Accueil",
+    "sections": [
+      {
+        "icon": "shield",
+        "title": "1. Introduction",
+        "paragraphs": [
+          "Le Conseil Protestant du Rwanda (CPR), situé à KG 2 Av 4, B.P 79, Kigali, Rwanda, exploite ce site web. Cette Politique de Confidentialité explique quelles informations nous collectons, comment nous les utilisons et les choix dont vous disposez.",
+          "En utilisant ce site web, vous acceptez les pratiques décrites dans cette politique."
+        ]
+      },
+      {
+        "icon": "database",
+        "title": "2. Informations Que Nous Collectons",
+        "paragraphs": [
+          "Nous réduisons au minimum la collecte de données. Selon la manière dont vous utilisez le site, nous pouvons collecter :"
+        ],
+        "list": [
+          "Les coordonnées que vous choisissez de partager (nom, adresse e-mail, numéro de téléphone) lorsque vous remplissez le formulaire de contact",
+          "Des informations d'utilisation telles que les pages visitées et la préférence linguistique, stockées localement sur votre appareil",
+          "Les messages que vous nous envoyez par e-mail"
+        ]
+      },
+      {
+        "icon": "file",
+        "title": "3. Comment Nous Utilisons Vos Informations",
+        "paragraphs": [
+          "Nous utilisons les informations collectées uniquement pour répondre à vos demandes, améliorer l'expérience du site et communiquer avec vous sur les activités du CPR lorsque vous nous l'avez demandé.",
+          "Nous ne vendons, ne louons ni n'échangeons vos informations personnelles."
+        ]
+      },
+      {
+        "icon": "cookie",
+        "title": "4. Cookies et Technologies de Suivi",
+        "paragraphs": [
+          "Ce site web utilise uniquement des cookies essentiels et le stockage du navigateur (comme localStorage) pour mémoriser votre préférence linguistique et votre choix de cookies.",
+          "Aucun cookie publicitaire ou de suivi intersite n'est utilisé. Vous pouvez effacer ou bloquer les cookies dans les paramètres de votre navigateur à tout moment ; le site continuera de fonctionner."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. Partage et Divulgation des Données",
+        "paragraphs": [
+          "Nous ne partageons pas vos informations personnelles avec des tiers, sauf si cela est nécessaire au fonctionnement du site (par exemple, nos fournisseurs de gestion de contenu et d'hébergement) ou lorsque la loi rwandaise l'exige."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "6. Sécurité des Données",
+        "paragraphs": [
+          "Nous appliquons des mesures techniques et organisationnelles raisonnables pour protéger les informations que nous détenons. Cependant, aucune méthode de transmission sur Internet n'est totalement sécurisée et nous ne pouvons garantir une sécurité absolue."
+        ]
+      },
+      {
+        "icon": "server",
+        "title": "7. Services Tiers",
+        "paragraphs": [
+          "Notre site web s'appuie sur un petit nombre de fournisseurs de confiance, tels que nos services d'hébergement et de diffusion de contenu, pour fonctionner. Ces fournisseurs traitent les données uniquement en notre nom."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "8. Vos Droits",
+        "paragraphs": [
+          "Vous pouvez nous demander à tout moment d'accéder aux informations personnelles que vous avez partagées avec nous, de les corriger ou de les supprimer, en nous contactant aux coordonnées ci-dessous.",
+          "Vous pouvez également retirer votre consentement aux cookies à tout moment en effaçant le stockage de votre navigateur."
+        ]
+      },
+      {
+        "icon": "baby",
+        "title": "9. Confidentialité des Enfants",
+        "paragraphs": [
+          "Notre site web ne s'adresse pas aux enfants de moins de 13 ans et nous ne collectons pas sciemment d'informations personnelles auprès d'enfants."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "10. Modifications de Cette Politique",
+        "paragraphs": [
+          "Nous pouvons mettre à jour cette Politique de Confidentialité de temps en temps. Toute modification sera publiée sur cette page avec une date de révision mise à jour."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "11. Nous Contacter",
+        "paragraphs": [
+          "Si vous avez des questions sur cette Politique de Confidentialité ou sur la manière dont nous traitons vos données, veuillez nous contacter."
+        ]
+      }
+    ]
+  },
+  "termsOfService": {
+    "badge": "Utiliser Notre Site",
+    "title": "Conditions d'Utilisation",
+    "heroDesc": "Les règles qui régissent votre utilisation du site web du Conseil Protestant du Rwanda.",
+    "lastUpdated": "Dernière mise à jour : septembre 2026",
+    "contactTitle": "Des Questions sur Ces Conditions ?",
+    "contactIntro": "Si vous avez des questions sur ces Conditions d'Utilisation, veuillez nous contacter :",
+    "backHome": "Retour à l'Accueil",
+    "sections": [
+      {
+        "icon": "file",
+        "title": "1. Acceptation des Conditions",
+        "paragraphs": [
+          "Ces Conditions d'Utilisation régissent votre utilisation du site web du CPR. En accédant à ce site ou en l'utilisant, vous acceptez d'être lié par ces conditions.",
+          "Si vous n'êtes pas d'accord avec l'une de ces conditions, veuillez ne pas utiliser le site web."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "2. À Propos de Ce Site",
+        "paragraphs": [
+          "Ce site web est exploité par le Conseil Protestant du Rwanda (CPR) pour partager des informations sur sa mission, ses églises membres, ses départements, son ministère radiophonique, ses actualités et ses événements.",
+          "Le contenu est publié en anglais, en français et en kinyarwanda. En cas de différences entre les versions linguistiques, la version anglaise fait foi."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "3. Utilisation du Contenu",
+        "paragraphs": [
+          "Tout le contenu de ce site — y compris les textes, images, logos et documents — est la propriété du CPR ou de ses partenaires et est protégé par les lois applicables.",
+          "Vous pouvez consulter, télécharger et partager le contenu à des fins personnelles, éducatives ou liées à l'église, avec attribution. La réutilisation commerciale nécessite notre autorisation écrite préalable."
+        ]
+      },
+      {
+        "icon": "heart",
+        "title": "4. Dons",
+        "paragraphs": [
+          "Lorsque le site permet des dons ou un soutien aux activités du CPR, les fonds sont utilisés conformément à la mission du CPR : foi, unité et développement durable.",
+          "Les dons sont volontaires et, sauf accord contraire, non remboursables. Pour toute question concernant une contribution, veuillez nous contacter."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. Liens Externes",
+        "paragraphs": [
+          "Ce site web peut contenir des liens vers des sites tiers. Nous ne sommes pas responsables du contenu ou des pratiques de confidentialité de ces sites."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "6. Utilisation Acceptable",
+        "paragraphs": [
+          "Lorsque vous utilisez ce site ou nous contactez via celui-ci, vous acceptez de ne pas soumettre de contenu illégal, offensant ou trompeur, et de ne pas tenter de perturber ou de détourner le site ou son infrastructure."
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "7. Limitation de Responsabilité",
+        "paragraphs": [
+          "Le site est fourni « en l'état » et « selon la disponibilité ». Bien que nous nous efforcions de garder les informations exactes et à jour, le CPR n'offre aucune garantie et n'est pas responsable des pertes résultant de l'utilisation du site."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "8. Modifications de Ces Conditions",
+        "paragraphs": [
+          "Nous pouvons réviser ces conditions de temps en temps. L'utilisation continue du site après la publication des modifications constitue une acceptation des conditions révisées."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "9. Droit Applicable",
+        "paragraphs": [
+          "Ces conditions sont régies par les lois de la République du Rwanda."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "10. Nous Contacter",
+        "paragraphs": [
+          "Pour toute question concernant ces Conditions d'Utilisation, veuillez nous contacter."
+        ]
+      }
+    ]
+  }
+,
   "scroll": "Défiler"
 }
