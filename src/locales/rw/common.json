@@ -98,6 +98,189 @@
     "marketing": "Cookie z'Isubiramo",
     "marketingDesc": "Zikoreshwa gutanga amatangazo yatsinze",
     "trustPrivacy": "Urubuga rukiza ubwangano",
-    "trustGdpr": "Rushingiye ku GDPR"
+    "trustGdpr": "Rushingiye ku GDPR",
+    "learnMore": "Menya ibyerekana muri Politiki y'Ibanga"
+  },
+  "privacyPolicy": {
+    "badge": "Amakuru Yawe, Arindwiwe",
+    "title": "Politiki y'Ibanga",
+    "heroDesc": "Uko Conseil Protestant du Rwanda yakusanya, ifata, no kurinda amakuru yawe mugihi uri koresheje urubuga bwacu.",
+    "lastUpdated": "Byavuguruwe: Nzeri 2026",
+    "contactTitle": "Ibibazo Bijyanye n'Ibanga Ryawe?",
+    "contactIntro": "Niba ufite ibibazo bijyanye na Poliitiki y'Ibanga cyangwa uko dufata amakuru yawe, nyamuneka tubwire:",
+    "backHome": "Subira Ahabanza",
+    "sections": [
+      {
+        "icon": "shield",
+        "title": "1. Intangiriro",
+        "paragraphs": [
+          "Conseil Protestant du Rwanda (CPR), iri i KG 2 Av 4, B.P 79, Kigali, Rwanda, ni yo ikora iri rubuga. Iyi Politiki y'Ibanga yerekana amakuru dukusanya, uko tuyakoresha, n'uburenganzira ufite.",
+          "Iyo ukoresheje iri rubuga, wemera uburyo bwaranditse muri iyi politiki."
+        ]
+      },
+      {
+        "icon": "database",
+        "title": "2. Amakuru Dukusanya",
+        "paragraphs": [
+          "Twagabanya cyane gukusanya amakuru. Hakurikije uko ukoresheje urubuga, dushobora kukusanya:"
+        ],
+        "list": [
+          "Amakuru ahuriwe n'ubwifuza (amazina, imeyili, nimero ya telefoni) uramwo utse urupapuro rw'ubwanditsi",
+          "Amakuru y'ikoresha ry'urubuga nka paji zasuye n'ururimi wahishe, bibikwa ku mugendanwa wawe",
+          "Ubutumwa twohereza kuri imeyili"
+        ]
+      },
+      {
+        "icon": "file",
+        "title": "3. Uko Dukoresha Amakuru Yawe",
+        "paragraphs": [
+          "Dukoresha amakuru twakusanyije gusa kugira ngo tusubize ibibazo byawe, tuzamure uburambe bw'urubuga, kandi tukomenyeshe ibikorwa bya CPR iyo wabitumiye.",
+          "Ntidugurisha, ntitwakira, cyangwa kutugurisha amakuru yawe bwite."
+        ]
+      },
+      {
+        "icon": "cookie",
+        "title": "4. Cookie na Uburyo bwo Gukurikirana",
+        "paragraphs": [
+          "Iri rubuga rukoresha gusa cookie zingenzi n'ububiko bwa mushakisha (nka localStorage) kugira ngo ubike ururimi watoranije n'icyo wiyemeje ku cookie.",
+          "Nta cookie y'amatangazo cyangwa ikurikirana ibindi rubuga irikoreshwa. Ushobora kuyasiba cyangwa kuzibira muri mushakisha yawe igihe cyose; urubuga rurakomeza gukora."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. Gusangira no Gutangaza Amakuru",
+        "paragraphs": [
+          "Ntidusangira amakuru yawe bwite n'abandi, keretwe iyo ari ngombwa kugira ngo urubuga rukore (urugero: abatanga serivisi y'ibikinisha n'ibibanza), cyangwa iyo amategeko y'u Rwanda abisaba."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "6. Umutekano w'Amakuru",
+        "paragraphs": [
+          "Dukoresha ingamba zKW'ikoranabuhanga n'imicungire zikwiye zo kurinda amakuru dufite. Ariko, nta buryo bwo kohereza amakuru kuri interineti bushobora kwizwa neza kandi ntidushobora kwemerera umutekano wuzuye."
+        ]
+      },
+      {
+        "icon": "server",
+        "title": "7. Serivisi z'Abandi Bafatanyabikorwa",
+        "paragraphs": [
+          "Urubuga bwacu rukenera abanyamuryango bake b'icyizere, nka serivisi y'ibibanza n'iyohereza amakuru, kugira ngo rukore. Abo batanga serivisi bakora amakuru gusa mu izina ryacu."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "8. Uburenganzira Bwawe",
+        "paragraphs": [
+          "Ushobora kudusaba igihe cyose kureba, gukosora, cyangwa gusiba amakuru yawe bwite wadusangiye, uduhamagara uko bigendereye hasi.",
+          "Ushobora kandi kwanka uburemere bwa cookie igihe cyose ukuraho ububiko bwa mushakisha yawe."
+        ]
+      },
+      {
+        "icon": "baby",
+        "title": "9. Ibanga ry'Abana",
+        "paragraphs": [
+          "Urubuga bwacu ntitugamije ku bana bari munsi y'imyaka 13, kandi ntidukusanya umenyaguhisha amakuru y'abana."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "10. Guhindura Iyi Politiki",
+        "paragraphs": [
+          "Dushobora guhindura iyi Politiki y'Ibanga buri gihe. Impinduka zose zizashyirwa kuri iyi paji n'itarike nshya y'ivugururwa."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "11. Twandikire",
+        "paragraphs": [
+          "Niba ufite ibibazo bijyanye na Poliitiki y'Ibanga cyangwa uko dufata amakuru, nyamuneka utubwire."
+        ]
+      }
+    ]
+  },
+  "termsOfService": {
+    "badge": "Gukoresha Urubuga",
+    "title": "Amabwiriza yo Gukoresha",
+    "heroDesc": "Amategeko agenga uko ukoresheje urubuga rwa Conseil Protestant du Rwanda.",
+    "lastUpdated": "Byavuguruwe: Nzeri 2026",
+    "contactTitle": "Ibibazo Bijyanye n'Iyi Nyandiko?",
+    "contactIntro": "Niba ufite ibibazo bijyanye n'Ama wiriza yo Gukoresha, nyamuneka tubwire:",
+    "backHome": "Subira Ahabanza",
+    "sections": [
+      {
+        "icon": "file",
+        "title": "1. Kwemera Amabwiriza",
+        "paragraphs": [
+          "Aya mabwiriza agenga uko ukoresheje urubuga rwa CPR. Iyo uvuye cyangwa ukoresheje iri rubuga, wemera kuyakurikiza.",
+          "Niba utemera kimwe muri aya mabwiriza, nyamuneka ntukoresheshe urubuga."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "2. Ibyerekeye Iri Rubuga",
+        "paragraphs": [
+          "Iri rubuga rikorwa na Conseil Protestant du Rwanda (CPR) kugira ngo itangaze amakuru yerekeye inshingano yayo, amatorero yayo, amashami yayo, umurimo wa radiyo, amakuru, n'ibikorwa.",
+          "Ibikubiyemo byanditse mu Cyongereza, igifaransa, n'ikinyarwanda. Iyo hari itandukaniro hagati y'indimi, iyo mu Cyongereza ni yo ifite agaciro."
+        ]
+      },
+      {
+        "icon": "lock",
+        "title": "3. Gukoresha Ibikubiyemo",
+        "paragraphs": [
+          "Ibikubiyemo byose biri kuri iri rubuga — harimwo inyandiko, amafoto, ibiratso, n'inyandiko nyamukuru — ni ibya CPR cyangwa abafatanyabikorwa bayo kandi birindwiwe n'amategeko.",
+          "Urashobora kureba, sibura, no gusangira ibikubiyemo ku ntego ziteganyijwe no kwigisha cyangwa ku bijyanye n'itorero, ugahanura inkomoko. Gukoresha mu bucuruzi bishyira ku mpatanabwenge yanditse itangira."
+        ]
+      },
+      {
+        "icon": "heart",
+        "title": "4. Impano",
+        "paragraphs": [
+          "Iyo urubuga ruhisha gutanga impano cyangwa inkunga ku bikorwa bya CPR, ama faranga akoreshwa hakurikije inshingano ya CPR: kwizera, ubumwe, n'iterambere rirambye.",
+          "Impango ni ubwishyu kandi, keretwe byaravuzwe, ntizigomba kugarurwa. Ku kibazo cyose cyerekeye impano, nyamuneka utubwire."
+        ]
+      },
+      {
+        "icon": "share",
+        "title": "5. Amahuza y'Ibinyabiziga",
+        "paragraphs": [
+          "Iri rubuga rushobora kugira amahuza y'ibindi binyabiziga. Ntituzi cyangwa ntidushinzwe ibikubiyemo cyangwa uburyo bwabo bwo kubika amakuru."
+        ]
+      },
+      {
+        "icon": "user",
+        "title": "6. Uko Bakoresheja Neza",
+        "paragraphs": [
+          "Iyo ukoresheje iri rubuga cyangwa utubwira mu buryo bwacyo, wemerera kutohereza ibikubiyemo bidakwiye, bidahuye n'amategeko, cyangwa bidakoze neza, kandi kutagerageza guhagarika cyangwa gukoresha nabi urubuga cyangwa ibishinzwe rwo."
+        ]
+      },
+      {
+        "icon": "shield",
+        "title": "7. Kugabanya Icyaha",
+        "paragraphs": [
+          "Urubuga rutangwa rukirira \"nk'irihari\" kandi \"nka rubushakashatsi\". Nubwo dukorera ko amakuru ari kuri n'ameza, CPR ntihaza kandi ntihashinzwe ibyangiza biva ku gukoresha urubuga."
+        ]
+      },
+      {
+        "icon": "refresh",
+        "title": "8. Guhindura Aya Mabwiriza",
+        "paragraphs": [
+          "Dushobora kongera gusubirwamo aya mabwiriza buri gihe. Uko ukomeza gukoresha urubuga nyuma y'uko impinduka zashyizwe ahagaragara bivuga ko wazemeye."
+        ]
+      },
+      {
+        "icon": "globe",
+        "title": "9. Amategeko Agenda",
+        "paragraphs": [
+          "Aya mabwiriza agenga ku mategeko ya Repubulika y'u Rwanda."
+        ]
+      },
+      {
+        "icon": "mail",
+        "title": "10. Twandikire",
+        "paragraphs": [
+          "Ku kibazo cyose cyerekeye Aya Mabwiriza yo Gukoresha, nyamuneka utubwire."
+        ]
+      }
+    ]
   }
 }
