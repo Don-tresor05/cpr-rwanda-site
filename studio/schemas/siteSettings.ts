@@ -42,6 +42,20 @@ export const siteSettings = defineType({
             { name: "ctaSecondary", title: "Secondary button text", type: "localizedString" },
             { name: "ctaSecondaryHref", title: "Secondary button link", type: "string", description: "e.g. /departments" },
           ],
+          preview: {
+            select: {
+              title: "title.en",
+              subtitle: "label.en",
+              media: "image",
+            },
+            prepare({ title, subtitle, media }) {
+              return {
+                title: title || "(no headline yet)",
+                subtitle: subtitle || "No eyebrow text",
+                media,
+              };
+            },
+          },
         },
       ],
     }),
@@ -78,6 +92,21 @@ export const siteSettings = defineType({
             },
             { name: "label", title: "Label", type: "localizedString" },
           ],
+          preview: {
+            select: {
+              label: "label.en",
+              value: "value",
+              suffix: "suffix",
+              icon: "icon",
+            },
+            prepare({ label, value, suffix, icon }) {
+              const number = value === undefined || value === null ? "?" : `${value}${suffix || ""}`;
+              return {
+                title: label ? `${number} — ${label}` : `${number} (no label yet)`,
+                subtitle: icon ? `Icon: ${icon}` : "No icon chosen",
+              };
+            },
+          },
         },
       ],
     }),
@@ -116,6 +145,15 @@ export const siteSettings = defineType({
                 },
                 { name: "url", title: "URL", type: "url" },
               ],
+              preview: {
+                select: { platform: "platform", url: "url" },
+                prepare({ platform, url }) {
+                  return {
+                    title: platform || "(no platform chosen)",
+                    subtitle: url || "No URL yet",
+                  };
+                },
+              },
             },
           ],
         },
