@@ -48,7 +48,8 @@ export const siteSettings = defineType({
               subtitle: "label.en",
               media: "image",
             },
-            prepare({ title, subtitle, media }) {
+            prepare(selection: any = {}) {
+              const { title, subtitle, media } = selection;
               return {
                 title: title || "(no headline yet)",
                 subtitle: subtitle || "No eyebrow text",
@@ -99,7 +100,8 @@ export const siteSettings = defineType({
               suffix: "suffix",
               icon: "icon",
             },
-            prepare({ label, value, suffix, icon }) {
+            prepare(selection: any = {}) {
+              const { label, value, suffix, icon } = selection;
               const number = value === undefined || value === null ? "?" : `${value}${suffix || ""}`;
               return {
                 title: label ? `${number} — ${label}` : `${number} (no label yet)`,
@@ -147,7 +149,8 @@ export const siteSettings = defineType({
               ],
               preview: {
                 select: { platform: "platform", url: "url" },
-                prepare({ platform, url }) {
+                prepare(selection: any = {}) {
+                  const { platform, url } = selection;
                   return {
                     title: platform || "(no platform chosen)",
                     subtitle: url || "No URL yet",
