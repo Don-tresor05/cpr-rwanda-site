@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 type CookiePreferences = {
   necessary: boolean;
@@ -94,9 +95,15 @@ export function CookieConsent() {
                 <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5">
                   {t("cookie.title")}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                <p className="text-sm text-gray-600 leading-relaxed mb-2">
                   {t("cookie.description")}
                 </p>
+                <Link
+                  to="/privacy"
+                  className="inline-block text-sm font-medium text-[#4E6132] hover:text-[#BC8A5F] underline underline-offset-2 transition-colors mb-4"
+                >
+                  {t("cookie.learnMore")}
+                </Link>
 
                 {/* Cookie Settings Panel */}
                 {showSettings && (
