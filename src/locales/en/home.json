@@ -360,7 +360,17 @@
       "defaultRole": "Title / Role",
       "readBio": "Read Bio",
       "boardMemberLabel": "Board Member",
-      "bioComingSoon": "Bio coming soon..."
+      "bioComingSoon": "Bio coming soon...",
+      "roles": {
+        "president": "President and Legal Representative",
+        "vicePresident": "Vice-President and Deputy Legal Representative",
+        "treasurer": "CPR Treasurer",
+        "advisor": "CPR Advisor",
+        "secretaryGeneral": "CPR Secretary General",
+        "projectCoordinator": "Project Coordinator",
+        "financeCoordinator": "Finance Coordinator",
+        "accountant": "Accountant"
+      }
     },
     "organigram": {
       "title": "Organigram",

@@ -351,11 +351,11 @@ export function AboutUs() {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
-                { name: "Mgr Dr Manasseh Gahima", role: "Président et Représentant Légal", image: "", bio: "" },
-                { name: "Rev Dr Pascal Bataringaya", role: "Vice-Président et Représentant Légal suppléant", image: "", bio: "" },
-                { name: "Mme Béatrice Uwizeyimana", role: "Trésorière du CPR", image: "", bio: "" },
-                { name: "Rev Past Thomas Murwanashyaka", role: "Conseiller du CPR", image: "", bio: "" },
-                { name: "Rev Pasteur Samuel Mutabazi", role: "Secrétaire Général du CPR", image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
+                { name: "Mgr Dr Manasseh Gahima", role: t("aboutPage.execCommittee.roles.president"), image: "", bio: "" },
+                { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
+                { name: "Mme Béatrice Uwizeyimana", role: t("aboutPage.execCommittee.roles.treasurer"), image: "", bio: "" },
+                { name: "Rev Past Thomas Murwanashyaka", role: t("aboutPage.execCommittee.roles.advisor"), image: "", bio: "" },
+                { name: "Rev Pasteur Samuel Mutabazi", role: t("aboutPage.execCommittee.roles.secretaryGeneral"), image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -399,11 +399,11 @@ export function AboutUs() {
                 { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
                 { name: "Felicien", role: "", img: "/cpr/assets/Sec Photo.webp" },
-                { name: "Nirere Jael", role: "Coordinatrice du projet", img: "/cpr/assets/Jael.webp" },
+                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), img: "/cpr/assets/Jael.webp" },
                 { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
                 { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: "Alfred Ntabanganyimana", role: "Coordinateur des Finances", img: "" },
-                { name: "Joseph Nyisingize", role: "Comptable", img: "" },
+                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
+                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />

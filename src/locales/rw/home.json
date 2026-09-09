@@ -360,7 +360,17 @@
       "defaultRole": "Inshingano",
       "readBio": "Soma Amateka",
       "boardMemberLabel": "Uwo mu Nama y'Ubuyobozi",
-      "bioComingSoon": "Amateka vuba..."
+      "bioComingSoon": "Amateka vuba...",
+      "roles": {
+        "president": "Perezida akaba n'Umuhagarariye mu Mategeko",
+        "vicePresident": "Visi Perezida akaba n'Umusigire w'Umuhagarariye mu Mategeko",
+        "treasurer": "Umubitsi wa CPR",
+        "advisor": "Umujyanama wa CPR",
+        "secretaryGeneral": "Umunyamabanga Mukuru wa CPR",
+        "projectCoordinator": "Umuhuzabikorwa w'Umushinga",
+        "financeCoordinator": "Umuhuzabikorwa w'Imari",
+        "accountant": "Ushinzwe Ibumbarimari"
+      }
     },
     "organigram": {
       "title": "Inyubako y'Ubuyobozi",

@@ -360,7 +360,17 @@
       "defaultRole": "Titre / Rôle",
       "readBio": "Lire la Biographie",
       "boardMemberLabel": "Membre du Conseil",
-      "bioComingSoon": "Biographie à venir..."
+      "bioComingSoon": "Biographie à venir...",
+      "roles": {
+        "president": "Président et Représentant Légal",
+        "vicePresident": "Vice-Président et Représentant Légal suppléant",
+        "treasurer": "Trésorière du CPR",
+        "advisor": "Conseiller du CPR",
+        "secretaryGeneral": "Secrétaire Général du CPR",
+        "projectCoordinator": "Coordinatrice du projet",
+        "financeCoordinator": "Coordinateur des Finances",
+        "accountant": "Comptable"
+      }
     },
     "organigram": {
       "title": "Organigramme",
