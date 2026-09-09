@@ -349,19 +349,13 @@ export function useBoardMembers(): BoardMember[] | null {
       .fetch<{ name?: string; role?: LocalizedField; image?: string; bio?: LocalizedField }[]>(BOARD_MEMBERS_QUERY)
       .then((docs) => {
         if (cancelled) return;
-        const valid = (docs || []).filter((d) => d.name);
-        if (valid.length === 0) {
-          setMembers(null);
-          return;
-        }
-        setMembers(
-          valid.map((d) => ({
-            name: d.name || "",
-            role: pickOrUndef(d.role, lang) || "",
-            image: d.image || "",
-            bio: pickOrUndef(d.bio, lang),
-          }))
-        );
+        // TEMPORARILY disable Sanity fetch for Board Members to use hardcoded list
+        // const valid = (docs || []).filter((d) => d.name);
+        // if (valid.length === 0) {
+        //   setMembers(null);
+        //   return;
+        // }
+        setMembers(null);
       })
       .catch(() => {
         if (!cancelled) setMembers(null);
