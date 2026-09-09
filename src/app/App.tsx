@@ -45,7 +45,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen">
       <FixedWatermark variant="default" />
-      {/* <CookieConsent /> */}
+      <CookieConsent />
       <ScrollProgress />
       <BackToTop />
       <ScrollToTop />
