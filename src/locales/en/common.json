@@ -12,7 +12,7 @@
     "comingSoon": "Coming Soon",
     "organization": "Organization",
     "whoWeAre": "About Conseil Protestant du Rwanda",
-    "whoWeAreDesc": "Founded in 1963, uniting Rwanda's Protestant churches",
+    "whoWeAreDesc": "Founded in 1962, uniting Rwanda's Protestant churches",
     "visionMission": "Vision & Mission",
     "visionMissionDesc": "Our guiding principles and long-term goals",
     "coreValues": "Core Values",
@@ -67,7 +67,7 @@
     "years": "Years of Service"
   },
   "footer": {
-    "desc": "Uniting Protestant churches in Rwanda for spiritual growth, peacebuilding, and holistic development since 1963.",
+    "desc": "Uniting Protestant churches in Rwanda for spiritual growth, peacebuilding, and holistic development since 1962.",
     "quickLinks": "Quick Links",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
@@ -79,7 +79,7 @@
   },
   "loading": {
     "preparing": "Preparing",
-    "tagline": "Serving Rwanda Since 1963"
+    "tagline": "Serving Rwanda Since 1962"
   },
   "cookie": {
     "title": "We Value Your Privacy",

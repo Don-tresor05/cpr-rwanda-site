@@ -12,7 +12,7 @@
       {
         "label": "Urwego rw'Uburezi (BNEP)",
         "title": "Kubaka Ejo Hazaza h'u Rwanda",
-        "subtitle": "Amashuri Abanza y'Abaporotesitanti 595",
+        "subtitle": "Amashuri 1,500+",
         "desc": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti bigenzura ireme ry'uburezi mu Rwanda, biha ubushobozi abanyeshuri barenga 300,000 buri mwaka.",
         "cta": "Menya byinshi kuri BNEP",
         "ctaSecondary": "Reba Imibare"
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Amateka Yacu",
     "title": "Imyaka Mirongo Itandatu\ny'Ukwizera n'Imirimo",
-    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1963</strong>, ni umuzimwa uhuza amatorero 28 y'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
+    "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu <strong className=\"text-[#4E6132]\">1962</strong>, ni umuzimwa uhuza amatorero n'imiryango 28 by'abaporotesitanti mu Rwanda. Kuva yashingwa, CPR yagize uruhare rukomeye mu mibereho y'abaturage — kubaka imiryango nyuma y'amakimbirane, guteza imbere uburezi, no kubumbatira agaciro ka buri muntu.",
     "p2Start": "Uyu munsi, binyuze mu mashami yayo y'uburezi, ubuzima, ivugabutumwa, n'itumanaho, CPR igera mu ntara zose z'u Rwanda. Intego yacu — ",
     "motto": "“Bose Babe Umwe”",
     "p2End": " — iyobora buri gikorwa cyose.",
@@ -150,7 +150,7 @@
         "body": [
           "Bureau National de l'Éducation Protestante (BNEP) yatangije ku mugaragaro gahunda y'amahugurwa akomeye ku barezi 1.200 b'amarushuri abanza n'ayisumbuye bakorera mu mashuri ari mu byiciro bya CPR.",
           "Gahunda yibanda ku myigishirize ifatika ibanda ku munyeshuri, uburezi bushyira mu rwego abana bafite ibyo bakeneye by'umwihariko, no gushyiramo indangagaciro mu nteguro za STEM.",
-          "Ku mashuri arenga 595 ayoborwa n'amatorero y'ubumwe bwa CPR, BNEP ikomeza kuzamura urwego rw'uburezi mu gihugu hose."
+          "Ku mashuri arenga 1,500 ayoborwa n'amatorero y'ubumwe bwa CPR, BNEP ikomeza kuzamura urwego rw'uburezi mu gihugu hose."
         ],
         "quote": "Uburezi bwiza bufite urufatiro rw'imyitwarire ikomeye buhindura abiga abayobozi bafite impuhwe.",
         "image": "/cpr/assets/Primary.jpg"
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Umuryango Wacu",
     "title": "Amatorero n'Imiryango Biyegereye CPR",
-    "desc": "Inama y'Abaporotesitanti mu Rwanda ihuza amatorero y'abaporotesitanti n'imiryango ya gikristu irenga <strong className=\"text-[#4E6132]\">28</strong> mu Rwanda hose, bakorera hamwe mu kwizera, serivisi, n'impinduka mu gihugu.",
+    "desc": "Inama y'Abaporotesitanti mu Rwanda ihuza amatorero y'abaporotesitanti n'imiryango ya gikristu <strong className=\"text-[#4E6132]\">28</strong> mu Rwanda hose, bakorera hamwe mu kwizera, serivisi, n'impinduka mu gihugu.",
     "unitedNote": "Amatorero n'imiryango <strong className=\"text-[#4E6132]\">{{count}}</strong> bunze ubumwe muri Kristo"
   },
   "projects": {
@@ -383,7 +383,7 @@
       "learnMore": "Menya Byinshi",
       "badge": "Amateka Yacu",
       "title": "Iwuri ry'Inama y'Abaporotesitanti mu Rwanda",
-      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu 1963. Kuva yatangira, CPR yabaye umutima w'imibereho y'Abanyarwanda — yubaka imiryango nyuma y'amakimbirane, iteza imbere uburezi, kandi ishyigikira agaciro ka buri muntu.",
+      "p1": "Inama y'Abaporotesitanti mu Rwanda (CPR) yashinzwe mu 1962. Kuva yatangira, CPR yabaye umutima w'imibereho y'Abanyarwanda — yubaka imiryango nyuma y'amakimbirane, iteza imbere uburezi, kandi ishyigikira agaciro ka buri muntu.",
       "p2": "Binyuze mu mashami yayo yihariye, CPR ihuza ibikorwa by'amatorero 28 anyamuryango kugira ngo batange gahunda zigira uruhare mu burezi (BNEP), ubuvuzi, isanamitima, n'iterambere ry'abaturage. Kicaro gikuru kiri i Kigali, CPR ihagarariye ijwi ryunze ubumwe ry'Abaporotesitanti riharanira impinduka zirambye.",
       "personName": "Padesiyo Samuel Mutabazi",
       "personRole": "Umunyamabanga Mukuru",
@@ -521,9 +521,9 @@
     "bnep": {
       "tag": "Ibiro by'Uburezi",
       "title": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti (BNEP)",
-      "desc": "BNEP ni ishami ry'uburezi rya CPR, rikuriikirana amashuri abanza n'ayisumbuye y'abaporotesitanti mu Rwanda hose. Rifite amashuri abanza 595+ n'ayisumbuye menshi, BNEP ibaka ejo hazaza h'abana b'u Rwanda binyuze mu burezi bushingiye ku kwizera.",
+      "desc": "BNEP ni ishami ry'uburezi rya CPR, rikuriikirana amashuri abanza n'ayisumbuye y'abaporotesitanti mu Rwanda hose. Rifite amashuri 1,500+, BNEP ibaka ejo hazaza h'abana b'u Rwanda binyuze mu burezi bushingiye ku kwizera.",
       "body": [
-        "Gukurikirana amashuri abanza 595+ n'ayisumbuye mu gihugu hose",
+        "Gukurikirana amashuri 1,500+ mu gihugu hose",
         "Amahugurwa mu myigishirize igezweho (PAP) ku barimu",
         "Guteza imbere gahunda y'imyigishirize y'idini rya gikristu",
         "Igenzura ry'ikigo, kwemeza ireme, no gushyira mu bikorwa amahame y'uburezi",
@@ -623,8 +623,8 @@
       "title": "Imiyoborere & Inama z'Imbere",
       "desc": "Usibye ibikorwa bya rubanda, CPR iterana inama z'imiyoborere buri gihe kugira ngo hagire inshingano, guhuriza hamwe ingamba, no guhuza neza amatorera agize umuryango n'amashami yose.",
       "body": [
-        "Inama za Komite Nyobozi — ziteranwa buri gihembwe kugira ngo basuzume imikorere y'inzego no kwemeza ibyemezo by'ingenzi",
-        "Inteko Rusange — inzego z'ubuyobozi bw'ikirenga, ziteranwa buri mwaka hamwe n'amatorera 28 agize umuryango",
+        "Inama za Komite Nyobozi — ziteranwa inshuro ebyiri mu mwaka kugira ngo basuzume imikorere y'inzego no kwemeza ibyemezo by'ingenzi",
+        "Inteko Rusange — inzego z'ubuyobozi bw'ikirenga, ziteranwa rimwe mu myaka ibiri hamwe n'abanyamuryango 28",
         "Inama za Biro — guhuza buri kwezi hagati y'Umunyamabanga Mukuru n'abayobozi b'amashami",
         "Inama za Komite y'Imari n'Igenzura — kugenzura ingengo y'imari, ibisohotse, n'inyandikomvugo z'inkunga",
         "Inama zo guhuza amatorera — ikiganiro hagati y'amatorera agize umuryango",
@@ -1089,16 +1089,16 @@
         },
         {
           "title": "Urutonde rw'Amatorero Anyamuryango",
-          "description": "Umwirondoro w'amatorero anyamuryango 28+"
+          "description": "Umwirondoro w'abanyamuryango 28"
         }
       ]
     },
     "bnep": {
       "title": "Uburezi / BNEP",
       "tag": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti",
-      "overview": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti (BNEP) bicunga kandi bihuza amashuri abanza y'Abaporotesitanti mu Rwanda hose. Kuri ubu rifite amashuri 595+, BNEP yibanda ku burezi bufite ireme, amahugurwa y'abarimu, itegurwa ry'integanyanyigisho, n'ivugurura ry'ibikorwaremezo by'amashuri.",
+      "overview": "Ibiro by'Igihugu by'Uburezi bw'Abaporotesitanti (BNEP) bicunga kandi bihuza amashuri y'Abaporotesitanti mu Rwanda hose. Kuri ubu rifite amashuri 1,500+, BNEP yibanda ku burezi bufite ireme, amahugurwa y'abarimu, itegurwa ry'integanyanyigisho, n'ivugurura ry'ibikorwaremezo by'amashuri.",
       "keyActivities": [
-        "Gucunga amashuri abanza y'Abaporotesitanti 595+ mu gihugu hose",
+        "Gucunga amashuri y'Abaporotesitanti 1,500+ mu gihugu hose",
         "Amahugurwa y'umwuga y'abarimu na gahunda zo gutanga ibyemezo",
         "Guteza imbere integanyanyigisho ijyanye n'amahame y'uburezi y'igihugu",
         "Imishinga yo kuvugurura ibikorwaremezo by'amashuri",
@@ -1150,7 +1150,7 @@
     "finance": {
       "title": "Imari n'Ubukangurambaga",
       "tag": "Imicungire y'Imari n'Ubukangurambaga bw'Umutungo",
-      "overview": "Ishami ry'Imari n'Ubukangurambaga ryemeza imicungire y'imari isobanutse, umubano n'abaterankunga, n'ubukangurambaga bw'umutungo muri gahunda za CPR. Rifite amanota ya AAA mu isuzumabikorwa, rikomeza amahame yo hejuru y'uburyozwe n'imicungire myiza.",
+      "overview": "Ishami ry'Imari n'Ubukangurambaga ryemeza imicungire y'imari isobanutse, umubano n'abaterankunga, n'ubukangurambaga bw'umutungo muri gahunda za CPR. Rikomeza amahame yo hejuru y'uburyozwe n'imicungire myiza.",
       "keyActivities": [
         "Igenamigambi ry'imari, ingengo y'imari, na raporo",
         "Umubano n'abaterankunga n'imicungire y'inkunga",
@@ -1276,7 +1276,7 @@
   ],
   "secretariatStats": {
     "sg": [
-      { "label": "Amatorera Nyamuryango", "value": "28+" },
+      { "label": "Abanyamuryango", "value": "28" },
       { "label": "Abakozi b'Umuryango", "value": "50+" },
       { "label": "Imyaka Imarijeho", "value": "60+" }
     ],
@@ -1308,12 +1308,12 @@
   },
   "departmentStats": {
     "gs": [
-      { "label": "Amatorera Nyamuryango", "value": "28+" },
-      { "label": "Umwaka Yashingwehe", "value": "1963" },
+      { "label": "Abanyamuryango", "value": "28" },
+      { "label": "Umwaka Yashingwehe", "value": "1962" },
       { "label": "Abakozi b'Umuryango", "value": "50+" }
     ],
     "bnep": [
-      { "label": "Amashuri Abanza", "value": "595+" },
+      { "label": "Amashuri", "value": "1,500+" },
       { "label": "Abanyeshuri Bafashijwe", "value": "300K+" },
       { "label": "Abarezi Bahuguwe", "value": "1,200+" }
     ],
@@ -1347,7 +1347,7 @@
     "title": "Ibyo Wamenya",
     "facts": [
       "Amashami 7 yihariye akorera mu ntara zose z'igihugu",
-      "Amashuri abanza ya giporoso 595+ mu gihugu hose",
+      "Amashuri ya giporoso 1,500+ mu gihugu hose",
       "Abajyanama bagenwe mu by'ihahamuko 200+ mu Rwanda rwose",
       "Urubyiruko 10,000+ rwagezweho binyuze muri gahunda z'umwaka",
       "Abagore 5,000+ bahawe ubushobozi binyuze mu mishinga y'iterambere",

@@ -396,12 +396,12 @@ export function AboutUs() {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
               {[
-                { name: "Eric Mugwaneza", role: "", img: "/cpr/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: "", img: "/cpr/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: "", img: "/cpr/assets/Sec Photo.webp" },
+                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Sec Photo.webp" },
                 { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), img: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: "", img: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: "", img: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/IRAGENA Joselyne.webp" },
                 { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
                 { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
               ].map((member, i) => (
@@ -466,8 +466,12 @@ export function AboutUs() {
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">AACC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECLAC</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECCLAHA</div>
             <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">CBF</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PPLM</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RIC</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RICH</div>
+            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PEACE PLAN RWANDA</div>
           </div>
         </div>
       </section>

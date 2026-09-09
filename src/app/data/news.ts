@@ -84,7 +84,7 @@ export const getNews = (t: any): NewsArticle[] => {
       title: "Inside CPR's Annual Convention on Ecumenical Cooperation",
       excerpt: "Rwanda's Protestant community is building sustainable partnerships across the country. Member churches met to align strategies for education, youth leadership, and socio-economic empowerment.",
       image: "/cpr/assets/news-education.webp",
-      imageCaption: "Delegates from 25 member denominations at the opening ceremony of the 2026 Ecumenical Cooperation Convention in Kigali.",
+      imageCaption: "Delegates from 28 member organizations at the opening ceremony of the 2026 Ecumenical Cooperation Convention in Kigali.",
       secondaryImage: "/cpr/assets/Primary.jpg",
       secondaryCaption: "BNEP educational workshop session showcasing active pedagogy techniques for school administrators.",
       author: "Ecumenical Affairs Office",
@@ -97,7 +97,7 @@ export const getNews = (t: any): NewsArticle[] => {
       ],
       quote: "Ecumenical cooperation is not merely a theological goal—it is our active responsibility to serve humanity together.",
       keyPoints: [
-        "Attended by over 400 delegates representing 25 Protestant denominations.",
+        "Attended by over 400 delegates representing 28 Protestant member organizations.",
         "Signed a new joint charter on environmental sustainability and green churches.",
         "Established a youth ecumenical network to champion leadership development."
       ]
@@ -161,7 +161,7 @@ export const getNews = (t: any): NewsArticle[] => {
       paragraphs: [
         "The Bureau National de l'Éducation Protestante (BNEP) officially launched an intensive training initiative for 1,200 primary and secondary school teachers serving in CPR-affiliated schools.",
         "The program focuses on student-centered active learning, inclusive education for children with special needs, and integrating moral ethics into STEM curricula.",
-        "With over 595 schools managed by CPR member churches, BNEP continues to elevate educational standards across the nation."
+        "With over 1,500 schools managed by CPR member churches, BNEP continues to elevate educational standards across the nation."
       ],
       quote: "Quality education with strong moral grounding transforms learners into compassionate leaders.",
       keyPoints: [

@@ -12,7 +12,7 @@
       {
         "label": "Département de l'Éducation (BNEP)",
         "title": "Façonner l'avenir du Rwanda",
-        "subtitle": "595 Écoles Primaires Protestantes",
+        "subtitle": "1 500+ Écoles",
         "desc": "Le Bureau National de l'Éducation Protestante supervise la qualité de l'éducation à travers le Rwanda, formant plus de 300 000 apprenants chaque année.",
         "cta": "En savoir plus sur le BNEP",
         "ctaSecondary": "Voir les Statistiques"
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Notre Histoire",
     "title": "Six Décennies de\nFoi et de Service",
-    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1963</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 28 églises protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
+    "p1": "Fondé en <strong className=\"text-[#4E6132]\">1962</strong>, le Conseil Protestant du Rwanda (CPR) est l'organe faîtier réunissant les 28 églises et organisations protestantes du Rwanda. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, soutenant l'éducation et défendant la dignité de chaque personne.",
     "p2Start": "Aujourd'hui, à travers ses départements de l'éducation, de la santé, de l'évangélisation et de la communication, le CPR touche chaque province du Rwanda. Notre devise — ",
     "motto": "« Bose Babe Umwe » (Afin que tous soient un)",
     "p2End": " — guide chaque initiative.",
@@ -150,7 +150,7 @@
         "body": [
           "Le Bureau National de l'Éducation Protestante (BNEP) a officiellement lancé une initiative intensive de formation pour 1 200 enseignants du primaire et du secondaire exerçant dans les écoles affiliées au CPR.",
           "Le programme met l'accent sur l'apprentissage actif centré sur l'élève, l'éducation inclusive pour les enfants à besoins spécifiques et l'intégration de l'éthique morale dans les programmes STEM.",
-          "Avec plus de 595 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
+          "Avec plus de 1 500 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
         ],
         "quote": "Une éducation de qualité, fondée sur des valeurs morales fortes, transforme les apprenants en leaders compatissants.",
         "image": "/cpr/assets/Primary.jpg"
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Notre Communauté",
     "title": "Églises Membres & Organisations",
-    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">plus de 28</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
+    "desc": "Le Conseil Protestant du Rwanda réunit <strong className=\"text-[#4E6132]\">28</strong> églises protestantes et organisations chrétiennes à travers le Rwanda, travaillant ensemble dans la foi, le service et la transformation nationale.",
     "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> églises et organisations unies en Christ"
   },
   "projects": {
@@ -383,7 +383,7 @@
       "learnMore": "En Savoir Plus",
       "badge": "Notre Histoire",
       "title": "À Propos du Conseil Protestant du Rwanda",
-      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1963. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
+      "p1": "Le Conseil Protestant du Rwanda (CPR) a été créé en 1962. Depuis sa création, le CPR est au cœur du tissu social rwandais — reconstruisant les communautés après les conflits, promouvant l'éducation et défendant la dignité de chaque personne.",
       "p2": "À travers son réseau de départements spécialisés, le CPR coordonne les efforts de 28 églises membres pour mettre en œuvre des programmes percutants dans l'éducation (BNEP), la santé, la guérison des traumatismes et le développement communautaire. Basé à Kigali, le CPR représente une voix protestante unifiée dédiée à la transformation durable.",
       "personName": "Rév. Samuel Mutabazi",
       "personRole": "Secrétaire Général",
@@ -521,9 +521,9 @@
     "bnep": {
       "tag": "Bureau d'Éducation",
       "title": "Bureau National de l'Éducation Protestante (BNEP)",
-      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 595 écoles primaires et des centaines d'établissements secondaires, le BNEP façonne l'avenir des enfants du Rwanda.",
+      "desc": "Le BNEP est le bras éducatif du CPR, supervisant les écoles primaires et secondaires protestantes à travers le Rwanda. Avec plus de 1 500 écoles, le BNEP façonne l'avenir des enfants du Rwanda.",
       "body": [
-        "Supervision de 595+ écoles primaires protestantes et écoles secondaires associées",
+        "Supervision de 1 500+ écoles protestantes à l'échelle nationale",
         "Formation à la Pédagogie Active Participative (PAP) pour les enseignants",
         "Développement des programmes d'éducation religieuse protestante",
         "Inspection scolaire, assurance qualité et application des normes éducatives",
@@ -547,7 +547,7 @@
     "finance": {
       "tag": "Gestion des Ressources",
       "title": "Finances & Mobilisation des Ressources",
-      "desc": "Le département des Finances assure la durabilité institutionnelle du CPR grâce à une administration financière transparente, une mobilisation stratégique des ressources et une supervision rigoureuse.",
+      "desc": "Le département Finances & Mobilisation assure une gestion financière transparente, les relations avec les donateurs et la mobilisation des ressources pour les programmes du CPR. Il maintient les plus hauts standards de responsabilité et d'obligation fiduciaire.",
       "body": [
         "Préparation du budget, suivi et rapports financiers aux parties prenantes",
         "Gestion des fonds des donateurs et conformité des subventions",
@@ -623,8 +623,8 @@
       "title": "Gouvernance & Réunions Internes",
       "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
       "body": [
-        "Réunions du Comité Exécutif — tenues trimestriellement pour examiner les performances institutionnelles et approuver les décisions clés",
-        "Sessions de l'Assemblée Générale — l'organe directeur suprême, convoqué annuellement avec les 28 églises membres",
+        "Réunions du Comité Exécutif — se réunit deux fois par an pour examiner les performances institutionnelles et approuver les décisions clés",
+        "Sessions de l'Assemblée Générale — l'organe directeur suprême, se réunit une fois tous les deux ans avec les 28 organisations membres",
         "Réunions du Bureau — coordination mensuelle entre le Secrétaire Général et les chefs de département",
         "Réunions du Comité des Finances et d'Audit — supervision des budgets, dépenses et rapports aux donateurs",
         "Réunions de coordination inter-ecclésiale — dialogue bilatéral et multilatéral entre les dénominations membres",
@@ -1089,16 +1089,16 @@
         },
         {
           "title": "Annuaire des Églises Membres",
-          "description": "Coordonnées de toutes les plus de 28 églises membres"
+          "description": "Coordonnées de tous les 28 membres"
         }
       ]
     },
     "bnep": {
       "title": "Éducation / BNEP",
       "tag": "Bureau National de l'Enseignement Protestant",
-      "overview": "Le Bureau National de l'Enseignement Protestant (BNEP) gère et coordonne les écoles primaires protestantes à travers le Rwanda. Avec plus de 595 écoles sous son égide, le BNEP se concentre sur une éducation de qualité, la formation des enseignants, l'élaboration des programmes d'études et l'amélioration des infrastructures scolaires.",
+      "overview": "Le Bureau National de l'Enseignement Protestant (BNEP) gère et coordonne les écoles protestantes à travers le Rwanda. Avec plus de 1 500 écoles sous son égide, le BNEP se concentre sur une éducation de qualité, la formation des enseignants, l'élaboration des programmes d'études et l'amélioration des infrastructures scolaires.",
       "keyActivities": [
-        "Gestion de plus de 595 écoles primaires protestantes à l'échelle nationale",
+        "Gestion de plus de 1 500 écoles protestantes à l'échelle nationale",
         "Programmes de développement professionnel et de certification des enseignants",
         "Amélioration des programmes d'études alignée sur les normes éducatives nationales",
         "Projets d'amélioration des infrastructures scolaires",
@@ -1276,7 +1276,7 @@
   ],
   "secretariatStats": {
     "sg": [
-      { "label": "Églises Membres", "value": "28+" },
+      { "label": "Membres", "value": "28" },
       { "label": "Membres du Personnel", "value": "50+" },
       { "label": "Années d'Activité", "value": "60+" }
     ],
@@ -1308,12 +1308,12 @@
   },
   "departmentStats": {
     "gs": [
-      { "label": "Églises Membres", "value": "28+" },
-      { "label": "Année de Fondation", "value": "1963" },
+      { "label": "Membres", "value": "28" },
+      { "label": "Année de Fondation", "value": "1962" },
       { "label": "Membres du Personnel", "value": "50+" }
     ],
     "bnep": [
-      { "label": "Écoles Primaires", "value": "595+" },
+      { "label": "Écoles", "value": "1 500+" },
       { "label": "Élèves Touchés", "value": "300K+" },
       { "label": "Enseignants Formés", "value": "1,200+" }
     ],
@@ -1347,7 +1347,7 @@
     "title": "Chiffres Clés",
     "facts": [
       "7 départements spécialisés servant dans toutes les provinces",
-      "595+ écoles primaires protestantes à l'échelle nationale",
+      "1 500+ écoles protestantes à l'échelle nationale",
       "200+ conseillers certifiés en traumatologie à travers le Rwanda",
       "10 000+ jeunes touchés grâce aux programmes annuels",
       "5 000+ femmes autonomisées grâce aux initiatives pour le genre",

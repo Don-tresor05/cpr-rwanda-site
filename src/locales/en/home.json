@@ -12,7 +12,7 @@
       {
         "label": "Education Department (BNEP)",
         "title": "Shaping Rwanda's Future",
-        "subtitle": "595 Protestant Primary Schools",
+        "subtitle": "1,500+ Schools",
         "desc": "The Bureau National de l'Éducation Protestante oversees quality education across Rwanda, empowering 300,000+ learners every year.",
         "cta": "Learn About BNEP",
         "ctaSecondary": "View Statistics"
@@ -30,7 +30,7 @@
   "about": {
     "ourStory": "Our Story",
     "title": "Six Decades of\nFaith & Service",
-    "p1": "Founded in <strong className=\"text-[#4E6132]\">1963</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 28 Protestant churches. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+    "p1": "Founded in <strong className=\"text-[#4E6132]\">1962</strong>, the Conseil Protestant du Rwanda (CPR) is the umbrella body uniting Rwanda's 28 Protestant churches and organizations. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
     "p2Start": "Today, through its departments in education, health, evangelism, and communications, CPR touches every province of Rwanda. Our motto — ",
     "motto": "“Bose Babe Umwe” (That All of Them May Be One)",
     "p2End": " — guides every initiative.",
@@ -150,7 +150,7 @@
         "body": [
           "The Bureau National de l'Éducation Protestante (BNEP) officially launched an intensive training initiative for 1,200 primary and secondary school teachers serving in CPR-affiliated schools.",
           "The program focuses on student-centered active learning, inclusive education for children with special needs, and integrating moral ethics into STEM curricula.",
-          "With over 595 schools managed by CPR member churches, BNEP continues to elevate educational standards across the nation."
+          "With over 1,500 schools managed by CPR member churches, BNEP continues to elevate educational standards across the nation."
         ],
         "quote": "Quality education with strong moral grounding transforms learners into compassionate leaders.",
         "image": "/cpr/assets/Primary.jpg"
@@ -253,7 +253,7 @@
   "memberChurches": {
     "tag": "Our Community",
     "title": "Member Churches & Organizations",
-    "desc": "The Conseil Protestant du Rwanda unites <strong className=\"text-[#4E6132]\">28+</strong> Protestant churches and Christian organizations across Rwanda, working together in faith, service, and national transformation.",
+    "desc": "The Conseil Protestant du Rwanda unites <strong className=\"text-[#4E6132]\">28</strong> Protestant churches and Christian organizations across Rwanda, working together in faith, service, and national transformation.",
     "unitedNote": "<strong className=\"text-[#4E6132]\">{{count}}</strong> churches and organizations united in Christ"
   },
   "projects": {
@@ -383,7 +383,7 @@
       "learnMore": "Learn More",
       "badge": "Our Story",
       "title": "About Conseil Protestant du Rwanda",
-      "p1": "The Protestant Council of Rwanda (CPR) was established in 1963. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
+      "p1": "The Protestant Council of Rwanda (CPR) was established in 1962. Since its inception, CPR has been at the heart of Rwanda's social fabric — rebuilding communities after conflict, championing education, and upholding the dignity of every person.",
       "p2": "Through its network of specialized departments, CPR coordinates efforts across 28 member churches to deliver impactful programs in education (BNEP), healthcare, trauma healing, and community development. Headquartered in Kigali, CPR represents a unified Protestant voice dedicated to sustainable transformation.",
       "personName": "Rev. Samuel Mutabazi",
       "personRole": "Secretary General",
@@ -521,9 +521,9 @@
     "bnep": {
       "tag": "Education Bureau",
       "title": "Bureau National de l'Éducation Protestante (BNEP)",
-      "desc": "BNEP is the education arm of CPR, overseeing Protestant primary and secondary schools across Rwanda. With 595+ primary schools and hundreds of secondary institutions, BNEP shapes the future of Rwanda's children through quality faith-based education.",
+      "desc": "BNEP is the education arm of CPR, overseeing Protestant primary and secondary schools across Rwanda. With 1,500+ combined schools, BNEP shapes the future of Rwanda's children through quality faith-based education.",
       "body": [
-        "Supervision of 595+ Protestant primary schools and associated secondary schools nationwide",
+        "Supervision of 1,500+ Protestant schools nationwide",
         "Participatory Active Pedagogy (PAP) training for teachers in modern classroom methods",
         "Development of Protestant religious education curriculum for primary and secondary levels",
         "School inspection, quality assurance, and educational standards enforcement",
@@ -623,8 +623,8 @@
       "title": "Governance & Internal Meetings",
       "desc": "Beyond public events, CPR holds regular internal governance meetings that ensure accountability, strategic alignment, and effective coordination across all member churches and departments.",
       "body": [
-        "Executive Committee meetings — held quarterly to review institutional performance and approve key decisions",
-        "General Assembly sessions — the supreme governing body, convened annually with all 28 member churches",
+        "Executive Committee meetings — meets twice a year to review institutional performance and approve key decisions",
+        "General Assembly sessions — the supreme governing body, meets once every two years with all 28 member organizations",
         "Bureau meetings — monthly coordination between the Secretary General and department heads",
         "Finance and Audit Committee meetings — oversight of budgets, expenditures, and donor reporting",
         "Inter-church coordination meetings — bilateral and multilateral dialogue between member denominations",
@@ -1089,16 +1089,16 @@
         },
         {
           "title": "Member Church Directory",
-          "description": "Contact details for all 28+ member churches"
+          "description": "Contact details for all 28 members"
         }
       ]
     },
     "bnep": {
       "title": "Education / BNEP",
       "tag": "Bureau National de l'Enseignement Protestant",
-      "overview": "The Bureau National de l'Enseignement Protestant (BNEP) manages and coordinates Protestant primary schools across Rwanda. With 595+ schools under its umbrella, BNEP focuses on quality education, teacher training, curriculum development, and school infrastructure improvements.",
+      "overview": "The Bureau National de l'Enseignement Protestant (BNEP) manages and coordinates Protestant schools across Rwanda. With 1,500+ schools under its umbrella, BNEP focuses on quality education, teacher training, curriculum development, and school infrastructure improvements.",
       "keyActivities": [
-        "Management of 595+ Protestant primary schools nationwide",
+        "Management of 1,500+ Protestant schools nationwide",
         "Teacher professional development and certification programs",
         "Curriculum enhancement aligned with national education standards",
         "School infrastructure improvement projects",
@@ -1150,7 +1150,7 @@
     "finance": {
       "title": "Finance & Mobilization",
       "tag": "Financial Management & Resource Mobilization",
-      "overview": "The Finance & Mobilization department ensures transparent financial management, donor relations, and resource mobilization for CPR's programs. With an AAA audit rating, it maintains the highest standards of accountability and fiduciary responsibility.",
+      "overview": "The Finance & Mobilization department ensures transparent financial management, donor relations, and resource mobilization for CPR's programs. It maintains the highest standards of accountability and fiduciary responsibility.",
       "keyActivities": [
         "Financial planning, budgeting, and reporting",
         "Donor relations and grant management",
@@ -1276,7 +1276,7 @@
   ],
   "secretariatStats": {
     "sg": [
-      { "label": "Member Churches", "value": "28+" },
+      { "label": "Members", "value": "28" },
       { "label": "Staff Members", "value": "50+" },
       { "label": "Years Active", "value": "60+" }
     ],
@@ -1308,12 +1308,12 @@
   },
   "departmentStats": {
     "gs": [
-      { "label": "Member Churches", "value": "28+" },
-      { "label": "Years Established", "value": "1963" },
+      { "label": "Members", "value": "28" },
+      { "label": "Years Established", "value": "1962" },
       { "label": "Staff Members", "value": "50+" }
     ],
     "bnep": [
-      { "label": "Primary Schools", "value": "595+" },
+      { "label": "Schools", "value": "1,500+" },
       { "label": "Students Reached", "value": "300K+" },
       { "label": "Teachers Trained", "value": "1,200+" }
     ],
@@ -1347,7 +1347,7 @@
     "title": "Quick Facts",
     "facts": [
       "7 specialized departments serving all provinces",
-      "595+ Protestant primary schools nationwide",
+      "1,500+ Protestant schools nationwide",
       "200+ trauma counselors certified across Rwanda",
       "10,000+ youth reached through annual programs",
       "5,000+ women empowered through gender initiatives",
