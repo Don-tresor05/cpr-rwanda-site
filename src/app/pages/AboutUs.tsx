@@ -349,7 +349,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-5 max-w-[280px] sm:max-w-none mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-5">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
                 { name: "Mgr Dr Manasseh Gahima", role: t("aboutPage.execCommittee.roles.president"), image: "", bio: "" },
                 { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
@@ -394,7 +394,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-5 max-w-[280px] sm:max-w-none mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-5">
               {[
                 { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
