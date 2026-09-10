@@ -32,7 +32,7 @@ export default defineConfig({
             S.documentTypeListItem('departmentResourceFile').title('Department Resource Files'),
             S.documentTypeListItem('departmentResourceGroup').title('Department Resource Groups'),
             S.documentTypeListItem('memberChurch').title('Member Churches'),
-            S.documentTypeListItem('galleryCollection').title('Gallery Collections'),
+            S.documentTypeListItem('galleryEvent').title('Gallery Collections'),
             S.documentTypeListItem('radioProgram').title('Radio Programs'),
             S.documentTypeListItem('testimonial').title('Testimonials'),
             S.documentTypeListItem('project').title('Projects'),
