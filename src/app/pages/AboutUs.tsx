@@ -361,7 +361,7 @@ export function AboutUs() {
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
                   <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
                     {member.image ? (
-                      <img src={member.image} alt={member.name} className="w-full h-full object-cover block" />
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top block" />
                     ) : (
                       <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -409,7 +409,7 @@ export function AboutUs() {
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
                   <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
                     {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover block" />
+                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top block" />
                     ) : (
                       <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
