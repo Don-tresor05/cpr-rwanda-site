@@ -371,15 +371,15 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-1 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black text-[18px] mb-1 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold mb-2.5 block">
+                    <span className="text-[#8B6543] text-[14.4px] font-semibold mb-2.5 block">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                     <button 
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
-                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
+                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[18px] hover:text-[#8B6543] transition-colors group"
                     >
                       {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                     </button>
@@ -419,10 +419,10 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-2 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black text-[18px] mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold">
+                    <span className="text-[#8B6543] text-[14.4px] font-semibold">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                   </div>
