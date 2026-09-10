@@ -359,11 +359,11 @@ export function AboutUs() {
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                  <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
                     {member.image ? (
-                      <img src={member.image} alt={member.name} className="w-full h-auto block" />
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover block" />
                     ) : (
-                      <div className="w-full aspect-[0.95] bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -371,7 +371,7 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-black text-[18px] mb-1 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black/80 text-[18px] mb-1 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-[14.4px] font-semibold mb-2.5 block">
@@ -407,11 +407,11 @@ export function AboutUs() {
               ].map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                  <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
                     {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-auto block" />
+                      <img src={member.img} alt={member.name} className="w-full h-full object-cover block" />
                     ) : (
-                      <div className="w-full aspect-[0.95] bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -419,7 +419,7 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-black text-[18px] mb-2 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black/80 text-[18px] mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
                     <span className="text-[#8B6543] text-[14.4px] font-semibold">
