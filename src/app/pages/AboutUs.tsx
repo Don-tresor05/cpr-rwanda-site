@@ -349,7 +349,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
                 { name: "Mgr Dr Manasseh Gahima", role: t("aboutPage.execCommittee.roles.president"), image: "", bio: "" },
                 { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
@@ -357,32 +357,31 @@ export function AboutUs() {
                 { name: "Rev Past Thomas Murwanashyaka", role: t("aboutPage.execCommittee.roles.advisor"), image: "", bio: "" },
                 { name: "Rev Pasteur Samuel Mutabazi", role: t("aboutPage.execCommittee.roles.secretaryGeneral"), image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
               ]).map((member, i) => (
-                <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
-                  <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                <div key={i} className="group flex flex-col">
+                  <div className="relative w-full mb-3">
                     {member.image ? (
-                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
+                      <img src={member.image} alt={member.name} className="w-full h-auto block" />
                     ) : (
-                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                      <div className="w-full aspect-[0.95] bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     )}
-                  </div>
-                  <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-1 leading-tight">
-                      {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
-                    </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold mb-2.5 block">
-                      {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
-                    </span>
                     <button 
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
-                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
+                      className="absolute left-0 bottom-0 w-1/2 bg-black text-[#F9E300] px-[1em] py-[0.2em] text-[18px] leading-[27px] text-left hover:bg-black/90 transition-colors"
                     >
                       {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                     </button>
+                  </div>
+                  <div className="text-left flex flex-col">
+                    <h3 className="text-[18px] font-bold text-black mb-1">
+                      {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
+                    </h3>
+                    <p className="text-[14.4px] font-normal text-black m-0">
+                      {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -394,7 +393,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
               {[
                 { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
                 { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
@@ -405,26 +404,25 @@ export function AboutUs() {
                 { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
                 { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
               ].map((member, i) => (
-                <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
-                  <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                <div key={i} className="group flex flex-col">
+                  <div className="relative w-full mb-3">
                     {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                      <img src={member.img} alt={member.name} className="w-full h-auto block" />
                     ) : (
-                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                      <div className="w-full aspect-[0.95] bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     )}
                   </div>
-                  <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-2 leading-tight">
+                  <div className="text-left flex flex-col">
+                    <h3 className="text-[18px] font-bold text-black mb-1">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold">
+                    <p className="text-[14.4px] font-normal text-black m-0">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
-                    </span>
+                    </p>
                   </div>
                 </div>
               ))}
