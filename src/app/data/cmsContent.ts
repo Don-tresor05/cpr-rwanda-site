@@ -374,6 +374,54 @@ export function useBoardMembers(): BoardMember[] | null {
   return members;
 }
 
+const STAFF_MEMBERS_QUERY = `*[_type == "staffMember"] | order(order asc) {
+  name,
+  role,
+  "image": image.asset->url,
+  bio
+}`;
+
+/**
+ * Loads the staff photo grid from Sanity. Returns `null` when no staff
+ * documents exist yet so the section keeps showing the hardcoded staff
+ * list. Reuses the BoardMember shape since the fields are identical.
+ */
+export function useStaffMembers(): BoardMember[] | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [staff, setStaff] = useState<BoardMember[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    sanityClient
+      .fetch<{ name?: string; role?: LocalizedField; image?: string; bio?: LocalizedField }[]>(STAFF_MEMBERS_QUERY)
+      .then((docs) => {
+        if (cancelled) return;
+        const valid = (docs || []).filter((d) => d.name);
+        if (valid.length === 0) {
+          setStaff(null);
+          return;
+        }
+        setStaff(
+          valid.map((d) => ({
+            name: d.name || "",
+            role: pickOrUndef(d.role, lang) || "",
+            image: d.image || "",
+            bio: pickOrUndef(d.bio, lang),
+          }))
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setStaff(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  return staff;
+}
+
 const PROJECT_QUERY = `*[_type == "project"] | order(order asc) {
   order,
   icon,

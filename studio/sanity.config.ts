@@ -36,6 +36,7 @@ export default defineConfig({
             S.documentTypeListItem('radioProgram').title('Radio Programs'),
             S.documentTypeListItem('testimonial').title('Testimonials'),
             S.documentTypeListItem('project').title('Projects'),
+            S.documentTypeListItem('boardMember').title('Board Members'),
           ]),
     }),
     visionTool(),

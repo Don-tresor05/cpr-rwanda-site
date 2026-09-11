@@ -7,7 +7,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
-import { useBoardMembers, BoardMember } from "../data/cmsContent";
+import { useBoardMembers, useStaffMembers, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
 import { PortableText } from "@portabletext/react";
 
@@ -22,6 +22,7 @@ export function AboutUs() {
   const { t } = useTranslation("home");
   const cms = useAboutPage();
   const boardMembers = useBoardMembers();
+  const staffMembers = useStaffMembers();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -395,21 +396,21 @@ export function AboutUs() {
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
-              {[
-                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Sec Photo.webp" },
-                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), img: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
-                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
-              ].map((member, i) => (
+              {(staffMembers && staffMembers.length > 0 ? staffMembers : [
+                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Sec Photo.webp" },
+                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), image: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), image: "" },
+                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), image: "" },
+              ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
                   <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
-                    {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top block" />
+                    {member.image ? (
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top block" />
                     ) : (
                       <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -425,6 +426,14 @@ export function AboutUs() {
                     <span className="text-[#8B6543] text-[14.4px] font-semibold">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
+                    {member.bio && (
+                      <button
+                        onClick={() => setSelectedBoardMember(member as BoardMember)}
+                        className="inline-flex items-center gap-2 mt-3 pt-3 text-[#4E6132] font-bold text-[15px] hover:text-[#8B6543] transition-colors group self-start"
+                      >
+                        {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -444,13 +453,13 @@ export function AboutUs() {
             onClick={() => setOrganigramLightboxOpen(true)}
           >
             <img 
-              src="/cpr/assets/Organigam.jpeg" 
+              src={cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg"} 
               alt="CPR Rwanda Organigram" 
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
           <ImageLightbox 
-            images={[{ src: "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            images={[{ src: cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
             selectedIndex={organigramLightboxOpen ? 0 : null} 
             onClose={() => setOrganigramLightboxOpen(false)} 
           />

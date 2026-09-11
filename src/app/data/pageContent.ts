@@ -233,7 +233,7 @@ export interface AboutPageContent {
     defaultName?: string;
     defaultRole?: string;
   };
-  organigram?: { title?: string; comingSoon?: string };
+  organigram?: { title?: string; comingSoon?: string; image?: string };
   partners?: { title?: string };
   historyModal?: {
     learnMore?: string;
@@ -269,7 +269,7 @@ const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
     items[] { title, desc }
   },
   execCommittee { title, desc, boardMembers, staff, defaultName, defaultRole },
-  organigram { title, comingSoon },
+  organigram { title, comingSoon, "image": image.asset->url },
   partners { title },
   historyModal { learnMore, badge, title, p1, p2, personName, personRole, cta }
 }`;
@@ -320,7 +320,7 @@ interface AboutPageRaw {
     defaultName?: LocalizedField;
     defaultRole?: LocalizedField;
   };
-  organigram?: { title?: LocalizedField; comingSoon?: LocalizedField };
+  organigram?: { title?: LocalizedField; comingSoon?: LocalizedField; image?: string | null };
   partners?: { title?: LocalizedField };
   historyModal?: {
     learnMore?: LocalizedField;
@@ -425,6 +425,7 @@ export function useAboutPage(): AboutPageContent | null {
             ? {
                 title: pickOrUndef(doc.organigram.title, lang),
                 comingSoon: pickOrUndef(doc.organigram.comingSoon, lang),
+                image: doc.organigram.image || undefined,
               }
             : undefined,
           partners: doc.partners
