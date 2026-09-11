@@ -468,15 +468,17 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="py-16 scroll-mt-32 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-10">
-          <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
-            {cms?.partners?.title ?? t("aboutPage.partners.title")}
-          </h2>
-        </div>
-        
-        {/* The Marquee Container */}
-        <div className="relative flex overflow-x-hidden hover-pause border-y border-[#4E6132]/5 bg-gradient-to-r from-[#FDFCFB] via-white to-[#FDFCFB] py-8 w-full group">
+      <section id="our-partners" className="pb-20 scroll-mt-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="bg-[#F8F9FA] rounded-3xl shadow-sm border border-[#8B6543]/10 overflow-hidden py-12 lg:py-16">
+            <div className="text-center mb-10 lg:mb-12">
+              <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
+                {cms?.partners?.title ?? t("aboutPage.partners.title")}
+              </h2>
+            </div>
+            
+            {/* The Marquee Container */}
+            <div className="relative flex overflow-x-hidden hover-pause w-full group">
           <div className="animate-marquee flex flex-nowrap items-center whitespace-nowrap min-w-full">
             {(cmsPartners && cmsPartners.length > 0 ? cmsPartners : [
               { name: "WCC" }, { name: "AACC" }, { name: "FECCLAHA" }, 
@@ -518,6 +520,7 @@ export function AboutUs() {
                 )}
               </div>
             ))}
+          </div>
           </div>
         </div>
       </section>
