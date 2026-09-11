@@ -468,9 +468,9 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="bg-[#F8F9FA] pt-16 pb-12 lg:pt-20 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
+      <section id="our-partners" className="bg-[#F8F9FA] pt-20 pb-12 lg:pt-28 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
         <div className="w-full">
-          <div className="text-center mb-10 lg:mb-12">
+          <div className="text-center mb-14 lg:mb-20">
               <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
                 {cms?.partners?.title ?? t("aboutPage.partners.title")}
               </h2>
