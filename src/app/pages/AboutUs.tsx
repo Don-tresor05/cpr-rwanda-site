@@ -523,6 +523,7 @@ export function AboutUs() {
           </div>
           </div>
         </div>
+        </div>
       </section>
       {/* History Modal */}
       <AnimatePresence>
