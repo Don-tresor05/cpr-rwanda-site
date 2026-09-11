@@ -144,6 +144,7 @@ export const aboutPage = defineType({
       fields: [
         { name: "title", title: "Section title", type: "localizedString" },
         { name: "comingSoon", title: "Placeholder text", type: "localizedString" },
+        { name: "image", title: "Organigram image", type: "image", options: { hotspot: true } },
       ],
     }),
     defineField({

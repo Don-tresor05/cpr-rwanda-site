@@ -37,6 +37,7 @@ export default defineConfig({
             S.documentTypeListItem('testimonial').title('Testimonials'),
             S.documentTypeListItem('project').title('Projects'),
             S.documentTypeListItem('boardMember').title('Board Members'),
+            S.documentTypeListItem('staffMember').title('Staff Members'),
           ]),
     }),
     visionTool(),
