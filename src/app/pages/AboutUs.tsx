@@ -7,7 +7,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
-import { useBoardMembers, useStaffMembers, BoardMember } from "../data/cmsContent";
+import { useBoardMembers, useStaffMembers, usePartners, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
 import { PortableText } from "@portabletext/react";
 
@@ -23,6 +23,7 @@ export function AboutUs() {
   const cms = useAboutPage();
   const boardMembers = useBoardMembers();
   const staffMembers = useStaffMembers();
+  const cmsPartners = usePartners();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -467,20 +468,56 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="py-16 scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-10">
+      <section id="our-partners" className="py-16 scroll-mt-32 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-10">
+          <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
             {cms?.partners?.title ?? t("aboutPage.partners.title")}
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">AACC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECCLAHA</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">CBF</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PPLM</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RIC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RICH</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PEACE PLAN RWANDA</div>
+        </div>
+        
+        {/* The Marquee Container */}
+        <div className="relative flex overflow-x-hidden hover-pause border-y border-[#4E6132]/5 bg-gradient-to-r from-[#FDFCFB] via-white to-[#FDFCFB] py-8 w-full group">
+          <div className="animate-marquee flex flex-nowrap items-center whitespace-nowrap min-w-full">
+            {(cmsPartners && cmsPartners.length > 0 ? cmsPartners : [
+              { name: "WCC" }, { name: "AACC" }, { name: "FECCLAHA" }, 
+              { name: "CBF" }, { name: "PPLM" }, { name: "RIC" }, 
+              { name: "RICH" }, { name: "PEACE PLAN RWANDA" }
+            ]).map((partner, i) => (
+              <div key={`partner-a-${i}`} className="inline-flex items-center justify-center px-10">
+                {'image' in partner && partner.image ? (
+                  <img 
+                    src={partner.image as string} 
+                    alt={partner.name} 
+                    className="max-h-[70px] max-w-[200px] object-contain opacity-70 grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                  />
+                ) : (
+                  <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">
+                    {partner.name}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="animate-marquee flex flex-nowrap items-center whitespace-nowrap min-w-full" aria-hidden="true">
+            {(cmsPartners && cmsPartners.length > 0 ? cmsPartners : [
+              { name: "WCC" }, { name: "AACC" }, { name: "FECCLAHA" }, 
+              { name: "CBF" }, { name: "PPLM" }, { name: "RIC" }, 
+              { name: "RICH" }, { name: "PEACE PLAN RWANDA" }
+            ]).map((partner, i) => (
+              <div key={`partner-b-${i}`} className="inline-flex items-center justify-center px-10">
+                {'image' in partner && partner.image ? (
+                  <img 
+                    src={partner.image as string} 
+                    alt={partner.name} 
+                    className="max-h-[70px] max-w-[200px] object-contain opacity-70 grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                  />
+                ) : (
+                  <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">
+                    {partner.name}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>

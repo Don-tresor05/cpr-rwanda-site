@@ -491,3 +491,45 @@ export function useProjects(): Project[] | null {
 
   return projects;
 }
+
+export interface Partner {
+  name: string;
+  image: string;
+}
+
+const PARTNER_QUERY = `*[_type == "partner"] | order(order asc) {
+  name,
+  "image": image.asset->url
+}`;
+
+export function usePartners(): Partner[] | null {
+  const [partners, setPartners] = useState<Partner[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    sanityClient
+      .fetch<{ name?: string; image?: string | null }[]>(PARTNER_QUERY)
+      .then((docs) => {
+        if (cancelled) return;
+        const valid = (docs || []).filter((d) => d.name && d.image);
+        if (valid.length === 0) {
+          setPartners(null);
+          return;
+        }
+        setPartners(
+          valid.map((d) => ({
+            name: d.name as string,
+            image: d.image as string,
+          }))
+        );
+      })
+      .catch(() => {
+        if (!cancelled) setPartners(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return partners;
+}
