@@ -468,10 +468,9 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="pb-20 scroll-mt-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="bg-[#F8F9FA] rounded-3xl shadow-sm border border-[#8B6543]/10 overflow-hidden py-12 lg:py-16">
-            <div className="text-center mb-10 lg:mb-12">
+      <section id="our-partners" className="bg-[#F8F9FA] pt-16 pb-12 lg:pt-20 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
+        <div className="w-full">
+          <div className="text-center mb-10 lg:mb-12">
               <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
                 {cms?.partners?.title ?? t("aboutPage.partners.title")}
               </h2>
@@ -521,8 +520,6 @@ export function AboutUs() {
               </div>
             ))}
           </div>
-          </div>
-        </div>
         </div>
       </section>
       {/* History Modal */}
