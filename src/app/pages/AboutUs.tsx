@@ -380,7 +380,7 @@ export function AboutUs() {
                     </span>
                     <button 
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
-                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[18px] hover:text-[#8B6543] transition-colors group"
+                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[14px] hover:text-[#8B6543] transition-colors group"
                     >
                       {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                     </button>
@@ -429,7 +429,7 @@ export function AboutUs() {
                     {member.bio && (
                       <button
                         onClick={() => setSelectedBoardMember(member as BoardMember)}
-                        className="inline-flex items-center gap-2 mt-3 pt-3 text-[#4E6132] font-bold text-[15px] hover:text-[#8B6543] transition-colors group self-start"
+                        className="inline-flex items-center gap-2 mt-3 pt-3 text-[#4E6132] font-bold text-[14px] hover:text-[#8B6543] transition-colors group self-start"
                       >
                         {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                       </button>
