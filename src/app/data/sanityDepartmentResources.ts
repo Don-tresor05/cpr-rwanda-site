@@ -35,7 +35,7 @@ const GROUPS_QUERY = `*[_type == "departmentResourceGroup" && department == $dep
 }`;
 
 const FILES_QUERY = `*[_type == "departmentResourceFile" && group->slug.current == $slug] | order(order asc) {
-  _id, title, "file": file->{url, size}, _updatedAt
+  _id, title, "file": file.asset->{url, size}, _updatedAt
 }`;
 
 function formatSize(bytes?: number): string {
