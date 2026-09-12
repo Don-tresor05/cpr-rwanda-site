@@ -107,7 +107,7 @@ export function AboutUs() {
       <div
         className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/cpr/assets/CPR 3 - Copy.webp')",
+          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${cms?.heroImage ?? "/cpr/assets/CPR 3 - Copy.webp"}')`,
           backgroundSize: "cover",
           backgroundPosition: "center 5%"
         }}
@@ -128,7 +128,6 @@ export function AboutUs() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
-            {/* @ts-ignore */}
             {cms?.heroDesc ?? t("aboutPage.heroDesc")}
           </motion.p>
         </div>

@@ -190,6 +190,7 @@ export function useDepartmentsPage(): DepartmentsPageContent | null {
 export interface AboutPageContent {
   heroTitle?: string;
   heroDesc?: string;
+  heroImage?: string;
   nav?: {
     whoWeAre?: string;
     visionMission?: string;
@@ -253,6 +254,7 @@ export interface AboutPageContent {
 const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
   heroTitle,
   heroDesc,
+  "heroImage": heroImage.asset->url,
   nav {
     whoWeAre, visionMission, coreValues, execCommittee, organigram, ourPartners
   },
@@ -280,6 +282,7 @@ const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
 interface AboutPageRaw {
   heroTitle?: LocalizedField;
   heroDesc?: LocalizedField;
+  heroImage?: string | null;
   nav?: {
     whoWeAre?: LocalizedField;
     visionMission?: LocalizedField;
@@ -363,6 +366,7 @@ export function useAboutPage(): AboutPageContent | null {
         setContent({
           heroTitle: pickOrUndef(doc.heroTitle, lang),
           heroDesc: pickOrUndef(doc.heroDesc, lang),
+          heroImage: doc.heroImage || undefined,
           nav: doc.nav
             ? {
                 whoWeAre: pickOrUndef(doc.nav.whoWeAre, lang),
