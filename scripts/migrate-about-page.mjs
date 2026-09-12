@@ -13,7 +13,7 @@ import { createClient } from "@sanity/client";
 import { readFileSync } from "fs";
 
 const client = createClient({
-  projectId: "2bpoen39",
+  projectId: "7kmzwj0g",
   dataset: "production",
   apiVersion: "2024-01-01",
   token: process.env.SANITY_WRITE_TOKEN,
