@@ -7,21 +7,11 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
-import { useBoardMembers, useStaffMembers, usePartners, BoardMember } from "../data/cmsContent";
+import { useBoardMembers, useStaffMembers, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
-import { PartnersCarousel } from "../components/ui/PartnersCarousel";
+import { PartnersSection } from "../components/sections/PartnersSection";
 import { PortableText } from "@portabletext/react";
 
-const FALLBACK_PARTNERS = [
-  { name: "WCC" },
-  { name: "AACC" },
-  { name: "FECCLAHA" },
-  { name: "CBF" },
-  { name: "PPLM" },
-  { name: "RIC" },
-  { name: "RICH" },
-  { name: "PEACE PLAN RWANDA" },
-];
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
@@ -35,7 +25,6 @@ export function AboutUs() {
   const cms = useAboutPage();
   const boardMembers = useBoardMembers();
   const staffMembers = useStaffMembers();
-  const cmsPartners = usePartners();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -480,23 +469,7 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="bg-[#F8F9FA] pt-12 pb-12 lg:pt-14 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
-        <div className="w-full">
-          <div className="text-center mb-14 lg:mb-20">
-              <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
-                {cms?.partners?.title ?? t("aboutPage.partners.title")}
-              </h2>
-              <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
-                {cms?.partners?.subtitle ?? t("aboutPage.partners.subtitle")}
-              </p>
-            </div>
-            
-            {/* Sliding Partners Carousel */}
-            <PartnersCarousel
-              partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
-            />
-        </div>
-      </section>
+      <PartnersSection />
       {/* History Modal */}
       <AnimatePresence>
         {historyModalOpen && (
