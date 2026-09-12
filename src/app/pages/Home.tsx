@@ -7,7 +7,7 @@ import { ProjectsSection } from "../components/sections/ProjectsSection";
 import { NewsSection } from "../components/sections/NewsSection";
 import { RadioSection } from "../components/sections/RadioSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
-import { PartnersSection } from "../components/sections/PartnersSection";
+import { GalleryPreview } from "../components/sections/GalleryPreview";
 
 export function Home() {
   return (
@@ -21,7 +21,7 @@ export function Home() {
       <NewsSection />
       <RadioSection />
       <TestimonialsSection />
-      <PartnersSection />
+      <GalleryPreview />
     </main>
   );
 }
