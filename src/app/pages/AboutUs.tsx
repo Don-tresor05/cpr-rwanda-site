@@ -9,7 +9,19 @@ import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
 import { useBoardMembers, useStaffMembers, usePartners, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { PartnersCarousel } from "../components/ui/PartnersCarousel";
 import { PortableText } from "@portabletext/react";
+
+const FALLBACK_PARTNERS = [
+  { name: "WCC" },
+  { name: "AACC" },
+  { name: "FECCLAHA" },
+  { name: "CBF" },
+  { name: "PPLM" },
+  { name: "RIC" },
+  { name: "RICH" },
+  { name: "PEACE PLAN RWANDA" },
+];
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
@@ -476,51 +488,10 @@ export function AboutUs() {
               </h2>
             </div>
             
-            {/* The Marquee Container */}
-            <div className="relative flex overflow-x-hidden hover-pause w-full group">
-          <div className="animate-marquee flex flex-nowrap items-center whitespace-nowrap min-w-full">
-            {(cmsPartners && cmsPartners.length > 0 ? cmsPartners : [
-              { name: "WCC" }, { name: "AACC" }, { name: "FECCLAHA" }, 
-              { name: "CBF" }, { name: "PPLM" }, { name: "RIC" }, 
-              { name: "RICH" }, { name: "PEACE PLAN RWANDA" }
-            ]).map((partner, i) => (
-              <div key={`partner-a-${i}`} className="inline-flex items-center justify-center px-10">
-                {'image' in partner && partner.image ? (
-                  <img 
-                    src={partner.image as string} 
-                    alt={partner.name} 
-                    className="max-h-[70px] max-w-[200px] object-contain cursor-pointer"
-                  />
-                ) : (
-                  <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">
-                    {partner.name}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="animate-marquee flex flex-nowrap items-center whitespace-nowrap min-w-full" aria-hidden="true">
-            {(cmsPartners && cmsPartners.length > 0 ? cmsPartners : [
-              { name: "WCC" }, { name: "AACC" }, { name: "FECCLAHA" }, 
-              { name: "CBF" }, { name: "PPLM" }, { name: "RIC" }, 
-              { name: "RICH" }, { name: "PEACE PLAN RWANDA" }
-            ]).map((partner, i) => (
-              <div key={`partner-b-${i}`} className="inline-flex items-center justify-center px-10">
-                {'image' in partner && partner.image ? (
-                  <img 
-                    src={partner.image as string} 
-                    alt={partner.name} 
-                    className="max-h-[70px] max-w-[200px] object-contain cursor-pointer"
-                  />
-                ) : (
-                  <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">
-                    {partner.name}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          </div>
+            {/* Sliding Partners Carousel */}
+            <PartnersCarousel
+              partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
+            />
         </div>
       </section>
       {/* History Modal */}
