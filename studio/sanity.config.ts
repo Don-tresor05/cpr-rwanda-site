@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'cpr-website',
   title: 'CPR Website',
 
-  projectId: '7kmzwj0g',
+  projectId: '2bpoen39',
   dataset: 'production',
 
   plugins: [
