@@ -489,7 +489,7 @@ export function AboutUs() {
                   <img 
                     src={partner.image as string} 
                     alt={partner.name} 
-                    className="max-h-[70px] max-w-[200px] object-contain opacity-70 grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                    className="max-h-[70px] max-w-[200px] object-contain cursor-pointer"
                   />
                 ) : (
                   <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">
@@ -510,7 +510,7 @@ export function AboutUs() {
                   <img 
                     src={partner.image as string} 
                     alt={partner.name} 
-                    className="max-h-[70px] max-w-[200px] object-contain opacity-70 grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                    className="max-h-[70px] max-w-[200px] object-contain cursor-pointer"
                   />
                 ) : (
                   <div className="text-2xl font-black font-['Outfit'] text-[#4E6132] opacity-70 transition-all duration-300 hover:opacity-100 cursor-pointer">

@@ -1,16 +1,25 @@
 import { motion } from "motion/react";
 import { PARTNERS } from "../../data/partners";
-import { useSiteSettings } from "../../data/siteSettings";
+import { usePartners } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 
+/**
+ * Unused on any page today — the About Page's own "Our Partners" marquee
+ * (fed by the same `partner` Sanity documents) is what's actually live.
+ * Kept in sync with the same CMS source in case this section gets wired
+ * into a page later, rather than left pointing at the removed
+ * siteSettings.partners string list.
+ */
 export function PartnersSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  const settings = useSiteSettings();
+  const cmsPartners = usePartners();
   const partners =
-    settings?.partners && settings.partners.length > 0 ? settings.partners : PARTNERS;
+    cmsPartners && cmsPartners.length > 0
+      ? cmsPartners.map((p) => p.name)
+      : PARTNERS;
   return (
     <WatermarkSection ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

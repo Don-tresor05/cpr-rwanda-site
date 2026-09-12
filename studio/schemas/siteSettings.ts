@@ -16,7 +16,6 @@ export const siteSettings = defineType({
     { name: "stats", title: "Statistics" },
     { name: "contact", title: "Contact" },
     { name: "radio", title: "Radio" },
-    { name: "partners", title: "Partners" },
   ],
   fields: [
     defineField({
@@ -173,20 +172,12 @@ export const siteSettings = defineType({
         { name: "listenUrl", title: "Listen live URL", type: "url" },
       ],
     }),
-    defineField({
-      name: "partners",
-      title: "Partners",
-      description: "The partner names shown on the home page.",
-      type: "array",
-      group: "partners",
-      of: [{ type: "string" }],
-    }),
   ],
   preview: {
     prepare() {
       return {
         title: "Site Settings",
-        subtitle: "Hero, statistics, contact, radio & partners",
+        subtitle: "Hero, statistics, contact & radio",
       };
     },
   },
