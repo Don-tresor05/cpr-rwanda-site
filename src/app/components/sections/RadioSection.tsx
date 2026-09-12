@@ -57,9 +57,9 @@ export function RadioSection() {
             </div>
 
             <div className="flex gap-4 flex-wrap">
-              <Link to="/radio" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
+              <a href="https://www.youtube.com/@inkoramutimaradiotv7564" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
                 <PlayCircle size={16} /> {t("radio.listenBtn")}
-              </Link>
+              </a>
               <Link
                 to="/radio#programs"
                 className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm"

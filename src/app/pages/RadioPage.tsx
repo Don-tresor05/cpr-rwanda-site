@@ -138,9 +138,10 @@ export function RadioPage() {
             className="flex flex-wrap gap-4"
           >
             <a
-              href="#programs"
+              href="https://www.youtube.com/@inkoramutimaradiotv7564"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm shadow-lg"
-              onClick={(e) => { e.preventDefault(); document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" }); }}
             >
               <PlayCircle size={18} /> {(rp?.heroCta as string) ?? "Listen Live"}
             </a>
@@ -759,8 +760,9 @@ function RadioCtaBlock() {
           className="flex flex-wrap justify-center gap-4"
         >
           <a
-            href="#programs"
-            onClick={(e) => { e.preventDefault(); document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" }); }}
+            href="https://www.youtube.com/@inkoramutimaradiotv7564"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-3.5 rounded-xl hover:bg-[#EAD196] hover:text-[#4E6132] transition-all duration-300 hover:scale-105"
           >
             <PlayCircle size={16} /> {(cta?.btn as string) ?? "Listen Live"}
