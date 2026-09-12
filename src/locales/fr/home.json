@@ -377,7 +377,8 @@
       "comingSoon": "[Schéma de l'organigramme à venir]"
     },
     "partners": {
-      "title": "Nos Partenaires"
+      "title": "Nos Partenaires",
+      "subtitle": "Organisations avec lesquelles nous travaillons"
     },
     "historyModal": {
       "learnMore": "En Savoir Plus",

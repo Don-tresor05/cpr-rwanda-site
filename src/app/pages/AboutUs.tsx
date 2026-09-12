@@ -487,7 +487,7 @@ export function AboutUs() {
                 {cms?.partners?.title ?? t("aboutPage.partners.title")}
               </h2>
               <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
-                {cms?.partners?.subtitle ?? "Organizations we work with"}
+                {cms?.partners?.subtitle ?? t("aboutPage.partners.subtitle")}
               </p>
             </div>
             
