@@ -7,11 +7,21 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
-import { useBoardMembers, useStaffMembers, BoardMember } from "../data/cmsContent";
+import { useBoardMembers, useStaffMembers, usePartners, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
-import { PartnersSection } from "../components/sections/PartnersSection";
+import { PartnersCarousel } from "../components/ui/PartnersCarousel";
 import { PortableText } from "@portabletext/react";
 
+const FALLBACK_PARTNERS = [
+  { name: "WCC" },
+  { name: "AACC" },
+  { name: "FECCLAHA" },
+  { name: "CBF" },
+  { name: "PPLM" },
+  { name: "RIC" },
+  { name: "RICH" },
+  { name: "PEACE PLAN RWANDA" },
+];
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
@@ -25,6 +35,7 @@ export function AboutUs() {
   const cms = useAboutPage();
   const boardMembers = useBoardMembers();
   const staffMembers = useStaffMembers();
+  const cmsPartners = usePartners();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -96,7 +107,7 @@ export function AboutUs() {
       <div
         className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: "linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('/cpr/assets/CPR 3 - Copy.webp')",
+          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${cms?.heroImage ?? "/cpr/assets/CPR 3 - Copy.webp"}')`,
           backgroundSize: "cover",
           backgroundPosition: "center 5%"
         }}
@@ -117,7 +128,6 @@ export function AboutUs() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
-            {/* @ts-ignore */}
             {cms?.heroDesc ?? t("aboutPage.heroDesc")}
           </motion.p>
         </div>
@@ -469,7 +479,23 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <PartnersSection />
+      <section id="our-partners" className="bg-[#F8F9FA] pt-12 pb-12 lg:pt-14 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
+        <div className="w-full">
+          <div className="text-center mb-14 lg:mb-20">
+              <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
+                {cms?.partners?.title ?? t("aboutPage.partners.title")}
+              </h2>
+              <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
+                {cms?.partners?.subtitle ?? t("aboutPage.partners.subtitle")}
+              </p>
+            </div>
+            
+            {/* Sliding Partners Carousel */}
+            <PartnersCarousel
+              partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
+            />
+        </div>
+      </section>
       {/* History Modal */}
       <AnimatePresence>
         {historyModalOpen && (

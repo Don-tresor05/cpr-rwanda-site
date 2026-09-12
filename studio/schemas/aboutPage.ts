@@ -30,6 +30,21 @@ export const aboutPage = defineType({
       group: "hero",
     }),
     defineField({
+      name: "heroDesc",
+      title: "Hero description",
+      description: "The subtitle shown under the hero title.",
+      type: "localizedText",
+      group: "hero",
+    }),
+    defineField({
+      name: "heroImage",
+      title: "Hero background image",
+      description: "The full-width background photo behind the hero title. Falls back to the site default if left empty.",
+      type: "image",
+      options: { hotspot: true },
+      group: "hero",
+    }),
+    defineField({
       name: "nav",
       title: "Sub-navigation labels",
       description: "The pills in the sticky bar under the hero.",

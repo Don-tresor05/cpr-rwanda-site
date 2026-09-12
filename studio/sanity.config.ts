@@ -25,6 +25,8 @@ export default defineConfig({
               .child(S.document().schemaType('departmentsPage').documentId('departmentsPage')),
             S.listItem().title('Secretariat Page').id('secretariatPage')
               .child(S.document().schemaType('secretariatPage').documentId('secretariatPage')),
+            S.listItem().title('Radio Inkoramutima Page').id('radioPage')
+              .child(S.document().schemaType('radioPage').documentId('radioPage')),
             S.divider(),
             // Collections
             S.documentTypeListItem('newsPost').title('News Posts'),
