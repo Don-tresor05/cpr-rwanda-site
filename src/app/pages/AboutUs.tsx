@@ -7,9 +7,11 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { useAboutPage } from "../data/pageContent";
-import { useBoardMembers, BoardMember } from "../data/cmsContent";
+import { useBoardMembers, useStaffMembers, BoardMember } from "../data/cmsContent";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
+import { PartnersSection } from "../components/sections/PartnersSection";
 import { PortableText } from "@portabletext/react";
+
 
 export function AboutUs() {
   const [activeSection, setActiveSection] = useState("");
@@ -22,6 +24,7 @@ export function AboutUs() {
   const { t } = useTranslation("home");
   const cms = useAboutPage();
   const boardMembers = useBoardMembers();
+  const staffMembers = useStaffMembers();
 
   // Scroll to hash on mount or when hash changes
   useEffect(() => {
@@ -349,7 +352,7 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.boardMembers ?? t("aboutPage.execCommittee.boardMembers")}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
               {(boardMembers && boardMembers.length > 0 ? boardMembers : [
                 { name: "Mgr Dr Manasseh Gahima", role: t("aboutPage.execCommittee.roles.president"), image: "", bio: "" },
                 { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
@@ -359,11 +362,11 @@ export function AboutUs() {
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                  <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
                     {member.image ? (
-                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top" />
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top block" />
                     ) : (
-                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -371,15 +374,15 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-1 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black/80 text-[18px] mb-1 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold mb-2.5 block">
+                    <span className="text-[#8B6543] text-[14.4px] font-semibold mb-2.5 block">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
                     <button 
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
-                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[11px] sm:text-sm hover:text-[#8B6543] transition-colors group"
+                      className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[14px] hover:text-[#8B6543] transition-colors group"
                     >
                       {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
                     </button>
@@ -394,24 +397,24 @@ export function AboutUs() {
             <h3 className="font-['Outfit'] font-bold text-2xl text-[#8B6543] mb-8 text-center lg:text-left border-b border-[#8B6543]/20 pb-3">
               {cms?.execCommittee?.staff ?? t("aboutPage.execCommittee.staff")}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-              {[
-                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Sec Photo.webp" },
-                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), img: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), img: "/cpr/assets/IRAGENA Joselyne.webp" },
-                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), img: "" },
-                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), img: "" },
-              ].map((member, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
+              {(staffMembers && staffMembers.length > 0 ? staffMembers : [
+                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Sec Photo.webp" },
+                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), image: "/cpr/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), image: "" },
+                { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), image: "" },
+              ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
-                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
-                    {member.img ? (
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" />
+                  <div className="relative w-full aspect-[0.95] bg-[#EDF1F7] flex items-center justify-center overflow-hidden shrink-0">
+                    {member.image ? (
+                      <img src={member.image} alt={member.name} className="w-full h-full object-cover object-top block" />
                     ) : (
-                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40">
+                      <div className="w-full h-full bg-[#E5E9F0] flex flex-col items-center justify-center text-[#8B6543]/40 block">
                         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -419,12 +422,20 @@ export function AboutUs() {
                     )}
                   </div>
                   <div className="p-3.5 sm:p-5 lg:p-6 text-left bg-white grow flex flex-col justify-center">
-                    <h3 className="font-['Outfit'] font-black text-[#4A4A4A] text-xs sm:text-base mb-2 leading-tight">
+                    <h3 className="font-['Outfit'] font-black text-black/80 text-[18px] mb-2 leading-tight">
                       {member.name || (cms?.execCommittee?.defaultName ?? t("aboutPage.execCommittee.defaultName"))}
                     </h3>
-                    <span className="text-[#8B6543] text-[11px] sm:text-xs font-semibold">
+                    <span className="text-[#8B6543] text-[14.4px] font-semibold">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
+                    {member.bio && (
+                      <button
+                        onClick={() => setSelectedBoardMember(member as BoardMember)}
+                        className="inline-flex items-center gap-2 mt-3 pt-3 text-[#4E6132] font-bold text-[14px] hover:text-[#8B6543] transition-colors group self-start"
+                      >
+                        {cms?.execCommittee?.readBio ?? t("aboutPage.execCommittee.readBio")}
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -444,13 +455,13 @@ export function AboutUs() {
             onClick={() => setOrganigramLightboxOpen(true)}
           >
             <img 
-              src="/cpr/assets/Organigam.jpeg" 
+              src={cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg"} 
               alt="CPR Rwanda Organigram" 
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
           <ImageLightbox 
-            images={[{ src: "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            images={[{ src: cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
             selectedIndex={organigramLightboxOpen ? 0 : null} 
             onClose={() => setOrganigramLightboxOpen(false)} 
           />
@@ -458,23 +469,7 @@ export function AboutUs() {
       </WatermarkSection>
 
       {/* Partners */}
-      <section id="our-partners" className="py-16 scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132] mb-10">
-            {cms?.partners?.title ?? t("aboutPage.partners.title")}
-          </h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">WCC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">AACC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">FECCLAHA</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">CBF</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PPLM</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RIC</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">RICH</div>
-            <div className="text-2xl font-black font-['Outfit'] text-[#4E6132]">PEACE PLAN RWANDA</div>
-          </div>
-        </div>
-      </section>
+      <PartnersSection />
       {/* History Modal */}
       <AnimatePresence>
         {historyModalOpen && (

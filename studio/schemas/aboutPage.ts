@@ -144,6 +144,7 @@ export const aboutPage = defineType({
       fields: [
         { name: "title", title: "Section title", type: "localizedString" },
         { name: "comingSoon", title: "Placeholder text", type: "localizedString" },
+        { name: "image", title: "Organigram image", type: "image", options: { hotspot: true } },
       ],
     }),
     defineField({
@@ -151,7 +152,10 @@ export const aboutPage = defineType({
       title: "Partners",
       type: "object",
       group: "partners",
-      fields: [{ name: "title", title: "Section title", type: "localizedString" }],
+      fields: [
+        { name: "title", title: "Section title", type: "localizedString" },
+        { name: "subtitle", title: "Section subtitle", type: "localizedString" }
+      ],
     }),
     defineField({
       name: "historyModal",

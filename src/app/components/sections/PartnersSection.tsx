@@ -1,41 +1,45 @@
-import { motion } from "motion/react";
-import { PARTNERS } from "../../data/partners";
-import { useSiteSettings } from "../../data/siteSettings";
-import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
-import { WatermarkSection } from "../ui/WatermarkBackground";
+import { useAboutPage } from "../../data/pageContent";
+import { usePartners } from "../../data/cmsContent";
+import { PartnersCarousel } from "../ui/PartnersCarousel";
 
-export function PartnersSection() {
-  const { ref, visible } = useScrollReveal();
+const FALLBACK_PARTNERS = [
+  { name: "WCC" },
+  { name: "AACC" },
+  { name: "FECCLAHA" },
+  { name: "CBF" },
+  { name: "PPLM" },
+  { name: "RIC" },
+  { name: "RICH" },
+  { name: "PEACE PLAN RWANDA" },
+];
+
+interface PartnersSectionProps {
+  id?: string;
+}
+
+export function PartnersSection({ id = "our-partners" }: PartnersSectionProps) {
   const { t } = useTranslation("home");
-  const settings = useSiteSettings();
-  const partners =
-    settings?.partners && settings.partners.length > 0 ? settings.partners : PARTNERS;
+  const cms = useAboutPage();
+  const cmsPartners = usePartners();
+
   return (
-    <WatermarkSection ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={visible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-10"
-        >
-          <span className="text-[#4A4A4A]/60 text-sm font-medium uppercase tracking-widest">{t("partners.trustedBy")}</span>
-        </motion.div>
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          {partners.map((partner, i) => (
-            <motion.div
-              key={partner}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={visible ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.05, duration: 0.3 }}
-              className="px-5 py-3 rounded-xl border border-[#4E6132]/10 text-sm font-semibold text-[#4E6132]/60 hover:text-[#4E6132] hover:border-[#4E6132]/30 hover:bg-[#4E6132]/3 transition-all duration-300 cursor-pointer"
-            >
-              {partner}
-            </motion.div>
-          ))}
+    <section id={id} className="bg-[#F8F9FA] pt-12 pb-12 lg:pt-14 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
+      <div className="w-full">
+        <div className="text-center mb-14 lg:mb-20">
+          <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
+            {cms?.partners?.title ?? t("aboutPage.partners.title")}
+          </h2>
+          <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
+            {cms?.partners?.subtitle ?? t("aboutPage.partners.subtitle")}
+          </p>
         </div>
+        
+        {/* Sliding Partners Carousel */}
+        <PartnersCarousel
+          partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
+        />
       </div>
-    </WatermarkSection>
+    </section>
   );
 }

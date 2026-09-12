@@ -1,47 +1,87 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getNews } from "../../data/news";
 import { useCmsNews } from "../../data/sanityNews";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { useTranslation } from "react-i18next";
 
+const AUTOPLAY_SPEED = 5000;
+const TRANSITION_SPEED = 500;
+
+function computeItemsPerView(width: number): number {
+  if (width >= 1024) return 3;
+  if (width >= 640) return 2;
+  return 1;
+}
+
+function usesRealHover(): boolean {
+  if (typeof window === "undefined" || !window.matchMedia) return true;
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
 export function NewsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
-  // CMS posts take over when staff publish them; hardcoded news is the fallback.
   const news = useCmsNews() ?? getNews(t);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
-
+  const [itemsPerView, setItemsPerView] = useState(() =>
+    typeof window === "undefined" ? 1 : computeItemsPerView(window.innerWidth),
+  );
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setVisibleCount(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCount(2);
-      } else {
-        setVisibleCount(3);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const update = () => setItemsPerView(computeItemsPerView(window.innerWidth));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
-  const maxIndex = Math.max(0, news.length - visibleCount);
+  const count = news.length;
+  const canSlide = count > itemsPerView;
+  const track = canSlide ? [...news, ...news.slice(0, itemsPerView)] : news;
+  const trackLength = track.length;
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  };
+  const [index, setIndex] = useState(0);
+  const [animated, setAnimated] = useState(true);
+  const [playing, setPlaying] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const hoverCapable = useRef(usesRealHover());
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-  };
+  useEffect(() => {
+    setIndex(0);
+    setAnimated(false);
+  }, [itemsPerView, count]);
+
+  useEffect(() => {
+    if (!animated) {
+      const id = requestAnimationFrame(() => setAnimated(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animated]);
+
+  useEffect(() => {
+    if (!playing || hovered || !canSlide || !visible) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => i + 1);
+    }, AUTOPLAY_SPEED);
+    return () => window.clearInterval(id);
+  }, [playing, hovered, canSlide, visible]);
+
+  const handleTransitionEnd = useCallback(() => {
+    if (index >= count) {
+      setAnimated(false);
+      setIndex(0);
+    }
+  }, [index, count]);
+
+  const goTo = useCallback((i: number) => {
+    setAnimated(true);
+    setIndex(i);
+  }, []);
+
+  if (count === 0) return null;
+  const activeDot = ((index % count) + count) % count;
 
   return (
     <WatermarkSection id="news" ref={ref} className="py-24 bg-white overflow-hidden">
@@ -63,70 +103,106 @@ export function NewsSection() {
               {t("news.desc")}
             </p>
           </motion.div>
-
-          <div className="flex items-center gap-3 self-end md:self-auto">
-            <button
-              onClick={prevSlide}
-              disabled={currentIndex === 0}
-              aria-label="Previous articles"
-              className="w-12 h-12 rounded-full border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#4E6132] transition-all duration-300 shadow-sm"
-            >
-              <ChevronLeft size={28} />
-            </button>
-            <button
-              onClick={nextSlide}
-              disabled={currentIndex >= maxIndex}
-              aria-label="Next articles"
-              className="w-12 h-12 rounded-full border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#4E6132] transition-all duration-300 shadow-sm"
-            >
-              <ChevronRight size={28} />
-            </button>
-          </div>
         </div>
 
-        <div className="overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-out gap-7"
-            style={{
-              transform: currentIndex === 0 ? "none" : `translateX(calc(-${currentIndex} * (100% + 28px) / ${visibleCount}))`,
-            }}
-          >
-            {news.map((article, i) => (
-              <motion.article
-                key={article.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={visible ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white rounded-2xl overflow-hidden border border-[#4E6132]/10 shadow-sm flex flex-col flex-shrink-0"
-                style={{ width: `calc((100% - ${(visibleCount - 1) * 28}px) / ${visibleCount})` }}
-              >
-                <Link to={`/newsroom/${article.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover"
-                  />
-                </Link>
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="text-xs font-semibold text-[#8B6543] mb-3">
-                    {article.date}
-                  </div>
-                  <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] leading-snug mb-3 hover:text-[#8B6543] transition-colors line-clamp-2 min-h-[56px]">
-                    <Link to={`/newsroom/${article.slug}`}>
-                      {article.title}
-                    </Link>
-                  </h3>
-                  <p className="text-[#4A4A4A] text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
-                  <Link
-                    to={`/newsroom/${article.slug}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors mt-auto"
+        <div
+          className="relative w-full"
+          onMouseEnter={() => hoverCapable.current && setHovered(true)}
+          onMouseLeave={() => hoverCapable.current && setHovered(false)}
+        >
+          <div className="overflow-hidden -mx-3.5 px-3.5 py-4">
+            <div
+              className="flex"
+              onTransitionEnd={handleTransitionEnd}
+              style={{
+                width: `${(trackLength * 100) / itemsPerView}%`,
+                transform: `translateX(-${(index * 100) / trackLength}%)`,
+                transition: animated ? `transform ${TRANSITION_SPEED}ms ease` : "none",
+              }}
+            >
+              {track.map((article, i) => (
+                <div
+                  key={`${article.title}-${i}`}
+                  className="px-3.5"
+                  style={{ width: `${100 / trackLength}%` }}
+                >
+                  <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={visible ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: (i % itemsPerView) * 0.1, duration: 0.5 }}
+                    className="bg-white rounded-2xl overflow-hidden border border-[#4E6132]/10 shadow-sm flex flex-col h-full"
                   >
-                    {t("news.readArticle")} <ArrowRight size={14} />
-                  </Link>
+                    <Link to={`/newsroom/${article.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </Link>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="text-xs font-semibold text-[#8B6543] mb-3">
+                        {article.date}
+                      </div>
+                      <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] leading-snug mb-3 hover:text-[#8B6543] transition-colors line-clamp-2 min-h-[56px]">
+                        <Link to={`/newsroom/${article.slug}`}>
+                          {article.title}
+                        </Link>
+                      </h3>
+                      <p className="text-[#4A4A4A] text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
+                      <Link
+                        to={`/newsroom/${article.slug}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors mt-auto"
+                      >
+                        {t("news.readArticle")} <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </motion.article>
                 </div>
-              </motion.article>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {canSlide && (
+            <div className="relative h-8 mt-10">
+              {/* Dot ("boules") pagination */}
+              <div className="absolute inset-0 flex items-center justify-center gap-2">
+                {news.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Go to slide ${i + 1}`}
+                    aria-current={i === activeDot}
+                    onClick={() => goTo(i)}
+                    className={`h-3 w-3 rounded-full border-2 transition-all duration-300 ${
+                      i === activeDot
+                        ? "bg-[#4E6132] border-[#4E6132] scale-125"
+                        : "bg-transparent border-[#4E6132]/40 hover:border-[#4E6132]"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Play / stop toggle */}
+              <button
+                type="button"
+                aria-pressed={playing}
+                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+                onClick={() => setPlaying((p) => !p)}
+                className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-[#4E6132] text-white shadow-md transition-colors duration-200 hover:bg-[#3d4d28]"
+              >
+                {playing ? (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="0.5" y="0" width="3" height="10" fill="currentColor" />
+                    <rect x="6.5" y="0" width="3" height="10" fill="currentColor" />
+                  </svg>
+                ) : (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M0 0L10 5L0 10V0Z" fill="currentColor" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="mt-12 text-center">

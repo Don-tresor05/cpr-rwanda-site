@@ -13,7 +13,9 @@ import { project } from "./project";
 import { departmentsPage } from "./departmentsPage";
 import { aboutPage } from "./aboutPage";
 import { secretariatPage } from "./secretariatPage";
-import boardMember from "./boardMember";
+import { boardMember } from "./boardMember";
+import { staffMember } from "./staffMember";
+import { partner } from "./partner";
 
 export const schemaTypes = [
   newsPost,
@@ -32,4 +34,6 @@ export const schemaTypes = [
   localizedString,
   localizedText,
   boardMember,
+  staffMember,
+  partner,
 ];

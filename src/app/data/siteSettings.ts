@@ -61,7 +61,6 @@ export interface SiteSettings {
   stats?: StatSettings[];
   contact?: ContactSettings;
   radio?: RadioSettings;
-  partners?: string[];
 }
 
 interface RawSiteSettings {
@@ -69,7 +68,6 @@ interface RawSiteSettings {
   stats?: any[];
   contact?: ContactSettings;
   radio?: any;
-  partners?: string[];
 }
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
@@ -93,8 +91,7 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
     addressLine2,
     socials[] { platform, url }
   },
-  radio { frequency, tagline, listenUrl },
-  partners
+  radio { frequency, tagline, listenUrl }
 }`;
 
 /** Current values used until staff edit them in the CMS. */
@@ -117,12 +114,6 @@ export const FALLBACK_RADIO: RadioSettings = {
   frequency: "107.1",
   tagline: "Voice of the Protestant Council in Rwanda",
 };
-
-export const FALLBACK_PARTNERS: string[] = [
-  "ACT Alliance", "AACC", "CWM", "DanChurchAid", "EAPPI",
-  "Norwegian Church Aid", "Presbyterian Church USA", "Reformed Church",
-  "UNHCR Rwanda", "World Vision", "UNICEF", "GIZ",
-];
 
 function pick(obj: LocalizedField | null | undefined, lang: string): string {
   if (!obj) return "";
@@ -152,7 +143,7 @@ export function useSiteSettings(): SiteSettings | null {
       .fetch<RawSiteSettings>(SITE_SETTINGS_QUERY)
       .then((doc) => {
         if (cancelled) return;
-        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio && !doc.partners)) {
+        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio)) {
           setSettings(null);
           return;
         }
@@ -176,7 +167,6 @@ export function useSiteSettings(): SiteSettings | null {
           })),
           contact: doc.contact || undefined,
           radio: doc.radio || undefined,
-          partners: doc.partners || undefined,
         });
       })
       .catch(() => {

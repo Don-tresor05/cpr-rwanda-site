@@ -232,8 +232,11 @@ export interface AboutPageContent {
     staff?: string;
     defaultName?: string;
     defaultRole?: string;
+    readBio?: string;
+    boardMemberLabel?: string;
+    bioComingSoon?: string;
   };
-  organigram?: { title?: string; comingSoon?: string };
+  organigram?: { title?: string; comingSoon?: string; image?: string };
   partners?: { title?: string };
   historyModal?: {
     learnMore?: string;
@@ -268,8 +271,8 @@ const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
     title,
     items[] { title, desc }
   },
-  execCommittee { title, desc, boardMembers, staff, defaultName, defaultRole },
-  organigram { title, comingSoon },
+  execCommittee { title, desc, boardMembers, staff, defaultName, defaultRole, readBio, boardMemberLabel, bioComingSoon },
+  organigram { title, comingSoon, "image": image.asset->url },
   partners { title },
   historyModal { learnMore, badge, title, p1, p2, personName, personRole, cta }
 }`;
@@ -319,8 +322,11 @@ interface AboutPageRaw {
     staff?: LocalizedField;
     defaultName?: LocalizedField;
     defaultRole?: LocalizedField;
+    readBio?: LocalizedField;
+    boardMemberLabel?: LocalizedField;
+    bioComingSoon?: LocalizedField;
   };
-  organigram?: { title?: LocalizedField; comingSoon?: LocalizedField };
+  organigram?: { title?: LocalizedField; comingSoon?: LocalizedField; image?: string | null };
   partners?: { title?: LocalizedField };
   historyModal?: {
     learnMore?: LocalizedField;
@@ -419,12 +425,16 @@ export function useAboutPage(): AboutPageContent | null {
                 staff: pickOrUndef(doc.execCommittee.staff, lang),
                 defaultName: pickOrUndef(doc.execCommittee.defaultName, lang),
                 defaultRole: pickOrUndef(doc.execCommittee.defaultRole, lang),
+                readBio: pickOrUndef(doc.execCommittee.readBio, lang),
+                boardMemberLabel: pickOrUndef(doc.execCommittee.boardMemberLabel, lang),
+                bioComingSoon: pickOrUndef(doc.execCommittee.bioComingSoon, lang),
               }
             : undefined,
           organigram: doc.organigram
             ? {
                 title: pickOrUndef(doc.organigram.title, lang),
                 comingSoon: pickOrUndef(doc.organigram.comingSoon, lang),
+                image: doc.organigram.image || undefined,
               }
             : undefined,
           partners: doc.partners

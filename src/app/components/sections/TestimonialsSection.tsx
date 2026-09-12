@@ -1,52 +1,85 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion } from "motion/react";
+import { Quote } from "lucide-react";
 import { getTestimonials } from "../../data/testimonials";
 import { useTestimonials } from "../../data/cmsContent";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 
+const AUTOPLAY_SPEED = 5000;
+const TRANSITION_SPEED = 500;
+
+function computeItemsPerView(width: number): number {
+  if (width >= 1024) return 2;
+  return 1;
+}
+
+function usesRealHover(): boolean {
+  if (typeof window === "undefined" || !window.matchMedia) return true;
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+}
+
 export function TestimonialsSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const testimonials = useTestimonials() ?? getTestimonials(t);
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(0);
 
-  const total = testimonials.length;
-
-  // Keep the active index in range when the CMS changes the testimonial count.
+  const [itemsPerView, setItemsPerView] = useState(() =>
+    typeof window === "undefined" ? 1 : computeItemsPerView(window.innerWidth),
+  );
   useEffect(() => {
-    setActive((a) => (a >= total ? 0 : a));
-  }, [total]);
-
-  const goTo = useCallback((idx: number, dir: number) => {
-    setDirection(dir);
-    setActive(idx);
+    const update = () => setItemsPerView(computeItemsPerView(window.innerWidth));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
-  const next = useCallback(() => {
-    setDirection(1);
-    setActive((a) => (a + 1) % total);
-  }, [total]);
+  const count = testimonials.length;
+  const canSlide = count > itemsPerView;
+  const track = canSlide ? [...testimonials, ...testimonials.slice(0, itemsPerView)] : testimonials;
+  const trackLength = track.length;
 
-  const prev = useCallback(() => {
-    setDirection(-1);
-    setActive((a) => (a - 1 + total) % total);
-  }, [total]);
+  const [index, setIndex] = useState(0);
+  const [animated, setAnimated] = useState(true);
+  const [playing, setPlaying] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const hoverCapable = useRef(usesRealHover());
 
   useEffect(() => {
-    if (!visible) return;
-    const id = setInterval(() => next(), 6000);
-    return () => clearInterval(id);
-  }, [visible, next]);
+    setIndex(0);
+    setAnimated(false);
+  }, [itemsPerView, count]);
 
-  const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, scale: 0.95 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit: (dir: number) => ({ x: dir < 0 ? 300 : -300, opacity: 0, scale: 0.95 }),
-  };
+  useEffect(() => {
+    if (!animated) {
+      const id = requestAnimationFrame(() => setAnimated(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animated]);
+
+  useEffect(() => {
+    if (!playing || hovered || !canSlide || !visible) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => i + 1);
+    }, AUTOPLAY_SPEED);
+    return () => window.clearInterval(id);
+  }, [playing, hovered, canSlide, visible]);
+
+  const handleTransitionEnd = useCallback(() => {
+    if (index >= count) {
+      setAnimated(false);
+      setIndex(0);
+    }
+  }, [index, count]);
+
+  const goTo = useCallback((i: number) => {
+    setAnimated(true);
+    setIndex(i);
+  }, []);
+
+  if (count === 0) return null;
+  const activeDot = ((index % count) + count) % count;
 
   return (
     <WatermarkSection ref={ref} className="py-16 bg-white border-t border-[#4E6132]/5">
@@ -68,7 +101,7 @@ export function TestimonialsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#8B6543]" />
@@ -84,53 +117,47 @@ export function TestimonialsSection() {
         </motion.div>
 
         {/* Carousel */}
-        <div className="relative">
-          {/* Nav arrows */}
-          <button
-            onClick={prev}
-            aria-label="Previous testimonial"
-            className="absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-[#4E6132]/10 shadow-lg flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white transition-all duration-300 hover:scale-110"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={next}
-            aria-label="Next testimonial"
-            className="absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-[#4E6132]/10 shadow-lg flex items-center justify-center text-[#4E6132] hover:bg-[#4E6132] hover:text-white transition-all duration-300 hover:scale-110"
-          >
-            <ChevronRight size={20} />
-          </button>
-
-          {/* Cards container */}
-          <div className="relative min-h-[380px] lg:min-h-[340px]">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={active}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="grid lg:grid-cols-3 gap-6"
-              >
-                {/* Featured card - takes 2 cols on lg */}
-                <div className="lg:col-span-2 relative group">
-                  <div className="relative bg-white rounded-3xl p-8 lg:p-10 shadow-xl border border-[#4E6132]/5 h-full overflow-hidden">
+        <div
+          className="relative w-full"
+          onMouseEnter={() => hoverCapable.current && setHovered(true)}
+          onMouseLeave={() => hoverCapable.current && setHovered(false)}
+        >
+          <div className="overflow-hidden -mx-4 px-4 py-4">
+            <div
+              className="flex"
+              onTransitionEnd={handleTransitionEnd}
+              style={{
+                width: `${(trackLength * 100) / itemsPerView}%`,
+                transform: `translateX(-${(index * 100) / trackLength}%)`,
+                transition: animated ? `transform ${TRANSITION_SPEED}ms ease` : "none",
+              }}
+            >
+              {track.map((item, i) => (
+                <div
+                  key={`${item.author}-${i}`}
+                  className="px-4"
+                  style={{ width: `${100 / trackLength}%` }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={visible ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: (i % itemsPerView) * 0.1, duration: 0.5 }}
+                    className="relative bg-white rounded-3xl p-8 lg:p-10 shadow-xl border border-[#4E6132]/5 h-full overflow-hidden flex flex-col"
+                  >
                     {/* Decorative circle bg */}
-                    <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br from-[#4E6132]/5 to-transparent" />
-                    <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-gradient-to-tr from-[#EAD196]/8 to-transparent" />
+                    <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br from-[#4E6132]/5 to-transparent pointer-events-none" />
+                    <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-gradient-to-tr from-[#EAD196]/8 to-transparent pointer-events-none" />
 
-                    <Quote size={40} className="text-[#8B6543]/25 mb-4 relative" />
-                    <p className="text-[#1A1A1A] text-lg lg:text-xl leading-relaxed mb-8 relative italic">
-                      &ldquo;{testimonials[active].quote}&rdquo;
+                    <Quote size={40} className="text-[#8B6543]/25 mb-4 relative flex-shrink-0" />
+                    <p className="text-[#1A1A1A] text-lg lg:text-xl leading-relaxed mb-8 relative italic flex-grow">
+                      &ldquo;{item.quote}&rdquo;
                     </p>
-                    <div className="flex items-center gap-4 relative">
+                    <div className="flex items-center gap-4 relative mt-auto">
                       <div className="relative">
                         <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#EAD196]/40 ring-offset-2">
                           <img
-                            src={testimonials[active].avatar}
-                            alt={testimonials[active].author}
+                            src={item.avatar}
+                            alt={item.author}
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -139,91 +166,58 @@ export function TestimonialsSection() {
                         </div>
                       </div>
                       <div>
-                        <div className="font-['Outfit'] font-bold text-[#4E6132]">{testimonials[active].author}</div>
-                        <div className="text-[#4A4A4A]/60 text-sm">{testimonials[active].role}</div>
+                        <div className="font-['Outfit'] font-bold text-[#4E6132]">{item.author}</div>
+                        <div className="text-[#4A4A4A]/60 text-sm">{item.role}</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
-
-                {/* Side cards (hidden when there are fewer than 3 to avoid duplicates) */}
-                {total >= 3 && (
-                  <div className="hidden lg:flex flex-col gap-6">
-                    {[1, 2].map((offset) => {
-                      const idx = (active + offset) % total;
-                      return (
-                        <button
-                          key={idx}
-                          onClick={() => goTo(idx, offset)}
-                          className="flex-1 bg-white rounded-2xl p-6 shadow-lg border border-[#4E6132]/5 text-left group hover:border-[#EAD196]/40 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
-                        >
-                          <div className="absolute -top-8 -right-8 w-20 h-20 rounded-full bg-gradient-to-br from-[#EAD196]/8 to-transparent" />
-                          <div className="flex items-start gap-3 relative">
-                            <img
-                              src={testimonials[idx].avatar}
-                              alt={testimonials[idx].author}
-                              className="w-10 h-10 rounded-full object-cover ring-1 ring-[#EAD196]/30 flex-shrink-0"
-                            />
-                            <div className="min-w-0">
-                              <p className="text-[#1A1A1A] text-sm leading-relaxed line-clamp-3 mb-3 italic">
-                                &ldquo;{testimonials[idx].quote}&rdquo;
-                              </p>
-                              <div>
-                                <div className="font-['Outfit'] font-semibold text-[#4E6132] text-xs">
-                                  {testimonials[idx].author}
-                                </div>
-                                <div className="text-[#4A4A4A]/50 text-[10px] truncate">
-                                  {testimonials[idx].role}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Circular navigation */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={visible ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col items-center mt-8"
-        >
-          {/* Orbital navigation */}
-          <div className="relative flex items-center gap-4">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#4E6132]/15" />
-            <div className="flex items-center gap-3">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i, i > active ? 1 : -1)}
-                  className="relative group flex items-center justify-center"
-                >
-                  <div
-                    className={`rounded-full transition-all duration-500 ${
-                      i === active
-                        ? "w-5 h-5 bg-[#4E6132] shadow-md shadow-[#4E6132]/30 scale-100"
-                        : "w-2.5 h-2.5 bg-[#4E6132]/20 hover:bg-[#EAD196]/60 hover:scale-125"
-                    }`}
-                  />
-                  {i === active && (
-                    <div className="absolute inset-0 rounded-full animate-ping bg-[#4E6132]/20" style={{ animationDuration: "2s" }} />
-                  )}
-                  {i === active && (
-                    <div className="absolute -inset-1.5 rounded-full border border-[#4E6132]/15 animate-spin" style={{ animationDuration: "8s, linear" }} />
-                  )}
-                </button>
               ))}
             </div>
-            <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#4E6132]/15" />
           </div>
-        </motion.div>
+
+          {canSlide && (
+            <div className="relative h-8 mt-10">
+              {/* Dot ("boules") pagination */}
+              <div className="absolute inset-0 flex items-center justify-center gap-2">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    aria-current={i === activeDot}
+                    onClick={() => goTo(i)}
+                    className={`h-3 w-3 rounded-full border-2 transition-all duration-300 ${
+                      i === activeDot
+                        ? "bg-[#4E6132] border-[#4E6132] scale-125"
+                        : "bg-transparent border-[#4E6132]/40 hover:border-[#4E6132]"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Play / stop toggle */}
+              <button
+                type="button"
+                aria-pressed={playing}
+                aria-label={playing ? "Pause slideshow" : "Play slideshow"}
+                onClick={() => setPlaying((p) => !p)}
+                className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-[#4E6132] text-white shadow-md transition-colors duration-200 hover:bg-[#3d4d28]"
+              >
+                {playing ? (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="0.5" y="0" width="3" height="10" fill="currentColor" />
+                    <rect x="6.5" y="0" width="3" height="10" fill="currentColor" />
+                  </svg>
+                ) : (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M0 0L10 5L0 10V0Z" fill="currentColor" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </WatermarkSection>
   );

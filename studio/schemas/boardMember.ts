@@ -1,13 +1,22 @@
 import { defineType, defineField } from "sanity";
-
-export default defineType({
+ 
+/**
+ * One document per Executive Committee board member (President, Vice
+ * President, Treasurer, Advisor, Secretary General). Shown on the About
+ * Page's "Board Members" grid. The site falls back to a hardcoded list
+ * until at least one boardMember document is published — once one exists,
+ * ALL board members must come from here, so keep the full committee
+ * populated together.
+ */
+export const boardMember = defineType({
   name: "boardMember",
   title: "Board Member",
   type: "document",
   fields: [
     defineField({
       name: "name",
-      title: "Name",
+      title: "Full name",
+      description: "Not localized — shown the same in every language (e.g. 'Mgr Dr Manasseh Gahima').",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
@@ -15,6 +24,7 @@ export default defineType({
       name: "role",
       title: "Role / Title",
       type: "localizedString",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "image",
@@ -25,21 +35,17 @@ export default defineType({
     defineField({
       name: "bio",
       title: "Biography",
+      description: "Shown in the 'Read Bio' modal. Leave blank to show 'Bio coming soon'.",
       type: "localizedText",
     }),
     defineField({
       name: "order",
-      title: "Display Order",
+      title: "Display order",
+      description: "Lower numbers appear first (e.g. President = 1, Secretary General = 5).",
       type: "number",
-      description: "Use numbers to sort the board members (lower numbers appear first)",
-      initialValue: 10,
     }),
   ],
   preview: {
-    select: {
-      title: "name",
-      subtitle: "role.en",
-      media: "image",
-    },
+    select: { title: "name", subtitle: "role.en", media: "image" },
   },
 });

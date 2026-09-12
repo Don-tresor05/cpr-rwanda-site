@@ -377,7 +377,8 @@
       "comingSoon": "[Organigram Diagram Coming Soon]"
     },
     "partners": {
-      "title": "Our Partners"
+      "title": "Our Partners",
+      "subtitle": "Organizations we work with"
     },
     "historyModal": {
       "learnMore": "Learn More",
