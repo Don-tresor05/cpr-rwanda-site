@@ -27,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Sanity project backups (never commit 8MB of binaries)
+backups/
