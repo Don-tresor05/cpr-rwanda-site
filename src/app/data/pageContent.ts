@@ -581,3 +581,263 @@ export function useSecretariatPage(): SecretariatPageContent | null {
 
   return content;
 }
+
+/* ── Radio Inkoramutima page ── */
+
+export interface RadioEditorialItemContent {
+  title?: string;
+  desc?: string;
+}
+
+export interface RadioPageContent {
+  heroTag?: string;
+  heroTitle?: string;
+  heroDesc?: string;
+  heroImage?: string;
+  heroCta?: string;
+  heroCtaSecondary?: string;
+  nav?: {
+    about?: string;
+    vision?: string;
+    editorial?: string;
+    programs?: string;
+    coverage?: string;
+    beneficiaries?: string;
+  };
+  about?: { tag?: string; title?: string; desc?: string; hours?: string; body?: string[] };
+  introTag?: string;
+  introTitle?: string;
+  introDesc?: string;
+  vision?: {
+    tag?: string;
+    visionTag?: string;
+    visionSub?: string;
+    visionDesc?: string;
+    missionTag?: string;
+    missionSub?: string;
+    missionDesc?: string;
+  };
+  editorial?: { tag?: string; title?: string; desc?: string; items?: RadioEditorialItemContent[] };
+  programs?: { tag?: string; title?: string; desc?: string; footerTag?: string };
+  coverage?: { tag?: string; title?: string; desc?: string; stats?: PageStatContent[]; regions?: string[] };
+  beneficiaries?: { tag?: string; title?: string; desc?: string; stats?: PageStatContent[] };
+  cta?: { title?: string; desc?: string; btn?: string; btnSecondary?: string };
+}
+
+const RADIO_PAGE_QUERY = `*[_type == "radioPage"][0] {
+  heroTag,
+  heroTitle,
+  heroDesc,
+  "heroImage": heroImage.asset->url,
+  heroCta,
+  heroCtaSecondary,
+  nav { about, vision, editorial, programs, coverage, beneficiaries },
+  about { tag, title, desc, hours, body },
+  introTag,
+  introTitle,
+  introDesc,
+  vision { tag, visionTag, visionSub, visionDesc, missionTag, missionSub, missionDesc },
+  editorial { tag, title, desc, items[] { title, desc } },
+  programs { tag, title, desc, footerTag },
+  coverage { tag, title, desc, stats[] { value, label }, regions },
+  beneficiaries { tag, title, desc, stats[] { value, label } },
+  cta { title, desc, btn, btnSecondary }
+}`;
+
+interface RadioPageRaw {
+  heroTag?: LocalizedField;
+  heroTitle?: LocalizedField;
+  heroDesc?: LocalizedField;
+  heroImage?: string | null;
+  heroCta?: LocalizedField;
+  heroCtaSecondary?: LocalizedField;
+  nav?: {
+    about?: LocalizedField;
+    vision?: LocalizedField;
+    editorial?: LocalizedField;
+    programs?: LocalizedField;
+    coverage?: LocalizedField;
+    beneficiaries?: LocalizedField;
+  };
+  about?: {
+    tag?: LocalizedField;
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    hours?: LocalizedField;
+    body?: LocalizedField[];
+  };
+  introTag?: LocalizedField;
+  introTitle?: LocalizedField;
+  introDesc?: LocalizedField;
+  vision?: {
+    tag?: LocalizedField;
+    visionTag?: LocalizedField;
+    visionSub?: LocalizedField;
+    visionDesc?: LocalizedField;
+    missionTag?: LocalizedField;
+    missionSub?: LocalizedField;
+    missionDesc?: LocalizedField;
+  };
+  editorial?: {
+    tag?: LocalizedField;
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    items?: { title?: LocalizedField; desc?: LocalizedField }[];
+  };
+  programs?: {
+    tag?: LocalizedField;
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    footerTag?: LocalizedField;
+  };
+  coverage?: {
+    tag?: LocalizedField;
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    stats?: { value?: string; label?: LocalizedField }[];
+    regions?: LocalizedField[];
+  };
+  beneficiaries?: {
+    tag?: LocalizedField;
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    stats?: { value?: string; label?: LocalizedField }[];
+  };
+  cta?: {
+    title?: LocalizedField;
+    desc?: LocalizedField;
+    btn?: LocalizedField;
+    btnSecondary?: LocalizedField;
+  };
+}
+
+function resolveStats(
+  stats: { value?: string; label?: LocalizedField }[] | undefined,
+  lang: string
+): PageStatContent[] {
+  return (stats || [])
+    .map((st) => ({
+      value: st.value || "",
+      label: st.label ? pickOrUndef(st.label, lang) : undefined,
+    }))
+    .filter((st) => st.value);
+}
+
+/**
+ * Loads the Radio Inkoramutima page copy from Sanity. Returns `null` when
+ * the document doesn't exist yet so the page keeps showing its translated
+ * hardcoded copy. Re-fetches when the UI language changes.
+ */
+export function useRadioPage(): RadioPageContent | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [content, setContent] = useState<RadioPageContent | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    sanityClient
+      .fetch<RadioPageRaw>(RADIO_PAGE_QUERY)
+      .then((doc) => {
+        if (cancelled) return;
+        if (!doc) {
+          setContent(null);
+          return;
+        }
+        setContent({
+          heroTag: pickOrUndef(doc.heroTag, lang),
+          heroTitle: pickOrUndef(doc.heroTitle, lang),
+          heroDesc: pickOrUndef(doc.heroDesc, lang),
+          heroImage: doc.heroImage || undefined,
+          heroCta: pickOrUndef(doc.heroCta, lang),
+          heroCtaSecondary: pickOrUndef(doc.heroCtaSecondary, lang),
+          nav: doc.nav
+            ? {
+                about: pickOrUndef(doc.nav.about, lang),
+                vision: pickOrUndef(doc.nav.vision, lang),
+                editorial: pickOrUndef(doc.nav.editorial, lang),
+                programs: pickOrUndef(doc.nav.programs, lang),
+                coverage: pickOrUndef(doc.nav.coverage, lang),
+                beneficiaries: pickOrUndef(doc.nav.beneficiaries, lang),
+              }
+            : undefined,
+          about: doc.about
+            ? {
+                tag: pickOrUndef(doc.about.tag, lang),
+                title: pickOrUndef(doc.about.title, lang),
+                desc: pickOrUndef(doc.about.desc, lang),
+                hours: pickOrUndef(doc.about.hours, lang),
+                body: resolveTexts(doc.about.body, lang),
+              }
+            : undefined,
+          introTag: pickOrUndef(doc.introTag, lang),
+          introTitle: pickOrUndef(doc.introTitle, lang),
+          introDesc: pickOrUndef(doc.introDesc, lang),
+          vision: doc.vision
+            ? {
+                tag: pickOrUndef(doc.vision.tag, lang),
+                visionTag: pickOrUndef(doc.vision.visionTag, lang),
+                visionSub: pickOrUndef(doc.vision.visionSub, lang),
+                visionDesc: pickOrUndef(doc.vision.visionDesc, lang),
+                missionTag: pickOrUndef(doc.vision.missionTag, lang),
+                missionSub: pickOrUndef(doc.vision.missionSub, lang),
+                missionDesc: pickOrUndef(doc.vision.missionDesc, lang),
+              }
+            : undefined,
+          editorial: doc.editorial
+            ? {
+                tag: pickOrUndef(doc.editorial.tag, lang),
+                title: pickOrUndef(doc.editorial.title, lang),
+                desc: pickOrUndef(doc.editorial.desc, lang),
+                items: (doc.editorial.items || [])
+                  .map((item) => ({
+                    title: pickOrUndef(item.title, lang),
+                    desc: pickOrUndef(item.desc, lang),
+                  }))
+                  .filter((item) => item.title || item.desc),
+              }
+            : undefined,
+          programs: doc.programs
+            ? {
+                tag: pickOrUndef(doc.programs.tag, lang),
+                title: pickOrUndef(doc.programs.title, lang),
+                desc: pickOrUndef(doc.programs.desc, lang),
+                footerTag: pickOrUndef(doc.programs.footerTag, lang),
+              }
+            : undefined,
+          coverage: doc.coverage
+            ? {
+                tag: pickOrUndef(doc.coverage.tag, lang),
+                title: pickOrUndef(doc.coverage.title, lang),
+                desc: pickOrUndef(doc.coverage.desc, lang),
+                stats: resolveStats(doc.coverage.stats, lang),
+                regions: resolveTexts(doc.coverage.regions, lang),
+              }
+            : undefined,
+          beneficiaries: doc.beneficiaries
+            ? {
+                tag: pickOrUndef(doc.beneficiaries.tag, lang),
+                title: pickOrUndef(doc.beneficiaries.title, lang),
+                desc: pickOrUndef(doc.beneficiaries.desc, lang),
+                stats: resolveStats(doc.beneficiaries.stats, lang),
+              }
+            : undefined,
+          cta: doc.cta
+            ? {
+                title: pickOrUndef(doc.cta.title, lang),
+                desc: pickOrUndef(doc.cta.desc, lang),
+                btn: pickOrUndef(doc.cta.btn, lang),
+                btnSecondary: pickOrUndef(doc.cta.btnSecondary, lang),
+              }
+            : undefined,
+        });
+      })
+      .catch(() => {
+        if (!cancelled) setContent(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
+
+  return content;
+}

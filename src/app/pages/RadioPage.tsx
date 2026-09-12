@@ -9,6 +9,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ImageLightbox } from "../components/ui/ImageLightbox";
 import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
 import { useRadioPrograms } from "../data/cmsContent";
+import { useRadioPage } from "../data/pageContent";
 import {
   Radio, RadioTower, PlayCircle, Clock,
   BookOpen, Shield, Sprout, MapPin, Phone, Mail,
@@ -25,18 +26,19 @@ export function RadioPage() {
   const location = useLocation();
   const { t } = useTranslation("home");
   const [activeSection, setActiveSection] = useState("");
+  const cms = useRadioPage();
 
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const nav = (rp?.nav as Record<string, string>) ?? {};
-  const heroDesc = (rp?.heroDesc as string) ?? "";
+  const heroDesc = cms?.heroDesc ?? (rp?.heroDesc as string) ?? "";
 
   const navLinks: Section[] = [
-    { id: "about", label: nav.about ?? "About Radio" },
-    { id: "vision", label: nav.vision ?? "Vision & Mission" },
-    { id: "editorial", label: nav.editorial ?? "Editorial Line" },
-    { id: "programs", label: nav.programs ?? "Programs" },
-    { id: "coverage", label: nav.coverage ?? "Coverage & Reach" },
-    { id: "beneficiaries", label: nav.beneficiaries ?? "Beneficiaries" },
+    { id: "about", label: cms?.nav?.about ?? nav.about ?? "About Radio" },
+    { id: "vision", label: cms?.nav?.vision ?? nav.vision ?? "Vision & Mission" },
+    { id: "editorial", label: cms?.nav?.editorial ?? nav.editorial ?? "Editorial Line" },
+    { id: "programs", label: cms?.nav?.programs ?? nav.programs ?? "Programs" },
+    { id: "coverage", label: cms?.nav?.coverage ?? nav.coverage ?? "Coverage & Reach" },
+    { id: "beneficiaries", label: cms?.nav?.beneficiaries ?? nav.beneficiaries ?? "Beneficiaries" },
   ];
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -75,8 +77,7 @@ export function RadioPage() {
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('/cpr/assets/radio-hero.webp')",
+            backgroundImage: `linear-gradient(rgba(28,42,16,0.35), rgba(28,42,16,0.92)), url('${cms?.heroImage ?? "/cpr/assets/radio-hero.webp"}')`,
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -100,13 +101,13 @@ export function RadioPage() {
             </span>
             <RadioTower size={15} className="text-[#EAD196]" />
             <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
-              {(rp?.heroTag as string) ?? "Radio Inkoramutima"}
+              {cms?.heroTag ?? (rp?.heroTag as string) ?? "Radio Inkoramutima"}
             </span>
           </motion.div>
 
           <motion.img
             src="/cpr/assets/Inkoramutima-Logo.jpg"
-            alt={(rp?.heroTitle as string) ?? "Radio Inkoramutima"}
+            alt={cms?.heroTitle ?? (rp?.heroTitle as string) ?? "Radio Inkoramutima"}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.25 }}
@@ -119,7 +120,7 @@ export function RadioPage() {
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
             className="font-['Outfit'] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {(rp?.heroTitle as string) ?? "107.1 FM — Broadcasting Hope"}
+            {cms?.heroTitle ?? (rp?.heroTitle as string) ?? "107.1 FM — Broadcasting Hope"}
           </motion.h1>
 
           <motion.p
@@ -143,14 +144,14 @@ export function RadioPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-7 py-3.5 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm shadow-lg"
             >
-              <PlayCircle size={18} /> {(rp?.heroCta as string) ?? "Listen Live"}
+              <PlayCircle size={18} /> {cms?.heroCta ?? (rp?.heroCta as string) ?? "Listen Live"}
             </a>
             <a
               href="#about"
               className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300 text-sm"
               onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              {(rp?.heroCtaSecondary as string) ?? "About the Radio"}
+              {cms?.heroCtaSecondary ?? (rp?.heroCtaSecondary as string) ?? "About the Radio"}
             </a>
           </motion.div>
         </motion.div>
@@ -209,9 +210,11 @@ function RadioHistoryBlock() {
   const { ref, visible } = useScrollReveal();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const about = (rp?.about as Record<string, unknown>) ?? {};
-  const body = (about?.body as string[]) ?? [];
+  const cmsAbout = cms?.about;
+  const body = cmsAbout?.body?.length ? cmsAbout.body : ((about?.body as string[]) ?? []);
 
   return (
     <WatermarkSection id="about" className="py-16 lg:py-24 bg-white scroll-mt-20">
@@ -227,15 +230,15 @@ function RadioHistoryBlock() {
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="h-px w-8 bg-[#8B6543]" />
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                {(about?.tag as string) ?? "Historical Background"}
+                {cmsAbout?.tag ?? (about?.tag as string) ?? "Historical Background"}
               </span>
               <div className="h-px w-8 bg-[#8B6543]" />
             </div>
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5 leading-tight">
-              {(about?.title as string) ?? "From a Long-Cherished Dream to Reality"}
+              {cmsAbout?.title ?? (about?.title as string) ?? "From a Long-Cherished Dream to Reality"}
             </h2>
             <p className="text-[#4A4A4A] text-base lg:text-lg leading-relaxed mb-8">
-              {(about?.desc as string) ?? ""}
+              {cmsAbout?.desc ?? (about?.desc as string) ?? ""}
             </p>
 
             {/* History timeline */}
@@ -311,7 +314,7 @@ function RadioHistoryBlock() {
               </div>
               <div>
                 <div className="font-['Outfit'] font-black text-[#4E6132] leading-none">17h</div>
-                <div className="text-xs text-[#4A4A4A]/70 mt-1">{(about?.hours as string) ?? "5:00 — 22:00 daily"}</div>
+                <div className="text-xs text-[#4A4A4A]/70 mt-1">{cmsAbout?.hours ?? (about?.hours as string) ?? "5:00 — 22:00 daily"}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -330,22 +333,24 @@ function RadioHistoryBlock() {
 function VisionMissionBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const vision = (rp?.vision as Record<string, unknown>) ?? {};
+  const cmsVision = cms?.vision;
 
   const cards = [
     {
       icon: Eye,
-      tag: (vision?.visionTag as string) ?? "Our Vision",
-      sub: (vision?.visionSub as string) ?? "Where we're headed",
-      desc: (vision?.visionDesc as string) ?? "",
+      tag: cmsVision?.visionTag ?? (vision?.visionTag as string) ?? "Our Vision",
+      sub: cmsVision?.visionSub ?? (vision?.visionSub as string) ?? "Where we're headed",
+      desc: cmsVision?.visionDesc ?? (vision?.visionDesc as string) ?? "",
       color: "#4E6132",
     },
     {
       icon: Compass,
-      tag: (vision?.missionTag as string) ?? "Our Mission",
-      sub: (vision?.missionSub as string) ?? "What we do every day",
-      desc: (vision?.missionDesc as string) ?? "",
+      tag: cmsVision?.missionTag ?? (vision?.missionTag as string) ?? "Our Mission",
+      sub: cmsVision?.missionSub ?? (vision?.missionSub as string) ?? "What we do every day",
+      desc: cmsVision?.missionDesc ?? (vision?.missionDesc as string) ?? "",
       color: "#8B6543",
     },
   ];
@@ -356,14 +361,14 @@ function VisionMissionBlock() {
         <motion.div ref={ref} className="text-center mb-14">
           <div className="inline-flex items-center gap-2 justify-center mb-3">
             <div className="h-px w-8 bg-[#8B6543]" />
-            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{(vision?.tag as string) ?? "Vision & Mission"}</span>
+            <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{cmsVision?.tag ?? (vision?.tag as string) ?? "Vision & Mission"}</span>
             <div className="h-px w-8 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">
-            {(rp?.introTitle as string) ?? "The Voice of the Heart"}
+            {cms?.introTitle ?? (rp?.introTitle as string) ?? "The Voice of the Heart"}
           </h2>
           <p className="text-[#4A4A4A] mt-3 max-w-2xl mx-auto">
-            {(rp?.introDesc as string) ?? ""}
+            {cms?.introDesc ?? (rp?.introDesc as string) ?? ""}
           </p>
         </motion.div>
 
@@ -406,9 +411,13 @@ function VisionMissionBlock() {
 function EditorialLineBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const editorial = (rp?.editorial as Record<string, unknown>) ?? {};
-  const items = (editorial?.items as { title: string; desc: string }[]) ?? [];
+  const cmsEditorial = cms?.editorial;
+  const items = cmsEditorial?.items?.length
+    ? cmsEditorial.items
+    : ((editorial?.items as { title: string; desc: string }[]) ?? []);
 
   const icons: LucideIcon[] = [BookOpen, Shield, Sprout];
   const colors = ["#4E6132", "#8B6543", "#BC8A5F"];
@@ -420,15 +429,15 @@ function EditorialLineBlock() {
           <div className="inline-flex items-center gap-2 justify-center mb-3">
             <div className="h-px w-8 bg-[#8B6543]" />
             <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-              {(editorial?.tag as string) ?? "Editorial Line"}
+              {cmsEditorial?.tag ?? (editorial?.tag as string) ?? "Editorial Line"}
             </span>
             <div className="h-px w-8 bg-[#8B6543]" />
           </div>
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132]">
-            {(editorial?.title as string) ?? "Evangelization, Unity & Holistic Development"}
+            {cmsEditorial?.title ?? (editorial?.title as string) ?? "Evangelization, Unity & Holistic Development"}
           </h2>
           <p className="text-[#4A4A4A] mt-3 max-w-2xl mx-auto">
-            {(editorial?.desc as string) ?? ""}
+            {cmsEditorial?.desc ?? (editorial?.desc as string) ?? ""}
           </p>
         </motion.div>
 
@@ -469,12 +478,14 @@ function EditorialLineBlock() {
 function ProgramsBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const programs = (rp?.programs as Record<string, unknown>) ?? {};
+  const cmsProgramsCopy = cms?.programs;
   // CMS schedule when staff have created one; otherwise the translated default.
-  const cmsPrograms = useRadioPrograms();
+  const cmsScheduleItems = useRadioPrograms();
   const items =
-    cmsPrograms ??
+    cmsScheduleItems ??
     ((programs?.items as { time: string; title: string; desc: string }[]) ?? []);
 
   return (
@@ -498,14 +509,14 @@ function ProgramsBlock() {
           <div className="inline-flex items-center gap-3 bg-white/8 border border-[#BC8A5F]/30 rounded-full px-4 py-2 mb-5">
             <CalendarDays size={14} className="text-[#BC8A5F]" />
             <span className="text-[#BC8A5F] text-xs font-bold uppercase tracking-widest">
-              {(programs?.tag as string) ?? "Programs"}
+              {cmsProgramsCopy?.tag ?? (programs?.tag as string) ?? "Programs"}
             </span>
           </div>
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-white">
-            {(programs?.title as string) ?? "A Full Day of Hope on 107.1 FM"}
+            {cmsProgramsCopy?.title ?? (programs?.title as string) ?? "A Full Day of Hope on 107.1 FM"}
           </h2>
           <p className="text-white/65 mt-3 max-w-2xl mx-auto">
-            {(programs?.desc as string) ?? ""}
+            {cmsProgramsCopy?.desc ?? (programs?.desc as string) ?? ""}
           </p>
         </motion.div>
 
@@ -537,7 +548,7 @@ function ProgramsBlock() {
           className="text-center text-white/50 text-xs mt-10 flex items-center justify-center gap-2"
         >
           <AudioLines size={14} className="text-[#BC8A5F]" />
-          {(programs?.footerTag as string) ?? "107.1 FM — Voice of the Heart"}
+          {cmsProgramsCopy?.footerTag ?? (programs?.footerTag as string) ?? "107.1 FM — Voice of the Heart"}
         </motion.p>
       </div>
     </section>
@@ -548,12 +559,19 @@ function ProgramsBlock() {
 function CoverageBlock() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const coverage = (rp?.coverage as Record<string, unknown>) ?? {};
   const beneficiaries = (rp?.beneficiaries as Record<string, unknown>) ?? {};
-  const coverageStats = (coverage?.stats as { value: string; label: string }[]) ?? [];
-  const regions = (coverage?.regions as string[]) ?? [];
-  const benefStats = (beneficiaries?.stats as { value: string; label: string }[]) ?? [];
+  const cmsCoverage = cms?.coverage;
+  const cmsBeneficiaries = cms?.beneficiaries;
+  const coverageStats: { value: string; label: string }[] = cmsCoverage?.stats?.length
+    ? cmsCoverage.stats.map((s) => ({ value: s.value, label: s.label ?? "" }))
+    : ((coverage?.stats as { value: string; label: string }[]) ?? []);
+  const regions = cmsCoverage?.regions?.length ? cmsCoverage.regions : ((coverage?.regions as string[]) ?? []);
+  const benefStats: { value: string; label: string }[] = cmsBeneficiaries?.stats?.length
+    ? cmsBeneficiaries.stats.map((s) => ({ value: s.value, label: s.label ?? "" }))
+    : ((beneficiaries?.stats as { value: string; label: string }[]) ?? []);
 
   return (
     <section id="coverage" className="py-16 lg:py-24 bg-[#F8F9F4] scroll-mt-20 overflow-hidden">
@@ -568,15 +586,15 @@ function CoverageBlock() {
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="h-px w-8 bg-[#8B6543]" />
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">
-                {(coverage?.tag as string) ?? "Coverage & Reach"}
+                {cmsCoverage?.tag ?? (coverage?.tag as string) ?? "Coverage & Reach"}
               </span>
               <div className="h-px w-8 bg-[#8B6543]" />
             </div>
             <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-5 leading-tight">
-              {(coverage?.title as string) ?? "A Voice That Crosses Borders"}
+              {cmsCoverage?.title ?? (coverage?.title as string) ?? "A Voice That Crosses Borders"}
             </h2>
             <p className="text-[#4A4A4A] text-base leading-relaxed mb-8">
-              {(coverage?.desc as string) ?? ""}
+              {cmsCoverage?.desc ?? (coverage?.desc as string) ?? ""}
             </p>
 
             {/* Coverage stats */}
@@ -643,14 +661,14 @@ function CoverageBlock() {
                 <div className="inline-flex items-center gap-2 mb-3">
                   <Users size={15} className="text-[#EAD196]" />
                   <span className="text-[#EAD196] text-xs font-bold uppercase tracking-widest">
-                    {(beneficiaries?.tag as string) ?? "Beneficiaries"}
+                    {cmsBeneficiaries?.tag ?? (beneficiaries?.tag as string) ?? "Beneficiaries"}
                   </span>
                 </div>
                 <h3 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-white mb-4">
-                  {(beneficiaries?.title as string) ?? "Serving the Church and the Nation"}
+                  {cmsBeneficiaries?.title ?? (beneficiaries?.title as string) ?? "Serving the Church and the Nation"}
                 </h3>
                 <p className="text-white/75 text-sm lg:text-base leading-relaxed">
-                  {(beneficiaries?.desc as string) ?? ""}
+                  {cmsBeneficiaries?.desc ?? (beneficiaries?.desc as string) ?? ""}
                 </p>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -705,9 +723,11 @@ function CoverageStat({ stat, index, active }: { stat: { value: string; label: s
 /* ───────────── CTA ───────────── */
 function RadioCtaBlock() {
   const { t } = useTranslation("home");
+  const cms = useRadioPage();
   const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const rp = t("radioPage", { returnObjects: true }) as Record<string, unknown>;
   const cta = (rp?.cta as Record<string, unknown>) ?? {};
+  const cmsCta = cms?.cta;
 
   return (
     <motion.section
@@ -730,7 +750,7 @@ function RadioCtaBlock() {
           transition={{ duration: 0.5 }}
           className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-4"
         >
-          {(cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
+          {cmsCta?.title ?? (cta?.title as string) ?? "Tune In to Radio Inkoramutima"}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 15 }}
@@ -739,7 +759,7 @@ function RadioCtaBlock() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto"
         >
-          {(cta?.desc as string) ?? ""}
+          {cmsCta?.desc ?? (cta?.desc as string) ?? ""}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -765,13 +785,13 @@ function RadioCtaBlock() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-8 py-3.5 rounded-xl hover:bg-[#EAD196] hover:text-[#4E6132] transition-all duration-300 hover:scale-105"
           >
-            <PlayCircle size={16} /> {(cta?.btn as string) ?? "Listen Live"}
+            <PlayCircle size={16} /> {cmsCta?.btn ?? (cta?.btn as string) ?? "Listen Live"}
           </a>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-300"
           >
-            {(cta?.btnSecondary as string) ?? "Contact Us"} <ArrowRight size={16} />
+            {cmsCta?.btnSecondary ?? (cta?.btnSecondary as string) ?? "Contact Us"} <ArrowRight size={16} />
           </Link>
         </motion.div>
       </div>
