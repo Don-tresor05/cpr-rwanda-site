@@ -152,7 +152,10 @@ export const aboutPage = defineType({
       title: "Partners",
       type: "object",
       group: "partners",
-      fields: [{ name: "title", title: "Section title", type: "localizedString" }],
+      fields: [
+        { name: "title", title: "Section title", type: "localizedString" },
+        { name: "subtitle", title: "Section subtitle", type: "localizedString" }
+      ],
     }),
     defineField({
       name: "historyModal",

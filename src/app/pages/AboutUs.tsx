@@ -486,6 +486,9 @@ export function AboutUs() {
               <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
                 {cms?.partners?.title ?? t("aboutPage.partners.title")}
               </h2>
+              <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide uppercase">
+                {cms?.partners?.subtitle ?? "Organizations we work with"}
+              </p>
             </div>
             
             {/* Sliding Partners Carousel */}
