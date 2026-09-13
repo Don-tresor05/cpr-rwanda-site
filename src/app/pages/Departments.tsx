@@ -136,8 +136,9 @@ export function Departments() {
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/departments-hero.webp')",
+            backgroundImage: `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${
+              cms?.heroImage ?? "/cpr/assets/departments-hero.webp"
+            }')`,
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -264,10 +265,10 @@ export function Departments() {
             className="text-center mb-14"
           >
             <h2            className="font-['Outfit'] font-black text-3xl sm:text-4xl text-[#4E6132]">
-              {(dp?.overview as Record<string, string> | undefined)?.title ?? "Explore Our Departments"}
+              {cms?.overview?.title ?? (dp?.overview as Record<string, string> | undefined)?.title ?? "Explore Our Departments"}
             </h2>
             <p className="text-[#4A4A4A] mt-3 max-w-xl mx-auto">
-              {(dp?.overview as Record<string, string> | undefined)?.desc ?? "Click any department to jump to its detailed section below"}
+              {cms?.overview?.desc ?? (dp?.overview as Record<string, string> | undefined)?.desc ?? "Click any department to jump to its detailed section below"}
             </p>
           </motion.div>
 

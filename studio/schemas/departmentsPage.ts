@@ -42,6 +42,14 @@ export const departmentsPage = defineType({
       group: "hero",
     }),
     defineField({
+      name: "heroImage",
+      title: "Hero background image",
+      description: "The full-width background photo behind the hero title. Falls back to the site default if left empty.",
+      type: "image",
+      options: { hotspot: true },
+      group: "hero",
+    }),
+    defineField({
       name: "introTag",
       title: "Intro tag",
       type: "localizedString",
@@ -58,6 +66,17 @@ export const departmentsPage = defineType({
       title: "Intro description",
       type: "localizedText",
       group: "hero",
+    }),
+    defineField({
+      name: "overview",
+      title: 'Departments overview ("Explore Our Departments")',
+      description: "The heading and caption above the clickable department cards grid.",
+      type: "object",
+      group: "hero",
+      fields: [
+        { name: "title", title: "Title", type: "localizedString" },
+        { name: "desc", title: "Description", type: "localizedText" },
+      ],
     }),
     defineField({
       name: "quickFactsTitle",

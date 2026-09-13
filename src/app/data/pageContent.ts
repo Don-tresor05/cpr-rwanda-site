@@ -39,9 +39,11 @@ export interface PageSectionContent {
 export interface DepartmentsPageContent {
   heroTitle?: string;
   heroDesc?: string;
+  heroImage?: string;
   introTag?: string;
   introTitle?: string;
   introDesc?: string;
+  overview?: { title?: string; desc?: string };
   quickFactsTitle?: string;
   quickFacts?: string[];
   sections?: PageSectionContent[];
@@ -51,9 +53,11 @@ export interface DepartmentsPageContent {
 const DEPARTMENTS_PAGE_QUERY = `*[_type == "departmentsPage"][0] {
   heroTitle,
   heroDesc,
+  "heroImage": heroImage.asset->url,
   introTag,
   introTitle,
   introDesc,
+  overview { title, desc },
   quickFactsTitle,
   quickFacts,
   sections[] {
@@ -72,9 +76,11 @@ const DEPARTMENTS_PAGE_QUERY = `*[_type == "departmentsPage"][0] {
 interface DepartmentsPageRaw {
   heroTitle?: LocalizedField;
   heroDesc?: LocalizedField;
+  heroImage?: string | null;
   introTag?: LocalizedField;
   introTitle?: LocalizedField;
   introDesc?: LocalizedField;
+  overview?: { title?: LocalizedField; desc?: LocalizedField };
   quickFactsTitle?: LocalizedField;
   quickFacts?: LocalizedField[];
   sections?: {
@@ -159,9 +165,16 @@ export function useDepartmentsPage(): DepartmentsPageContent | null {
         setContent({
           heroTitle: pickOrUndef(doc.heroTitle, lang),
           heroDesc: pickOrUndef(doc.heroDesc, lang),
+          heroImage: doc.heroImage || undefined,
           introTag: pickOrUndef(doc.introTag, lang),
           introTitle: pickOrUndef(doc.introTitle, lang),
           introDesc: pickOrUndef(doc.introDesc, lang),
+          overview: doc.overview
+            ? {
+                title: pickOrUndef(doc.overview.title, lang),
+                desc: pickOrUndef(doc.overview.desc, lang),
+              }
+            : undefined,
           quickFactsTitle: pickOrUndef(doc.quickFactsTitle, lang),
           quickFacts: resolveTexts(doc.quickFacts, lang),
           sections,
