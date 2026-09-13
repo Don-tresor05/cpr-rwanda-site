@@ -6,7 +6,7 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { getDepartmentResources } from "../data/departmentResources";
 import { useTranslation } from "react-i18next";
-import { useCmsResourceGroups } from "../data/sanityDepartmentResources";
+import { useCmsResourceGroups, useCmsDepartmentDetail } from "../data/sanityDepartmentResources";
 
 export function DepartmentResources() {
   const { t } = useTranslation("home");
@@ -15,6 +15,7 @@ export function DepartmentResources() {
   const dept = deptId ? departmentResources[deptId] : undefined;
   const { ref: contentRef, visible: contentVisible } = useScrollReveal();
   const cmsGroups = useCmsResourceGroups(deptId);
+  const cmsDetail = useCmsDepartmentDetail(deptId);
 
   if (!dept) {
     return (
@@ -45,7 +46,9 @@ export function DepartmentResources() {
       <div
         className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${dept.image}')`,
+          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${
+            cmsDetail?.image ?? dept.image
+          }')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -60,7 +63,7 @@ export function DepartmentResources() {
           </Link>
 
           <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
-            {dept.title}
+            {cmsDetail?.title ?? dept.title}
           </h1>
         </div>
         <ScrollIndicator />
@@ -88,11 +91,11 @@ export function DepartmentResources() {
               </div>
 
               <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-6">
-                {t("departmentResourcesUI.about")} {dept.title}
+                {t("departmentResourcesUI.about")} {cmsDetail?.title ?? dept.title}
               </h2>
 
               <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8">
-                {dept.overview}
+                {cmsDetail?.overview ?? dept.overview}
               </p>
 
               {/* Key Activities */}
@@ -100,7 +103,7 @@ export function DepartmentResources() {
                 {t("departmentResourcesUI.keyActivities")}
               </h3>
               <ul className="space-y-3">
-                {dept.keyActivities.map((activity, idx) => (
+                {(cmsDetail?.keyActivities?.length ? cmsDetail.keyActivities : dept.keyActivities).map((activity, idx) => (
                   <motion.li
                     key={idx}
                     initial={{ opacity: 0, x: -15 }}
@@ -129,8 +132,8 @@ export function DepartmentResources() {
               <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10">
                 <div className="relative aspect-[4/3]">
                   <img
-                    src={dept.image}
-                    alt={dept.title}
+                    src={cmsDetail?.image ?? dept.image}
+                    alt={cmsDetail?.title ?? dept.title}
                     className="w-full h-full object-cover"
                   />
                   <div
@@ -152,7 +155,7 @@ export function DepartmentResources() {
                       className="font-['Outfit'] font-bold text-lg"
                       style={{ color: dept.accent }}
                     >
-                      {dept.title}
+                      {cmsDetail?.title ?? dept.title}
                     </span>
                   </div>
                   <p className="text-[#4A4A4A] text-sm leading-relaxed">
@@ -174,7 +177,7 @@ export function DepartmentResources() {
                 {t("departmentResourcesUI.resourcesAndDocs")}
               </h2>
               <p className="text-[#4A4A4A] max-w-xl mx-auto">
-                {t("departmentResourcesUI.accessResources")} {dept.title} {t("departmentResourcesUI.department")}.
+                {t("departmentResourcesUI.accessResources")} {cmsDetail?.title ?? dept.title} {t("departmentResourcesUI.department")}.
               </p>
             </div>
 

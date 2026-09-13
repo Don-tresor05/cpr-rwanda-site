@@ -33,6 +33,7 @@ export default defineConfig({
             S.documentTypeListItem('department').title('Departments'),
             S.documentTypeListItem('departmentResourceFile').title('Department Resource Files'),
             S.documentTypeListItem('departmentResourceGroup').title('Department Resource Groups'),
+            S.documentTypeListItem('departmentDetail').title('Department Detail Pages'),
             S.documentTypeListItem('memberChurch').title('Member Churches'),
             S.documentTypeListItem('galleryEvent').title('Gallery Events'),
             S.documentTypeListItem('radioProgram').title('Radio Programs'),

@@ -1,11 +1,76 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { client as sanityClient } from "../../lib/sanityClient";
+import { pickOrUndef, type LocalizedField } from "./siteSettings";
 
 export interface CmsResourceFile {
   name: string;
   url: string;
   info?: string;
   modified?: string;
+}
+
+export interface CmsDepartmentDetail {
+  title?: string;
+  image?: string;
+  overview?: string;
+  keyActivities?: string[];
+}
+
+interface SanityDepartmentDetailDoc {
+  title?: LocalizedField;
+  image?: string | null;
+  overview?: LocalizedField;
+  keyActivities?: LocalizedField[];
+}
+
+const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == $dept][0] {
+  title,
+  "image": image.asset->url,
+  overview,
+  keyActivities
+}`;
+
+/**
+ * The hero/overview/key-activities copy for one department's detail page,
+ * fetched live from Sanity. Returns `null` when no document exists yet (or
+ * while loading) so the page keeps showing its translated hardcoded copy.
+ */
+export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [detail, setDetail] = useState<CmsDepartmentDetail | null>(null);
+
+  useEffect(() => {
+    if (!deptId) return;
+    let cancelled = false;
+    setDetail(null);
+    sanityClient
+      .fetch<SanityDepartmentDetailDoc>(DEPARTMENT_DETAIL_QUERY, { dept: deptId })
+      .then((doc) => {
+        if (cancelled) return;
+        if (!doc) {
+          setDetail(null);
+          return;
+        }
+        setDetail({
+          title: pickOrUndef(doc.title, lang),
+          image: doc.image || undefined,
+          overview: pickOrUndef(doc.overview, lang),
+          keyActivities: (doc.keyActivities || [])
+            .map((item) => pickOrUndef(item, lang) || "")
+            .filter(Boolean),
+        });
+      })
+      .catch(() => {
+        if (!cancelled) setDetail(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [deptId, lang]);
+
+  return detail;
 }
 
 export interface CmsResourceGroup {

@@ -3,6 +3,7 @@ import { localizedText } from "./localizedText";
 import { newsPost } from "./newsPost";
 import { departmentResourceFile } from "./departmentResourceFile";
 import { departmentResourceGroup } from "./departmentResourceGroup";
+import { departmentDetail } from "./departmentDetail";
 import { siteSettings } from "./siteSettings";
 import { memberChurch } from "./memberChurch";
 import { department } from "./department";
@@ -22,6 +23,7 @@ export const schemaTypes = [
   newsPost,
   departmentResourceFile,
   departmentResourceGroup,
+  departmentDetail,
   siteSettings,
   memberChurch,
   department,
