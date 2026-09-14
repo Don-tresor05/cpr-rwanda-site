@@ -83,10 +83,10 @@ export function DepartmentResources() {
               initial={{ opacity: 0, x: 30 }}
               animate={contentVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:float-right lg:ml-10 lg:mb-6 mb-8 w-full lg:w-auto"
+              className="md:float-right md:ml-10 md:mb-6 mb-8 w-full md:w-auto"
             >
               {cmsDetail?.headName ? (
-                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto lg:mx-0 flex flex-col overflow-hidden">
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto md:mx-0 flex flex-col overflow-hidden">
                   <div className="relative w-full aspect-[4/3] bg-[#EDF1F7]">
                     {cmsDetail.headPhoto ? (
                       <img
@@ -114,7 +114,7 @@ export function DepartmentResources() {
                   </div>
                 </div>
               ) : (
-                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10 max-w-[280px] w-full mx-auto lg:mx-0">
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10 max-w-[280px] w-full mx-auto md:mx-0">
                   <div className="relative aspect-[4/3]">
                     <img
                       src={cmsDetail?.image ?? dept.image}
