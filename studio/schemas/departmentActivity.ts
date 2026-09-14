@@ -12,11 +12,16 @@ export const departmentActivity = defineType({
   name: "departmentActivity",
   title: "Department Activity",
   type: "document",
+  groups: [
+    { name: "main", title: "Main" },
+    { name: "body", title: "Article Body" },
+  ],
   fields: [
     defineField({
       name: "department",
       title: "Department",
       type: "string",
+      group: "main",
       options: {
         list: [
           { title: "General Secretary", value: "gs" },
@@ -34,13 +39,30 @@ export const departmentActivity = defineType({
       name: "title",
       title: "Title",
       type: "localizedString",
+      group: "main",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug (web address)",
+      type: "slug",
+      group: "main",
+      description: "Auto-generated from the English title — leave as is.",
+      options: {
+        source: (doc) => {
+          const t = doc.title as
+            | { en?: string; fr?: string; rw?: string }
+            | undefined;
+          return t?.en || t?.fr || t?.rw || "activity";
+        },
+      },
     }),
     defineField({
       name: "date",
       title: "Date",
       description: "Controls sort order (newest first) and the date shown on the card.",
       type: "datetime",
+      group: "main",
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
@@ -49,18 +71,98 @@ export const departmentActivity = defineType({
       title: "Period label (optional)",
       description: 'Overrides the displayed date with a custom range, e.g. "Q1 2026" or "2019 – 2021". Leave empty to show the Date above instead.',
       type: "string",
+      group: "main",
     }),
     defineField({
       name: "excerpt",
       title: "Short summary",
       type: "localizedText",
+      group: "main",
       description: "One or two sentences shown on the activity card.",
     }),
     defineField({
       name: "image",
       title: "Photo",
       type: "image",
+      group: "main",
       options: { hotspot: true },
+    }),
+    defineField({
+      name: "body",
+      title: "Article Body",
+      type: "object",
+      group: "body",
+      fields: [
+        {
+          name: "en",
+          title: "English",
+          type: "array",
+          of: [
+            { type: "block" },
+            { type: "image", options: { hotspot: true }, fields: [
+              { name: "alt", type: "string", title: "Alt text" },
+              { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+              },
+            ] },
+          ],
+        },
+        {
+          name: "fr",
+          title: "Français",
+          type: "array",
+          of: [
+            { type: "block" },
+            { type: "image", options: { hotspot: true }, fields: [
+              { name: "alt", type: "string", title: "Alt text" },
+              { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+              },
+            ] },
+          ],
+        },
+        {
+          name: "rw",
+          title: "Kinyarwanda",
+          type: "array",
+          of: [
+            { type: "block" },
+            { type: "image", options: { hotspot: true }, fields: [
+              { name: "alt", type: "string", title: "Alt text" },
+              { name: "caption", type: "string", title: "Caption" },
+              {
+                name: "size",
+                type: "string",
+                title: "Size",
+                options: {
+                  list: [
+                    { title: "Full width", value: "full" },
+                    { title: "Small (portrait)", value: "small" },
+                  ],
+                },
+              },
+            ] },
+          ],
+        },
+      ],
     }),
   ],
   preview: {

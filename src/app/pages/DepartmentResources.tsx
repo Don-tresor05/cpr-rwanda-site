@@ -230,29 +230,39 @@ export function DepartmentResources() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full"
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
                 >
                   {activity.image && (
-                    <div className="aspect-[16/10] overflow-hidden bg-[#EDF1F7]">
+                    <Link to={`/departments/${dept.id}/activities/${activity.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
                       <img
                         src={activity.image}
                         alt={activity.title}
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </Link>
                   )}
                   <div className="p-5 lg:p-6 flex flex-col grow">
                     <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
                       {activity.date}
                     </div>
-                    <h3 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug">
-                      {activity.title}
+                    <h3 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug hover:text-[#8B6543] transition-colors line-clamp-3">
+                      <Link to={`/departments/${dept.id}/activities/${activity.slug}`}>
+                        {activity.title}
+                      </Link>
                     </h3>
                     {activity.excerpt && (
-                      <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed line-clamp-3 grow">
+                      <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed line-clamp-3 mb-5 grow">
                         {activity.excerpt}
                       </p>
                     )}
+                    <div className="mt-auto">
+                      <Link
+                        to={`/departments/${dept.id}/activities/${activity.slug}`}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors"
+                      >
+                        {t("newsroom.readMore", "Read more")} <ArrowRight size={14} />
+                      </Link>
+                    </div>
                   </div>
                 </motion.article>
               ))}

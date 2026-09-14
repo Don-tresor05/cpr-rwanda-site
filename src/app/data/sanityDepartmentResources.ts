@@ -88,6 +88,7 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
 }
 
 export interface CmsDepartmentActivity {
+  slug: string;
   title: string;
   date: string;
   excerpt?: string;
@@ -96,6 +97,7 @@ export interface CmsDepartmentActivity {
 
 interface SanityDepartmentActivityDoc {
   _id: string;
+  slug?: { current: string };
   title?: LocalizedField;
   date?: string;
   periodLabel?: string;
@@ -104,7 +106,7 @@ interface SanityDepartmentActivityDoc {
 }
 
 const ACTIVITIES_QUERY = `*[_type == "departmentActivity" && department == $dept] | order(date desc) {
-  _id, title, date, periodLabel, excerpt, "image": image.asset->url
+  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url
 }`;
 
 /**
@@ -127,6 +129,7 @@ export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivi
         if (cancelled) return;
         const mapped = (docs || [])
           .map((d) => ({
+            slug: d.slug?.current || d._id,
             title: pickOrUndef(d.title, lang) || "",
             date: d.periodLabel || formatCmsDate(d.date, lang),
             excerpt: pickOrUndef(d.excerpt, lang),
@@ -144,6 +147,59 @@ export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivi
   }, [deptId, lang]);
 
   return activities;
+}
+
+export interface CmsDepartmentActivityDetail extends CmsDepartmentActivity {
+  bodyBlocks?: any[];
+  department?: string;
+}
+
+interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
+  body?: Record<string, any[]>;
+  department?: string;
+}
+
+const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && slug.current == $slug][0] {
+  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department
+}`;
+
+/** Fetch a single department activity by its slug. */
+export function useCmsDepartmentActivity(slug?: string): CmsDepartmentActivityDetail | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [activity, setActivity] = useState<CmsDepartmentActivityDetail | null>(null);
+
+  useEffect(() => {
+    if (!slug) return;
+    let cancelled = false;
+    setActivity(null);
+    sanityClient
+      .fetch<SanityActivityDetailDoc>(ACTIVITY_DETAIL_QUERY, { slug })
+      .then((doc) => {
+        if (cancelled) return;
+        if (!doc) {
+          setActivity(null);
+          return;
+        }
+        setActivity({
+          slug: doc.slug?.current || doc._id,
+          title: pickOrUndef(doc.title, lang) || "",
+          date: doc.periodLabel || formatCmsDate(doc.date, lang),
+          excerpt: pickOrUndef(doc.excerpt, lang),
+          image: doc.image || undefined,
+          bodyBlocks: doc.body ? (doc.body[lang] || doc.body["en"]) : undefined,
+          department: doc.department,
+        });
+      })
+      .catch(() => {
+        if (!cancelled) setActivity(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, lang]);
+
+  return activity;
 }
 
 export interface CmsResourceGroup {
