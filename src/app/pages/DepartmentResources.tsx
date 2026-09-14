@@ -135,34 +135,28 @@ export function DepartmentResources() {
               className="lg:col-span-2"
             >
               {cmsDetail?.headName ? (
-                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-sm w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col overflow-hidden">
-                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7]">
+                <div className="max-w-md w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col items-center">
+                  <div className="relative w-full aspect-[4/3] mb-4">
                     {cmsDetail.headPhoto ? (
                       <img
                         src={cmsDetail.headPhoto}
                         alt={cmsDetail.headName}
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
+                      <div className="w-full h-full flex items-center justify-center bg-[#EDF1F7] text-[#8B6543]/30">
                         <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     )}
                   </div>
-                  <div className="p-6 text-center">
-                    <div
-                      className="text-[10px] font-bold uppercase tracking-widest mb-1.5"
-                      style={{ color: dept.accent }}
-                    >
-                      {t("departmentResourcesUI.departmentHead")}
-                    </div>
-                    <h4 className="font-['Outfit'] font-black text-[#4E6132] text-xl lg:text-2xl leading-tight">
+                  <div className="text-center">
+                    <h4 className="font-['Outfit'] font-bold text-[#111827] text-lg lg:text-xl">
                       {cmsDetail.headName}
                     </h4>
                     {cmsDetail.headRole && (
-                      <p className="text-[#8B6543] text-sm lg:text-base font-semibold mt-1">
+                      <p className="text-[#111827] font-semibold text-sm lg:text-base mt-1">
                         {cmsDetail.headRole}
                       </p>
                     )}
