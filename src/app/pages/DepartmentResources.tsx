@@ -11,6 +11,7 @@ import {
   useCmsDepartmentDetail,
   useCmsDepartmentActivities,
 } from "../data/sanityDepartmentResources";
+import { PortableContent } from "../components/ui/PortableContent";
 
 export function DepartmentResources() {
   const { t } = useTranslation("home");
@@ -173,32 +174,42 @@ export function DepartmentResources() {
                 {t("departmentResourcesUI.about")} {cmsDetail?.title ?? dept.title}
               </h2>
 
-              <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8">
-                {cmsDetail?.overview ?? dept.overview}
-              </p>
+              {cmsDetail?.bodyBlocks?.length ? (
+                // Full article — as many paragraphs, headings and inline
+                // bullet lists as the department has, written in Sanity.
+                <div className="space-y-3">
+                  <PortableContent blocks={cmsDetail.bodyBlocks} />
+                </div>
+              ) : (
+                <>
+                  <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8">
+                    {cmsDetail?.overview ?? dept.overview}
+                  </p>
 
-              {/* Key Activities */}
-              <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-4">
-                {t("departmentResourcesUI.keyActivities")}
-              </h3>
-              <ul className="space-y-3">
-                {(cmsDetail?.keyActivities?.length ? cmsDetail.keyActivities : dept.keyActivities).map((activity, idx) => (
-                  <motion.li
-                    key={idx}
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={contentVisible ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.07 }}
-                    className="flex items-start gap-3 text-[#4A4A4A]"
-                  >
-                    <CheckCircle2
-                      size={18}
-                      className="mt-0.5 flex-shrink-0"
-                      style={{ color: dept.accent }}
-                    />
-                    <span className="leading-relaxed">{activity}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                  {/* Key Activities */}
+                  <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-4">
+                    {t("departmentResourcesUI.keyActivities")}
+                  </h3>
+                  <ul className="space-y-3">
+                    {(cmsDetail?.keyActivities?.length ? cmsDetail.keyActivities : dept.keyActivities).map((activity, idx) => (
+                      <motion.li
+                        key={idx}
+                        initial={{ opacity: 0, x: -15 }}
+                        animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: 0.2 + idx * 0.07 }}
+                        className="flex items-start gap-3 text-[#4A4A4A]"
+                      >
+                        <CheckCircle2
+                          size={18}
+                          className="mt-0.5 flex-shrink-0"
+                          style={{ color: dept.accent }}
+                        />
+                        <span className="leading-relaxed">{activity}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </motion.div>
             
             <div className="clear-both" />

@@ -16,6 +16,7 @@ export interface CmsDepartmentDetail {
   image?: string;
   overview?: string;
   keyActivities?: string[];
+  bodyBlocks?: any[];
   headName?: string;
   headRole?: string;
   headPhoto?: string;
@@ -26,6 +27,7 @@ interface SanityDepartmentDetailDoc {
   image?: string | null;
   overview?: LocalizedField;
   keyActivities?: LocalizedField[];
+  body?: Record<string, any[]>;
   headName?: string;
   headRole?: LocalizedField;
   headPhoto?: string | null;
@@ -36,6 +38,7 @@ const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == 
   "image": image.asset->url,
   overview,
   keyActivities,
+  body,
   headName,
   headRole,
   "headPhoto": headPhoto.asset->url
@@ -45,7 +48,10 @@ const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == 
  * The hero/overview/key-activities/department-head copy for one
  * department's detail page, fetched live from Sanity. Returns `null` when
  * no document exists yet (or while loading) so the page keeps showing its
- * translated hardcoded copy.
+ * translated hardcoded copy. `bodyBlocks` — the full, multi-paragraph
+ * article (with headings and inline lists) — takes priority over the
+ * simpler `overview` + `keyActivities` fields when an editor has filled it
+ * in; the page falls back to those (or to the hardcoded copy) otherwise.
  */
 export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | null {
   const { i18n } = useTranslation("home");
@@ -71,6 +77,7 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
           keyActivities: (doc.keyActivities || [])
             .map((item) => pickOrUndef(item, lang) || "")
             .filter(Boolean),
+          bodyBlocks: doc.body ? (doc.body[lang] || doc.body["en"]) : undefined,
           headName: doc.headName || undefined,
           headRole: pickOrUndef(doc.headRole, lang),
           headPhoto: doc.headPhoto || undefined,

@@ -15,6 +15,7 @@ export const departmentDetail = defineType({
   type: "document",
   groups: [
     { name: "main", title: "Main" },
+    { name: "body", title: "Full Article" },
     { name: "head", title: "Department Head" },
   ],
   fields: [
@@ -53,18 +54,111 @@ export const departmentDetail = defineType({
     }),
     defineField({
       name: "overview",
-      title: "Overview paragraph",
-      description: 'The description under "About <Department>".',
+      title: "Overview paragraph (short version)",
+      description:
+        'A single short paragraph under "About <Department>". Only used when "Full Article" below is empty — fill in the Full Article tab instead for a longer, multi-paragraph write-up with headings and lists, like epr.rw.',
       type: "localizedText",
       group: "main",
     }),
     defineField({
       name: "keyActivities",
-      title: "Key activities",
-      description: "The checklist of bullet points under Key Activities.",
+      title: "Key activities (short version)",
+      description:
+        'A simple checklist shown under "Key Activities", right after the short Overview paragraph above. Only used when "Full Article" below is empty — for a richer write-up, list activities as a bullet list inside the Full Article text instead.',
       type: "array",
       of: [{ type: "localizedString" }],
       group: "main",
+    }),
+    defineField({
+      name: "body",
+      title: "Full Article",
+      description:
+        "The complete department write-up — as many paragraphs, headings and bullet lists as you need, like the article on epr.rw. When this has content it replaces the short Overview paragraph and Key Activities checklist above. Leave empty to keep using those simpler fields instead.",
+      type: "object",
+      group: "body",
+      fields: [
+        {
+          name: "en",
+          title: "English",
+          type: "array",
+          of: [
+            { type: "block" },
+            {
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                { name: "alt", type: "string", title: "Alt text" },
+                { name: "caption", type: "string", title: "Caption" },
+                {
+                  name: "size",
+                  type: "string",
+                  title: "Size",
+                  options: {
+                    list: [
+                      { title: "Full width", value: "full" },
+                      { title: "Small (portrait)", value: "small" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "fr",
+          title: "Français",
+          type: "array",
+          of: [
+            { type: "block" },
+            {
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                { name: "alt", type: "string", title: "Alt text" },
+                { name: "caption", type: "string", title: "Caption" },
+                {
+                  name: "size",
+                  type: "string",
+                  title: "Size",
+                  options: {
+                    list: [
+                      { title: "Full width", value: "full" },
+                      { title: "Small (portrait)", value: "small" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "rw",
+          title: "Kinyarwanda",
+          type: "array",
+          of: [
+            { type: "block" },
+            {
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                { name: "alt", type: "string", title: "Alt text" },
+                { name: "caption", type: "string", title: "Caption" },
+                {
+                  name: "size",
+                  type: "string",
+                  title: "Size",
+                  options: {
+                    list: [
+                      { title: "Full width", value: "full" },
+                      { title: "Small (portrait)", value: "small" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "headName",
