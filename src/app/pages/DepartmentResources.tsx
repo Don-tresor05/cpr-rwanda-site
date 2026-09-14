@@ -135,8 +135,8 @@ export function DepartmentResources() {
               className="lg:col-span-2"
             >
               {cmsDetail?.headName ? (
-                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white p-8 flex flex-col items-center text-center">
-                  <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-none overflow-hidden bg-[#EDF1F7] mb-5 shadow-sm">
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-sm w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col overflow-hidden">
+                  <div className="relative w-full aspect-[4/5] bg-[#EDF1F7]">
                     {cmsDetail.headPhoto ? (
                       <img
                         src={cmsDetail.headPhoto}
@@ -145,13 +145,13 @@ export function DepartmentResources() {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
-                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     )}
                   </div>
-                  <div>
+                  <div className="p-6 text-center">
                     <div
                       className="text-[10px] font-bold uppercase tracking-widest mb-1.5"
                       style={{ color: dept.accent }}
