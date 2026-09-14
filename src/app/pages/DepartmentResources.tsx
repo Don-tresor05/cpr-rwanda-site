@@ -77,12 +77,86 @@ export function DepartmentResources() {
       {/* Overview */}
       <WatermarkSection className="py-16 lg:py-20 bg-white">
         <div ref={contentRef} className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+          <div className="block">
+            {/* Department Head — prominent portrait when available, matching the EPR reference layout */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="lg:float-right lg:ml-10 lg:mb-6 mb-8 w-full lg:w-auto"
+            >
+              {cmsDetail?.headName ? (
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto lg:mx-0 flex flex-col overflow-hidden">
+                  <div className="relative w-full aspect-[4/3] bg-[#EDF1F7]">
+                    {cmsDetail.headPhoto ? (
+                      <img
+                        src={cmsDetail.headPhoto}
+                        alt={cmsDetail.headName}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="py-3 px-3 text-center flex flex-col justify-center">
+                    <h4 className="font-['Outfit'] font-black text-[#111827] text-lg leading-tight">
+                      {cmsDetail.headName}
+                    </h4>
+                    {cmsDetail.headRole && (
+                      <p className="text-[#8B6543] text-xs font-semibold mt-0.5">
+                        {cmsDetail.headRole}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10 max-w-[280px] w-full mx-auto lg:mx-0">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={cmsDetail?.image ?? dept.image}
+                      alt={cmsDetail?.title ?? dept.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(135deg, ${dept.accent}30 0%, transparent 50%, ${dept.accent}15 100%)`,
+                      }}
+                    />
+                  </div>
+                  <div className="p-5 bg-white">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: dept.accent }}
+                      >
+                        <Icon size={20} color="white" strokeWidth={1.5} />
+                      </div>
+                      <span
+                        className="font-['Outfit'] font-bold text-lg"
+                        style={{ color: dept.accent }}
+                      >
+                        {cmsDetail?.title ?? dept.title}
+                      </span>
+                    </div>
+                    <p className="text-[#4A4A4A] text-sm leading-relaxed">
+                      {t("departmentResourcesUI.partOfCpr")}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+
+            {/* Overview & Key Activities */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={contentVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-3"
+              className="block"
             >
               <div className="inline-flex items-center gap-2 mb-3">
                 <div className="h-px w-8" style={{ backgroundColor: dept.accent }} />
@@ -126,79 +200,8 @@ export function DepartmentResources() {
                 ))}
               </ul>
             </motion.div>
-
-            {/* Department Head — prominent portrait when available, matching the EPR reference layout */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={contentVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:col-span-2"
-            >
-              {cmsDetail?.headName ? (
-                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col overflow-hidden">
-                  <div className="relative w-full aspect-[4/3] bg-[#EDF1F7]">
-                    {cmsDetail.headPhoto ? (
-                      <img
-                        src={cmsDetail.headPhoto}
-                        alt={cmsDetail.headName}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
-                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                  <div className="py-3 px-3 text-center flex flex-col justify-center">
-                    <h4 className="font-['Outfit'] font-black text-[#111827] text-lg leading-tight">
-                      {cmsDetail.headName}
-                    </h4>
-                    {cmsDetail.headRole && (
-                      <p className="text-[#8B6543] text-xs font-semibold mt-0.5">
-                        {cmsDetail.headRole}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10">
-                  <div className="relative aspect-[4/3]">
-                    <img
-                      src={cmsDetail?.image ?? dept.image}
-                      alt={cmsDetail?.title ?? dept.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: `linear-gradient(135deg, ${dept.accent}30 0%, transparent 50%, ${dept.accent}15 100%)`,
-                      }}
-                    />
-                  </div>
-                  <div className="p-5 bg-white">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: dept.accent }}
-                      >
-                        <Icon size={20} color="white" strokeWidth={1.5} />
-                      </div>
-                      <span
-                        className="font-['Outfit'] font-bold text-lg"
-                        style={{ color: dept.accent }}
-                      >
-                        {cmsDetail?.title ?? dept.title}
-                      </span>
-                    </div>
-                    <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                      {t("departmentResourcesUI.partOfCpr")}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </motion.div>
+            
+            <div className="clear-both" />
           </div>
         </div>
       </WatermarkSection>
