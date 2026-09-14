@@ -135,7 +135,7 @@ export function DepartmentResources() {
               className="lg:col-span-2"
             >
               {cmsDetail?.headName ? (
-                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[260px] w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col overflow-hidden">
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto lg:ml-auto lg:mr-0 flex flex-col overflow-hidden">
                   <div className="relative w-full aspect-[4/3] bg-[#EDF1F7]">
                     {cmsDetail.headPhoto ? (
                       <img
