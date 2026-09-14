@@ -1065,7 +1065,10 @@
     "title": "Umutwe",
     "info": "Amakuru",
     "modified": "Byahinduwe",
-    "noFiles": "Nta nyandiko zirashyirwaho kuri ibi byigwa. Ongera urebe vuba."
+    "noFiles": "Nta nyandiko zirashyirwaho kuri ibi byigwa. Ongera urebe vuba.",
+    "departmentHead": "Umuyobozi w'Ishami",
+    "activitiesAndMilestones": "Ibikorwa n'Intambwe Zagezweho",
+    "activitiesDesc": "Ibintu by'ingenzi n'ibikorwa by'ishami rya"
   },
   "departmentResourcesData": {
     "gs": {

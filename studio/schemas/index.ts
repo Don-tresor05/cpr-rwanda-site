@@ -4,6 +4,7 @@ import { newsPost } from "./newsPost";
 import { departmentResourceFile } from "./departmentResourceFile";
 import { departmentResourceGroup } from "./departmentResourceGroup";
 import { departmentDetail } from "./departmentDetail";
+import { departmentActivity } from "./departmentActivity";
 import { siteSettings } from "./siteSettings";
 import { memberChurch } from "./memberChurch";
 import { department } from "./department";
@@ -24,6 +25,7 @@ export const schemaTypes = [
   departmentResourceFile,
   departmentResourceGroup,
   departmentDetail,
+  departmentActivity,
   siteSettings,
   memberChurch,
   department,

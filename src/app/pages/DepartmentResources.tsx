@@ -6,7 +6,11 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { getDepartmentResources } from "../data/departmentResources";
 import { useTranslation } from "react-i18next";
-import { useCmsResourceGroups, useCmsDepartmentDetail } from "../data/sanityDepartmentResources";
+import {
+  useCmsResourceGroups,
+  useCmsDepartmentDetail,
+  useCmsDepartmentActivities,
+} from "../data/sanityDepartmentResources";
 
 export function DepartmentResources() {
   const { t } = useTranslation("home");
@@ -16,6 +20,7 @@ export function DepartmentResources() {
   const { ref: contentRef, visible: contentVisible } = useScrollReveal();
   const cmsGroups = useCmsResourceGroups(deptId);
   const cmsDetail = useCmsDepartmentDetail(deptId);
+  const cmsActivities = useCmsDepartmentActivities(deptId);
 
   if (!dept) {
     return (
@@ -163,10 +168,107 @@ export function DepartmentResources() {
                   </p>
                 </div>
               </div>
+
+              {/* Department Head Card */}
+              {cmsDetail?.headName && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={contentVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.25 }}
+                  className="mt-6 bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex items-center gap-4 p-4"
+                >
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-[#EDF1F7] shrink-0">
+                    {cmsDetail.headPhoto ? (
+                      <img
+                        src={cmsDetail.headPhoto}
+                        alt={cmsDetail.headName}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/40">
+                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <div
+                      className="text-[10px] font-bold uppercase tracking-widest mb-1"
+                      style={{ color: dept.accent }}
+                    >
+                      {t("departmentResourcesUI.departmentHead")}
+                    </div>
+                    <h4 className="font-['Outfit'] font-black text-[#4E6132] text-base leading-tight truncate">
+                      {cmsDetail.headName}
+                    </h4>
+                    {cmsDetail.headRole && (
+                      <p className="text-[#8B6543] text-sm font-semibold truncate">
+                        {cmsDetail.headRole}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           </div>
         </div>
       </WatermarkSection>
+
+      {/* Activities & Milestones */}
+      {cmsActivities && cmsActivities.length > 0 && (
+        <section className="py-16 lg:py-20 bg-white border-t border-[#4E6132]/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-3">
+                {t("departmentResourcesUI.activitiesAndMilestones")}
+              </h2>
+              <p className="text-[#4A4A4A] max-w-xl mx-auto">
+                {t("departmentResourcesUI.activitiesDesc")} {cmsDetail?.title ?? dept.title} {t("departmentResourcesUI.department")}.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+              {cmsActivities.map((activity, idx) => (
+                <motion.article
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full"
+                >
+                  {activity.image && (
+                    <div className="aspect-[16/10] overflow-hidden bg-[#EDF1F7]">
+                      <img
+                        src={activity.image}
+                        alt={activity.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="p-5 lg:p-6 flex flex-col grow">
+                    <div
+                      className="text-xs font-bold uppercase tracking-wide mb-2.5"
+                      style={{ color: dept.accent }}
+                    >
+                      {activity.date}
+                    </div>
+                    <h3 className="font-['Outfit'] font-bold text-lg text-[#4E6132] mb-2 leading-snug">
+                      {activity.title}
+                    </h3>
+                    {activity.excerpt && (
+                      <p className="text-[#4A4A4A] text-sm leading-relaxed line-clamp-3">
+                        {activity.excerpt}
+                      </p>
+                    )}
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Resources Section */}
       {(cmsGroups?.length || dept.resources.length > 0) && (

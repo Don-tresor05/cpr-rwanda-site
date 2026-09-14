@@ -1065,7 +1065,10 @@
     "title": "Titre",
     "info": "Info",
     "modified": "Modifié",
-    "noFiles": "Aucun fichier téléchargé pour cette ressource pour le moment. Revenez bientôt."
+    "noFiles": "Aucun fichier téléchargé pour cette ressource pour le moment. Revenez bientôt.",
+    "departmentHead": "Responsable du Département",
+    "activitiesAndMilestones": "Activités & Jalons",
+    "activitiesDesc": "Moments clés et initiatives du"
   },
   "departmentResourcesData": {
     "gs": {

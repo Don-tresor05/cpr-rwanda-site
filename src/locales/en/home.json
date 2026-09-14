@@ -1065,7 +1065,10 @@
     "title": "Title",
     "info": "Info",
     "modified": "Modified",
-    "noFiles": "No files uploaded yet for this resource. Check back soon."
+    "noFiles": "No files uploaded yet for this resource. Check back soon.",
+    "departmentHead": "Department Head",
+    "activitiesAndMilestones": "Activities & Milestones",
+    "activitiesDesc": "Key moments and initiatives from the"
   },
   "departmentResourcesData": {
     "gs": {

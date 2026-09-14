@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { client as sanityClient } from "../../lib/sanityClient";
 import { pickOrUndef, type LocalizedField } from "./siteSettings";
+import { formatCmsDate } from "./sanityNews";
 
 export interface CmsResourceFile {
   name: string;
@@ -15,6 +16,9 @@ export interface CmsDepartmentDetail {
   image?: string;
   overview?: string;
   keyActivities?: string[];
+  headName?: string;
+  headRole?: string;
+  headPhoto?: string;
 }
 
 interface SanityDepartmentDetailDoc {
@@ -22,19 +26,26 @@ interface SanityDepartmentDetailDoc {
   image?: string | null;
   overview?: LocalizedField;
   keyActivities?: LocalizedField[];
+  headName?: string;
+  headRole?: LocalizedField;
+  headPhoto?: string | null;
 }
 
 const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == $dept][0] {
   title,
   "image": image.asset->url,
   overview,
-  keyActivities
+  keyActivities,
+  headName,
+  headRole,
+  "headPhoto": headPhoto.asset->url
 }`;
 
 /**
- * The hero/overview/key-activities copy for one department's detail page,
- * fetched live from Sanity. Returns `null` when no document exists yet (or
- * while loading) so the page keeps showing its translated hardcoded copy.
+ * The hero/overview/key-activities/department-head copy for one
+ * department's detail page, fetched live from Sanity. Returns `null` when
+ * no document exists yet (or while loading) so the page keeps showing its
+ * translated hardcoded copy.
  */
 export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | null {
   const { i18n } = useTranslation("home");
@@ -60,6 +71,9 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
           keyActivities: (doc.keyActivities || [])
             .map((item) => pickOrUndef(item, lang) || "")
             .filter(Boolean),
+          headName: doc.headName || undefined,
+          headRole: pickOrUndef(doc.headRole, lang),
+          headPhoto: doc.headPhoto || undefined,
         });
       })
       .catch(() => {
@@ -71,6 +85,65 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
   }, [deptId, lang]);
 
   return detail;
+}
+
+export interface CmsDepartmentActivity {
+  title: string;
+  date: string;
+  excerpt?: string;
+  image?: string;
+}
+
+interface SanityDepartmentActivityDoc {
+  _id: string;
+  title?: LocalizedField;
+  date?: string;
+  periodLabel?: string;
+  excerpt?: LocalizedField;
+  image?: string | null;
+}
+
+const ACTIVITIES_QUERY = `*[_type == "departmentActivity" && department == $dept] | order(date desc) {
+  _id, title, date, periodLabel, excerpt, "image": image.asset->url
+}`;
+
+/**
+ * The "Activities & Milestones" timeline cards for one department,
+ * newest first, fetched live from Sanity. Returns `null` when there are no
+ * published activities yet so the page hides that section entirely.
+ */
+export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivity[] | null {
+  const { i18n } = useTranslation("home");
+  const lang = (i18n.language || "en").substring(0, 2);
+  const [activities, setActivities] = useState<CmsDepartmentActivity[] | null>(null);
+
+  useEffect(() => {
+    if (!deptId) return;
+    let cancelled = false;
+    setActivities(null);
+    sanityClient
+      .fetch<SanityDepartmentActivityDoc[]>(ACTIVITIES_QUERY, { dept: deptId })
+      .then((docs) => {
+        if (cancelled) return;
+        const mapped = (docs || [])
+          .map((d) => ({
+            title: pickOrUndef(d.title, lang) || "",
+            date: d.periodLabel || formatCmsDate(d.date, lang),
+            excerpt: pickOrUndef(d.excerpt, lang),
+            image: d.image || undefined,
+          }))
+          .filter((a) => a.title);
+        setActivities(mapped.length > 0 ? mapped : null);
+      })
+      .catch(() => {
+        if (!cancelled) setActivities(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [deptId, lang]);
+
+  return activities;
 }
 
 export interface CmsResourceGroup {

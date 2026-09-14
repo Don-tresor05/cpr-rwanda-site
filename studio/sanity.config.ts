@@ -34,6 +34,7 @@ export default defineConfig({
             S.documentTypeListItem('departmentResourceFile').title('Department Resource Files'),
             S.documentTypeListItem('departmentResourceGroup').title('Department Resource Groups'),
             S.documentTypeListItem('departmentDetail').title('Department Detail Pages'),
+            S.documentTypeListItem('departmentActivity').title('Department Activities'),
             S.documentTypeListItem('memberChurch').title('Member Churches'),
             S.documentTypeListItem('galleryEvent').title('Gallery Events'),
             S.documentTypeListItem('radioProgram').title('Radio Programs'),
