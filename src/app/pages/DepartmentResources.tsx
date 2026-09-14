@@ -151,18 +151,18 @@ export function DepartmentResources() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6 text-center">
+                  <div className="py-3 px-3 text-center flex flex-col justify-center">
                     <div
-                      className="text-[10px] font-bold uppercase tracking-widest mb-1.5"
+                      className="text-[9px] font-bold uppercase tracking-widest mb-1"
                       style={{ color: dept.accent }}
                     >
                       {t("departmentResourcesUI.departmentHead")}
                     </div>
-                    <h4 className="font-['Outfit'] font-black text-[#111827] text-xl lg:text-2xl leading-tight">
+                    <h4 className="font-['Outfit'] font-black text-[#111827] text-lg leading-tight">
                       {cmsDetail.headName}
                     </h4>
                     {cmsDetail.headRole && (
-                      <p className="text-[#8B6543] text-sm lg:text-base font-semibold mt-1">
+                      <p className="text-[#8B6543] text-xs font-semibold mt-0.5">
                         {cmsDetail.headRole}
                       </p>
                     )}
