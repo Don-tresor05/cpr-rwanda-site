@@ -16,6 +16,7 @@ import {
   useCmsDepartmentActivity,
   useCmsDepartmentActivities,
 } from "../data/sanityDepartmentResources";
+import { getDepartmentResources } from "../data/departmentResources";
 import { ImageLightbox, LightboxImage } from "../components/ui/ImageLightbox";
 import { PortableContent } from "../components/ui/PortableContent";
 
@@ -31,6 +32,8 @@ export function DepartmentActivityDetail() {
 
   const activity = useCmsDepartmentActivity(slug);
   const allActivities = useCmsDepartmentActivities(deptId);
+  const fallbackDept = deptId ? getDepartmentResources(t)[deptId] : undefined;
+  const heroImage = activity?.image || fallbackDept?.image;
 
   const relatedActivities = useMemo(() => {
     if (!allActivities || !activity) return [];
@@ -38,9 +41,9 @@ export function DepartmentActivityDetail() {
   }, [allActivities, activity]);
 
   const allArticleImages: LightboxImage[] = useMemo(() => {
-    if (!activity?.image) return [];
-    return [{ src: activity.image, alt: activity.title }];
-  }, [activity]);
+    if (!heroImage) return [];
+    return [{ src: heroImage, alt: activity?.title || "" }];
+  }, [heroImage, activity]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -82,19 +85,32 @@ export function DepartmentActivityDetail() {
               <Calendar size={13} className="text-[#4E6132]" />
               <span>{activity.date}</span>
             </div>
+            {activity.author && (
+              <>
+                <span className="text-[#4E6132]/40">•</span>
+                <span className="hover:text-[#8B6543] transition-colors">
+                  {t("newsroom.byAuthor", { defaultValue: "By {{author}}", author: activity.author })}
+                </span>
+              </>
+            )}
           </div>
 
           {/* Main Hero Image */}
-          {activity.image && (
-            <div
-              onClick={() => setSelectedImgIdx(0)}
-              className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
-            >
-              <img
-                src={activity.image}
-                alt={activity.title}
-                className="w-full h-full object-cover"
-              />
+          {heroImage && (
+            <div className="mb-4">
+              <div
+                onClick={() => setSelectedImgIdx(0)}
+                className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
+              >
+                <img
+                  src={heroImage}
+                  alt={activity.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-xs text-[#6B7280] leading-normal border-b border-[#4E6132]/10 pb-2">
+                {activity.imageCaption || `${activity.title} — Conseil Protestant du Rwanda.`}
+              </p>
             </div>
           )}
 
@@ -106,6 +122,13 @@ export function DepartmentActivityDetail() {
               <p>{activity.excerpt}</p>
             )}
           </div>
+
+          {/* Pullquote if available */}
+          {activity.quote && (
+            <blockquote className="my-4 border-l-4 border-[#8B6543] bg-[#F8F9FA] p-4 rounded-r-none text-sm sm:text-base font-['Outfit'] font-bold text-[#4E6132] italic leading-snug shadow-sm">
+              “{activity.quote}”
+            </blockquote>
+          )}
 
           {/* Share & Action Bar */}
           <div className="mt-6 pt-4 border-t border-[#4E6132]/10 flex flex-wrap items-center justify-between gap-3">

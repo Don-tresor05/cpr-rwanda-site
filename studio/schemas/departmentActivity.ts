@@ -58,6 +58,13 @@ export const departmentActivity = defineType({
       },
     }),
     defineField({
+      name: "author",
+      title: "Author / Byline",
+      type: "string",
+      group: "main",
+      description: "e.g. CPR Secretariat, BNEP Department",
+    }),
+    defineField({
       name: "date",
       title: "Date",
       description: "Controls sort order (newest first) and the date shown on the card.",
@@ -86,6 +93,19 @@ export const departmentActivity = defineType({
       type: "image",
       group: "main",
       options: { hotspot: true },
+    }),
+    defineField({
+      name: "imageCaption",
+      title: "Cover image caption",
+      type: "string",
+      group: "main",
+    }),
+    defineField({
+      name: "quote",
+      title: "Pull quote",
+      type: "localizedString",
+      group: "body",
+      description: "Optional — a highlighted quotation shown in the article.",
     }),
     defineField({
       name: "body",

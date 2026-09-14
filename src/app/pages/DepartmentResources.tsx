@@ -223,24 +223,26 @@ export function DepartmentResources() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
-              {cmsActivities.map((activity, idx) => (
-                <motion.article
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
-                >
-                  {activity.image && (
-                    <Link to={`/departments/${dept.id}/activities/${activity.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
-                      <img
-                        src={activity.image}
-                        alt={activity.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </Link>
-                  )}
+              {cmsActivities.map((activity, idx) => {
+                const cardImage = activity.image || cmsDetail?.image || dept.image;
+                return (
+                  <motion.article
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.08 }}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
+                  >
+                    {cardImage && (
+                      <Link to={`/departments/${dept.id}/activities/${activity.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
+                        <img
+                          src={cardImage}
+                          alt={activity.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </Link>
+                    )}
                   <div className="p-5 lg:p-6 flex flex-col grow">
                     <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
                       {activity.date}
@@ -265,7 +267,8 @@ export function DepartmentResources() {
                     </div>
                   </div>
                 </motion.article>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

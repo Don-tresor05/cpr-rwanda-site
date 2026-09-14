@@ -1,0 +1,762 @@
+From 425f8bed49d1792433c86f9c521fe06ba66097af Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 14 Sep 2026 09:47:14 +0000
+Subject: [PATCH] feat(cms): give department activities their own article,
+ news-style
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Adopts the News Post mechanism for department activities instead of just
+visually resembling it:
+
+- departmentActivity gains a slug, a full localized rich-text body
+  (identical shape to newsPost's), an optional author/byline, and a cover
+  photo caption — the same fields newsPost uses to build a full article.
+- The Activities & Milestones cards on the department detail page are now
+  wired exactly like the Newsroom's cards: clickable image, title link,
+  "Read more" with the arrow icon, all pointing at
+  /departments/:deptId/activities/:slug.
+- New DepartmentActivityDetail page mirrors NewsDetail.tsx: hero image
+  with lightbox, date/author meta, PortableText body rendering, share bar,
+  and a "More Activities & Milestones" related grid scoped to the same
+  department — reusing the existing PortableContent and ImageLightbox
+  components rather than duplicating their logic.
+- An activity with no body falls back to showing its short summary, and
+  an unknown slug falls back to the first activity, matching how
+  NewsDetail already behaves.
+
+Still fully Sanity-controlled and hidden until a department has published
+activities — no fallback/sample content invented.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xNEugH42JGJDBqiHFtfyU
+---
+ src/app/App.tsx                            |   2 +
+ src/app/data/sanityDepartmentResources.ts  |  42 +++-
+ src/app/pages/DepartmentActivityDetail.tsx | 272 +++++++++++++++++++++
+ src/app/pages/DepartmentResources.tsx      |  58 +++--
+ src/locales/en/home.json                   |   5 +-
+ src/locales/fr/home.json                   |   5 +-
+ src/locales/rw/home.json                   |   5 +-
+ studio/schemas/departmentActivity.ts       | 158 ++++++++++--
+ 8 files changed, 489 insertions(+), 58 deletions(-)
+ create mode 100644 src/app/pages/DepartmentActivityDetail.tsx
+
+diff --git a/src/app/App.tsx b/src/app/App.tsx
+index 5de95fb..869aefc 100644
+--- a/src/app/App.tsx
++++ b/src/app/App.tsx
+@@ -13,6 +13,7 @@ import { Secretariat } from "./pages/Secretariat";
+ import { Departments } from "./pages/Departments";
+ import { DepartmentResources } from "./pages/DepartmentResources";
+ import { DepartmentResourceFiles } from "./pages/DepartmentResourceFiles";
++import { DepartmentActivityDetail } from "./pages/DepartmentActivityDetail";
+ import { SecretariatResources } from "./pages/SecretariatResources";
+ import { SecretariatResourceFiles } from "./pages/SecretariatResourceFiles";
+ import { RadioPage } from "./pages/RadioPage";
+@@ -61,6 +62,7 @@ export default function App() {
+             <Route path="/departments" element={<Departments />} />
+             <Route path="/departments/:deptId/resources" element={<DepartmentResources />} />
+             <Route path="/departments/:deptId/resources/:resourceSlug" element={<DepartmentResourceFiles />} />
++            <Route path="/departments/:deptId/activities/:slug" element={<DepartmentActivityDetail />} />
+             <Route path="/radio" element={<RadioPage />} />
+             <Route path="/contact" element={<ContactPage />} />
+             <Route path="/gallery" element={<GalleryPage />} />
+diff --git a/src/app/data/sanityDepartmentResources.ts b/src/app/data/sanityDepartmentResources.ts
+index 1f53d42..f837c4c 100644
+--- a/src/app/data/sanityDepartmentResources.ts
++++ b/src/app/data/sanityDepartmentResources.ts
+@@ -88,29 +88,54 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
+ }
+ 
+ export interface CmsDepartmentActivity {
++  slug: string;
+   title: string;
+   date: string;
+   excerpt?: string;
+   image?: string;
++  imageCaption?: string;
++  author?: string;
++  bodyBlocks?: unknown[];
+ }
+ 
+ interface SanityDepartmentActivityDoc {
+   _id: string;
++  slug?: { current: string } | string;
+   title?: LocalizedField;
+   date?: string;
+   periodLabel?: string;
+   excerpt?: LocalizedField;
+   image?: string | null;
++  imageCaption?: string;
++  author?: string;
++  body?: { en?: unknown[]; fr?: unknown[]; rw?: unknown[] };
+ }
+ 
+ const ACTIVITIES_QUERY = `*[_type == "departmentActivity" && department == $dept] | order(date desc) {
+-  _id, title, date, periodLabel, excerpt, "image": image.asset->url
++  _id, "slug": slug.current, title, date, periodLabel, excerpt,
++  "image": image.asset->url, imageCaption, author, body
+ }`;
+ 
++function mapActivity(d: SanityDepartmentActivityDoc, lang: string): CmsDepartmentActivity {
++  const slug = typeof d.slug === "string" ? d.slug : d.slug?.current || "";
++  const body = d.body?.[lang === "fr" || lang === "rw" ? lang : "en"] || d.body?.en || [];
++  return {
++    slug,
++    title: pickOrUndef(d.title, lang) || "",
++    date: d.periodLabel || formatCmsDate(d.date, lang),
++    excerpt: pickOrUndef(d.excerpt, lang),
++    image: d.image || undefined,
++    imageCaption: d.imageCaption || undefined,
++    author: d.author || undefined,
++    bodyBlocks: body as unknown[],
++  };
++}
++
+ /**
+- * The "Activities & Milestones" timeline cards for one department,
+- * newest first, fetched live from Sanity. Returns `null` when there are no
+- * published activities yet so the page hides that section entirely.
++ * The "Activities & Milestones" cards for one department, newest first,
++ * fetched live from Sanity — same mechanism as News Posts, scoped to one
++ * department. Returns `null` when there are no published activities yet so
++ * the page hides that section entirely.
+  */
+ export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivity[] | null {
+   const { i18n } = useTranslation("home");
+@@ -126,13 +151,8 @@ export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivi
+       .then((docs) => {
+         if (cancelled) return;
+         const mapped = (docs || [])
+-          .map((d) => ({
+-            title: pickOrUndef(d.title, lang) || "",
+-            date: d.periodLabel || formatCmsDate(d.date, lang),
+-            excerpt: pickOrUndef(d.excerpt, lang),
+-            image: d.image || undefined,
+-          }))
+-          .filter((a) => a.title);
++          .map((d) => mapActivity(d, lang))
++          .filter((a) => a.title && a.slug);
+         setActivities(mapped.length > 0 ? mapped : null);
+       })
+       .catch(() => {
+diff --git a/src/app/pages/DepartmentActivityDetail.tsx b/src/app/pages/DepartmentActivityDetail.tsx
+new file mode 100644
+index 0000000..2069f64
+--- /dev/null
++++ b/src/app/pages/DepartmentActivityDetail.tsx
+@@ -0,0 +1,272 @@
++import { useParams, Link } from "react-router";
++import { useEffect, useMemo, useState } from "react";
++import { Calendar, ArrowLeft, Share2, Check, Facebook, Twitter, Linkedin, ArrowRight } from "lucide-react";
++import { WatermarkSection } from "../components/ui/WatermarkBackground";
++import { useTranslation } from "react-i18next";
++import { getDepartmentResources } from "../data/departmentResources";
++import { useCmsDepartmentActivities, type CmsDepartmentActivity } from "../data/sanityDepartmentResources";
++import { ImageLightbox, LightboxImage } from "../components/ui/ImageLightbox";
++import { PortableContent } from "../components/ui/PortableContent";
++
++/**
++ * The full article for one department activity/milestone — the page a
++ * visitor lands on after clicking "Read more" on an Activities & Milestones
++ * card. Same mechanism as the News detail page, scoped to one department's
++ * published departmentActivity documents.
++ */
++export function DepartmentActivityDetail() {
++  const { deptId, slug } = useParams<{ deptId: string; slug: string }>();
++  const { t } = useTranslation("home");
++  const [copied, setCopied] = useState(false);
++  const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
++
++  useEffect(() => {
++    window.scrollTo(0, 0);
++  }, [slug]);
++
++  const departmentResources = getDepartmentResources(t);
++  const dept = deptId ? departmentResources[deptId] : undefined;
++  const cmsActivities = useCmsDepartmentActivities(deptId);
++
++  const activity: CmsDepartmentActivity | undefined = useMemo(() => {
++    if (!cmsActivities) return undefined;
++    return cmsActivities.find((a) => a.slug === slug) ?? cmsActivities[0];
++  }, [cmsActivities, slug]);
++
++  const relatedActivities = useMemo(() => {
++    if (!cmsActivities || !activity) return [];
++    return cmsActivities.filter((a) => a.slug !== activity.slug).slice(0, 3);
++  }, [cmsActivities, activity]);
++
++  const heroImage = activity?.image || dept?.image || "/cpr/assets/CPR 3 - Copy.webp";
++
++  const allArticleImages: LightboxImage[] = useMemo(() => {
++    if (!activity) return [];
++    return [{ src: heroImage, alt: activity.title }];
++  }, [activity, heroImage]);
++
++  const handleCopyLink = () => {
++    navigator.clipboard.writeText(window.location.href);
++    setCopied(true);
++    setTimeout(() => setCopied(false), 2000);
++  };
++
++  if (!dept) {
++    return (
++      <main className="bg-white min-h-screen flex items-center justify-center">
++        <div className="text-center px-6">
++          <h1 className="font-['Outfit'] font-black text-4xl text-[#4E6132] mb-4">
++            {t("departmentResourcesUI.deptNotFoundTitle")}
++          </h1>
++          <p className="text-[#4A4A4A] mb-8">
++            {t("departmentResourcesUI.deptNotFoundDesc")}
++          </p>
++          <Link
++            to="/departments"
++            className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 text-sm"
++          >
++            <ArrowLeft size={16} /> {t("departmentResourcesUI.backToDepartments")}
++          </Link>
++        </div>
++      </main>
++    );
++  }
++
++  const backHref = `/departments/${dept.id}/resources`;
++
++  if (!activity) {
++    return (
++      <main className="bg-white min-h-screen flex items-center justify-center">
++        <div className="text-center px-6">
++          <h1 className="font-['Outfit'] font-black text-4xl text-[#4E6132] mb-4">
++            {t("departmentResourcesUI.activityNotFoundTitle", "Activity not found")}
++          </h1>
++          <p className="text-[#4A4A4A] mb-8">
++            {t("departmentResourcesUI.activityNotFoundDesc", "This activity may have been removed or is no longer published.")}
++          </p>
++          <Link
++            to={backHref}
++            className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 text-sm"
++          >
++            <ArrowLeft size={16} /> {t("departmentResourcesUI.backTo")} {dept.title}
++          </Link>
++        </div>
++      </main>
++    );
++  }
++
++  return (
++    <WatermarkSection className="bg-white min-h-screen">
++      <article className="py-6 lg:py-10">
++        <div className="max-w-4xl mx-auto px-6">
++          {/* Back link */}
++          <Link
++            to={backHref}
++            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#4E6132] hover:text-[#8B6543] active:text-[#8B6543] transition-colors mb-4"
++          >
++            <ArrowLeft size={13} /> {t("departmentResourcesUI.backTo")} {dept.title}
++          </Link>
++
++          {/* Article Title */}
++          <h1 className="font-['Outfit'] font-black text-2xl sm:text-3xl text-[#111827] leading-snug mb-2">
++            {activity.title}
++          </h1>
++
++          {/* Article Date & Meta */}
++          <div className="flex items-center gap-2.5 text-xs font-semibold text-[#4E6132] mb-4">
++            <div className="flex items-center gap-1 hover:text-[#8B6543] cursor-default transition-colors">
++              <Calendar size={13} className="text-[#4E6132]" />
++              <span>{activity.date}</span>
++            </div>
++            {activity.author && (
++              <>
++                <span className="text-[#4E6132]/40">•</span>
++                <span className="hover:text-[#8B6543] transition-colors">
++                  {t("newsroom.byAuthor", { defaultValue: "By {{author}}", author: activity.author })}
++                </span>
++              </>
++            )}
++          </div>
++
++          {/* Main Hero Image */}
++          <div
++            onClick={() => setSelectedImgIdx(0)}
++            className="rounded-none overflow-hidden shadow-sm bg-[#EDF1F7] mb-1.5 aspect-[16/10] cursor-pointer hover:opacity-95 transition-opacity"
++          >
++            <img
++              src={heroImage}
++              alt={activity.title}
++              className="w-full h-full object-cover"
++              onError={(e) => {
++                (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
++              }}
++            />
++          </div>
++
++          {/* Image Caption */}
++          <p className="text-xs text-[#6B7280] leading-normal mb-4 border-b border-[#4E6132]/10 pb-2">
++            {activity.imageCaption || `${activity.title} — Conseil Protestant du Rwanda.`}
++          </p>
++
++          {/* Article Body */}
++          <div className="space-y-3 text-[#374151] text-sm sm:text-base leading-relaxed">
++            {activity.bodyBlocks && activity.bodyBlocks.length > 0 ? (
++              <PortableContent blocks={activity.bodyBlocks} />
++            ) : (
++              <p>{activity.excerpt}</p>
++            )}
++          </div>
++
++          {/* Share & Action Bar */}
++          <div className="mt-6 pt-4 border-t border-[#4E6132]/10 flex flex-wrap items-center justify-between gap-3">
++            <Link
++              to={backHref}
++              className="inline-flex items-center gap-1.5 bg-[#BC8A5F] text-white text-xs font-bold px-4 py-2 rounded-none hover:bg-[#4E6132] transition-colors shadow-sm"
++            >
++              <ArrowLeft size={14} /> {t("departmentResourcesUI.backTo")} {dept.title}
++            </Link>
++
++            <div className="flex items-center gap-3">
++              <span className="text-xs font-bold uppercase tracking-wider text-[#4E6132] flex items-center gap-1.5">
++                <Share2 size={14} className="text-[#8B6543]" /> {t("newsroom.shareLabel", "Share:")}
++              </span>
++              <button
++                onClick={handleCopyLink}
++                className="inline-flex items-center gap-1.5 bg-[#F8F9FA] text-[#4E6132] border border-[#4E6132]/20 hover:bg-[#BC8A5F] hover:text-white px-3 py-1.5 rounded-none text-xs font-bold transition-all"
++              >
++                {copied ? <Check size={14} className="text-green-500" /> : <Share2 size={14} />}
++                <span>{copied ? t("newsroom.copied", "Copied!") : t("newsroom.shareBtn", "Share")}</span>
++              </button>
++              <a
++                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(activity.title)}`}
++                target="_blank"
++                rel="noreferrer"
++                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
++              >
++                <Twitter size={14} />
++              </a>
++              <a
++                href="https://www.facebook.com/sharer/sharer.php"
++                target="_blank"
++                rel="noreferrer"
++                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
++              >
++                <Facebook size={14} />
++              </a>
++              <a
++                href="https://www.linkedin.com/shareArticle"
++                target="_blank"
++                rel="noreferrer"
++                className="w-8 h-8 rounded-none bg-[#F8F9FA] border border-[#4E6132]/20 flex items-center justify-center text-[#4E6132] hover:bg-[#BC8A5F] hover:text-white transition-colors"
++              >
++                <Linkedin size={14} />
++              </a>
++            </div>
++          </div>
++        </div>
++      </article>
++
++      {/* Related activities */}
++      {relatedActivities.length > 0 && (
++        <section className="py-12 bg-[#F8F9FA] border-t border-[#4E6132]/10">
++          <div className="max-w-6xl mx-auto px-6 lg:px-8">
++            <h3 className="font-['Outfit'] font-bold text-2xl text-[#4E6132] mb-8">
++              {t("departmentResourcesUI.moreActivities", "More Activities & Milestones")}
++            </h3>
++
++            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
++              {relatedActivities.map((item) => (
++                <article
++                  key={item.slug}
++                  className="bg-white rounded-none overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full max-w-[360px] mx-auto w-full"
++                >
++                  <Link
++                    to={`/departments/${dept.id}/activities/${item.slug}`}
++                    className="block aspect-[16/10] overflow-hidden rounded-none bg-[#EDF1F7] relative"
++                  >
++                    <img
++                      src={item.image || dept.image}
++                      alt={item.title}
++                      className="w-full h-full object-cover"
++                      onError={(e) => {
++                        (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
++                      }}
++                    />
++                  </Link>
++
++                  <div className="p-5 lg:p-6 flex flex-col grow">
++                    <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
++                      {item.date}
++                    </div>
++                    <h4 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug hover:text-[#8B6543] transition-colors line-clamp-3">
++                      <Link to={`/departments/${dept.id}/activities/${item.slug}`}>
++                        {item.title}
++                      </Link>
++                    </h4>
++                    <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed mb-5 line-clamp-3 grow">
++                      {item.excerpt}
++                    </p>
++                    <div className="mt-auto">
++                      <Link
++                        to={`/departments/${dept.id}/activities/${item.slug}`}
++                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors"
++                      >
++                        {t("newsroom.readMore", "Read more")} <ArrowRight size={14} />
++                      </Link>
++                    </div>
++                  </div>
++                </article>
++              ))}
++            </div>
++          </div>
++        </section>
++      )}
++
++      <ImageLightbox
++        images={allArticleImages}
++        selectedIndex={selectedImgIdx}
++        onClose={() => setSelectedImgIdx(null)}
++      />
++    </WatermarkSection>
++  );
++}
+diff --git a/src/app/pages/DepartmentResources.tsx b/src/app/pages/DepartmentResources.tsx
+index 806c7e1..b23cbce 100644
+--- a/src/app/pages/DepartmentResources.tsx
++++ b/src/app/pages/DepartmentResources.tsx
+@@ -229,41 +229,49 @@ export function DepartmentResources() {
+             </div>
+ 
+             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+-              {cmsActivities.map((activity, idx) => (
+-                <motion.article
+-                  key={idx}
+-                  initial={{ opacity: 0, y: 20 }}
+-                  whileInView={{ opacity: 1, y: 0 }}
+-                  viewport={{ once: true }}
+-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+-                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full"
++              {cmsActivities.map((activity) => (
++                <article
++                  key={activity.slug}
++                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
+                 >
+-                  {activity.image && (
+-                    <div className="aspect-[16/10] overflow-hidden bg-[#EDF1F7]">
+-                      <img
+-                        src={activity.image}
+-                        alt={activity.title}
+-                        className="w-full h-full object-cover"
+-                      />
+-                    </div>
+-                  )}
++                  <Link
++                    to={`/departments/${dept.id}/activities/${activity.slug}`}
++                    className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative"
++                  >
++                    <img
++                      src={activity.image || dept.image}
++                      alt={activity.title}
++                      className="w-full h-full object-cover"
++                      onError={(e) => {
++                        (e.target as HTMLImageElement).src = "/cpr/assets/CPR 3 - Copy.webp";
++                      }}
++                    />
++                  </Link>
++
+                   <div className="p-5 lg:p-6 flex flex-col grow">
+-                    <div
+-                      className="text-xs font-bold uppercase tracking-wide mb-2.5"
+-                      style={{ color: dept.accent }}
+-                    >
++                    <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
+                       {activity.date}
+                     </div>
+-                    <h3 className="font-['Outfit'] font-bold text-lg text-[#4E6132] mb-2 leading-snug">
+-                      {activity.title}
++                    <h3 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug hover:text-[#8B6543] transition-colors line-clamp-3">
++                      <Link to={`/departments/${dept.id}/activities/${activity.slug}`}>
++                        {activity.title}
++                      </Link>
+                     </h3>
+                     {activity.excerpt && (
+-                      <p className="text-[#4A4A4A] text-sm leading-relaxed line-clamp-3">
++                      <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed mb-5 line-clamp-3 grow">
+                         {activity.excerpt}
+                       </p>
+                     )}
++                    <div className="mt-auto">
++                      <Link
++                        to={`/departments/${dept.id}/activities/${activity.slug}`}
++                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors"
++                      >
++                        {t("newsroom.readMore", "Read more")} <ArrowRight size={14} />
++                      </Link>
++                    </div>
+                   </div>
+-                </motion.article>
++                </article>
+               ))}
+             </div>
+           </div>
+diff --git a/src/locales/en/home.json b/src/locales/en/home.json
+index d936472..cb37704 100644
+--- a/src/locales/en/home.json
++++ b/src/locales/en/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "No files uploaded yet for this resource. Check back soon.",
+     "departmentHead": "Department Head",
+     "activitiesAndMilestones": "Activities & Milestones",
+-    "activitiesDesc": "Key moments and initiatives from the"
++    "activitiesDesc": "Key moments and initiatives from the",
++    "activityNotFoundTitle": "Activity not found",
++    "activityNotFoundDesc": "This activity may have been removed or is no longer published.",
++    "moreActivities": "More Activities & Milestones"
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/src/locales/fr/home.json b/src/locales/fr/home.json
+index 88c389d..6acfc43 100644
+--- a/src/locales/fr/home.json
++++ b/src/locales/fr/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "Aucun fichier téléchargé pour cette ressource pour le moment. Revenez bientôt.",
+     "departmentHead": "Responsable du Département",
+     "activitiesAndMilestones": "Activités & Jalons",
+-    "activitiesDesc": "Moments clés et initiatives du"
++    "activitiesDesc": "Moments clés et initiatives du",
++    "activityNotFoundTitle": "Activité introuvable",
++    "activityNotFoundDesc": "Cette activité a peut-être été supprimée ou n'est plus publiée.",
++    "moreActivities": "Plus d'Activités & Jalons"
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/src/locales/rw/home.json b/src/locales/rw/home.json
+index aeb6a2d..247956a 100644
+--- a/src/locales/rw/home.json
++++ b/src/locales/rw/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "Nta nyandiko zirashyirwaho kuri ibi byigwa. Ongera urebe vuba.",
+     "departmentHead": "Umuyobozi w'Ishami",
+     "activitiesAndMilestones": "Ibikorwa n'Intambwe Zagezweho",
+-    "activitiesDesc": "Ibintu by'ingenzi n'ibikorwa by'ishami rya"
++    "activitiesDesc": "Ibintu by'ingenzi n'ibikorwa by'ishami rya",
++    "activityNotFoundTitle": "Igikorwa nticyabonetse",
++    "activityNotFoundDesc": "Iki gikorwa gishobora kuba cyarakuweho cyangwa nticyongera gutangazwa.",
++    "moreActivities": "Ibindi Bikorwa n'Intambwe Zagezweho"
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/studio/schemas/departmentActivity.ts b/studio/schemas/departmentActivity.ts
+index 299444f..48dcef1 100644
+--- a/studio/schemas/departmentActivity.ts
++++ b/studio/schemas/departmentActivity.ts
+@@ -1,46 +1,71 @@
+ import { defineType, defineField } from "sanity";
+ 
++/** The department keys the /departments pages render. */
++const DEPARTMENT_KEYS = [
++  { title: "General Secretary", value: "gs" },
++  { title: "Education / BNEP", value: "bnep" },
++  { title: "Diakonia / Development", value: "diakonia" },
++  { title: "Finance & Mobilization", value: "finance" },
++  { title: "Youth Program", value: "youth" },
++  { title: "Gender Promotion", value: "gender" },
++  { title: "Radio Inkoramutima", value: "radio" },
++];
++
+ /**
+- * One past activity or milestone shown in the "Activities & Milestones"
+- * timeline on a department's detail page (/departments/:deptId/resources),
+- * between the overview and the resource cards. Staff add one document per
+- * activity; newest first, matching the News Post cards elsewhere on the
+- * site. Titles and summaries are localized; leaving French/Kinyarwanda
+- * empty falls back to English.
++ * One past activity or milestone for a department — shown as a card in the
++ * "Activities & Milestones" section on that department's detail page
++ * (/departments/:deptId/resources), between the overview and the resource
++ * cards, and opening its own full article when a visitor clicks "Read
++ * more" — the same mechanism as News Posts, just scoped to one department
++ * instead of the whole site. Titles, summaries and article bodies are
++ * localized; leaving French/Kinyarwanda empty falls back to English.
+  */
+ export const departmentActivity = defineType({
+   name: "departmentActivity",
+   title: "Department Activity",
+   type: "document",
++  groups: [
++    { name: "main", title: "Main" },
++    { name: "body", title: "Article Body" },
++    { name: "media", title: "Media" },
++  ],
+   fields: [
+     defineField({
+       name: "department",
+       title: "Department",
+       type: "string",
+-      options: {
+-        list: [
+-          { title: "General Secretary", value: "gs" },
+-          { title: "Education / BNEP", value: "bnep" },
+-          { title: "Diakonia / Development", value: "diakonia" },
+-          { title: "Finance & Mobilization", value: "finance" },
+-          { title: "Youth Program", value: "youth" },
+-          { title: "Gender Promotion", value: "gender" },
+-          { title: "Radio Inkoramutima", value: "radio" },
+-        ],
+-      },
++      group: "main",
++      options: { list: DEPARTMENT_KEYS },
+       validation: (rule) => rule.required(),
+     }),
+     defineField({
+       name: "title",
+       title: "Title",
+       type: "localizedString",
++      group: "main",
++      description: "The headline in each language. English is required.",
++      validation: (rule) => rule.required(),
++    }),
++    defineField({
++      name: "slug",
++      title: "Slug (web address)",
++      type: "slug",
++      group: "main",
++      description: "Auto-generated from the English title — leave as is.",
++      options: {
++        source: (doc) => {
++          const t = doc.title as { en?: string; fr?: string; rw?: string } | undefined;
++          return t?.en || t?.fr || t?.rw || "activity";
++        },
++      },
+       validation: (rule) => rule.required(),
+     }),
+     defineField({
+       name: "date",
+       title: "Date",
+-      description: "Controls sort order (newest first) and the date shown on the card.",
++      description: "Controls sort order (newest first) and the date shown on the card and article.",
+       type: "datetime",
++      group: "main",
+       initialValue: () => new Date().toISOString(),
+       validation: (rule) => rule.required(),
+     }),
+@@ -49,19 +74,114 @@ export const departmentActivity = defineType({
+       title: "Period label (optional)",
+       description: 'Overrides the displayed date with a custom range, e.g. "Q1 2026" or "2019 – 2021". Leave empty to show the Date above instead.',
+       type: "string",
++      group: "main",
++    }),
++    defineField({
++      name: "author",
++      title: "Author / Byline (optional)",
++      description: "e.g. \"BNEP Department\". Leave empty to show nothing.",
++      type: "string",
++      group: "main",
+     }),
+     defineField({
+       name: "excerpt",
+       title: "Short summary",
+       type: "localizedText",
++      group: "main",
+       description: "One or two sentences shown on the activity card.",
+     }),
++    defineField({
++      name: "body",
++      title: "Article Body",
++      type: "object",
++      group: "body",
++      description: "The full article shown when a visitor clicks \"Read more\". Leave empty to show just the short summary above.",
++      fields: [
++        {
++          name: "en",
++          title: "English",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++              {
++                name: "size",
++                type: "string",
++                title: "Size",
++                options: {
++                  list: [
++                    { title: "Full width", value: "full" },
++                    { title: "Small (portrait)", value: "small" },
++                  ],
++                },
++              },
++            ] },
++          ],
++        },
++        {
++          name: "fr",
++          title: "Français",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++              {
++                name: "size",
++                type: "string",
++                title: "Size",
++                options: {
++                  list: [
++                    { title: "Full width", value: "full" },
++                    { title: "Small (portrait)", value: "small" },
++                  ],
++                },
++              },
++            ] },
++          ],
++        },
++        {
++          name: "rw",
++          title: "Kinyarwanda",
++          type: "array",
++          of: [
++            { type: "block" },
++            { type: "image", options: { hotspot: true }, fields: [
++              { name: "alt", type: "string", title: "Alt text" },
++              { name: "caption", type: "string", title: "Caption" },
++              {
++                name: "size",
++                type: "string",
++                title: "Size",
++                options: {
++                  list: [
++                    { title: "Full width", value: "full" },
++                    { title: "Small (portrait)", value: "small" },
++                  ],
++                },
++              },
++            ] },
++          ],
++        },
++      ],
++    }),
+     defineField({
+       name: "image",
+-      title: "Photo",
++      title: "Cover photo",
++      description: "Used as both the activity card photo and the article's hero image.",
+       type: "image",
++      group: "media",
+       options: { hotspot: true },
+     }),
++    defineField({
++      name: "imageCaption",
++      title: "Cover photo caption",
++      type: "string",
++      group: "media",
++    }),
+   ],
+   preview: {
+     select: { title: "title.en", department: "department", date: "date", media: "image" },
+-- 
+2.43.0
+

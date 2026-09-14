@@ -152,15 +152,21 @@ export function useCmsDepartmentActivities(deptId?: string): CmsDepartmentActivi
 export interface CmsDepartmentActivityDetail extends CmsDepartmentActivity {
   bodyBlocks?: any[];
   department?: string;
+  author?: string;
+  quote?: string;
+  imageCaption?: string;
 }
 
 interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
   body?: Record<string, any[]>;
   department?: string;
+  author?: string;
+  quote?: LocalizedField;
+  imageCaption?: string;
 }
 
 const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && slug.current == $slug][0] {
-  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department
+  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department, author, quote, imageCaption
 }`;
 
 /** Fetch a single department activity by its slug. */
@@ -189,6 +195,9 @@ export function useCmsDepartmentActivity(slug?: string): CmsDepartmentActivityDe
           image: doc.image || undefined,
           bodyBlocks: doc.body ? (doc.body[lang] || doc.body["en"]) : undefined,
           department: doc.department,
+          author: doc.author,
+          quote: pickOrUndef(doc.quote, lang),
+          imageCaption: doc.imageCaption,
         });
       })
       .catch(() => {
