@@ -152,12 +152,6 @@ export function DepartmentResources() {
                     )}
                   </div>
                   <div className="py-3 px-3 text-center flex flex-col justify-center">
-                    <div
-                      className="text-[9px] font-bold uppercase tracking-widest mb-1"
-                      style={{ color: dept.accent }}
-                    >
-                      {t("departmentResourcesUI.departmentHead")}
-                    </div>
                     <h4 className="font-['Outfit'] font-black text-[#111827] text-lg leading-tight">
                       {cmsDetail.headName}
                     </h4>
