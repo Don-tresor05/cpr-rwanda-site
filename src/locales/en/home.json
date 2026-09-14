@@ -602,6 +602,7 @@
     "heroTag": "General Secretariat",
     "heroTitle": "Secretariat",
     "heroDesc": "The nerve centre of CPR — coordinating governance, events, advocacy, sustainability, and institutional communications across all member churches.",
+    "heroImage": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
     "introTag": "Our Role",
     "introTitle": "Coordinating the Protestant Council of Rwanda",
     "introDesc": "The General Secretariat is the executive arm of CPR, responsible for implementing decisions of the General Assembly and the Executive Committee, managing inter-church relations, and representing CPR at national and international levels.",
@@ -617,12 +618,20 @@
       "role": "Secretary General",
       "name": "Rev. Samuel Mutabazi",
       "title": "Secretary General, Conseil Protestant du Rwanda",
-      "quote": "The Protestant churches of Rwanda are called to be one — to serve together, witness together, and build this nation together. CPR exists to make that unity visible and effective in every corner of Rwanda."
+      "quote": "The Protestant churches of Rwanda are called to be one — to serve together, witness together, and build this nation together. CPR exists to make that unity visible and effective in every corner of Rwanda.",
+      "photo": "/cpr/assets/Mutabazi_Samuel.webp",
+      "photoAlt": "Rev. Samuel Mutabazi"
     },
     "meetings": {
       "tag": "CPR Meetings",
       "title": "Governance & Internal Meetings",
       "desc": "Beyond public events, CPR holds regular internal governance meetings that ensure accountability, strategic alignment, and effective coordination across all member churches and departments.",
+      "image": "/cpr/assets/secretariat-meetings.webp",
+      "stats": [
+        { "value": "4/yr", "label": "Comm. Sessions" },
+        { "value": "6/yr", "label": "Board Meetings" },
+        { "value": "1/yr", "label": "Retreats" }
+      ],
       "body": [
         "Executive Committee meetings — meets twice a year to review institutional performance and approve key decisions",
         "General Assembly sessions — the supreme governing body, meets once every two years with all 28 member organizations",
@@ -636,6 +645,12 @@
       "tag": "General Secretariat",
       "title": "Office of the Secretary General",
       "desc": "The Secretary General leads the day-to-day operations of CPR, serving as the chief executive officer of the Council and the primary liaison between member churches, government, and international partners.",
+      "image": "/cpr/assets/secretariat-sg.webp",
+      "stats": [
+        { "value": "28", "label": "Members" },
+        { "value": "50+", "label": "Staff Members" },
+        { "value": "60+", "label": "Years Active" }
+      ],
       "body": [
         "Implements resolutions of the General Assembly and Executive Committee",
         "Represents CPR in national and international forums and ecumenical bodies",
@@ -649,6 +664,12 @@
       "tag": "CPR Events",
       "title": "Conferences, Synods & Assemblies",
       "desc": "CPR convenes regular gatherings that bring together church leaders, government officials, civil society, and international partners to deliberate on matters of faith, governance, and national development.",
+      "image": "/cpr/assets/secretariat-events.webp",
+      "stats": [
+        { "value": "1", "label": "Annual Assemblies" },
+        { "value": "1", "label": "Biennial Synods" },
+        { "value": "5+", "label": "Youth Summits" }
+      ],
       "body": [
         "Annual General Assembly of all 28 member churches",
         "Biennial Synods for theological reflection and policy review",
@@ -662,6 +683,12 @@
       "tag": "Advocacy",
       "title": "Policy Engagement & Civic Leadership",
       "desc": "CPR actively engages Rwanda's public policy landscape, bringing the voice of the Protestant community to bear on issues of justice, human dignity, reconciliation, and national development.",
+      "image": "/cpr/assets/secretariat-advocacy.webp",
+      "stats": [
+        { "value": "5+", "label": "Policy Areas" },
+        { "value": "10+", "label": "Nat. Forums" },
+        { "value": "3+", "label": "Intl. Platforms" }
+      ],
       "body": [
         "Engagement with the Government of Rwanda on education, health, and social policy",
         "Participation in the National Dialogue (Umushyikirano) and parliamentary consultations",
@@ -675,6 +702,12 @@
       "tag": "Sustainability",
       "title": "Environmental & Institutional Sustainability",
       "desc": "CPR is committed to stewarding Rwanda's natural environment and building institutions that endure — integrating creation care into theology and ensuring long-term financial and organizational resilience.",
+      "image": "/cpr/assets/secretariat-sustainability.webp",
+      "stats": [
+        { "value": "15+", "label": "Tree Initiatives" },
+        { "value": "50+", "label": "Green Schools" },
+        { "value": "8+", "label": "Partners" }
+      ],
       "body": [
         "Environmental theology programs integrated into church curricula",
         "Tree-planting and land restoration initiatives across member churches",
@@ -688,6 +721,12 @@
       "tag": "SG Publications",
       "title": "Reports, Newsletters & Communiqués",
       "desc": "The Secretariat produces a range of official publications that document CPR's work, communicate institutional positions, and keep member churches and the public informed.",
+      "image": "/cpr/assets/secretariat-publications.webp",
+      "stats": [
+        { "value": "60+", "label": "Annual Reports" },
+        { "value": "200+", "label": "Newsletters" },
+        { "value": "100+", "label": "Communiqués" }
+      ],
       "body": [
         "Annual Report — comprehensive review of CPR activities and financials",
         "Quarterly Newsletter — updates from all departments and member churches",
