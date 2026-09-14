@@ -127,88 +127,82 @@ export function DepartmentResources() {
               </ul>
             </motion.div>
 
-            {/* Image Card */}
+            {/* Department Head — prominent portrait when available, matching the EPR reference layout */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={contentVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="lg:col-span-2"
             >
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10">
-                <div className="relative aspect-[4/3]">
-                  <img
-                    src={cmsDetail?.image ?? dept.image}
-                    alt={cmsDetail?.title ?? dept.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(135deg, ${dept.accent}30 0%, transparent 50%, ${dept.accent}15 100%)`,
-                    }}
-                  />
-                </div>
-                <div className="p-5 bg-white">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: dept.accent }}
-                    >
-                      <Icon size={20} color="white" strokeWidth={1.5} />
-                    </div>
-                    <span
-                      className="font-['Outfit'] font-bold text-lg"
-                      style={{ color: dept.accent }}
-                    >
-                      {cmsDetail?.title ?? dept.title}
-                    </span>
-                  </div>
-                  <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                    {t("departmentResourcesUI.partOfCpr")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Department Head Card */}
-              {cmsDetail?.headName && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.25 }}
-                  className="mt-6 bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex items-center gap-4 p-4"
-                >
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-[#EDF1F7] shrink-0">
+              {cmsDetail?.headName ? (
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10 bg-white">
+                  <div className="relative aspect-[4/5] bg-[#EDF1F7]">
                     {cmsDetail.headPhoto ? (
                       <img
                         src={cmsDetail.headPhoto}
                         alt={cmsDetail.headName}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/40">
-                        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     )}
                   </div>
-                  <div className="min-w-0">
+                  <div className="p-5 lg:p-6">
                     <div
-                      className="text-[10px] font-bold uppercase tracking-widest mb-1"
+                      className="text-[10px] font-bold uppercase tracking-widest mb-2"
                       style={{ color: dept.accent }}
                     >
                       {t("departmentResourcesUI.departmentHead")}
                     </div>
-                    <h4 className="font-['Outfit'] font-black text-[#4E6132] text-base leading-tight truncate">
+                    <h4 className="font-['Outfit'] font-black text-[#4E6132] text-xl leading-tight">
                       {cmsDetail.headName}
                     </h4>
                     {cmsDetail.headRole && (
-                      <p className="text-[#8B6543] text-sm font-semibold truncate">
+                      <p className="text-[#8B6543] text-sm font-semibold mt-1">
                         {cmsDetail.headRole}
                       </p>
                     )}
                   </div>
-                </motion.div>
+                </div>
+              ) : (
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={cmsDetail?.image ?? dept.image}
+                      alt={cmsDetail?.title ?? dept.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(135deg, ${dept.accent}30 0%, transparent 50%, ${dept.accent}15 100%)`,
+                      }}
+                    />
+                  </div>
+                  <div className="p-5 bg-white">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: dept.accent }}
+                      >
+                        <Icon size={20} color="white" strokeWidth={1.5} />
+                      </div>
+                      <span
+                        className="font-['Outfit'] font-bold text-lg"
+                        style={{ color: dept.accent }}
+                      >
+                        {cmsDetail?.title ?? dept.title}
+                      </span>
+                    </div>
+                    <p className="text-[#4A4A4A] text-sm leading-relaxed">
+                      {t("departmentResourcesUI.partOfCpr")}
+                    </p>
+                  </div>
+                </div>
               )}
             </motion.div>
           </div>
@@ -248,17 +242,14 @@ export function DepartmentResources() {
                     </div>
                   )}
                   <div className="p-5 lg:p-6 flex flex-col grow">
-                    <div
-                      className="text-xs font-bold uppercase tracking-wide mb-2.5"
-                      style={{ color: dept.accent }}
-                    >
+                    <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
                       {activity.date}
                     </div>
-                    <h3 className="font-['Outfit'] font-bold text-lg text-[#4E6132] mb-2 leading-snug">
+                    <h3 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug">
                       {activity.title}
                     </h3>
                     {activity.excerpt && (
-                      <p className="text-[#4A4A4A] text-sm leading-relaxed line-clamp-3">
+                      <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed line-clamp-3 grow">
                         {activity.excerpt}
                       </p>
                     )}
