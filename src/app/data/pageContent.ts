@@ -485,16 +485,19 @@ export interface SecretariatPageContent {
 const SECRETARIAT_PAGE_QUERY = `*[_type == "secretariatPage"][0] {
   heroTitle,
   heroDesc,
+  "heroImage": heroImage.asset->url,
   introTag,
   introTitle,
   introDesc,
-  sgProfile { role, name, title, quote },
+  sgProfile { role, name, title, quote, "photo": photo.asset->url, photoAlt },
   sections[] {
     key,
     nav,
     tag,
     title,
     desc,
+    "image": image.asset->url,
+    stats[] { value, label },
     body
   },
   cta { title, desc, btn }
@@ -503,6 +506,7 @@ const SECRETARIAT_PAGE_QUERY = `*[_type == "secretariatPage"][0] {
 interface SecretariatPageRaw {
   heroTitle?: LocalizedField;
   heroDesc?: LocalizedField;
+  heroImage?: string | null;
   introTag?: LocalizedField;
   introTitle?: LocalizedField;
   introDesc?: LocalizedField;
@@ -511,6 +515,8 @@ interface SecretariatPageRaw {
     name?: LocalizedField;
     title?: LocalizedField;
     quote?: LocalizedField;
+    photo?: string | null;
+    photoAlt?: LocalizedField;
   };
   sections?: {
     key?: string;
@@ -518,6 +524,8 @@ interface SecretariatPageRaw {
     tag?: LocalizedField;
     title?: LocalizedField;
     desc?: LocalizedField;
+    image?: string | null;
+    stats?: { value?: string; label?: LocalizedField }[];
     body?: LocalizedField[];
   }[];
   cta?: {
@@ -550,6 +558,7 @@ export function useSecretariatPage(): SecretariatPageContent | null {
         setContent({
           heroTitle: pickOrUndef(doc.heroTitle, lang),
           heroDesc: pickOrUndef(doc.heroDesc, lang),
+          heroImage: doc.heroImage || undefined,
           introTag: pickOrUndef(doc.introTag, lang),
           introTitle: pickOrUndef(doc.introTitle, lang),
           introDesc: pickOrUndef(doc.introDesc, lang),
@@ -559,6 +568,8 @@ export function useSecretariatPage(): SecretariatPageContent | null {
                 name: pickOrUndef(doc.sgProfile.name, lang),
                 title: pickOrUndef(doc.sgProfile.title, lang),
                 quote: pickOrUndef(doc.sgProfile.quote, lang),
+                photo: doc.sgProfile.photo || undefined,
+                photoAlt: pickOrUndef(doc.sgProfile.photoAlt, lang),
               }
             : undefined,
           sections: resolveSections(doc.sections, lang),

@@ -41,6 +41,14 @@ export const secretariatPage = defineType({
       group: "hero",
     }),
     defineField({
+      name: "heroImage",
+      title: "Hero background image",
+      description: "The full-width background photo behind the hero title. Falls back to the current default if left empty.",
+      type: "image",
+      options: { hotspot: true },
+      group: "hero",
+    }),
+    defineField({
       name: "introTag",
       title: "Intro tag",
       type: "localizedString",
@@ -68,6 +76,14 @@ export const secretariatPage = defineType({
         { name: "name", title: "Name", type: "localizedString" },
         { name: "title", title: "Title", type: "localizedString" },
         { name: "quote", title: "Quote", type: "localizedText" },
+        {
+          name: "photo",
+          title: "Profile photo",
+          description: "The Secretary General's portrait. Falls back to the current photo if left empty.",
+          type: "image",
+          options: { hotspot: true },
+        },
+        { name: "photoAlt", title: "Photo alt text", type: "localizedString" },
       ],
     }),
     defineField({
@@ -94,6 +110,42 @@ export const secretariatPage = defineType({
             { name: "tag", title: "Tag (small label)", type: "localizedString" },
             { name: "title", title: "Title", type: "localizedString" },
             { name: "desc", title: "Description", type: "localizedText" },
+            {
+              name: "image",
+              title: "Photo",
+              description: "The large photo beside this section. Leave empty to keep the current default photo.",
+              type: "image",
+              options: { hotspot: true },
+            },
+            {
+              name: "stats",
+              title: "Stat numbers",
+              description: "Up to 3 key numbers shown as mini-cards (e.g. value '28', label 'Members'). Leave empty to keep the current numbers.",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  name: "secretariatStat",
+                  title: "Stat",
+                  fields: [
+                    {
+                      name: "value",
+                      title: "Value",
+                      description: "e.g. 28, 50+, 60+",
+                      type: "string",
+                      validation: (Rule) => Rule.required(),
+                    },
+                    { name: "label", title: "Label", type: "localizedString" },
+                  ],
+                  preview: {
+                    select: { value: "value", label: "label.en" },
+                    prepare({ value, label }) {
+                      return { title: value || "Stat", subtitle: label || "" };
+                    },
+                  },
+                },
+              ],
+            },
             {
               name: "body",
               title: "Body bullets",
