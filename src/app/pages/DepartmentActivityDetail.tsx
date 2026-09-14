@@ -30,7 +30,7 @@ export function DepartmentActivityDetail() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const activity = useCmsDepartmentActivity(slug);
+  const { data: activity, loading } = useCmsDepartmentActivity(slug);
   const allActivities = useCmsDepartmentActivities(deptId);
   const fallbackDept = deptId ? getDepartmentResources(t)[deptId] : undefined;
   const heroImage = activity?.image || fallbackDept?.image;
@@ -51,12 +51,31 @@ export function DepartmentActivityDetail() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (!activity) {
+  if (loading) {
     return (
       <main className="bg-white min-h-[50vh] flex items-center justify-center">
         <p className="text-[#4A4A4A] text-lg font-semibold animate-pulse">
           {t("departmentResourcesUI.loading", "Loading...")}
         </p>
+      </main>
+    );
+  }
+
+  if (!activity) {
+    return (
+      <main className="bg-white min-h-[50vh] flex flex-col items-center justify-center gap-4 px-6 text-center">
+        <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#111827]">
+          Activity not found
+        </h2>
+        <p className="text-[#4A4A4A] max-w-md">
+          The activity you are looking for does not exist or has been removed.
+        </p>
+        <Link
+          to={`/departments/${deptId}/resources`}
+          className="inline-flex items-center gap-2 bg-[#4E6132] text-white px-5 py-2.5 rounded-none font-bold text-sm hover:bg-[#8B6543] transition-colors mt-2"
+        >
+          <ArrowLeft size={16} /> {t("departmentResourcesUI.backToDepartments", "Back to Department")}
+        </Link>
       </main>
     );
   }

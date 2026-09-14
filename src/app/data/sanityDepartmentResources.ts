@@ -165,26 +165,32 @@ interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
   imageCaption?: string;
 }
 
-const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && slug.current == $slug][0] {
+const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && (slug.current == $slug || _id == $slug)][0] {
   _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department, author, quote, imageCaption
 }`;
 
 /** Fetch a single department activity by its slug. */
-export function useCmsDepartmentActivity(slug?: string): CmsDepartmentActivityDetail | null {
+export function useCmsDepartmentActivity(slug?: string): { data: CmsDepartmentActivityDetail | null; loading: boolean } {
   const { i18n } = useTranslation("home");
   const lang = (i18n.language || "en").substring(0, 2);
   const [activity, setActivity] = useState<CmsDepartmentActivityDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!slug) return;
+    if (!slug) {
+      setLoading(false);
+      return;
+    }
     let cancelled = false;
     setActivity(null);
+    setLoading(true);
     sanityClient
       .fetch<SanityActivityDetailDoc>(ACTIVITY_DETAIL_QUERY, { slug })
       .then((doc) => {
         if (cancelled) return;
         if (!doc) {
           setActivity(null);
+          setLoading(false);
           return;
         }
         setActivity({
@@ -199,16 +205,20 @@ export function useCmsDepartmentActivity(slug?: string): CmsDepartmentActivityDe
           quote: pickOrUndef(doc.quote, lang),
           imageCaption: doc.imageCaption,
         });
+        setLoading(false);
       })
       .catch(() => {
-        if (!cancelled) setActivity(null);
+        if (!cancelled) {
+          setActivity(null);
+          setLoading(false);
+        }
       });
     return () => {
       cancelled = true;
     };
   }, [slug, lang]);
 
-  return activity;
+  return { data: activity, loading };
 }
 
 export interface CmsResourceGroup {

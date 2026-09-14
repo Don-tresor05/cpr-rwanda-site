@@ -56,6 +56,7 @@ export const departmentActivity = defineType({
           return t?.en || t?.fr || t?.rw || "activity";
         },
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "author",

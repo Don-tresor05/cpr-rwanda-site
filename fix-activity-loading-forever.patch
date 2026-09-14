@@ -1,0 +1,193 @@
+From f6939175ae31d239d0f4e8c2dac596cd8651f331 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 14 Sep 2026 10:20:59 +0000
+Subject: [PATCH] fix(departments): stop activity article page hanging on
+ missing slug
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The department-activity card list falls back to the document's raw
+Sanity _id when its slug hasn't been generated, but the article-detail
+page only ever queried by slug.current — so a broken/slug-less activity
+would never resolve and the page hung on "Loading..." forever.
+
+- Require the slug field in Studio so new activities can't be published
+  without one.
+- Make the detail query match by _id as a fallback, so already-published
+  slug-less activities resolve immediately without needing a manual fix.
+- Distinguish "still loading" from "fetched, found nothing" in
+  useCmsDepartmentActivity/DepartmentActivityDetail, and show a proper
+  not-found page (with a back link) instead of an indefinite spinner.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xNEugH42JGJDBqiHFtfyU
+---
+ src/app/data/sanityDepartmentResources.ts  | 20 +++++++++++----
+ src/app/pages/DepartmentActivityDetail.tsx | 29 +++++++++++++++++++++-
+ src/locales/en/home.json                   |  5 +++-
+ src/locales/fr/home.json                   |  5 +++-
+ src/locales/rw/home.json                   |  5 +++-
+ studio/schemas/departmentActivity.ts       |  4 +++
+ 6 files changed, 59 insertions(+), 9 deletions(-)
+
+diff --git a/src/app/data/sanityDepartmentResources.ts b/src/app/data/sanityDepartmentResources.ts
+index 6a9bab4..2739d36 100644
+--- a/src/app/data/sanityDepartmentResources.ts
++++ b/src/app/data/sanityDepartmentResources.ts
+@@ -165,20 +165,30 @@ interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
+   imageCaption?: string;
+ }
+ 
+-const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && slug.current == $slug][0] {
++const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && (slug.current == $slug || _id == $slug)][0] {
+   _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department, author, quote, imageCaption
+ }`;
+ 
+-/** Fetch a single department activity by its slug. */
+-export function useCmsDepartmentActivity(slug?: string): CmsDepartmentActivityDetail | null {
++/**
++ * Fetch a single department activity by its slug (falling back to the raw
++ * Sanity document _id, since older/unpublished-slug documents are linked
++ * that way — see useCmsDepartmentActivities below).
++ *
++ * Returns `undefined` while the fetch is in flight, `null` once the fetch
++ * has completed and found nothing, and the activity once found — so callers
++ * can tell "still loading" apart from "genuinely not found".
++ */
++export function useCmsDepartmentActivity(
++  slug?: string
++): CmsDepartmentActivityDetail | null | undefined {
+   const { i18n } = useTranslation("home");
+   const lang = (i18n.language || "en").substring(0, 2);
+-  const [activity, setActivity] = useState<CmsDepartmentActivityDetail | null>(null);
++  const [activity, setActivity] = useState<CmsDepartmentActivityDetail | null | undefined>(undefined);
+ 
+   useEffect(() => {
+     if (!slug) return;
+     let cancelled = false;
+-    setActivity(null);
++    setActivity(undefined);
+     sanityClient
+       .fetch<SanityActivityDetailDoc>(ACTIVITY_DETAIL_QUERY, { slug })
+       .then((doc) => {
+diff --git a/src/app/pages/DepartmentActivityDetail.tsx b/src/app/pages/DepartmentActivityDetail.tsx
+index e2f355b..bfa3ddd 100644
+--- a/src/app/pages/DepartmentActivityDetail.tsx
++++ b/src/app/pages/DepartmentActivityDetail.tsx
+@@ -9,6 +9,7 @@ import {
+   Twitter,
+   Linkedin,
+   ArrowRight,
++  SearchX,
+ } from "lucide-react";
+ import { WatermarkSection } from "../components/ui/WatermarkBackground";
+ import { useTranslation } from "react-i18next";
+@@ -51,7 +52,10 @@ export function DepartmentActivityDetail() {
+     setTimeout(() => setCopied(false), 2000);
+   };
+ 
+-  if (!activity) {
++  // `activity` is `undefined` while the fetch is in flight, and `null` once
++  // it has completed and genuinely found nothing — these need different UI,
++  // otherwise a broken/missing document hangs on "Loading..." forever.
++  if (activity === undefined) {
+     return (
+       <main className="bg-white min-h-[50vh] flex items-center justify-center">
+         <p className="text-[#4A4A4A] text-lg font-semibold animate-pulse">
+@@ -61,6 +65,29 @@ export function DepartmentActivityDetail() {
+     );
+   }
+ 
++  if (activity === null) {
++    return (
++      <main className="bg-white min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-16">
++        <SearchX size={40} className="text-[#4E6132]/40 mb-4" />
++        <h1 className="font-['Outfit'] font-bold text-xl text-[#111827] mb-2">
++          {t("departmentResourcesUI.activityNotFoundTitle", "Activity not found.")}
++        </h1>
++        <p className="text-[#4A4A4A] text-sm max-w-md mb-6">
++          {t(
++            "departmentResourcesUI.activityNotFoundDesc",
++            "The activity you're looking for doesn't exist or may have been moved."
++          )}
++        </p>
++        <Link
++          to={`/departments/${deptId}/resources`}
++          className="inline-flex items-center gap-1.5 bg-[#BC8A5F] text-white text-xs font-bold px-4 py-2 rounded-none hover:bg-[#4E6132] transition-colors shadow-sm"
++        >
++          <ArrowLeft size={14} /> {t("departmentResourcesUI.backToDepartments", "Back to Department")}
++        </Link>
++      </main>
++    );
++  }
++
+   return (
+     <WatermarkSection className="bg-white min-h-screen">
+       {/* Main Single-Column Article Content */}
+diff --git a/src/locales/en/home.json b/src/locales/en/home.json
+index d936472..44f4950 100644
+--- a/src/locales/en/home.json
++++ b/src/locales/en/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "No files uploaded yet for this resource. Check back soon.",
+     "departmentHead": "Department Head",
+     "activitiesAndMilestones": "Activities & Milestones",
+-    "activitiesDesc": "Key moments and initiatives from the"
++    "activitiesDesc": "Key moments and initiatives from the",
++    "loading": "Loading...",
++    "activityNotFoundTitle": "Activity not found.",
++    "activityNotFoundDesc": "The activity you're looking for doesn't exist or may have been moved."
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/src/locales/fr/home.json b/src/locales/fr/home.json
+index 88c389d..5fbb394 100644
+--- a/src/locales/fr/home.json
++++ b/src/locales/fr/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "Aucun fichier téléchargé pour cette ressource pour le moment. Revenez bientôt.",
+     "departmentHead": "Responsable du Département",
+     "activitiesAndMilestones": "Activités & Jalons",
+-    "activitiesDesc": "Moments clés et initiatives du"
++    "activitiesDesc": "Moments clés et initiatives du",
++    "loading": "Chargement...",
++    "activityNotFoundTitle": "Activité introuvable.",
++    "activityNotFoundDesc": "L'activité que vous recherchez n'existe pas ou a peut-être été déplacée."
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/src/locales/rw/home.json b/src/locales/rw/home.json
+index aeb6a2d..d2ea791 100644
+--- a/src/locales/rw/home.json
++++ b/src/locales/rw/home.json
+@@ -1068,7 +1068,10 @@
+     "noFiles": "Nta nyandiko zirashyirwaho kuri ibi byigwa. Ongera urebe vuba.",
+     "departmentHead": "Umuyobozi w'Ishami",
+     "activitiesAndMilestones": "Ibikorwa n'Intambwe Zagezweho",
+-    "activitiesDesc": "Ibintu by'ingenzi n'ibikorwa by'ishami rya"
++    "activitiesDesc": "Ibintu by'ingenzi n'ibikorwa by'ishami rya",
++    "loading": "Turimo gutangiza...",
++    "activityNotFoundTitle": "Igikorwa ntikibonetse.",
++    "activityNotFoundDesc": "Igikorwa urimo gushaka ntikibaho cyangwa cyimuwe."
+   },
+   "departmentResourcesData": {
+     "gs": {
+diff --git a/studio/schemas/departmentActivity.ts b/studio/schemas/departmentActivity.ts
+index c3ce5d0..143ad4b 100644
+--- a/studio/schemas/departmentActivity.ts
++++ b/studio/schemas/departmentActivity.ts
+@@ -56,6 +56,10 @@ export const departmentActivity = defineType({
+           return t?.en || t?.fr || t?.rw || "activity";
+         },
+       },
++      validation: (rule) =>
++        rule.required().error(
++          "Click \"Generate\" to set the web address before publishing — without it, the activity's card link and \"Read more\" page won't work on the website."
++        ),
+     }),
+     defineField({
+       name: "author",
+-- 
+2.43.0
+
