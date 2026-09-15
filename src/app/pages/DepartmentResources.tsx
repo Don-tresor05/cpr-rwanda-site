@@ -78,24 +78,20 @@ export function DepartmentResources() {
       {/* Overview */}
       <WatermarkSection className="py-16 lg:py-20 bg-white">
         <div ref={contentRef} className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Overview label & heading — always above the float/image */}
+          {/* Overview label — always above the float/image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={contentVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <div className="inline-flex items-center gap-2 mb-3">
+            <div className="inline-flex items-center gap-2">
               <div className="h-px w-8 bg-[#8B6543]" />
               <span className="text-xs font-bold uppercase tracking-widest text-[#8B6543]">
                 {t("departmentResourcesUI.overview")}
               </span>
               <div className="h-px w-8 bg-[#8B6543]" />
             </div>
-
-            <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2">
-              {t("departmentResourcesUI.about")} {cmsDetail?.title ?? dept.title}
-            </h2>
           </motion.div>
 
           <div className="block">
@@ -179,6 +175,9 @@ export function DepartmentResources() {
               transition={{ duration: 0.6 }}
               className="block"
             >
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-6">
+                {t("departmentResourcesUI.about")} {cmsDetail?.title ?? dept.title}
+              </h2>
 
               {cmsDetail?.bodyBlocks?.length ? (
                 // Full article — as many paragraphs, headings and inline
