@@ -13,7 +13,6 @@
 // each department's photo in Studio under Department Detail Pages → Photo.
 //
 // Usage:
-//   export SANITY_WRITE_TOKEN=sk...
 //   node scripts/migrate-department-detail-pages.mjs
 //
 // Run from the repo root (so the relative locale paths resolve).
@@ -22,11 +21,14 @@
 
 import { createClient } from "@sanity/client";
 import { readFileSync } from "fs";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "studio/.env" });
 
 const client = createClient({
-  projectId: "2bpoen39",
-  dataset: "production",
-  apiVersion: "2024-01-01",
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  dataset: process.env.SANITY_STUDIO_DATASET,
+  apiVersion: "2026-08-08",
   token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false,
 });
@@ -71,11 +73,37 @@ function buildDoc(key) {
   };
 }
 
-for (const key of SECTION_KEYS) {
-  const doc = buildDoc(key);
-  const result = await client.createOrReplace(doc);
-  console.log(`✅ Migrated departmentDetail document (${key}):`, result._id);
+async function migrate() {
+  if (!process.env.SANITY_WRITE_TOKEN) {
+    console.error("✗ SANITY_WRITE_TOKEN is not set (check studio/.env).");
+    process.exit(1);
+  }
+
+  console.log(`Project: ${process.env.SANITY_STUDIO_PROJECT_ID} / ${process.env.SANITY_STUDIO_DATASET}\n`);
+
+  // First check which departments already exist
+  const existing = await client.fetch(
+    `*[_type == "departmentDetail"]{ _id, department }`
+  );
+  const existingKeys = new Set(existing.map((d) => d.department));
+  console.log(`Existing department detail docs: ${existing.length} (${[...existingKeys].join(", ") || "none"})\n`);
+
+  for (const key of SECTION_KEYS) {
+    const doc = buildDoc(key);
+    if (existingKeys.has(key)) {
+      // Don't overwrite existing documents — only fill in missing ones
+      console.log(`⏭️  ${key}: already exists (${doc._id}) — skipping to preserve existing content`);
+    } else {
+      const result = await client.createOrReplace(doc);
+      console.log(`✅ Created departmentDetail document (${key}):`, result._id);
+    }
+  }
+
+  console.log("\n   Done! Reminder: no photos were set — add each department's photo in Studio under");
+  console.log("   Department Detail Pages → Photo, and fill in the Department Head tab.");
 }
 
-console.log("   Reminder: no photos were set — add each department's photo in Studio under");
-console.log("   Department Detail Pages → Photo.");
+migrate().catch((err) => {
+  console.error("Migration failed:", err);
+  process.exit(1);
+});
