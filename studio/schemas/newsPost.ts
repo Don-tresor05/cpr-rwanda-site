@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { localizedArticleBodyFields } from "./localizedArticleBody";
 
 /**
  * News & Announcements document.
@@ -88,83 +89,7 @@ export const newsPost = defineType({
       group: "main",
       description: "One or two sentences shown on the news cards.",
     }),
-    defineField({
-      name: "body",
-      title: "Article Body",
-      type: "object",
-      group: "body",
-      fields: [
-        {
-          name: "en",
-          title: "English",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-        {
-          name: "fr",
-          title: "Français",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-        {
-          name: "rw",
-          title: "Kinyarwanda",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-      ],
-    }),
+    ...localizedArticleBodyFields("body"),
     defineField({
       name: "quote",
       title: "Pull quote",

@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { localizedArticleBodyFields } from "./localizedArticleBody";
 
 /**
  * The hero, overview, key-activities and department-head copy on one
@@ -69,97 +70,11 @@ export const departmentDetail = defineType({
       of: [{ type: "localizedString" }],
       group: "main",
     }),
-    defineField({
-      name: "body",
-      title: "Full Article",
-      description:
-        "The complete department write-up — as many paragraphs, headings and bullet lists as you need, like the article on epr.rw. When this has content it replaces the short Overview paragraph and Key Activities checklist above. Leave empty to keep using those simpler fields instead.",
-      type: "object",
-      group: "body",
-      fields: [
-        {
-          name: "en",
-          title: "English",
-          type: "array",
-          of: [
-            { type: "block" },
-            {
-              type: "image",
-              options: { hotspot: true },
-              fields: [
-                { name: "alt", type: "string", title: "Alt text" },
-                { name: "caption", type: "string", title: "Caption" },
-                {
-                  name: "size",
-                  type: "string",
-                  title: "Size",
-                  options: {
-                    list: [
-                      { title: "Full width", value: "full" },
-                      { title: "Small (portrait)", value: "small" },
-                    ],
-                  },
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: "fr",
-          title: "Français",
-          type: "array",
-          of: [
-            { type: "block" },
-            {
-              type: "image",
-              options: { hotspot: true },
-              fields: [
-                { name: "alt", type: "string", title: "Alt text" },
-                { name: "caption", type: "string", title: "Caption" },
-                {
-                  name: "size",
-                  type: "string",
-                  title: "Size",
-                  options: {
-                    list: [
-                      { title: "Full width", value: "full" },
-                      { title: "Small (portrait)", value: "small" },
-                    ],
-                  },
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: "rw",
-          title: "Kinyarwanda",
-          type: "array",
-          of: [
-            { type: "block" },
-            {
-              type: "image",
-              options: { hotspot: true },
-              fields: [
-                { name: "alt", type: "string", title: "Alt text" },
-                { name: "caption", type: "string", title: "Caption" },
-                {
-                  name: "size",
-                  type: "string",
-                  title: "Size",
-                  options: {
-                    list: [
-                      { title: "Full width", value: "full" },
-                      { title: "Small (portrait)", value: "small" },
-                    ],
-                  },
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    }),
+    ...localizedArticleBodyFields(
+      "body",
+      "Full Article",
+      "The complete department write-up — as many paragraphs, headings and bullet lists as you need, like the article on epr.rw. When the English one has content it replaces the short Overview paragraph and Key Activities checklist above. Leave empty to keep using those simpler fields instead.",
+    ),
     defineField({
       name: "headName",
       title: "Full name",

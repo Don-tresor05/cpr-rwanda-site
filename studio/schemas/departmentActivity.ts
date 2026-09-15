@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { localizedArticleBodyFields } from "./localizedArticleBody";
 
 /**
  * One past activity or milestone shown in the "Activities & Milestones"
@@ -108,83 +109,7 @@ export const departmentActivity = defineType({
       group: "body",
       description: "Optional — a highlighted quotation shown in the article.",
     }),
-    defineField({
-      name: "body",
-      title: "Article Body",
-      type: "object",
-      group: "body",
-      fields: [
-        {
-          name: "en",
-          title: "English",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-        {
-          name: "fr",
-          title: "Français",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-        {
-          name: "rw",
-          title: "Kinyarwanda",
-          type: "array",
-          of: [
-            { type: "block" },
-            { type: "image", options: { hotspot: true }, fields: [
-              { name: "alt", type: "string", title: "Alt text" },
-              { name: "caption", type: "string", title: "Caption" },
-              {
-                name: "size",
-                type: "string",
-                title: "Size",
-                options: {
-                  list: [
-                    { title: "Full width", value: "full" },
-                    { title: "Small (portrait)", value: "small" },
-                  ],
-                },
-              },
-            ] },
-          ],
-        },
-      ],
-    }),
+    ...localizedArticleBodyFields("body"),
   ],
   preview: {
     select: { title: "title.en", department: "department", date: "date", media: "image" },

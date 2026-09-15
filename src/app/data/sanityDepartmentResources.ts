@@ -4,6 +4,16 @@ import { client as sanityClient } from "../../lib/sanityClient";
 import { pickOrUndef, type LocalizedField } from "./siteSettings";
 import { formatCmsDate } from "./sanityNews";
 
+/** Picks the per-language portable-text body array, falling back to English. */
+function pickBody(
+  doc: { bodyEn?: any[]; bodyFr?: any[]; bodyRw?: any[] } | undefined,
+  lang: string,
+): any[] | undefined {
+  if (!doc) return undefined;
+  const localized = lang === "fr" ? doc.bodyFr : lang === "rw" ? doc.bodyRw : doc.bodyEn;
+  return localized || doc.bodyEn;
+}
+
 export interface CmsResourceFile {
   name: string;
   url: string;
@@ -27,7 +37,9 @@ interface SanityDepartmentDetailDoc {
   image?: string | null;
   overview?: LocalizedField;
   keyActivities?: LocalizedField[];
-  body?: Record<string, any[]>;
+  bodyEn?: any[];
+  bodyFr?: any[];
+  bodyRw?: any[];
   headName?: string;
   headRole?: LocalizedField;
   headPhoto?: string | null;
@@ -38,7 +50,9 @@ const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == 
   "image": image.asset->url,
   overview,
   keyActivities,
-  body,
+  bodyEn,
+  bodyFr,
+  bodyRw,
   headName,
   headRole,
   "headPhoto": headPhoto.asset->url
@@ -77,7 +91,7 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
           keyActivities: (doc.keyActivities || [])
             .map((item) => pickOrUndef(item, lang) || "")
             .filter(Boolean),
-          bodyBlocks: doc.body ? (doc.body[lang] || doc.body["en"]) : undefined,
+          bodyBlocks: pickBody(doc, lang),
           headName: doc.headName || undefined,
           headRole: pickOrUndef(doc.headRole, lang),
           headPhoto: doc.headPhoto || undefined,
@@ -165,7 +179,9 @@ export interface CmsDepartmentActivityDetail extends CmsDepartmentActivity {
 }
 
 interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
-  body?: Record<string, any[]>;
+  bodyEn?: any[];
+  bodyFr?: any[];
+  bodyRw?: any[];
   department?: string;
   author?: string;
   quote?: LocalizedField;
@@ -173,7 +189,7 @@ interface SanityActivityDetailDoc extends SanityDepartmentActivityDoc {
 }
 
 const ACTIVITY_DETAIL_QUERY = `*[_type == "departmentActivity" && (slug.current == $slug || _id == $slug)][0] {
-  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, body, department, author, quote, imageCaption
+  _id, slug, title, date, periodLabel, excerpt, "image": image.asset->url, bodyEn, bodyFr, bodyRw, department, author, quote, imageCaption
 }`;
 
 /** Fetch a single department activity by its slug. */
@@ -206,7 +222,7 @@ export function useCmsDepartmentActivity(slug?: string): { data: CmsDepartmentAc
           date: doc.periodLabel || formatCmsDate(doc.date, lang),
           excerpt: pickOrUndef(doc.excerpt, lang),
           image: doc.image || undefined,
-          bodyBlocks: doc.body ? (doc.body[lang] || doc.body["en"]) : undefined,
+          bodyBlocks: pickBody(doc, lang),
           department: doc.department,
           author: doc.author,
           quote: pickOrUndef(doc.quote, lang),

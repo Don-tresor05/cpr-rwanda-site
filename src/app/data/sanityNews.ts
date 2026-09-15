@@ -31,7 +31,9 @@ interface SanityNewsPost {
   title?: LocalizedText | string;
   excerpt?: LocalizedText | string;
   quote?: LocalizedText;
-  body?: { en?: unknown[]; fr?: unknown[]; rw?: unknown[] };
+  bodyEn?: unknown[];
+  bodyFr?: unknown[];
+  bodyRw?: unknown[];
 }
 
 const NEWS_QUERY = `*[_type == "newsPost" && defined(slug.current)] | order(publishedAt desc) {
@@ -46,7 +48,9 @@ const NEWS_QUERY = `*[_type == "newsPost" && defined(slug.current)] | order(publ
   title,
   excerpt,
   quote,
-  body
+  bodyEn,
+  bodyFr,
+  bodyRw
 }`;
 
 const MONTHS: Record<string, string[]> = {
@@ -81,7 +85,9 @@ function pick(obj: LocalizedText | string | null | undefined, lang: string): str
 
 function mapPost(post: SanityNewsPost, lang: string): NewsArticle {
   const body =
-    post.body?.[lang === "fr" || lang === "rw" ? lang : "en"] || post.body?.en || [];
+    (lang === "fr" ? post.bodyFr : lang === "rw" ? post.bodyRw : post.bodyEn) ||
+    post.bodyEn ||
+    [];
   return {
     slug: post.slug,
     date: formatCmsDate(post.publishedAt, lang),
