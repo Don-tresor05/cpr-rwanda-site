@@ -602,6 +602,7 @@
     "heroTag": "Ubunyamabanga Bukuru",
     "heroTitle": "Ubunyamabanga",
     "heroDesc": "Ikigo cy'ingenzi cya CPR — gihuriza imiyoborere, ibikorwa, ubwigenge, no gutumanahana hagati y'amatorero.",
+    "heroImage": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
     "introTag": "Inshingano Zacu",
     "introTitle": "Guhuza Inama y'Abaprotestanti mu Rwanda",
     "introDesc": "Ubunyamabanga Bukuru ni ingingo y'ubuyobozi bwa CPR, ishinzwe gushyira mu bikorwa ibyemezo by'Inteko Rusange n'Komite Nyobozi, gucunga imishyikirano hagati y'amatorera, no guhagararira CPR ku rwego rw'igihugu no mpuzamahanga.",
@@ -617,12 +618,20 @@
       "role": "Umunyamabanga Mukuru",
       "name": "Pas. Samuel Mutabazi",
       "title": "Umunyamabanga Mukuru, Inama y'Amatorera y'Abaprotestanti mu Rwanda",
-      "quote": "Amatorera y'Abaprotestanti mu Rwanda arahamagarirwa kuba umwe — gukorera hamwe, guhamya hamwe, no kubaka iki gihugu hamwe. CPR ihari kugira ngo ubumwe bwo bugaragare kandi bukorere mu nzego zose z'u Rwanda."
+      "quote": "Amatorera y'Abaprotestanti mu Rwanda arahamagarirwa kuba umwe — gukorera hamwe, guhamya hamwe, no kubaka iki gihugu hamwe. CPR ihari kugira ngo ubumwe bwo bugaragare kandi bukorere mu nzego zose z'u Rwanda.",
+      "photo": "/cpr/assets/Mutabazi_Samuel.webp",
+      "photoAlt": "Pas. Samuel Mutabazi"
     },
     "meetings": {
       "tag": "Inama za CPR",
       "title": "Imiyoborere & Inama z'Imbere",
       "desc": "Usibye ibikorwa bya rubanda, CPR iterana inama z'imiyoborere buri gihe kugira ngo hagire inshingano, guhuriza hamwe ingamba, no guhuza neza amatorera agize umuryango n'amashami yose.",
+      "image": "/cpr/assets/secretariat-meetings.webp",
+      "stats": [
+        { "value": "4/umwaka", "label": "Inama z'Ihuriro" },
+        { "value": "6/umwaka", "label": "Inama z'Inzego" },
+        { "value": "1/umwaka", "label": "Umwiherero" }
+      ],
       "body": [
         "Inama za Komite Nyobozi — ziteranwa inshuro ebyiri mu mwaka kugira ngo basuzume imikorere y'inzego no kwemeza ibyemezo by'ingenzi",
         "Inteko Rusange — inzego z'ubuyobozi bw'ikirenga, ziteranwa rimwe mu myaka ibiri hamwe n'abanyamuryango 28",
@@ -636,6 +645,12 @@
       "tag": "Ubunyamabanga Bukuru",
       "title": "Ibiro by'Umunyamabanga Mukuru",
       "desc": "Umunyamabanga Mukuru ayobora ibikorwa bya buri munsi bya CPR, akaba umuyobozi mukuru w'Inama kandi akaba inzira nyamukuru hagati y'amatorera, leta, n'inshuti z'amahanga.",
+      "image": "/cpr/assets/secretariat-sg.webp",
+      "stats": [
+        { "value": "28", "label": "Abanyamuryango" },
+        { "value": "50+", "label": "Abakozi b'Umuryango" },
+        { "value": "60+", "label": "Imyaka Imarijeho" }
+      ],
       "body": [
         "Gushyira mu bikorwa ibyemezo by'Inteko Rusange n'Komite Nyobozi",
         "Guhagararira CPR mu mahuriro y'igihugu no mpuzamahanga",
@@ -649,6 +664,12 @@
       "tag": "Ibikorwa bya CPR",
       "title": "Inama, Sinode & Inteko",
       "desc": "CPR iterana buri gihe inama zihuza abayobozi b'amatorera, abayobozi ba leta, umuryango w'abaturage, n'inshuti z'amahanga kugira ngo bafatanye ibyemezo.",
+      "image": "/cpr/assets/secretariat-events.webp",
+      "stats": [
+        { "value": "1", "label": "Inteko z'Umwaka" },
+        { "value": "1", "label": "Sinode z'Amatora" },
+        { "value": "5+", "label": "Inama z'Urubyiruko" }
+      ],
       "body": [
         "Inteko Rusange ya buri mwaka y'amatorera 28 agize umuryango",
         "Sinode za buri myaka ibiri zo gutekereza ku bya teolojiya no gusuzuma politiki",
@@ -662,6 +683,12 @@
       "tag": "Ubwigenge",
       "title": "Kugira Uruhare mu Politiki & Ubuyobozi bw'Abaturage",
       "desc": "CPR ikora mu buryo bw'umwihariko mu nzego z'amategeko y'igihugu, itwara ijwi ry'umuryango w'Abaprotestanti ku bibazo by'ubutabera, agaciro k'ikiremwamuntu, ubwiyunge, no guteza imbere igihugu.",
+      "image": "/cpr/assets/secretariat-advocacy.webp",
+      "stats": [
+        { "value": "5+", "label": "Inzego z'Amategeko" },
+        { "value": "10+", "label": "Inama z'Igihugu" },
+        { "value": "3+", "label": "Inzego Mpuzamahanga" }
+      ],
       "body": [
         "Gufatanya na Leta y'u Rwanda ku bibazo by'uburezi, ubuzima, n'imibereho myiza",
         "Kugira uruhare mu Nama y'Igihugu (Umushyikirano) no mu nama z'Inteko Ishinga Amategeko",
@@ -675,6 +702,12 @@
       "tag": "Uburambe",
       "title": "Uburambe bw'Ibidukikije & bw'Inzego",
       "desc": "CPR ihamagarira kubungabunga ibidukikije by'u Rwanda no kubaka inzego zirambye, ishyira mu bikorwa teolojiya y'ubungabunga bw'isi.",
+      "image": "/cpr/assets/secretariat-sustainability.webp",
+      "stats": [
+        { "value": "15+", "label": "Imishinga y'Ibiti" },
+        { "value": "50+", "label": "Amashuri Arengera Isi" },
+        { "value": "8+", "label": "Abafatanyabikorwa" }
+      ],
       "body": [
         "Gahunda za teolojiya y'ibidukikije zishyizwe mu bikorwa by'amatorera",
         "Gutera imitobe no gusubiza ubutaka ubwiza mu matorera agize umuryango",
@@ -688,6 +721,12 @@
       "tag": "Ibitangazo bya SG",
       "title": "Raporo, Amakuru & Intumwa",
       "desc": "Ubunyamabanga butanga ibitangazo by'ibikorwa bya CPR, bigaragaza imirimo y'inzego kandi bikamenyesha amatorera agize umuryango n'abaturage.",
+      "image": "/cpr/assets/secretariat-publications.webp",
+      "stats": [
+        { "value": "60+", "label": "Raporu z'Umwaka" },
+        { "value": "200+", "label": "Utumenyesha" },
+        { "value": "100+", "label": "Amatangazo" }
+      ],
       "body": [
         "Raporo y'Umwaka — isuzuma ryuzuye ry'ibikorwa n'imari ya CPR",
         "Ikinyamakuru cya buri gihembwe — amakuru avuye mu mashami yose n'amatorera",

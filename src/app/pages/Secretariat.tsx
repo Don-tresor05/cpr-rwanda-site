@@ -107,7 +107,10 @@ export function Secretariat() {
         ? c.body
         : (t(`secretariatPage.${id}.body`, { returnObjects: true }) as string[]),
       accent,
-      image: secImages[id] ?? "",
+      image: c?.image ?? secImages[id] ?? "",
+      stats: c?.stats?.length
+        ? c.stats
+        : (secStats[id] ?? []),
     };
   });
 
@@ -122,7 +125,7 @@ export function Secretariat() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp')",
+              `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${cms?.heroImage ?? "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"}')`,
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -230,8 +233,8 @@ export function Secretariat() {
                   className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl cursor-pointer hover:opacity-95 transition-opacity"
                 >
                   <img
-                    src="/cpr/assets/Mutabazi_Samuel.webp"
-                    alt="Rev. Samuel Mutabazi"
+                    src={cms?.sgProfile?.photo ?? "/cpr/assets/Mutabazi_Samuel.webp"}
+                    alt={cms?.sgProfile?.photoAlt ?? t("secretariatPage.sgProfile.name") ?? "Rev. Samuel Mutabazi"}
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -306,7 +309,7 @@ export function Secretariat() {
       {/* Sections */}
       {sections.map((sec, i) => {
         const isEven = i % 2 === 0;
-        return <SectionBlock key={sec.id} sec={sec} stats={secStats[sec.id] ?? []} isEven={isEven} index={i} />;
+        return <SectionBlock key={sec.id} sec={sec} stats={sec.stats} isEven={isEven} index={i} />;
       })}
 
       {/* Contact CTA */}
@@ -367,7 +370,10 @@ export function Secretariat() {
       </motion.section>
 
       <ImageLightbox
-        images={[{ src: "/cpr/assets/Mutabazi_Samuel.webp", alt: "Rev. Samuel Mutabazi" }]}
+        images={[{
+          src: cms?.sgProfile?.photo ?? "/cpr/assets/Mutabazi_Samuel.webp",
+          alt: cms?.sgProfile?.photoAlt ?? t("secretariatPage.sgProfile.name") ?? "Rev. Samuel Mutabazi",
+        }]}
         selectedIndex={sgPhotoOpen ? 0 : null}
         onClose={() => setSgPhotoOpen(false)}
       />
@@ -535,7 +541,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
               <motion.div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: `url(${sec.image})`,
+                  backgroundImage: `url(${(sec.image || secImages[sec.id]) ?? ""})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   y: imageY,
@@ -569,8 +575,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
         </div>
       )}
 
-      <ImageLightbox
-        images={[{ src: sec.image, alt: sec.title }]}
+      <ImageLightbox          images={[{ src: (sec.image || secImages[sec.id]) ?? "", alt: sec.title }]}
         selectedIndex={lightboxOpen ? 0 : null}
         onClose={() => setLightboxOpen(false)}
       />

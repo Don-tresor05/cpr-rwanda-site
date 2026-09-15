@@ -353,6 +353,11 @@ export interface SecretariatSection {
   tag?: LocalizedString
   title?: LocalizedString
   desc?: LocalizedText
+  image?: SanityImage | string
+  stats?: Array<{
+    value?: string
+    label?: LocalizedString
+  }>
   body?: LocalizedText[]
 }
 
@@ -361,6 +366,7 @@ export interface SecretariatPage {
   _type: 'secretariatPage'
   heroTitle?: LocalizedString
   heroDesc?: LocalizedText
+  heroImage?: SanityImage | string
   introTag?: LocalizedString
   introTitle?: LocalizedString
   introDesc?: LocalizedText
@@ -369,6 +375,8 @@ export interface SecretariatPage {
     name?: LocalizedString
     title?: LocalizedString
     quote?: LocalizedText
+    photo?: SanityImage | string
+    photoAlt?: LocalizedString
   }
   sections?: SecretariatSection[]
   cta?: {
