@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { FALLBACK_CONTACT, useSiteSettings } from "../data/siteSettings";
+import { useContactPage, type ContactPageContent } from "../data/_contactPageHook";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import {
   MapPin, Phone, Mail, Radio, ArrowRight, Send,
@@ -23,8 +24,9 @@ export function ContactPage() {
   const { t } = useTranslation("home");
   const [activeSection, setActiveSection] = useState("");
 
+  const cms = useContactPage();
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const nav = (cp?.nav as Record<string, string>) ?? {};
+  const nav = (cms?.nav ?? (cp?.nav as Record<string, string>)) ?? {};
 
   const navLinks: Section[] = [
     { id: "form", label: nav.form ?? "Send a Message" },
@@ -69,8 +71,7 @@ export function ContactPage() {
         <motion.div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('/cpr/assets/about-us.webp')",
+            backgroundImage: `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${cms?.heroImage ?? "/cpr/assets/about-us.webp"}')`,
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
             y: heroBgY,
@@ -82,13 +83,23 @@ export function ContactPage() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
+          {(cms?.heroTag ?? (cp?.heroTag as string)) && (
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/15 text-white/90 text-sm font-semibold tracking-wide backdrop-blur-sm border border-white/20"
+            >
+              {cms?.heroTag ?? (cp?.heroTag as string)}
+            </motion.span>
+          )}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
             className="font-['Outfit'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white drop-shadow-md mb-4"
           >
-            {(cp?.heroTitle as string) ?? "Contact Us"}
+            {cms?.heroTitle ?? (cp?.heroTitle as string) ?? "Contact Us"}
           </motion.h1>
 
           <motion.p
@@ -97,8 +108,30 @@ export function ContactPage() {
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed"
           >
-            {(cp?.heroDesc as string) ?? ""}
+            {cms?.heroDesc ?? (cp?.heroDesc as string) ?? ""}
           </motion.p>
+
+          {(cms?.heroChip1 ?? cms?.heroChip2) && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.65 }}
+              className="flex flex-wrap gap-3 mt-6"
+            >
+              {(cms?.heroChip1 ?? (cp?.heroChip1 as string)) && (
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/85 text-sm backdrop-blur-sm border border-white/15">
+                  <MapPin size={14} className="shrink-0" />
+                  {cms?.heroChip1 ?? (cp?.heroChip1 as string)}
+                </span>
+              )}
+              {(cms?.heroChip2 ?? (cp?.heroChip2 as string)) && (
+                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white/85 text-sm backdrop-blur-sm border border-white/15">
+                  <Clock size={14} className="shrink-0" />
+                  {cms?.heroChip2 ?? (cp?.heroChip2 as string)}
+                </span>
+              )}
+            </motion.div>
+          )}
         </motion.div>
 
         <ScrollIndicator />
@@ -130,31 +163,31 @@ export function ContactPage() {
       </div>
 
       {/* ─── CONTACT FORM ─── */}
-      <ContactFormBlock />
+      <ContactFormBlock cms={cms} />
 
       {/* ─── INFO CARDS ─── */}
-      <InfoCardsBlock />
+      <InfoCardsBlock cms={cms} />
 
       {/* ─── MAP ─── */}
-      <MapBlock />
+      <MapBlock cms={cms} />
 
       {/* ─── OFFICE HOURS ─── */}
-      <OfficeHoursBlock />
+      <OfficeHoursBlock cms={cms} />
 
       {/* ─── FAQ ─── */}
-      <FaqBlock />
+      <FaqBlock cms={cms} />
 
       {/* ─── CTA ─── */}
-      <ContactCtaBlock />
+      <ContactCtaBlock cms={cms} />
 
       {/* ─── FLOATING CHAT BUTTON ─── */}
-      <ChatButton />
+      <ChatButton cms={cms} />
     </main>
   );
 }
 
 /* ───────────── FLOATING CHAT BUTTON ───────────── */
-function ChatButton() {
+function ChatButton({ cms }: { cms?: ContactPageContent | null }) {
   const { t } = useTranslation("home");
   const [visible, setVisible] = useState(false);
 
@@ -177,7 +210,7 @@ function ChatButton() {
       transition={{ duration: 0.3, ease: "easeOut" }}
       onClick={scrollToForm}
       className="fixed bottom-24 right-6 z-[60] group flex items-center gap-2.5 bg-[#BC8A5F] text-white pl-3 pr-5 py-3 rounded-full shadow-xl hover:bg-[#4E6132] hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
-      aria-label={(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+      aria-label={cms?.cta?.chatLabel ?? (t("contactPage.chatLabel") as string) ?? "Chat with us"}
     >
       <span className="relative flex items-center justify-center">
         <span className="absolute inline-flex h-full w-full rounded-full bg-[#EAD196] opacity-40 animate-ping" style={{ animationDuration: "2.2s" }} />
@@ -186,24 +219,24 @@ function ChatButton() {
         </span>
       </span>
       <span className="text-sm font-bold whitespace-nowrap">
-        {(t("contactPage.chatLabel") as string) ?? "Chat with us"}
+        {cms?.cta?.chatLabel ?? (t("contactPage.chatLabel") as string) ?? "Chat with us"}
       </span>
     </motion.button>
   );
 }
 
 /* ───────────── CONTACT FORM ───────────── */
-function ContactFormBlock() {
+function ContactFormBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const settings = useSiteSettings();
   const contact = settings?.contact ?? FALLBACK_CONTACT;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const form = (cp?.form as Record<string, unknown>) ?? {};
+  const form = ((cms?.form as Record<string, unknown>) ?? (cp?.form as Record<string, unknown>)) ?? {};
   const errors = (form?.errors as Record<string, string>) ?? {};
 
   const [values, setValues] = useState({
-    name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "",
+    name: "", email: "", phone: "", subject: (cms?.form?.subjectOptions ?? (form.subjectOptions as string[]) ?? [""])[0] ?? "", message: "", website: "",
   });
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
@@ -215,7 +248,7 @@ function ContactFormBlock() {
     if (!sent) return;
     const timer = setTimeout(() => {
       setSent(false);
-      setValues({ name: "", email: "", phone: "", subject: (form.subjectOptions as string[])?.[0] ?? "", message: "", website: "" });
+      setValues({ name: "", email: "", phone: "", subject: (cms?.form?.subjectOptions ?? (form.subjectOptions as string[]) ?? [""])[0] ?? "", message: "", website: "" });
     }, 7000);
     return () => clearTimeout(timer);
   }, [sent]);
@@ -482,13 +515,13 @@ function ContactFormBlock() {
 }
 
 /* ───────────── INFO CARDS ───────────── */
-function InfoCardsBlock() {
+function InfoCardsBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const settings = useSiteSettings();
   const contact = settings?.contact;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const info = (cp?.info as Record<string, unknown>) ?? {};
+  const info = (cms?.info ?? (cp?.info as Record<string, unknown>)) ?? {};
   const cards = ((info?.cards as { title: string; line1: string; line2: string }[]) ?? []).map(
     (card, i) => {
       if (!contact) return card;
@@ -556,12 +589,12 @@ function InfoCardsBlock() {
 }
 
 /* ───────────── MAP ───────────── */
-function MapBlock() {
+function MapBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const map = (cp?.map as Record<string, unknown>) ?? {};
+  const map = (cms?.map ?? (cp?.map as Record<string, unknown>)) ?? {};
 
   // Query Google Maps by the exact place name so the pin lands on the
   // CPR building (street-address geocoding puts it on the wrong plot).
@@ -660,11 +693,11 @@ function MapBlock() {
 }
 
 /* ───────────── OFFICE HOURS ───────────── */
-function OfficeHoursBlock() {
+function OfficeHoursBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const hours = (cp?.hours as Record<string, unknown>) ?? {};
+  const hours = (cms?.hours ?? (cp?.hours as Record<string, unknown>)) ?? {};
   const days = (hours?.days as { day: string; time: string }[]) ?? [];
 
   return (
@@ -746,11 +779,11 @@ function OfficeHoursBlock() {
 }
 
 /* ───────────── FAQ ───────────── */
-function FaqBlock() {
+function FaqBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const faq = (cp?.faq as Record<string, unknown>) ?? {};
+  const faq = (cms?.faq ?? (cp?.faq as Record<string, unknown>)) ?? {};
   const items = (faq?.items as { q: string; a: string }[]) ?? [];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -819,11 +852,11 @@ function FaqBlock() {
 }
 
 /* ───────────── CTA ───────────── */
-function ContactCtaBlock() {
+function ContactCtaBlock({ cms }: { cms?: ContactPageContent | null }) {
   const { t } = useTranslation("home");
   const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const cp = t("contactPage", { returnObjects: true }) as Record<string, unknown>;
-  const cta = (cp?.cta as Record<string, unknown>) ?? {};
+  const cta = (cms?.cta ?? (cp?.cta as Record<string, unknown>)) ?? {};
 
   return (
     <motion.section
