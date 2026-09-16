@@ -83,14 +83,14 @@ export function ContactPage() {
           className="relative z-10 max-w-7xl w-full mx-auto"
           style={{ opacity: heroOpacity, y: heroContentY }}
         >
-          {(cms?.heroTag ?? (cp?.heroTag as string)) && (
+          {cms?.heroTag && (
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/15 text-white/90 text-sm font-semibold tracking-wide backdrop-blur-sm border border-white/20"
             >
-              {cms?.heroTag ?? (cp?.heroTag as string)}
+              {cms?.heroTag}
             </motion.span>
           )}
           <motion.h1
