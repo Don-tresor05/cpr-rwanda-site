@@ -20,6 +20,7 @@ interface SubSection {
   title: string;
   desc: string;
   body: string[];
+  stats: { label?: string; value: string }[];
   accent: string;
   image: string;
 }
@@ -39,10 +40,16 @@ export function Secretariat() {
   const [activeSection, setActiveSection] = useState("");
   const [sgPhotoOpen, setSgPhotoOpen] = useState(false);
   const location = useLocation();
-  const { t, i18n } = useTranslation("home");
+  const { t } = useTranslation("home");
   const secStats = t("secretariatStats", { returnObjects: true }) as Record<string, { label: string; value: string }[]>;
-  const contact = useSiteSettings()?.contact ?? FALLBACK_CONTACT;
   const cms = useSecretariatPage();
+  const settingsContact = useSiteSettings()?.contact;
+  const contact = {
+    ...FALLBACK_CONTACT,
+    ...settingsContact,
+    ...cms?.cta?.contact,
+  };
+  const contactAddress = [contact.addressLine1, contact.addressLine2].filter(Boolean).join(", ");
   /** Returns the CMS section for a key, if staff filled it in. */
   const cmsSec = (key: string) => cms?.sections?.find((s) => s.key === key);
   const { ref: introRef, visible: introVisible } = useScrollReveal();
@@ -351,7 +358,7 @@ export function Secretariat() {
           >
             <span className="flex items-center gap-2"><Phone size={14} className="text-[#EAD196]" /> {contact.phone}</span>
             <span className="flex items-center gap-2"><Mail size={14} className="text-[#EAD196]" /> {contact.email}</span>
-            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> {contact.addressLine1}, {contact.addressLine2}</span>
+            <span className="flex items-center gap-2"><MapPin size={14} className="text-[#EAD196]" /> {contactAddress}</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -381,7 +388,7 @@ export function Secretariat() {
   );
 }
 
-function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: { label: string; value: string }[]; isEven: boolean; index: number }) {
+function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: { label?: string; value: string }[]; isEven: boolean; index: number }) {
   const { ref, visible } = useScrollReveal();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const blockRef = useRef<HTMLDivElement>(null);
@@ -464,7 +471,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
               <div className="grid grid-cols-3 gap-3 mb-8">
                 {stats.map((stat) => (
                   <motion.div
-                    key={stat.label}
+                    key={`${stat.value}-${stat.label ?? "stat"}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={visible ? { opacity: 1, y: 0 } : {}}
                     className="bg-white rounded-xl p-3.5 text-center shadow-sm border border-[#4E6132]/15 border-l-4"
@@ -477,7 +484,7 @@ function SectionBlock({ sec, stats, isEven, index }: { sec: SubSection; stats: {
                       {stat.value}
                     </div>
                     <div className="text-[10px] text-[#4A4A4A]/75 font-bold uppercase tracking-wider mt-0.5">
-                      {stat.label}
+                      {stat.label ?? ""}
                     </div>
                   </motion.div>
                 ))}

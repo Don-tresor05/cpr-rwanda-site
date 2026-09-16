@@ -383,5 +383,11 @@ export interface SecretariatPage {
     title?: LocalizedString
     desc?: LocalizedText
     btn?: LocalizedString
+    contact?: {
+      phone?: string
+      email?: string
+      addressLine1?: string
+      addressLine2?: string
+    }
   }
 }
