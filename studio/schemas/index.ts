@@ -16,6 +16,7 @@ import { departmentsPage } from "./departmentsPage";
 import { aboutPage } from "./aboutPage";
 import { secretariatPage } from "./secretariatPage";
 import { radioPage } from "./radioPage";
+import { contactPage } from "./contactPage";
 import { boardMember } from "./boardMember";
 import { staffMember } from "./staffMember";
 import { partner } from "./partner";
@@ -37,6 +38,7 @@ export const schemaTypes = [
   aboutPage,
   secretariatPage,
   radioPage,
+  contactPage,
   localizedString,
   localizedText,
   boardMember,
