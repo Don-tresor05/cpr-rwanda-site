@@ -158,16 +158,24 @@ interface GalleryRawEvent {
 /**
  * Loads the gallery collections from Sanity, resolving localized fields to
  * the current UI language and keeping only collections with a title in at
- * least one language. Returns `null` when no collections exist yet so the
+ * least one language. `data` is `null` when no collections exist yet so the
  * page keeps showing the hardcoded photo albums.
+ *
+ * `loading` is `true` until the first fetch settles, so the page can hold
+ * off rendering the collections grid just long enough to avoid flashing
+ * the hardcoded albums before the real CMS collections (once staff add
+ * any) swap in a moment later — the same pattern used for the department
+ * detail pages.
  */
-export function useGalleryEvents(): GalleryEvent[] | null {
+export function useGalleryEvents(): { data: GalleryEvent[] | null; loading: boolean } {
   const { i18n } = useTranslation("home");
   const lang = (i18n.language || "en").substring(0, 2);
   const [events, setEvents] = useState<GalleryEvent[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
     sanityClient
       .fetch<GalleryRawEvent[]>(GALLERY_QUERY)
       .then((docs) => {
@@ -177,6 +185,7 @@ export function useGalleryEvents(): GalleryEvent[] | null {
         );
         if (valid.length === 0) {
           setEvents(null);
+          setLoading(false);
           return;
         }
         setEvents(
@@ -194,16 +203,19 @@ export function useGalleryEvents(): GalleryEvent[] | null {
             // Drop collections that end up with no usable photos (e.g. all drafts).
             .filter((e) => e.images.length > 0)
         );
+        setLoading(false);
       })
       .catch(() => {
-        if (!cancelled) setEvents(null);
+        if (cancelled) return;
+        setEvents(null);
+        setLoading(false);
       });
     return () => {
       cancelled = true;
     };
   }, [lang]);
 
-  return events;
+  return { data: events, loading };
 }
 
 export interface RadioProgram {

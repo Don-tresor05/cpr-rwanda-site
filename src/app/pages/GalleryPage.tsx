@@ -89,7 +89,8 @@ export function GalleryPage() {
 
   // CMS collections when staff have created them; otherwise the built-in albums.
   const translatedGalleryEvents = t("galleryEvents", { returnObjects: true }) as any[];
-  const galleryEvents = useGalleryEvents() ?? (translatedGalleryEvents && translatedGalleryEvents.length === GALLERY_EVENTS.length
+  const { data: cmsGalleryEvents, loading: galleryLoading } = useGalleryEvents();
+  const galleryEvents = cmsGalleryEvents ?? (translatedGalleryEvents && translatedGalleryEvents.length === GALLERY_EVENTS.length
     ? GALLERY_EVENTS.map((event, i) => ({
         ...event,
         title: translatedGalleryEvents[i].title,
@@ -188,7 +189,37 @@ export function GalleryPage() {
       {/* ─── COLLECTIONS ─── */}
       <WatermarkSection variant="default" className="py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-14">
-          {galleryEvents.map((event, eventIdx) => (
+          {galleryLoading ? (
+            <div aria-hidden="true">
+              {[0, 1].map((skeletonIdx) => (
+                <div
+                  key={skeletonIdx}
+                  className={`bg-white rounded-2xl p-6 sm:p-8 shadow-[0_2px_12px_rgba(78,97,50,0.08)] border border-[#4E6132]/5 animate-pulse ${
+                    skeletonIdx > 0 ? "mt-14" : ""
+                  }`}
+                >
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="flex-1">
+                      <div className="h-3 w-40 bg-[#4E6132]/10 rounded-full mb-3" />
+                      <div className="h-6 w-72 max-w-full bg-[#4E6132]/10 rounded-md" />
+                    </div>
+                    <div className="flex-shrink-0 text-right">
+                      <div className="h-6 w-8 bg-[#8B6543]/10 rounded-md ml-auto" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+                    {Array.from({ length: 8 }).map((_, thumbIdx) => (
+                      <div
+                        key={thumbIdx}
+                        className="rounded-xl aspect-square bg-[#F8F9F4] border border-[#4E6132]/5"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+          galleryEvents.map((event, eventIdx) => (
             <motion.div
               key={`${event.title}-${eventIdx}`}
               initial={{ opacity: 0, y: 25 }}
@@ -246,7 +277,8 @@ export function GalleryPage() {
                 ))}
               </div>
             </motion.div>
-          ))}
+          ))
+          )}
         </div>
       </WatermarkSection>
 
