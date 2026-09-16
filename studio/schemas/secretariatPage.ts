@@ -171,6 +171,39 @@ export const secretariatPage = defineType({
         { name: "title", title: "Title", type: "localizedString" },
         { name: "desc", title: "Description", type: "localizedText" },
         { name: "btn", title: "Button text", type: "localizedString" },
+        {
+          name: "contact",
+          title: "Contact details",
+          description:
+            "Shown in the Secretary General card and the closing CTA. Leave empty to use the global Site Settings contact details.",
+          type: "object",
+          fields: [
+            {
+              name: "phone",
+              title: "Phone",
+              type: "string",
+              initialValue: "+250 788 314 718",
+            },
+            {
+              name: "email",
+              title: "Email",
+              type: "string",
+              initialValue: "cprgs@cpr-rwanda.rw",
+            },
+            {
+              name: "addressLine1",
+              title: "Address line 1",
+              type: "string",
+              initialValue: "KG 2 Av 4, B.P 79",
+            },
+            {
+              name: "addressLine2",
+              title: "Address line 2",
+              type: "string",
+              initialValue: "Kigali, Rwanda",
+            },
+          ],
+        },
       ],
     }),
   ],
