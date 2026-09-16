@@ -169,7 +169,7 @@ export function Header() {
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span className="text-[10px] sm:text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide hidden sm:block">
+            <span className="text-[10px] sm:text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
@@ -342,12 +342,6 @@ export function Header() {
                   <div className="flex items-center justify-center gap-2 px-4 py-2">
                     <LanguageSwitcher />
                   </div>
-                  <button
-                    onClick={() => showComingSoon(t("nav.donate"))}
-                    className="bg-[#EAD196] text-[#4E6132] text-sm font-bold px-5 py-3 rounded-xl text-center"
-                  >
-                    {t("nav.donate")}
-                  </button>
                   <Link to="/contact" onClick={() => setMobileOpen(false)} className="bg-[#BC8A5F] text-white text-sm font-bold px-5 py-3 rounded-xl text-center">{t("nav.contact")}</Link>
                 </div>
               </div>
