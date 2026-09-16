@@ -641,6 +641,7 @@ function MapBlock() {
                 <div className="text-[#4A4A4A] text-xs mt-1 leading-relaxed">
                   {`${contact.addressLine1}, ${contact.addressLine2}`}
                 </div>
+                {/*
                 <a
                   href={directionsUrl}
                   target="_blank"
@@ -650,6 +651,7 @@ function MapBlock() {
                   <Navigation size={12} />
                   {(map?.directionsBtn as string) ?? "Get Directions"}
                 </a>
+                */}
               </div>
             </div>
           </div>
