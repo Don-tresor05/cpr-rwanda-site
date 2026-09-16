@@ -60,28 +60,40 @@ const DEPARTMENT_DETAIL_QUERY = `*[_type == "departmentDetail" && department == 
 
 /**
  * The hero/overview/key-activities/department-head copy for one
- * department's detail page, fetched live from Sanity. Returns `null` when
- * no document exists yet (or while loading) so the page keeps showing its
- * translated hardcoded copy. `bodyBlocks` — the full, multi-paragraph
- * article (with headings and inline lists) — takes priority over the
- * simpler `overview` + `keyActivities` fields when an editor has filled it
- * in; the page falls back to those (or to the hardcoded copy) otherwise.
+ * department's detail page, fetched live from Sanity. `data` is `null`
+ * when no document exists yet (or while loading), so the page keeps
+ * showing its translated hardcoded copy. `bodyBlocks` — the full,
+ * multi-paragraph article (with headings and inline lists) — takes
+ * priority over the simpler `overview` + `keyActivities` fields when an
+ * editor has filled it in; the page falls back to those (or to the
+ * hardcoded copy) otherwise.
+ *
+ * `loading` is `true` until the first fetch for the current department
+ * settles, so callers can hold off rendering CMS-vs-hardcoded-dependent UI
+ * just long enough to avoid flashing the hardcoded fallback before the
+ * real CMS content (department head photo, overview, key activities)
+ * swaps in a moment later.
  */
-export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | null {
+export function useCmsDepartmentDetail(deptId?: string): { data: CmsDepartmentDetail | null; loading: boolean } {
   const { i18n } = useTranslation("home");
   const lang = (i18n.language || "en").substring(0, 2);
   const [detail, setDetail] = useState<CmsDepartmentDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!deptId) return;
+    if (!deptId) {
+      setLoading(false);
+      return;
+    }
     let cancelled = false;
-    setDetail(null);
+    setLoading(true);
     sanityClient
       .fetch<SanityDepartmentDetailDoc>(DEPARTMENT_DETAIL_QUERY, { dept: deptId })
       .then((doc) => {
         if (cancelled) return;
         if (!doc) {
           setDetail(null);
+          setLoading(false);
           return;
         }
         setDetail({
@@ -96,16 +108,19 @@ export function useCmsDepartmentDetail(deptId?: string): CmsDepartmentDetail | n
           headRole: pickOrUndef(doc.headRole, lang),
           headPhoto: doc.headPhoto || undefined,
         });
+        setLoading(false);
       })
       .catch(() => {
-        if (!cancelled) setDetail(null);
+        if (cancelled) return;
+        setDetail(null);
+        setLoading(false);
       });
     return () => {
       cancelled = true;
     };
   }, [deptId, lang]);
 
-  return detail;
+  return { data: detail, loading };
 }
 
 export interface CmsDepartmentActivity {

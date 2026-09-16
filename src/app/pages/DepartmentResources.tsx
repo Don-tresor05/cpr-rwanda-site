@@ -20,7 +20,7 @@ export function DepartmentResources() {
   const dept = deptId ? departmentResources[deptId] : undefined;
   const { ref: contentRef, visible: contentVisible } = useScrollReveal();
   const cmsGroups = useCmsResourceGroups(deptId);
-  const cmsDetail = useCmsDepartmentDetail(deptId);
+  const { data: cmsDetail, loading: cmsDetailLoading } = useCmsDepartmentDetail(deptId);
   const cmsActivities = useCmsDepartmentActivities(deptId);
 
   if (!dept) {
@@ -94,6 +94,35 @@ export function DepartmentResources() {
             </div>
           </motion.div>
 
+          {cmsDetailLoading ? (
+            // Skeleton — holds this space while we find out whether this
+            // department has CMS head/overview content, so the page never
+            // has to show the hardcoded fallback card first and then swap
+            // it out a moment later once the real content arrives.
+            <div className="block animate-pulse" aria-hidden="true">
+              <div className="md:float-right md:ml-10 md:mb-6 mb-8 w-full md:w-auto">
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto md:mx-0 overflow-hidden">
+                  <div className="w-full aspect-[4/3] bg-[#EDF1F7]" />
+                  <div className="py-3 px-3 flex flex-col items-center gap-2">
+                    <div className="h-4 w-32 rounded bg-[#EDF1F7]" />
+                    <div className="h-3 w-20 rounded bg-[#EDF1F7]" />
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-3 mb-8">
+                <div className="h-4 w-full rounded bg-[#EDF1F7]" />
+                <div className="h-4 w-full rounded bg-[#EDF1F7]" />
+                <div className="h-4 w-2/3 rounded bg-[#EDF1F7]" />
+              </div>
+              <div className="h-5 w-40 rounded bg-[#EDF1F7] mb-4" />
+              <div className="space-y-3">
+                {[0, 1, 2, 3].map((idx) => (
+                  <div key={idx} className="h-4 w-5/6 rounded bg-[#EDF1F7]" />
+                ))}
+              </div>
+              <div className="clear-both" />
+            </div>
+          ) : (
           <div className="block">
             {/* Department Head — prominent portrait when available, matching the EPR reference layout */}
             <motion.div
@@ -219,6 +248,7 @@ export function DepartmentResources() {
             
             <div className="clear-both" />
           </div>
+          )}
         </div>
       </WatermarkSection>
 
