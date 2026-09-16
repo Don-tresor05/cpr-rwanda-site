@@ -293,14 +293,6 @@ function RadioHistoryBlock() {
                 </span>
                 <span className="text-white text-xs font-bold">107.1 FM</span>
               </div>
-              {/* Studio GIF */}
-              <div className="absolute bottom-4 right-4">
-                <img
-                  src="/cpr/assets/radio-studio.gif"
-                  alt="Radio Inkoramutima studio"
-                  className="w-44 lg:w-56 rounded-xl shadow-2xl border border-white/20"
-                />
-              </div>
             </div>
             {/* Floating card */}
             <motion.div
