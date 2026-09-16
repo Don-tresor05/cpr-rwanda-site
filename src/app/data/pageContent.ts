@@ -474,12 +474,30 @@ export function useAboutPage(): AboutPageContent | null {
 export interface SecretariatPageContent {
   heroTitle?: string;
   heroDesc?: string;
+  heroImage?: string;
   introTag?: string;
   introTitle?: string;
   introDesc?: string;
-  sgProfile?: { role?: string; name?: string; title?: string; quote?: string };
+  sgProfile?: {
+    role?: string;
+    name?: string;
+    title?: string;
+    quote?: string;
+    photo?: string;
+    photoAlt?: string;
+  };
   sections?: PageSectionContent[];
-  cta?: { title?: string; desc?: string; btn?: string };
+  cta?: {
+    title?: string;
+    desc?: string;
+    btn?: string;
+    contact?: {
+      phone?: string;
+      email?: string;
+      addressLine1?: string;
+      addressLine2?: string;
+    };
+  };
 }
 
 const SECRETARIAT_PAGE_QUERY = `*[_type == "secretariatPage"][0] {
@@ -500,7 +518,17 @@ const SECRETARIAT_PAGE_QUERY = `*[_type == "secretariatPage"][0] {
     stats[] { value, label },
     body
   },
-  cta { title, desc, btn }
+  cta {
+    title,
+    desc,
+    btn,
+    contact {
+      phone,
+      email,
+      addressLine1,
+      addressLine2
+    }
+  }
 }`;
 
 interface SecretariatPageRaw {
@@ -532,6 +560,12 @@ interface SecretariatPageRaw {
     title?: LocalizedField;
     desc?: LocalizedField;
     btn?: LocalizedField;
+    contact?: {
+      phone?: string;
+      email?: string;
+      addressLine1?: string;
+      addressLine2?: string;
+    };
   };
 }
 
@@ -578,6 +612,7 @@ export function useSecretariatPage(): SecretariatPageContent | null {
                 title: pickOrUndef(doc.cta.title, lang),
                 desc: pickOrUndef(doc.cta.desc, lang),
                 btn: pickOrUndef(doc.cta.btn, lang),
+                contact: doc.cta.contact || undefined,
               }
             : undefined,
         });
