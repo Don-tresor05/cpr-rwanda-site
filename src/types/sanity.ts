@@ -391,3 +391,97 @@ export interface SecretariatPage {
     }
   }
 }
+
+/* ── Contact Page ──────────────────────────────────────────── */
+
+export interface ContactPageInfoCard {
+  title?: LocalizedString
+  icon?: string
+  line1?: LocalizedString
+  line2?: LocalizedString
+  color?: string
+}
+
+export interface ContactPageOfficeDay {
+  day?: LocalizedString
+  time?: LocalizedString
+}
+
+export interface ContactPageFaqItem {
+  q?: LocalizedString
+  a?: LocalizedText
+}
+
+export interface ContactPage {
+  _id: string
+  _type: 'contactPage'
+  heroTag?: LocalizedString
+  heroTitle?: LocalizedString
+  heroDesc?: LocalizedText
+  heroImage?: SanityImage | string
+  heroChip1?: LocalizedString
+  heroChip2?: LocalizedString
+  nav?: {
+    form?: LocalizedString
+    info?: LocalizedString
+    hours?: LocalizedString
+    faq?: LocalizedString
+  }
+  info?: {
+    tag?: LocalizedString
+    title?: LocalizedString
+    desc?: LocalizedText
+    cards?: ContactPageInfoCard[]
+  }
+  map?: {
+    tag?: LocalizedString
+    title?: LocalizedString
+    desc?: LocalizedText
+    cardTitle?: LocalizedString
+    directionsBtn?: LocalizedString
+    openInMaps?: LocalizedString
+    mapPlace?: string
+  }
+  form?: {
+    tag?: LocalizedString
+    title?: LocalizedString
+    desc?: LocalizedText
+    subjectOptions?: string[]
+    nameLabel?: LocalizedString
+    namePlaceholder?: LocalizedString
+    emailLabel?: LocalizedString
+    emailPlaceholder?: LocalizedString
+    phoneLabel?: LocalizedString
+    phonePlaceholder?: LocalizedString
+    subjectLabel?: LocalizedString
+    messageLabel?: LocalizedString
+    messagePlaceholder?: LocalizedString
+    sendBtn?: LocalizedString
+    sendingText?: LocalizedString
+    successTitle?: LocalizedString
+    successDesc?: LocalizedText
+    sendAnother?: LocalizedString
+    errorTitle?: LocalizedString
+    errorDesc?: LocalizedText
+    tryAgain?: LocalizedString
+  }
+  hours?: {
+    tag?: LocalizedString
+    title?: LocalizedString
+    desc?: LocalizedText
+    days?: ContactPageOfficeDay[]
+  }
+  faq?: {
+    tag?: LocalizedString
+    title?: LocalizedString
+    desc?: LocalizedText
+    items?: ContactPageFaqItem[]
+  }
+  cta?: {
+    title?: LocalizedString
+    desc?: LocalizedText
+    callBtn?: LocalizedString
+    emailBtn?: LocalizedString
+    chatLabel?: LocalizedString
+  }
+}
