@@ -76,7 +76,7 @@ export function ProjectsSection() {
                   </ul>
 
                   <Link
-                    to="/departments#diakonia"
+                    to="/departments#gender"
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors group/link"
                   >
                     {t("projects.viewDetails")} <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
