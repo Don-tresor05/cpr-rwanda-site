@@ -140,7 +140,7 @@ export function Footer() {
 
             {/* Contact form trigger */}
             <Link
-              to="/contact"
+              to="/contact#form"
               className="mt-6 inline-flex items-center gap-2 bg-[#8B6543] text-[#060F1F] font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white transition-all duration-300 hover:scale-105 w-full justify-center"
             >
               {t("footer.sendMessage")} <ArrowRight size={14} />
