@@ -111,25 +111,23 @@ export function GalleryPage() {
 
   const currentEvent = activeImage ? galleryEvents[activeImage.eventIdx] : null;
   const currentPhoto = activeImage && currentEvent ? currentEvent.images[activeImage.imgIdx] : null;
-  const isFirstPhoto = activeImage ? activeImage.imgIdx === 0 : true;
-  const isLastPhoto = activeImage && currentEvent ? activeImage.imgIdx === currentEvent.images.length - 1 : true;
+
 
   const handleNext = useCallback(() => {
     setActiveImage((img) => {
       if (!img) return img;
       const ev = galleryEvents[img.eventIdx];
-      if (img.imgIdx < ev.images.length - 1) return { ...img, imgIdx: img.imgIdx + 1 };
-      return img;
+      return { ...img, imgIdx: (img.imgIdx + 1) % ev.images.length };
     });
   }, [galleryEvents]);
 
   const handlePrev = useCallback(() => {
     setActiveImage((img) => {
       if (!img) return img;
-      if (img.imgIdx > 0) return { ...img, imgIdx: img.imgIdx - 1 };
-      return img;
+      const ev = galleryEvents[img.eventIdx];
+      return { ...img, imgIdx: (img.imgIdx - 1 + ev.images.length) % ev.images.length };
     });
-  }, []);
+  }, [galleryEvents]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -304,12 +302,7 @@ export function GalleryPage() {
             {/* Prev Button */}
             <button
               onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-              disabled={isFirstPhoto}
-              className={`absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all ${
-                isFirstPhoto
-                  ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
-                  : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
-              }`}
+              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
               aria-label={(gp?.prev as string) ?? "Previous"}
             >
               <ChevronLeft size={20} />
@@ -318,12 +311,7 @@ export function GalleryPage() {
             {/* Next Button */}
             <button
               onClick={(e) => { e.stopPropagation(); handleNext(); }}
-              disabled={isLastPhoto}
-              className={`absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all ${
-                isLastPhoto
-                  ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
-                  : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
-              }`}
+              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
               aria-label={(gp?.next as string) ?? "Next"}
             >
               <ChevronRight size={20} />

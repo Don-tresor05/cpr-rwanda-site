@@ -34,15 +34,11 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
   };
 
   const handleNext = () => {
-    if (currentIdx < images.length - 1) {
-      handleIndexChange(currentIdx + 1);
-    }
+    handleIndexChange((currentIdx + 1) % images.length);
   };
 
   const handlePrev = () => {
-    if (currentIdx > 0) {
-      handleIndexChange(currentIdx - 1);
-    }
+    handleIndexChange((currentIdx - 1 + images.length) % images.length);
   };
 
   useEffect(() => {
@@ -61,8 +57,6 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
   if (selectedIndex === null || !images[currentIdx] || typeof document === "undefined") return null;
 
   const currentPhoto = images[currentIdx];
-  const isFirstPhoto = currentIdx === 0;
-  const isLastPhoto = currentIdx === images.length - 1;
   const showNav = images.length > 1;
 
   return createPortal(
@@ -94,12 +88,7 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
         {showNav && (
           <button
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            disabled={isFirstPhoto}
-            className={`absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all ${
-              isFirstPhoto
-                ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
-                : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
-            }`}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
             aria-label="Previous image"
           >
             <ChevronLeft size={20} />
@@ -110,12 +99,7 @@ export function ImageLightbox({ images, selectedIndex, onClose, onNavigate }: Im
         {showNav && (
           <button
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            disabled={isLastPhoto}
-            className={`absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all ${
-              isLastPhoto
-                ? "bg-white/5 text-gray-600 cursor-not-allowed border border-white/5 opacity-50"
-                : "bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
-            }`}
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full w-11 h-11 flex items-center justify-center transition-all bg-black/60 hover:bg-black/80 text-white cursor-pointer hover:scale-105 shadow-lg"
             aria-label="Next image"
           >
             <ChevronRight size={20} />
