@@ -16,7 +16,7 @@ export function DepartmentResourceFiles() {
 
   if (!dept) {
     return (
-      <main className="bg-white min-h-[60vh] flex items-center justify-center">
+      <main className="bg-white min-h-[60vh] pt-20 lg:pt-[130px] flex items-center justify-center">
         <div className="text-center px-6">
           <p className="text-[#4A4A4A] text-lg mb-4">{t("departmentResourcesUI.notFoundTitle")}</p>
           <Link to="/departments" className="text-[#4E6132] font-bold hover:text-[#8B6543]">
@@ -30,7 +30,7 @@ export function DepartmentResourceFiles() {
   return (
     <main className="bg-white min-h-screen">
       {/* Header */}
-      <div className="bg-[#4E6132] relative overflow-hidden py-14 lg:py-16 px-6 lg:px-12">
+      <div className="bg-[#4E6132] relative overflow-hidden pt-20 lg:pt-[130px] pb-14 lg:pb-16 px-6 lg:px-12">
         {/* Decorative circles */}
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/5 pointer-events-none" />
