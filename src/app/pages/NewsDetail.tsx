@@ -59,7 +59,7 @@ export function NewsDetail() {
   };
 
   return (
-    <WatermarkSection className="bg-white min-h-screen pt-20 lg:pt-[130px]">
+    <WatermarkSection className="bg-white min-h-screen">
       {/* Main Single-Column Article Content (Balanced width layout) */}
       <article className="py-6 lg:py-10">
         <div className="max-w-4xl mx-auto px-6">

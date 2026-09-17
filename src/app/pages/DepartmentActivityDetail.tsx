@@ -53,7 +53,7 @@ export function DepartmentActivityDetail() {
 
   if (loading) {
     return (
-      <main className="bg-white min-h-[50vh] pt-20 lg:pt-[130px] flex items-center justify-center">
+      <main className="bg-white min-h-[50vh] flex items-center justify-center">
         <p className="text-[#4A4A4A] text-lg font-semibold animate-pulse">
           {t("departmentResourcesUI.loading", "Loading...")}
         </p>
@@ -63,7 +63,7 @@ export function DepartmentActivityDetail() {
 
   if (!activity) {
     return (
-      <main className="bg-white min-h-[50vh] pt-20 lg:pt-[130px] flex flex-col items-center justify-center gap-4 px-6 text-center">
+      <main className="bg-white min-h-[50vh] flex flex-col items-center justify-center gap-4 px-6 text-center">
         <h2 className="font-['Outfit'] font-black text-2xl lg:text-3xl text-[#111827]">
           Activity not found
         </h2>
@@ -81,7 +81,7 @@ export function DepartmentActivityDetail() {
   }
 
   return (
-    <WatermarkSection className="bg-white min-h-screen pt-20 lg:pt-[130px]">
+    <WatermarkSection className="bg-white min-h-screen">
       {/* Main Single-Column Article Content */}
       <article className="py-6 lg:py-10">
         <div className="max-w-4xl mx-auto px-6">

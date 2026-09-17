@@ -87,28 +87,10 @@ export function Header() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const mobileOpenRef = useRef(false);
-
-  // The nav starts transparent, floating over the hero/page background, and
-  // only picks up its solid background once the visitor scrolls, hovers
-  // over it, or opens the mobile menu — a common "floating nav" pattern
-  // that gives the hero more room since the nav no longer reserves its own
-  // solid band above it. A few pages have no dark hero image directly under
-  // the nav (article/detail pages with a plain white top), where white nav
-  // text would be unreadable — those always render the solid nav instead.
-  const NO_HERO_ROUTES = [
-    /^\/departments\/[^/]+\/activities\//,
-    /^\/departments\/[^/]+\/resources\/[^/]+/,
-    /^\/secretariat\/[^/]+\/resources\/[^/]+/,
-    /^\/newsroom\/[^/]+/,
-    /^\/news\/[^/]+/,
-  ];
-  const forceSolid = NO_HERO_ROUTES.some((re) => re.test(location.pathname));
-  const solid = scrolled || hovered || mobileOpen || forceSolid;
 
   useEffect(() => {
     mobileOpenRef.current = mobileOpen;
@@ -147,22 +129,9 @@ export function Header() {
 
 
   return (
-    <div
-      className={`fixed top-0 left-0 right-0 z-[70] transition-transform duration-300 ${
-        hidden ? "-translate-y-full pointer-events-none" : "translate-y-0"
-      }`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Top bar — collapses away once scrolled, same as before; transparent
-          (floating over the hero) until the nav is scrolled, hovered, or
-          the mobile menu is open. Text is already white/70, so it reads
-          fine straight over a hero photo with no extra color swap needed. */}
-      <div
-        className={`hidden lg:flex relative z-[80] text-white/70 text-sm px-6 items-center justify-between overflow-hidden transition-all duration-300 ${
-          scrolled ? "max-h-0 py-0 opacity-0" : "max-h-20 py-2 opacity-100"
-        } ${solid ? "bg-[#4E6132]" : "bg-transparent"}`}
-      >
+    <>
+      {/* Top bar */}
+      <div className="hidden lg:flex relative z-[80] bg-[#4E6132] text-white/70 text-sm py-2 px-6 items-center justify-between">
         <div className="flex items-center gap-5 font-medium">
           <span className="flex items-center gap-1.5"><Phone size={14} /><span>{contact.phone}</span></span>
           <span className="flex items-center gap-1.5"><Mail size={14} /><span>{contact.email}</span></span>
@@ -184,10 +153,12 @@ export function Header() {
 
       {/* Main nav */}
       <header
-        className={`transition-all duration-300 ${
-          solid
+        className={`sticky top-0 z-[70] transition-all duration-300 ${
+          hidden ? "-translate-y-full pointer-events-none" : "translate-y-0"
+        } ${
+          scrolled
             ? "bg-[#F5F5DC]/95 backdrop-blur-2xl shadow-lg border-b border-[#4E6132]/10"
-            : "bg-transparent shadow-none"
+            : "bg-[#F5F5DC] shadow-sm"
         }`}
       >
         <div className="w-full px-4 lg:px-8 flex items-center justify-between h-20 lg:h-24">
@@ -198,11 +169,7 @@ export function Header() {
               alt="CPR Rwanda - Conseil Protestant du Rwanda"
               className="h-14 lg:h-16 w-auto object-contain"
             />
-            <span
-              className={`text-[10px] sm:text-xs lg:text-sm font-extrabold mt-1 leading-none tracking-wide transition-colors duration-300 ${
-                solid ? "text-[#8B6543]" : "text-white drop-shadow-md"
-              }`}
-            >
+            <span className="text-[10px] sm:text-xs lg:text-sm font-extrabold text-[#8B6543] mt-1 leading-none tracking-wide">
               Conseil Protestant du Rwanda (CPR)
             </span>
           </Link>
@@ -211,13 +178,6 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-1.5">
             {navItems.map((item) => {
               const isActive = activeMenu === item.label || (item.href === "/" ? location.pathname === "/" : location.pathname.startsWith(item.href));
-              const linkClass = solid
-                ? isActive
-                  ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
-                  : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
-                : isActive
-                  ? "bg-white/20 text-white font-bold shadow-sm backdrop-blur-sm"
-                  : "text-white font-semibold drop-shadow-md hover:bg-white/15 hover:font-bold";
               return (
                 <div
                   key={item.label}
@@ -231,7 +191,11 @@ export function Header() {
                         setActiveMenu(null);
                         showComingSoon(item.label);
                       }}
-                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${linkClass}`}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                          : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                      }`}
                     >
                       {item.label}
                       {item.children && (
@@ -244,7 +208,11 @@ export function Header() {
                   ) : (
                     <Link
                       to={item.href}
-                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${linkClass}`}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                          : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                      }`}
                     >
                       {item.label}
                       {item.children && (
@@ -275,14 +243,10 @@ export function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className={`lg:hidden p-2 rounded-xl transition-colors ${solid ? "hover:bg-[#4E6132]/10" : "hover:bg-white/15"}`}
+            className="lg:hidden p-2 rounded-xl hover:bg-[#4E6132]/10 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? (
-              <X size={22} className={solid ? "text-[#4E6132]" : "text-white drop-shadow-md"} />
-            ) : (
-              <Menu size={22} className={solid ? "text-[#4E6132]" : "text-white drop-shadow-md"} />
-            )}
+            {mobileOpen ? <X size={22} className="text-[#4E6132]" /> : <Menu size={22} className="text-[#4E6132]" />}
           </button>
         </div>
 
@@ -385,6 +349,6 @@ export function Header() {
           )}
         </AnimatePresence>
       </header>
-    </div>
+    </>
   );
 }

@@ -63,7 +63,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[55vh] sm:min-h-[65vh] md:min-h-[75vh] lg:h-screen overflow-hidden"
+      className="relative min-h-[50vh] sm:min-h-[55vh] md:min-h-[65vh] lg:h-[calc(100vh-130px)] overflow-hidden"
     >
       {/* Background image — object-cover + object-position ensures any image
           auto-adjusts to the container without stretching or losing quality */}
