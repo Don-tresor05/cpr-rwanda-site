@@ -1,0 +1,59 @@
+name: Deploy Sanity Studio
+
+# Deploys the Sanity Studio (studio/) to sanity.studio whenever schema or
+# config changes land on Dev. This closes the gap where studio/** changes
+# were built and committed but never actually pushed live — the frontend
+# workflow (deploy.yml) explicitly ignores studio/**, so nothing else
+# redeploys Studio. Without this, every schema change (e.g. a new document
+# type, a renamed field, a new structure item like departmentActivity or
+# departmentDetail) stays invisible in the hosted Studio UI until someone
+# remembers to run `npx sanity deploy` by hand.
+on:
+  push:
+    branches: [Dev]
+    paths:
+      - 'studio/**'
+
+concurrency:
+  group: deploy-studio-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-studio:
+    runs-on: ubuntu-latest
+    name: Build & Deploy Sanity Studio
+    defaults:
+      run:
+        working-directory: studio
+
+    steps:
+      # ── 1. Checkout code ──
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Install pnpm (must come BEFORE setup-node cache) ──
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # ── 3. Setup Node.js ──
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: studio/pnpm-lock.yaml
+
+      # ── 4. Install dependencies ──
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ── 5. Deploy Studio to sanity.studio ──
+      # sanity.cli.ts already pins studioHost + projectId, so this runs
+      # fully non-interactively as long as SANITY_AUTH_TOKEN is set — no
+      # prompts for hostname or project selection.
+      - name: Deploy Studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_DEPLOY_TOKEN }}
+        run: pnpm run deploy
