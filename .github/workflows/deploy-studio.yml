@@ -46,14 +46,21 @@ jobs:
           cache-dependency-path: studio/pnpm-lock.yaml
 
       # ── 4. Install dependencies ──
+      # --ignore-workspace: studio/ is a standalone project with its own
+      # lockfile, NOT a member of the root pnpm-workspace.yaml (which only
+      # lists '.'). Without this flag pnpm walks up, finds the repo root's
+      # workspace file, and silently installs into the repo root's
+      # node_modules instead of studio's — leaving studio/node_modules
+      # missing and `sanity` unresolved ("sh: 1: sanity: not found").
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-workspace
 
       # ── 5. Deploy Studio to sanity.studio ──
       # sanity.cli.ts already pins studioHost + projectId, so this runs
       # fully non-interactively as long as SANITY_AUTH_TOKEN is set — no
-      # prompts for hostname or project selection.
+      # prompts for hostname or project selection. --ignore-workspace for
+      # the same reason as the install step above.
       - name: Deploy Studio
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_DEPLOY_TOKEN }}
-        run: pnpm run deploy
+        run: pnpm --ignore-workspace run deploy
