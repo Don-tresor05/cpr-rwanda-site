@@ -1,0 +1,174 @@
+/**
+ * Migrate the Secretariat "Resources & Documents" cards
+ * (/secretariat/:sectionId/resources) into `secretariatResourceGroup`
+ * Sanity documents — one per resource card currently hardcoded in
+ * src/app/data/secretariatResources.ts (Leadership Reports, Strategic
+ * Documents, Event Schedules, Meeting Minutes, Policy Briefs, …).
+ *
+ * This is a SEPARATE collection from secretariatDetail — see
+ * scripts/migrate-secretariat-detail-pages.mjs for the hero/overview/
+ * key-focus-areas copy. It's also separate from the individual FILES
+ * inside each group (secretariatResourceFile): there is nothing to
+ * migrate there — every hardcoded resource's `files` array is empty
+ * (`files: []`), so there's no source document to upload from a
+ * script. Same story for secretariatActivity: there is no existing
+ * "activities" data anywhere in the codebase for the Secretariat page
+ * to seed from. Both of those are created directly in Studio — exactly
+ * how department resource files and department activities have always
+ * been managed (there was never an auto-migration script for those
+ * either).
+ *
+ * Usage:
+ *   node scripts/migrate-secretariat-resource-groups.mjs                (dry run — prints what would change)
+ *   node scripts/migrate-secretariat-resource-groups.mjs --apply         (writes to Sanity)
+ *   node scripts/migrate-secretariat-resource-groups.mjs --apply --token=XXX   (explicit token)
+ *
+ * Run from the repo root. SAFE TO RE-RUN: each group gets a
+ * deterministic _id (secretariatResourceGroup-<section>-<slug>) and
+ * existing documents are never overwritten — only groups that don't
+ * exist yet are created, so any edits made in Studio since are kept.
+ */
+import { createRequire } from "node:module";
+import { readFileSync, existsSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+
+const PROJECT_ID = "2bpoen39";
+const DATASET = "production";
+const APPLY = process.argv.includes("--apply");
+
+const root = process.cwd();
+const studioRequire = createRequire(path.join(root, "studio", "package.json"));
+const { createClient } = studioRequire("@sanity/client");
+
+// ---- client resolution (same pattern as migrate-secretariat-detail-pages.mjs) ----
+let client;
+let authMode;
+const cliConfigPath = path.join(os.homedir(), ".config", "sanity", "config.json");
+let cliToken = "";
+if (existsSync(cliConfigPath)) {
+  try {
+    cliToken = JSON.parse(readFileSync(cliConfigPath, "utf8")).authToken || "";
+  } catch {}
+}
+
+let token = process.env.SANITY_MIGRATION_TOKEN || process.env.SANITY_AUTH_TOKEN || process.env.SANITY_WRITE_TOKEN || "";
+const tokenArg = process.argv.find((a) => a.startsWith("--token="));
+if (tokenArg) token = tokenArg.slice("--token=".length);
+if (!token && existsSync(path.join(root, ".env.migration"))) {
+  const m = readFileSync(path.join(root, ".env.migration"), "utf8").match(/SANITY_MIGRATION_TOKEN=(.+)/);
+  if (m) token = m[1].trim();
+}
+
+if (APPLY) {
+  if (token) {
+    client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", token, useCdn: false });
+    authMode = "explicit API token";
+  } else if (cliToken) {
+    client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", token: cliToken, useCdn: false });
+    authMode = "CLI login session (~/.config/sanity/config.json)";
+  } else {
+    console.error("No credentials found. Log in first (`cd studio && npx sanity login`) or provide an API token:");
+    console.error("  --token=XXX | SANITY_MIGRATION_TOKEN env | .env.migration file");
+    process.exit(2);
+  }
+} else {
+  client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", useCdn: true });
+  authMode = "none (dry run — pass --apply to write)";
+}
+
+// ---- source data — mirrors src/app/data/secretariatResources.ts exactly ----
+// (plain hardcoded strings there too, not translation-keyed, so no locale
+// files to read from here.)
+const SECTIONS = {
+  sg: [
+    { slug: "leadership-reports", title: "Leadership Reports", description: "Annual and quarterly leadership updates.", cardType: "document" },
+    { slug: "strategic-documents", title: "Strategic Documents", description: "CPR's core strategic frameworks.", cardType: "download" },
+  ],
+  events: [
+    { slug: "event-schedules", title: "Event Schedules", description: "Upcoming national assemblies and synods.", cardType: "document" },
+    { slug: "assembly-reports", title: "Assembly Reports", description: "Outcomes from past major gatherings.", cardType: "document" },
+  ],
+  meetings: [
+    { slug: "meeting-minutes", title: "Meeting Minutes", description: "Official records of CPR board meetings.", cardType: "document" },
+  ],
+  advocacy: [
+    { slug: "policy-briefs", title: "Policy Briefs", description: "CPR's stance on key national policies.", cardType: "document" },
+    { slug: "advocacy-reports", title: "Advocacy Reports", description: "Impact reports from our advocacy efforts.", cardType: "download" },
+  ],
+  sustainability: [
+    { slug: "green-school-guides", title: "Green School Guides", description: "Manuals for implementing green initiatives in schools.", cardType: "document" },
+    { slug: "sustainability-reports", title: "Sustainability Reports", description: "Progress on our environmental goals.", cardType: "download" },
+  ],
+  publications: [
+    { slug: "newsletters", title: "Newsletters", description: "Archive of CPR's monthly newsletters.", cardType: "document" },
+    { slug: "official-communiques", title: "Official Communiqués", description: "Public statements from CPR.", cardType: "document" },
+  ],
+};
+
+function buildDoc(section, group, order) {
+  return {
+    _id: `secretariatResourceGroup-${section}-${group.slug}`,
+    _type: "secretariatResourceGroup",
+    section,
+    title: group.title,
+    slug: { _type: "slug", current: group.slug },
+    description: group.description,
+    cardType: group.cardType,
+    order,
+  };
+}
+
+async function migrate() {
+  console.log(`Auth: ${authMode}`);
+  console.log(`Project: ${PROJECT_ID} / ${DATASET}${APPLY ? "" : "  (DRY RUN — pass --apply to write)"}\n`);
+
+  const existing = APPLY
+    ? await client.fetch(`*[_type == "secretariatResourceGroup"]{ _id }`)
+    : [];
+  const existingIds = new Set(existing.map((d) => d._id));
+  if (APPLY) {
+    console.log(`Existing secretariatResourceGroup docs: ${existing.length}\n`);
+  }
+
+  let created = 0;
+  let skipped = 0;
+  let would = 0;
+
+  for (const [section, groups] of Object.entries(SECTIONS)) {
+    for (let i = 0; i < groups.length; i++) {
+      const doc = buildDoc(section, groups[i], i + 1);
+
+      if (!APPLY) {
+        console.log(`Would create ${doc._id}: "${doc.title}" (${doc.cardType})`);
+        would += 1;
+        continue;
+      }
+      if (existingIds.has(doc._id)) {
+        console.log(`⏭️  ${doc._id}: already exists — skipping to preserve existing content`);
+        skipped += 1;
+        continue;
+      }
+      const result = await client.createOrReplace(doc);
+      console.log(`✅ Created secretariatResourceGroup:`, result._id);
+      created += 1;
+    }
+  }
+
+  if (!APPLY) {
+    console.log(`\nDry run complete — ${would} group(s) would be created. Re-run with --apply to write them.`);
+    console.log("Reminder: the individual files inside each group, and all Secretariat Activities,");
+    console.log("have no source data to migrate from — add those directly in Studio.");
+    return;
+  }
+
+  console.log(`\n   Done! Created ${created}, skipped ${skipped} (already existed).`);
+  console.log("   Reminder: upload each group's actual files in Studio under Secretariat Resource Files —");
+  console.log("   there's nothing to migrate there (the hardcoded data has empty file lists).");
+  console.log("   Secretariat Activities also have no existing content to seed from — add those in Studio too.");
+}
+
+migrate().catch((err) => {
+  console.error("Migration failed:", err);
+  process.exit(1);
+});
