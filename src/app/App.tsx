@@ -16,6 +16,7 @@ import { DepartmentResourceFiles } from "./pages/DepartmentResourceFiles";
 import { DepartmentActivityDetail } from "./pages/DepartmentActivityDetail";
 import { SecretariatResources } from "./pages/SecretariatResources";
 import { SecretariatResourceFiles } from "./pages/SecretariatResourceFiles";
+import { SecretariatActivityDetail } from "./pages/SecretariatActivityDetail";
 import { RadioPage } from "./pages/RadioPage";
 import { ContactPage } from "./pages/ContactPage";
 import { GalleryPage } from "./pages/GalleryPage";
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/secretariat" element={<Secretariat />} />
             <Route path="/secretariat/:sectionId/resources" element={<SecretariatResources />} />
             <Route path="/secretariat/:sectionId/resources/:resourceSlug" element={<SecretariatResourceFiles />} />
+            <Route path="/secretariat/:sectionId/activities/:slug" element={<SecretariatActivityDetail />} />
             <Route path="/departments" element={<Departments />} />
             <Route path="/departments/:deptId/resources" element={<DepartmentResources />} />
             <Route path="/departments/:deptId/resources/:resourceSlug" element={<DepartmentResourceFiles />} />

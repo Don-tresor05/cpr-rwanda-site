@@ -3,6 +3,7 @@ import { ArrowLeft, FileText, Folder } from "lucide-react";
 import { getSecretariatResources } from "../data/secretariatResources";
 import { useTranslation } from "react-i18next";
 import { WatermarkSection } from "../components/ui/WatermarkBackground";
+import { useCmsSecretariatResourceFiles } from "../data/sanitySecretariatResources";
 
 export function SecretariatResourceFiles() {
   const { t } = useTranslation("home");
@@ -10,7 +11,8 @@ export function SecretariatResourceFiles() {
   const secretariatResources = getSecretariatResources(t);
   const section = sectionId ? secretariatResources[sectionId] : undefined;
   const resource = section?.resources.find((r) => r.slug === resourceSlug);
-  const files = resource?.files ?? [];
+  const cmsFiles = useCmsSecretariatResourceFiles(resourceSlug);
+  const files = cmsFiles && cmsFiles.length > 0 ? cmsFiles : resource?.files ?? [];
 
   if (!section) {
     return (

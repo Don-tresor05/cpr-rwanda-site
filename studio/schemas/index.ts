@@ -5,6 +5,10 @@ import { departmentResourceFile } from "./departmentResourceFile";
 import { departmentResourceGroup } from "./departmentResourceGroup";
 import { departmentDetail } from "./departmentDetail";
 import { departmentActivity } from "./departmentActivity";
+import { secretariatResourceFile } from "./secretariatResourceFile";
+import { secretariatResourceGroup } from "./secretariatResourceGroup";
+import { secretariatDetail } from "./secretariatDetail";
+import { secretariatActivity } from "./secretariatActivity";
 import { siteSettings } from "./siteSettings";
 import { memberChurch } from "./memberChurch";
 import { department } from "./department";
@@ -27,6 +31,10 @@ export const schemaTypes = [
   departmentResourceGroup,
   departmentDetail,
   departmentActivity,
+  secretariatResourceFile,
+  secretariatResourceGroup,
+  secretariatDetail,
+  secretariatActivity,
   siteSettings,
   memberChurch,
   department,

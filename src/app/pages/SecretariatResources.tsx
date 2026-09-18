@@ -6,6 +6,12 @@ import { WatermarkSection } from "../components/ui/WatermarkBackground";
 import { ScrollIndicator } from "../components/ui/ScrollIndicator";
 import { getSecretariatResources } from "../data/secretariatResources";
 import { useTranslation } from "react-i18next";
+import {
+  useCmsSecretariatResourceGroups,
+  useCmsSecretariatDetail,
+  useCmsSecretariatActivities,
+} from "../data/sanitySecretariatResources";
+import { PortableContent } from "../components/ui/PortableContent";
 
 export function SecretariatResources() {
   const { t } = useTranslation("home");
@@ -13,6 +19,9 @@ export function SecretariatResources() {
   const secretariatResources = getSecretariatResources(t);
   const section = sectionId ? secretariatResources[sectionId] : undefined;
   const { ref: contentRef, visible: contentVisible } = useScrollReveal();
+  const cmsGroups = useCmsSecretariatResourceGroups(sectionId);
+  const { data: cmsDetail, loading: cmsDetailLoading } = useCmsSecretariatDetail(sectionId);
+  const cmsActivities = useCmsSecretariatActivities(sectionId);
 
   if (!section) {
     return (
@@ -43,7 +52,9 @@ export function SecretariatResources() {
       <div
         className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${section.image}')`,
+          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${
+            cmsDetail?.image ?? section.image
+          }')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -58,7 +69,7 @@ export function SecretariatResources() {
           </Link>
 
           <h1 className="font-['Outfit'] text-5xl lg:text-7xl font-black text-white drop-shadow-md">
-            {section.title}
+            {cmsDetail?.title ?? section.title}
           </h1>
         </div>
         <ScrollIndicator />
@@ -67,104 +78,250 @@ export function SecretariatResources() {
       {/* Overview */}
       <WatermarkSection className="py-16 lg:py-20 bg-white">
         <div ref={contentRef} className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={contentVisible ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-3"
-            >
-              <div className="inline-flex items-center gap-2 mb-3">
-                <div className="h-px w-8" style={{ backgroundColor: section.accent }} />
-                <span
-                  className="text-xs font-bold uppercase tracking-widest"
-                  style={{ color: section.accent }}
-                >
-                  {t("departmentResourcesUI.overview", { defaultValue: "Overview" })}
-                </span>
-                <div className="h-px w-8" style={{ backgroundColor: section.accent }} />
+          {/* Overview label — always above the float/image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="mb-6"
+          >
+            <div className="inline-flex items-center gap-2">
+              <div className="h-px w-8" style={{ backgroundColor: section.accent }} />
+              <span
+                className="text-xs font-bold uppercase tracking-widest"
+                style={{ color: section.accent }}
+              >
+                {t("departmentResourcesUI.overview", { defaultValue: "Overview" })}
+              </span>
+              <div className="h-px w-8" style={{ backgroundColor: section.accent }} />
+            </div>
+          </motion.div>
+
+          {cmsDetailLoading ? (
+            // Skeleton — holds this space while we find out whether this
+            // section has CMS head/overview content, so the page never has
+            // to show the hardcoded fallback card first and then swap it
+            // out a moment later once the real content arrives.
+            <div className="block animate-pulse" aria-hidden="true">
+              <div className="md:float-right md:ml-10 md:mb-6 mb-8 w-full md:w-auto">
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto md:mx-0 overflow-hidden">
+                  <div className="w-full aspect-[4/3] bg-[#EDF1F7]" />
+                  <div className="py-3 px-3 flex flex-col items-center gap-2">
+                    <div className="h-4 w-32 rounded bg-[#EDF1F7]" />
+                    <div className="h-3 w-20 rounded bg-[#EDF1F7]" />
+                  </div>
+                </div>
               </div>
-
-              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mt-2 mb-6">
-                {t("departmentResourcesUI.about", { defaultValue: "About" })} {section.title}
-              </h2>
-
-              <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8">
-                {section.overview}
-              </p>
-
-              {/* Key Activities */}
-              <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-4">
-                {t("departmentResourcesUI.keyActivities", { defaultValue: "Key Focus Areas" })}
-              </h3>
-              <ul className="space-y-3">
-                {section.keyActivities.map((activity, idx) => (
-                  <motion.li
-                    key={idx}
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={contentVisible ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.07 }}
-                    className="flex items-start gap-3 text-[#4A4A4A]"
-                  >
-                    <CheckCircle2
-                      size={18}
-                      className="mt-0.5 flex-shrink-0"
-                      style={{ color: section.accent }}
-                    />
-                    <span className="leading-relaxed">{activity}</span>
-                  </motion.li>
+              <div className="space-y-3 mb-8">
+                <div className="h-4 w-full rounded bg-[#EDF1F7]" />
+                <div className="h-4 w-full rounded bg-[#EDF1F7]" />
+                <div className="h-4 w-2/3 rounded bg-[#EDF1F7]" />
+              </div>
+              <div className="h-5 w-40 rounded bg-[#EDF1F7] mb-4" />
+              <div className="space-y-3">
+                {[0, 1, 2, 3].map((idx) => (
+                  <div key={idx} className="h-4 w-5/6 rounded bg-[#EDF1F7]" />
                 ))}
-              </ul>
-            </motion.div>
-
-            {/* Image Card */}
+              </div>
+              <div className="clear-both" />
+            </div>
+          ) : (
+          <div className="block">
+            {/* Section Head — prominent portrait when available, matching the EPR reference layout */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={contentVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="lg:col-span-2"
+              className="md:float-right md:ml-10 md:mb-6 mb-8 w-full md:w-auto"
             >
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10">
-                <div className="relative aspect-[4/3]">
-                  <img
-                    src={section.image}
-                    alt={section.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(135deg, ${section.accent}30 0%, transparent 50%, ${section.accent}15 100%)`,
-                    }}
-                  />
-                </div>
-                <div className="p-5 bg-white">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: section.accent }}
-                    >
-                      <Icon size={20} color="white" strokeWidth={1.5} />
-                    </div>
-                    <span
-                      className="font-['Outfit'] font-bold text-lg"
-                      style={{ color: section.accent }}
-                    >
-                      {section.title}
-                    </span>
+              {cmsDetail?.headName ? (
+                <div className="rounded-none shadow-xl border border-[#4E6132]/10 bg-white max-w-[280px] w-full mx-auto md:mx-0 flex flex-col overflow-hidden">
+                  <div className="relative w-full aspect-[4/3] bg-[#EDF1F7]">
+                    {cmsDetail.headPhoto ? (
+                      <img
+                        src={cmsDetail.headPhoto}
+                        alt={cmsDetail.headName}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-[#8B6543]/30">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                    {t("departmentResourcesUI.partOfCpr", { defaultValue: "Part of CPR Rwanda" })}
-                  </p>
+                  <div className="py-3 px-3 text-center flex flex-col justify-center">
+                    <h4 className="font-['Outfit'] font-black text-[#111827] text-lg leading-tight">
+                      {cmsDetail.headName}
+                    </h4>
+                    {cmsDetail.headRole && (
+                      <p className="text-[#8B6543] text-xs font-semibold mt-0.5">
+                        {cmsDetail.headRole}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-[#4E6132]/10 max-w-[280px] w-full mx-auto md:mx-0">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={cmsDetail?.image ?? section.image}
+                      alt={cmsDetail?.title ?? section.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `linear-gradient(135deg, ${section.accent}30 0%, transparent 50%, ${section.accent}15 100%)`,
+                      }}
+                    />
+                  </div>
+                  <div className="p-5 bg-white">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: section.accent }}
+                      >
+                        <Icon size={20} color="white" strokeWidth={1.5} />
+                      </div>
+                      <span
+                        className="font-['Outfit'] font-bold text-lg"
+                        style={{ color: section.accent }}
+                      >
+                        {cmsDetail?.title ?? section.title}
+                      </span>
+                    </div>
+                    <p className="text-[#4A4A4A] text-sm leading-relaxed">
+                      {t("departmentResourcesUI.partOfCpr", { defaultValue: "Part of CPR Rwanda" })}
+                    </p>
+                  </div>
+                </div>
+              )}
             </motion.div>
+
+            {/* Overview & Key Focus Areas */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="block"
+            >
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-6">
+                {t("departmentResourcesUI.about", { defaultValue: "About" })} {cmsDetail?.title ?? section.title}
+              </h2>
+
+              {cmsDetail?.bodyBlocks?.length ? (
+                // Full article — as many paragraphs, headings and inline
+                // bullet lists as the section has, written in Sanity.
+                <div className="space-y-3">
+                  <PortableContent blocks={cmsDetail.bodyBlocks} />
+                </div>
+              ) : (
+                <>
+                  <p className="text-[#4A4A4A] text-lg leading-relaxed mb-8">
+                    {cmsDetail?.overview ?? section.overview}
+                  </p>
+
+                  {/* Key Focus Areas */}
+                  <h3 className="font-['Outfit'] font-bold text-xl text-[#4E6132] mb-4">
+                    {t("departmentResourcesUI.keyActivities", { defaultValue: "Key Focus Areas" })}
+                  </h3>
+                  <ul className="space-y-3">
+                    {(cmsDetail?.keyActivities?.length ? cmsDetail.keyActivities : section.keyActivities).map((activity, idx) => (
+                      <motion.li
+                        key={idx}
+                        initial={{ opacity: 0, x: -15 }}
+                        animate={contentVisible ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.4, delay: 0.2 + idx * 0.07 }}
+                        className="flex items-start gap-3 text-[#4A4A4A]"
+                      >
+                        <CheckCircle2
+                          size={18}
+                          className="mt-0.5 flex-shrink-0"
+                          style={{ color: section.accent }}
+                        />
+                        <span className="leading-relaxed">{activity}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </motion.div>
+
+            <div className="clear-both" />
           </div>
+          )}
         </div>
       </WatermarkSection>
 
+      {/* Activities & Milestones */}
+      {cmsActivities && cmsActivities.length > 0 && (
+        <section className="py-16 lg:py-20 bg-white border-t border-[#4E6132]/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-3">
+                {t("departmentResourcesUI.activitiesAndMilestones", { defaultValue: "Activities & Milestones" })}
+              </h2>
+              <p className="text-[#4A4A4A] max-w-xl mx-auto">
+                {t("departmentResourcesUI.activitiesDesc", { defaultValue: "Key moments and initiatives from the" })} {cmsDetail?.title ?? section.title}.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+              {cmsActivities.map((activity, idx) => {
+                const cardImage = activity.image || cmsDetail?.image || section.image;
+                return (
+                  <motion.article
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.08 }}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#4E6132]/10 flex flex-col h-full w-full"
+                  >
+                    {cardImage && (
+                      <Link to={`/secretariat/${section.id}/activities/${activity.slug}`} className="block aspect-[16/10] overflow-hidden bg-[#EDF1F7] relative">
+                        <img
+                          src={cardImage}
+                          alt={activity.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </Link>
+                    )}
+                  <div className="p-5 lg:p-6 flex flex-col grow">
+                    <div className="text-xs font-semibold text-[#4E6132] mb-2.5">
+                      {activity.date}
+                    </div>
+                    <h3 className="font-['Outfit'] font-bold text-lg lg:text-xl text-[#4E6132] mb-3 leading-snug hover:text-[#8B6543] transition-colors line-clamp-3">
+                      <Link to={`/secretariat/${section.id}/activities/${activity.slug}`}>
+                        {activity.title}
+                      </Link>
+                    </h3>
+                    {activity.excerpt && (
+                      <p className="text-[#4A4A4A] text-xs sm:text-sm leading-relaxed line-clamp-3 mb-5 grow">
+                        {activity.excerpt}
+                      </p>
+                    )}
+                    <div className="mt-auto">
+                      <Link
+                        to={`/secretariat/${section.id}/activities/${activity.slug}`}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#4E6132] hover:text-[#8B6543] transition-colors"
+                      >
+                        {t("newsroom.readMore", "Read more")} <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Resources Section */}
-      {section.resources.length > 0 && (
+      {(cmsGroups?.length || section.resources.length > 0) && (
         <section className="py-16 lg:py-20 bg-[#F8F9F4]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -172,12 +329,12 @@ export function SecretariatResources() {
                 {t("departmentResourcesUI.resourcesAndDocs", { defaultValue: "Resources & Documents" })}
               </h2>
               <p className="text-[#4A4A4A] max-w-xl mx-auto">
-                {t("departmentResourcesUI.accessResources", { defaultValue: "Access official documents from" })} {section.title}.
+                {t("departmentResourcesUI.accessResources", { defaultValue: "Access official documents from" })} {cmsDetail?.title ?? section.title}.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.resources.map((resource, idx) => {
+              {(cmsGroups ?? section.resources.map((r) => ({ slug: r.slug, title: r.title, description: r.description, cardType: r.type }))).map((resource, idx) => {
                 return (
                   <motion.div
                     key={idx}
@@ -207,7 +364,7 @@ export function SecretariatResources() {
                       className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider"
                       style={{ color: section.accent }}
                     >
-                      {resource.type === "download" ? t("departmentResourcesUI.download", { defaultValue: "Download" }) : resource.type === "link" ? t("departmentResourcesUI.visit", { defaultValue: "Visit" }) : t("departmentResourcesUI.view", { defaultValue: "View" })}
+                      {resource.cardType === "download" ? t("departmentResourcesUI.download", { defaultValue: "Download" }) : resource.cardType === "link" ? t("departmentResourcesUI.visit", { defaultValue: "Visit" }) : t("departmentResourcesUI.view", { defaultValue: "View" })}
                       <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                     </span>
                     </Link>
