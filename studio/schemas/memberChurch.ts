@@ -21,7 +21,7 @@ export const memberChurch = defineType({
     defineField({
       name: "url",
       title: "Website (optional)",
-      description: "e.g. https://www.epr.rw — shown as a link on the card.",
+      description: "e.g. https://www.example.com — shown as a link on the card.",
       type: "url",
     }),
     defineField({

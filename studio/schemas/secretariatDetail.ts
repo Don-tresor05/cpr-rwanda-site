@@ -57,7 +57,7 @@ export const secretariatDetail = defineType({
       name: "overview",
       title: "Overview paragraph (short version)",
       description:
-        'A single short paragraph under "About <Section>". Only used when "Full Article" below is empty — fill in the Full Article tab instead for a longer, multi-paragraph write-up with headings and lists, like epr.rw.',
+        'A single short paragraph under "About <Section>". Only used when "Full Article" below is empty — fill in the Full Article tab instead for a longer, multi-paragraph write-up with headings and lists.',
       type: "localizedText",
       group: "main",
     }),
@@ -73,7 +73,7 @@ export const secretariatDetail = defineType({
     ...localizedArticleBodyFields(
       "body",
       "Full Article",
-      "The complete section write-up — as many paragraphs, headings and bullet lists as you need, like the article on epr.rw. When the English one has content it replaces the short Overview paragraph and Key Focus Areas checklist above. Leave empty to keep using those simpler fields instead.",
+      "The complete section write-up — as many paragraphs, headings and bullet lists as you need. When the English one has content it replaces the short Overview paragraph and Key Focus Areas checklist above. Leave empty to keep using those simpler fields instead.",
     ),
     defineField({
       name: "headName",
