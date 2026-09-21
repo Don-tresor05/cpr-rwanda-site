@@ -3,11 +3,14 @@ import { ArrowRight } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useComingSoon } from "../ui/ComingSoonModal";
 import { useTranslation } from "react-i18next";
+import { useSiteSettings } from "../../data/siteSettings";
 
 export function CTABanner() {
   const { ref, visible } = useScrollReveal();
   const { showComingSoon } = useComingSoon();
   const { t } = useTranslation("home");
+  const settings = useSiteSettings();
+  const cta = settings?.cta;
   return (
     <section ref={ref} className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -21,10 +24,10 @@ export function CTABanner() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-white mb-5 leading-tight">
-            {t("cta.title")}
+            {cta?.title || t("cta.title")}
           </h2>
           <p className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto leading-relaxed">
-            {t("cta.desc")}
+            {cta?.desc || t("cta.desc")}
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <button

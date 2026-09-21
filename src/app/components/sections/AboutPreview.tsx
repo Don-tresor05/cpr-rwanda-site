@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { WatermarkSection } from "../ui/WatermarkBackground";
 import { ImageLightbox } from "../ui/ImageLightbox";
+import { useAboutPage } from "../../data/pageContent";
 
 const ABOUT_IMAGES = [
   { src: "/cpr/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
@@ -18,6 +19,8 @@ export function AboutPreview() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
+  const aboutPage = useAboutPage();
+  const whoWeAre = aboutPage?.whoWeAre;
 
   return (
     <WatermarkSection id="about" ref={ref} className="py-24 bg-white overflow-hidden">
@@ -33,17 +36,31 @@ export function AboutPreview() {
               <div className="h-px w-10 bg-[#8B6543]" />
               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("about.ourStory")}</span>
             </div>
-            <h2 
-              className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
-              dangerouslySetInnerHTML={{ __html: t("about.title") }}
-            />
-            <p 
-              className="text-[#4A4A4A] leading-relaxed mb-5 text-base"
-              dangerouslySetInnerHTML={{ __html: t("about.p1") }}
-            />
-            <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">
-              {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
-            </p>
+            {whoWeAre?.title ? (
+              <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6">
+                {whoWeAre.title}
+              </h2>
+            ) : (
+              <h2
+                className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
+                dangerouslySetInnerHTML={{ __html: t("about.title") }}
+              />
+            )}
+            {whoWeAre?.p1 ? (
+              <p className="text-[#4A4A4A] leading-relaxed mb-5 text-base">{whoWeAre.p1}</p>
+            ) : (
+              <p
+                className="text-[#4A4A4A] leading-relaxed mb-5 text-base"
+                dangerouslySetInnerHTML={{ __html: t("about.p1") }}
+              />
+            )}
+            {whoWeAre?.p2 ? (
+              <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">{whoWeAre.p2}</p>
+            ) : (
+              <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">
+                {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
+              </p>
+            )}
             <div className="flex flex-wrap gap-4">
               <Link to="/about" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
                 {t("about.historyBtn")} <ArrowRight size={15} />
