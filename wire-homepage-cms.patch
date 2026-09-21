@@ -1,0 +1,584 @@
+From 18433a93512cf5b3534862b828f9225620ac13f1 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 21 Sep 2026 18:27:08 +0000
+Subject: [PATCH] feat: wire homepage About/Gallery/Radio/CTA sections to
+ Sanity CMS
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Closes the 4 gaps found in the CMS coverage audit:
+
+- AboutPreview now reads aboutPage.whoWeAre (title/p1/p2) via
+  useAboutPage() — that content already exists in Sanity from the
+  About page work, so no migration is needed here.
+- GalleryPreview now reads the existing galleryEvent collection via
+  useGalleryEvents(), flattening the first 5 photos across
+  collections (ordered); falls back to the hardcoded album once
+  there are 5+ real photos to fill the fixed 4x2 grid.
+- RadioSection (homepage teaser) and CTABanner now read from
+  siteSettings: radio.desc/pillars (new fields) plus the existing
+  radio.tagline/frequency/listenUrl, and a new cta.title/desc object.
+- Also fixed useSiteSettings() to properly resolve radio.tagline as
+  a localized field (it was passed through unresolved before) and
+  added desc/pillars/cta resolution alongside it.
+- CTABanner was fully built but never mounted anywhere — added it to
+  Home.tsx as the closing section before the footer.
+
+Includes scripts/migrate-homepage-teasers.mjs (dry-run by default)
+to seed the two genuinely new siteSettings fields (radio.desc,
+radio.pillars, cta.title, cta.desc) from the current hardcoded
+home.json copy, additive-only and safe to re-run.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012xNEugH42JGJDBqiHFtfyU
+---
+ scripts/migrate-homepage-teasers.mjs          | 153 ++++++++++++++++++
+ src/app/components/sections/AboutPreview.tsx  |  39 +++--
+ src/app/components/sections/CTABanner.tsx     |   7 +-
+ .../components/sections/GalleryPreview.tsx    |  20 ++-
+ src/app/components/sections/RadioSection.tsx  |  27 +++-
+ src/app/data/siteSettings.ts                  |  40 ++++-
+ src/app/pages/Home.tsx                        |   2 +
+ studio/schemas/siteSettings.ts                |  27 +++-
+ 8 files changed, 287 insertions(+), 28 deletions(-)
+ create mode 100644 scripts/migrate-homepage-teasers.mjs
+
+diff --git a/scripts/migrate-homepage-teasers.mjs b/scripts/migrate-homepage-teasers.mjs
+new file mode 100644
+index 0000000..2654226
+--- /dev/null
++++ b/scripts/migrate-homepage-teasers.mjs
+@@ -0,0 +1,153 @@
++/**
++ * Adds the homepage teaser copy for the Radio section and the CTA banner
++ * onto the single `siteSettings` document (studio/schemas/siteSettings.ts),
++ * which now has two new pieces:
++ *
++ *   - radio.desc     (localizedText)  — the paragraph under the tagline in
++ *                                        the homepage radio teaser
++ *   - radio.pillars   (array of localizedString) — the 3 value cards
++ *                                        (Evangelization / Unity / Development)
++ *   - cta.title / cta.desc (localizedString / localizedText) — the
++ *                                        "Ready to Make an Impact?" banner
++ *
++ * These are brand-new fields on an EXISTING document (siteSettings.radio
++ * already has frequency/tagline/listenUrl; cta is a new object), so this
++ * is additive only — nothing existing is touched. Seeds from the same
++ * trilingual copy the homepage components currently render via
++ * t("radio.desc"/"radio.pillars"/"cta.title"/"cta.desc") in
++ * src/locales/{en,fr,rw}/home.json, so what Studio shows will match what
++ * the site already displays today.
++ *
++ * Also part of this same pass of CMS work: AboutPreview now reads
++ * aboutPage.whoWeAre (already populated in Sanity — no migration needed)
++ * and GalleryPreview now reads the existing `galleryEvent` collection
++ * (already populated — no migration needed either). This script only
++ * covers the two genuinely new fields.
++ *
++ * SAFE BY DEFAULT: dry-run unless you pass --apply. Skips any field that's
++ * already set in Sanity, so it won't clobber edits made in Studio.
++ *
++ * Usage:
++ *   node scripts/migrate-homepage-teasers.mjs             (dry run)
++ *   node scripts/migrate-homepage-teasers.mjs --apply       (writes)
++ *   node scripts/migrate-homepage-teasers.mjs --apply --token=XXX
++ *
++ * Run from the repo root (so the relative locale paths resolve).
++ */
++import { createRequire } from "node:module";
++import { readFileSync, existsSync } from "node:fs";
++import os from "node:os";
++import path from "node:path";
++
++const PROJECT_ID = "2bpoen39";
++const DATASET = "production";
++const APPLY = process.argv.includes("--apply");
++const DOC_ID = "siteSettings";
++
++const root = process.cwd();
++const studioRequire = createRequire(path.join(root, "studio", "package.json"));
++const { createClient } = studioRequire("@sanity/client");
++
++// ---- client resolution (CLI login session, same as the other migration scripts) ----
++let client;
++let authMode;
++const cliConfigPath = path.join(os.homedir(), ".config", "sanity", "config.json");
++let cliToken = "";
++if (existsSync(cliConfigPath)) {
++  try {
++    cliToken = JSON.parse(readFileSync(cliConfigPath, "utf8")).authToken || "";
++  } catch {}
++}
++
++let token = process.env.SANITY_MIGRATION_TOKEN || process.env.SANITY_AUTH_TOKEN || process.env.SANITY_WRITE_TOKEN || "";
++const tokenArg = process.argv.find((a) => a.startsWith("--token="));
++if (tokenArg) token = tokenArg.slice("--token=".length);
++if (!token && existsSync(path.join(root, ".env.migration"))) {
++  const m = readFileSync(path.join(root, ".env.migration"), "utf8").match(/SANITY_MIGRATION_TOKEN=(.+)/);
++  if (m) token = m[1].trim();
++}
++
++if (APPLY) {
++  if (token) {
++    client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", token, useCdn: false });
++    authMode = "explicit API token";
++  } else if (cliToken) {
++    client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", token: cliToken, useCdn: false });
++    authMode = "CLI login session (~/.config/sanity/config.json)";
++  } else {
++    console.error("No credentials found. Log in first (`cd studio && npx sanity login`) or provide an API token:");
++    console.error("  --token=XXX | SANITY_MIGRATION_TOKEN env | .env.migration file");
++    process.exit(2);
++  }
++} else {
++  client = createClient({ projectId: PROJECT_ID, dataset: DATASET, apiVersion: "2024-01-01", useCdn: true });
++  authMode = "none (dry run — pass --apply to write)";
++}
++
++// ---- load trilingual copy (same shape the homepage components read via t()) ----
++const load = (lang) => JSON.parse(readFileSync(path.join(root, "src", "locales", lang, "home.json"), "utf8"));
++const en = load("en");
++const fr = load("fr");
++const rw = load("rw");
++
++const s = (e, f, r) => ({ _type: "localizedString", en: e ?? "", fr: f ?? "", rw: r ?? "" });
++const t = (e, f, r) => ({ _type: "localizedText", en: e ?? "", fr: f ?? "", rw: r ?? "" });
++
++async function migrate() {
++  console.log(`Auth: ${authMode}`);
++  console.log(`Project: ${PROJECT_ID} / ${DATASET}${APPLY ? "" : "  (DRY RUN — pass --apply to write)"}\n`);
++
++  const doc = await client.fetch(
++    `*[_id == $id][0]{ _id, "hasRadioDesc": defined(radio.desc), "hasCtaTitle": defined(cta.title) }`,
++    { id: DOC_ID },
++  );
++
++  if (!doc) {
++    console.log(`No "${DOC_ID}" document found — nothing to do. (Create the Site Settings document in Studio first.)`);
++    return;
++  }
++
++  const patch = {};
++
++  if (doc.hasRadioDesc) {
++    console.log(`⏭  radio.desc / radio.pillars: already set — skipping (already migrated or edited in Studio).`);
++  } else {
++    patch["radio.desc"] = t(en.radio.desc, fr.radio.desc, rw.radio.desc);
++    patch["radio.pillars"] = (en.radio.pillars || []).map((_, i) => ({
++      _key: `pillar-${i}`,
++      _type: "localizedString",
++      en: en.radio.pillars?.[i] ?? "",
++      fr: fr.radio.pillars?.[i] ?? "",
++      rw: rw.radio.pillars?.[i] ?? "",
++    }));
++    console.log(`radio.desc    = ${JSON.stringify(patch["radio.desc"].en)}`);
++    console.log(`radio.pillars = ${patch["radio.pillars"].map((p) => p.en).join(", ")}`);
++  }
++
++  if (doc.hasCtaTitle) {
++    console.log(`⏭  cta.title / cta.desc: already set — skipping (already migrated or edited in Studio).`);
++  } else {
++    patch["cta.title"] = s(en.cta.title, fr.cta.title, rw.cta.title);
++    patch["cta.desc"] = t(en.cta.desc, fr.cta.desc, rw.cta.desc);
++    console.log(`cta.title     = ${JSON.stringify(patch["cta.title"].en)}`);
++    console.log(`cta.desc      = ${JSON.stringify(patch["cta.desc"].en)}`);
++  }
++
++  if (Object.keys(patch).length === 0) {
++    console.log("\nNothing to do — both fields already set.");
++    return;
++  }
++
++  if (!APPLY) {
++    console.log("\nDry run complete. Re-run with --apply to write these changes to Sanity.");
++    return;
++  }
++
++  await client.patch(DOC_ID).set(patch).commit();
++  console.log(`\n🎉 Done! Check Site Settings → Radio / Homepage CTA in Studio.`);
++}
++
++migrate().catch((err) => {
++  console.error("Migration failed:", err);
++  process.exit(1);
++});
+diff --git a/src/app/components/sections/AboutPreview.tsx b/src/app/components/sections/AboutPreview.tsx
+index 4a15b2d..28b958c 100644
+--- a/src/app/components/sections/AboutPreview.tsx
++++ b/src/app/components/sections/AboutPreview.tsx
+@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
+ import { Link } from "react-router";
+ import { WatermarkSection } from "../ui/WatermarkBackground";
+ import { ImageLightbox } from "../ui/ImageLightbox";
++import { useAboutPage } from "../../data/pageContent";
+ 
+ const ABOUT_IMAGES = [
+   { src: "/cpr/assets/CPR 3 - Copy.webp", alt: "CPR History and Leadership", heightClass: "h-48" },
+@@ -18,6 +19,8 @@ export function AboutPreview() {
+   const { ref, visible } = useScrollReveal();
+   const { t } = useTranslation("home");
+   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
++  const aboutPage = useAboutPage();
++  const whoWeAre = aboutPage?.whoWeAre;
+ 
+   return (
+     <WatermarkSection id="about" ref={ref} className="py-24 bg-white overflow-hidden">
+@@ -33,17 +36,31 @@ export function AboutPreview() {
+               <div className="h-px w-10 bg-[#8B6543]" />
+               <span className="text-[#8B6543] text-xs font-bold uppercase tracking-widest">{t("about.ourStory")}</span>
+             </div>
+-            <h2 
+-              className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
+-              dangerouslySetInnerHTML={{ __html: t("about.title") }}
+-            />
+-            <p 
+-              className="text-[#4A4A4A] leading-relaxed mb-5 text-base"
+-              dangerouslySetInnerHTML={{ __html: t("about.p1") }}
+-            />
+-            <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">
+-              {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
+-            </p>
++            {whoWeAre?.title ? (
++              <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6">
++                {whoWeAre.title}
++              </h2>
++            ) : (
++              <h2
++                className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-[#4E6132] leading-tight mb-6"
++                dangerouslySetInnerHTML={{ __html: t("about.title") }}
++              />
++            )}
++            {whoWeAre?.p1 ? (
++              <p className="text-[#4A4A4A] leading-relaxed mb-5 text-base">{whoWeAre.p1}</p>
++            ) : (
++              <p
++                className="text-[#4A4A4A] leading-relaxed mb-5 text-base"
++                dangerouslySetInnerHTML={{ __html: t("about.p1") }}
++              />
++            )}
++            {whoWeAre?.p2 ? (
++              <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">{whoWeAre.p2}</p>
++            ) : (
++              <p className="text-[#4A4A4A] leading-relaxed mb-8 text-base">
++                {t("about.p2Start")}<em className="text-[#4E6132] font-semibold" dangerouslySetInnerHTML={{ __html: t("about.motto") }} />{t("about.p2End")}
++              </p>
++            )}
+             <div className="flex flex-wrap gap-4">
+               <Link to="/about" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm">
+                 {t("about.historyBtn")} <ArrowRight size={15} />
+diff --git a/src/app/components/sections/CTABanner.tsx b/src/app/components/sections/CTABanner.tsx
+index e936188..4ad9a21 100644
+--- a/src/app/components/sections/CTABanner.tsx
++++ b/src/app/components/sections/CTABanner.tsx
+@@ -3,11 +3,14 @@ import { ArrowRight } from "lucide-react";
+ import { useScrollReveal } from "../../hooks/useScrollReveal";
+ import { useComingSoon } from "../ui/ComingSoonModal";
+ import { useTranslation } from "react-i18next";
++import { useSiteSettings } from "../../data/siteSettings";
+ 
+ export function CTABanner() {
+   const { ref, visible } = useScrollReveal();
+   const { showComingSoon } = useComingSoon();
+   const { t } = useTranslation("home");
++  const settings = useSiteSettings();
++  const cta = settings?.cta;
+   return (
+     <section ref={ref} className="py-14 sm:py-20 bg-[#4E6132] relative overflow-hidden">
+       <div className="absolute inset-0 opacity-5">
+@@ -21,10 +24,10 @@ export function CTABanner() {
+           transition={{ duration: 0.6 }}
+         >
+           <h2 className="font-['Outfit'] font-black text-3xl sm:text-4xl lg:text-5xl text-white mb-5 leading-tight">
+-            {t("cta.title")}
++            {cta?.title || t("cta.title")}
+           </h2>
+           <p className="text-white/70 text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto leading-relaxed">
+-            {t("cta.desc")}
++            {cta?.desc || t("cta.desc")}
+           </p>
+           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+             <button
+diff --git a/src/app/components/sections/GalleryPreview.tsx b/src/app/components/sections/GalleryPreview.tsx
+index ed3de35..1ff3e13 100644
+--- a/src/app/components/sections/GalleryPreview.tsx
++++ b/src/app/components/sections/GalleryPreview.tsx
+@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
+ import { useScrollReveal } from "../../hooks/useScrollReveal";
+ import { useTranslation } from "react-i18next";
+ import { ImageLightbox } from "../ui/ImageLightbox";
++import { useGalleryEvents } from "../../data/cmsContent";
+ 
+ const GALLERY_IMAGES = [
+   { src: "/cpr/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
+@@ -14,10 +15,25 @@ const GALLERY_IMAGES = [
+   { src: "/cpr/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
+ ];
+ 
++/** Which slot gets the big 2x2 tile — matches the hardcoded fallback's layout. */
++const SPANS = ["col-span-2 row-span-2", "", "", "", ""];
++
+ export function GalleryPreview() {
+   const { ref, visible } = useScrollReveal();
+   const { t } = useTranslation("home");
+   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
++  const { data: cmsEvents } = useGalleryEvents();
++
++  const cmsImages = (cmsEvents ?? [])
++    .flatMap((event) =>
++      event.images.map((img) => ({ src: img.src, alt: img.alt || event.title }))
++    )
++    .slice(0, 5);
++  // Only take over once there's enough real photos to fill the fixed 4x2 grid.
++  const images =
++    cmsImages.length >= 5
++      ? cmsImages.map((img, i) => ({ ...img, span: SPANS[i] ?? "" }))
++      : GALLERY_IMAGES;
+ 
+   return (
+     <section id="gallery" ref={ref} className="py-24 bg-[#F8F9FA]">
+@@ -36,7 +52,7 @@ export function GalleryPreview() {
+         </div>
+ 
+         <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[500px]">
+-          {GALLERY_IMAGES.map((img, i) => (
++          {images.map((img, i) => (
+             <motion.div
+               key={i}
+               onClick={() => setSelectedImgIdx(i)}
+@@ -52,7 +68,7 @@ export function GalleryPreview() {
+       </div>
+ 
+       <ImageLightbox
+-        images={GALLERY_IMAGES}
++        images={images}
+         selectedIndex={selectedImgIdx}
+         onClose={() => setSelectedImgIdx(null)}
+       />
+diff --git a/src/app/components/sections/RadioSection.tsx b/src/app/components/sections/RadioSection.tsx
+index cae0a51..052e299 100644
+--- a/src/app/components/sections/RadioSection.tsx
++++ b/src/app/components/sections/RadioSection.tsx
+@@ -3,10 +3,15 @@ import { Radio, BookOpen, Shield, Globe, PlayCircle } from "lucide-react";
+ import { Link } from "react-router";
+ import { useScrollReveal } from "../../hooks/useScrollReveal";
+ import { useTranslation } from "react-i18next";
++import { useSiteSettings } from "../../data/siteSettings";
+ 
+ export function RadioSection() {
+   const { ref, visible } = useScrollReveal();
+   const { t } = useTranslation("home");
++  const settings = useSiteSettings();
++  const radio = settings?.radio;
++  const frequency = radio?.frequency || "107.1";
++  const listenUrl = radio?.listenUrl || "https://www.youtube.com/@inkoramutimaradiotv7564";
+   return (
+     <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
+       <div className="absolute inset-0">
+@@ -36,14 +41,20 @@ export function RadioSection() {
+               alt={t("radio.title")} 
+               className="h-16 lg:h-20 w-auto mb-6"
+             />
+-            <p className="text-white/60 text-lg italic mb-2">&ldquo;{t("radio.tagline")}&rdquo;</p>
+-            <p 
+-              className="text-white/75 text-base leading-relaxed mb-8"
+-              dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
+-            />
++            <p className="text-white/60 text-lg italic mb-2">&ldquo;{radio?.tagline || t("radio.tagline")}&rdquo;</p>
++            {radio?.desc ? (
++              <p className="text-white/75 text-base leading-relaxed mb-8">{radio.desc}</p>
++            ) : (
++              <p
++                className="text-white/75 text-base leading-relaxed mb-8"
++                dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
++              />
++            )}
+ 
+             <div className="grid grid-cols-3 gap-4 mb-8">              {(() => {
+-                const pillarLabels = (t("radio.pillars", { returnObjects: true }) as unknown) || [];
++                const pillarLabels = radio?.pillars?.length
++                  ? radio.pillars
++                  : ((t("radio.pillars", { returnObjects: true }) as unknown) as string[] | undefined) || [];
+                 const labels = Array.isArray(pillarLabels) && pillarLabels.length > 0 ? pillarLabels : ["Evangelization", "Unity", "Development"];
+                 return labels
+                   .map((label: string, i: number) => ({ icon: [BookOpen, Shield, Globe][i] || Globe, label }))
+@@ -57,7 +68,7 @@ export function RadioSection() {
+             </div>
+ 
+             <div className="flex gap-4 flex-wrap">
+-              <a href="https://www.youtube.com/@inkoramutimaradiotv7564" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
++              <a href={listenUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
+                 <PlayCircle size={16} /> {t("radio.listenBtn")}
+               </a>
+               <Link
+@@ -81,7 +92,7 @@ export function RadioSection() {
+                   <div className="w-36 h-36 rounded-full bg-[#EAD196]/20 border border-[#EAD196]/40 flex items-center justify-center">
+                     <div className="text-center">
+                       <Radio size={40} className="text-[#EAD196] mx-auto mb-2" />
+-                      <div className="font-['Outfit'] font-black text-white text-3xl">107.1</div>
++                      <div className="font-['Outfit'] font-black text-white text-3xl">{frequency}</div>
+                       <div className="text-[#EAD196] text-sm font-semibold">FM</div>
+                     </div>
+                   </div>
+diff --git a/src/app/data/siteSettings.ts b/src/app/data/siteSettings.ts
+index 6b0b9cd..4f1ff25 100644
+--- a/src/app/data/siteSettings.ts
++++ b/src/app/data/siteSettings.ts
+@@ -53,21 +53,36 @@ export interface ContactSettings {
+ export interface RadioSettings {
+   frequency?: string;
+   tagline?: string;
++  desc?: string;
++  pillars?: string[];
+   listenUrl?: string;
+ }
+ 
++export interface CtaSettings {
++  title?: string;
++  desc?: string;
++}
++
+ export interface SiteSettings {
+   heroSlides?: HeroSlideSettings[];
+   stats?: StatSettings[];
+   contact?: ContactSettings;
+   radio?: RadioSettings;
++  cta?: CtaSettings;
+ }
+ 
+ interface RawSiteSettings {
+   heroSlides?: any[];
+   stats?: any[];
+   contact?: ContactSettings;
+-  radio?: any;
++  radio?: {
++    frequency?: string;
++    tagline?: LocalizedField;
++    desc?: LocalizedField;
++    pillars?: LocalizedField[];
++    listenUrl?: string;
++  };
++  cta?: { title?: LocalizedField; desc?: LocalizedField };
+ }
+ 
+ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
+@@ -91,7 +106,8 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
+     addressLine2,
+     socials[] { platform, url }
+   },
+-  radio { frequency, tagline, listenUrl }
++  radio { frequency, tagline, desc, pillars, listenUrl },
++  cta { title, desc }
+ }`;
+ 
+ /** Current values used until staff edit them in the CMS. */
+@@ -143,7 +159,7 @@ export function useSiteSettings(): SiteSettings | null {
+       .fetch<RawSiteSettings>(SITE_SETTINGS_QUERY)
+       .then((doc) => {
+         if (cancelled) return;
+-        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio)) {
++        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio && !doc.cta)) {
+           setSettings(null);
+           return;
+         }
+@@ -166,7 +182,23 @@ export function useSiteSettings(): SiteSettings | null {
+             label: pickOrUndef(s.label, lang),
+           })),
+           contact: doc.contact || undefined,
+-          radio: doc.radio || undefined,
++          radio: doc.radio
++            ? {
++                frequency: doc.radio.frequency || undefined,
++                tagline: pickOrUndef(doc.radio.tagline, lang),
++                desc: pickOrUndef(doc.radio.desc, lang),
++                pillars: (doc.radio.pillars || [])
++                  .map((p) => pickOrUndef(p, lang))
++                  .filter((p): p is string => Boolean(p)),
++                listenUrl: doc.radio.listenUrl || undefined,
++              }
++            : undefined,
++          cta: doc.cta
++            ? {
++                title: pickOrUndef(doc.cta.title, lang),
++                desc: pickOrUndef(doc.cta.desc, lang),
++              }
++            : undefined,
+         });
+       })
+       .catch(() => {
+diff --git a/src/app/pages/Home.tsx b/src/app/pages/Home.tsx
+index b9438ee..1571bc7 100644
+--- a/src/app/pages/Home.tsx
++++ b/src/app/pages/Home.tsx
+@@ -8,6 +8,7 @@ import { NewsSection } from "../components/sections/NewsSection";
+ import { RadioSection } from "../components/sections/RadioSection";
+ import { TestimonialsSection } from "../components/sections/TestimonialsSection";
+ import { GalleryPreview } from "../components/sections/GalleryPreview";
++import { CTABanner } from "../components/sections/CTABanner";
+ 
+ export function Home() {
+   return (
+@@ -22,6 +23,7 @@ export function Home() {
+       <RadioSection />
+       <TestimonialsSection />
+       <GalleryPreview />
++      <CTABanner />
+     </main>
+   );
+ }
+diff --git a/studio/schemas/siteSettings.ts b/studio/schemas/siteSettings.ts
+index 61018e3..a0536cb 100644
+--- a/studio/schemas/siteSettings.ts
++++ b/studio/schemas/siteSettings.ts
+@@ -16,6 +16,7 @@ export const siteSettings = defineType({
+     { name: "stats", title: "Statistics" },
+     { name: "contact", title: "Contact" },
+     { name: "radio", title: "Radio" },
++    { name: "cta", title: "Homepage CTA" },
+   ],
+   fields: [
+     defineField({
+@@ -169,15 +170,39 @@ export const siteSettings = defineType({
+       fields: [
+         { name: "frequency", title: "Frequency", type: "string", description: "e.g. 107.1" },
+         { name: "tagline", title: "Tagline", type: "localizedString" },
++        {
++          name: "desc",
++          title: "Homepage teaser description",
++          description: "The paragraph shown under the tagline in the homepage radio teaser.",
++          type: "localizedText",
++        },
++        {
++          name: "pillars",
++          title: "Homepage teaser pillars",
++          description: "The three short values shown as cards in the homepage radio teaser (e.g. Evangelization, Unity, Development).",
++          type: "array",
++          of: [{ type: "localizedString" }],
++        },
+         { name: "listenUrl", title: "Listen live URL", type: "url" },
+       ],
+     }),
++    defineField({
++      name: "cta",
++      title: "Homepage call-to-action banner",
++      description: "The 'Ready to Make an Impact?' banner shown near the bottom of the homepage.",
++      type: "object",
++      group: "cta",
++      fields: [
++        { name: "title", title: "Title", type: "localizedString" },
++        { name: "desc", title: "Description", type: "localizedText" },
++      ],
++    }),
+   ],
+   preview: {
+     prepare() {
+       return {
+         title: "Site Settings",
+-        subtitle: "Hero, statistics, contact & radio",
++        subtitle: "Hero, statistics, contact, radio & CTA",
+       };
+     },
+   },
+-- 
+2.43.0
+

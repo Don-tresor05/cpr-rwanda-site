@@ -16,6 +16,7 @@ export const siteSettings = defineType({
     { name: "stats", title: "Statistics" },
     { name: "contact", title: "Contact" },
     { name: "radio", title: "Radio" },
+    { name: "cta", title: "Homepage CTA" },
   ],
   fields: [
     defineField({
@@ -169,7 +170,31 @@ export const siteSettings = defineType({
       fields: [
         { name: "frequency", title: "Frequency", type: "string", description: "e.g. 107.1" },
         { name: "tagline", title: "Tagline", type: "localizedString" },
+        {
+          name: "desc",
+          title: "Homepage teaser description",
+          description: "The paragraph shown under the tagline in the homepage radio teaser.",
+          type: "localizedText",
+        },
+        {
+          name: "pillars",
+          title: "Homepage teaser pillars",
+          description: "The three short values shown as cards in the homepage radio teaser (e.g. Evangelization, Unity, Development).",
+          type: "array",
+          of: [{ type: "localizedString" }],
+        },
         { name: "listenUrl", title: "Listen live URL", type: "url" },
+      ],
+    }),
+    defineField({
+      name: "cta",
+      title: "Homepage call-to-action banner",
+      description: "The 'Ready to Make an Impact?' banner shown near the bottom of the homepage.",
+      type: "object",
+      group: "cta",
+      fields: [
+        { name: "title", title: "Title", type: "localizedString" },
+        { name: "desc", title: "Description", type: "localizedText" },
       ],
     }),
   ],
@@ -177,7 +202,7 @@ export const siteSettings = defineType({
     prepare() {
       return {
         title: "Site Settings",
-        subtitle: "Hero, statistics, contact & radio",
+        subtitle: "Hero, statistics, contact, radio & CTA",
       };
     },
   },

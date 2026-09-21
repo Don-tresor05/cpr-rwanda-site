@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
 import { ImageLightbox } from "../ui/ImageLightbox";
+import { useGalleryEvents } from "../../data/cmsContent";
 
 const GALLERY_IMAGES = [
   { src: "/cpr/assets/Bisanzeda.webp", alt: "Bisanzeda Activity", span: "col-span-2 row-span-2" },
@@ -14,10 +15,25 @@ const GALLERY_IMAGES = [
   { src: "/cpr/assets/news-trauma.jpg", alt: "Trauma Healing Program", span: "" },
 ];
 
+/** Which slot gets the big 2x2 tile — matches the hardcoded fallback's layout. */
+const SPANS = ["col-span-2 row-span-2", "", "", "", ""];
+
 export function GalleryPreview() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
   const [selectedImgIdx, setSelectedImgIdx] = useState<number | null>(null);
+  const { data: cmsEvents } = useGalleryEvents();
+
+  const cmsImages = (cmsEvents ?? [])
+    .flatMap((event) =>
+      event.images.map((img) => ({ src: img.src, alt: img.alt || event.title }))
+    )
+    .slice(0, 5);
+  // Only take over once there's enough real photos to fill the fixed 4x2 grid.
+  const images =
+    cmsImages.length >= 5
+      ? cmsImages.map((img, i) => ({ ...img, span: SPANS[i] ?? "" }))
+      : GALLERY_IMAGES;
 
   return (
     <section id="gallery" ref={ref} className="py-24 bg-[#F8F9FA]">
@@ -36,7 +52,7 @@ export function GalleryPreview() {
         </div>
 
         <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[500px]">
-          {GALLERY_IMAGES.map((img, i) => (
+          {images.map((img, i) => (
             <motion.div
               key={i}
               onClick={() => setSelectedImgIdx(i)}
@@ -52,7 +68,7 @@ export function GalleryPreview() {
       </div>
 
       <ImageLightbox
-        images={GALLERY_IMAGES}
+        images={images}
         selectedIndex={selectedImgIdx}
         onClose={() => setSelectedImgIdx(null)}
       />

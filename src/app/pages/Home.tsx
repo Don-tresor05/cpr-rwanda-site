@@ -8,6 +8,7 @@ import { NewsSection } from "../components/sections/NewsSection";
 import { RadioSection } from "../components/sections/RadioSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
 import { GalleryPreview } from "../components/sections/GalleryPreview";
+import { CTABanner } from "../components/sections/CTABanner";
 
 export function Home() {
   return (
@@ -22,6 +23,7 @@ export function Home() {
       <RadioSection />
       <TestimonialsSection />
       <GalleryPreview />
+      <CTABanner />
     </main>
   );
 }

@@ -3,10 +3,15 @@ import { Radio, BookOpen, Shield, Globe, PlayCircle } from "lucide-react";
 import { Link } from "react-router";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useTranslation } from "react-i18next";
+import { useSiteSettings } from "../../data/siteSettings";
 
 export function RadioSection() {
   const { ref, visible } = useScrollReveal();
   const { t } = useTranslation("home");
+  const settings = useSiteSettings();
+  const radio = settings?.radio;
+  const frequency = radio?.frequency || "107.1";
+  const listenUrl = radio?.listenUrl || "https://www.youtube.com/@inkoramutimaradiotv7564";
   return (
     <section id="radio" ref={ref} className="relative py-24 overflow-hidden bg-[#1C2A10]">
       <div className="absolute inset-0">
@@ -36,14 +41,20 @@ export function RadioSection() {
               alt={t("radio.title")} 
               className="h-16 lg:h-20 w-auto mb-6"
             />
-            <p className="text-white/60 text-lg italic mb-2">&ldquo;{t("radio.tagline")}&rdquo;</p>
-            <p 
-              className="text-white/75 text-base leading-relaxed mb-8"
-              dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
-            />
+            <p className="text-white/60 text-lg italic mb-2">&ldquo;{radio?.tagline || t("radio.tagline")}&rdquo;</p>
+            {radio?.desc ? (
+              <p className="text-white/75 text-base leading-relaxed mb-8">{radio.desc}</p>
+            ) : (
+              <p
+                className="text-white/75 text-base leading-relaxed mb-8"
+                dangerouslySetInnerHTML={{ __html: t("radio.desc") }}
+              />
+            )}
 
             <div className="grid grid-cols-3 gap-4 mb-8">              {(() => {
-                const pillarLabels = (t("radio.pillars", { returnObjects: true }) as unknown) || [];
+                const pillarLabels = radio?.pillars?.length
+                  ? radio.pillars
+                  : ((t("radio.pillars", { returnObjects: true }) as unknown) as string[] | undefined) || [];
                 const labels = Array.isArray(pillarLabels) && pillarLabels.length > 0 ? pillarLabels : ["Evangelization", "Unity", "Development"];
                 return labels
                   .map((label: string, i: number) => ({ icon: [BookOpen, Shield, Globe][i] || Globe, label }))
@@ -57,7 +68,7 @@ export function RadioSection() {
             </div>
 
             <div className="flex gap-4 flex-wrap">
-              <a href="https://www.youtube.com/@inkoramutimaradiotv7564" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
+              <a href={listenUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#BC8A5F] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#4E6132] transition-all duration-300 hover:scale-105 text-sm">
                 <PlayCircle size={16} /> {t("radio.listenBtn")}
               </a>
               <Link
@@ -81,7 +92,7 @@ export function RadioSection() {
                   <div className="w-36 h-36 rounded-full bg-[#EAD196]/20 border border-[#EAD196]/40 flex items-center justify-center">
                     <div className="text-center">
                       <Radio size={40} className="text-[#EAD196] mx-auto mb-2" />
-                      <div className="font-['Outfit'] font-black text-white text-3xl">107.1</div>
+                      <div className="font-['Outfit'] font-black text-white text-3xl">{frequency}</div>
                       <div className="text-[#EAD196] text-sm font-semibold">FM</div>
                     </div>
                   </div>
