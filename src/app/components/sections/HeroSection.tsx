@@ -144,9 +144,8 @@ export function HeroSection() {
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`transition-all duration-500 rounded-full ${
-              i === active ? "w-8 h-2 bg-[#BC8A5F]" : "w-2 h-2 bg-white/40 hover:bg-white/70"
-            }`}
+            className={`transition-all duration-500 rounded-full ${i === active ? "w-8 h-2 bg-[#BC8A5F]" : "w-2 h-2 bg-white/40 hover:bg-white/70"
+              }`}
           />
         ))}
       </div>

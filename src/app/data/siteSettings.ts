@@ -53,7 +53,14 @@ export interface ContactSettings {
 export interface RadioSettings {
   frequency?: string;
   tagline?: string;
+  desc?: string;
+  pillars?: string[];
   listenUrl?: string;
+}
+
+export interface CtaSettings {
+  title?: string;
+  desc?: string;
 }
 
 export interface SiteSettings {
@@ -61,13 +68,21 @@ export interface SiteSettings {
   stats?: StatSettings[];
   contact?: ContactSettings;
   radio?: RadioSettings;
+  cta?: CtaSettings;
 }
 
 interface RawSiteSettings {
   heroSlides?: any[];
   stats?: any[];
   contact?: ContactSettings;
-  radio?: any;
+  radio?: {
+    frequency?: string;
+    tagline?: LocalizedField;
+    desc?: LocalizedField;
+    pillars?: LocalizedField[];
+    listenUrl?: string;
+  };
+  cta?: { title?: LocalizedField; desc?: LocalizedField };
 }
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
@@ -91,7 +106,8 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0] {
     addressLine2,
     socials[] { platform, url }
   },
-  radio { frequency, tagline, listenUrl }
+  radio { frequency, tagline, desc, pillars, listenUrl },
+  cta { title, desc }
 }`;
 
 /** Current values used until staff edit them in the CMS. */
@@ -143,7 +159,7 @@ export function useSiteSettings(): SiteSettings | null {
       .fetch<RawSiteSettings>(SITE_SETTINGS_QUERY)
       .then((doc) => {
         if (cancelled) return;
-        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio)) {
+        if (!doc || (!doc.heroSlides && !doc.stats && !doc.contact && !doc.radio && !doc.cta)) {
           setSettings(null);
           return;
         }
@@ -166,7 +182,23 @@ export function useSiteSettings(): SiteSettings | null {
             label: pickOrUndef(s.label, lang),
           })),
           contact: doc.contact || undefined,
-          radio: doc.radio || undefined,
+          radio: doc.radio
+            ? {
+                frequency: doc.radio.frequency || undefined,
+                tagline: pickOrUndef(doc.radio.tagline, lang),
+                desc: pickOrUndef(doc.radio.desc, lang),
+                pillars: (doc.radio.pillars || [])
+                  .map((p) => pickOrUndef(p, lang))
+                  .filter((p): p is string => Boolean(p)),
+                listenUrl: doc.radio.listenUrl || undefined,
+              }
+            : undefined,
+          cta: doc.cta
+            ? {
+                title: pickOrUndef(doc.cta.title, lang),
+                desc: pickOrUndef(doc.cta.desc, lang),
+              }
+            : undefined,
         });
       })
       .catch(() => {
