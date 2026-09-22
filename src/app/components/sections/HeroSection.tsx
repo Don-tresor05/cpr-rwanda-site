@@ -63,7 +63,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex flex-col min-h-[calc(100dvh-5rem)] lg:min-h-0 lg:h-[calc(100vh-130px)] overflow-hidden"
+      className="relative flex flex-col min-h-[91vh] sm:min-h-[95vh] md:min-h-[94vh] lg:min-h-0 lg:h-[calc(100vh-130px)] overflow-hidden"
     >
       {/* Background image — object-cover + object-position ensures any image
           auto-adjusts to the container without stretching or losing quality */}
@@ -88,7 +88,7 @@ export function HeroSection() {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex items-center pt-10 pb-20 sm:pt-14 sm:pb-24 md:pt-16 lg:py-0">
+      <div className="relative z-10 flex-1 flex items-center py-10 sm:py-14 md:py-16 lg:py-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
