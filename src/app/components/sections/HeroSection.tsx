@@ -63,7 +63,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative min-h-[50vh] sm:min-h-[55vh] md:min-h-[65vh] lg:h-[calc(100vh-130px)] overflow-hidden"
+      className="relative flex flex-col min-h-[calc(100dvh-5rem)] lg:min-h-0 lg:h-[calc(100vh-130px)] overflow-hidden"
     >
       {/* Background image — object-cover + object-position ensures any image
           auto-adjusts to the container without stretching or losing quality */}
@@ -88,7 +88,7 @@ export function HeroSection() {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center py-10 sm:py-14 md:py-16 lg:py-0">
+      <div className="relative z-10 flex-1 flex items-center pt-10 pb-20 sm:pt-14 sm:pb-24 md:pt-16 lg:py-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -144,9 +144,8 @@ export function HeroSection() {
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`transition-all duration-500 rounded-full ${
-              i === active ? "w-8 h-2 bg-[#BC8A5F]" : "w-2 h-2 bg-white/40 hover:bg-white/70"
-            }`}
+            className={`transition-all duration-500 rounded-full ${i === active ? "w-8 h-2 bg-[#BC8A5F]" : "w-2 h-2 bg-white/40 hover:bg-white/70"
+              }`}
           />
         ))}
       </div>
