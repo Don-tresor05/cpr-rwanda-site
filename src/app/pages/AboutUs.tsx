@@ -107,7 +107,7 @@ export function AboutUs() {
       <div
         className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[65vh] lg:min-h-[calc(100vh-130px)] flex items-end justify-start pb-16 px-6 lg:px-12 text-white bg-[#4E6132]"
         style={{
-          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${cms?.heroImage ?? "/cpr/assets/CPR 3 - Copy.webp"}')`,
+          backgroundImage: `linear-gradient(rgba(78,97,50,0.4), rgba(78,97,50,0.85)), url('${cms?.heroImage ?? "/assets/CPR 3 - Copy.webp"}')`,
           backgroundSize: "cover",
           backgroundPosition: "center 5%"
         }}
@@ -165,7 +165,7 @@ export function AboutUs() {
           <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left side: Full Logo */}
             <div className="flex justify-center md:justify-start md:col-span-5 lg:col-span-4">
-              <img src="/cpr/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
+              <img src="/assets/logo.png" alt="CPR Rwanda Full Logo" className="w-64 md:w-72 lg:w-80 object-contain drop-shadow-xl" />
             </div>
 
             {/* Right side: Text Content */}
@@ -368,7 +368,7 @@ export function AboutUs() {
                 { name: "Rev Dr Pascal Bataringaya", role: t("aboutPage.execCommittee.roles.vicePresident"), image: "", bio: "" },
                 { name: "Mme Béatrice Uwizeyimana", role: t("aboutPage.execCommittee.roles.treasurer"), image: "", bio: "" },
                 { name: "Rev Past Thomas Murwanashyaka", role: t("aboutPage.execCommittee.roles.advisor"), image: "", bio: "" },
-                { name: "Rev Pasteur Samuel Mutabazi", role: t("aboutPage.execCommittee.roles.secretaryGeneral"), image: "/cpr/assets/Mutabazi_Samuel.webp", bio: "" },
+                { name: "Rev Pasteur Samuel Mutabazi", role: t("aboutPage.execCommittee.roles.secretaryGeneral"), image: "/assets/Mutabazi_Samuel.webp", bio: "" },
               ]).map((member, i) => (
                 <div key={i} className="bg-white rounded-none overflow-hidden border border-[#4E6132]/10 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
                   <div className="h-[3px] bg-[#8B6543]/80 w-full shrink-0" />
@@ -409,12 +409,12 @@ export function AboutUs() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-[40px]">
               {(staffMembers && staffMembers.length > 0 ? staffMembers : [
-                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/MUGWANEZA Eric.webp" },
-                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Anne Marie PP.webp" },
-                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Sec Photo.webp" },
-                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), image: "/cpr/assets/Jael.webp" },
-                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/Mukunzi Peter.jpg" },
-                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), image: "/cpr/assets/IRAGENA Joselyne.webp" },
+                { name: "Eric Mugwaneza", role: t("aboutPage.execCommittee.staffMember"), image: "/assets/MUGWANEZA Eric.webp" },
+                { name: "Anne Marie", role: t("aboutPage.execCommittee.staffMember"), image: "/assets/Anne Marie PP.webp" },
+                { name: "Felicien", role: t("aboutPage.execCommittee.staffMember"), image: "/assets/Sec Photo.webp" },
+                { name: "Nirere Jael", role: t("aboutPage.execCommittee.roles.projectCoordinator"), image: "/assets/Jael.webp" },
+                { name: "Peter Mukunzi", role: t("aboutPage.execCommittee.staffMember"), image: "/assets/Mukunzi Peter.jpg" },
+                { name: "Joselyne Iragena", role: t("aboutPage.execCommittee.staffMember"), image: "/assets/IRAGENA Joselyne.webp" },
                 { name: "Alfred Ntabanganyimana", role: t("aboutPage.execCommittee.roles.financeCoordinator"), image: "" },
                 { name: "Joseph Nyisingize", role: t("aboutPage.execCommittee.roles.accountant"), image: "" },
               ]).map((member, i) => (
@@ -465,13 +465,13 @@ export function AboutUs() {
             onClick={() => setOrganigramLightboxOpen(true)}
           >
             <img 
-              src={cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg"} 
+              src={cms?.organigram?.image ?? "/assets/Organigam.jpeg"} 
               alt="CPR Rwanda Organigram" 
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
           <ImageLightbox 
-            images={[{ src: cms?.organigram?.image ?? "/cpr/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
+            images={[{ src: cms?.organigram?.image ?? "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
             selectedIndex={organigramLightboxOpen ? 0 : null} 
             onClose={() => setOrganigramLightboxOpen(false)} 
           />
@@ -551,7 +551,7 @@ export function AboutUs() {
                   <div className="md:col-span-1">
                     <div className="rounded-none overflow-hidden shadow-lg border border-[#4E6132]/10">
                       <img
-                        src="/cpr/assets/Mutabazi_Samuel.webp"
+                        src="/assets/Mutabazi_Samuel.webp"
                         alt="Rev. Samuel Mutabazi"
                         className="w-full aspect-[4/5] object-cover object-top"
                       />

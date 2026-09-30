@@ -49,7 +49,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex flex-col items-center text-center mb-5">
               <img
-                src="/cpr/assets/logo-1.jpg"
+                src="/assets/logo-1.jpg"
                 alt="CPR Rwanda - Conseil Protestant du Rwanda"
                 className="h-16 sm:h-20 w-auto object-contain"
               />

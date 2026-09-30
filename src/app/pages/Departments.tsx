@@ -26,13 +26,13 @@ interface DepartmentSection {
 }
 
 const deptImages: Record<string, string> = {
-  gs: "/cpr/assets/cpr-members.webp",
-  bnep: "/cpr/assets/education.webp",
-  diakonia: "/cpr/assets/handover.webp",
-  finance: "/cpr/assets/autorites.webp",
-  youth: "/cpr/assets/Youth2.webp",
-  gender: "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
-  radio: "/cpr/assets/radio-studio.webp",
+  gs: "/assets/cpr-members.webp",
+  bnep: "/assets/education.webp",
+  diakonia: "/assets/handover.webp",
+  finance: "/assets/autorites.webp",
+  youth: "/assets/Youth2.webp",
+  gender: "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+  radio: "/assets/radio-studio.webp",
 };
 
 
@@ -137,7 +137,7 @@ export function Departments() {
           className="absolute inset-0"
           style={{
             backgroundImage: `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${
-              cms?.heroImage ?? "/cpr/assets/departments-hero.webp"
+              cms?.heroImage ?? "/assets/departments-hero.webp"
             }')`,
             backgroundSize: "cover",
             backgroundPosition: "center 10%",

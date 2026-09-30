@@ -96,7 +96,7 @@
           "Kuri iyi nshuro, abakozi ba CPR bahujwe n'Umunyamabanga Mukuru wa CPR hamwe n'Uwuhagarariye Perezida wa CPR. Iyi ntsindagirano yateraniye kuri Kiliziya ya Nazarene iherereye hafi y'icyicaro cy'Umurenge wa Gahanga, ihura n'imiryango yose 46 y'abacitse ku icumu yimitswe n'Akarere ka Kicukiro mu Mudugudu wa Mulinja mu gihe cy'umubano, ubwumvikane n'inkunga yombi."
         ],
         "quote": "Kwibuka no guhagarara hamwe n'abacitse ku icumu ni inshingano yacu yera idahagarara. Binyuze mu kwizera, urwibutso, n'ubufasha bufatika, dushimangira ubumwe n'icyizere.",
-        "image": "/cpr/assets/news-kwibuka.jpg"
+        "image": "/assets/news-kwibuka.jpg"
       },
       {
         "slug": "annual-convention-2026",
@@ -111,7 +111,7 @@
           "Inama yarangiye n'itangazo rikomeye ryemeza ubufatanye, ikiganiro hagati y'amadini, no kwitabira ibikorwa by'iterambere ry'igihugu."
         ],
         "quote": "Ubufatanye bw'amatorero ntabwo ari intego ya tewolojiya gusa—ni inshingano yacu ifatika yo gukorera abantu hamwe.",
-        "image": "/cpr/assets/news-education.webp"
+        "image": "/assets/news-education.webp"
       },
       {
         "slug": "may-highlights-2026",
@@ -125,7 +125,7 @@
           "Intsinzi y'ibikorwa by'urubyiruko byo muri Gicurasi ishyiraho urufatiro rw'inama y'igihugu y'urubyiruko iteganyijwe nyuma muri uyu mwaka."
         ],
         "quote": "Guha urubyiruko ubuhanga n'ukwizera ni ishoramari rikomeye dushobora gukora ku gihe kizaza cy'u Rwanda.",
-        "image": "/cpr/assets/news-trauma.jpg"
+        "image": "/assets/news-trauma.jpg"
       },
       {
         "slug": "kwibuka-31-commemoration",
@@ -139,7 +139,7 @@
           "CPR yongeye gushimangira ubumwe bwayo bwo gufasha ibiro bivuza ihungabana n'amatsinda y'ibiganiro by'ubwiyunge mu baturage mu gihugu hose."
         ],
         "quote": "Kwibuka ni inshingano yacu yera. Binyuze mu kwibuka, ukuri, n'ukwizera, turinda ubumwe bw'u Rwanda iteka.",
-        "image": "/cpr/assets/Gahini 2.webp"
+        "image": "/assets/Gahini 2.webp"
       },
       {
         "slug": "bnep-active-pedagogy-training",
@@ -153,7 +153,7 @@
           "Ku mashuri arenga 1,500 ayoborwa n'amatorero y'ubumwe bwa CPR, BNEP ikomeza kuzamura urwego rw'uburezi mu gihugu hose."
         ],
         "quote": "Uburezi bwiza bufite urufatiro rw'imyitwarire ikomeye buhindura abiga abayobozi bafite impuhwe.",
-        "image": "/cpr/assets/Primary.jpg"
+        "image": "/assets/Primary.jpg"
       },
       {
         "slug": "trauma-counselor-certification",
@@ -167,7 +167,7 @@
           "Iyi gahunda igabanya ikimwaro cyo kuvugana ku by'ubuzima bwo mu mutwe ikanemeza ko kwita ku bantu bikorwa mu mpuhwe ku rwego rw'ibanze."
         ],
         "quote": "Gukiza imitima no kugarura ubuzima bwiza bwo mu mutwe ni ingenzi ku miryango ifite ubuzima bwiza n'abaturage bakomeye.",
-        "image": "/cpr/assets/Trauma 1.webp"
+        "image": "/assets/Trauma 1.webp"
       },
       {
         "slug": "agricultural-cooperatives-sustainability",
@@ -181,7 +181,7 @@
           "Imiryango irenga 500 imaze kugirira akamaro, ikuzamura umusaruro mu gihe irengera umutungo kamere."
         ],
         "quote": "Ubuhinzi buramba bubaha ibiremwa by'Imana mu gihe bwikikije imibereho n'icyubahiro by'imiryango yo mu cyaro.",
-        "image": "/cpr/assets/CPR 3 - Copy.webp"
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
         "slug": "youth-reconciliation-summit",
@@ -195,7 +195,7 @@
           "Kwiyandikisha byakozwe binyuze mu biro bya paruwasi n'abahuzabikorwa b'urubyiruko ba CPR."
         ],
         "quote": "Iyo urubyiruko ruyoboye mu mahoro n'intego, igihugu cyose kibaho imbere.",
-        "image": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -421,7 +421,7 @@
         "category": "Report",
         "title": "Abakozi ba CPR basuye Urwibutso rwa Jenoside rwa Nyanza bagafasha imiryango y'abacitse ku icumu mu Mudugudu wa Mulinja",
         "excerpt": "Abakozi ba CPR bahaye icyubahiro abahohotewe ku Rwibutso rwa Jenoside rwa Nyanza mu Karere ka Kicukiro kandi batanga ubufasha bwihariye ku miryango y'abacitse ku icumu ryo mu 1994 mu Mudugudu wa Mulinja, mu rwego rw'urwibutso rwa buri mwaka rwa Kwibuka 31.",
-        "image": "/cpr/assets/news-kwibuka.jpg"
+        "image": "/assets/news-kwibuka.jpg"
       },
       {
         "slug": "annual-convention-2026",
@@ -429,7 +429,7 @@
         "category": "Event",
         "title": "Imbere y'Inama Nkuru ya buri mwaka ya CPR y'ubufatanye bw'amatorero",
         "excerpt": "Umuryango w'Abaporotesitanti mu Rwanda ubaka ubufatanye buramba mu gihugu hose. Amatorero y'ubumwe yateraniye kugira ngo ahuze ingamba z'uburezi, uburayobozi bw'urubyiruko, no guhanga imbaraga mu mibereho n'ubukungu.",
-        "image": "/cpr/assets/news-education.webp"
+        "image": "/assets/news-education.webp"
       },
       {
         "slug": "may-highlights-2026",
@@ -437,7 +437,7 @@
         "category": "Youth",
         "title": "Iby'ingenzi byo muri Gicurasi 2026 muri CPR n'Urukurikirane rw'Urubyiruko",
         "excerpt": "Gicurasi 2026 yari ukwezi k'ingenzi ku rwego rw'urubyiruko rwa CPR, hagiye hatangizwa amahugurwa yo kubaka amahoro hamwe no guhugura mu by'ikoranabuhanga abayobozi bato b'itorero barenga 800 mu gihugu hose.",
-        "image": "/cpr/assets/news-trauma.jpg"
+        "image": "/assets/news-trauma.jpg"
       },
       {
         "slug": "kwibuka-31-commemoration",
@@ -445,7 +445,7 @@
         "category": "Event",
         "title": "Kwibuka 31 muri Diyosezi ya Gahini",
         "excerpt": "Amatorero agize CPR yifatanyije n'abandi banyarwanda kwibuka Jenoside yakorewe Abatutsi mu 1994, bongera gushimangira ubumwe bwabo ku mahoro, ubwiyunge n'«Ibyo ntibizongera kubaho».",
-        "image": "/cpr/assets/Gahini 2.webp"
+        "image": "/assets/Gahini 2.webp"
       },
       {
         "slug": "bnep-active-pedagogy-training",
@@ -453,7 +453,7 @@
         "category": "Education",
         "title": "BNEP yatangije Amahugurwa ku Barezi 1,200",
         "excerpt": "Ibiro by'Igihugu bishinzwe Uburezi bw'Abaporotesitanti byatangije gahunda y'imyigishirize igezweho mu bufatanye n'abafatanyabikorwa mpuzamahanga.",
-        "image": "/cpr/assets/Primary.jpg"
+        "image": "/assets/Primary.jpg"
       },
       {
         "slug": "trauma-counselor-certification",
@@ -461,7 +461,7 @@
         "category": "Health",
         "title": "Amahugurwa y'Abajyanama b'Ihungabana",
         "excerpt": "Abajyanama b'ubuzima 42 mu ntara zitanu bahawe impabumenyi mu gufasha abafite ihungabana, bikomeza ubushobozi bwa CPR mu kuvuga ku buzima bwo mu mutwe.",
-        "image": "/cpr/assets/Trauma 1.webp"
+        "image": "/assets/Trauma 1.webp"
       },
       {
         "slug": "agricultural-cooperatives-sustainability",
@@ -469,7 +469,7 @@
         "category": "Development",
         "title": "CPR mu Bufatanye na Koperative z'Abahinzi",
         "excerpt": "Gahunda nshya yo gufasha abaturage bo mu cyaro n'ubuhinzi bwihangana n'imihindagurikire y'ikirere yatangirijwe mu Burasirazuba, igira akamaro ku miryango irenga 500.",
-        "image": "/cpr/assets/CPR 3 - Copy.webp"
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
         "slug": "youth-reconciliation-summit",
@@ -477,7 +477,7 @@
         "category": "Youth",
         "title": "Inama y'Urubyiruko ku Mahoro n'Ubwiyunge",
         "excerpt": "Abayobozi b'urubyiruko bo mu matorero atandukanye y'Abaporotesitanti mu gihugu hose bazahurira i Kigali kuganira ku kubaka amahoro, ubuyobozi, n'ubutumwa bwiza bukoresheje ikoranabuhanga.",
-        "image": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -602,7 +602,7 @@
     "heroTag": "Ubunyamabanga Bukuru",
     "heroTitle": "Ubunyamabanga",
     "heroDesc": "Ikigo cy'ingenzi cya CPR — gihuriza imiyoborere, ibikorwa, ubwigenge, no gutumanahana hagati y'amatorero.",
-    "heroImage": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+    "heroImage": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
     "introTag": "Inshingano Zacu",
     "introTitle": "Guhuza Inama y'Abaprotestanti mu Rwanda",
     "introDesc": "Ubunyamabanga Bukuru ni ingingo y'ubuyobozi bwa CPR, ishinzwe gushyira mu bikorwa ibyemezo by'Inteko Rusange n'Komite Nyobozi, gucunga imishyikirano hagati y'amatorera, no guhagararira CPR ku rwego rw'igihugu no mpuzamahanga.",
@@ -619,14 +619,14 @@
       "name": "Pas. Samuel Mutabazi",
       "title": "Umunyamabanga Mukuru, Inama y'Amatorera y'Abaprotestanti mu Rwanda",
       "quote": "Amatorera y'Abaprotestanti mu Rwanda arahamagarirwa kuba umwe — gukorera hamwe, guhamya hamwe, no kubaka iki gihugu hamwe. CPR ihari kugira ngo ubumwe bwo bugaragare kandi bukorere mu nzego zose z'u Rwanda.",
-      "photo": "/cpr/assets/Mutabazi_Samuel.webp",
+      "photo": "/assets/Mutabazi_Samuel.webp",
       "photoAlt": "Pas. Samuel Mutabazi"
     },
     "meetings": {
       "tag": "Inama za CPR",
       "title": "Imiyoborere & Inama z'Imbere",
       "desc": "Usibye ibikorwa bya rubanda, CPR iterana inama z'imiyoborere buri gihe kugira ngo hagire inshingano, guhuriza hamwe ingamba, no guhuza neza amatorera agize umuryango n'amashami yose.",
-      "image": "/cpr/assets/secretariat-meetings.webp",
+      "image": "/assets/secretariat-meetings.webp",
       "stats": [
         { "value": "4/umwaka", "label": "Inama z'Ihuriro" },
         { "value": "6/umwaka", "label": "Inama z'Inzego" },
@@ -645,7 +645,7 @@
       "tag": "Ubunyamabanga Bukuru",
       "title": "Ibiro by'Umunyamabanga Mukuru",
       "desc": "Umunyamabanga Mukuru ayobora ibikorwa bya buri munsi bya CPR, akaba umuyobozi mukuru w'Inama kandi akaba inzira nyamukuru hagati y'amatorera, leta, n'inshuti z'amahanga.",
-      "image": "/cpr/assets/secretariat-sg.webp",
+      "image": "/assets/secretariat-sg.webp",
       "stats": [
         { "value": "28", "label": "Abanyamuryango" },
         { "value": "50+", "label": "Abakozi b'Umuryango" },
@@ -664,7 +664,7 @@
       "tag": "Ibikorwa bya CPR",
       "title": "Inama, Sinode & Inteko",
       "desc": "CPR iterana buri gihe inama zihuza abayobozi b'amatorera, abayobozi ba leta, umuryango w'abaturage, n'inshuti z'amahanga kugira ngo bafatanye ibyemezo.",
-      "image": "/cpr/assets/secretariat-events.webp",
+      "image": "/assets/secretariat-events.webp",
       "stats": [
         { "value": "1", "label": "Inteko z'Umwaka" },
         { "value": "1", "label": "Sinode z'Amatora" },
@@ -683,7 +683,7 @@
       "tag": "Ubwigenge",
       "title": "Kugira Uruhare mu Politiki & Ubuyobozi bw'Abaturage",
       "desc": "CPR ikora mu buryo bw'umwihariko mu nzego z'amategeko y'igihugu, itwara ijwi ry'umuryango w'Abaprotestanti ku bibazo by'ubutabera, agaciro k'ikiremwamuntu, ubwiyunge, no guteza imbere igihugu.",
-      "image": "/cpr/assets/secretariat-advocacy.webp",
+      "image": "/assets/secretariat-advocacy.webp",
       "stats": [
         { "value": "5+", "label": "Inzego z'Amategeko" },
         { "value": "10+", "label": "Inama z'Igihugu" },
@@ -702,7 +702,7 @@
       "tag": "Uburambe",
       "title": "Uburambe bw'Ibidukikije & bw'Inzego",
       "desc": "CPR ihamagarira kubungabunga ibidukikije by'u Rwanda no kubaka inzego zirambye, ishyira mu bikorwa teolojiya y'ubungabunga bw'isi.",
-      "image": "/cpr/assets/secretariat-sustainability.webp",
+      "image": "/assets/secretariat-sustainability.webp",
       "stats": [
         { "value": "15+", "label": "Imishinga y'Ibiti" },
         { "value": "50+", "label": "Amashuri Arengera Isi" },
@@ -721,7 +721,7 @@
       "tag": "Ibitangazo bya SG",
       "title": "Raporo, Amakuru & Intumwa",
       "desc": "Ubunyamabanga butanga ibitangazo by'ibikorwa bya CPR, bigaragaza imirimo y'inzego kandi bikamenyesha amatorera agize umuryango n'abaturage.",
-      "image": "/cpr/assets/secretariat-publications.webp",
+      "image": "/assets/secretariat-publications.webp",
       "stats": [
         { "value": "60+", "label": "Raporu z'Umwaka" },
         { "value": "200+", "label": "Utumenyesha" },

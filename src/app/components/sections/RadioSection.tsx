@@ -37,7 +37,7 @@ export function RadioSection() {
             </div>
 
             <img 
-              src="/cpr/assets/Inkoramutima-Logo.jpg" 
+              src="/assets/Inkoramutima-Logo.jpg" 
               alt={t("radio.title")} 
               className="h-16 lg:h-20 w-auto mb-6"
             />

@@ -5,97 +5,71 @@ on:
     branches: [Dev]
     paths-ignore:
       - 'studio/**'
+  workflow_dispatch:
 
-# Cancel in-progress runs for the same branch
+permissions:
+  contents: read
+
+# Do not interrupt an FTP transfer midway through a release.
 concurrency:
-  group: deploy-cpanel-${{ github.ref }}
-  cancel-in-progress: true
+  group: deploy-cpanel-production
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
+    if: github.ref == 'refs/heads/Dev'
     runs-on: ubuntu-latest
-    name: Build & Deploy to cPanel
-
+    name: Build, deploy, and verify production
     steps:
-      # ── 1. Checkout code ──
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # ── 2. Install pnpm (must come BEFORE setup-node cache) ──
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Require an explicit FTP destination
+        env:
+          FTP_DIR: ${{ vars.CPANEL_FTP_SERVER_DIR }}
+        run: |
+          if [[ -z "$FTP_DIR" || "$FTP_DIR" != */ ]]; then
+            echo 'Set CPANEL_FTP_SERVER_DIR to the verified FTP-relative document root, ending in /.'
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v4
         with:
           version: 10
 
-      # ── 3. Setup Node.js ──
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      # ── 4. Install dependencies ──
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # ── 5. Build the project ──
       - name: Build production bundle
         env:
           VITE_SANITY_PROJECT_ID: ${{ secrets.VITE_SANITY_PROJECT_ID }}
           VITE_SANITY_DATASET: ${{ secrets.VITE_SANITY_DATASET }}
         run: pnpm build
 
-      # ── 6. Add .htaccess for SPA routing ──
-      - name: Add .htaccess
-        run: |
-          cat > dist/.htaccess << 'HTACCESS'
-          # React Router - SPA fallback
-          <IfModule mod_rewrite.c>
-            RewriteEngine On
-            RewriteBase /cpr/
-            RewriteRule ^index\.html$ - [L]
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /cpr/index.html [L]
-          </IfModule>
+      # public/.htaccess is copied by Vite; do not overwrite it here.
+      - name: Stamp the built release
+        run: node scripts/stamp-release.mjs
 
-          # Enable gzip compression
-          <IfModule mod_deflate.c>
-            AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
-          </IfModule>
-
-          # Cache static assets
-          <IfModule mod_expires.c>
-            ExpiresActive On
-            ExpiresByType text/css "access plus 1 year"
-            ExpiresByType application/javascript "access plus 1 year"
-            ExpiresByType image/webp "access plus 1 year"
-            ExpiresByType image/jpeg "access plus 1 year"
-            ExpiresByType image/png "access plus 1 year"
-            ExpiresByType image/svg+xml "access plus 1 year"
-            ExpiresByType application/pdf "access plus 1 month"
-          </IfModule>
-
-          # Security headers
-          <IfModule mod_headers.c>
-            Header set X-Content-Type-Options "nosniff"
-            Header set X-Frame-Options "SAMEORIGIN"
-            Header set X-XSS-Protection "1; mode=block"
-          </IfModule>
-          HTACCESS
-
-      # ── 7. Deploy to cPanel via FTP ──
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          server-dir: ./
+          server-dir: ${{ vars.CPANEL_FTP_SERVER_DIR }}
           local-dir: dist/
+          dangerous-clean-slate: false
+          state-name: .ftp-deploy-root-state.json
           exclude: |
-            .git*
-            *.md
-            *.sh
-          dangerous-clean-slate: true
-          state-name: .ftp-deploy-state
+            **/.git*
+            **/*.md
+            **/*.sh
+
+      - name: Verify the release at the public domain
+        env:
+          SITE_URL: https://cpr-rwanda.rw
+        run: node scripts/verify-deployment.mjs

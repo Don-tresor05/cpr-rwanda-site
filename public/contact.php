@@ -3,7 +3,7 @@
  * CPR Rwanda website — contact form handler.
  * Receives submissions from the /contact page and emails them to the
  * secretariat inbox. Deployed as a static file alongside the built SPA,
- * so it is reached directly at /cpr/contact.php (Apache serves real files
+ * so it is reached directly at /contact.php (Apache serves real files
  * before the SPA-fallback rewrite in .htaccess kicks in).
  */
 

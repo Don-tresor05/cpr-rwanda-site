@@ -96,7 +96,7 @@
           "À cette occasion, le Secrétaire Général du CPR et le Représentant du Président du CPR se sont joints au personnel de l'institution. La délégation s'est réunie à l'Église du Nazaréen, située près du siège du secteur de Gahanga, rencontrant les 46 familles de survivants réinstallées par le district de Kicukiro dans le village de Mulinja pour un moment significatif de fraternité, de solidarité et d'encouragement mutuel."
         ],
         "quote": "Se souvenir et soutenir les survivants est notre devoir sacré permanent. Par la foi, la mémoire et le soutien concret, nous renforçons l'unité et l'espoir.",
-        "image": "/cpr/assets/news-kwibuka.jpg"
+        "image": "/assets/news-kwibuka.jpg"
       },
       {
         "slug": "annual-convention-2026",
@@ -111,7 +111,7 @@
           "La convention s'est conclue par une déclaration solennelle affirmant la coopération mutuelle, le dialogue interconfessionnel et la participation active aux projets de développement national."
         ],
         "quote": "La coopération œcuménique n'est pas seulement un objectif théologique : c'est notre responsabilité active de servir ensemble l'humanité.",
-        "image": "/cpr/assets/news-education.webp"
+        "image": "/assets/news-education.webp"
       },
       {
         "slug": "may-highlights-2026",
@@ -125,7 +125,7 @@
           "Le succès des initiatives jeunesse de mai pose les fondations de notre prochain sommet national de la jeunesse prévu plus tard cette année."
         ],
         "quote": "Autonomiser les jeunes par les compétences et la foi est le plus bel investissement que nous puissions faire pour l'avenir du Rwanda.",
-        "image": "/cpr/assets/news-trauma.jpg"
+        "image": "/assets/news-trauma.jpg"
       },
       {
         "slug": "kwibuka-31-commemoration",
@@ -139,7 +139,7 @@
           "Le CPR a réaffirmé son engagement à soutenir les cliniques de guérison des traumatismes et les groupes de dialogue communautaire pour la réconciliation à travers le pays."
         ],
         "quote": "Se souvenir est notre devoir sacré. Par la mémoire, la vérité et la foi, nous protégeons l'unité du Rwanda pour toujours.",
-        "image": "/cpr/assets/Gahini 2.webp"
+        "image": "/assets/Gahini 2.webp"
       },
       {
         "slug": "bnep-active-pedagogy-training",
@@ -153,7 +153,7 @@
           "Avec plus de 1 500 écoles gérées par les églises membres du CPR, le BNEP continue d'élever les normes éducatives à travers le pays."
         ],
         "quote": "Une éducation de qualité, fondée sur des valeurs morales fortes, transforme les apprenants en leaders compatissants.",
-        "image": "/cpr/assets/Primary.jpg"
+        "image": "/assets/Primary.jpg"
       },
       {
         "slug": "trauma-counselor-certification",
@@ -167,7 +167,7 @@
           "Cette initiative lutte contre la stigmatisation liée à la santé mentale et garantit une prise en charge bienveillante au niveau local."
         ],
         "quote": "Guérir les cœurs et restaurer le bien-être mental est essentiel pour des familles saines et des communautés fortes.",
-        "image": "/cpr/assets/Trauma 1.webp"
+        "image": "/assets/Trauma 1.webp"
       },
       {
         "slug": "agricultural-cooperatives-sustainability",
@@ -181,7 +181,7 @@
           "Plus de 500 familles en ont déjà bénéficié, augmentant les rendements tout en préservant les ressources naturelles."
         ],
         "quote": "Une agriculture durable honore la création de Dieu tout en assurant les moyens de subsistance et la dignité des familles rurales.",
-        "image": "/cpr/assets/CPR 3 - Copy.webp"
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
         "slug": "youth-reconciliation-summit",
@@ -195,7 +195,7 @@
           "Les inscriptions sont ouvertes auprès des secrétariats des paroisses locales et des coordinateurs jeunesse du CPR."
         ],
         "quote": "Lorsque les jeunes dirigent avec paix et détermination, toute la nation avance.",
-        "image": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -421,7 +421,7 @@
         "category": "Report",
         "title": "Le personnel du CPR visite le Mémorial du Génocide de Nyanza et soutient les familles de survivants du village de Mulinja",
         "excerpt": "Le personnel du CPR a rendu hommage aux victimes au Mémorial du Génocide de Nyanza, dans le district de Kicukiro, et a apporté un soutien ciblé aux familles de survivants du Génocide de 1994 dans le village de Mulinja, dans le cadre des commémorations annuelles de Kwibuka 31.",
-        "image": "/cpr/assets/news-kwibuka.jpg"
+        "image": "/assets/news-kwibuka.jpg"
       },
       {
         "slug": "annual-convention-2026",
@@ -429,7 +429,7 @@
         "category": "Event",
         "title": "Dans les coulisses de la Convention annuelle du CPR sur la coopération œcuménique",
         "excerpt": "La communauté protestante du Rwanda bâtit des partenariats durables à travers le pays. Les églises membres se sont réunies pour aligner leurs stratégies en matière d'éducation, de leadership des jeunes et d'autonomisation socio-économique.",
-        "image": "/cpr/assets/news-education.webp"
+        "image": "/assets/news-education.webp"
       },
       {
         "slug": "may-highlights-2026",
@@ -437,7 +437,7 @@
         "category": "Youth",
         "title": "Faits marquants de mai 2026 et programmes jeunesse du CPR",
         "excerpt": "Mai 2026 a été un mois décisif pour le programme jeunesse du CPR, avec le déploiement d'ateliers de consolidation de la paix et de formations aux compétences numériques pour plus de 800 jeunes responsables d'églises à travers le pays.",
-        "image": "/cpr/assets/news-trauma.jpg"
+        "image": "/assets/news-trauma.jpg"
       },
       {
         "slug": "kwibuka-31-commemoration",
@@ -445,7 +445,7 @@
         "category": "Event",
         "title": "Kwibuka 31: Commémoration au Diocèse de Gahini",
         "excerpt": "Les églises membres du CPR se sont jointes à des milliers de personnes au Rwanda pour se souvenir du génocide de 1994 contre les Tutsi, réaffirmant leur engagement en faveur de la paix, de la réconciliation et du « Plus jamais ça ».",
-        "image": "/cpr/assets/Gahini 2.webp"
+        "image": "/assets/Gahini 2.webp"
       },
       {
         "slug": "bnep-active-pedagogy-training",
@@ -453,7 +453,7 @@
         "category": "Education",
         "title": "Le BNEP Lance une Formation en Pédagogie Active",
         "excerpt": "Le Bureau National de l'Éducation Protestante a déployé son programme phare de Pédagogie Active en partenariat avec des partenaires internationaux de développement.",
-        "image": "/cpr/assets/Primary.jpg"
+        "image": "/assets/Primary.jpg"
       },
       {
         "slug": "trauma-counselor-certification",
@@ -461,7 +461,7 @@
         "category": "Health",
         "title": "Certification de Conseillers en Traumatisme",
         "excerpt": "Quarante-deux agents de santé communautaire ont été certifiés comme conseillers en traumatisme dans cinq provinces, renforçant la capacité d'intervention du CPR en santé mentale.",
-        "image": "/cpr/assets/Trauma 1.webp"
+        "image": "/assets/Trauma 1.webp"
       },
       {
         "slug": "agricultural-cooperatives-sustainability",
@@ -469,7 +469,7 @@
         "category": "Development",
         "title": "Le CPR s'Associe aux Coopératives Locales",
         "excerpt": "Une nouvelle initiative visant à soutenir les communautés rurales avec des techniques agricoles intelligentes face au climat a été lancée dans la province de l'Est, touchant plus de 500 familles.",
-        "image": "/cpr/assets/CPR 3 - Copy.webp"
+        "image": "/assets/CPR 3 - Copy.webp"
       },
       {
         "slug": "youth-reconciliation-summit",
@@ -477,7 +477,7 @@
         "category": "Youth",
         "title": "Sommet Annuel de la Jeunesse Annoncé",
         "excerpt": "Des jeunes leaders de diverses paroisses protestantes se réuniront à Kigali pour discuter de la consolidation de la paix, du leadership et de l'évangélisation numérique.",
-        "image": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
+        "image": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"
       }
     ]
   },
@@ -602,7 +602,7 @@
     "heroTag": "Secrétariat Général",
     "heroTitle": "Secrétariat",
     "heroDesc": "Le centre névralgique du CPR — coordonnant la gouvernance, les événements, le plaidoyer, la durabilité et les communications institutionnelles.",
-    "heroImage": "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
+    "heroImage": "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp",
     "introTag": "Notre Rôle",
     "introTitle": "Coordonner le Conseil Protestant du Rwanda",
     "introDesc": "Le Secrétariat Général est le bras exécutif du CPR, chargé de mettre en œuvre les décisions de l'Assemblée Générale et du Comité Exécutif, de gérer les relations inter-ecclésiales et de représenter le CPR aux niveaux national et international.",
@@ -619,14 +619,14 @@
       "name": "Rév. Samuel Mutabazi",
       "title": "Secrétaire Général, Conseil Protestant du Rwanda",
       "quote": "Les églises protestantes du Rwanda sont appelées à être une — à servir ensemble, témoigner ensemble et construire cette nation ensemble. Le CPR existe pour rendre cette unité visible et efficace dans chaque coin du Rwanda.",
-      "photo": "/cpr/assets/Mutabazi_Samuel.webp",
+      "photo": "/assets/Mutabazi_Samuel.webp",
       "photoAlt": "Rév. Samuel Mutabazi"
     },
     "meetings": {
       "tag": "Réunions CPR",
       "title": "Gouvernance & Réunions Internes",
       "desc": "Au-delà des événements publics, le CPR tient des réunions de gouvernance interne régulières qui assurent la responsabilité, l'alignement stratégique et la coordination efficace entre toutes les églises membres et les départements.",
-      "image": "/cpr/assets/secretariat-meetings.webp",
+      "image": "/assets/secretariat-meetings.webp",
       "stats": [
         { "value": "4/an", "label": "Sessions Com." },
         { "value": "6/an", "label": "Réunions du Conseil" },
@@ -645,7 +645,7 @@
       "tag": "Secrétariat Général",
       "title": "Bureau du Secrétaire Général",
       "desc": "Le Secrétaire Général dirige les opérations quotidiennes du CPR, servant de directeur général du Conseil et de liaison principale entre les églises membres, le gouvernement et les partenaires internationaux.",
-      "image": "/cpr/assets/secretariat-sg.webp",
+      "image": "/assets/secretariat-sg.webp",
       "stats": [
         { "value": "28", "label": "Membres" },
         { "value": "50+", "label": "Membres du Personnel" },
@@ -664,7 +664,7 @@
       "tag": "Événements CPR",
       "title": "Conférences, Synodes & Assemblées",
       "desc": "Le CPR convoque des rassemblements réguliers réunissant des dirigeants d'église, des responsables gouvernementaux, la société civile et des partenaires internationaux.",
-      "image": "/cpr/assets/secretariat-events.webp",
+      "image": "/assets/secretariat-events.webp",
       "stats": [
         { "value": "1", "label": "Assemblées Annuelles" },
         { "value": "1", "label": "Synodes Biennaux" },
@@ -683,7 +683,7 @@
       "tag": "Plaidoyer",
       "title": "Engagement Politique & Leadership Civique",
       "desc": "Le CPR s'engage activement dans le paysage des politiques publiques du Rwanda, portant la voix de la communauté protestante sur les questions de justice, de dignité humaine et de développement national.",
-      "image": "/cpr/assets/secretariat-advocacy.webp",
+      "image": "/assets/secretariat-advocacy.webp",
       "stats": [
         { "value": "5+", "label": "Domaines Politiques" },
         { "value": "10+", "label": "Forums Nationaux" },
@@ -702,7 +702,7 @@
       "tag": "Durabilité",
       "title": "Durabilité Environnementale & Institutionnelle",
       "desc": "Le CPR s'engage à gérer l'environnement naturel du Rwanda et à construire des institutions durables, en intégrant le soin de la création dans la théologie.",
-      "image": "/cpr/assets/secretariat-sustainability.webp",
+      "image": "/assets/secretariat-sustainability.webp",
       "stats": [
         { "value": "15+", "label": "Initiatives Arbres" },
         { "value": "50+", "label": "Écoles Vertes" },
@@ -721,7 +721,7 @@
       "tag": "Publications du SG",
       "title": "Rapports, Bulletins & Communiqués",
       "desc": "Le Secrétariat produit une gamme de publications officielles documentant le travail du CPR et tenant informées les églises membres et le public.",
-      "image": "/cpr/assets/secretariat-publications.webp",
+      "image": "/assets/secretariat-publications.webp",
       "stats": [
         { "value": "60+", "label": "Rapports Annuels" },
         { "value": "200+", "label": "Bulletins" },

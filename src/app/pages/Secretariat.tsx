@@ -26,12 +26,12 @@ interface SubSection {
 }
 
 const secImages: Record<string, string> = {
-  sg: "/cpr/assets/secretariat-sg.webp",
-  events: "/cpr/assets/secretariat-events.webp",
-  meetings: "/cpr/assets/secretariat-meetings.webp",
-  advocacy: "/cpr/assets/secretariat-advocacy.webp",
-  sustainability: "/cpr/assets/secretariat-sustainability.webp",
-  publications: "/cpr/assets/secretariat-publications.webp",
+  sg: "/assets/secretariat-sg.webp",
+  events: "/assets/secretariat-events.webp",
+  meetings: "/assets/secretariat-meetings.webp",
+  advocacy: "/assets/secretariat-advocacy.webp",
+  sustainability: "/assets/secretariat-sustainability.webp",
+  publications: "/assets/secretariat-publications.webp",
 };
 
 
@@ -132,7 +132,7 @@ export function Secretariat() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${cms?.heroImage ?? "/cpr/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"}')`,
+              `linear-gradient(rgba(78,97,50,0.45), rgba(78,97,50,0.88)), url('${cms?.heroImage ?? "/assets/Ensemble-Biryogo-juillet-2019-copy-1048x480.webp"}')`,
             backgroundSize: "cover",
             backgroundPosition: "center 10%",
             y: heroBgY,
@@ -240,7 +240,7 @@ export function Secretariat() {
                   className="w-40 h-40 lg:w-48 lg:h-48 rounded-lg overflow-hidden border-4 border-[#4E6132]/20 shadow-xl cursor-pointer hover:opacity-95 transition-opacity"
                 >
                   <img
-                    src={cms?.sgProfile?.photo ?? "/cpr/assets/Mutabazi_Samuel.webp"}
+                    src={cms?.sgProfile?.photo ?? "/assets/Mutabazi_Samuel.webp"}
                     alt={cms?.sgProfile?.photoAlt ?? t("secretariatPage.sgProfile.name") ?? "Rev. Samuel Mutabazi"}
                     className="w-full h-full object-cover object-top"
                   />
@@ -378,7 +378,7 @@ export function Secretariat() {
 
       <ImageLightbox
         images={[{
-          src: cms?.sgProfile?.photo ?? "/cpr/assets/Mutabazi_Samuel.webp",
+          src: cms?.sgProfile?.photo ?? "/assets/Mutabazi_Samuel.webp",
           alt: cms?.sgProfile?.photoAlt ?? t("secretariatPage.sgProfile.name") ?? "Rev. Samuel Mutabazi",
         }]}
         selectedIndex={sgPhotoOpen ? 0 : null}
