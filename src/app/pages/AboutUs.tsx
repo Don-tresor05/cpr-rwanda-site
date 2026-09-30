@@ -142,11 +142,10 @@ export function AboutUs() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-200 ${
-                  activeSection === link.href.substring(1)
-                    ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
-                    : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
-                }`}
+                className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all duration-200 ${activeSection === link.href.substring(1)
+                  ? "bg-[#8B6543]/20 text-[#8B6543] font-bold shadow-sm"
+                  : "text-[#4E6132] font-semibold hover:bg-[#8B6543]/20 hover:text-[#8B6543] hover:font-bold"
+                  }`}
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
@@ -333,8 +332,8 @@ export function AboutUs() {
       {/* Values */}
       <section id="core-values" className="py-14 sm:py-20 bg-[#4E6132] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">            <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-white mb-8 sm:mb-10">
-            {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
-          </h2>
+          {cms?.coreValues?.title ?? t("aboutPage.coreValues.title")}
+        </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {coreValuesItems.map((val, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl text-white hover:bg-white/10 transition-colors">
@@ -390,7 +389,7 @@ export function AboutUs() {
                     <span className="text-[#8B6543] text-[14.4px] font-semibold mb-2.5 block">
                       {member.role || (cms?.execCommittee?.defaultRole ?? t("aboutPage.execCommittee.defaultRole"))}
                     </span>
-                    <button 
+                    <button
                       onClick={() => setSelectedBoardMember(member as BoardMember)}
                       className="inline-flex items-center gap-2 mt-auto pt-3 sm:pt-4 text-[#4E6132] font-bold text-[14px] hover:text-[#8B6543] transition-colors group"
                     >
@@ -460,20 +459,20 @@ export function AboutUs() {
           <h2 className="font-['Outfit'] font-black text-3xl lg:text-4xl text-[#4E6132] mb-12">
             {cms?.organigram?.title ?? t("aboutPage.organigram.title")}
           </h2>
-          <div 
+          <div
             className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-sm border border-[#8B6543]/20 bg-[#F8F9FA] cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => setOrganigramLightboxOpen(true)}
           >
-            <img 
-              src={cms?.organigram?.image ?? "/assets/Organigam.jpeg"} 
-              alt="CPR Rwanda Organigram" 
+            <img
+              src={cms?.organigram?.image ?? "/assets/Organigam.jpeg"}
+              alt="CPR Rwanda Organigram"
               className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-300"
             />
           </div>
-          <ImageLightbox 
-            images={[{ src: cms?.organigram?.image ?? "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]} 
-            selectedIndex={organigramLightboxOpen ? 0 : null} 
-            onClose={() => setOrganigramLightboxOpen(false)} 
+          <ImageLightbox
+            images={[{ src: cms?.organigram?.image ?? "/assets/Organigam.jpeg", alt: "CPR Rwanda Organigram" }]}
+            selectedIndex={organigramLightboxOpen ? 0 : null}
+            onClose={() => setOrganigramLightboxOpen(false)}
           />
         </div>
       </WatermarkSection>
@@ -482,18 +481,18 @@ export function AboutUs() {
       <section id="our-partners" className="bg-[#F8F9FA] pt-12 pb-12 lg:pt-14 lg:pb-16 scroll-mt-32 border-t border-[#8B6543]/10 w-full overflow-hidden">
         <div className="w-full">
           <div className="text-center mb-14 lg:mb-20">
-              <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
-                {cms?.partners?.title ?? t("aboutPage.partners.title")}
-              </h2>
-              <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
-                {cms?.partners?.subtitle ?? t("aboutPage.partners.subtitle")}
-              </p>
-            </div>
-            
-            {/* Sliding Partners Carousel */}
-            <PartnersCarousel
-              partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
-            />
+            <h2 className="font-['Outfit'] font-black text-3xl text-[#4E6132]">
+              {cms?.partners?.title ?? t("aboutPage.partners.title")}
+            </h2>
+            <p className="text-[#8B6543] font-medium mt-3 text-sm tracking-wide">
+              {cms?.partners?.["subtitle"] ?? t("aboutPage.partners.subtitle")}
+            </p>
+          </div>
+
+          {/* Sliding Partners Carousel */}
+          <PartnersCarousel
+            partners={cmsPartners && cmsPartners.length > 0 ? cmsPartners : FALLBACK_PARTNERS}
+          />
         </div>
       </section>
       {/* History Modal */}
@@ -641,7 +640,7 @@ export function AboutUs() {
                   <h2 className="font-['Outfit'] font-bold text-xl lg:text-2xl text-[#4E6132] mb-4">
                     {selectedBoardMember.name}
                   </h2>
-                  
+
                   <div className="text-[#3A3A3A] space-y-4 text-[15px] leading-relaxed">
                     {selectedBoardMember.bio ? (
                       typeof selectedBoardMember.bio === 'string' ? (

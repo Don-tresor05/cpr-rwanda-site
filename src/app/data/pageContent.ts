@@ -171,19 +171,19 @@ export function useDepartmentsPage(): DepartmentsPageContent | null {
           introDesc: pickOrUndef(doc.introDesc, lang),
           overview: doc.overview
             ? {
-                title: pickOrUndef(doc.overview.title, lang),
-                desc: pickOrUndef(doc.overview.desc, lang),
-              }
+              title: pickOrUndef(doc.overview.title, lang),
+              desc: pickOrUndef(doc.overview.desc, lang),
+            }
             : undefined,
           quickFactsTitle: pickOrUndef(doc.quickFactsTitle, lang),
           quickFacts: resolveTexts(doc.quickFacts, lang),
           sections,
           cta: doc.cta
             ? {
-                title: pickOrUndef(doc.cta.title, lang),
-                desc: pickOrUndef(doc.cta.desc, lang),
-                btn: pickOrUndef(doc.cta.btn, lang),
-              }
+              title: pickOrUndef(doc.cta.title, lang),
+              desc: pickOrUndef(doc.cta.desc, lang),
+              btn: pickOrUndef(doc.cta.btn, lang),
+            }
             : undefined,
         });
       })
@@ -251,7 +251,7 @@ export interface AboutPageContent {
     bioComingSoon?: string;
   };
   organigram?: { title?: string; comingSoon?: string; image?: string };
-  partners?: { title?: string };
+  partners?: { title?: string; subtitle?: string };
   historyModal?: {
     learnMore?: string;
     badge?: string;
@@ -382,92 +382,92 @@ export function useAboutPage(): AboutPageContent | null {
           heroImage: doc.heroImage || undefined,
           nav: doc.nav
             ? {
-                whoWeAre: pickOrUndef(doc.nav.whoWeAre, lang),
-                visionMission: pickOrUndef(doc.nav.visionMission, lang),
-                coreValues: pickOrUndef(doc.nav.coreValues, lang),
-                execCommittee: pickOrUndef(doc.nav.execCommittee, lang),
-                organigram: pickOrUndef(doc.nav.organigram, lang),
-                ourPartners: pickOrUndef(doc.nav.ourPartners, lang),
-              }
+              whoWeAre: pickOrUndef(doc.nav.whoWeAre, lang),
+              visionMission: pickOrUndef(doc.nav.visionMission, lang),
+              coreValues: pickOrUndef(doc.nav.coreValues, lang),
+              execCommittee: pickOrUndef(doc.nav.execCommittee, lang),
+              organigram: pickOrUndef(doc.nav.organigram, lang),
+              ourPartners: pickOrUndef(doc.nav.ourPartners, lang),
+            }
             : undefined,
           whoWeAre: doc.whoWeAre
             ? {
-                title: pickOrUndef(doc.whoWeAre.title, lang),
-                p1: pickOrUndef(doc.whoWeAre.p1, lang),
-                p2: pickOrUndef(doc.whoWeAre.p2, lang),
-              }
+              title: pickOrUndef(doc.whoWeAre.title, lang),
+              p1: pickOrUndef(doc.whoWeAre.p1, lang),
+              p2: pickOrUndef(doc.whoWeAre.p2, lang),
+            }
             : undefined,
           visionMission: doc.visionMission
             ? {
-                title: pickOrUndef(doc.visionMission.title, lang),
-                visionTag: pickOrUndef(doc.visionMission.visionTag, lang),
-                visionSub: pickOrUndef(doc.visionMission.visionSub, lang),
-                visionDesc: pickOrUndef(doc.visionMission.visionDesc, lang),
-                missionTag: pickOrUndef(doc.visionMission.missionTag, lang),
-                missionSub: pickOrUndef(doc.visionMission.missionSub, lang),
-                missionDesc: pickOrUndef(doc.visionMission.missionDesc, lang),
-              }
+              title: pickOrUndef(doc.visionMission.title, lang),
+              visionTag: pickOrUndef(doc.visionMission.visionTag, lang),
+              visionSub: pickOrUndef(doc.visionMission.visionSub, lang),
+              visionDesc: pickOrUndef(doc.visionMission.visionDesc, lang),
+              missionTag: pickOrUndef(doc.visionMission.missionTag, lang),
+              missionSub: pickOrUndef(doc.visionMission.missionSub, lang),
+              missionDesc: pickOrUndef(doc.visionMission.missionDesc, lang),
+            }
             : undefined,
           model: doc.model
             ? {
-                title: pickOrUndef(doc.model.title, lang),
-                desc: pickOrUndef(doc.model.desc, lang),
-                step1Tag: pickOrUndef(doc.model.step1Tag, lang),
-                step1Title: pickOrUndef(doc.model.step1Title, lang),
-                step1Desc: pickOrUndef(doc.model.step1Desc, lang),
-                step2Tag: pickOrUndef(doc.model.step2Tag, lang),
-                step2Title: pickOrUndef(doc.model.step2Title, lang),
-                step2Desc: pickOrUndef(doc.model.step2Desc, lang),
-                step3Tag: pickOrUndef(doc.model.step3Tag, lang),
-                step3Title: pickOrUndef(doc.model.step3Title, lang),
-                step3Desc: pickOrUndef(doc.model.step3Desc, lang),
-              }
+              title: pickOrUndef(doc.model.title, lang),
+              desc: pickOrUndef(doc.model.desc, lang),
+              step1Tag: pickOrUndef(doc.model.step1Tag, lang),
+              step1Title: pickOrUndef(doc.model.step1Title, lang),
+              step1Desc: pickOrUndef(doc.model.step1Desc, lang),
+              step2Tag: pickOrUndef(doc.model.step2Tag, lang),
+              step2Title: pickOrUndef(doc.model.step2Title, lang),
+              step2Desc: pickOrUndef(doc.model.step2Desc, lang),
+              step3Tag: pickOrUndef(doc.model.step3Tag, lang),
+              step3Title: pickOrUndef(doc.model.step3Title, lang),
+              step3Desc: pickOrUndef(doc.model.step3Desc, lang),
+            }
             : undefined,
           coreValues: doc.coreValues
             ? {
-                title: pickOrUndef(doc.coreValues.title, lang),
-                items: (doc.coreValues.items || [])
-                  .map((v) => ({
-                    title: pickOrUndef(v.title, lang) || "",
-                    desc: pickOrUndef(v.desc, lang) || "",
-                  }))
-                  .filter((v) => v.title || v.desc),
-              }
+              title: pickOrUndef(doc.coreValues.title, lang),
+              items: (doc.coreValues.items || [])
+                .map((v) => ({
+                  title: pickOrUndef(v.title, lang) || "",
+                  desc: pickOrUndef(v.desc, lang) || "",
+                }))
+                .filter((v) => v.title || v.desc),
+            }
             : undefined,
           execCommittee: doc.execCommittee
             ? {
-                title: pickOrUndef(doc.execCommittee.title, lang),
-                desc: pickOrUndef(doc.execCommittee.desc, lang),
-                boardMembers: pickOrUndef(doc.execCommittee.boardMembers, lang),
-                staff: pickOrUndef(doc.execCommittee.staff, lang),
-                defaultName: pickOrUndef(doc.execCommittee.defaultName, lang),
-                defaultRole: pickOrUndef(doc.execCommittee.defaultRole, lang),
-                readBio: pickOrUndef(doc.execCommittee.readBio, lang),
-                boardMemberLabel: pickOrUndef(doc.execCommittee.boardMemberLabel, lang),
-                bioComingSoon: pickOrUndef(doc.execCommittee.bioComingSoon, lang),
-              }
+              title: pickOrUndef(doc.execCommittee.title, lang),
+              desc: pickOrUndef(doc.execCommittee.desc, lang),
+              boardMembers: pickOrUndef(doc.execCommittee.boardMembers, lang),
+              staff: pickOrUndef(doc.execCommittee.staff, lang),
+              defaultName: pickOrUndef(doc.execCommittee.defaultName, lang),
+              defaultRole: pickOrUndef(doc.execCommittee.defaultRole, lang),
+              readBio: pickOrUndef(doc.execCommittee.readBio, lang),
+              boardMemberLabel: pickOrUndef(doc.execCommittee.boardMemberLabel, lang),
+              bioComingSoon: pickOrUndef(doc.execCommittee.bioComingSoon, lang),
+            }
             : undefined,
           organigram: doc.organigram
             ? {
-                title: pickOrUndef(doc.organigram.title, lang),
-                comingSoon: pickOrUndef(doc.organigram.comingSoon, lang),
-                image: doc.organigram.image || undefined,
-              }
+              title: pickOrUndef(doc.organigram.title, lang),
+              comingSoon: pickOrUndef(doc.organigram.comingSoon, lang),
+              image: doc.organigram.image || undefined,
+            }
             : undefined,
           partners: doc.partners
             ? { title: pickOrUndef(doc.partners.title, lang) }
             : undefined,
           historyModal: doc.historyModal
             ? {
-                learnMore: pickOrUndef(doc.historyModal.learnMore, lang),
-                badge: pickOrUndef(doc.historyModal.badge, lang),
-                title: pickOrUndef(doc.historyModal.title, lang),
-                p1: pickOrUndef(doc.historyModal.p1, lang),
-                p2: pickOrUndef(doc.historyModal.p2, lang),
-                personName: pickOrUndef(doc.historyModal.personName, lang),
-                personRole: pickOrUndef(doc.historyModal.personRole, lang),
-                cta: pickOrUndef(doc.historyModal.cta, lang),
-              }
+              learnMore: pickOrUndef(doc.historyModal.learnMore, lang),
+              badge: pickOrUndef(doc.historyModal.badge, lang),
+              title: pickOrUndef(doc.historyModal.title, lang),
+              p1: pickOrUndef(doc.historyModal.p1, lang),
+              p2: pickOrUndef(doc.historyModal.p2, lang),
+              personName: pickOrUndef(doc.historyModal.personName, lang),
+              personRole: pickOrUndef(doc.historyModal.personRole, lang),
+              cta: pickOrUndef(doc.historyModal.cta, lang),
+            }
             : undefined,
         });
       })
@@ -611,22 +611,22 @@ export function useSecretariatPage(): SecretariatPageContent | null {
           introDesc: pickOrUndef(doc.introDesc, lang),
           sgProfile: doc.sgProfile
             ? {
-                role: pickOrUndef(doc.sgProfile.role, lang),
-                name: pickOrUndef(doc.sgProfile.name, lang),
-                title: pickOrUndef(doc.sgProfile.title, lang),
-                quote: pickOrUndef(doc.sgProfile.quote, lang),
-                photo: doc.sgProfile.photo || undefined,
-                photoAlt: pickOrUndef(doc.sgProfile.photoAlt, lang),
-              }
+              role: pickOrUndef(doc.sgProfile.role, lang),
+              name: pickOrUndef(doc.sgProfile.name, lang),
+              title: pickOrUndef(doc.sgProfile.title, lang),
+              quote: pickOrUndef(doc.sgProfile.quote, lang),
+              photo: doc.sgProfile.photo || undefined,
+              photoAlt: pickOrUndef(doc.sgProfile.photoAlt, lang),
+            }
             : undefined,
           sections: resolveSections(doc.sections, lang),
           cta: doc.cta
             ? {
-                title: pickOrUndef(doc.cta.title, lang),
-                desc: pickOrUndef(doc.cta.desc, lang),
-                btn: pickOrUndef(doc.cta.btn, lang),
-                contact: doc.cta.contact || undefined,
-              }
+              title: pickOrUndef(doc.cta.title, lang),
+              desc: pickOrUndef(doc.cta.desc, lang),
+              btn: pickOrUndef(doc.cta.btn, lang),
+              contact: doc.cta.contact || undefined,
+            }
             : undefined,
         });
       })
@@ -811,82 +811,82 @@ export function useRadioPage(): RadioPageContent | null {
           heroCtaSecondary: pickOrUndef(doc.heroCtaSecondary, lang),
           nav: doc.nav
             ? {
-                about: pickOrUndef(doc.nav.about, lang),
-                vision: pickOrUndef(doc.nav.vision, lang),
-                editorial: pickOrUndef(doc.nav.editorial, lang),
-                programs: pickOrUndef(doc.nav.programs, lang),
-                coverage: pickOrUndef(doc.nav.coverage, lang),
-                beneficiaries: pickOrUndef(doc.nav.beneficiaries, lang),
-              }
+              about: pickOrUndef(doc.nav.about, lang),
+              vision: pickOrUndef(doc.nav.vision, lang),
+              editorial: pickOrUndef(doc.nav.editorial, lang),
+              programs: pickOrUndef(doc.nav.programs, lang),
+              coverage: pickOrUndef(doc.nav.coverage, lang),
+              beneficiaries: pickOrUndef(doc.nav.beneficiaries, lang),
+            }
             : undefined,
           about: doc.about
             ? {
-                tag: pickOrUndef(doc.about.tag, lang),
-                title: pickOrUndef(doc.about.title, lang),
-                desc: pickOrUndef(doc.about.desc, lang),
-                hours: pickOrUndef(doc.about.hours, lang),
-                body: resolveTexts(doc.about.body, lang),
-              }
+              tag: pickOrUndef(doc.about.tag, lang),
+              title: pickOrUndef(doc.about.title, lang),
+              desc: pickOrUndef(doc.about.desc, lang),
+              hours: pickOrUndef(doc.about.hours, lang),
+              body: resolveTexts(doc.about.body, lang),
+            }
             : undefined,
           introTag: pickOrUndef(doc.introTag, lang),
           introTitle: pickOrUndef(doc.introTitle, lang),
           introDesc: pickOrUndef(doc.introDesc, lang),
           vision: doc.vision
             ? {
-                tag: pickOrUndef(doc.vision.tag, lang),
-                visionTag: pickOrUndef(doc.vision.visionTag, lang),
-                visionSub: pickOrUndef(doc.vision.visionSub, lang),
-                visionDesc: pickOrUndef(doc.vision.visionDesc, lang),
-                missionTag: pickOrUndef(doc.vision.missionTag, lang),
-                missionSub: pickOrUndef(doc.vision.missionSub, lang),
-                missionDesc: pickOrUndef(doc.vision.missionDesc, lang),
-              }
+              tag: pickOrUndef(doc.vision.tag, lang),
+              visionTag: pickOrUndef(doc.vision.visionTag, lang),
+              visionSub: pickOrUndef(doc.vision.visionSub, lang),
+              visionDesc: pickOrUndef(doc.vision.visionDesc, lang),
+              missionTag: pickOrUndef(doc.vision.missionTag, lang),
+              missionSub: pickOrUndef(doc.vision.missionSub, lang),
+              missionDesc: pickOrUndef(doc.vision.missionDesc, lang),
+            }
             : undefined,
           editorial: doc.editorial
             ? {
-                tag: pickOrUndef(doc.editorial.tag, lang),
-                title: pickOrUndef(doc.editorial.title, lang),
-                desc: pickOrUndef(doc.editorial.desc, lang),
-                items: (doc.editorial.items || [])
-                  .map((item) => ({
-                    title: pickOrUndef(item.title, lang),
-                    desc: pickOrUndef(item.desc, lang),
-                  }))
-                  .filter((item) => item.title || item.desc),
-              }
+              tag: pickOrUndef(doc.editorial.tag, lang),
+              title: pickOrUndef(doc.editorial.title, lang),
+              desc: pickOrUndef(doc.editorial.desc, lang),
+              items: (doc.editorial.items || [])
+                .map((item) => ({
+                  title: pickOrUndef(item.title, lang),
+                  desc: pickOrUndef(item.desc, lang),
+                }))
+                .filter((item) => item.title || item.desc),
+            }
             : undefined,
           programs: doc.programs
             ? {
-                tag: pickOrUndef(doc.programs.tag, lang),
-                title: pickOrUndef(doc.programs.title, lang),
-                desc: pickOrUndef(doc.programs.desc, lang),
-                footerTag: pickOrUndef(doc.programs.footerTag, lang),
-              }
+              tag: pickOrUndef(doc.programs.tag, lang),
+              title: pickOrUndef(doc.programs.title, lang),
+              desc: pickOrUndef(doc.programs.desc, lang),
+              footerTag: pickOrUndef(doc.programs.footerTag, lang),
+            }
             : undefined,
           coverage: doc.coverage
             ? {
-                tag: pickOrUndef(doc.coverage.tag, lang),
-                title: pickOrUndef(doc.coverage.title, lang),
-                desc: pickOrUndef(doc.coverage.desc, lang),
-                stats: resolveStats(doc.coverage.stats, lang),
-                regions: resolveTexts(doc.coverage.regions, lang),
-              }
+              tag: pickOrUndef(doc.coverage.tag, lang),
+              title: pickOrUndef(doc.coverage.title, lang),
+              desc: pickOrUndef(doc.coverage.desc, lang),
+              stats: resolveStats(doc.coverage.stats, lang),
+              regions: resolveTexts(doc.coverage.regions, lang),
+            }
             : undefined,
           beneficiaries: doc.beneficiaries
             ? {
-                tag: pickOrUndef(doc.beneficiaries.tag, lang),
-                title: pickOrUndef(doc.beneficiaries.title, lang),
-                desc: pickOrUndef(doc.beneficiaries.desc, lang),
-                stats: resolveStats(doc.beneficiaries.stats, lang),
-              }
+              tag: pickOrUndef(doc.beneficiaries.tag, lang),
+              title: pickOrUndef(doc.beneficiaries.title, lang),
+              desc: pickOrUndef(doc.beneficiaries.desc, lang),
+              stats: resolveStats(doc.beneficiaries.stats, lang),
+            }
             : undefined,
           cta: doc.cta
             ? {
-                title: pickOrUndef(doc.cta.title, lang),
-                desc: pickOrUndef(doc.cta.desc, lang),
-                btn: pickOrUndef(doc.cta.btn, lang),
-                btnSecondary: pickOrUndef(doc.cta.btnSecondary, lang),
-              }
+              title: pickOrUndef(doc.cta.title, lang),
+              desc: pickOrUndef(doc.cta.desc, lang),
+              btn: pickOrUndef(doc.cta.btn, lang),
+              btnSecondary: pickOrUndef(doc.cta.btnSecondary, lang),
+            }
             : undefined,
         });
       })
